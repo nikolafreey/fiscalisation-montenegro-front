@@ -1,0 +1,1 @@
+export const GLOBAL_ERROR_SET = 'GLOBAL_ERROR_SET';
