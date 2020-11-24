@@ -4,7 +4,7 @@ import store from './store';
 import Buyers from './components/Buyers';
 
 function App() {
-  
+
   return (
     <Provider store={store}>
       <Buyers/>
