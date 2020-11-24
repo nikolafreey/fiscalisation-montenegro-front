@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authService } from '../services/AuthService';
 import { getBuyers } from '../store/actions/BuyerActions';
 import { buyerSelector } from '../store/selectors/BuyerSelector';
+import $t from '../lang';
 
 const Buyers = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Buyers = () => {
   
   return (
     <div>
-      
+      {$t('test')}
     </div>
   )
 }
