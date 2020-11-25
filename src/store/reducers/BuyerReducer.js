@@ -7,7 +7,7 @@ const initialState = {
   buyers: []
 };
 
-const errorReducer = (state = initialState, action) =>
+const buyerReducer = (state = initialState, action) =>
   produce(state, draft => {
     /*eslint-disable indent */
     switch (action.type) {
@@ -19,4 +19,4 @@ const errorReducer = (state = initialState, action) =>
     }
   });
 
-export default errorReducer;
+export default buyerReducer;
