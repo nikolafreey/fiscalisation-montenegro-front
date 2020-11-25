@@ -1,9 +1,9 @@
-import { ErrorMessage, Field, useField } from 'formik';
+import { useField } from 'formik';
 import React from 'react'
 import Label from './Label';
 
 const InputField = ({ label, ...props }) => {
-  const [field, meta, helpers] = useField(props);
+  const [field, meta] = useField(props);
 
   const id = props.id || props.name;
   

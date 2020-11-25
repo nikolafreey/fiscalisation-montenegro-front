@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { authService } from '../services/AuthService';
-import { getBuyers } from '../store/actions/BuyerActions';
 import { fizickaLicaSelector } from '../store/selectors/FizickaLicaSelector';
-import $t from '../lang';
 import FizickaLicaForm from './FizickaLica/FizickaLicaForm';
 import { getFizickaLica } from '../store/actions/FizickaLicaActions';
 
