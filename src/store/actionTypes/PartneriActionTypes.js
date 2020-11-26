@@ -1,0 +1,4 @@
+export const STORE_PARTNERI = 'STORE_PARTNERI';
+
+export const GET_PARTNERI = 'GET_PARTNERI';
+export const SET_PARTNERI = 'SET_PARTNERI';

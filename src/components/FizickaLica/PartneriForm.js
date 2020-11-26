@@ -1,25 +1,25 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
-import { FizickaLicaSchema } from '../../validation/fizicka_lica';
 import $t from '../../lang';
 import { useDispatch } from 'react-redux';
-import { storeFizickoLice } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
+import { storePartner } from '../../store/actions/PartneriActions';
+import { PartneriSchema } from '../../validation/partneri';
 
-const FizickaLicaForm = () => {
+const PartneriForm = () => {
   const dispatch = useDispatch();
 
   return (
     <Formik
       initialValues={{
-        ime: '',
-        prezime: '',
-        jmbg: '',
-        ib: '',
-        adresa: '',
-        telefon: '',
-        email: '',
+        kontakt_ime: '',
+        kontakt_prezime: '',
+        kontakt_telefon: '',
+        kontakt_viber: true,
+        kontakt_whatsapp: true,
+        kontakt_facetime: true,
+        opis: '',
         zanimanje: '',
         radno_mjesto: '',
         drzavljanstvo: '',
@@ -27,16 +27,16 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
       }}
-      onSubmit={(values) => dispatch(storeFizickoLice(values))}
-      validationSchema={FizickaLicaSchema}
+      onSubmit={(values) => dispatch(storePartner(values))}
+      validationSchema={PartneriSchema}
     >
       <Form>
         <InputField
-          name="ime"
-          label={$t('fizickalica.ime')}
+          name="kontakt_ime"
+          label={$t('fizickalica.kontakt_ime')}
           placeholder={$t('')}
         />
-        <InputField
+        {/* <InputField
           name="prezime"
           label={$t('fizickalica.prezime')}
           placeholder={$t('')}
@@ -100,11 +100,11 @@ const FizickaLicaForm = () => {
           name="preduzece"
           label={$t('fizickalica.asdf')}
           loadOptions={() => {}}
-        />
+        /> */}
         <button type="submit">Submit</button>
       </Form>
     </Formik>
   );
 };
 
-export default FizickaLicaForm;
+export default PartneriForm;
