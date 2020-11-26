@@ -1,34 +1,37 @@
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FizickaLicaSchema } from '../../validation/fizicka_lica';
 import $t from '../../lang';
-import { useDispatch } from 'react-redux';
-import { storeFizickoLice } from '../../store/actions/FizickaLicaActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFizickoLice, getFizickoLice, storeFizickoLice, updateFizickoLice } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
+import { useRouteMatch } from 'react-router-dom';
+import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
+import { preduzecaService } from '../../services/PreduzecaService';
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
 
+  const { params } = useRouteMatch();
+
+  const fizickoLice = useSelector(fizickoLiceSelector());
+
+  useEffect(() => {
+    if (params.id) dispatch(getFizickoLice(params.id));
+  }, [dispatch, params])
+
+  const handleSubmit = (values) => {
+    if (params.id) dispatch(updateFizickoLice({id: params.id, ...values}));
+    else dispatch(storeFizickoLice(values));
+  }
+
   return (
     <Formik
-      initialValues={{
-        ime: '',
-        prezime: '',
-        jmbg: '',
-        ib: '',
-        adresa: '',
-        telefon: '',
-        email: '',
-        zanimanje: '',
-        radno_mjesto: '',
-        drzavljanstvo: '',
-        nacionalnost: '',
-        cv_link: '',
-        avatar: '',
-      }}
-      onSubmit={(values) => dispatch(storeFizickoLice(values))}
+      initialValues={fizickoLice}
+      onSubmit={handleSubmit}
       validationSchema={FizickaLicaSchema}
+      enableReinitialize
     >
       <Form>
         <InputField
@@ -97,11 +100,12 @@ const FizickaLicaForm = () => {
           placeholder={$t('')}
         />
         <DropDown
-          name="preduzece"
+          name="preduzece_id"
           label={$t('fizickalica.asdf')}
-          loadOptions={() => {}}
+          loadOptions={preduzecaService.getPreduzecaDropdown}
         />
         <button type="submit">Submit</button>
+        <button type="button" onClick={() => dispatch(deleteFizickoLice(params.id))}>Delete</button>
       </Form>
     </Formik>
   );

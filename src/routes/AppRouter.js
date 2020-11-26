@@ -1,15 +1,19 @@
 import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import FizickaLicaForm from '../components/FizickaLica/FizickaLicaForm';
 import { AUTH, HOME, ERRORS } from '../constants/routes';
 import AuthRoute from './AuthRoute';
 import ProtectedRoute from './ProtectedRoute';
 
 const AppRouter = () => {
   return(
-    <BrowserRouter>
+
       <Switch>
         <Route exact path={HOME}>
           Home page
+        </Route>
+        <Route path='/fizicka-lica/edit/:id'>
+          <FizickaLicaForm/>
         </Route>
         <AuthRoute path={AUTH.LOGIN}>
           Login
@@ -22,7 +26,6 @@ const AppRouter = () => {
         </Route>
         <Redirect to={ERRORS.NOT_FOUND}/>
       </Switch>
-    </BrowserRouter>
   );
 }
 
