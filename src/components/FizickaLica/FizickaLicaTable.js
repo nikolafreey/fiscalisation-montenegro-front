@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FIZICKA_LICA } from '../../constants/routes';
 import { getFizickaLica } from '../../store/actions/FizickaLicaActions';
-import { fizickaLicaSelector } from '../../store/selectors/FizickaLicaSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 
-const FizickaLicaTable = () => {
+const FizickaLicaTable = ({fizickaLica}) => {
   const dispatch = useDispatch();
-
-  const fizickaLica = useSelector(fizickaLicaSelector());
-
-  useEffect(() => {
-    dispatch(getFizickaLica());
-  }, [dispatch]);
-
+  
   const fizickaLicaRow = ({ item }) => (
     <Link to={FIZICKA_LICA.SHOW.replace(':id', item.id)}>
       <tr>
