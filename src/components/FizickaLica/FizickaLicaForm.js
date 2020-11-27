@@ -19,7 +19,7 @@ const FizickaLicaForm = () => {
 
   useEffect(() => {
     if (params.id) dispatch(getFizickoLice(params.id));
-  }, [dispatch, params])
+  }, [dispatch, params]);
 
   const handleSubmit = (values) => {
     if (params.id) dispatch(updateFizickoLice({id: params.id, ...values}));

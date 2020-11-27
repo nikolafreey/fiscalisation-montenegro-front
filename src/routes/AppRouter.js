@@ -1,23 +1,18 @@
 import React from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import FizickaLicaForm from '../components/FizickaLica/FizickaLicaForm';
-import FizickaLicaTable from '../components/FizickaLica/FizickaLicaTable';
-import { AUTH, HOME, ERRORS } from '../constants/routes';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { AUTH, HOME, ERRORS, FIZICKA_LICA } from '../constants/routes';
 import AuthRoute from './AuthRoute';
+import FizickaLicaRouter from './FizickaLicaRouter';
 import ProtectedRoute from './ProtectedRoute';
 
 const AppRouter = () => {
   return(
-
       <Switch>
         <Route exact path={HOME}>
           Home page
         </Route>
-        <Route path='/fizicka-lica/edit/:id'>
-          <FizickaLicaForm/>
-        </Route>
-        <Route path='/fizicka-lica'>
-          <FizickaLicaTable />
+        <Route path={FIZICKA_LICA.INDEX}>
+          <FizickaLicaRouter/>
         </Route>
         <AuthRoute path={AUTH.LOGIN}>
           Login
