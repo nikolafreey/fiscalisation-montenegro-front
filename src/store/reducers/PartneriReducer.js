@@ -1,8 +1,9 @@
 import produce from 'immer';
-import { SET_PARTNERI } from '../actionTypes/PartneriActionTypes';
+import { SET_PARTNER, SET_PARTNERI } from '../actionTypes/PartneriActionTypes';
 
 const initialState = {
   partneri: [],
+  partner: {},
 };
 
 const partneriReducer = (state = initialState, action) =>
@@ -11,6 +12,9 @@ const partneriReducer = (state = initialState, action) =>
     switch (action.type) {
       case SET_PARTNERI:
         draft.partneri = action.payload;
+        break;
+      case SET_PARTNER:
+        draft.partner = action.payload;
         break;
       default:
         break;

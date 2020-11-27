@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authService } from '../services/AuthService';
-import { partneriSelector } from '../store/selectors/PartneriSelector';
-import $t from '../lang';
+import { authService } from '../../services/AuthService';
+import { partneriSelector } from '../../store/selectors/PartneriSelector';
+import $t from '../../lang';
 import PartneriForm from './FizickaLica/PartneriForm';
-import { getPartneri } from '../store/actions/PartneriActions';
+import { getPartneri } from '../../store/actions/PartneriActions';
 
 const Partneri = () => {
   const dispatch = useDispatch();
