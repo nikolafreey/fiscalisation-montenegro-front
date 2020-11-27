@@ -10,7 +10,7 @@ const DropDown = ({ label, defaultOptions=true, loadOptions, ...props }) => {
 
   const [field, meta, helpers] = useField(props);
 
-  const { error, value } = meta;
+  const { error } = meta;
   const { setValue } = helpers;
   
   return (

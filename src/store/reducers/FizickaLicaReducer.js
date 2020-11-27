@@ -4,7 +4,12 @@ import {
 } from '../actionTypes/FizickaLicaActionTypes';
 
 const initialState = {
-  fizicka_lica: [],
+  fizicka_lica: {
+    current_page: 1,
+    last_page: 1,
+    total: 0,
+    data: [],
+  },
   fizicko_lice: {},
 };
 

@@ -6,7 +6,7 @@ const ENDPOINTS = {
 };
 
 class PreduzecaService extends ApiService {
-  getPreduzeca = () => this.apiClient.get(ENDPOINTS.PREDUZECA);
+  getPreduzeca = (params) => this.apiClient.get(ENDPOINTS.PREDUZECA, { params });
 
   storePreduzece = (data) => this.apiClient.post(ENDPOINTS.PREDUZECA, data);
 
@@ -16,9 +16,9 @@ class PreduzecaService extends ApiService {
 
   deletePreduzece = (id) => this.apiClient.delete(ENDPOINTS.PREDUZECE.replace('{id}', id));
 
-  getPreduzecaDropdown = async () => {
-    const { data } = await this.getPreduzeca();
-    return data.map(preduzece => ({value: preduzece.id, label: preduzece.kratki_naziv}));
+  getPreduzecaDropdown = async (search) => {
+    const { data } = await this.getPreduzeca({ search });
+    return data.data.map(preduzece => ({value: preduzece.id, label: preduzece.kratki_naziv}));
   };
 }
 

@@ -100,7 +100,7 @@ const PartneriForm = () => {
         />
         <DropDown
           name="preduzece_id"
-          label={$t('partneri.preduzece_id')}
+          label={$t('partneri.asdf')}
           loadOptions={() => {}}
         />
         <button type="submit">Submit</button>

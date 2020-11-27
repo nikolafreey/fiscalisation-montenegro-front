@@ -12,9 +12,9 @@ export function* fizickoLiceStore({ payload }) {
   }
 }
 
-export function* fizickaLicaGet() {
+export function* fizickaLicaGet({payload}) {
   try {
-    const { data } = yield call(fizickaLicaService.getFizickaLica);
+    const { data } = yield call(fizickaLicaService.getFizickaLica, payload);
     yield put(setFizickaLica(data));
   } catch (error) {
     yield put(setGlobalError(error.message));
