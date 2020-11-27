@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import FizickaLicaForm from '../components/FizickaLica/FizickaLicaForm';
+import FizickaLicaTable from '../components/FizickaLica/FizickaLicaTable';
 import { AUTH, HOME, ERRORS } from '../constants/routes';
 import AuthRoute from './AuthRoute';
 import ProtectedRoute from './ProtectedRoute';
@@ -14,6 +15,9 @@ const AppRouter = () => {
         </Route>
         <Route path='/fizicka-lica/edit/:id'>
           <FizickaLicaForm/>
+        </Route>
+        <Route path='/fizicka-lica'>
+          <FizickaLicaTable />
         </Route>
         <AuthRoute path={AUTH.LOGIN}>
           Login

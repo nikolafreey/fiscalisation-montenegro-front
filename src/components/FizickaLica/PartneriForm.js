@@ -1,8 +1,7 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import React from 'react';
 import $t from '../../lang';
 import { useDispatch } from 'react-redux';
-import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
 import { storePartner } from '../../store/actions/PartneriActions';
 import { PartneriSchema } from '../../validation/partneri';
