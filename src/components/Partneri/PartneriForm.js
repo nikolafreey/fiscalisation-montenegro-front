@@ -63,8 +63,7 @@ const PartneriForm = () => {
           name="kontakt_prezime"
           label={$t('partneri.kontakt_prezime')}
           placeholder={$t('')}
-        />{' '}
-        /*{' '}
+        />
         <InputField
           name="kontakt_telefon"
           label={$t('partneri.kontakt_telefon')}
@@ -89,11 +88,6 @@ const PartneriForm = () => {
           name="opis"
           label={$t('partneri.opis')}
           placeholder={$t('')}
-        />
-        <DropDown
-          name="user_id"
-          label={$t('partneri.user_id')}
-          loadOptions={() => {}}
         />
         <DropDown
           name="fizicko_lice_id"
