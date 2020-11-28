@@ -1,13 +1,21 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
-import { Provider } from 'react-redux';
-import store from './store';
 import AppRouter from './routes/AppRouter';
+import { authService } from './services/AuthService';
+import { getUser } from './store/actions/UserActions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    authService.getCsrfCookie();
+    if (authService.isAuthenticated())
+      dispatch(getUser());
+  }, [dispatch]);
+  
   return (
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>
+    <AppRouter />
   );
 }
 

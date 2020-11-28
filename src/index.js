@@ -6,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginReact from '@bugsnag/plugin-react'
 import { BUGSNAG_KEY } from './config';
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
+import store, { history } from './store';
 
 Bugsnag.start({
   enabledReleaseStages: [ 'production', 'staging' ],
@@ -19,11 +21,13 @@ const ErrorBoundary = Bugsnag.getPlugin('react')
 
 ReactDOM.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </ConnectedRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

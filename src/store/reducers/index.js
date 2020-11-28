@@ -4,11 +4,20 @@ import buyerReducer from './BuyerReducer';
 import fizickaLicaReducer from './FizickaLicaReducer';
 import partneriReducer from './PartneriReducer';
 import userReducer from './UserReducer';
+import preduzecaReducer from './PreduzecaReducer';
+import routeReducer from './RouteReducer';
+import { connectRouter } from 'connected-react-router';
 
-export default combineReducers({
-  errorReducer,
-  buyerReducer,
-  fizickaLicaReducer,
-  partneriReducer,
-  userReducer,
-});
+const createRootReducer = (history) =>
+  combineReducers({
+    router: connectRouter(history),
+    errorReducer,
+    buyerReducer,
+    fizickaLicaReducer,
+    partneriReducer,
+    preduzecaReducer,
+    userReducer,
+    routeReducer,
+  });
+
+export default createRootReducer;

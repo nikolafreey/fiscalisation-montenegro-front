@@ -16,6 +16,12 @@ export const PARTNERI = {
   CREATE: '/partneri/create',
   SHOW: '/partneri/:id',
 };
+export const PREDUZECA = {
+  INDEX: '/preduzeca',
+  EDIT: '/preduzeca/edit/:id',
+  CREATE: '/preduzeca/create',
+  SHOW: '/preduzeca/:id',
+};
 
 export const ERRORS = {
   NOT_FOUND: '/not_found',
