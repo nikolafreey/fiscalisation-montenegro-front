@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authService } from '../../services/AuthService';
 import { partneriSelector } from '../../store/selectors/PartneriSelector';
 import $t from '../../lang';
-import PartneriForm from './FizickaLica/PartneriForm';
 import { getPartneri } from '../../store/actions/PartneriActions';
+import PartneriTable from './PartneriTable';
 
 const Partneri = () => {
   const dispatch = useDispatch();
@@ -15,17 +15,11 @@ const Partneri = () => {
 
   useEffect(() => {
     (async () => {
-      //await authService.getCsrfCookie();
-      //await authService.login('aj.jokic@gmail.com', 'password');
       dispatch(getPartneri());
     })();
   }, [dispatch]);
 
-  return (
-    <div>
-      <PartneriForm />
-    </div>
-  );
+  return <PartneriTable partneri={partneri} />;
 };
 
 export default Partneri;

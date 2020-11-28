@@ -13,6 +13,8 @@ import {
 import { PartneriSchema } from '../../validation/partneri';
 import { useRouteMatch } from 'react-router-dom';
 import { partnerSelector } from '../../store/selectors/PartneriSelector';
+import { preduzecaService } from '../../services/PreduzecaService';
+import { fizickaLicaService } from '../../services/FizickaLicaService';
 
 const PartneriForm = () => {
   const dispatch = useDispatch();
@@ -64,8 +66,8 @@ const PartneriForm = () => {
         />{' '}
         /*{' '}
         <InputField
-          name="kontakt_viber"
-          label={$t('partneri.kontakt_viber')}
+          name="kontakt_telefon"
+          label={$t('partneri.kontakt_telefon')}
           placeholder={$t('')}
         />
         <InputField
@@ -96,12 +98,12 @@ const PartneriForm = () => {
         <DropDown
           name="fizicko_lice_id"
           label={$t('partneri.fizicko_lice_id')}
-          loadOptions={() => {}}
+          loadOptions={fizickaLicaService.getFizickaLicaDropdown}
         />
         <DropDown
           name="preduzece_id"
-          label={$t('partneri.asdf')}
-          loadOptions={() => {}}
+          label={$t('partneri.preduzece_id')}
+          loadOptions={preduzecaService.getPreduzecaDropdown}
         />
         <button type="submit">Submit</button>
         <button

@@ -2,7 +2,12 @@ import produce from 'immer';
 import { SET_PARTNER, SET_PARTNERI } from '../actionTypes/PartneriActionTypes';
 
 const initialState = {
-  partneri: [],
+  partneri: {
+    current_page: 1,
+    last_page: 1,
+    total: 0,
+    data: [],
+  },
   partner: {},
 };
 

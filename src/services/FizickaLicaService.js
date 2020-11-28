@@ -7,19 +7,27 @@ const ENDPOINTS = {
 };
 
 class FizickaLicaService extends ApiService {
-  getFizickaLica = (params) => this.apiClient.get(ENDPOINTS.FIZICKA_LICA, { params });
+  getFizickaLica = (params) =>
+    this.apiClient.get(ENDPOINTS.FIZICKA_LICA, { params });
 
-  storeFizickoLice = (data) => this.apiClient.post(ENDPOINTS.FIZICKA_LICA, data);
+  storeFizickoLice = (data) =>
+    this.apiClient.post(ENDPOINTS.FIZICKA_LICA, data);
 
-  getFizickoLice = (id) => this.apiClient.get(ENDPOINTS.FIZICKO_LICE.replace('{id}', id));
+  getFizickoLice = (id) =>
+    this.apiClient.get(ENDPOINTS.FIZICKO_LICE.replace('{id}', id));
 
-  updateFizickoLice = (data) => this.apiClient.put(ENDPOINTS.FIZICKO_LICE.replace('{id}', data.id), data);
+  updateFizickoLice = (data) =>
+    this.apiClient.put(ENDPOINTS.FIZICKO_LICE.replace('{id}', data.id), data);
 
-  deleteFizickoLice = (id) => this.apiClient.delete(ENDPOINTS.FIZICKO_LICE.replace('{id}', id));
+  deleteFizickoLice = (id) =>
+    this.apiClient.delete(ENDPOINTS.FIZICKO_LICE.replace('{id}', id));
 
-  getFizickaLicaDropdown = async () => {
-    const { data } = await this.getFizickaLica();
-    return data.map(fizickoLice => ({value: fizickoLice.id, label: fizickoLice.kratki_naziv}));
+  getFizickaLicaDropdown = async (search) => {
+    const { data } = await this.getFizickaLica({ search });
+    return data.data.map((fizickoLice) => ({
+      value: fizickoLice.id,
+      label: fizickoLice.ime,
+    }));
   };
 }
 

@@ -1,8 +1,15 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { AUTH, HOME, ERRORS, FIZICKA_LICA } from '../constants/routes';
+import {
+  AUTH,
+  HOME,
+  ERRORS,
+  FIZICKA_LICA,
+  PARTNERI,
+} from '../constants/routes';
 import AuthRoute from './AuthRoute';
 import FizickaLicaRouter from './FizickaLicaRouter';
+import PartneriRouter from './PartneriRouter';
 import ProtectedRoute from './ProtectedRoute';
 
 const AppRouter = () => {
@@ -13,6 +20,9 @@ const AppRouter = () => {
       </Route>
       <Route path={FIZICKA_LICA.INDEX}>
         <FizickaLicaRouter />
+      </Route>
+      <Route path={PARTNERI.INDEX}>
+        <PartneriRouter />
       </Route>
       <AuthRoute path={AUTH.LOGIN}>Login</AuthRoute>
       <ProtectedRoute path={'/test'}>Test protected route</ProtectedRoute>
