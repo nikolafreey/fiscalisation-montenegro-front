@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import { call, put } from 'redux-saga/effects';
 import { HOME } from '../../constants/routes';
 import { authService } from '../../services/AuthService';
-import { setGlobalError } from '../actions/ErrorActions';
+import { setGlobalError, setLoginError } from '../actions/ErrorActions';
 import { getUser, setUser } from '../actions/UserActions';
 
 export function* userGet() {
@@ -19,13 +19,18 @@ export function* userGet() {
 
 export function* userLogin({ payload }) {
   try {
+    yield put(setLoginError({}));
     yield call(authService.getCsrfCookie);
     yield call(authService.login, payload);
     yield call(authService.setAuthenticatedStorage, true);
     yield put(getUser());
     yield put(push(HOME));
   } catch (error) {
+    if (error.response.status === 422) {
+      yield put(setLoginError(error.response.data));
+    } else {
     yield put(setGlobalError(error.message));
+    }
   }
 }
 
