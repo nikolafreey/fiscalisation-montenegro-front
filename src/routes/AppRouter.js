@@ -1,5 +1,7 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom';
+import Login from '../components/auth/Login';
+import Home from '../components/Home';
 import { AUTH, HOME, ERRORS, FIZICKA_LICA } from '../constants/routes';
 import AuthRoute from './AuthRoute';
 import FizickaLicaRouter from './FizickaLicaRouter';
@@ -9,13 +11,13 @@ const AppRouter = () => {
   return(
       <Switch>
         <Route exact path={HOME}>
-          Home page
+          <Home/>
         </Route>
         <Route path={FIZICKA_LICA.INDEX}>
           <FizickaLicaRouter/>
         </Route>
         <AuthRoute path={AUTH.LOGIN}>
-          Login
+          <Login />
         </AuthRoute>
         <ProtectedRoute path={'/test'}>
           Test protected route

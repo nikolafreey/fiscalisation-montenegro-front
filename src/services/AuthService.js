@@ -2,18 +2,27 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   LOGIN: 'login',
+  LOGOUT: 'logout',
+  ME: 'api/me',
   CSRF: 'sanctum/csrf-cookie'
 };
 
 class AuthService extends ApiService {
-  login = (email, password) => this.apiClient.post(ENDPOINTS.LOGIN, {email, password});
+
+  login = (credentials) => this.apiClient.post(ENDPOINTS.LOGIN, credentials);
 
   getCsrfCookie = () => this.apiClient.get(ENDPOINTS.CSRF);
 
   isAuthenticated = () => localStorage.getItem('isAuthenticated');
 
-  setAuthenticatedStorage = (authenticated) => 
-    localStorage.setItem('isAuthenticated', authenticated);
+  logout = () => this.apiClient.post(ENDPOINTS.LOGOUT);
+
+  getUser = () => this.apiClient.get(ENDPOINTS.ME)
+
+  setAuthenticatedStorage = (authenticated) => {
+    if (authenticated) localStorage.setItem('isAuthenticated', true);
+    else localStorage.removeItem('isAuthenticated');
+  }
 
 }
 
