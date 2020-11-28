@@ -4,6 +4,7 @@ import buyerReducer from './BuyerReducer';
 import fizickaLicaReducer from './FizickaLicaReducer';
 import partneriReducer from './PartneriReducer';
 import userReducer from './UserReducer';
+import preduzecaReducer from './PreduzecaReducer';
 
 export default combineReducers({
   errorReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   fizickaLicaReducer,
   partneriReducer,
   userReducer,
+  preduzecaReducer,
 });
