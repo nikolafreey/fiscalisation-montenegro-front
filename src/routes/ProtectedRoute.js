@@ -1,10 +1,19 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import { authService } from "../services/AuthService";
 import { AUTH } from "../constants/routes";
+import { useDispatch } from "react-redux";
+import { setRequestedRoute } from '../store/actions/RouteActions';
 
 function ProtectedRoute({ children, ...props }) {
-  if (!authService.isAuthenticated()) return <Redirect to={AUTH.LOGIN} />;
+  const dispatch = useDispatch();
+
+  const location = useLocation();
+
+  if (!authService.isAuthenticated()) {
+    dispatch(setRequestedRoute(location));
+    return <Redirect to={AUTH.LOGIN} />
+  };
 
   return <Route {...props}>{children}</Route>;
 }

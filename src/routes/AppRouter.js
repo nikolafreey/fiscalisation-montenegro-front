@@ -7,6 +7,8 @@ import {
   FIZICKA_LICA,
   PREDUZECA,
 } from '../constants/routes';
+import Login from '../components/auth/Login';
+import Home from '../components/Home';
 import AuthRoute from './AuthRoute';
 import FizickaLicaRouter from './FizickaLicaRouter';
 import PreduzecaRouter from './PreduzecaRouter';
@@ -16,15 +18,17 @@ const AppRouter = () => {
   return (
     <Switch>
       <Route exact path={HOME}>
-        Home page
+        <Home />
       </Route>
-      <Route path={PREDUZECA.INDEX}>
-        <PreduzecaRouter />
-      </Route>
-      <Route path={FIZICKA_LICA.INDEX}>
+      <ProtectedRoute path={FIZICKA_LICA.INDEX}>
         <FizickaLicaRouter />
-      </Route>
-      <AuthRoute path={AUTH.LOGIN}>Login</AuthRoute>
+      </ProtectedRoute>
+      <ProtectedRoute path={PREDUZECA.INDEX}>
+        <PreduzecaRouter />
+      </ProtectedRoute>
+      <AuthRoute path={AUTH.LOGIN}>
+        <Login />
+      </AuthRoute>
       <ProtectedRoute path={'/test'}>Test protected route</ProtectedRoute>
       <Route path={ERRORS.NOT_FOUND}>Page not found.</Route>
       <Redirect to={ERRORS.NOT_FOUND} />

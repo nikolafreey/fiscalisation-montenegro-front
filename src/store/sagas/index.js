@@ -18,6 +18,14 @@ import {
   STORE_PARTNERI,
 } from '../actionTypes/PartneriActionTypes';
 import {
+  preduzeceGet,
+  preduzeceStore,
+  preduzeceUpdate,
+  preduzecaGet,
+  preduzeceDelete,
+} from './PreduzecaSagas';
+import { GET_USER, LOGIN, LOGOUT } from '../actionTypes/UserActionTypes';
+import {
   fizickoLiceStore,
   fizickaLicaGet,
   fizickoLiceGet,
@@ -25,13 +33,7 @@ import {
   fizickoLiceDelete,
 } from './FizickaLicaSagas';
 import { partneriGet, partnerStore } from './PartneriSagas';
-import {
-  preduzeceGet,
-  preduzeceStore,
-  preduzeceUpdate,
-  preduzecaGet,
-  preduzeceDelete,
-} from './PreduzecaSagas';
+import { userGet, userLogin, userLogout } from './UserSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -49,5 +51,9 @@ export default function* rootSaga() {
     takeLatest(GET_PREDUZECA, preduzecaGet),
     takeLatest(DELETE_PREDUZECE, preduzeceDelete),
     takeLatest(UPDATE_PREDUZECE, preduzeceUpdate),
+
+    takeLatest(LOGIN, userLogin),
+    takeLatest(LOGOUT, userLogout),
+    takeLatest(GET_USER, userGet),
   ]);
 }

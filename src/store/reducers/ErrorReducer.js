@@ -1,10 +1,11 @@
 import produce from 'immer';
 import {
-  GLOBAL_ERROR_SET,
+  GLOBAL_ERROR_SET, LOGIN_ERROR_SET,
 } from '../actionTypes/ErrorActionTypes';
 
 const initialState = {
-  globalError: {}
+  globalError: {},
+  loginError: {}
 };
 
 const errorReducer = (state = initialState, action) =>
@@ -13,6 +14,9 @@ const errorReducer = (state = initialState, action) =>
     switch (action.type) {
       case GLOBAL_ERROR_SET:
         draft.globalError = action.payload;
+        break;
+      case LOGIN_ERROR_SET:
+        draft.loginError = action.payload;
         break;
       default:
         break;

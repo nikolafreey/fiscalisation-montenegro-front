@@ -1,1 +1,3 @@
 export const GLOBAL_ERROR_SET = 'GLOBAL_ERROR_SET';
+
+export const LOGIN_ERROR_SET = 'LOGIN_ERROR_SET';
