@@ -9,6 +9,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    authService.getCsrfCookie();
     if (authService.isAuthenticated())
       dispatch(getUser());
   }, [dispatch]);

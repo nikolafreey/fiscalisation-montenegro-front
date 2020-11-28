@@ -13,9 +13,9 @@ const AppRouter = () => {
         <Route exact path={HOME}>
           <Home/>
         </Route>
-        <Route path={FIZICKA_LICA.INDEX}>
+        <ProtectedRoute path={FIZICKA_LICA.INDEX}>
           <FizickaLicaRouter/>
-        </Route>
+        </ProtectedRoute>
         <AuthRoute path={AUTH.LOGIN}>
           <Login />
         </AuthRoute>

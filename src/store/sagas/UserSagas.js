@@ -1,10 +1,12 @@
 
 import { push } from 'connected-react-router';
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { HOME } from '../../constants/routes';
 import { authService } from '../../services/AuthService';
 import { setGlobalError, setLoginError } from '../actions/ErrorActions';
+import { setRequestedRoute } from '../actions/RouteActions';
 import { getUser, setUser } from '../actions/UserActions';
+import { requestedRouteSelector } from '../selectors/RouteSelector';
 
 export function* userGet() {
   try {
@@ -24,7 +26,11 @@ export function* userLogin({ payload }) {
     yield call(authService.login, payload);
     yield call(authService.setAuthenticatedStorage, true);
     yield put(getUser());
-    yield put(push(HOME));
+
+    const requestedRoute = yield select(requestedRouteSelector());
+    yield put(push(requestedRoute || HOME));
+    yield put(setRequestedRoute(null));
+
   } catch (error) {
     if (error.response.status === 422) {
       yield put(setLoginError(error.response.data));
