@@ -1,8 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  PREDUZECA: 'api/preduzeca',
-  PREDUZECE: 'api/preduzeca/{id}',
+  PREDUZECA: 'preduzeca',
+  PREDUZECE: 'preduzeca/{id}',
 };
 
 class PreduzecaService extends ApiService {

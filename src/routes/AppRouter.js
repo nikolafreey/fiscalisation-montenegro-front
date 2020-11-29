@@ -15,6 +15,7 @@ import Login from '../components/auth/Login';
 import Home from '../components/Home';
 import PreduzecaRouter from './PreduzecaRouter';
 import ProtectedRoute from './ProtectedRoute';
+import PasswordRouter from './PasswordRouter';
 
 const AppRouter = () => {
   return (
@@ -26,10 +27,11 @@ const AppRouter = () => {
         <PartneriRouter />
       </ProtectedRoute>
       <AuthRoute path={AUTH.LOGIN}>
-        {' '}
         <Login />
       </AuthRoute>
-
+      <AuthRoute path={AUTH.PASSWORD}>
+        <PasswordRouter />
+      </AuthRoute>
       <ProtectedRoute path={FIZICKA_LICA.INDEX}>
         <FizickaLicaRouter />
       </ProtectedRoute>

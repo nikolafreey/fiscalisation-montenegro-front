@@ -1,7 +1,7 @@
 
 import { push } from 'connected-react-router';
 import { call, put, select } from 'redux-saga/effects';
-import { HOME } from '../../constants/routes';
+import { AUTH, HOME } from '../../constants/routes';
 import { authService } from '../../services/AuthService';
 import { setGlobalError, setLoginError } from '../actions/ErrorActions';
 import { setRequestedRoute } from '../actions/RouteActions';
@@ -45,6 +45,24 @@ export function* userLogout() {
     yield call(authService.setAuthenticatedStorage, false);
     yield put(setUser(null));
     yield call(authService.logout);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* userForgotPassword({ payload }) {
+  try {
+    yield call(authService.forgotPassword, payload);
+    yield put(push(AUTH.FORGOT_SUCCESS));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* userResetPassword({ payload }) {
+  try {
+    yield call(authService.resetPassword, payload);
+    yield put(push(AUTH.RESET_SUCCESS));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

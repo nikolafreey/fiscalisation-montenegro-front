@@ -1,8 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  KATEGORIJE: 'api/kategorije',
-  KATEGORIJA: 'api/kategorije/{id}',
+  KATEGORIJE: 'kategorije',
+  KATEGORIJA: 'kategorije/{id}',
 };
 
 class KategorijeService extends ApiService {

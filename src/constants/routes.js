@@ -2,6 +2,11 @@ export const HOME = '/';
 
 export const AUTH = {
   LOGIN: '/login',
+  FORGOT: '/password/forgot',
+  FORGOT_SUCCESS: '/password/forgot/success',
+  RESET: '/password/reset/:token',
+  RESET_SUCCESS: '/password/reset/success',
+  PASSWORD: '/password'
 };
 
 export const FIZICKA_LICA = {
