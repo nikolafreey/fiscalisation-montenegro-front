@@ -5,7 +5,7 @@ import sr from './sr';
 i18n.fallbacks = true;
 
 i18n.translations = {
-  sr
+  sr,
 };
 
 i18n.locale = 'sr';
