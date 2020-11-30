@@ -4,7 +4,7 @@ import {
 } from '../actionTypes/ErrorActionTypes';
 
 const initialState = {
-  globalError: {},
+  globalError: null,
   loginError: {}
 };
 

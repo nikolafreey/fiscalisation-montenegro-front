@@ -1,4 +1,4 @@
-import { GET_USER, LOGIN, LOGOUT, SET_USER } from "../actionTypes/UserActionTypes";
+import { FORGOT_PASSWORD, GET_USER, LOGIN, LOGOUT, RESET_PASSWORD, SET_USER } from "../actionTypes/UserActionTypes";
 
 export const getUser = payload => ({
   type: GET_USER,
@@ -17,5 +17,15 @@ export const loginUser = payload => ({
 
 export const logoutUser = payload => ({
   type: LOGOUT,
+  payload
+});
+
+export const forgotPassword = payload => ({
+  type: FORGOT_PASSWORD,
+  payload
+});
+
+export const resetPassword = payload => ({
+  type: RESET_PASSWORD,
   payload
 });

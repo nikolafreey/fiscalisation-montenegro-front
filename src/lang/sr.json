@@ -1,4 +1,5 @@
 {
+  "test": "test",
   "validacija": {
     "unosKratak": "Unesite {polje} duže od {broj} karaktera"
   }

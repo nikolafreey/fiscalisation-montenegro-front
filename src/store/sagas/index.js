@@ -27,7 +27,13 @@ import {
   preduzecaGet,
   preduzeceDelete,
 } from './PreduzecaSagas';
-import { GET_USER, LOGIN, LOGOUT } from '../actionTypes/UserActionTypes';
+import {
+  FORGOT_PASSWORD,
+  GET_USER,
+  LOGIN,
+  LOGOUT,
+  RESET_PASSWORD,
+} from '../actionTypes/UserActionTypes';
 import {
   fizickoLiceStore,
   fizickaLicaGet,
@@ -42,7 +48,13 @@ import {
   partnerStore,
   partnerUpdate,
 } from './PartneriSagas';
-import { userGet, userLogin, userLogout } from './UserSagas';
+import {
+  userGet,
+  userForgotPassword,
+  userResetPassword,
+  userLogin,
+  userLogout,
+} from './UserSagas';
 import {
   DELETE_USLUGA,
   GET_USLUGA,
@@ -87,5 +99,7 @@ export default function* rootSaga() {
     takeLatest(LOGIN, userLogin),
     takeLatest(LOGOUT, userLogout),
     takeLatest(GET_USER, userGet),
+    takeLatest(FORGOT_PASSWORD, userForgotPassword),
+    takeLatest(RESET_PASSWORD, userResetPassword),
   ]);
 }

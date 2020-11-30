@@ -1,7 +1,7 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  BUYERS: 'api/buyers'
+  BUYERS: 'buyers'
 };
 
 class BuyerService extends ApiService {

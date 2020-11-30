@@ -1,8 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  PARTNERI: 'api/partneri',
-  PARTNER: 'api/partneri/{id}',
+  PARTNERI: 'partneri',
+  PARTNER: 'partneri/{id}',
 };
 
 class PartneriService extends ApiService {

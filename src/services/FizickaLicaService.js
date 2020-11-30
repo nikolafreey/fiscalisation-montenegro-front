@@ -1,9 +1,8 @@
-import { fizickoLiceDelete } from '../store/sagas/FizickaLicaSagas';
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  FIZICKA_LICA: 'api/fizicka-lica',
-  FIZICKO_LICE: 'api/fizicka-lica/{id}',
+  FIZICKA_LICA: 'fizicka-lica',
+  FIZICKO_LICE: 'fizicka-lica/{id}',
 };
 
 class FizickaLicaService extends ApiService {

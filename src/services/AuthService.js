@@ -3,8 +3,10 @@ import ApiService from './ApiService';
 const ENDPOINTS = {
   LOGIN: 'login',
   LOGOUT: 'logout',
-  ME: 'api/me',
-  CSRF: 'sanctum/csrf-cookie'
+  ME: 'me',
+  CSRF: 'sanctum/csrf-cookie',
+  FORGOT: 'password/email',
+  RESET: 'password/reset',
 };
 
 class AuthService extends ApiService {
@@ -17,7 +19,11 @@ class AuthService extends ApiService {
 
   logout = () => this.apiClient.post(ENDPOINTS.LOGOUT);
 
-  getUser = () => this.apiClient.get(ENDPOINTS.ME)
+  getUser = () => this.apiClient.get(ENDPOINTS.ME);
+
+  forgotPassword = (data) => this.apiClient.post(ENDPOINTS.FORGOT, data);
+
+  resetPassword = (data) => this.apiClient.post(ENDPOINTS.RESET, data);
 
   setAuthenticatedStorage = (authenticated) => {
     if (authenticated) localStorage.setItem('isAuthenticated', true);
