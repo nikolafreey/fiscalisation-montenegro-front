@@ -44,6 +44,7 @@ export function* userLogout() {
   try {
     yield call(authService.setAuthenticatedStorage, false);
     yield put(setUser(null));
+    yield put(push(AUTH.LOGIN));
     yield call(authService.logout);
   } catch (error) {
     yield put(setGlobalError(error.message));

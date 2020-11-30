@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FIZICKA_LICA } from '../../constants/routes';
-import { getFizickaLica } from '../../store/actions/FizickaLicaActions';
+import { getFizickaLica, setFizickoLice } from '../../store/actions/FizickaLicaActions';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 
@@ -10,14 +10,12 @@ const FizickaLicaTable = ({ fizickaLica }) => {
   const dispatch = useDispatch();
 
   const fizickaLicaRow = ({ item }) => (
-    <Link to={FIZICKA_LICA.SHOW.replace(':id', item.id)}>
-      <tr>
+      <tr onClick={() => dispatch(setFizickoLice(item))}>
         <th scope="row">{item.id}</th>
         <td>{item.ime}</td>
         <td>{item.prezime}</td>
         <td>{item.email}</td>
       </tr>
-    </Link>
   );
 
   return (

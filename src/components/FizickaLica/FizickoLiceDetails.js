@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FizickoLiceDetails = ({fizickoLice}) => {
+const FizickoLiceDetails = ({fizickoLice={}}) => {
   
   return (
     <div>
