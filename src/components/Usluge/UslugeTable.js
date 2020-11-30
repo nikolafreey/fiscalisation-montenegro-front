@@ -1,26 +1,30 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { USLUGE } from '../../constants/routes';
-import { getUsluge } from '../../store/actions/UslugeActions';
+import { getUsluge, setUsluga } from '../../store/actions/UslugeActions';
+import { uslugaSelector } from '../../store/selectors/UslugeSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 
 const UslugeTable = ({ usluge }) => {
   const dispatch = useDispatch();
 
+  const usluga = useSelector(uslugaSelector());
+
   const uslugeRow = ({ item }) => (
-    <Link to={USLUGE.SHOW.replace(':id', item.id)}>
-      <tr>
-        <th scope="row">{item.id}</th>
-        <td>{item.naziv}</td>
-        <td>{item.opis}</td>
-        <td>{item.cijena_bez_pdv}</td>
-        <td>{item.pdv_iznos}</td>
-        <td>{item.ukupna_cijena}</td>
-        <td>{item.status}</td>
-      </tr>
-    </Link>
+    <tr
+      onClick={() => dispatch(setUsluga(item))}
+      style={{ backgroundColor: usluga.id === item.id ? 'gray' : 'white' }}
+    >
+      <th scope="row">{item.id}</th>
+      <td>{item.naziv}</td>
+      <td>{item.opis}</td>
+      <td>{item.cijena_bez_pdv}</td>
+      <td>{item.pdv_iznos}</td>
+      <td>{item.ukupna_cijena}</td>
+      <td>{item.status}</td>
+    </tr>
   );
 
   return (

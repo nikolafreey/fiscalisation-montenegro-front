@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFizickaLica } from '../../store/actions/FizickaLicaActions';
+import { getFizickaLica, setFizickoLice } from '../../store/actions/FizickaLicaActions';
 import { fizickaLicaSelector, fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import FizickaLicaTable from './FizickaLicaTable';
 import FizickoLiceDetails from './FizickoLiceDetails';
@@ -14,6 +14,10 @@ const FizickaLica = () => {
   useEffect(() => {
     dispatch(getFizickaLica());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (fizickaLica.total > 0) dispatch(setFizickoLice(fizickaLica.data[0]));
+  }, [fizickaLica, dispatch]);
 
   return (
     <div>

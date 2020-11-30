@@ -1,21 +1,28 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { FIZICKA_LICA } from '../../constants/routes';
-import { getFizickaLica, setFizickoLice } from '../../store/actions/FizickaLicaActions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getFizickaLica,
+  setFizickoLice,
+} from '../../store/actions/FizickaLicaActions';
+import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 
 const FizickaLicaTable = ({ fizickaLica }) => {
   const dispatch = useDispatch();
 
+  const fizickoLice = useSelector(fizickoLiceSelector());
+
   const fizickaLicaRow = ({ item }) => (
-      <tr onClick={() => dispatch(setFizickoLice(item))}>
-        <th scope="row">{item.id}</th>
-        <td>{item.ime}</td>
-        <td>{item.prezime}</td>
-        <td>{item.email}</td>
-      </tr>
+    <tr
+      onClick={() => dispatch(setFizickoLice(item))}
+      style={{ backgroundColor: fizickoLice.id === item.id ? 'gray' : 'white' }}
+    >
+      <th scope="row">{item.id}</th>
+      <td>{item.ime}</td>
+      <td>{item.prezime}</td>
+      <td>{item.email}</td>
+    </tr>
   );
 
   return (
