@@ -23,6 +23,13 @@ export const PREDUZECA = {
   SHOW: '/preduzeca/:id',
 };
 
+export const USLUGE = {
+  INDEX: '/usluge',
+  EDIT: '/usluge/edit/:id',
+  CREATE: '/usluge/create',
+  SHOW: '/usluge/:id',
+};
+
 export const ERRORS = {
   NOT_FOUND: '/not_found',
 };

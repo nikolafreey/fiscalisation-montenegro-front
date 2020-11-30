@@ -6,6 +6,7 @@ import partneriReducer from './PartneriReducer';
 import userReducer from './UserReducer';
 import preduzecaReducer from './PreduzecaReducer';
 import routeReducer from './RouteReducer';
+import uslugeReducer from './UslugeReducer';
 import { connectRouter } from 'connected-react-router';
 
 const createRootReducer = (history) =>
@@ -18,6 +19,7 @@ const createRootReducer = (history) =>
     preduzecaReducer,
     userReducer,
     routeReducer,
+    uslugeReducer,
   });
 
 export default createRootReducer;

@@ -43,6 +43,20 @@ import {
   partnerUpdate,
 } from './PartneriSagas';
 import { userGet, userLogin, userLogout } from './UserSagas';
+import {
+  DELETE_USLUGA,
+  GET_USLUGA,
+  GET_USLUGE,
+  STORE_USLUGA,
+  UPDATE_USLUGA,
+} from '../actionTypes/UslugeActionTypes';
+import {
+  uslugaDelete,
+  uslugaGet,
+  uslugaStore,
+  uslugaUpdate,
+  uslugeGet,
+} from './UslugeSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -63,6 +77,12 @@ export default function* rootSaga() {
     takeLatest(GET_PREDUZECA, preduzecaGet),
     takeLatest(DELETE_PREDUZECE, preduzeceDelete),
     takeLatest(UPDATE_PREDUZECE, preduzeceUpdate),
+
+    takeLatest(STORE_USLUGA, uslugaStore),
+    takeLatest(GET_USLUGA, uslugaGet),
+    takeLatest(GET_USLUGE, uslugeGet),
+    takeLatest(DELETE_USLUGA, uslugaDelete),
+    takeLatest(UPDATE_USLUGA, uslugaUpdate),
 
     takeLatest(LOGIN, userLogin),
     takeLatest(LOGOUT, userLogout),

@@ -7,6 +7,7 @@ import {
   FIZICKA_LICA,
   PARTNERI,
   PREDUZECA,
+  USLUGE,
 } from '../constants/routes';
 import AuthRoute from './AuthRoute';
 import FizickaLicaRouter from './FizickaLicaRouter';
@@ -15,6 +16,7 @@ import Login from '../components/auth/Login';
 import Home from '../components/Home';
 import PreduzecaRouter from './PreduzecaRouter';
 import ProtectedRoute from './ProtectedRoute';
+import UslugeRouter from './UslugeRouter';
 
 const AppRouter = () => {
   return (
@@ -36,6 +38,10 @@ const AppRouter = () => {
       <ProtectedRoute path={PREDUZECA.INDEX}>
         <PreduzecaRouter />
       </ProtectedRoute>
+
+      <Route path={USLUGE.INDEX}>
+        <UslugeRouter />
+      </Route>
       <ProtectedRoute path={'/test'}>Test protected route</ProtectedRoute>
       <Route path={ERRORS.NOT_FOUND}>Page not found.</Route>
       <Redirect to={ERRORS.NOT_FOUND} />
