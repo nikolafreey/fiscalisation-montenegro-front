@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { FieldArray, Form, Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
@@ -15,6 +15,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import { kategorijeService } from '../../services/KategorijeService';
+import ZiroRacuniFieldArray from '../FizickaLica/ZiroRacuniFieldArray';
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,47 @@ const PreduzecaForm = () => {
 
   return (
     <Formik
-      initialValues={preduzece}
+      initialValues={{
+        'kratki_naziv': '',
+        'puni_naziv': '',
+        'oblik_preduzeca': '',
+        'adresa': '',
+        'grad': '',
+        'drzava': '',
+        'telefon': '',
+        'telefon_viber': '',
+        'telefon_whatsapp': '',
+        'telefon_facetime': '',
+        'fax': '',
+        'email': '',
+        'website': '',
+        'pib': '',
+        'pdv': '',
+        'djelatnost': '',
+        'iban': '',
+        'bic_swift': '',
+        'kontakt_ime': '',
+        'kontakt_prezime': '',
+        'kontakt_telefon': '',
+        'kontakt_viber': '',
+        'kontakt_whatsapp': '',
+        'kontakt_facetime': '',
+        'kontakt_email': '',
+        'twitter_username': '',
+        'instagram_username': '',
+        'facebook_username': '',
+        'skype_username': '',
+        'logotip': '',
+        'opis': '',
+        'lokacija_lat': '',
+        'lokacija_long': '',
+        'status': '',
+        'privatnost': '',
+        'verifikovan': '',
+        'kategorija_id': '',
+        'ziro_racuni': [],
+        ...preduzece
+      }}
       onSubmit={handleSubmit}
       validationSchema={PreduzecaSchema}
       enableReinitialize
@@ -43,188 +84,181 @@ const PreduzecaForm = () => {
         <InputField
           name="kratki_naziv"
           label={$t('preduzeca.kratki_naziv')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="puni_naziv"
           label={$t('preduzeca.puni_naziv')}
-          placeholder={$t('')}
+          placeholder=''
         />{' '}
         <InputField
           name="oblik_preduzeca"
           label={$t('preduzeca.oblik_preduzeca')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="adresa"
           label={$t('preduzeca.adresa')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="grad"
           label={$t('preduzeca.grad')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="drzava"
           label={$t('preduzeca.drzava')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="telefon"
           label={$t('preduzeca.telefon')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="telfon_viber"
-          label={$t('preduzeca.telfon_viber')}
-          placeholder={$t('')}
+          label={$t('preduzeca.viber')}
+          placeholder=''
         />
         <InputField
           name="telfon_whatsapp"
-          label={$t('preduzeca.telfon_whatsapp')}
-          placeholder={$t('')}
+          label={$t('preduzeca.whatsapp')}
+          placeholder=''
         />
         <InputField
           name="telfon_facetime"
-          label={$t('preduzeca.telfon_facetime')}
-          placeholder={$t('')}
+          label={$t('preduzeca.facetime')}
+          placeholder=''
         />
         <InputField
           name="fax"
           label={$t('preduzeca.fax')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="email"
           label={$t('preduzeca.email')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="website"
           label={$t('preduzeca.website')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="pdv "
-          label={$t('preduzeca.pdv ')}
-          placeholder={$t('')}
+          label={$t('preduzeca.pdv')}
+          placeholder=''
         />
         <InputField
           name="djelatnost"
           label={$t('preduzeca.djelatnost')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="iban"
           label={$t('preduzeca.iban')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="bic_swift"
           label={$t('preduzeca.bic_swift')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="kontakt_ime"
-          label={$t('preduzeca.kontakt_ime')}
-          placeholder={$t('')}
+          label={$t('preduzeca.ime')}
+          placeholder=''
         />
         <InputField
           name="kontakt_prezime"
-          label={$t('preduzeca.kontakt_prezime')}
-          placeholder={$t('')}
+          label={$t('preduzeca.prezime')}
+          placeholder=''
         />
         <InputField
           name="kontakt_telefon"
-          label={$t('preduzeca.kontakt_telefon')}
-          placeholder={$t('')}
+          label={$t('preduzeca.telefon')}
+          placeholder=''
         />
         <InputField
           name="kontakt_viber"
-          label={$t('preduzeca.kontakt_viber')}
-          placeholder={$t('')}
+          label={$t('preduzeca.viber')}
+          placeholder=''
         />
         <InputField
           name="kontakt_whatsapp"
-          label={$t('preduzeca.kontakt_whatsapp')}
-          placeholder={$t('')}
+          label={$t('preduzeca.whatsapp')}
+          placeholder=''
         />
         <InputField
           name="kontakt_facetime"
-          label={$t('preduzeca.kontakt_facetime')}
-          placeholder={$t('')}
+          label={$t('preduzeca.facetime')}
+          placeholder=''
         />
         <InputField
           name="kontakt_email"
-          label={$t('preduzeca.kontakt_email')}
-          placeholder={$t('')}
+          label={$t('preduzeca.email')}
+          placeholder=''
         />
         <InputField
           name="instagram_username"
-          label={$t('preduzeca.instagram_username')}
-          placeholder={$t('')}
+          label={$t('preduzeca.instagram')}
+          placeholder=''
         />
         <InputField
           name="facebook_username"
-          label={$t('preduzeca.facebook_username')}
-          placeholder={$t('')}
+          label={$t('preduzeca.facebook')}
+          placeholder=''
         />
         <InputField
           name="skype_username"
-          label={$t('preduzeca.skype_username')}
-          placeholder={$t('')}
+          label={$t('preduzeca.skype')}
+          placeholder=''
         />
         <InputField
           name="logotip"
           label={$t('preduzeca.logotip')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="opis"
           label={$t('preduzeca.opis')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="lokacija_lat"
-          label={$t('preduzeca.lokacija_lat')}
-          placeholder={$t('')}
+          label={$t('preduzeca.lokacija')}
+          placeholder=''
         />
         <InputField
           name="lokacija_long"
-          label={$t('preduzeca.lokacija_long')}
-          placeholder={$t('')}
+          label={$t('preduzeca.lokacija')}
+          placeholder=''
         />
         <InputField
           name="status"
           label={$t('preduzeca.status')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="privatnost"
           label={$t('preduzeca.privatnost')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <InputField
           name="verifikovan"
           label={$t('preduzeca.verifikovan')}
-          placeholder={$t('')}
-        />
-        <InputField
-          name="created_at"
-          label={$t('preduzeca.created_at')}
-          placeholder={$t('')}
-        />
-        <InputField
-          name="updated_at"
-          label={$t('preduzeca.updated_at')}
-          placeholder={$t('')}
+          placeholder=''
         />
         <DropDown
           name="kategorija_id"
-          label={$t('preduzeca.asdf')}
+          label={$t('preduzeca.kategorija')}
           loadOptions={kategorijeService.getKategorijeDropdown}
         />
+        <FieldArray name='ziro_racuni'>
+          {(arrayHelpers) => <ZiroRacuniFieldArray {...arrayHelpers}/>}
+        </FieldArray>
         <button type="submit">Submit</button>
         <button
           type="button"

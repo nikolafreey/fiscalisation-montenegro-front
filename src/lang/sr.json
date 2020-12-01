@@ -1,6 +1,65 @@
 {
   "test": "test",
   "validacija": {
-    "unosKratak": "Unesite {polje} duže od {broj} karaktera"
+    "unosKratak": "Polje mora imati najmanje {broj} karaktera",
+    "obavezno": "Polje je obavezno",
+    "unosDugacak": "{polje} može imati najviše {broj} karaktera",
+    "duzina": "{polje} mora imati tačno {broj} karaktera",
+    "url": "Unesite validan link",
+    "email": "Unesite validan e-mail"
+  },
+  "fizickalica": {
+    "ime": "Ime",
+    "prezime": "Prezime",
+    "jmbg": "JMBG",
+    "ib": "IB",
+    "adresa": "Adresa",
+    "telefon": "Nacionalnost",
+    "email": "E-mail",
+    "zanimanje": "Zanimanje",
+    "radno_mjesto": "Radno mjesto",
+    "drzavljanstvo": "Državljanstvo",
+    "nacionalnost": "Nacionalnost",
+    "cv_link": "CV link",
+    "avatar": "Fotografija",
+    "preduzece_id": "Zaposlen kod"
+  },
+  "preduzeca": {
+    "kratki_naziv": "Naziv",
+    "puni_naziv": "Duži naziv",
+    "oblik_preduzeca": "Oblik preduzeća",
+    "adresa": "Adresa",
+    "grad": "Grad",
+    "drzava": "Država",
+    "telefon": "Telefon",
+    "viber": "Viber",
+    "whatsapp": "Whatsapp",
+    "facetime": "Facetime",
+    "fax": "Fax",
+    "email": "E-mail",
+    "website": "Web sajt",
+    "pib": "PIB",
+    "pdv": "PDV",
+    "djelatnost": "Djelatnost",
+    "iban": "IBAN",
+    "bic_swift": "BIC / SWIFT",
+    "ime": "",
+    "prezime": "",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "skype": "Skype",
+    "logotip": "Logotip",
+    "opis": "Opis",
+    "lokacija": "Lokacija",
+    "status": "Status",
+    "privatnost": "Javno prikazani podaci",
+    "verifikovan": "Verifikovano preduzeće",
+    "kategorija": "Kategorija",
+    "ziro_racuni": "Lista žiro računa"
+  },
+  "common": {
+    "izbrisi": "Izbriši",
+    "dodajNovi": "Dodaj novi"
   }
 }

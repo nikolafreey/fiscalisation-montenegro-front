@@ -55,71 +55,58 @@ const FizickaLicaForm = () => {
         <InputField
           name="ime"
           label={$t('fizickalica.ime')}
-          placeholder={$t('')}
         />
         <InputField
           name="prezime"
           label={$t('fizickalica.prezime')}
-          placeholder={$t('')}
         />{' '}
         <InputField
           name="jmbg"
           label={$t('fizickalica.jmbg')}
-          placeholder={$t('')}
         />
         <InputField
           name="ib"
           label={$t('fizickalica.ib')}
-          placeholder={$t('')}
         />
         <InputField
           name="adresa"
           label={$t('fizickalica.adresa')}
-          placeholder={$t('')}
         />
         <InputField
           name="telefon"
           label={$t('fizickalica.telefon')}
-          placeholder={$t('')}
         />
         <InputField
           name="email"
           label={$t('fizickalica.email')}
-          placeholder={$t('')}
         />
         <InputField
           name="zanimanje"
           label={$t('fizickalica.zanimanje')}
-          placeholder={$t('')}
         />
         <InputField
           name="radno_mjesto"
           label={$t('fizickalica.radno_mjesto')}
-          placeholder={$t('')}
         />
         <InputField
           name="drzavljanstvo"
           label={$t('fizickalica.drzavljanstvo')}
-          placeholder={$t('')}
         />
         <InputField
           name="nacionalnost"
           label={$t('fizickalica.nacionalnost')}
-          placeholder={$t('')}
         />
         <InputField
           name="cv_link"
           label={$t('fizickalica.cv_link')}
-          placeholder={$t('')}
         />
         <InputField
           name="avatar"
           label={$t('fizickalica.avatar')}
-          placeholder={$t('')}
         />
         <DropDown
           name="preduzece_id"
-          label={$t('fizickalica.asdf')}
+          label={$t('fizickalica.preduzece_id')}
           loadOptions={preduzecaService.getPreduzecaDropdown}
         />
         <FieldArray name='ziro_racuni'>
