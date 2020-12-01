@@ -10,7 +10,9 @@ const initialState = {
     total: 0,
     data: [],
   },
-  fizicko_lice: {},
+  fizicko_lice: {
+    ziro_racuni: []
+  },
 };
 
 const fizickaLicaReducer = (state = initialState, action) =>
