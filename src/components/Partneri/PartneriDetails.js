@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PartneriDetails = ({ partner }) => {
+const PartneriDetails = ({ partner={} }) => {
   return (
     <div>
       <p>{partner.kontakt_ime}</p>

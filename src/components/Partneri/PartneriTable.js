@@ -1,23 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { PARTNERI } from '../../constants/routes';
-import { getPartneri } from '../../store/actions/PartneriActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPartneri, setPartner } from '../../store/actions/PartneriActions';
+import { partnerSelector } from '../../store/selectors/PartneriSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 
 const PartneriTable = ({ partneri }) => {
   const dispatch = useDispatch();
 
+  const partner = useSelector(partnerSelector());
+
   const partneriRow = ({ item }) => (
-    <Link to={PARTNERI.SHOW.replace(':id', item.id)}>
-      <tr>
-        <th scope="row">{item.id}</th>
-        <td>{item.kontakt_ime}</td>
-        <td>{item.kontakt_prezime}</td>
-        <td>{item.kontakt_telefon}</td>
-      </tr>
-    </Link>
+    <tr
+      onClick={() => dispatch(setPartner(item))}
+      style={{ backgroundColor: partner.id === item.id ? 'gray' : 'white' }}
+    >
+      <th scope="row">{item.id}</th>
+      <td>{item.kontakt_ime}</td>
+      <td>{item.kontakt_prezime}</td>
+      <td>{item.kontakt_telefon}</td>
+    </tr>
   );
 
   return (
