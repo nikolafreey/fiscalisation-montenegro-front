@@ -1,7 +1,7 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  JEDINICE_MJERE: 'api/jedinice_mjere',
+  JEDINICE_MJERE: 'jedinice_mjere',
 };
 
 class JediniceMjereService extends ApiService {

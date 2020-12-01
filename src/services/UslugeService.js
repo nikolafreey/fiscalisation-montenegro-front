@@ -1,8 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  USLUGE: '/api/usluge',
-  USLUGA: '/api/usluge/{id}',
+  USLUGE: '/usluge',
+  USLUGA: '/usluge/{id}',
 };
 
 class UslugeService extends ApiService {

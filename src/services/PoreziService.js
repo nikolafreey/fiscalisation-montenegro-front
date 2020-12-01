@@ -1,7 +1,7 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  POREZI: 'api/porezi',
+  POREZI: 'porezi',
 };
 
 class PoreziService extends ApiService {

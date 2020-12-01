@@ -1,7 +1,7 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  GRUPE: 'api/grupe',
+  GRUPE: 'grupe',
 };
 
 class GrupeService extends ApiService {
