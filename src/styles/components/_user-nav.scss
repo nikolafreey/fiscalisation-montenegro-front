@@ -1,0 +1,31 @@
+.user-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 2rem;
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+
+  &__text {
+    font-size: 14px;
+    margin-right: 1rem;
+  }
+
+  &__img {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100%;
+    cursor: pointer;
+    ul {
+      list-style: none;
+    }
+  }
+}

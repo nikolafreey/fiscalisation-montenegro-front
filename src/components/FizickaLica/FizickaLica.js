@@ -4,6 +4,7 @@ import { getFizickaLica, setFizickoLice } from '../../store/actions/FizickaLicaA
 import { fizickaLicaSelector, fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import FizickaLicaTable from './FizickaLicaTable';
 import FizickoLiceDetails from './FizickoLiceDetails';
+import '../../main.scss';
 
 const FizickaLica = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const FizickaLica = () => {
   }, [fizickaLica, dispatch]);
 
   return (
-    <div>
+    <div className="main-content">
       <FizickaLicaTable fizickaLica={fizickaLica} />
       <FizickoLiceDetails fizickoLice={fizickoLice} />
     </div>

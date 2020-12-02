@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './App.css';
+import './App.scss';
 import AppLayout from './components/layout/AppLayout';
 import AppRouter from './routes/AppRouter';
 import { authService } from './services/AuthService';

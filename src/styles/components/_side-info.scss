@@ -1,0 +1,42 @@
+.side-info{
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    background-color: $color-content-dark;
+    border-left: 1px solid $color-content-lines;
+
+    &__logo{
+        display: flex;
+        margin-bottom: 2rem;
+    }
+    &__desc{
+        margin-bottom: 2.5rem;
+    }
+    &__info{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        //align-items: center;
+        .col-l{
+            color: $color-text-light;
+            width: 40%;
+        }
+        .col-r{
+            text-align: right;
+            width: 60%;
+        }
+
+    }
+    &__map{
+        height: 11rem;
+        width: 100%;
+        border: 1px solid $color-hover;
+        border-radius: 4px;
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 2rem;
+    }
+    h3{
+        margin-bottom: 1.5rem;
+    }
+}

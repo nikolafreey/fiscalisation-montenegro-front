@@ -1,0 +1,61 @@
+.table-wrapper {
+  display: flex;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr:nth-of-type(4) {
+  background: $color-content-dark;
+}
+th {
+  background-color: $color-content-dark;
+  color: white;
+  font-weight: 500;
+  span {
+    display: flex;
+    flex-direction: column;
+    .desc {
+      font-size: 10px;
+    }
+    .asc {
+      font-size: 10px;
+      transform: rotate(180deg);
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    //color: white;
+    outline: none;
+    cursor: pointer;
+  }
+  input {
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+  }
+}
+td {
+  padding: 2rem 1rem;
+}
+th {
+  padding: 1rem;
+}
+th:first-child{
+  width: 35%;
+}
+th:last-child{
+  width: 20%;
+  text-align: right;
+}
+td,
+th {
+  border-bottom: 1px solid $color-content-lines;
+  text-align: left;
+}

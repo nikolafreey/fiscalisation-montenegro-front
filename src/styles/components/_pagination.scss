@@ -1,0 +1,28 @@
+.pagination-wrapper{
+    padding: 3rem 0;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    margin: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+    
+    &:hover {
+      background-color: $color-hover;
+    }
+  }
+  .active {
+    background-color: $color-hover;
+  }
+}

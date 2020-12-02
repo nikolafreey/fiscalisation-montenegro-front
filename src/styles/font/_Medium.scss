@@ -1,0 +1,8 @@
+/* BEGIN Medium */
+@font-face {
+	font-family: "Inter";
+	@include fontdef($InterPath, "Medium");
+	font-weight: 500;
+	font-style: normal;
+}
+/* END Medium */

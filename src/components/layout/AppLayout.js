@@ -1,13 +1,14 @@
 import React from 'react';
 import GlobalErrorBar from './GlobalErrorBar';
-import Navbar from './Navbar';
+import '../../main.scss';
 
 const AppLayout = ({ children }) => {
-  return <div>
-    <Navbar/>
-    <GlobalErrorBar />
-    {children}
-    </div>;
+  return (
+    <div className="container">
+      <GlobalErrorBar />
+      {children}
+    </div>
+  );
 };
 
 export default AppLayout;
