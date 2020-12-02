@@ -1,6 +1,5 @@
 import React from 'react'
 import UserControls from '../auth/UserControls'
-import '../../main.scss';
 
 const Navbar = () => {
   return (

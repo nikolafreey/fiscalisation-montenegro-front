@@ -16,32 +16,45 @@ const PreduzecaTable = ({ preduzeca }) => {
   const preduzecaRow = ({ item }) => (
     <tr
       onClick={() => dispatch(setPreduzece(item))}
-      style={{ backgroundColor: preduzece.id === item.id ? 'gray' : 'white' }}
+      style={{
+        backgroundColor: preduzece.id === item.id ? '#F9FAFB' : 'white',
+      }}
     >
-      <th scope="row">{item.id}</th>
-      <td>{item.ime}</td>
-      <td>{item.prezime}</td>
-      <td>{item.email}</td>
+      <td>
+        <p>{item.kratki_naziv}</p>
+        <h3 class="heading-quaternary">{item.grad}</h3>
+      </td>
+      <td>{item.pib}</td>
+      <td>{item.telefon}</td>
       <td>{item.partneri?.length ? 'Partner' : 'Dodaj partnera'}</td>
     </tr>
   );
 
   return (
     <>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Ime</th>
-            <th scope="col">Prezime</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Partner</th>
-          </tr>
-        </thead>
-        <tbody>
-          <List data={preduzeca.data} renderItem={preduzecaRow} />
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">
+                <h3 className="heading-quaternary">Preduzeće</h3>
+              </th>
+              <th scope="col">
+                <h3 className="heading-quaternary">PIB</h3>
+              </th>
+              <th scope="col">
+                <h3 className="heading-quaternary">Telefon</h3>
+              </th>
+              <th scope="col">
+                <h3 className="heading-quaternary">Partner</h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <List data={preduzeca.data} renderItem={preduzecaRow} />
+          </tbody>
+        </table>
+      </div>
       <PaginationControls
         paginatedData={preduzeca}
         onPageChange={(page) => dispatch(getPreduzeca({ page }))}

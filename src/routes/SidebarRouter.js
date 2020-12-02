@@ -15,26 +15,29 @@ import PreduzecaRouter from './PreduzecaRouter';
 import ProtectedRoute from './ProtectedRoute';
 import UslugeRouter from './UslugeRouter';
 
+
 const SidebarRouter = () => {
   return (
-    <Switch>
-      <ProtectedRoute exact path={HOME}>
-        <Pregled />
-      </ProtectedRoute>
-      <ProtectedRoute path={PARTNERI.INDEX}>
-        <PartneriRouter />
-      </ProtectedRoute>
-      <ProtectedRoute path={FIZICKA_LICA.INDEX}>
-        <FizickaLicaRouter />
-      </ProtectedRoute>
-      <ProtectedRoute path={PREDUZECA.INDEX}>
-        <PreduzecaRouter />
-      </ProtectedRoute>
-      <Route path={USLUGE.INDEX}>
-        <UslugeRouter />
-      </Route>
-      <Redirect to={ERRORS.NOT_FOUND} />
-    </Switch>
+    <div class="main-content">
+      <Switch>
+        <ProtectedRoute exact path={HOME}>
+          <Pregled />
+        </ProtectedRoute>
+        <ProtectedRoute path={PARTNERI.INDEX}>
+          <PartneriRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={FIZICKA_LICA.INDEX}>
+          <FizickaLicaRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={PREDUZECA.INDEX}>
+          <PreduzecaRouter />
+        </ProtectedRoute>
+        <Route path={USLUGE.INDEX}>
+          <UslugeRouter />
+        </Route>
+        <Redirect to={ERRORS.NOT_FOUND} />
+      </Switch>
+    </div>
   );
 };
 

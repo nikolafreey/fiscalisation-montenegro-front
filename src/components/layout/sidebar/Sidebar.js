@@ -7,7 +7,6 @@ import {
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
-import '../../../main.scss';
 import heroHome from '../../../assets/icon/hero-home.svg';
 import heroPartneri from '../../../assets/icon/hero-partneri.svg';
 import heroPreduzeca from '../../../assets/icon/hero-preduzeca.svg';

@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import SidebarRouter from '../../../routes/SidebarRouter';
 import Navbar from '../Navbar';
-import '../../../main.scss';
 
 const SidebarLayout = () => {
   return (

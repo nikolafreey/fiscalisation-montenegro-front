@@ -5,6 +5,7 @@ import AppLayout from './components/layout/AppLayout';
 import AppRouter from './routes/AppRouter';
 import { authService } from './services/AuthService';
 import { getUser } from './store/actions/UserActions';
+import './main.scss';
 
 import i18n from 'i18n-js';
 

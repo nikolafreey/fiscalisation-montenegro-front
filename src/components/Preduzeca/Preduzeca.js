@@ -8,6 +8,7 @@ import {
 import PreduzecaTable from './PreduzecaTable';
 import PreduzeceDetails from './PreduzeceDetails';
 
+
 const Preduzeca = () => {
   const dispatch = useDispatch();
 
@@ -24,8 +25,13 @@ const Preduzeca = () => {
 
   return (
     <>
-      <PreduzecaTable preduzeca={preduzeca} />
-      <PreduzeceDetails preduzece={preduzece} />
+      <h1 class="heading-primary">Preduzeća</h1>
+      <div class="main-content__box">
+        <div class="content">
+          <PreduzecaTable preduzeca={preduzeca} />
+          <PreduzeceDetails preduzece={preduzece} />
+        </div>
+      </div>
     </>
   );
 };
