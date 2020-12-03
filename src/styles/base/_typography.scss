@@ -49,6 +49,9 @@ body {
   .cd{
     color: $color-text-dark;
   }
+  .fw-500{
+    font-weight: 500;
+  }
   .lh-sm{
     line-height: 1.5rem;
   }
@@ -59,15 +62,45 @@ body {
   .item {
     margin-bottom: .5rem;
   }
+  .w-60{
+    width: 60%;
+  }
+  .mb-25{
+    margin-bottom: 2.5rem;
+  }
   .mb-20{
     margin-bottom: 2rem;
   }
   .mb-15{
     margin-bottom: 1.5rem;
   }
+  .mr-m{
+    margin-right: 2rem;
+  }
+  .ml-s{
+    margin-left: .5rem;
+  }
+  .df{
+    display: flex;
+  }
+  .fd-column{
+    flex-direction: column;
+  }
+  .ai-c{
+    align-items: center;
+  }
+  .jc-end{
+    justify-content: flex-end;
+  }
+  .jc-center{
+    justify-content: center;
+  }
   hr{
     border: 0;
     height: 1px;
     background-color: $color-hover;
     margin-bottom: 2.5rem;
+  }
+  .border-radius{
+    border-radius: 4px;
   }

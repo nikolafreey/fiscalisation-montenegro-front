@@ -1,0 +1,30 @@
+.screen-content-info {
+  .main-content__box {
+    display: flex;
+  }
+  .side-info {
+    width: 30%;
+  }
+  .content {
+    width: 70%;
+  }
+  .link {
+    margin-top: 4rem;
+
+    svg {
+      margin-right: 2rem;
+      transition: all .3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out; /** Chrome & Safari **/
+      -moz-transition: all .3s ease-in-out; /** Firefox **/
+      -o-transition: all .3s ease-in-out; /** Opera **/
+    }
+    &:hover {
+      svg {
+        transform: translate(-.5rem, 0);
+        -webkit-transform: translate(-.5rem, 0); /** Chrome & Safari **/
+        -o-transform: translate(-.5rem, 0); /** Opera **/
+        -moz-transform: translate(-.5rem, 0); /** Firefox **/
+      }
+    }
+  }
+}

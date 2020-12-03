@@ -5,14 +5,18 @@
 @import "styles/base/base";
 @import "styles/base/typography";
 
+@import "styles/font/inter.scss";
+
 @import "styles/components/box";
 @import "styles/components/button";
 @import "styles/components/dropdown-list";
 @import "styles/components/form";
 @import "styles/components/icon";
+@import "styles/components/img-round";
 @import "styles/components/pagination";
 @import "styles/components/search";
 @import "styles/components/side-info";
+@import "styles/components/sidebar-badge";
 @import "styles/components/table-vertical-head";
 @import "styles/components/table";
 @import "styles/components/user-nav";
@@ -21,6 +25,7 @@
 @import "styles/layout/header";
 @import "styles/layout/grid";
 @import "styles/layout/navigation";
+@import "styles/layout/screen-content-info";
 @import "styles/layout/sidebar";
 
 @import "styles/pages/home";

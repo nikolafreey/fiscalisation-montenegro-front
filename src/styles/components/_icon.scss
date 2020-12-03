@@ -1,0 +1,29 @@
+.icon {
+  display: flex;
+
+  &.sm {
+    width: 18px;
+    height: 18px;
+  }
+  &.md {
+    width: 20px;
+    height: 20px;
+  }
+  &.lg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__light {
+    stroke: $color-content-light;
+  }
+  &__dark {
+    color: $color-text-dark;
+  }
+  &__fill-color-badge {
+    fill: $color-check-badge;
+  }
+  &__stroke-link {
+    stroke: $color-link-dark;
+  }
+}

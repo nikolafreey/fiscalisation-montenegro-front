@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SidebarLink = ({label, imageSource, num, ...props}) => {
+const SidebarLink = ({label, ImageSource, num, ...props}) => {
   return (
     <li className="item">
-      <img src={imageSource} alt={label} />
+      <ImageSource stroke="currentColor" className="sidebar-icon mr-m"/>
       <Link className="link" {...props}>{label}</Link>
       {num && <span className="">{num}</span>}
     </li>

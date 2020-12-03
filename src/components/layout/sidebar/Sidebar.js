@@ -7,10 +7,10 @@ import {
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
-import heroHome from '../../../assets/icon/hero-home.svg';
-import heroPartneri from '../../../assets/icon/hero-partneri.svg';
-import heroPreduzeca from '../../../assets/icon/hero-preduzeca.svg';
-import heroStavke from '../../../assets/icon/hero-stavke.svg';
+import {ReactComponent as heroHome} from '../../../assets/icon/hero-home.svg';
+import {ReactComponent as heroPartneri} from '../../../assets/icon/hero-partneri.svg';
+import {ReactComponent as heroPreduzeca} from '../../../assets/icon/hero-preduzeca.svg';
+import {ReactComponent as heroStavke} from '../../../assets/icon/hero-stavke.svg';
 
 
 const Sidebar = () => {
@@ -20,7 +20,7 @@ const Sidebar = () => {
         <div class="logo">računi</div>
         <ul className="items">
           <SidebarLink
-            imageSource={heroHome}
+            ImageSource={heroHome}
             label="Pregled"
             to={HOME}
           />
@@ -28,22 +28,22 @@ const Sidebar = () => {
         <ul className="items">
           <h3 className="heading-quaternary">Partneri</h3>
           <SidebarLink
-            imageSource={heroHome}
+            ImageSource={heroHome}
             label="Fizicka lica"
             to={FIZICKA_LICA.INDEX}
           />
           <SidebarLink
-            imageSource={heroPreduzeca}
+            ImageSource={heroPreduzeca}
             label="Preduzeca"
             to={PREDUZECA.INDEX}
           />
           <SidebarLink
-            imageSource={heroPartneri}
+            ImageSource={heroPartneri}
             label="Partneri"
             to={PARTNERI.INDEX}
           />
           <SidebarLink
-            imageSource={heroStavke}
+            ImageSource={heroStavke}
             label="Stavke"
             to={USLUGE.INDEX}
           />

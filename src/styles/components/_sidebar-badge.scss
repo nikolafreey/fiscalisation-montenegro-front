@@ -1,0 +1,17 @@
+.sidebar-badge {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-hover;
+  border-radius: 18px;
+  color: $color-text-dark;
+  font-size: 11px;
+  height: 25px;
+  padding: 2px 8px;
+  transition: background-color 0.1s ease-in-out;
+  .pro {
+      color: rgba($color-text-dark,.7)!important;
+  }
+}

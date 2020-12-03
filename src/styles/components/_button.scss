@@ -1,8 +1,8 @@
 .btn {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: .8rem 1.2rem;
   border: none;
   border-radius: 4px;
   width: 100%;
@@ -11,39 +11,43 @@
   &__light {
     background-color: $color-background-light;
     color: $color-text-dark;
-    transition: background-color 0.3s ease-in-out;
-    &:hover{
-        background-color: rgba($color-background-light, .7);
+    transition: all 0.1s ease-in-out;
+    svg{
+      transition: stroke .1s ease-in-out;
     }
-    &:focus{
-        outline: none;
+    &:hover {
+      background-color: rgba($color-background-light, 0.7);
+      color: rgba($color-text-dark, .7);
+      svg{
+        stroke: rgba($color-text-dark, .7);
+      }
+    }
+    &:focus {
+      outline: none;
     }
   }
   &__dark {
     background-color: $color-background-dark;
-    color: $color-white;
-    transition: background-color 0.3s ease-in-out;
-    &:hover{
-        background-color: rgba($color-background-dark, .7);
+    color: $color-content-light;
+    transition: all 0.1s ease-in-out;
+    svg{
+      transition: stroke .1s ease-in-out;
     }
-    &:focus{
-        outline: none;
+    &:hover {
+      background-color: rgba($color-background-dark, 0.7);
+      color: rgba($color-content-light, .7);
+      svg{
+        stroke: rgba($color-content-light, .7);
+      }
+    }
+    &:focus {
+      outline: none;
     }
   }
-}
-.bcg-icon-light,
-.bcg-icon-dark {
-  display: flex;
-
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 20px;
-  width: 20px;
-  margin-left: -10px;
-}
-.bcg-icon-light {
-  background-image: url("../../assets/icon/checkmark.svg");
-}
-.bcg-icon-dark {
-  background-image: url("../../assets/icon/plus.svg");
+  &__xl{
+    width: 15rem;
+    height: 4rem;
+    font-size: $font-size-default;
+    padding: 1rem 2rem;
+  }
 }

@@ -6,10 +6,10 @@
   border-collapse: collapse;
 }
 tr:nth-of-type(4) {
-  background: $color-content-dark;
+  background: $color-content-light;
 }
 th {
-  background-color: $color-content-dark;
+  background-color: $color-content-light;
   color: white;
   font-weight: 500;
   span {
@@ -58,4 +58,12 @@ td,
 th {
   border-bottom: 1px solid $color-content-lines;
   text-align: left;
+}
+
+.inner-td-wrapper{
+  display: flex;
+  align-items: center;
+}
+.td-title{
+  margin-left: 2rem;
 }

@@ -27,41 +27,36 @@
   .item {
     position: relative;
     display: flex;
-    //justify-content: space-between;
     margin-bottom: 0.5rem;
     cursor: pointer;
     background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-    span {
-      position: absolute;
-      right: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $color-hover;
-      border-radius: 18px;
+    transition: all 0.1s ease-in-out;
+
+    .link {
       color: $color-text-dark;
-      font-size: 12px;
-      width: 30px;
-      height: 25px;
-      padding: 5px;
-      transition: background-color 0.3s ease-in-out;
+      text-decoration: none;
     }
+
+    .sidebar-icon {
+      display: flex;
+      height: 22px;
+      width: 22px;
+      stroke: $color-sidebar-icon;
+      //margin-right: 2rem;
+    }
+
     &:hover {
       border-radius: 4px;
       background-color: $color-hover;
       span {
         background-color: $color-background-light;
       }
+      .sidebar-icon {
+        stroke: $color-text-light;
+      }
+      .link{
+        color: $color-text-light;
+      }
     }
-    
-  }
-  .link {
-    color: $color-text-dark;
-    text-decoration: none;
-  }
-  img {
-    width: 1.8rem;
-    margin-right: 2rem;
   }
 }

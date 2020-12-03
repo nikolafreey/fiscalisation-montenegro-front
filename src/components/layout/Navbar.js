@@ -13,10 +13,7 @@ const Navbar = () => {
           placeholder="Pretraga  (kliknite ovdje ili pritisnite na tastaturi “/”)"
         />
       </form>
-      <div>
-      
-        <UserControls />
-      </div>
+      <UserControls />
     </div>
   )
 }

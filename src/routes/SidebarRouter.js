@@ -18,7 +18,7 @@ import UslugeRouter from './UslugeRouter';
 
 const SidebarRouter = () => {
   return (
-    <div class="main-content">
+    <div class="screen-content-info">
       <Switch>
         <ProtectedRoute exact path={HOME}>
           <Pregled />
