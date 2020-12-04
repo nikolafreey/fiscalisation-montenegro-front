@@ -115,14 +115,14 @@ const PreduzeceDetails = ({ preduzece }) => {
         </div>
         <div className="col-r">
           <p className="mb-20">
-            <a href="tel:+67123434">{preduzece.fax}</a>
+            <a href={`tel:${preduzece.fax}`}>{preduzece.fax}</a>
           </p>
           <p className="mb-20">
-            <a href="mailto:info@efel.me">{preduzece.email}</a>
+            <a href={`mailto:${preduzece.email}`}>{preduzece.email}</a>
           </p>
           <p className="mb-20">
             <a
-              href="http://www.efel.me"
+              href={preduzece.website}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -131,7 +131,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </p>
           <p className="mb-20">
             <a
-              href="http://www.twwiter.com/efelmotors"
+              href={`http://www.twiter.com/${preduzece.twitter_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -140,7 +140,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </p>
           <p className="mb-20">
             <a
-              href="http://www.instagram.com/efel_motors_doo"
+              href={`http://www.instagram.com/${preduzece.instagram_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -149,7 +149,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </p>
           <p className="mb-20">
             <a
-              href="http://www.facebook.com/efel_motors"
+              href={`http://www.facebook.com/${preduzece.facebook_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -158,7 +158,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </p>
           <p className="mb-20">
             <a
-              href="skype:efel.motors?call"
+              href={`skype:${preduzece.skype_username}?call`}
               target="_blank"
               rel="noopener noreferrer"
             >

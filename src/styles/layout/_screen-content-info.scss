@@ -1,4 +1,24 @@
 .screen-content-info {
+
+  .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      position: relative;
+      &:hover{
+        .drop-down{
+          top: 49px;
+          right: 0;
+          display: block;
+          svg{
+            stroke: $color-text-light;
+          }
+        }
+      }
+    }
+  }
   .main-content__box {
     display: flex;
   }

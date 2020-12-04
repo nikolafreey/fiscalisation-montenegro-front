@@ -1,42 +1,45 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPartneri, setPartner } from '../../store/actions/PartneriActions';
-import { partnerSelector } from '../../store/selectors/PartneriSelector';
+import { useDispatch } from 'react-redux';
+import {
+  getPartneri,
+  setPartner,
+} from '../../store/actions/PartneriActions';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
+import PartneriTableRow from './PartneriTableRow';
 
 const PartneriTable = ({ partneri }) => {
   const dispatch = useDispatch();
 
-  const partner = useSelector(partnerSelector());
-
-  const partneriRow = ({ item }) => (
-    <tr
-      onClick={() => dispatch(setPartner(item))}
-      style={{ backgroundColor: partner.id === item.id ? 'gray' : 'white' }}
-    >
-      <th scope="row">{item.id}</th>
-      <td>{item.kontakt_ime}</td>
-      <td>{item.kontakt_prezime}</td>
-      <td>{item.kontakt_telefon}</td>
-    </tr>
-  );
-
   return (
     <>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Kontatk ime</th>
-            <th scope="col">Kontakt prezime</th>
-            <th scope="col">Kontakt telefon</th>
-          </tr>
-        </thead>
-        <tbody>
-          <List data={partneri.data} renderItem={partneriRow} />
-        </tbody>
-      </table>
+      <div className="table-wrapper">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>
+                <span className="heading-quaternary">Preduzeće/Fizičko lice</span>
+              </th>
+              <th>
+                <span className="heading-quaternary">PIB/JMBG</span>
+              </th>
+              <th>
+                <span className="heading-quaternary">Telefon</span>
+              </th>
+              <th>
+                <span className="heading-quaternary">Izmijeni/Obriši</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <List
+              data={partneri.data}
+              renderItem={PartneriTableRow}
+              onItemClick={(item) => dispatch(setPartner(item))}
+            />
+          </tbody>
+        </table>
+      </div>
       <PaginationControls
         paginatedData={partneri}
         onPageChange={(page) => dispatch(getPartneri({ page }))}

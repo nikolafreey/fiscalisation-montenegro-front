@@ -45,9 +45,29 @@
     }
   }
   &__xl{
-    width: 15rem;
+    width: 16rem;
     height: 4rem;
     font-size: $font-size-default;
     padding: 1rem 2rem;
+  }
+  &__xs{
+    position: relative;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: .5rem;
+    background-color: transparent;
+    font-size: $font-size-default;
+
+    &:hover{
+      .drop-down{
+        top: 36px;
+        right: 0;
+        display: block;
+        // svg{
+        //   stroke: $color-white;
+        // }
+      }
+    }
   }
 }
