@@ -30,8 +30,8 @@
     background-color: transparent;
 
     &::before {
-      content: "";
-      background-image: url("../../assets/icon/search.svg");
+      content: '';
+      background-image: url('../../assets/icon/search.svg');
       width: 20px;
       height: 20px;
       z-index: 1;

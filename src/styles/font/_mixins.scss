@@ -1,6 +1,7 @@
-@mixin fontdef($InterPath, /*$InterVersion,*/ $FontType: "Regular") {
-	src: url("#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff2") format("woff2"),
-		url("#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff") format("woff"),
-		url("#{$InterPath}/#{$FontType}/Inter-#{$FontType}.otf") format("otf"),
-		url("#{$InterPath}/#{$FontType}/Inter-#{$FontType}.ttf") format("ttf");
+@mixin fontdef($InterPath, /*$InterVersion,*/ $FontType: 'Regular') {
+  src: url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff2')
+      format('woff2'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff') format('woff'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.otf') format('otf'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.ttf') format('ttf');
 }
