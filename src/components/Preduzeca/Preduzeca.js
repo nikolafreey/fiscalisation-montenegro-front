@@ -8,6 +8,7 @@ import {
   preduzecaSelector,
   preduzeceSelector,
 } from '../../store/selectors/PreduzecaSelector';
+import SearchForm from '../shared/forms/SearchForm';
 import PreduzecaTable from './PreduzecaTable';
 import PreduzeceDetails from './PreduzeceDetails';
 
@@ -25,20 +26,17 @@ const Preduzeca = () => {
     if (preduzeca.total > 0) dispatch(setPreduzece(preduzeca.data[0]));
   }, [preduzeca, dispatch]);
 
+  const handleSearch = (values) => {
+    dispatch(getPreduzeca(values));
+  }
+
   return (
     <>
       <h1 class="heading-primary">Preduzeća</h1>
       <div class="main-content__box">
         <div class="content">
           <div class="main-content__search-wrapper">
-            <form class="search">
-              <button class="search__button"></button>
-              <input
-                type="text"
-                class="search__input"
-                placeholder="Naziv ili PIB preduzeca"
-              />
-            </form>
+            <SearchForm handleSubmit={handleSearch}/>
           </div>
           <PreduzecaTable preduzeca={preduzeca} />
         </div>
