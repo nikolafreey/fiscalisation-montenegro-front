@@ -3,20 +3,14 @@ import { ReactComponent as Badge } from '../../assets/icon/badge.svg';
 import { ReactComponent as Edit } from '../../assets/icon/edit.svg';
 import { ReactComponent as Delete } from '../../assets/icon/delete.svg';
 import { ReactComponent as Dots } from '../../assets/icon/dots.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { partnerSelector } from '../../store/selectors/PartneriSelector';
 
-const PartneriTableRow = ({ item: partner, onItemClick }) => {
-  const dispatch = useDispatch();
-
-  const selectedPartner = useSelector(partnerSelector());
-
+const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
+  console.log(selectedId);
   return (
     <tr
       onClick={() => onItemClick(partner)}
       style={{
-        backgroundColor:
-          selectedPartner.id === partner.id ? '#F9FAFB' : 'white',
+        backgroundColor: selectedId === partner.id ? '#F9FAFB' : 'white',
       }}
     >
       <td>
