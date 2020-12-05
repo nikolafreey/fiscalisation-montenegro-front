@@ -1,11 +1,20 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { partneriService } from '../../services/PartneriService';
 import { setPartner, setPartneri } from '../actions/PartneriActions';
+import { getPreduzeca } from '../actions/PreduzecaActions';
+import { preduzecaSelector } from '../selectors/PreduzecaSelector';
 
 export function* partnerStore({ payload }) {
   try {
     yield call(partneriService.storePartner, payload);
+
+    if(payload.preduzece_id){
+      const preduzeca = yield select(preduzecaSelector());
+      yield put(getPreduzeca({page: preduzeca.current_page}));
+    }
+    
+    yield put(getPreduzeca())
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

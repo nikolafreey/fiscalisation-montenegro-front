@@ -1,15 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getPreduzeca,
   setPreduzece,
 } from '../../store/actions/PreduzecaActions';
+import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 import PreduzecaTableRow from './PreduzecaTableRow';
 
 const PreduzecaTable = ({ preduzeca }) => {
   const dispatch = useDispatch();
+
+  const selectedPreduzece = useSelector(preduzeceSelector());
 
   return (
     <>
@@ -36,6 +39,7 @@ const PreduzecaTable = ({ preduzeca }) => {
               data={preduzeca.data}
               renderItem={PreduzecaTableRow}
               onItemClick={(item) => dispatch(setPreduzece(item))}
+              selectedId={selectedPreduzece.id}
             />
           </tbody>
         </table>

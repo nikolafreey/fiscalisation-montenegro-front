@@ -1,15 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getPartneri,
   setPartner,
 } from '../../store/actions/PartneriActions';
+import { partnerSelector } from '../../store/selectors/PartneriSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 import PartneriTableRow from './PartneriTableRow';
 
 const PartneriTable = ({ partneri }) => {
   const dispatch = useDispatch();
+
+  const selectedPartner = useSelector(partnerSelector());
 
   return (
     <>
@@ -36,6 +39,7 @@ const PartneriTable = ({ partneri }) => {
               data={partneri.data}
               renderItem={PartneriTableRow}
               onItemClick={(item) => dispatch(setPartner(item))}
+              selectedId={selectedPartner.id}
             />
           </tbody>
         </table>

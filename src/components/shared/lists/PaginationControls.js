@@ -8,8 +8,7 @@ const PaginationControls = ({
 }) => {
   const { current_page, last_page } = paginatedData;
 
-  const handleClick = page => event => {
-    event.preventDefault();
+  const handleClick = page => {
     onPageChange(page);
   }
 
@@ -24,8 +23,6 @@ const PaginationControls = ({
   }
 
   const pages = fetchPageNumbers(current_page, last_page, pageNeighbours);
-
-  console.log(pages)
 
   return (
     <nav className="pagination-wrapper" aria-label="Pagination">
