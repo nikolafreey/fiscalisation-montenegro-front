@@ -63,5 +63,15 @@
   "common": {
     "izbrisi": "Izbriši",
     "dodajNovi": "Dodaj novi"
+  },
+  "usluge": {
+    "naziv": "Naziv usluge",
+    "opis": "Opis",
+    "cijena_bez_pdv": "Cijena bez PDV",
+    "ukupna_cijena": "Cijena",
+    "status": "",
+    "porezi": "PDV stopa",
+    "jedinicaMjere": "Jedinica mjere",
+    "grupa": "Grupa/Kategorija"
   }
 }
