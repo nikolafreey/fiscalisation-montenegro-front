@@ -7,23 +7,18 @@ import {
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
-import {ReactComponent as heroHome} from '../../../assets/icon/hero-home.svg';
-import {ReactComponent as heroPartneri} from '../../../assets/icon/hero-partneri.svg';
-import {ReactComponent as heroPreduzeca} from '../../../assets/icon/hero-preduzeca.svg';
-import {ReactComponent as heroStavke} from '../../../assets/icon/hero-stavke.svg';
-
+import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
+import { ReactComponent as heroPartneri } from '../../../assets/icon/hero-partneri.svg';
+import { ReactComponent as heroPreduzeca } from '../../../assets/icon/hero-preduzeca.svg';
+import { ReactComponent as heroStavke } from '../../../assets/icon/hero-stavke.svg';
 
 const Sidebar = () => {
   return (
     <div className="col-md-3">
       <div className="sidebar">
-        <div class="logo">računi</div>
+        <div className="logo">računi</div>
         <ul className="items">
-          <SidebarLink
-            ImageSource={heroHome}
-            label="Pregled"
-            to={HOME}
-          />
+          <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
         </ul>
         <ul className="items">
           <h3 className="heading-quaternary">Partneri</h3>

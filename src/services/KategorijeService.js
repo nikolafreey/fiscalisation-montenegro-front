@@ -22,9 +22,10 @@ class KategorijeService extends ApiService {
 
   getKategorijeDropdown = async () => {
     const { data } = await this.getKategorije();
-    return data.map((kategorije) => ({
+    console.log(data.data);
+    return data.data.map((kategorije) => ({
       value: kategorije.id,
-      label: kategorije.kratki_naziv,
+      label: kategorije.naziv,
     }));
   };
 }

@@ -15,7 +15,6 @@ import PreduzecaRouter from './PreduzecaRouter';
 import ProtectedRoute from './ProtectedRoute';
 import UslugeRouter from './UslugeRouter';
 
-
 const SidebarRouter = () => {
   return (
     <div class="screen-content-info">

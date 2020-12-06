@@ -12,14 +12,16 @@ const RadioButton = (props) => {
           return options.map((option) => {
             return (
               <React.Fragment key={options.key}>
+                <label className="form__label" htmlFor={option.value}>
+                  {option.key}
+                </label>
                 <input
                   type="radio"
                   id={option.value}
                   {...field}
                   value={option.value}
-                  checked={field.value === option.value}
+                  checked={console.log('field: ', field)}
                 />
-                <label htmlFor={option.value}>{option.key}</label>
               </React.Fragment>
             );
           });

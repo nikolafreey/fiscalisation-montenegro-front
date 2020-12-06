@@ -1,106 +1,160 @@
 body {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: $font-size-default;
-    line-height: 1.7;
-    color: $color-text-dark;
-    background-color: $color-background-light;
-    
-  }
-  p{
-    font-size: $font-size-default;
-  }
-  a{
-    color: $color-link-light;
-    text-decoration: none;
-  }
-  .heading-primary {
-    color: $color-text-dark;
-    font-size: $font-size-primary;
-    font-weight: 600;
-    backface-visibility: hidden;
-    margin: 3rem 0;
-  }
-  .heading-secondary{
-    color: $color-text-dark;
-    font-size: $font-size-secondary;
-    font-weight: 600;
-    backface-visibility: hidden;
-    margin: 3rem 0;
-  }
-  .heading-tertiary{
-    color: $color-text-dark;
-    font-weight: 600;
-    font-size: $font-size-default;
-    text-transform: uppercase;
-  }
-  .heading-quaternary{
-    color:$color-text-light;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: $font-size-tertiary;
-  }
-  .txt-up{
-    text-transform: uppercase;
-  }
-  .cl{
-    color: $color-text-light;
-  }
-  .cd{
-    color: $color-text-dark;
-  }
-  .fw-500{
-    font-weight: 500;
-  }
-  .lh-sm{
-    line-height: 1.5rem;
-  }
-  .list{
-    list-style: none;
-    margin: 1.5rem 0;
-  }
-  .item {
-    margin-bottom: .5rem;
-  }
-  .w-60{
-    width: 60%;
-  }
-  .mb-25{
-    margin-bottom: 2.5rem;
-  }
-  .mb-20{
-    margin-bottom: 2rem;
-  }
-  .mb-15{
-    margin-bottom: 1.5rem;
-  }
-  .mr-m{
-    margin-right: 2rem;
-  }
-  .ml-s{
-    margin-left: .5rem;
-  }
-  .df{
-    display: flex;
-  }
-  .fd-column{
-    flex-direction: column;
-  }
-  .ai-c{
-    align-items: center;
-  }
-  .jc-end{
-    justify-content: flex-end;
-  }
-  .jc-center{
-    justify-content: center;
-  }
-  hr{
-    border: 0;
-    height: 1px;
-    background-color: $color-hover;
-    margin-bottom: 2.5rem;
-  }
-  .border-radius{
-    border-radius: 4px;
-  }
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: $font-size-default;
+  line-height: 1.7;
+  color: $color-text-dark;
+  background-color: $color-background-light;
+}
+p {
+  font-size: $font-size-default;
+}
+a {
+  color: $color-link-light;
+  text-decoration: none;
+}
+.heading-primary {
+  color: $color-text-dark;
+  font-size: $font-size-primary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin: 3rem 0;
+}
+.heading-secondary {
+  color: $color-text-dark;
+  font-size: $font-size-secondary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin: 3rem 0;
+}
+.heading-tertiary {
+  color: $color-text-dark;
+  font-weight: 600;
+  font-size: $font-size-default;
+  text-transform: uppercase;
+}
+.heading-quaternary {
+  color: $color-text-light;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: $font-size-tertiary;
+}
+.txt-up {
+  text-transform: uppercase;
+}
+.cl {
+  color: $color-text-light;
+}
+.cd {
+  color: $color-text-dark;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.lh-sm {
+  line-height: 1.5rem;
+}
+.list {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+.item {
+  margin-bottom: 0.5rem;
+}
+.w-60 {
+  width: 60%;
+}
+.mb-25 {
+  margin-bottom: 2.5rem;
+}
+.mb-20 {
+  margin-bottom: 2rem;
+}
+.mb-15 {
+  margin-bottom: 1.5rem;
+}
+.mr-m {
+  margin-right: 2rem;
+}
+.ml-s {
+  margin-left: 0.5rem;
+}
+.df {
+  display: flex;
+}
+.fd-column {
+  flex-direction: column;
+}
+.ai-c {
+  align-items: center;
+}
+.jc-end {
+  justify-content: flex-end;
+}
+.jc-center {
+  justify-content: center;
+}
+hr {
+  border: 0;
+  height: 1px;
+  background-color: $color-hover;
+  margin-bottom: 2.5rem;
+}
+.border-radius {
+  border-radius: 4px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: $font-size-default;
+  line-height: 1.7;
+  color: $color-text-dark;
+  background-color: $color-background-light;
+}
+p {
+  font-size: $font-size-default;
+}
+a {
+  color: $color-link-light;
+  text-decoration: none;
+}
+.heading-primary {
+  color: $color-text-dark;
+  font-size: $font-size-primary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin: 3rem 0;
+}
+.heading-secondary {
+  color: $color-text-dark;
+  font-size: $font-size-secondary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin-bottom: 2.5rem;
+}
+.heading-tertiary {
+  color: $color-text-dark;
+  font-weight: 600;
+  font-size: $font-size-default;
+  text-transform: uppercase;
+}
+.heading-quaternary {
+  color: $color-text-light;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: $font-size-tertiary;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: $color-hover;
+  margin-bottom: 2.5rem;
+}
+.border-radius {
+  border-radius: 4px;
+}
+.txt-light {
+  color: $color-text-light;
+}
