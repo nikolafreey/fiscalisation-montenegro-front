@@ -17,7 +17,7 @@ const Checkbox = (props) => {
                   id={option.value}
                   {...field}
                   value={option.value}
-                  checked={field.value.includes(option.value)}
+                  checked={field.value.includes()}
                 />
                 <label htmlFor={option.value}>{option.key}</label>
               </React.Fragment>

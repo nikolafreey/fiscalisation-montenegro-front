@@ -8,9 +8,15 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { preduzecaService } from '../../services/PreduzecaService';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
-import { uslugaSelector } from '../../store/selectors/UslugeSelector';
+import {
+  poreziDropdownSelector,
+  porezIdSelector,
+  uslugaSelector,
+  poreziSelector,
+} from '../../store/selectors/UslugeSelector';
 import {
   deleteUsluga,
+  getPorezi,
   getUsluga,
   storeUsluga,
   updateUsluga,
@@ -20,6 +26,7 @@ import { poreziService } from '../../services/PoreziService';
 import { jediniceMjereService } from '../../services/JediniceMjereService';
 import Select from 'react-select';
 import DropDownStatic from '../shared/forms/DropDownStatic';
+import { l } from 'i18n-js';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -27,6 +34,10 @@ const UslugeForm = () => {
   const { params } = useRouteMatch();
 
   const usluga = useSelector(uslugaSelector());
+
+  useEffect(() => {
+    dispatch(getPorezi());
+  }, [dispatch]);
 
   useEffect(() => {
     if (params.id) dispatch(getUsluga(params.id));
@@ -40,6 +51,45 @@ const UslugeForm = () => {
     { value: 0, label: 'Cijena bez PDV' },
     { value: 1, label: 'Cijena sa PDV' },
   ];
+
+  const poreziDropdown = useSelector(poreziDropdownSelector());
+  const porezi = useSelector(poreziSelector());
+
+  const getStopaPerId = (porez_id) => {
+    return porezi.find((porez) => porez.id === porez_id)?.stopa;
+  };
+
+  const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+    if (pdv_ukljucen === 0) {
+      return Math.round(100 * ukupna_cijena) / 100;
+    } else {
+      return Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
+    }
+  };
+
+  const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+    if (pdv_ukljucen === 0) {
+      return ukupna_cijena + ukupna_cijena * +stopa;
+    } else {
+      return ukupna_cijena;
+    }
+  };
+
+  const getVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+
+    if (pdv_ukljucen === 0) {
+      return Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+    } else {
+      return (
+        Math.round(
+          100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
+        ) / 100
+      );
+    }
+  };
 
   return (
     <Formik
@@ -74,14 +124,35 @@ const UslugeForm = () => {
                           <div className="col-l txt-light">
                             <p className="mb-10">Cijena usluge:</p>
                             <p className="mb-10">Bez PDV-a:</p>
-                            <p className="mb-10">PDV {values.porez_id}:</p>
+                            <p className="mb-10">
+                              PDV
+                              {getStopaPerId(values.porez_id)}:
+                            </p>
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
                             <p className="mb-10">/</p>
-                            <p className="mb-10">20,00</p>
-                            <p className="mb-10">4,20</p>
-                            <p className="mb-10">24,20</p>
+                            <p className="mb-10">
+                              {getPriceNoVat(
+                                values.pdv_ukljucen,
+                                values.porez_id,
+                                values.ukupna_cijena
+                              )}
+                            </p>
+                            <p className="mb-10">
+                              {getVat(
+                                values.pdv_ukljucen,
+                                values.porez_id,
+                                values.ukupna_cijena
+                              )}
+                            </p>
+                            <p className="mb-10">
+                              {getPriceVat(
+                                values.pdv_ukljucen,
+                                values.porez_id,
+                                values.ukupna_cijena
+                              )}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -132,6 +203,7 @@ const UslugeForm = () => {
                         </div>
                         <div className="form__group w-48">
                           <DropDownStatic
+                            name="pdv_ukljucen"
                             label={$t('usluge.pdv_ukljucen')}
                             options={options}
                           />
@@ -140,6 +212,7 @@ const UslugeForm = () => {
 
                       <div className="form__group w-100">
                         <InputField
+                          type="number"
                           class="form__input"
                           name="ukupna_cijena"
                           label={$t('usluge.ukupna_cijena')}

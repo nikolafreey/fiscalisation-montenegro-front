@@ -1,7 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { uslugeService } from '../../services/UslugeService';
-import { setUsluga, setUsluge } from '../actions/UslugeActions';
+import { setPorezi, setUsluga, setUsluge } from '../actions/UslugeActions';
+import { poreziService } from '../../services/PoreziService';
 
 export function* uslugaStore({ payload }) {
   try {
@@ -41,6 +42,15 @@ export function* uslugaUpdate({ payload }) {
 export function* uslugaDelete({ payload }) {
   try {
     yield call(uslugeService.deleteUsluga, payload);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* poreziGet({ payload }) {
+  try {
+    const { data } = yield call(poreziService.getPorezi, payload);
+    yield put(setPorezi(data));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
