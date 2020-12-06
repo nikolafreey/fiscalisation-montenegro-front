@@ -13,6 +13,7 @@ class JediniceMjereService extends ApiService {
     return data.map((jedinicaMjere) => ({
       value: jedinicaMjere.id,
       label: jedinicaMjere.naziv,
+      stopa: jedinicaMjere.stopa,
     }));
   };
 }
