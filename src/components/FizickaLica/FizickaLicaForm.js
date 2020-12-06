@@ -17,6 +17,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
+import Checkbox from '../shared/forms/Checkbox';
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
@@ -63,12 +64,12 @@ const FizickaLicaForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <a href="#" class="link df">
+          <a href="#" className="link df">
             <Link />
             <p>Povratak na Preduzeća</p>
           </a>
 
-          <h1 class="heading-primary">Dodavanje novog fizičkog lica</h1>
+          <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
           <div className="main-content__box">
             <div className="content">
               <Form>
@@ -252,8 +253,8 @@ const FizickaLicaForm = () => {
                           />
                         </div>
                       </div>
-                      <div class="df fd-column">
-                        <div class="form__group w-100">
+                      <div className="df fd-column">
+                        <div className="form__group w-100">
                           <InputField
                             className="form__input w-100"
                             name="email"
@@ -261,7 +262,7 @@ const FizickaLicaForm = () => {
                           />
                         </div>
 
-                        <div class="form__group w-100">
+                        <div className="form__group w-100">
                           <InputField
                             className="form__input w-100"
                             name="cv_link"
@@ -273,10 +274,10 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <hr />
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h2 class="heading-secondary">Status</h2>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h2 className="heading-secondary">Status</h2>
                       <p>
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
@@ -284,11 +285,11 @@ const FizickaLicaForm = () => {
                     </div>
                   </div>
                 </div>
-                <div class="form__footer">
-                  <button class="btn btn__dark btn__sm" type="submit">
+                <div className="form__footer">
+                  <button className="btn btn__dark btn__sm" type="submit">
                     Sačuvaj
                   </button>
-                  <button class="btn btn__link ml-m">Nazad</button>
+                  <button className="btn btn__link ml-m">Nazad</button>
 
                   {/* <button
                     type="button"

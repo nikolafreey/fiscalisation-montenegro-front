@@ -6,7 +6,7 @@ import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
 
 const ZiroRacuniFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
-
+  console.log(values);
   return (
     <div>
       <label className="form__label" for="lista-racuna">
@@ -18,7 +18,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           <div className="pr df ai-c">
             <InputField
               className="form__input w-50 mb-20"
-              name={`ziro_racuni.${index}.broj_racuna`}
+              name={`ziro_racuni.${index + 1}.broj_racuna`}
             />
             <button
               className="btn btn__link warning"
