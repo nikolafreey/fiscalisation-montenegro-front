@@ -19,6 +19,7 @@ import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
 import { PREDUZECA } from '../../constants/routes';
+import RadioButton from '../shared/forms/RadioButton';
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,10 @@ const FizickaLicaForm = () => {
   const { params } = useRouteMatch();
 
   const fizickoLice = useSelector(fizickoLiceSelector());
-
+  const statusOptions = [
+    { key: 'Aktivan', value: true },
+    { key: 'Neaktivan', value: false },
+  ];
   useEffect(() => {
     if (params.id) dispatch(getFizickoLice(params.id));
   }, [dispatch, params]);
@@ -48,6 +52,10 @@ const FizickaLicaForm = () => {
         drzava: '',
 
         telefon: '',
+        telefon_viber: false,
+        telefon_whatsapp: false,
+        telefon_facetime: false,
+
         email: '',
         zanimanje: '',
         radno_mjesto: '',
@@ -254,6 +262,35 @@ const FizickaLicaForm = () => {
                           />
                         </div>
                       </div>
+                      <div className="df ai-c jc-sb">
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_whatsapp"
+                            label={$t('fizickalica.whatsapp')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_viber"
+                            label={$t('fizickalica.viber')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_facetime"
+                            label={$t('fizickalica.facetime')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                      </div>
                       <div className="df fd-column">
                         <div className="form__group w-100">
                           <InputField
@@ -283,6 +320,17 @@ const FizickaLicaForm = () => {
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form__group">
+                        <div className="form__radio-group">
+                          <RadioButton
+                            name="status"
+                            label="Status"
+                            options={statusOptions}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
