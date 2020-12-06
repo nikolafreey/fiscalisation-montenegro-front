@@ -9,7 +9,11 @@ const InputField = ({ label, ...props }) => {
 
   return (
     <div>
+<<<<<<< HEAD
       <Label className="form__label" htmlFor={id}>
+=======
+      <Label class="form__label" htmlFor={id}>
+>>>>>>> 55d3ed6d79255bc16353b9146a9fe8e53712fe6a
         {label}
       </Label>
 

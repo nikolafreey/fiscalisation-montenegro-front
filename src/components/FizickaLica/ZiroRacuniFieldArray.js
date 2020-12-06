@@ -3,13 +3,16 @@ import React from 'react';
 import InputField from '../shared/forms/InputField';
 import $t from '../../lang';
 import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
+
 const ZiroRacuniFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
+
   return (
     <div>
       <label className="form__label" for="lista-racuna">
         Lista računa
       </label>
+
       {values.ziro_racuni.map((ziro_racun, index) => (
         <>
           <div className="pr df ai-c">

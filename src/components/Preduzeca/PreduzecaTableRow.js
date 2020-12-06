@@ -2,14 +2,11 @@ import React from 'react';
 import { ReactComponent as Badge } from '../../assets/icon/badge.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icon/plus.svg';
 import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
+import { useDispatch } from 'react-redux';
 import { storePartner } from '../../store/actions/PartneriActions';
 
-const PreduzecaTableRow = ({ item, onItemClick }) => {
+const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
   const dispatch = useDispatch();
-
-  const preduzece = useSelector(preduzeceSelector());
 
   const handleAddPartner = () => {
     dispatch(storePartner({ preduzece_id: item.id }));
@@ -19,7 +16,7 @@ const PreduzecaTableRow = ({ item, onItemClick }) => {
     <tr
       onClick={() => onItemClick(item)}
       style={{
-        backgroundColor: preduzece.id === item.id ? '#F9FAFB' : 'white',
+        backgroundColor: selectedId === item.id ? '#F9FAFB' : 'white',
       }}
     >
       <td>
