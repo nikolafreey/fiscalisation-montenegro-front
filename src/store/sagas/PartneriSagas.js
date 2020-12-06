@@ -13,8 +13,6 @@ export function* partnerStore({ payload }) {
       const preduzeca = yield select(preduzecaSelector());
       yield put(getPreduzeca({page: preduzeca.current_page}));
     }
-    
-    yield put(getPreduzeca())
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
