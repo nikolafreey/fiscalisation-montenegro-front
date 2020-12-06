@@ -1,7 +1,7 @@
 import { FieldArray, Form, Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { FizickaLicaSchema } from '../../validation/fizicka_lica';
-import { ReactComponent as Link } from '../../assets/icon/link.svg';
+import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,11 +13,12 @@ import {
 } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
+import { PREDUZECA } from '../../constants/routes';
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
@@ -64,10 +65,10 @@ const FizickaLicaForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <a href="#" className="link df">
-            <Link />
+          <Link to={PREDUZECA.INDEX} className="link df">
+            <LinkSvg />
             <p>Povratak na Preduzeća</p>
-          </a>
+          </Link>
 
           <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
           <div className="main-content__box">
