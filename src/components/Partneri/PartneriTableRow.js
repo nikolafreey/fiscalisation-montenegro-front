@@ -39,7 +39,11 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
         {partner.preduzece ? partner.preduzece.pib : partner.fizicko_lice?.jmbg}
       </td>
 
-      <td className="cd fw-500">{partner.kontakt_telefon}</td>
+      <td className="cd fw-500">
+        {partner.kontakt_telefon ||
+          partner.fizicko_lice?.telefon ||
+          partner.preduzece?.telefon}
+      </td>
 
       <td>
         <div class="df jc-end ai-c">
