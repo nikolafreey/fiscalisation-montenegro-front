@@ -8,9 +8,10 @@ import { useRouteMatch } from 'react-router-dom';
 import { preduzecaService } from '../../services/PreduzecaService';
 
 import { ReactComponent as Link } from '../../assets/icon/link.svg';
-import { uslugaSelector } from '../../store/selectors/UslugeSelector';
+import { poreziDropdownSelector, porezIdSelector, uslugaSelector } from '../../store/selectors/UslugeSelector';
 import {
   deleteUsluga,
+  getPorezi,
   getUsluga,
   storeUsluga,
   updateUsluga,
@@ -27,6 +28,10 @@ const UslugeForm = () => {
   const usluga = useSelector(uslugaSelector());
 
   useEffect(() => {
+    dispatch(getPorezi());
+  }, [dispatch])
+
+  useEffect(() => {
     if (params.id) dispatch(getUsluga(params.id));
   }, [dispatch, params]);
 
@@ -34,6 +39,10 @@ const UslugeForm = () => {
     if (params.id) dispatch(updateUsluga({ id: params.id, ...values }));
     else dispatch(storeUsluga(values));
   };
+
+  const poreziDropdown = useSelector(poreziDropdownSelector());
+  const odabraniPorez = useSelector(porezIdSelector(1));
+
 
   return (
     <Formik

@@ -1,7 +1,9 @@
 import {
   DELETE_USLUGA,
+  GET_POREZI,
   GET_USLUGA,
   GET_USLUGE,
+  SET_POREZI,
   SET_USLUGA,
   SET_USLUGE,
   STORE_USLUGA,
@@ -40,5 +42,15 @@ export const updateUsluga = (payload) => ({
 
 export const deleteUsluga = (payload) => ({
   type: DELETE_USLUGA,
+  payload,
+});
+
+export const getPorezi = (payload) => ({
+  type: GET_POREZI,
+  payload,
+});
+
+export const setPorezi = (payload) => ({
+  type: SET_POREZI,
   payload,
 });

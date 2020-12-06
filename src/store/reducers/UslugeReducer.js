@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { SET_USLUGA, SET_USLUGE } from '../actionTypes/UslugeActionTypes';
+import { SET_POREZI, SET_USLUGA, SET_USLUGE } from '../actionTypes/UslugeActionTypes';
 
 const initialState = {
   usluge: {
@@ -10,6 +10,7 @@ const initialState = {
     data: [],
   },
   usluga: {},
+  porezi: [],
 };
 
 const uslugeReducer = (state = initialState, action) =>
@@ -21,6 +22,9 @@ const uslugeReducer = (state = initialState, action) =>
         break;
       case SET_USLUGA:
         draft.usluga = action.payload;
+        break;
+      case SET_POREZI:
+        draft.porezi = action.payload;
         break;
       default:
         break;
