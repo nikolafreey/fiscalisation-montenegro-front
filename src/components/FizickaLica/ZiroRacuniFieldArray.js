@@ -18,7 +18,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           <div className="pr df ai-c">
             <InputField
               className="form__input w-50 mb-20"
-              name={`ziro_racuni.${index + 1}.broj_racuna`}
+              name={`ziro_racuni.${index}.broj_racuna`}
             />
             <button
               className="btn btn__link warning"

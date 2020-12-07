@@ -27,6 +27,7 @@ import { jediniceMjereService } from '../../services/JediniceMjereService';
 import Select from 'react-select';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 import { l } from 'i18n-js';
+import RadioButton from '../shared/forms/RadioButton';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -52,11 +53,17 @@ const UslugeForm = () => {
     { value: 1, label: 'Cijena sa PDV' },
   ];
 
+  const statusOptions = [
+    { key: 'Aktivan', value: true },
+    { key: 'Neaktivan', value: false },
+  ];
+
   const poreziDropdown = useSelector(poreziDropdownSelector());
   const porezi = useSelector(poreziSelector());
 
   const getStopaPerId = (porez_id) => {
-    return porezi.find((porez) => porez.id === porez_id)?.stopa;
+    const stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
+    return stopa * 100;
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
@@ -126,7 +133,7 @@ const UslugeForm = () => {
                             <p className="mb-10">Bez PDV-a:</p>
                             <p className="mb-10">
                               PDV
-                              {getStopaPerId(values.porez_id)}:
+                              {getStopaPerId(values.porez_id)}%:
                             </p>
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
@@ -217,6 +224,11 @@ const UslugeForm = () => {
                           name="ukupna_cijena"
                           label={$t('usluge.ukupna_cijena')}
                         />
+                        <InputField
+                          type="hidden"
+                          class="form__input"
+                          name="cijena_bez_pdv"
+                        />
                       </div>
                     </div>
                   </div>
@@ -233,9 +245,14 @@ const UslugeForm = () => {
                       </p>
                     </div>
                     <div className="col-md-4">
-                      <div className="form__label">status</div>
                       <div className="form__group">
-                        <InputField name="status" label={$t('usluge.status')} />
+                        <div className="form__radio-group">
+                          <RadioButton
+                            name="status"
+                            label="Status"
+                            options={statusOptions}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
