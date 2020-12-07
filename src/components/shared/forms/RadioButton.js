@@ -20,7 +20,6 @@ const RadioButton = (props) => {
                   id={option.value}
                   {...field}
                   value={option.value}
-                  checked={console.log('field: ', field)}
                 />
               </React.Fragment>
             );

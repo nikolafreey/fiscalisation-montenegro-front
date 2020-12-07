@@ -3,10 +3,22 @@ import React from 'react';
 import InputField from '../shared/forms/InputField';
 import $t from '../../lang';
 import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
+import { get } from 'lodash';
 
 const ZiroRacuniFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
   console.log(values);
+  const getBank = (broj_racuna) => {
+    if (broj_racuna) {
+      const a = broj_racuna.substring(0, 3);
+
+      if (broj_racuna.includes('563')) {
+        return 'NLB';
+      } else if (broj_racuna.includes('555')) {
+        return 'CKB';
+      }
+    }
+  };
   return (
     <div>
       <label className="form__label" for="lista-racuna">
@@ -17,9 +29,10 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
         <>
           <div className="pr df ai-c">
             <InputField
-              className="form__input w-50 mb-20"
+              className="form__input w-100 mb-20"
               name={`ziro_racuni.${index}.broj_racuna`}
             />
+            <span class="form__span">{getBank(ziro_racun.broj_racuna)}</span>
             <button
               className="btn btn__link warning"
               type="button"
