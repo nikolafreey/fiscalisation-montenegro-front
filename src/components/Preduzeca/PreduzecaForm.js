@@ -19,6 +19,7 @@ import ZiroRacuniFieldArray from '../FizickaLica/ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
+import { djelatnostiService } from '../../services/DjelatnostiService';
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
@@ -191,10 +192,12 @@ const PreduzecaForm = () => {
                       </div>
                       <div className="df jc-sb">
                         <div className="form__group w-48">
-                          <InputField
+                          <DropDown
                             name="djelatnost"
                             label={$t('preduzeca.djelatnost')}
-                            placeholder=""
+                            loadOptions={
+                              djelatnostiService.getDjelatnostiDropdown
+                            }
                             className="form__input"
                           />
                         </div>
@@ -209,17 +212,14 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="form__group">
-                        <Textarea
-                          control="text"
-                          name="opis"
-                          label={$t('preduzeca.opis')}
-                          cols="30"
-                          rows="5"
-                          placeholder=""
-                          className="form__input"
-                        />
-                      </div>
+                      <Textarea
+                        control="text"
+                        name="opis"
+                        label={$t('preduzeca.opis')}
+                        cols="30"
+                        rows="5"
+                        className="form__input"
+                      />
                       <div className="form__group form__area">
                         <InputField
                           name="logotip"
@@ -322,7 +322,7 @@ const PreduzecaForm = () => {
                           />
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="telfon_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
@@ -331,7 +331,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="telfon_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
@@ -340,7 +340,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="telfon_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
@@ -425,7 +425,7 @@ const PreduzecaForm = () => {
                           />
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="ovlasceno_lice_kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
@@ -434,7 +434,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="ovlasceno_lice_kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
@@ -443,7 +443,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="ovlasceno_lice_kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
@@ -508,7 +508,7 @@ const PreduzecaForm = () => {
                           />
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
@@ -517,7 +517,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
@@ -526,7 +526,7 @@ const PreduzecaForm = () => {
                               />
                             </div>
                             <div className="form__checkbox-group">
-                              <InputField
+                              <Checkbox
                                 name="kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
@@ -664,7 +664,7 @@ const PreduzecaForm = () => {
                     </div>
                   </div>
                 </div>
-                <InputField
+                {/* <InputField
                   name="lokacija_lat"
                   label={$t('preduzeca.lokacija')}
                   placeholder=""
@@ -673,7 +673,7 @@ const PreduzecaForm = () => {
                   name="lokacija_long"
                   label={$t('preduzeca.lokacija')}
                   placeholder=""
-                />
+                /> */}
                 <div className="form__footer">
                   <button className="btn btn__dark btn__sm" type="submit">
                     Sačuvaj

@@ -1,44 +1,25 @@
-import { Field, ErrorMessage } from 'formik';
+import { useField } from 'formik';
 import React from 'react';
-import TextError from './TextError';
+import Label from './Label';
 
-const Checkbox = (props) => {
-  const { label, name, options, ...rest } = props;
+const Checkbox = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+
+  const id = props.id || props.name;
+
   return (
-    <div className="form-control">
-      <label>{label}</label>
-      <Field name={name} {...rest}>
-        {({ field }) => {
-          return options.map((option) => {
-            return (
-              <React.Fragment key={options.key}>
-                <input
-                  type="checkbox"
-                  id={option.value}
-                  {...field}
-                  value={option.value}
-                  checked={field.value.includes()}
-                />
-                <label htmlFor={option.value}>{option.key}</label>
-              </React.Fragment>
-            );
-          });
-        }}
-      </Field>
-      <ErrorMessage name={name} component={TextError} />
-    </div>
+    <>
+      <input {...field} {...props} />
+
+      <Label class="form__checkbox-label" htmlFor={id}>
+        {label}
+      </Label>
+
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
   );
 };
 
 export default Checkbox;
-
-//Ovu konstantu dodajemo u props od <FormikControl />
-// const checkboxOptions = [
-//     {key: 'Option1', value: 'Option1'},
-//     {key: 'Option2', value: 'Option2'},
-//     {key: 'Option3', value: 'Option3'},
-// ];
-
-// Dodati u initialValues = [
-//     checkboxOption: []
-// ]

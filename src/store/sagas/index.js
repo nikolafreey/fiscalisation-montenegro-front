@@ -71,6 +71,20 @@ import {
   uslugaUpdate,
   uslugeGet,
 } from './UslugeSagas';
+import {
+  DELETE_ROBE,
+  GET_ROBA,
+  GET_ROBE,
+  STORE_ROBE,
+  UPDATE_ROBE,
+} from '../actionTypes/RobeActionTypes';
+import {
+  robaGet,
+  robaStore,
+  robaUpdate,
+  robeDelete,
+  robeGet,
+} from './RobeSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -85,6 +99,12 @@ export default function* rootSaga() {
     takeLatest(GET_FIZICKO_LICE, fizickoLiceGet),
     takeLatest(UPDATE_FIZICKO_LICE, fizickoLiceUpdate),
     takeLatest(DELETE_FIZICKO_LICE, fizickoLiceDelete),
+
+    takeLatest(STORE_ROBE, robaStore),
+    takeLatest(GET_ROBA, robeGet),
+    takeLatest(GET_ROBE, robaGet),
+    takeLatest(UPDATE_ROBE, robaUpdate),
+    takeLatest(DELETE_ROBE, robeDelete),
 
     takeLatest(STORE_PREDUZECE, preduzeceStore),
     takeLatest(GET_PREDUZECE, preduzeceGet),

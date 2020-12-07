@@ -29,6 +29,27 @@
     "avatar": "Fotografija",
     "preduzece_id": "Zaposlen kod"
   },
+  "racuni": {
+    "naziv": "Naziv",
+    "opis": "Opis",
+    "cijena_bez_pdv": "Cijena Bez PDV",
+    "pdv_iznos": "Iznos PDV-a",
+    "ukupna_cijena": "Ukupna Cijena",
+    "status": "Status",
+    "grupa_id": "Grupa",
+    "jedinica_mjere_id": "Jedinica Mjere",
+    "porez_id": "Porez"
+  },
+  "robe": {
+    "naziv": "Naziv",
+    "opis": "Opis",
+    "detaljni_opis": "Detaljni Opis",
+    "ean": "Iznos PDV-a",
+    "status": "Status",
+    "proizvodjac_robe_id": "Proizvodjac Robe",
+    "jedinica_mjere_id": "Jedinica Mjere",
+    "preduzece_id": "Preduzece"
+  },
   "preduzeca": {
     "kratki_naziv": "Naziv",
     "puni_naziv": "Duži naziv",

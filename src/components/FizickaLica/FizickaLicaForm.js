@@ -263,7 +263,7 @@ const FizickaLicaForm = () => {
                     <div className="col-md-8">
                       <div className="df jc-sb mb-20">
                         <div className="form__group w-100">
-                          <InputField
+                          <Checkbox
                             name="telefon"
                             className="form__input w-48"
                             label={$t('fizickalica.telefon')}
