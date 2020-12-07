@@ -15,6 +15,9 @@
     "ib": "IB",
     "adresa": "Adresa",
     "telefon": "Telefon",
+    "viber": "Viber",
+    "whatsapp": "Whatsapp",
+    "facetime": "Facetime",
     "grad": "Grad",
     "drzava": "Drzava",
     "email": "E-mail",
@@ -93,6 +96,7 @@
     "status": "",
     "porezi": "PDV stopa",
     "jedinicaMjere": "Jedinica mjere",
-    "grupa": "Grupa/Kategorija"
+    "grupa": "Grupa/Kategorija",
+    "pdv_ukljucen": "PDV uljučen u cijenu"
   }
 }

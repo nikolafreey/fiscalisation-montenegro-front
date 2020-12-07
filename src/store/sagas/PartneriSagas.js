@@ -13,16 +13,14 @@ export function* partnerStore({ payload }) {
       const preduzeca = yield select(preduzecaSelector());
       yield put(getPreduzeca({page: preduzeca.current_page}));
     }
-    
-    yield put(getPreduzeca())
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
 }
 
-export function* partneriGet() {
+export function* partneriGet({ payload }) {
   try {
-    const { data } = yield call(partneriService.getPartneri);
+    const { data } = yield call(partneriService.getPartneri, payload);
     yield put(setPartneri(data));
   } catch (error) {
     yield put(setGlobalError(error.message));

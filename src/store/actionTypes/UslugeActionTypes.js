@@ -8,3 +8,6 @@ export const SET_USLUGA = 'SET_USLUGA';
 
 export const UPDATE_USLUGA = 'UPDATE_USLUGA';
 export const DELETE_USLUGA = 'DELETE_USLUGA';
+
+export const GET_POREZI = 'GET_POREZI';
+export const SET_POREZI = 'SET_POREZI';

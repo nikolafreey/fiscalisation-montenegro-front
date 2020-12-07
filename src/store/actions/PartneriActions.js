@@ -13,8 +13,9 @@ export const storePartner = (payload) => ({
   payload,
 });
 
-export const getPartneri = () => ({
+export const getPartneri = (payload) => ({
   type: GET_PARTNERI,
+  payload
 });
 
 export const setPartneri = (payload) => ({

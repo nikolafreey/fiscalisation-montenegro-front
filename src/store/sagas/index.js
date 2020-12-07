@@ -57,12 +57,14 @@ import {
 } from './UserSagas';
 import {
   DELETE_USLUGA,
+  GET_POREZI,
   GET_USLUGA,
   GET_USLUGE,
   STORE_USLUGA,
   UPDATE_USLUGA,
 } from '../actionTypes/UslugeActionTypes';
 import {
+  poreziGet,
   uslugaDelete,
   uslugaGet,
   uslugaStore,
@@ -115,6 +117,7 @@ export default function* rootSaga() {
     takeLatest(GET_USLUGE, uslugeGet),
     takeLatest(DELETE_USLUGA, uslugaDelete),
     takeLatest(UPDATE_USLUGA, uslugaUpdate),
+    takeLatest(GET_POREZI, poreziGet),
 
     takeLatest(LOGIN, userLogin),
     takeLatest(LOGOUT, userLogout),

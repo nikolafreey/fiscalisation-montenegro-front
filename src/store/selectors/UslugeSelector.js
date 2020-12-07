@@ -7,3 +7,16 @@ export const uslugeSelector = () =>
 
 export const uslugaSelector = () =>
   createSelector(uslugeStateSelector, (usluge) => usluge.usluga);
+
+export const poreziSelector = () =>
+  createSelector(uslugeStateSelector, (usluge) => usluge.porezi);
+
+export const poreziDropdownSelector = () =>
+  createSelector(uslugeStateSelector, (usluge) =>
+    usluge.porezi.map((porez) => ({ value: porez.id, label: porez.naziv }))
+  );
+
+export const porezIdSelector = (id) =>
+  createSelector(uslugeStateSelector, (usluge) =>
+    usluge.porezi.find((porez) => porez.id === id)
+  );

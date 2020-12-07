@@ -1,7 +1,7 @@
 import { FieldArray, Form, Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { FizickaLicaSchema } from '../../validation/fizicka_lica';
-import { ReactComponent as Link } from '../../assets/icon/link.svg';
+import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,11 +13,13 @@ import {
 } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
+import { PREDUZECA } from '../../constants/routes';
+import RadioButton from '../shared/forms/RadioButton';
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
@@ -25,7 +27,10 @@ const FizickaLicaForm = () => {
   const { params } = useRouteMatch();
 
   const fizickoLice = useSelector(fizickoLiceSelector());
-
+  const statusOptions = [
+    { key: 'Aktivan', value: true },
+    { key: 'Neaktivan', value: false },
+  ];
   useEffect(() => {
     if (params.id) dispatch(getFizickoLice(params.id));
   }, [dispatch, params]);
@@ -47,6 +52,10 @@ const FizickaLicaForm = () => {
         drzava: '',
 
         telefon: '',
+        telefon_viber: false,
+        telefon_whatsapp: false,
+        telefon_facetime: false,
+
         email: '',
         zanimanje: '',
         radno_mjesto: '',
@@ -64,10 +73,10 @@ const FizickaLicaForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <a href="#" className="link df">
-            <Link />
+          <Link to={PREDUZECA.INDEX} className="link df">
+            <LinkSvg />
             <p>Povratak na Preduzeća</p>
-          </a>
+          </Link>
 
           <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
           <div className="main-content__box">
@@ -253,6 +262,35 @@ const FizickaLicaForm = () => {
                           />
                         </div>
                       </div>
+                      <div className="df ai-c jc-sb">
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_whatsapp"
+                            label={$t('fizickalica.whatsapp')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_viber"
+                            label={$t('fizickalica.viber')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                        <div className="form__checkbox-group">
+                          <InputField
+                            name="telefon_facetime"
+                            label={$t('fizickalica.facetime')}
+                            placeholder=""
+                            className="form__checkbox"
+                            type="checkbox"
+                          />
+                        </div>
+                      </div>
                       <div className="df fd-column">
                         <div className="form__group w-100">
                           <InputField
@@ -282,6 +320,17 @@ const FizickaLicaForm = () => {
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form__group">
+                        <div className="form__radio-group">
+                          <RadioButton
+                            name="status"
+                            label="Status"
+                            options={statusOptions}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
