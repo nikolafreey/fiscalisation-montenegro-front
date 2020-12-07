@@ -12,16 +12,19 @@ const RadioButton = (props) => {
           return options.map((option) => {
             return (
               <React.Fragment key={options.key}>
-                <label className="form__label" htmlFor={option.value}>
-                  {option.key}
-                </label>
-                <input
-                  type="radio"
-                  id={option.value}
-                  {...field}
-                  value={option.value}
-                  checked={console.log('field: ', field)}
-                />
+                <div className="form__radio-group">
+                  <input
+                    className="form__radio-input"
+                    type="radio"
+                    id={option.value}
+                    {...field}
+                    value={option.value}
+                  />
+                  <label className="form__radio-label" htmlFor={option.value}>
+                    <span className="form__radio-button"></span>
+                    {option.key}
+                  </label>
+                </div>
               </React.Fragment>
             );
           });
