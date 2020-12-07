@@ -6,7 +6,7 @@ const ENDPOINTS = {
 };
 
 class PartneriService extends ApiService {
-  getPartneri = () => this.apiClient.get(ENDPOINTS.PARTNERI);
+  getPartneri = (params) => this.apiClient.get(ENDPOINTS.PARTNERI, { params });
 
   storePartner = (data) => this.apiClient.post(ENDPOINTS.PARTNERI, data);
 

@@ -18,9 +18,9 @@ export function* partnerStore({ payload }) {
   }
 }
 
-export function* partneriGet() {
+export function* partneriGet({ payload }) {
   try {
-    const { data } = yield call(partneriService.getPartneri);
+    const { data } = yield call(partneriService.getPartneri, payload);
     yield put(setPartneri(data));
   } catch (error) {
     yield put(setGlobalError(error.message));

@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { partneriSelector, partnerSelector } from '../../store/selectors/PartneriSelector';
+import {
+  partneriSelector,
+  partnerSelector,
+} from '../../store/selectors/PartneriSelector';
 import { getPartneri, setPartner } from '../../store/actions/PartneriActions';
 import PartneriTable from './PartneriTable';
 import PreduzeceDetails from '../Preduzeca/PreduzeceDetails';
@@ -12,37 +15,48 @@ const Partneri = () => {
   const partneri = useSelector(partneriSelector());
   const partner = useSelector(partnerSelector());
 
+  const [filter, setFilter] = useState(null);
+
   useEffect(() => {
     (async () => {
-      dispatch(getPartneri());
+      dispatch(getPartneri({ filter: filter === 'sve' ? null : filter }));
     })();
-  }, [dispatch]);
+  }, [dispatch, filter]);
 
   useEffect(() => {
     if (partneri.total > 0) dispatch(setPartner(partneri.data[0]));
   }, [partneri, dispatch]);
 
   return (
-  <>
-    <h1 class="heading-primary">Partneri</h1>
-    <div class="main-content__box">
-      <div class="content">
-        <div class="main-content__search-wrapper">
-          <form class="search">
-            <button class="search__button"></button>
-            <input
-              type="text"
-              class="search__input"
-              placeholder="Naziv ili PIB preduzeca"
-            />
-          </form>
+    <>
+      <h1 className="heading-primary">Partneri</h1>
+      <div className="main-content__box">
+        <div className="content">
+          <div className="main-content__search-wrapper df">
+            <form className="search df ai-c">
+              <button className="search__button"></button>
+              <input
+                type="text"
+                className="search__input"
+                placeholder="Naziv ili PIB preduzeca"
+              />
+            </form>
+            <select className="btn btn__dark btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>
+              <option value={'sve'}>Sve</option>
+              <option value={'fizicko_lice'}>Fizička lica</option>
+              <option value={'preduzece'}>Preduzeća</option>
+            </select>
+          </div>
+          <PartneriTable partneri={partneri} />
         </div>
-        <PartneriTable partneri={partneri} />
+        {partner.preduzece && (
+          <PreduzeceDetails preduzece={partner.preduzece} />
+        )}
+        {partner.fizicko_lice && (
+          <FizickoLiceDetails fizickoLice={partner.fizicko_lice} />
+        )}
       </div>
-      { partner.preduzece && <PreduzeceDetails preduzece={partner.preduzece}/>}
-      { partner.fizicko_lice && <FizickoLiceDetails fizickoLice={partner.fizicko_lice}/>}
-    </div>
-  </>
+    </>
   );
 };
 
