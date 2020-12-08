@@ -44,7 +44,13 @@ const PreduzecaForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) dispatch(updatePreduzece({ id: params.id, ...values }));
-    else dispatch(storePreduzece(values));
+    else
+      dispatch(
+        storePreduzece({
+          ...values,
+          status: values.status === 'true' ? true : false,
+        })
+      );
   };
 
   return (

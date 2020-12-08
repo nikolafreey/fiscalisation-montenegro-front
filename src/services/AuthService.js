@@ -11,9 +11,11 @@ const ENDPOINTS = {
 };
 
 class AuthService extends ApiService {
-
-  constructor () {
-    httpService.setUnauthorizedCallback(() => this.setAuthenticatedStorage(false));
+  constructor() {
+    super();
+    httpService.setUnauthorizedCallback(() =>
+      this.setAuthenticatedStorage(false)
+    );
   }
 
   login = (credentials) => this.apiClient.post(ENDPOINTS.LOGIN, credentials);
@@ -33,8 +35,7 @@ class AuthService extends ApiService {
   setAuthenticatedStorage = (authenticated) => {
     if (authenticated) localStorage.setItem('isAuthenticated', true);
     else localStorage.removeItem('isAuthenticated');
-  }
-
+  };
 }
 
 export const authService = new AuthService();
