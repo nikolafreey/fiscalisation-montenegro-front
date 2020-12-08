@@ -7,6 +7,7 @@ import {
   HOME,
   PARTNERI,
   PREDUZECA,
+  ROBE,
   USLUGE,
 } from '../constants/routes';
 import FizickaLicaRouter from './FizickaLicaRouter';
@@ -14,6 +15,7 @@ import PartneriRouter from './PartneriRouter';
 import PreduzecaRouter from './PreduzecaRouter';
 import ProtectedRoute from './ProtectedRoute';
 import UslugeRouter from './UslugeRouter';
+import RobeRouter from './RobeRouter';
 
 const SidebarRouter = () => {
   return (
@@ -30,6 +32,9 @@ const SidebarRouter = () => {
         </ProtectedRoute>
         <ProtectedRoute path={PREDUZECA.INDEX}>
           <PreduzecaRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={ROBE.INDEX}>
+          <RobeRouter />
         </ProtectedRoute>
         <Route path={USLUGE.INDEX}>
           <UslugeRouter />

@@ -4,6 +4,7 @@ import {
   HOME,
   PARTNERI,
   PREDUZECA,
+  ROBE,
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
@@ -42,6 +43,7 @@ const Sidebar = () => {
             label="Stavke"
             to={USLUGE.INDEX}
           />
+          <SidebarLink ImageSource={heroStavke} label="Roba" to={ROBE.INDEX} />
         </ul>
       </div>
     </div>

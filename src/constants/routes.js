@@ -6,7 +6,7 @@ export const AUTH = {
   FORGOT_SUCCESS: '/password/forgot/success',
   RESET: '/password/reset/:token',
   RESET_SUCCESS: '/password/reset/success',
-  PASSWORD: '/password'
+  PASSWORD: '/password',
 };
 
 export const FIZICKA_LICA = {
@@ -26,6 +26,12 @@ export const PREDUZECA = {
   EDIT: '/preduzeca/edit/:id',
   CREATE: '/preduzeca/create',
   SHOW: '/preduzeca/:id',
+};
+export const ROBE = {
+  INDEX: '/robe',
+  EDIT: '/robe/edit/:id',
+  CREATE: '/robe/create',
+  SHOW: '/robe/:id',
 };
 
 export const USLUGE = {
