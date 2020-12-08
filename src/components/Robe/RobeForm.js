@@ -3,23 +3,11 @@ import React, { useEffect } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  deletePreduzece,
-  getPreduzece,
-  storePreduzece,
-  updatePreduzece,
-} from '../../store/actions/PreduzecaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
 import { useRouteMatch } from 'react-router-dom';
-import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
-import { preduzecaService } from '../../services/PreduzecaService';
-import { kategorijeService } from '../../services/KategorijeService';
-import ZiroRacuniFieldArray from '../FizickaLica/ZiroRacuniFieldArray';
-import Checkbox from '../shared/forms/Checkbox';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
-import { djelatnostiService } from '../../services/DjelatnostiService';
 import {
   deleteRoba,
   getRoba,
@@ -62,7 +50,7 @@ const RobeForm = () => {
       dispatch(
         storeRoba({
           ...values,
-          status: values.status === 'Aktivan',
+          status: values.status === 'true' ? true : false,
         })
       );
   };
