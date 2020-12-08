@@ -7,7 +7,6 @@ import { get } from 'lodash';
 
 const ZiroRacuniFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
-  console.log(values);
   const getBank = (broj_racuna) => {
     if (broj_racuna) {
       const prvaTri = broj_racuna.substring(0, 3);

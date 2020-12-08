@@ -29,6 +29,9 @@ import {
 import { robaSelector } from '../../store/selectors/RobeSelector';
 import { jediniceMjereService } from '../../services/JediniceMjereService';
 import { proizvodjacService } from '../../services/ProizvodjacService';
+import CreateKategorija from './KategorijeRobe/CreateKategorija';
+import CreatePodKategorija from './KategorijeRobe/CreatePodKategorija';
+import ChooseKategorija from './KategorijeRobe/ChooseKategorija';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -155,6 +158,23 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h2 className="heading-secondary">Kategorija</h2>
+                      <p>
+                        Izaberite kategorije i podkategorije kojima artikal/roba pripada.
+                      </p>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form__group">
+                        <ChooseKategorija/>
+                        <CreateKategorija />
+                        <CreatePodKategorija />
                       </div>
                     </div>
                   </div>

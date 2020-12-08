@@ -13,6 +13,7 @@ const ENDPOINTS = {
 class AuthService extends ApiService {
 
   constructor () {
+    super();
     httpService.setUnauthorizedCallback(() => this.setAuthenticatedStorage(false));
   }
 
