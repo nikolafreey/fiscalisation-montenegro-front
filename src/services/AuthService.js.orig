@@ -11,11 +11,18 @@ const ENDPOINTS = {
 };
 
 class AuthService extends ApiService {
+<<<<<<< HEAD
+
+  constructor () {
+    super();
+    httpService.setUnauthorizedCallback(() => this.setAuthenticatedStorage(false));
+=======
   constructor() {
     super();
     httpService.setUnauthorizedCallback(() =>
       this.setAuthenticatedStorage(false)
     );
+>>>>>>> 04244680897bba9e8b00552691d86040222b7cb8
   }
 
   login = (credentials) => this.apiClient.post(ENDPOINTS.LOGIN, credentials);

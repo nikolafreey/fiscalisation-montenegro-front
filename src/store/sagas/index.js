@@ -85,6 +85,8 @@ import {
   robeDelete,
   robeGet,
 } from './RobeSagas';
+import { kategorijaRobeStore, kategorijeRobeGet, podkategorijaRobeStore, podkategorijeRobeGet } from './KategorijeRobeSagas';
+import { GET_KATEGORIJE_ROBE, GET_PODKATEGORIJE_ROBE, STORE_KATEGORIJA_ROBE, STORE_PODKATEGORIJA_ROBE } from '../actionTypes/KategorijeRobeActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -124,5 +126,10 @@ export default function* rootSaga() {
     takeLatest(GET_USER, userGet),
     takeLatest(FORGOT_PASSWORD, userForgotPassword),
     takeLatest(RESET_PASSWORD, userResetPassword),
+
+    takeLatest(GET_KATEGORIJE_ROBE, kategorijeRobeGet),
+    takeLatest(GET_PODKATEGORIJE_ROBE, podkategorijeRobeGet),
+    takeLatest(STORE_KATEGORIJA_ROBE, kategorijaRobeStore),
+    takeLatest(STORE_PODKATEGORIJA_ROBE, podkategorijaRobeStore),
   ]);
 }

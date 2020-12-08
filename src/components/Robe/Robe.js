@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRobe, setRoba } from '../../store/actions/RobeActions';
 import { robeSelector, robaSelector } from '../../store/selectors/RobeSelector';
-import FizickaLicaTable from './FizickaLicaTable';
-import FizickoLiceDetails from './FizickoLiceDetails';
+import RobeDetails from './RobeDetails';
+import RobeTable from './RobeTable';
 
 const Robe = () => {
   const dispatch = useDispatch();
@@ -21,8 +21,8 @@ const Robe = () => {
 
   return (
     <div className="main-content">
-      <FizickaLicaTable fizickaLica={robe} />
-      <FizickoLiceDetails fizickoLice={roba} />
+      <RobeTable robe={robe} />
+      <RobeDetails roba={roba} />
     </div>
   );
 };

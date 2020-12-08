@@ -28,6 +28,12 @@ export const PREDUZECA = {
   CREATE: '/preduzeca/create',
   SHOW: '/preduzeca/:id',
 };
+export const ROBE = {
+  INDEX: '/robe',
+  EDIT: '/robe/edit/:id',
+  CREATE: '/robe/create',
+  SHOW: '/robe/:id',
+};
 
 export const USLUGE = {
   INDEX: '/usluge',

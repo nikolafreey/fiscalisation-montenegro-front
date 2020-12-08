@@ -44,7 +44,13 @@ const PreduzecaForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) dispatch(updatePreduzece({ id: params.id, ...values }));
-    else dispatch(storePreduzece(values));
+    else
+      dispatch(
+        storePreduzece({
+          ...values,
+          status: values.status === 'true' ? true : false,
+        })
+      );
   };
 
   return (
@@ -88,8 +94,8 @@ const PreduzecaForm = () => {
         skype_username: '',
         logotip: '',
         opis: '',
-        lokacija_lat: '',
-        lokacija_long: '',
+        lokacija_lat: 'Beograd',
+        lokacija_long: 'Beograd',
         status: '',
         privatnost: '',
         verifikovan: false,
@@ -675,7 +681,7 @@ const PreduzecaForm = () => {
                   placeholder=""
                 /> */}
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__sm" type="submit">
+                  <button className="btn btn__dark btn__md" type="submit">
                     Sačuvaj
                   </button>
                   <button

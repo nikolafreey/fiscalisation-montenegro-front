@@ -3,21 +3,21 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Roba from '../components/Robe/Roba';
 import Robe from '../components/Robe/Robe';
 import RobeForm from '../components/Robe/RobeForm';
-import { ERRORS, ROBA } from '../constants/routes';
+import { ERRORS, ROBE } from '../constants/routes';
 
 const RobeRouter = () => {
   return (
     <Switch>
-      <Route path={ROBA.EDIT}>
+      <Route path={ROBE.EDIT}>
         <RobeForm />
       </Route>
-      <Route path={ROBA.CREATE}>
+      <Route path={ROBE.CREATE}>
         <RobeForm />
       </Route>
-      <Route path={ROBA.SHOW}>
+      <Route path={ROBE.SHOW}>
         <Roba />
       </Route>
-      <Route exact path={ROBA.INDEX}>
+      <Route exact path={ROBE.INDEX}>
         <Robe />
       </Route>
       <Redirect to={ERRORS.NOT_FOUND} />

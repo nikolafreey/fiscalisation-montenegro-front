@@ -70,7 +70,9 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [],
+        ziro_racuni: [
+          {broj_racuna: ''}
+        ],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -263,7 +265,7 @@ const FizickaLicaForm = () => {
                     <div className="col-md-8">
                       <div className="df jc-sb mb-20">
                         <div className="form__group w-100">
-                          <Checkbox
+                          <InputField
                             name="telefon"
                             className="form__input w-48"
                             label={$t('fizickalica.telefon')}
@@ -272,7 +274,7 @@ const FizickaLicaForm = () => {
                       </div>
                       <div className="df ai-c jc-sb">
                         <div className="form__checkbox-group">
-                          <InputField
+                          <Checkbox
                             name="telefon_whatsapp"
                             label={$t('fizickalica.whatsapp')}
                             placeholder=""
@@ -281,7 +283,7 @@ const FizickaLicaForm = () => {
                           />
                         </div>
                         <div className="form__checkbox-group">
-                          <InputField
+                          <Checkbox
                             name="telefon_viber"
                             label={$t('fizickalica.viber')}
                             placeholder=""
@@ -290,7 +292,7 @@ const FizickaLicaForm = () => {
                           />
                         </div>
                         <div className="form__checkbox-group">
-                          <InputField
+                          <Checkbox
                             name="telefon_facetime"
                             label={$t('fizickalica.facetime')}
                             placeholder=""

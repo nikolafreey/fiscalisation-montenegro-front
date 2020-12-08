@@ -43,12 +43,14 @@
   "robe": {
     "naziv": "Naziv",
     "opis": "Opis",
+    "drzava": "Drzava",
+    "interna_sifra_proizvoda": "Interna Sifra Proizvoda",
     "detaljni_opis": "Detaljni Opis",
     "ean": "Iznos PDV-a",
     "status": "Status",
-    "proizvodjac_robe_id": "Proizvodjac Robe",
-    "jedinica_mjere_id": "Jedinica Mjere",
-    "preduzece_id": "Preduzece"
+    "proizvodjac": "Proizvodjac Robe",
+    "jedinica_mjere": "Jedinica Mjere",
+    "preduzece": "Preduzece"
   },
   "preduzeca": {
     "kratki_naziv": "Naziv",
