@@ -8,7 +8,7 @@ const InputField = ({ label, ...props }) => {
   const id = props.id || props.name;
 
   return (
-    <div>
+    <>
       <Label class="form__label" htmlFor={id}>
         {label}
       </Label>
@@ -18,7 +18,7 @@ const InputField = ({ label, ...props }) => {
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </div>
+    </>
   );
 };
 

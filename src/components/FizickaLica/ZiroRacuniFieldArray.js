@@ -24,22 +24,20 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
       </label>
 
       {values.ziro_racuni.map((ziro_racun, index) => (
-        <>
-          <div className="pr df ai-c">
-            <InputField
-              className="form__input w-100 mb-20"
-              name={`ziro_racuni.${index}.broj_racuna`}
-            />
-            <span class="form__span">{getBank(ziro_racun.broj_racuna)}</span>
-            <button
-              className="btn btn__link warning"
-              type="button"
-              onClick={() => remove(index)}
-            >
-              {$t('common.izbrisi')}
-            </button>
-          </div>
-        </>
+        <div className="pr df ai-c">
+          <InputField
+            className="form__input w-50 mb-20"
+            name={`ziro_racuni.${index}.broj_racuna`}
+          />
+          <span class="form__span">{getBank(ziro_racun.broj_racuna)}</span>
+          <button
+            className="btn btn__link warning"
+            type="button"
+            onClick={() => remove(index)}
+          >
+            {$t('common.izbrisi')}
+          </button>
+        </div>
       ))}
       <div class="df ai-c">
         <button
