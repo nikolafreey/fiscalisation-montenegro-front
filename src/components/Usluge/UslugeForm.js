@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { preduzecaService } from '../../services/PreduzecaService';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
@@ -24,7 +23,6 @@ import {
 import { grupeService } from '../../services/GrupeService';
 import { poreziService } from '../../services/PoreziService';
 import { jediniceMjereService } from '../../services/JediniceMjereService';
-import Select from 'react-select';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
@@ -45,8 +43,22 @@ const UslugeForm = () => {
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-    if (params.id) dispatch(updateUsluga({ id: params.id, ...values }));
-    else dispatch(storeUsluga(values));
+    if (params.id) {
+      dispatch(updateUsluga({ id: params.id, ...values }));
+    } else {
+      console.log(values);
+      dispatch(
+        storeUsluga({
+          cijena_bez_pdv: getPriceNoVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
+          ...values,
+          status: values.status === 'true' ? true : false,
+        })
+      );
+    }
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
@@ -63,7 +75,7 @@ const UslugeForm = () => {
 
   const getStopaPerId = (porez_id) => {
     const stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
-    return stopa * 100;
+    return stopa;
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
@@ -133,7 +145,7 @@ const UslugeForm = () => {
                             <p className="mb-10">Bez PDV-a:</p>
                             <p className="mb-10">
                               PDV
-                              {getStopaPerId(values.porez_id)}%:
+                              {getStopaPerId(values.porez_id) * 100}%:
                             </p>
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
@@ -220,13 +232,14 @@ const UslugeForm = () => {
                       <div className="form__group w-100">
                         <InputField
                           type="number"
-                          class="form__input"
+                          className="form__input"
                           name="ukupna_cijena"
                           label={$t('usluge.ukupna_cijena')}
                         />
                         <InputField
                           type="hidden"
-                          class="form__input"
+                          value={getPriceNoVat}
+                          className="form__input"
                           name="cijena_bez_pdv"
                         />
                       </div>

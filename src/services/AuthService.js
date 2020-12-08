@@ -1,4 +1,5 @@
 import ApiService from './ApiService';
+import httpService from './HttpService';
 
 const ENDPOINTS = {
   LOGIN: 'login',
@@ -10,6 +11,10 @@ const ENDPOINTS = {
 };
 
 class AuthService extends ApiService {
+
+  constructor () {
+    httpService.setUnauthorizedCallback(() => this.setAuthenticatedStorage(false));
+  }
 
   login = (credentials) => this.apiClient.post(ENDPOINTS.LOGIN, credentials);
 

@@ -1,12 +1,11 @@
-import React from 'react'
-import UserControls from '../auth/UserControls'
+import React from 'react';
+import UserControls from '../auth/UserControls';
 
 const Navbar = () => {
   return (
     <div class="header">
-      <form action="#" class="search">
-        <button class="search__button">
-        </button>
+      <form action="#" class="search df ai-c">
+        <button class="search__button"></button>
         <input
           type="text"
           class="search__input"
@@ -15,7 +14,7 @@ const Navbar = () => {
       </form>
       <UserControls />
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

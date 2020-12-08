@@ -37,7 +37,13 @@ const FizickaLicaForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) dispatch(updateFizickoLice({ id: params.id, ...values }));
-    else dispatch(storeFizickoLice(values));
+    else
+      dispatch(
+        storeFizickoLice({
+          ...values,
+          status: values.status === 'true' ? true : false,
+        })
+      );
   };
 
   return (
@@ -55,7 +61,7 @@ const FizickaLicaForm = () => {
         telefon_viber: false,
         telefon_whatsapp: false,
         telefon_facetime: false,
-
+        status: false,
         email: '',
         zanimanje: '',
         radno_mjesto: '',
@@ -64,7 +70,9 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [],
+        ziro_racuni: [
+          {broj_racuna: ''}
+        ],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -234,11 +242,13 @@ const FizickaLicaForm = () => {
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <FieldArray name="ziro_racuni">
-                        {(arrayHelpers) => (
-                          <ZiroRacuniFieldArray {...arrayHelpers} />
-                        )}
-                      </FieldArray>
+                      <div className="form__group">
+                        <FieldArray name="ziro_racuni">
+                          {(arrayHelpers) => (
+                            <ZiroRacuniFieldArray {...arrayHelpers} />
+                          )}
+                        </FieldArray>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -257,7 +267,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-100">
                           <InputField
                             name="telefon"
-                            className="form__input w-100"
+                            className="form__input w-48"
                             label={$t('fizickalica.telefon')}
                           />
                         </div>
@@ -294,7 +304,7 @@ const FizickaLicaForm = () => {
                       <div className="df fd-column">
                         <div className="form__group w-100">
                           <InputField
-                            className="form__input w-100"
+                            className="form__input w-48"
                             name="email"
                             label={$t('fizickalica.email')}
                           />
@@ -302,7 +312,7 @@ const FizickaLicaForm = () => {
 
                         <div className="form__group w-100">
                           <InputField
-                            className="form__input w-100"
+                            className="form__input w-48"
                             name="cv_link"
                             label={$t('fizickalica.cv_link')}
                           />
@@ -335,7 +345,7 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__sm" type="submit">
+                  <button className="btn btn__dark btn__md" type="submit">
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>
