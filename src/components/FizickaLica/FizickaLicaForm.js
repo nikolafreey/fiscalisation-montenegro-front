@@ -70,7 +70,9 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [],
+        ziro_racuni: [
+          {broj_racuna: ''}
+        ],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
