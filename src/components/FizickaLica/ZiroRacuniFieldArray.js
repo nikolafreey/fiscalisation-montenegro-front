@@ -10,11 +10,11 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
   console.log(values);
   const getBank = (broj_racuna) => {
     if (broj_racuna) {
-      const a = broj_racuna.substring(0, 3);
+      const prvaTri = broj_racuna.substring(0, 3);
 
-      if (broj_racuna.includes('563')) {
+      if (prvaTri.includes('563')) {
         return 'NLB';
-      } else if (broj_racuna.includes('555')) {
+      } else if (prvaTri.includes('555')) {
         return 'CKB';
       }
     }
