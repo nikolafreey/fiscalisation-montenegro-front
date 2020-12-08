@@ -6,7 +6,7 @@ export const AUTH = {
   FORGOT_SUCCESS: '/password/forgot/success',
   RESET: '/password/reset/:token',
   RESET_SUCCESS: '/password/reset/success',
-  PASSWORD: '/password'
+  PASSWORD: '/password',
 };
 
 export const FIZICKA_LICA = {
@@ -23,6 +23,7 @@ export const PARTNERI = {
 };
 export const PREDUZECA = {
   INDEX: '/preduzeca',
+  PARTNERI: '/preduzeca/partneri',
   EDIT: '/preduzeca/edit/:id',
   CREATE: '/preduzeca/create',
   SHOW: '/preduzeca/:id',

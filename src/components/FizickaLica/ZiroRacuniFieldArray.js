@@ -3,7 +3,6 @@ import React from 'react';
 import InputField from '../shared/forms/InputField';
 import $t from '../../lang';
 import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
-import { get } from 'lodash';
 
 const ZiroRacuniFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();

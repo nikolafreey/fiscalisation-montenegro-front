@@ -14,6 +14,9 @@ const PreduzecaRouter = () => {
       <Route path={PREDUZECA.CREATE}>
         <PreduzecaForm />
       </Route>
+      <Route exact path={PREDUZECA.PARTNERI}>
+        <Preduzeca />
+      </Route>
       <Route path={PREDUZECA.SHOW}>
         <Preduzece />
       </Route>
