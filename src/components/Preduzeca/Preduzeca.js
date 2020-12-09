@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
+import { PREDUZECA } from '../../constants/routes';
+import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
+
 import {
   getPreduzeca,
   setPreduzece,
@@ -14,10 +18,10 @@ import PreduzeceDetails from './PreduzeceDetails';
 
 const Preduzeca = () => {
   const dispatch = useDispatch();
-
+  const match = useRouteMatch();
   const preduzeca = useSelector(preduzecaSelector());
   const preduzece = useSelector(preduzeceSelector());
-
+  console.log('putanja', match);
   useEffect(() => {
     dispatch(getPreduzeca());
   }, [dispatch]);
@@ -28,17 +32,35 @@ const Preduzeca = () => {
 
   const handleSearch = (values) => {
     dispatch(getPreduzeca(values));
-  }
+  };
 
   return (
     <>
-      <h1 class="heading-primary">Preduzeća</h1>
+      {match.path === PREDUZECA.PARTNERI ? (
+        <h1 class="heading-primary">Dodajte partnera iz liste preduzeća</h1>
+      ) : (
+        <h1 class="heading-primary">Preduzeća</h1>
+      )}
       <div class="main-content__box">
         <div class="content">
           <div class="main-content__search-wrapper">
-            <SearchForm handleSubmit={handleSearch}/>
+            <SearchForm handleSubmit={handleSearch} />
           </div>
           <PreduzecaTable preduzeca={preduzeca} />
+          {match.path === PREDUZECA.PARTNERI ? (
+            <div class="df jc-center ai-c fd-column">
+              <hr class="w-60 " />
+              <p class="mb-25">
+                ili kreirajte novi unos ako preduzeće nije u listi
+              </p>
+              <Link exact to={PREDUZECA.CREATE}>
+                <button class="btn btn__dark btn__xl">
+                  <Plus className="icon icon__light lg" />
+                  Novo preduzeće
+                </button>
+              </Link>
+            </div>
+          ) : null}
         </div>
         <PreduzeceDetails preduzece={preduzece} />
       </div>
