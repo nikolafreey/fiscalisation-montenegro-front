@@ -5,19 +5,19 @@ import {
   GET_ATRIBUTI,
   SET_ATRIBUTI,
   STORE_ATRIBUT,
-} from '../actionTypes/KategorijeRobeActionTypes';
+} from '../actionTypes/AtributiActionTypes';
 
-export const storeKategorijaRobe = (payload) => ({
+export const storeAtribut = (payload) => ({
   type: STORE_ATRIBUT,
   payload,
 });
 
-export const getKategorijeRobe = (payload) => ({
+export const getAtributi = (payload) => ({
   type: GET_ATRIBUTI,
   payload,
 });
 
-export const setKategorijeRobe = (payload) => ({
+export const setAtributi = (payload) => ({
   type: SET_ATRIBUTI,
   payload,
 });
@@ -27,12 +27,12 @@ export const storeTipAtributa = (payload) => ({
   payload,
 });
 
-export const getPodkategorijeRobe = (payload) => ({
+export const getTipAtributa = (payload) => ({
   type: GET_TIPOVI_ATRIBUTA,
   payload,
 });
 
-export const setPodkategorijeRobe = (payload) => ({
+export const setTipAtributa = (payload) => ({
   type: SET_TIPOVI_ATRIBUTA,
   payload,
 });

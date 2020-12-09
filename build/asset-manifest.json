@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.41520f69.chunk.css",
+    "main.js": "/static/js/main.c8d1e6d1.chunk.js",
+    "main.js.map": "/static/js/main.c8d1e6d1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0038c7cf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0038c7cf.js.map",
+    "static/js/2.082e3874.chunk.js": "/static/js/2.082e3874.chunk.js",
+    "static/js/2.082e3874.chunk.js.map": "/static/js/2.082e3874.chunk.js.map",
+    "static/js/3.eb2f3c2c.chunk.js": "/static/js/3.eb2f3c2c.chunk.js",
+    "static/js/3.eb2f3c2c.chunk.js.map": "/static/js/3.eb2f3c2c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.41520f69.chunk.css.map": "/static/css/main.41520f69.chunk.css.map",
+    "static/js/2.082e3874.chunk.js.LICENSE.txt": "/static/js/2.082e3874.chunk.js.LICENSE.txt",
+    "static/media/main.scss": "/static/media/search.eabf88a0.svg",
+    "static/media/badge.4113efe7.svg": "/static/media/badge.4113efe7.svg",
+    "static/media/bell.cb54a30c.svg": "/static/media/bell.cb54a30c.svg",
+    "static/media/checkmark.8949e83b.svg": "/static/media/checkmark.8949e83b.svg",
+    "static/media/delete.6c96ac92.svg": "/static/media/delete.6c96ac92.svg",
+    "static/media/dots.61150654.svg": "/static/media/dots.61150654.svg",
+    "static/media/edit.7a12a168.svg": "/static/media/edit.7a12a168.svg",
+    "static/media/hero-home.f3b11ff3.svg": "/static/media/hero-home.f3b11ff3.svg",
+    "static/media/hero-partneri.be6001bd.svg": "/static/media/hero-partneri.be6001bd.svg",
+    "static/media/hero-preduzeca.0a5108aa.svg": "/static/media/hero-preduzeca.0a5108aa.svg",
+    "static/media/hero-stavke.77b2a786.svg": "/static/media/hero-stavke.77b2a786.svg",
+    "static/media/link.435296ab.svg": "/static/media/link.435296ab.svg",
+    "static/media/login.07710ce2.svg": "/static/media/login.07710ce2.svg",
+    "static/media/plus.7fef5966.svg": "/static/media/plus.7fef5966.svg",
+    "static/media/user.0b1d19ca.jpg": "/static/media/user.0b1d19ca.jpg",
+    "static/media/user.3e40924f.svg": "/static/media/user.3e40924f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0038c7cf.js",
+    "static/js/2.082e3874.chunk.js",
+    "static/css/main.41520f69.chunk.css",
+    "static/js/main.c8d1e6d1.chunk.js"
+  ]
+}
