@@ -59,6 +59,7 @@ const RobeForm = () => {
     <Formik
       initialValues={{
         status: '',
+        kategorije: {},
         ...roba,
       }}
       onSubmit={handleSubmit}
