@@ -87,6 +87,8 @@ import {
 } from './RobeSagas';
 import { kategorijaRobeStore, kategorijeRobeGet, podkategorijaRobeStore, podkategorijeRobeGet } from './KategorijeRobeSagas';
 import { GET_KATEGORIJE_ROBE, GET_PODKATEGORIJE_ROBE, STORE_KATEGORIJA_ROBE, STORE_PODKATEGORIJA_ROBE } from '../actionTypes/KategorijeRobeActionTypes';
+import { GET_ATRIBUTI, GET_TIPOVI_ATRIBUTA, STORE_ATRIBUT, STORE_TIP_ATRIBUTA } from '../actionTypes/AtributiActionTypes';
+import { atributiGet, atributStore, tipoviAtributaGet, tipAtributaStore } from './AtributiSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -131,5 +133,10 @@ export default function* rootSaga() {
     takeLatest(GET_PODKATEGORIJE_ROBE, podkategorijeRobeGet),
     takeLatest(STORE_KATEGORIJA_ROBE, kategorijaRobeStore),
     takeLatest(STORE_PODKATEGORIJA_ROBE, podkategorijaRobeStore),
+
+    takeLatest(GET_ATRIBUTI, atributiGet),
+    takeLatest(GET_TIPOVI_ATRIBUTA, tipoviAtributaGet),
+    takeLatest(STORE_ATRIBUT, atributStore),
+    takeLatest(STORE_TIP_ATRIBUTA, tipAtributaStore),
   ]);
 }

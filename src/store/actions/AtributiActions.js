@@ -5,6 +5,7 @@ import {
   GET_ATRIBUTI,
   SET_ATRIBUTI,
   STORE_ATRIBUT,
+  SET_TIP_ATRIBUTA,
 } from '../actionTypes/AtributiActionTypes';
 
 export const storeAtribut = (payload) => ({
@@ -27,12 +28,17 @@ export const storeTipAtributa = (payload) => ({
   payload,
 });
 
-export const getTipAtributa = (payload) => ({
+export const getTipoviAtributa = (payload) => ({
   type: GET_TIPOVI_ATRIBUTA,
   payload,
 });
 
-export const setTipAtributa = (payload) => ({
+export const setTipoviAtributa = (payload) => ({
   type: SET_TIPOVI_ATRIBUTA,
+  payload,
+});
+
+export const setTipAtributa = (payload) => ({
+  type: SET_TIP_ATRIBUTA,
   payload,
 });

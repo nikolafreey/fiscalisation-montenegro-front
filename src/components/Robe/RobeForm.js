@@ -20,6 +20,7 @@ import { proizvodjacService } from '../../services/ProizvodjacService';
 import CreateKategorija from './KategorijeRobe/CreateKategorija';
 import CreatePodKategorija from './KategorijeRobe/CreatePodKategorija';
 import ChooseKategorija from './KategorijeRobe/ChooseKategorija';
+import ChooseAtribut from './Atributi/ChooseAtribut';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const RobeForm = () => {
       initialValues={{
         status: '',
         kategorije: {},
+        atributi: [],
         ...roba,
       }}
       onSubmit={handleSubmit}
@@ -164,6 +166,21 @@ const RobeForm = () => {
                         <ChooseKategorija/>
                         <CreateKategorija />
                         <CreatePodKategorija />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h2 className="heading-secondary">Atributi</h2>
+                      <p>
+                      Da razvrstate artikle/robe na pojedinačne atribute zbog detaljnijeg praćenja prodaje, kreirajte i označite željene atribute.
+                      </p>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form__group">
+                        <ChooseAtribut />
                       </div>
                     </div>
                   </div>

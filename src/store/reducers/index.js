@@ -9,6 +9,7 @@ import routeReducer from './RouteReducer';
 import uslugeReducer from './UslugeReducer';
 import robeReducer from './RobeReducer';
 import kategorijeRobeReducer from './KategorijeRobeReducer';
+import atributiReducer from './AtributiReducer';
 import { connectRouter } from 'connected-react-router';
 
 const createRootReducer = (history) =>
@@ -24,6 +25,7 @@ const createRootReducer = (history) =>
     uslugeReducer,
     robeReducer,
     kategorijeRobeReducer,
+    atributiReducer,
   });
 
 export default createRootReducer;
