@@ -131,7 +131,7 @@ const RobeForm = () => {
                       <div class="df jc-sb">
                         <div class="form__group w-48">
                           <DropDown
-                            name="proizvodjac"
+                            name="proizvodjac_robe_id"
                             label={$t('robe.proizvodjac')}
                             loadOptions={
                               proizvodjacService.getProizvodjaciDropdown
@@ -141,7 +141,7 @@ const RobeForm = () => {
                         </div>
                         <div class="form__group w-48">
                           <DropDown
-                            name="jedinica_mjere"
+                            name="jedinica_mjere_id"
                             label={$t('robe.jedinica_mjere')}
                             loadOptions={
                               jediniceMjereService.getJediniceMjereDropdown
