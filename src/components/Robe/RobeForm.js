@@ -21,6 +21,10 @@ import CreateKategorija from './KategorijeRobe/CreateKategorija';
 import CreatePodKategorija from './KategorijeRobe/CreatePodKategorija';
 import ChooseKategorija from './KategorijeRobe/ChooseKategorija';
 import ChooseAtribut from './Atributi/ChooseAtribut';
+import Cijena from './CijeneRobe/Cijena';
+
+import CijeneFieldArray from './CijeneRobe/CijeneFieldArray';
+import { poreziSelector } from '../../store/selectors/UslugeSelector';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -34,24 +38,80 @@ const RobeForm = () => {
 
   const roba = useSelector(robaSelector());
 
+  const porezi = useSelector(poreziSelector());
+
+  const getStopaPerId = (porez_id) => {
+    const stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
+    return stopa;
+  };
+
+  const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+    let cijenaBezPdv = 0;
+    if (pdv_ukljucen === 0) {
+      cijenaBezPdv = Math.round(100 * ukupna_cijena) / 100;
+
+      return cijenaBezPdv;
+    } else {
+      cijenaBezPdv =
+        Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
+
+      return cijenaBezPdv;
+    }
+  };
+
+  const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+    if (pdv_ukljucen === 0) {
+      return ukupna_cijena + ukupna_cijena * +stopa;
+    } else {
+      return ukupna_cijena;
+    }
+  };
+
+  const getVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    const stopa = getStopaPerId(porez_id);
+
+    if (pdv_ukljucen === 0) {
+      return Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+    } else {
+      return (
+        Math.round(
+          100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
+        ) / 100
+      );
+    }
+  };
+
   useEffect(() => {
     if (params.id) dispatch(getRoba(params.id));
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
+    console.log(values);
     if (params.id)
       dispatch(
         updateRoba({
+          ...values,
           id: params.id,
           status: values.status === 'Aktivan' ? true : false,
-          ...values,
+          cijena_bez_pdv: getPriceNoVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
         })
       );
     else
       dispatch(
         storeRoba({
           ...values,
-          status: values.status === 'true' ? true : false,
+          cijena_bez_pdv: getPriceNoVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
   };
@@ -62,6 +122,7 @@ const RobeForm = () => {
         status: '',
         kategorije: {},
         atributi: [],
+        cijene: [],
         ...roba,
       }}
       onSubmit={handleSubmit}
@@ -153,38 +214,61 @@ const RobeForm = () => {
                     </div>
                   </div>
                 </div>
+                <hr />
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Kategorija</h2>
                       <p>
-                        Izaberite kategorije i podkategorije kojima artikal/roba pripada.
+                        Izaberite kategorije i podkategorije kojima artikal/roba
+                        pripada.
                       </p>
+                      <a href="" class="link">
+                        Upravljanje kategorijama
+                      </a>
                     </div>
                     <div className="col-md-4">
-                      <div className="form__group">
-                        <ChooseKategorija/>
+                      <div class="search-box">
+                        <div class="search-wrapper">
+                          <input
+                            type="text"
+                            class="search__input"
+                            placeholder="Pronađite kategoriju"
+                          />
+                        </div>
+                      </div>
+                      <ul class="item-list">
+                        <ChooseKategorija />
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form__group">
                         <CreateKategorija />
+                      </div>
+                      <div class="form__group">
                         <CreatePodKategorija />
                       </div>
                     </div>
                   </div>
                 </div>
+                <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
-                      <h2 className="heading-secondary">Atributi</h2>
-                      <p>
-                      Da razvrstate artikle/robe na pojedinačne atribute zbog detaljnijeg praćenja prodaje, kreirajte i označite željene atribute.
-                      </p>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="form__group">
-                        <ChooseAtribut />
-                      </div>
-                    </div>
+                    <ChooseAtribut />
                   </div>
                 </div>
+                <hr />
+                <div class="container">
+                  <div class="row">
+                    <Cijena
+                      getPriceNoVat={getPriceNoVat}
+                      getPriceVat={getPriceVat}
+                      getVat={getVat}
+                      getStopaPerId={getStopaPerId}
+                    />
+                  </div>
+                </div>
+                <hr />
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4">

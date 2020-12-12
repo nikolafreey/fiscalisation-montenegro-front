@@ -100,5 +100,14 @@
     "jedinicaMjere": "Jedinica mjere",
     "grupa": "Grupa/Kategorija",
     "pdv_ukljucen": "PDV uljučen u cijenu"
+  },
+  "cijene": {
+    "nabavna_bez_pdv": "Nabavna cijena bez PDV-a",
+    "nabavna_sa_pdv": "Nabavna cijena sa PDV-om",
+    "porezi": "PDV stopa",
+    "pdv_ukljucen": "PDV uključen/isključen",
+    "cijena": "Cijena",
+    "tip_atributa_id": "Tip atributa",
+    "atribut_id": "Atribut"
   }
 }

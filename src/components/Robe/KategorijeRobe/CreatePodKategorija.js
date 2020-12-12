@@ -4,7 +4,6 @@ import Async from 'react-select/async';
 import { kategorijeRobeService } from '../../../services/KategorijeRobeService';
 import { storePodkategorijaRobe } from '../../../store/actions/KategorijeRobeActions';
 
-
 const CreatePodKategorija = () => {
   const dispatch = useDispatch();
 
@@ -13,7 +12,9 @@ const CreatePodKategorija = () => {
   const [kategorija, setKategorija] = useState(null);
 
   const handleSubmit = () => {
-    dispatch(storePodkategorijaRobe({ naziv, kategorija_id: kategorija.value }));
+    dispatch(
+      storePodkategorijaRobe({ naziv, kategorija_id: kategorija.value })
+    );
     setFieldVisible(false);
   };
 
@@ -25,18 +26,31 @@ const CreatePodKategorija = () => {
     <div>
       {fieldVisible ? (
         <div>
-          <input name="naziv" value={naziv} onChange={handleChange} />
+          <label class="form__label">Kreirajte novu podkategoriju</label>
+
+          <input
+            name="naziv"
+            class="form__input mb-10"
+            placeholder="Naziv podkategorije"
+            value={naziv}
+            onChange={handleChange}
+          />
           <Async
+            class="form__input mb-10"
             loadOptions={kategorijeRobeService.getKategorijeRobeDropdown}
             defaultOptions
             cacheOptions
             value={kategorija}
             onChange={setKategorija}
           />
-          <button onClick={handleSubmit}>Kreiraj podkategoriju</button>
+          <button class="btn btn__dark jc-center" onClick={handleSubmit}>
+            Kreiraj podkategoriju
+          </button>
         </div>
       ) : (
-        <p onClick={() => setFieldVisible(true)}>Kreiraj podkategoriju</p>
+        <p class="link" onClick={() => setFieldVisible(true)}>
+          +Kreiraj podkategoriju
+        </p>
       )}
     </div>
   );

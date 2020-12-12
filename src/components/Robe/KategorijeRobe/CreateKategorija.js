@@ -4,28 +4,38 @@ import { storeKategorijaRobe } from '../../../store/actions/KategorijeRobeAction
 
 const CreateKategorija = () => {
   const dispatch = useDispatch();
-  
+
   const [fieldVisible, setFieldVisible] = useState(false);
   const [naziv, setNaziv] = useState('');
 
   const handleSubmit = () => {
-    dispatch(storeKategorijaRobe({naziv}));
+    dispatch(storeKategorijaRobe({ naziv }));
     setFieldVisible(false);
   };
 
   const handleChange = (event) => {
     setNaziv(event.target.value);
-  }
+  };
 
   return (
     <div>
-      {fieldVisible ? ( 
+      {fieldVisible ? (
         <div>
-          <input name='naziv' value={naziv} onChange={handleChange}/>
-          <button onClick={handleSubmit}>Kreiraj kategoriju</button>
+          <input
+            name="naziv"
+            class="form__input mb-10"
+            placeholder="Naziv kategorije"
+            value={naziv}
+            onChange={handleChange}
+          />
+          <button class="btn btn__dark jc-center" onClick={handleSubmit}>
+            Kreiraj kategoriju
+          </button>
         </div>
       ) : (
-        <p onClick={() => setFieldVisible(true)}>Kreiraj kategoriju</p>
+        <p class="link" onClick={() => setFieldVisible(true)}>
+          + Kreiraj kategoriju
+        </p>
       )}
     </div>
   );
