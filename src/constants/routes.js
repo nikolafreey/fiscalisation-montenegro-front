@@ -15,6 +15,12 @@ export const FIZICKA_LICA = {
   CREATE: '/fizicka-lica/create',
   SHOW: '/fizicka-lica/:id',
 };
+export const RACUNI = {
+  INDEX: '/racuni',
+  EDIT: '/racuni/edit/:id',
+  CREATE: '/racuni/create',
+  SHOW: '/racuni/:id',
+};
 export const PARTNERI = {
   INDEX: '/partneri',
   EDIT: '/partneri/edit/:id',
