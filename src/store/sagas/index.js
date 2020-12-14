@@ -85,10 +85,44 @@ import {
   robeDelete,
   robeGet,
 } from './RobeSagas';
-import { kategorijaRobeStore, kategorijeRobeGet, podkategorijaRobeStore, podkategorijeRobeGet } from './KategorijeRobeSagas';
-import { GET_KATEGORIJE_ROBE, GET_PODKATEGORIJE_ROBE, STORE_KATEGORIJA_ROBE, STORE_PODKATEGORIJA_ROBE } from '../actionTypes/KategorijeRobeActionTypes';
-import { GET_ATRIBUTI, GET_TIPOVI_ATRIBUTA, STORE_ATRIBUT, STORE_TIP_ATRIBUTA } from '../actionTypes/AtributiActionTypes';
-import { atributiGet, atributStore, tipoviAtributaGet, tipAtributaStore } from './AtributiSagas';
+import {
+  kategorijaRobeStore,
+  kategorijeRobeGet,
+  podkategorijaRobeStore,
+  podkategorijeRobeGet,
+} from './KategorijeRobeSagas';
+import {
+  GET_KATEGORIJE_ROBE,
+  GET_PODKATEGORIJE_ROBE,
+  STORE_KATEGORIJA_ROBE,
+  STORE_PODKATEGORIJA_ROBE,
+} from '../actionTypes/KategorijeRobeActionTypes';
+import {
+  GET_ATRIBUTI,
+  GET_TIPOVI_ATRIBUTA,
+  STORE_ATRIBUT,
+  STORE_TIP_ATRIBUTA,
+} from '../actionTypes/AtributiActionTypes';
+import {
+  atributiGet,
+  atributStore,
+  tipoviAtributaGet,
+  tipAtributaStore,
+} from './AtributiSagas';
+import {
+  DELETE_RACUN,
+  GET_RACUN,
+  GET_RACUNI,
+  STORE_RACUN,
+  UPDATE_RACUN,
+} from '../actionTypes/RacuniActionTypes';
+import {
+  racunDelete,
+  racunGet,
+  racuniGet,
+  racunStore,
+  racunUpdate,
+} from './RacuniSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -97,6 +131,18 @@ export default function* rootSaga() {
     takeLatest(GET_PARTNER, partnerGet),
     takeLatest(UPDATE_PARTNER, partnerUpdate),
     takeLatest(DELETE_PARTNER, partnerDelete),
+
+    takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
+    takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),
+    takeLatest(GET_FIZICKO_LICE, fizickoLiceGet),
+    takeLatest(UPDATE_FIZICKO_LICE, fizickoLiceUpdate),
+    takeLatest(DELETE_FIZICKO_LICE, fizickoLiceDelete),
+
+    takeLatest(STORE_RACUN, racunStore),
+    takeLatest(GET_RACUNI, racuniGet),
+    takeLatest(GET_RACUN, racunGet),
+    takeLatest(UPDATE_RACUN, racunUpdate),
+    takeLatest(DELETE_RACUN, racunDelete),
 
     takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
     takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),

@@ -11,6 +11,7 @@ import robeReducer from './RobeReducer';
 import kategorijeRobeReducer from './KategorijeRobeReducer';
 import atributiReducer from './AtributiReducer';
 import { connectRouter } from 'connected-react-router';
+import racuniReducer from './RacuniReducer';
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -26,6 +27,7 @@ const createRootReducer = (history) =>
     robeReducer,
     kategorijeRobeReducer,
     atributiReducer,
+    racuniReducer,
   });
 
 export default createRootReducer;
