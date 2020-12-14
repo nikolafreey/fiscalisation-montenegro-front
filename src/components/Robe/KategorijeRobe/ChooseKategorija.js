@@ -42,36 +42,45 @@ const ChooseKategorija = () => {
 
   return kategorije.map((kategorija, index) => (
     <div key={kategorija.id}>
-      <input
-        type="checkbox"
-        name="kategorije"
-        value={kategorija.id}
-        checked={values.kategorije[kategorija.id]}
-        onChange={(event) =>
-          handleChangeKategorija(event.target.checked, kategorija)
-        }
-      />
-      <label>{kategorija.naziv}</label>
+      <li className="item-check">
+        <div className="form__checkbox-group">
+          <input
+            className="form__checkbox"
+            type="checkbox"
+            name="kategorije"
+            value={kategorija.id}
+            checked={values.kategorije[kategorija.id]}
+            onChange={(event) =>
+              handleChangeKategorija(event.target.checked, kategorija)
+            }
+          />
+          <label>{kategorija.naziv}</label>
+        </div>
+      </li>
       {kategorija.podkategorije_robe.map(
         (podkategorija, index_podkategorija) => (
           <div key={podkategorija.id}>
-            <input
-              style={{ marginLeft: '2rem' }}
-              type="checkbox"
-              name="podkategorije"
-              value={podkategorija.id}
-              checked={values.kategorije[kategorija.id]?.includes(
-                podkategorija.id
-              )}
-              onChange={(event) =>
-                handleChangePodkategorija(
-                  event.target.checked,
-                  kategorija,
-                  podkategorija
-                )
-              }
-            />
-            <label>{podkategorija.naziv}</label>
+            <li class="sub-item-check">
+              <div class="form__checkbox-group">
+                <input
+                  style={{ marginLeft: '2rem' }}
+                  type="checkbox"
+                  name="podkategorije"
+                  value={podkategorija.id}
+                  checked={values.kategorije[kategorija.id]?.includes(
+                    podkategorija.id
+                  )}
+                  onChange={(event) =>
+                    handleChangePodkategorija(
+                      event.target.checked,
+                      kategorija,
+                      podkategorija
+                    )
+                  }
+                />
+                <label>{podkategorija.naziv}</label>
+              </div>
+            </li>
           </div>
         )
       )}
