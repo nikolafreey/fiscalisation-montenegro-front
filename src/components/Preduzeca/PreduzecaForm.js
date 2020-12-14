@@ -20,6 +20,7 @@ import Checkbox from '../shared/forms/Checkbox';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { djelatnostiService } from '../../services/DjelatnostiService';
+import MapContainer from '../shared/forms/MapContainer';
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
@@ -621,7 +622,9 @@ const PreduzecaForm = () => {
                     </div>
                     <div className="col-md-8">
                       <span className="form__label">Lokacija</span>
-                      <div className="form__map"></div>
+                      <div className="form__map">
+                        <MapContainer google={true} />
+                      </div>
                     </div>
                   </div>
                 </div>
