@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
+import Geocode from 'react-geocode';
 import {
   deletePreduzece,
   getPreduzece,
@@ -41,6 +42,7 @@ const PreduzecaForm = () => {
 
   useEffect(() => {
     if (params.id) dispatch(getPreduzece(params.id));
+    Geocode.setApiKey('');
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
@@ -52,6 +54,19 @@ const PreduzecaForm = () => {
           status: values.status === 'true' ? true : false,
         })
       );
+  };
+
+  const handleBlur = (e) => {
+    const a = e.target.value;
+    Geocode.fromAddress(a).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   };
 
   return (
@@ -174,6 +189,10 @@ const PreduzecaForm = () => {
                           name="adresa"
                           label={$t('preduzeca.adresa')}
                           placeholder=""
+                          onBlur={(e) => {
+                            // call the built-in handleBur
+                            handleBlur(e);
+                          }}
                           type="text"
                           className="form__input w-100"
                         />

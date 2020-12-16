@@ -1,8 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  ATRIBUTI: 'atributi',
-  ATRIBUT: 'atributi/{id}',
+  ATRIBUTI: 'atribut-roba',
+  ATRIBUT: 'atribut-roba/{id}',
   TIPOVI_ATRIBUTA: 'tipovi-atributa',
   TIP_ATRIBUTA: 'tipovi-atributa/{id}',
 };

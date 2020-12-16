@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getTipoviAtributa,
   setTipAtributa,
+  storeAtribut,
+  storeTipAtributa,
 } from '../../../store/actions/AtributiActions';
 import {
   tipAtributaSelector,
@@ -32,9 +34,31 @@ const ChooseAtribut = () => {
         values.atributi.filter((atributId) => atributId !== atribut.id)
       );
   };
+  const checkedAtributi = () => {
+    const a = tipAtributa.atributi?.filter((atribut) =>
+      values.atributi?.includes(atribut.id)
+    );
+    return a;
+  };
   const [fieldVisible, setFieldVisible] = useState(false);
   const [fieldTipVisible, setFieldTipVisible] = useState(false);
+  const [naziv, setNaziv] = useState('');
 
+  const handleSubmitTipAtributa = () => {
+    dispatch(storeTipAtributa({ naziv }));
+    setFieldVisible(false);
+  };
+  const handleSubmitAtribut = () => {
+    dispatch(storeAtribut({ naziv, tip_atributa_id: tipAtributa.id }));
+    setFieldVisible(false);
+  };
+  const handleChangeTipAtributa = (event) => {
+    setNaziv(event.target.value);
+  };
+
+  const handleChangeNoviAtribut = (event) => {
+    setNaziv(event.target.value);
+  };
   return (
     <>
       <div class="col-md-4">
@@ -47,10 +71,12 @@ const ChooseAtribut = () => {
         </p>
         <div class="mt-30">
           <p class="txt-light">Izabrani atributi:</p>
-          <p class="txt-dark">Boja:</p>
-          <p class="txt-light mb-15">Crvena, Žuta, Plava, Zelena</p>
-          <p class="txt-dark">Veličina:</p>
-          <p class="txt-light">S, M, L</p>
+          <p class="txt-dark">{tipAtributa.naziv}:</p>
+          <p class="txt-light mb-15">
+            {checkedAtributi()
+              ?.map((atribut) => atribut.naziv)
+              ?.join(' , ')}
+          </p>
         </div>
       </div>
       <div class="col-md-8">
@@ -80,10 +106,18 @@ const ChooseAtribut = () => {
             {fieldTipVisible ? (
               <div class="search-wrapper">
                 <input
+                  name="naziv"
                   type="text"
                   class="search__input"
                   placeholder="Novi tip"
+                  onChange={handleChangeTipAtributa}
                 />
+                <button
+                  class="btn btn__dark jc-center"
+                  onClick={handleSubmitTipAtributa}
+                >
+                  Dodaj tip atributa
+                </button>
               </div>
             ) : (
               <p class="link" onClick={() => setFieldTipVisible(true)}>
@@ -124,8 +158,15 @@ const ChooseAtribut = () => {
                 <input
                   type="text"
                   class="search__input"
+                  onChange={handleChangeNoviAtribut}
                   placeholder="Novi atribut"
                 />
+                <button
+                  class="btn btn__dark jc-center"
+                  onClick={handleSubmitAtribut}
+                >
+                  Dodaj atribut
+                </button>
               </div>
             ) : (
               <p class="link" onClick={() => setFieldVisible(true)}>

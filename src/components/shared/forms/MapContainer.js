@@ -10,7 +10,7 @@ const MapContainer = (props) => {
   return (
     <Map
       google={props.google}
-      zoom={14}
+      zoom={12}
       style={mapStyles}
       initialCenter={{
         lat: -1.2884,
@@ -20,5 +20,5 @@ const MapContainer = (props) => {
   );
 };
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyC-ZLNK-iG9ve4BAA8AjlYJAXahk1nnf0k',
+  apiKey: '',
 })(MapContainer);

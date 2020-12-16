@@ -1,12 +1,26 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { atributiService } from '../../services/AtributiService';
-import { getAtributi, getTipoviAtributa, setAtributi, setTipoviAtributa } from '../actions/AtributiActions';
+import {
+  getAtributi,
+  getTipoviAtributa,
+  setAtributi,
+  setTipAtributa,
+  setTipoviAtributa,
+} from '../actions/AtributiActions';
+import { tipAtributaSelector } from '../selectors/AtributiSelector';
 
 export function* atributStore({ payload }) {
   try {
-    yield call(atributiService.storeAtribut, payload);
-    yield put(getAtributi());
+    const tipAtributa = yield call(atributiService.storeAtribut, payload);
+    yield put(getTipoviAtributa());
+    const tipAtributaState = yield select(tipAtributaSelector());
+    yield put(
+      setTipAtributa({
+        ...tipAtributaState,
+        atributi: [...tipAtributaState.atributi, tipAtributa.data],
+      })
+    );
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
@@ -38,4 +52,3 @@ export function* tipoviAtributaGet({ payload }) {
     yield put(setGlobalError(error.message));
   }
 }
-

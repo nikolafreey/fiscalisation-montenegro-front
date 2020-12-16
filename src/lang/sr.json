@@ -1,5 +1,10 @@
 {
   "test": "test",
+  "auth": {
+    "email": "E-mail",
+    "password": "Lozinka",
+    "forgotPassword": "Zaboravili ste lozinku?"
+  },
   "validacija": {
     "unosKratak": "Polje mora imati najmanje {broj} karaktera",
     "obavezno": "Polje je obavezno",
