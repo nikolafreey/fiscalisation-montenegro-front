@@ -13,12 +13,15 @@
     width: 24px;
     height: 24px;
   }
-
+  &.xl {
+    width: 40px;
+    height: 40px;
+  }
   &__light {
     stroke: $color-content-light;
   }
   &__dark {
-    stroke: $color-text-dark;
+    stroke: $color-text-dark !important;
   }
   &__fill-color-badge {
     fill: $color-check-badge;
@@ -28,5 +31,8 @@
   }
   &__drop-down {
     stroke: $color-sidebar-icon;
+  }
+  &__success {
+    stroke: $color-success-dark;
   }
 }

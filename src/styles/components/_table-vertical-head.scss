@@ -1,12 +1,13 @@
-.table-vertical{
-    width: 100%;
-    border-collapse: collapse;
-    border: none;
+.table-vertical {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
 
-    th,td{
-        padding: 2rem 0;
-    }
-    td{
-        text-align: right;
-    }
+  th,
+  td {
+    padding: 2rem 0;
+  }
+  td {
+    text-align: right;
+  }
 }

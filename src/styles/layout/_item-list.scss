@@ -1,0 +1,33 @@
+.item-list {
+  list-style: none;
+
+  .form__checkbox-group {
+    margin-top: unset;
+  }
+}
+
+.item-check {
+  display: flex;
+  padding: 1rem 1.5rem;
+}
+.item-f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  font-size: $font-size-default;
+  color: $color-text-dark;
+  cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover {
+    background-color: $color-background-dark;
+    color: $color-content-light;
+  }
+  svg {
+    stroke: $color-hover;
+  }
+}
+.sub-item-check {
+  margin-left: 2rem;
+}

@@ -1,0 +1,11 @@
+.logo {
+  font-size: $font-size-secondary;
+  font-weight: 600;
+  padding: 1.5rem 2rem;
+  margin-bottom: 3rem;
+
+  @include respond(tab-land) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

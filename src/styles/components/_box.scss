@@ -1,0 +1,32 @@
+.box-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+  height: 7rem;
+  border: 1px solid $border-input-lines;
+  box-sizing: border-box;
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 0.8rem;
+
+  h2 {
+    margin-bottom: unset;
+  }
+  &__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    svg {
+      stroke: $color-text-light;
+    }
+  }
+}

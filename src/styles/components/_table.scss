@@ -5,8 +5,13 @@
   width: 100%;
   border-collapse: collapse;
 }
-tr:nth-of-type(4) {
-  background: $color-content-light;
+tbody {
+  tr {
+    cursor: pointer;
+  }
+  .active {
+    background: $color-content-light;
+  }
 }
 th {
   background-color: $color-content-light;
@@ -42,17 +47,24 @@ th {
   }
 }
 td {
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
 }
 th {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 th:first-child {
   width: 35%;
+  @include respond(tab-land) {
+    width: 40%;
+  }
 }
 th:last-child {
   width: 20%;
   text-align: right;
+
+  @include respond(tab-land) {
+    width: 15%;
+  }
 }
 td,
 th {

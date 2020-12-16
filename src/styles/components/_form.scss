@@ -58,6 +58,9 @@
     }
   }
 
+  input[type='checkbox'] {
+    border: 1px solid violet;
+  }
   &__input {
     background-color: $color-content-light;
     color: $color-text-dark;
@@ -87,9 +90,15 @@
   &__span {
     position: absolute;
     top: 0.7rem;
-    left: 43%;
+    left: 41%;
     color: $color-text-light;
     background-color: $color-content-light;
+
+    @include respond(tab-land) {
+      top: 0.5rem;
+      left: unset;
+      right: 6rem;
+    }
   }
   &__label {
     font-size: $font-size-default;
@@ -103,6 +112,16 @@
   //     transform: translateY(-4rem);
   //   }
 
+  &__checkbox-groups-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include respond(tab-land) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
   &__checkbox-group {
     margin-top: 1rem;
     display: flex;

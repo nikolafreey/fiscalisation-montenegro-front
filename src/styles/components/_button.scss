@@ -54,7 +54,7 @@
     &.warning {
       margin-bottom: 2rem;
       margin-left: 1rem;
-      color: $color-warning;
+      color: $color-danger-dark;
     }
     &.success {
       color: $color-link-dark;
@@ -68,7 +68,11 @@
     width: 16rem;
     height: 4rem;
     font-size: $font-size-default;
+    font-weight: 600;
     padding: 1rem 2rem;
+  }
+  &__lg {
+    width: 13rem;
   }
   &__md {
     width: 8.5rem;
@@ -89,7 +93,7 @@
 
     &:hover {
       .drop-down {
-        top: 36px;
+        top: 3rem;
         right: 0;
         display: block;
         // svg{

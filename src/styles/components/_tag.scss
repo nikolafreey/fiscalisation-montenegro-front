@@ -1,0 +1,20 @@
+.tag {
+  border-radius: 17px;
+  padding: 0.3rem 1.2rem;
+
+  &__success {
+    background-color: $color-success-light;
+    color: $color-success-dark;
+  }
+  &__danger {
+    background-color: $color-danger-light;
+    color: $color-danger-dark;
+  }
+  &__warning {
+    background-color: $color-warning-light;
+    color: $color-danger-dark;
+  }
+  &__neutral {
+    background-color: $color-background-input;
+  }
+}

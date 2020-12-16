@@ -33,19 +33,47 @@
   width: 100%;
 }
 .w-60 {
-  width: 60%;
+  width: 60% !important;
 }
-.w-50 {
-  width: 50%;
+.w-53 {
+  width: 53% !important;
 }
 .w-48 {
   width: 48% !important;
 }
+.half-wd-full-tab {
+  width: 48% !important;
+
+  @include respond(tab-land) {
+    width: 100% !important;
+  }
+}
 .w-40 {
-  width: 50%;
+  width: 40%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-28 {
+  width: 28%;
+}
+.w-20 {
+  width: 20% !important;
+}
+.w-25 {
+  width: 25% !important;
+}
+.w-5 {
+  width: 5% !important;
 }
 .mb-25 {
   margin-bottom: 2.5rem;
+}
+.mt-50 {
+  margin-top: 5rem;
+}
+.mt-30 {
+  margin-top: 3rem;
 }
 .mt-15 {
   margin-top: 1.5rem;
@@ -65,6 +93,9 @@
 .mb-10 {
   margin-bottom: 1rem;
 }
+.ml-15 {
+  margin-left: 1.5rem;
+}
 .mr-m {
   margin-right: 2rem;
 }
@@ -73,6 +104,9 @@
 }
 .ml-m {
   margin-left: 2rem;
+}
+.ml-l {
+  margin-left: 3rem;
 }
 .ml-xl {
   margin-left: 6rem;
@@ -95,6 +129,33 @@
 .jc-sb {
   justify-content: space-between;
 }
+.as-end {
+  align-self: flex-end;
+}
 .jc-center {
-  justify-content: center;
+  justify-content: center !important;
+}
+.dshow {
+  display: block;
+  @include respond(tab-land) {
+    display: none !important;
+  }
+}
+.dshow-cell {
+  display: table-cell;
+  @include respond(tab-land) {
+    display: none !important;
+  }
+}
+.tshow {
+  display: none;
+  @include respond(tab-land) {
+    display: block;
+  }
+}
+.ml-30-tab {
+  margin-left: 0;
+  @include respond(tab-land) {
+    margin-left: 3rem;
+  }
 }

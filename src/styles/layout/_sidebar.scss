@@ -6,12 +6,41 @@
   margin-right: 4rem;
   min-height: 100vh;
 
-  .logo {
-    font-size: $font-size-secondary;
-    font-weight: 600;
-    padding: 1.5rem 2rem;
-    margin-bottom: 3rem;
+  @include respond(tab-land) {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-right: 0;
+    margin-top: 5rem;
   }
+
+  &__heading {
+    color: $color-text-light;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: $font-size-quatenary;
+    letter-spacing: 1.5px;
+
+    @include respond(tab-land) {
+      font-size: 8px;
+      letter-spacing: unset;
+    }
+  }
+
+  &__btn {
+    display: none;
+
+    @include respond(tab-land) {
+      display: block;
+    }
+  }
+
+  // .logo {
+  //   font-size: $font-size-secondary;
+  //   font-weight: 600;
+  //   padding: 1.5rem 2rem;
+  //   margin-bottom: 3rem;
+  // }
 
   .items {
     list-style: none;
@@ -23,6 +52,9 @@
   .item,
   h3 {
     padding: 1rem 1.5rem;
+    @include respond(tab-land) {
+      padding: 1rem 0;
+    }
   }
   .item {
     position: relative;
@@ -32,9 +64,20 @@
     background-color: transparent;
     transition: all 0.1s ease-in-out;
 
+    @include respond(tab-land) {
+      border-radius: 4px;
+      background-color: $color-hover;
+      align-items: center;
+      justify-content: center;
+    }
+
     .link {
       color: $color-text-dark;
       text-decoration: none;
+
+      @include respond(tab-land) {
+        display: none;
+      }
     }
 
     .sidebar-icon {
@@ -42,7 +85,14 @@
       height: 22px;
       width: 22px;
       stroke: $color-sidebar-icon;
-      //margin-right: 2rem;
+      margin-right: 2rem;
+
+      @include respond(tab-land) {
+        align-items: center;
+        height: 36px;
+        width: 36px;
+        margin-right: 0;
+      }
     }
 
     &:hover {
@@ -54,7 +104,7 @@
       .sidebar-icon {
         stroke: $color-text-light;
       }
-      .link{
+      .link {
         color: $color-text-light;
       }
     }

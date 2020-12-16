@@ -11,6 +11,13 @@
   height: 25px;
   padding: 2px 8px;
   transition: background-color 0.1s ease-in-out;
+
+  @include respond(tab-land) {
+    right: -1.5rem;
+    top: 0;
+    background-color: rgba($color-background-dark, 0.6);
+    color: $color-background-light;
+  }
   .pro {
     color: rgba($color-text-dark, 0.7) !important;
   }

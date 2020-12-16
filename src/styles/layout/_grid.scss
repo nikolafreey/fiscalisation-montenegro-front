@@ -4954,6 +4954,9 @@ a.text-dark:focus {
 
 .w-50 {
   width: 50% !important;
+  @include respond(tab-land) {
+    width: unset;
+  }
 }
 
 .w-75 {

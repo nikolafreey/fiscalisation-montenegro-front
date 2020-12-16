@@ -3,6 +3,7 @@
 //background
 $color-background-light: #e6e6e6;
 $color-background-dark: #6b7280;
+$color-background-input: #f3f4f6;
 //end background
 
 //text
@@ -21,7 +22,11 @@ $color-sidebar-icon: #9ca3af;
 $color-hover: #d1d5db;
 $color-check-badge: #3b82f6;
 
-$color-warning: #b91c1c;
+$color-danger-dark: #b91c1c;
+$color-danger-light: #fee2e2;
+$color-success-dark: #166534;
+$color-success-light: #dcfce7;
+$color-warning-light: #ffedd5;
 
 $border-input-lines: #d1d5db;
 $color-content-light: #f9fafb;
@@ -41,6 +46,8 @@ $color-black: #000;
 
 //FONT
 $font-size-default: 14px;
+$font-size-default-tab: 16px;
 $font-size-primary: 28px;
 $font-size-secondary: 24px;
-$font-size-tertiary: 12px;
+$font-size-tertiary: 16px;
+$font-size-quatenary: 12px;
