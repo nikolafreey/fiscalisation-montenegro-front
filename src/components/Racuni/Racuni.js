@@ -49,13 +49,13 @@ const Racuni = () => {
   };
 
   const resetSearch = () => {
-    searchParams.search = '';
+    searchParams.search = null;
     setSearch('');
     handleSearch(searchParams);
   };
 
   const resetStatus = () => {
-    searchParams.status = '';
+    searchParams.status = null;
     setStatus('');
     handleSearch(searchParams);
   };
