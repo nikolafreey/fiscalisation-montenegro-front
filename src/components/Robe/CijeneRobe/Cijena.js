@@ -13,6 +13,7 @@ import CijeneFieldArray from './CijeneFieldArray';
 const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
   const dispatch = useDispatch();
   const { values, setFieldValue } = useFormikContext();
+  console.log('ss', values);
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
     { value: 1, label: 'Cijena sa PDV' },

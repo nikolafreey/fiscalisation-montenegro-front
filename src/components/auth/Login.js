@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Form, Formik } from 'formik';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,31 +17,22 @@ const Login = () => {
     <Formik
       initialValues={{
         email: '',
-        password: ''
+        password: '',
       }}
       onSubmit={(values) => dispatch(loginUser(values))}
     >
       <Form>
-        <InputField
-          name="email"
-          label={$t('auth.email')}
-          placeholder={$t('')}
-        />
-        <InputField
-          name="password"
-          label={$t('auth.password')}
-          placeholder={$t('')}
-        />
+        <InputField name="email" label={$t('auth.email')} />
+        <InputField name="password" label={$t('auth.password')} />
 
         {!!loginError.errors && <div>{loginError.errors.email}</div>}
 
-        <Link to={AUTH.FORGOT}>{$t('auth.zaboravljenaSifra')}</Link>
-        
-        <button type="submit">Submit</button>
+        <Link to={AUTH.FORGOT}>{$t('auth.forgotPassword')}</Link>
+        <br />
+        <button type="submit">Uloguj se</button>
       </Form>
     </Formik>
   );
 };
 
 export default Login;
-
