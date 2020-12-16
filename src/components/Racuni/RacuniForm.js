@@ -1,25 +1,17 @@
 import { FieldArray, Form, Formik } from 'formik';
 import React, { useEffect } from 'react';
-import { RacuniSchema } from '../../../validation/racuni';
-import $t from '../../lang';
+import { RacuniSchema } from '../../validation/racuni';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  deletePreduzece,
-  getPreduzece,
-  storePreduzece,
-  updatePreduzece,
-} from '../../store/actions/PreduzecaActions';
-import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
 import { useRouteMatch } from 'react-router-dom';
-import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
-import { preduzecaService } from '../../services/PreduzecaService';
-import { kategorijeService } from '../../services/KategorijeService';
-import ZiroRacuniFieldArray from '../FizickaLica/ZiroRacuniFieldArray';
-import Checkbox from '../shared/forms/Checkbox';
-import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
-import { djelatnostiService } from '../../services/DjelatnostiService';
+import {
+  deleteRacun,
+  getRacun,
+  storeRacun,
+  updateRacun,
+} from '../../store/actions/RacuniActions';
+import { racunSelector } from '../../store/selectors/RacuniSelector';
 
 const RacuniForm = () => {
   const dispatch = useDispatch();
@@ -36,17 +28,17 @@ const RacuniForm = () => {
     { key: 'Javan', value: 'Javan' },
   ];
 
-  const preduzece = useSelector(preduzeceSelector());
+  const racun = useSelector(racunSelector());
 
   useEffect(() => {
-    if (params.id) dispatch(getPreduzece(params.id));
+    if (params.id) dispatch(getRacun(params.id));
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-    if (params.id) dispatch(updatePreduzece({ id: params.id, ...values }));
+    if (params.id) dispatch(updateRacun({ id: params.id, ...values }));
     else
       dispatch(
-        storePreduzece({
+        storeRacun({
           ...values,
           status: values.status === 'true' ? true : false,
         })
@@ -111,7 +103,7 @@ const RacuniForm = () => {
                   <button
                     type="button"
                     className="btn btn__link ml-m"
-                    onClick={() => dispatch(deletePreduzece(params.id))}
+                    onClick={() => dispatch(deleteRacun(params.id))}
                   >
                     Nazad
                   </button>

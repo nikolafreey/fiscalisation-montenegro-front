@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import AppLayout from './components/layout/AppLayout';
 import AppRouter from './routes/AppRouter';
@@ -13,18 +13,16 @@ function App() {
 
   useEffect(() => {
     authService.getCsrfCookie();
-    if (authService.isAuthenticated())
-      dispatch(getUser());
+    if (authService.isAuthenticated()) dispatch(getUser());
   }, [dispatch]);
 
   const [language, setLanguage] = useState('sr');
   i18n.locale = language;
-  
+
   return (
     <AppLayout>
-      <AppRouter />  
+      <AppRouter />
     </AppLayout>
-    
   );
 }
 

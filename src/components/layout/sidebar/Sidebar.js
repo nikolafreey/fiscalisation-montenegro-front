@@ -4,6 +4,7 @@ import {
   HOME,
   PARTNERI,
   PREDUZECA,
+  RACUNI,
   ROBE,
   USLUGE,
 } from '../../../constants/routes';
@@ -43,7 +44,11 @@ const Sidebar = () => {
             label="Stavke"
             to={USLUGE.INDEX}
           />
-          <SidebarLink ImageSource={heroStavke} label="Roba" to={ROBE.INDEX} />
+          <SidebarLink
+            ImageSource={heroStavke}
+            label="Računi"
+            to={RACUNI.INDEX}
+          />
         </ul>
       </div>
     </div>
