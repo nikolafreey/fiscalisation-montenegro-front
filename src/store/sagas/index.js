@@ -123,6 +123,20 @@ import {
   racunStore,
   racunUpdate,
 } from './RacuniSagas';
+import {
+  DELETE_PREDRACUN,
+  GET_PREDRACUN,
+  GET_PREDRACUNI,
+  STORE_PREDRACUN,
+  UPDATE_PREDRACUN,
+} from '../actionTypes/PredracuniActionTypes';
+import {
+  predracunDelete,
+  predracunGet,
+  predracuniGet,
+  predracunStore,
+  predracunUpdate,
+} from './PredracuniSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -143,6 +157,12 @@ export default function* rootSaga() {
     takeLatest(GET_RACUN, racunGet),
     takeLatest(UPDATE_RACUN, racunUpdate),
     takeLatest(DELETE_RACUN, racunDelete),
+
+    takeLatest(STORE_PREDRACUN, predracunStore),
+    takeLatest(GET_PREDRACUNI, predracuniGet),
+    takeLatest(GET_PREDRACUN, predracunGet),
+    takeLatest(UPDATE_PREDRACUN, predracunUpdate),
+    takeLatest(DELETE_PREDRACUN, predracunDelete),
 
     takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
     takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),

@@ -6,6 +6,7 @@ import {
   FIZICKA_LICA,
   HOME,
   PARTNERI,
+  PREDRACUNI,
   PREDUZECA,
   RACUNI,
   ROBE,
@@ -18,6 +19,7 @@ import ProtectedRoute from './ProtectedRoute';
 import UslugeRouter from './UslugeRouter';
 import RobeRouter from './RobeRouter';
 import RacuniRouter from './RacuniRouter';
+import PredracuniRouter from './PredracuniRoute';
 
 const SidebarRouter = () => {
   return (
@@ -34,6 +36,9 @@ const SidebarRouter = () => {
         </ProtectedRoute>
         <ProtectedRoute path={RACUNI.INDEX}>
           <RacuniRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={PREDRACUNI.INDEX}>
+          <PredracuniRouter />
         </ProtectedRoute>
         <ProtectedRoute path={PREDUZECA.INDEX}>
           <PreduzecaRouter />
