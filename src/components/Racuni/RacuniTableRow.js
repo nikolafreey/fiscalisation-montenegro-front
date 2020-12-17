@@ -22,7 +22,13 @@ const RacuniTableRow = ({ item }) => {
         <Success />
       </td>
       <td className="cl">{item.broj_racuna}</td>
-      <td className="cd fw-500">{item.preduzece_id}</td>
+      <td className="cd fw-500">
+        {item.preduzece_id
+          ? item.partner?.preduzece?.kratki_naziv
+          : item.partner?.fizicko_lice?.ime +
+            ' ' +
+            item.partner?.fizicko_lice?.prezime}
+      </td>
       <td className="cd fw-500 dshow-cell">
         {item.ukupna_cijena_bez_pdv + '€'}
       </td>
