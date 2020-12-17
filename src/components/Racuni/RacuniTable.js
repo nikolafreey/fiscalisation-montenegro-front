@@ -48,7 +48,7 @@ const RacuniTable = ({ racuni }) => {
             </tr>
           </thead>
           <tbody>
-            <List data={racuni.data} renderItem={RacuniTableRow} />
+            <List data={racuni.data || []} renderItem={RacuniTableRow} />
           </tbody>
         </table>
       </div>
