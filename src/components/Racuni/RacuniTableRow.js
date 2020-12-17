@@ -1,14 +1,13 @@
 import React from 'react';
 import { ReactComponent as Success } from '../../assets/icon/success.svg';
+import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
+import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
+import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
 import { storeRacun } from '../../store/actions/RacuniActions';
 
 const RacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
-
-  const handleAddRacun = () => {
-    dispatch(storeRacun({ racun_id: item.id }));
-  };
 
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
@@ -37,6 +36,23 @@ const RacuniTableRow = ({ item }) => {
       </td>
       <td className="cd fw-500">
         {new Date(item.created_at).toLocaleDateString('en-GB')}
+      </td>
+      <td>
+        <div className="df jc-end ai-c">
+          <button className="btn btn__light btn__xs">
+            <IconLg />
+            <div className="drop-down">
+              <a href="#">
+                <Izmjeni />
+                Izmjeni
+              </a>
+              <a href="#">
+                <Obrisi />
+                Obriši
+              </a>
+            </div>
+          </button>
+        </div>
       </td>
     </tr>
   );
