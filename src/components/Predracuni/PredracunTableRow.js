@@ -19,9 +19,6 @@ const PredracuniTableRow = ({ item }) => {
 
   return (
     <tr>
-      <td className="cl">
-        <Success />
-      </td>
       <td className="cl">{item.broj_racuna}</td>
       <td className="cd fw-500">{item.preduzece_id}</td>
       <td className="cd fw-500 dshow-cell">
