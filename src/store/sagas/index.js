@@ -123,6 +123,20 @@ import {
   racunStore,
   racunUpdate,
 } from './RacuniSagas';
+import {
+  DELETE_ULAZNI_RACUN,
+  GET_ULAZNI_RACUN,
+  GET_ULAZNI_RACUNI,
+  STORE_ULAZNI_RACUN,
+  UPDATE_ULAZNI_RACUN,
+} from '../actionTypes/UlazniRacuniActionTypes';
+import {
+  ulazniRacunDelete,
+  ulazniRacunGet,
+  ulazniRacuniGet,
+  ulazniRacunStore,
+  ulazniRacunUpdate,
+} from './UlazniRacuniSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -143,6 +157,12 @@ export default function* rootSaga() {
     takeLatest(GET_RACUN, racunGet),
     takeLatest(UPDATE_RACUN, racunUpdate),
     takeLatest(DELETE_RACUN, racunDelete),
+
+    takeLatest(STORE_ULAZNI_RACUN, ulazniRacunStore),
+    takeLatest(GET_ULAZNI_RACUNI, ulazniRacuniGet),
+    takeLatest(GET_ULAZNI_RACUN, ulazniRacunGet),
+    takeLatest(UPDATE_ULAZNI_RACUN, ulazniRacunUpdate),
+    takeLatest(DELETE_ULAZNI_RACUN, ulazniRacunDelete),
 
     takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
     takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),

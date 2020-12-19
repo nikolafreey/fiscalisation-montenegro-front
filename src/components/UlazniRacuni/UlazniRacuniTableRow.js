@@ -6,7 +6,7 @@ import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
 import { storeRacun } from '../../store/actions/RacuniActions';
 
-const RacuniTableRow = ({ item }) => {
+const UlazniRacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
 
   const bojaStatus = {
@@ -18,7 +18,9 @@ const RacuniTableRow = ({ item }) => {
 
   return (
     <tr>
-      <td className="cl">{item.ikof && <Success />}</td>
+      <td className="cl">
+        <Success />
+      </td>
       <td className="cl">{item.broj_racuna}</td>
       <td className="cd fw-500">
         {item.preduzece_id
@@ -62,4 +64,4 @@ const RacuniTableRow = ({ item }) => {
   );
 };
 
-export default RacuniTableRow;
+export default UlazniRacuniTableRow;
