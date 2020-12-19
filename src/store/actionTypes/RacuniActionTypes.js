@@ -8,3 +8,9 @@ export const SET_RACUN = 'SET_RACUN';
 
 export const UPDATE_RACUN = 'UPDATE_RACUN';
 export const DELETE_RACUN = 'DELETE_RACUN';
+
+export const RESET_NOVI_RACUN = 'RESET_NOVI_RACUN';
+export const SET_KOLICINA_ROBE = 'SET_KOLICINA_ROBE';
+export const SET_KOLICINA_USLUGE = 'SET_KOLICINA_USLUGE';
+export const UKLONI_ROBU = 'UKLONI_ROBU';
+export const UKLONI_USLUGU = 'UKLONI_USLUGU';
