@@ -3,6 +3,7 @@ import {
   FIZICKA_LICA,
   HOME,
   PARTNERI,
+  PREDRACUNI,
   PREDUZECA,
   RACUNI,
   ROBE,
@@ -13,6 +14,7 @@ import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
 import { ReactComponent as heroPartneri } from '../../../assets/icon/hero-partneri.svg';
 import { ReactComponent as heroPreduzeca } from '../../../assets/icon/hero-preduzeca.svg';
 import { ReactComponent as heroStavke } from '../../../assets/icon/hero-stavke.svg';
+import { ReactComponent as heroPredracuni } from '../../../assets/icon/hero-predracuni.svg';
 
 const Sidebar = () => {
   return (
@@ -48,6 +50,11 @@ const Sidebar = () => {
             ImageSource={heroStavke}
             label="Računi"
             to={RACUNI.INDEX}
+          />
+          <SidebarLink
+            ImageSource={heroPredracuni}
+            label="Predračuni"
+            to={PREDRACUNI.INDEX}
           />
         </ul>
       </div>

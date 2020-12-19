@@ -8,6 +8,11 @@ import { getPartneri, setPartner } from '../../store/actions/PartneriActions';
 import PartneriTable from './PartneriTable';
 import PreduzeceDetails from '../Preduzeca/PreduzeceDetails';
 import FizickoLiceDetails from '../FizickaLica/FizickoLiceDetails';
+import { debounce } from 'lodash';
+
+const searchDebounced = debounce((callback) => callback(), 500);
+
+const filters = {};
 
 const Partneri = () => {
   const dispatch = useDispatch();
@@ -16,16 +21,27 @@ const Partneri = () => {
   const partner = useSelector(partnerSelector());
 
   const [filter, setFilter] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    (async () => {
-      dispatch(getPartneri({ filter: filter === 'sve' ? null : filter }));
-    })();
+    if (filter === 'sve') filters.filter = null;
+    else filters.filter = filter;
+    getFiltered();
   }, [dispatch, filter]);
+
+  useEffect(() => {
+    if(search === '') filters.search = null;
+    else filters.search = search;
+    searchDebounced(getFiltered);
+  }, [dispatch, search]);
 
   useEffect(() => {
     if (partneri.total > 0) dispatch(setPartner(partneri.data[0]));
   }, [partneri, dispatch]);
+
+  const getFiltered = () => {
+    dispatch(getPartneri(filters));
+  };
 
   return (
     <>
@@ -39,6 +55,8 @@ const Partneri = () => {
                 type="text"
                 className="search__input"
                 placeholder="Naziv ili PIB preduzeca"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
               />
             </form>
             <select className="btn btn__dark btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>

@@ -137,6 +137,20 @@ import {
   ulazniRacunStore,
   ulazniRacunUpdate,
 } from './UlazniRacuniSagas';
+import {
+  DELETE_PREDRACUN,
+  GET_PREDRACUN,
+  GET_PREDRACUNI,
+  STORE_PREDRACUN,
+  UPDATE_PREDRACUN,
+} from '../actionTypes/PredracuniActionTypes';
+import {
+  predracunDelete,
+  predracunGet,
+  predracuniGet,
+  predracunStore,
+  predracunUpdate,
+} from './PredracuniSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -163,6 +177,11 @@ export default function* rootSaga() {
     takeLatest(GET_ULAZNI_RACUN, ulazniRacunGet),
     takeLatest(UPDATE_ULAZNI_RACUN, ulazniRacunUpdate),
     takeLatest(DELETE_ULAZNI_RACUN, ulazniRacunDelete),
+    takeLatest(STORE_PREDRACUN, predracunStore),
+    takeLatest(GET_PREDRACUNI, predracuniGet),
+    takeLatest(GET_PREDRACUN, predracunGet),
+    takeLatest(UPDATE_PREDRACUN, predracunUpdate),
+    takeLatest(DELETE_PREDRACUN, predracunDelete),
 
     takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
     takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),

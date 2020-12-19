@@ -14,7 +14,7 @@ export function* userGet() {
     const { data } = yield call(authService.getUser);
     yield put(setUser(data));
   } catch (error) {
-    yield call(authService.setAuthenticatedStorage(false));
+    yield call(authService.setAuthenticatedStorage, false);
     yield put(setGlobalError(error.message));
   }
 }
