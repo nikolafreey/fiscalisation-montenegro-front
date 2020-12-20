@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { noviRacunRobaSelector, noviRacunUslugaSelector } from '../../../store/selectors/RacuniSelector';
+import { noviRacunRobaSelector, noviRacunSelector, noviRacunUslugaSelector } from '../../../store/selectors/RacuniSelector';
 import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({usluga={}, roba={}}) => {
-  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.roba_id));
-  
+  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.roba.id));
+  const noviRacun = useSelector(noviRacunSelector());
+  console.log('asdfasdf', noviRacun);
   return (
     <tr>
       <td>

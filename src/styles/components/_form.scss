@@ -8,7 +8,7 @@
     width: 100%;
     position: relative;
 
-    input[type='file'] {
+    input[type="file"] {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -18,7 +18,7 @@
       bottom: 0;
       opacity: 0;
       cursor: pointer;
-      &:focus {
+      &:focus{
         outline: none;
       }
     }
@@ -40,12 +40,12 @@
       background-color: $color-content-light;
     }
 
-    input[type='file']:focus + .file-dummy {
+    input[type="file"]:focus + .file-dummy {
       outline: 2px solid rgba(255, 255, 255, 0.5);
       outline: -webkit-focus-ring-color auto 5px;
     }
 
-    input[type='file']:valid + .file-dummy {
+    input[type="file"]:valid + .file-dummy {
       border-color: rgba(0, 255, 0, 0.4);
       background-color: rgba(0, 255, 0, 0.3);
 
@@ -57,8 +57,8 @@
       }
     }
   }
-
-  input[type='checkbox'] {
+ 
+  input[type="checkbox"]{
     border: 1px solid violet;
   }
   &__input {
@@ -74,7 +74,7 @@
 
     &:focus {
       outline: none;
-      padding: 0.9rem;
+      padding: .9rem;
       border: 2px solid $color-text-light;
       border-radius: 4px;
     }
@@ -87,15 +87,15 @@
 
     //   }
   }
-  &__span {
+  &__span{
     position: absolute;
-    top: 0.7rem;
+    top: .7rem;
     left: 41%;
     color: $color-text-light;
     background-color: $color-content-light;
 
-    @include respond(tab-land) {
-      top: 0.5rem;
+    @include respond(tab-land){
+      top: .5rem;
       left: unset;
       right: 6rem;
     }
@@ -112,30 +112,30 @@
   //     transform: translateY(-4rem);
   //   }
 
-  &__checkbox-groups-wrapper {
+  &__checkbox-groups-wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    @include respond(tab-land) {
+    
+    @include respond(tab-land){
       flex-direction: column;
       align-items: flex-start;
     }
   }
-  &__checkbox-group {
+  &__checkbox-group{
     margin-top: 1rem;
     display: flex;
     align-items: center;
   }
-  &__checkbox {
+  &__checkbox{
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 4px;
     border: 1px solid $border-input-lines;
     background-color: $color-content-light;
   }
-  &__checkbox-label {
-    margin-left: 0.7rem;
+  &__checkbox-label{
+    margin-left: .7rem;
   }
   &__radio-group {
     margin: 1rem 0;
@@ -160,7 +160,7 @@
     top: 0;
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       height: 1.5rem;
       width: 1.5rem;
@@ -179,13 +179,13 @@
     opacity: 1;
   }
 
-  &__footer {
+  &__footer{
     display: flex;
     padding: 2rem 1.5rem;
     margin-top: 2rem;
     background-color: $color-content-light;
   }
-  hr {
+  hr{
     margin: 2.5rem 0;
   }
 

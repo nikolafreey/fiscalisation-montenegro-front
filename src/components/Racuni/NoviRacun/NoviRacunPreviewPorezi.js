@@ -17,9 +17,9 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
         };
       }
       porezi[usluga.porez.id].pdvIznos +=
-        usluga.ukupna_cijena - usluga.cijena_bez_pdv;
+        usluga.kolicina * (usluga.ukupna_cijena - usluga.cijena_bez_pdv);
 
-      porezi[usluga.porez.id].ukupno += usluga.ukupna_cijena;
+      porezi[usluga.porez.id].ukupno += usluga.kolicina * usluga.ukupna_cijena;
     });
 
     Object.keys(noviRacun.robe).forEach((robaId) => {
@@ -31,13 +31,14 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
       if (!porezi[porezRobe.id]) {
         porezi[porezRobe.id] = {
           ukupno: 0,
+          pdvIznos: 0,
           stopa: porezRobe.stopa,
           naziv: porezRobe.naziv,
         };
       }
-      porezi[porezRobe.id].pdvIznos += roba.roba.cijene_roba.ukupna_cijena - roba.roba.cijene_roba.cijena_bez_pdv;
+      porezi[porezRobe.id].pdvIznos += roba.kolicina * (Number(roba.roba.cijene_roba[0].ukupna_cijena) - Number(roba.roba.cijene_roba[0].cijena_bez_pdv));
 
-      porezi[porezRobe.id].ukupno += roba.roba.cijene_roba.ukupna_cijena;
+      porezi[porezRobe.id].ukupno += roba.kolicina * Number(roba.roba.cijene_roba[0].ukupna_cijena);
     });
 
     return porezi;
@@ -53,13 +54,13 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
             <p>Ukupno za {porezi[porezId].naziv}</p>
           </div>
           <div classname="col-lg-4">
-            <p classname="txt-right">{porezi[porezId].ukupno}</p>
+            <p classname="txt-right">{porezi[porezId].ukupno.toFixed(2)}</p>
           </div>
           <div classname="col-lg-8">
             <p>{porezi[porezId].naziv}</p>
           </div>
           <div classname="col-lg-4">
-            <p classname="txt-right">{porezi[porezId].pdvIznos}</p>
+            <p classname="txt-right">{porezi[porezId].pdvIznos.toFixed(2)}</p>
           </div>
         </>
       ))}

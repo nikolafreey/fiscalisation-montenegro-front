@@ -1,6 +1,10 @@
 .icon {
   display: flex;
 
+  &.s {
+    width: 14px;
+    height: 14px;
+  }
   &.sm {
     width: 18px;
     height: 18px;

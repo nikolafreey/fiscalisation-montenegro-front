@@ -1,0 +1,25 @@
+.grid-view {
+    display: flex;
+    margin-top: 1.5rem;
+    
+    .btn {
+        background-color: $color-background-light;
+        padding: .5rem;
+        margin-left: 1rem;
+        svg {
+            stroke: $color-background-dark;
+            path {
+                stroke: $color-background-dark;
+             }
+        }
+    }
+    .active {
+        background-color: $color-background-dark!important;
+        svg {
+            stroke: $color-background-light!important;
+            path {
+               stroke: $color-background-light!important;
+            }
+        }
+    }
+}

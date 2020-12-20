@@ -14,7 +14,7 @@
   border: 1px solid $border-input-lines;
   box-sizing: border-box;
   border-radius: 4px;
-  overflow: hidden;
+  overflow:hidden;
   padding: 0.8rem;
 
   h2 {
@@ -22,8 +22,8 @@
   }
   &__close {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: .5rem;
+    right: .5rem;
     cursor: pointer;
     svg {
       stroke: $color-text-light;

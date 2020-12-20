@@ -1,0 +1,46 @@
+.stepper {
+    display: flex;
+    justify-content: flex-end;
+
+    &__btn-left, &__btn-right, &__btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: $color-background-dark;
+        padding: 0.8rem;
+        width: 3rem;
+        transition: background-color .1.5s ease-in;
+        cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+        &:hover{
+            background-color: rgba($color-background-dark, .7);
+        }
+        svg {
+            stroke: $color-background-light;
+            width: 18px;
+            height: 18px;
+        }
+    }
+    &__btn-left{
+        border-radius: 4px 0px 0px 4px;
+        
+    }
+    &__btn-right{
+        border-radius: 0px 4px 4px 0px;
+    }
+    &__btn{
+        border-radius: 4px;
+    }
+    &__input{
+        background-color: $color-content-light;
+        width: 4rem;
+        border: none;
+        text-align: center;
+        &:focus{
+            outline: none;
+        }
+    }
+}
