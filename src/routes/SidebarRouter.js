@@ -12,7 +12,6 @@ import {
   ROBE,
   ULAZNI_RACUNI,
   USLUGE,
-  ULAZNI_RACUNI,
 } from '../constants/routes';
 import FizickaLicaRouter from './FizickaLicaRouter';
 import PartneriRouter from './PartneriRouter';

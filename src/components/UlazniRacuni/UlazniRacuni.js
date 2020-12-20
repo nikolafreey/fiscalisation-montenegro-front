@@ -35,10 +35,6 @@ const UlazniRacuni = () => {
     dispatch(getUlazniRacuni());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (ulazniRacuni.total > 0) dispatch(setUlazniRacun(ulazniRacuni.data[0]));
-  }, [ulazniRacuni, dispatch]);
-
   const handleSearch = (value) => {
     dispatch(getUlazniRacuni(value));
   };
@@ -125,7 +121,7 @@ const UlazniRacuni = () => {
               />
               <div className="select w-25 df">
                 <DatePicker
-                  selected={startDate?.toLocaleDateString('en-GB')}
+                  selected={startDate}
                   onChange={(date) => handleStartDateChange(date)}
                   selectsStart
                   startDate={startDate}
@@ -133,7 +129,7 @@ const UlazniRacuni = () => {
                   className="select"
                 />
                 <DatePicker
-                  selected={endDate?.toLocaleDateString('en-GB')}
+                  selected={endDate}
                   onChange={(date) => handleEndDateChange(date)}
                   selectsEnd
                   startDate={startDate}

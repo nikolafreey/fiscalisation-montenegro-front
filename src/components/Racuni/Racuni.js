@@ -31,10 +31,6 @@ const Racuni = () => {
     dispatch(getRacuni());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (racuni.total > 0) dispatch(setRacun(racuni.data[0]));
-  }, [racuni, dispatch]);
-
   const handleSearch = (value) => {
     console.log('value', value);
     dispatch(getRacuni(value));
@@ -74,6 +70,7 @@ const Racuni = () => {
   };
 
   const handleStartDateChange = (date) => {
+    console.log('date', date);
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
@@ -122,7 +119,7 @@ const Racuni = () => {
               />
               <div className="select w-25 df">
                 <DatePicker
-                  selected={startDate?.toLocaleDateString('en-GB')}
+                  selected={startDate}
                   onChange={(date) => handleStartDateChange(date)}
                   selectsStart
                   startDate={startDate}
@@ -130,7 +127,7 @@ const Racuni = () => {
                   className="select"
                 />
                 <DatePicker
-                  selected={endDate?.toLocaleDateString('en-GB')}
+                  selected={endDate}
                   onChange={(date) => handleEndDateChange(date)}
                   selectsEnd
                   startDate={startDate}
