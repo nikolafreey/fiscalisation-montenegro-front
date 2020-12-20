@@ -12,6 +12,7 @@ import kategorijeRobeReducer from './KategorijeRobeReducer';
 import atributiReducer from './AtributiReducer';
 import { connectRouter } from 'connected-react-router';
 import racuniReducer from './RacuniReducer';
+import ulazniRacuniReducer from './UlazniRacuniReducer';
 import predracuniReducer from './PredracuniReducer';
 
 const createRootReducer = (history) =>
@@ -29,6 +30,7 @@ const createRootReducer = (history) =>
     kategorijeRobeReducer,
     atributiReducer,
     racuniReducer,
+    ulazniRacuniReducer,
     predracuniReducer,
   });
 

@@ -4,11 +4,15 @@ import Select from 'react-select';
 import { debounce } from 'lodash';
 import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
 
-import RacuniTable from './RacuniTable';
-import { racuniSelector } from '../../store/selectors/RacuniSelector';
-import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
+import RacuniTable from './UlazniRacuniTable';
+import { ulazniRacuniSelector } from '../../store/selectors/UlazniRacuniSelector';
+import {
+  getUlazniRacuni,
+  setUlazniRacun,
+} from '../../store/actions/UlazniRacuniActions';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { getRacun, setRacun } from '../../store/actions/RacuniActions';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -23,21 +27,21 @@ const searchParams = {};
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
-const Racuni = () => {
+const UlazniRacuni = () => {
   const dispatch = useDispatch();
-  const racuni = useSelector(racuniSelector());
+  const ulazniRacuni = useSelector(ulazniRacuniSelector());
 
   useEffect(() => {
-    dispatch(getRacuni());
+    dispatch(getUlazniRacuni());
   }, [dispatch]);
 
   useEffect(() => {
-    if (racuni.total > 0) dispatch(setRacun(racuni.data[0]));
-  }, [racuni, dispatch]);
+    if (ulazniRacuni.total > 0) dispatch(setUlazniRacun(ulazniRacuni.data[0]));
+  }, [ulazniRacuni, dispatch]);
 
   const handleSearch = (value) => {
     console.log('value', value);
-    dispatch(getRacuni(value));
+    dispatch(getUlazniRacuni(value));
   };
 
   const resetDatePicker = () => {
@@ -107,7 +111,7 @@ const Racuni = () => {
                   <button className="search__button" type="submit"></button>
                   <input
                     name="search"
-                    placeholder="Pretraži Račune"
+                    placeholder="Pretraži Ulazne Račune"
                     class="search__input"
                     value={search}
                     onChange={handleChange}
@@ -144,7 +148,7 @@ const Racuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {racuni?.ukupna_cijena?.toFixed(2) + '€'}
+                  {ulazniRacuni?.ukupna_cijena?.toFixed(2) + '€'}
                 </h3>
               </div>
               <div className="box">
@@ -174,11 +178,11 @@ const Racuni = () => {
               </div>
             </div>
           </div>
-          <RacuniTable racuni={racuni} />
+          <RacuniTable ulazniRacuni={UlazniRacuni} />
         </div>
       </div>
     </>
   );
 };
 
-export default Racuni;
+export default UlazniRacuni;

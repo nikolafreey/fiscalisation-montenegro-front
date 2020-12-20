@@ -21,6 +21,12 @@ export const RACUNI = {
   CREATE: '/racuni/create',
   SHOW: '/racuni/:id',
 };
+export const ULAZNI_RACUNI = {
+  INDEX: '/ulazni-racuni',
+  EDIT: '/ulazni-racuni/edit/:id',
+  CREATE: '/ulazni-racuni/create',
+  SHOW: '/ulazni-racuni/:id',
+};
 export const PREDRACUNI = {
   INDEX: '/predracuni',
   EDIT: '/predracuni/edit/:id',
