@@ -6,15 +6,25 @@ import {
   PREDRACUNI,
   PREDUZECA,
   RACUNI,
-  ROBE,
+  ULAZNI_RACUNI,
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
+import { ReactComponent as heroRacuni } from '../../../assets/icon/hero-racuni.svg';
+import { ReactComponent as heroUlazniRacuni } from '../../../assets/icon/hero-prijem_racuna.svg';
 import { ReactComponent as heroPartneri } from '../../../assets/icon/hero-partneri.svg';
 import { ReactComponent as heroPreduzeca } from '../../../assets/icon/hero-preduzeca.svg';
 import { ReactComponent as heroStavke } from '../../../assets/icon/hero-stavke.svg';
 import { ReactComponent as heroPredracuni } from '../../../assets/icon/hero-predracuni.svg';
+import { ReactComponent as heroDokumenta } from '../../../assets/icon/hero-dokumenta.svg';
+import { ReactComponent as heroIzvjestaji } from '../../../assets/icon/hero-izvjestaji.svg';
+import { ReactComponent as heroModuli } from '../../../assets/icon/hero-moduli.svg';
+import { ReactComponent as heroNovosti } from '../../../assets/icon/hero-novosti.svg';
+import { ReactComponent as heroRazgovori } from '../../../assets/icon/hero-razgovori.svg';
+import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori.svg';
+import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
+import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
 
 const Sidebar = () => {
   return (
@@ -23,31 +33,13 @@ const Sidebar = () => {
         <div className="logo">računi</div>
         <ul className="items">
           <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
+          <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
+          <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} />
         </ul>
         <ul className="items">
-          <h3 className="heading-quaternary">Partneri</h3>
+          <h3 className="heading-quaternary">Računi</h3>
           <SidebarLink
-            ImageSource={heroHome}
-            label="Fizicka lica"
-            to={FIZICKA_LICA.INDEX}
-          />
-          <SidebarLink
-            ImageSource={heroPreduzeca}
-            label="Preduzeca"
-            to={PREDUZECA.INDEX}
-          />
-          <SidebarLink
-            ImageSource={heroPartneri}
-            label="Partneri"
-            to={PARTNERI.INDEX}
-          />
-          <SidebarLink
-            ImageSource={heroStavke}
-            label="Stavke"
-            to={USLUGE.INDEX}
-          />
-          <SidebarLink
-            ImageSource={heroStavke}
+            ImageSource={heroRacuni}
             label="Računi"
             to={RACUNI.INDEX}
           />
@@ -56,6 +48,55 @@ const Sidebar = () => {
             label="Predračuni"
             to={PREDRACUNI.INDEX}
           />
+          <SidebarLink
+            ImageSource={heroUlazniRacuni}
+            label="Prijem računa"
+            to={ULAZNI_RACUNI.INDEX}
+          />
+          <SidebarLink
+            ImageSource={heroStavke}
+            label="Stavke"
+            to={USLUGE.INDEX}
+          />
+        </ul>
+        <ul className="items">
+          <h3 className="heading-quaternary">Partneri</h3>
+          <SidebarLink
+            ImageSource={heroPartneri}
+            label="Partneri"
+            to={PARTNERI.INDEX}
+          />
+          <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} />
+
+          <SidebarLink ImageSource={heroDokumenta} label="Dokumenta" to={'#'} />
+          <SidebarLink
+            ImageSource={heroPreduzeca}
+            label="Preduzeca"
+            to={PREDUZECA.INDEX}
+          />
+          <SidebarLink
+            ImageSource={heroIzvjestaji}
+            label="Izvještaji"
+            to={'#'}
+          />
+
+          {/* <SidebarLink
+            ImageSource={heroHome}
+            label="Fizicka lica"
+            to={FIZICKA_LICA.INDEX}
+          /> */}
+        </ul>
+
+        <ul className="items">
+          <h3 className="heading-quaternary">Podešavanja</h3>
+
+          <SidebarLink ImageSource={heroModuli} label="Moduli" to={'#'} />
+          <SidebarLink
+            ImageSource={heroPodesavanja}
+            label="Podešavanja"
+            to={'#'}
+          />
+          <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} />
         </ul>
       </div>
     </div>

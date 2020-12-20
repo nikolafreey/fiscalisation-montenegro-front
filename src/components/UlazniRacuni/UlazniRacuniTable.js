@@ -1,9 +1,7 @@
 import { routerActions } from 'connected-react-router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
 import { getUlazniRacuni } from '../../store/actions/UlazniRacuniActions';
-import { racunSelector } from '../../store/selectors/RacuniSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 import UlazniRacuniTableRow from './UlazniRacuniTableRow';
