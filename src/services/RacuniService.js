@@ -3,6 +3,8 @@ import ApiService from './ApiService';
 const ENDPOINTS = {
   RACUNI: 'racuni',
   RACUN: 'racuni/{id}',
+  ROBE: 'robe-racuni',
+  USLUGE: 'usluge',
 };
 
 class RacuniService extends ApiService {
@@ -26,6 +28,10 @@ class RacuniService extends ApiService {
     const stavke = [...usluge, ...robe];
     this.apiClient.post(ENDPOINTS.RACUNI, { stavke });
   }
+
+  getRobe = (params) => this.apiClient.get(ENDPOINTS.ROBE, { params });
+  
+  getUsluge = (params) => this.apiClient.get(ENDPOINTS.USLUGE, { params });
 
   getRacun = (id) => this.apiClient.get(ENDPOINTS.RACUN.replace('{id}', id));
 

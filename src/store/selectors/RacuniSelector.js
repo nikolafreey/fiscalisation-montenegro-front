@@ -16,3 +16,9 @@ export const noviRacunUslugaSelector = (uslugaId) =>
 
 export const noviRacunRobaSelector = (robaId) =>
   createSelector(racuniStateSelector, (racuniState) => racuniState.noviRacun.robe[robaId]);
+
+export const stavkeRobeSelector = () =>
+  createSelector(racuniStateSelector, (racuniState) => racuniState.stavke.robe);
+
+export const stavkeUslugeSelector = () =>
+  createSelector(racuniStateSelector, (racuniState) => racuniState.stavke.usluge);

@@ -2,11 +2,14 @@ import {
   DELETE_RACUN,
   GET_RACUN,
   GET_RACUNI,
+  GET_STAVKE,
   RESET_NOVI_RACUN,
   SET_KOLICINA_ROBE,
   SET_KOLICINA_USLUGE,
   SET_RACUN,
   SET_RACUNI,
+  SET_STAVKE_ROBE,
+  SET_STAVKE_USLUGE,
   STORE_RACUN,
   UKLONI_ROBU,
   UKLONI_USLUGU,
@@ -70,4 +73,19 @@ export const ukloniRobu = (roba) => ({
 export const ukloniUslugu = (usluga) => ({
   type: UKLONI_USLUGU,
   payload: usluga,
+});
+
+export const getStavke = (payload) => ({
+  type: GET_STAVKE,
+  payload,
+});
+
+export const setStavkeRobe = (payload) => ({
+  type: SET_STAVKE_ROBE,
+  payload,
+});
+
+export const setStavkeUsluge = (payload) => ({
+  type: SET_STAVKE_USLUGE,
+  payload,
 });

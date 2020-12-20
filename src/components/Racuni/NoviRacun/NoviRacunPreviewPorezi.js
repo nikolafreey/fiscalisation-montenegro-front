@@ -4,7 +4,11 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const getPorezi = () => {
     const porezi = {};
 
-    Object.keys(noviRacun.usluge).forEach((usluga) => {
+    console.log('noviRacun', noviRacun);
+
+    Object.keys(noviRacun.usluge).forEach((uslugaId) => {
+      const usluga = noviRacun.usluge[uslugaId];
+      
       if (!porezi[usluga.porez.id]) {
         porezi[usluga.porez.id] = {
           ukupno: 0,
@@ -18,8 +22,11 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
       porezi[usluga.porez.id].ukupno += usluga.ukupna_cijena;
     });
 
-    Object.keys(noviRacun.robe).forEach((roba) => {
-      const porezRobe = roba.cijena.porez;
+    Object.keys(noviRacun.robe).forEach((robaId) => {
+      const roba = noviRacun.robe[robaId];
+      
+      console.log('porez', roba.roba.cijene_roba[0].porez);
+      const porezRobe = roba.roba.cijene_roba[0].porez;
 
       if (!porezi[porezRobe.id]) {
         porezi[porezRobe.id] = {
@@ -28,9 +35,9 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
           naziv: porezRobe.naziv,
         };
       }
-      porezi[porezRobe.id].pdvIznos += roba.ukupna_cijena - roba.cijena_bez_pdv;
+      porezi[porezRobe.id].pdvIznos += roba.roba.cijene_roba.ukupna_cijena - roba.roba.cijene_roba.cijena_bez_pdv;
 
-      porezi[porezRobe.id].ukupno += roba.ukupna_cijena;
+      porezi[porezRobe.id].ukupno += roba.roba.cijene_roba.ukupna_cijena;
     });
 
     return porezi;
@@ -43,7 +50,7 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
       {Object.keys(porezi).map((porezId) => (
         <>
           <div classname="col-lg-8">
-            <p>Ukupno za {porezi[porezId]}</p>
+            <p>Ukupno za {porezi[porezId].naziv}</p>
           </div>
           <div classname="col-lg-4">
             <p classname="txt-right">{porezi[porezId].ukupno}</p>

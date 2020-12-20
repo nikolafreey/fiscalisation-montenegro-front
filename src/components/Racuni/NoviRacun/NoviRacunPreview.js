@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { noviRacunSelector } from '../../store/selectors/RacuniSelector';
+import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewPorezi from './NoviRacunPreviewPorezi';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 
@@ -26,13 +26,13 @@ const NoviRacunPreview = () => {
       (suma, uslugaId) => {
         const usluga = noviRacun.usluge[uslugaId];
         return suma + usluga.ukupna_cijena * usluga.kolicina;
-      }
+      }, 0
     );
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
       const roba = noviRacun.robe[robaId];
       return suma + roba.ukupna_cijena * roba.kolicina;
-    });
+    }, 0);
 
     return sumaUsluga + sumaRoba;
   };
@@ -42,13 +42,13 @@ const NoviRacunPreview = () => {
       (suma, uslugaId) => {
         const usluga = noviRacun.usluge[uslugaId];
         return suma + usluga.cijena_bez_pdv * usluga.kolicina;
-      }
+      }, 0
     );
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
       const roba = noviRacun.robe[robaId];
       return suma + roba.cijena_bez_pdv * roba.kolicina;
-    });
+    }, 0);
 
     return sumaUsluga + sumaRoba;
   };

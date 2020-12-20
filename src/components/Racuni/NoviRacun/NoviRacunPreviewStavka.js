@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { ukloniRobu, ukloniUslugu } from '../../store/actions/RacuniActions';
+import { ukloniRobu, ukloniUslugu } from '../../../store/actions/RacuniActions';
 
 const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   const dispatch = useDispatch();
