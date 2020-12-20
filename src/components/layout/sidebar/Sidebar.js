@@ -6,11 +6,13 @@ import {
   PREDRACUNI,
   PREDUZECA,
   RACUNI,
-  ROBE,
+  ULAZNI_RACUNI,
   USLUGE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
+import { ReactComponent as heroRacuni } from '../../../assets/icon/hero-racuni.svg';
+import { ReactComponent as heroUlazniRacuni } from '../../../assets/icon/hero-prijem_racuna.svg';
 import { ReactComponent as heroPartneri } from '../../../assets/icon/hero-partneri.svg';
 import { ReactComponent as heroPreduzeca } from '../../../assets/icon/hero-preduzeca.svg';
 import { ReactComponent as heroStavke } from '../../../assets/icon/hero-stavke.svg';
@@ -47,7 +49,7 @@ const Sidebar = () => {
             to={USLUGE.INDEX}
           />
           <SidebarLink
-            ImageSource={heroStavke}
+            ImageSource={heroRacuni}
             label="Računi"
             to={RACUNI.INDEX}
           />
@@ -55,6 +57,11 @@ const Sidebar = () => {
             ImageSource={heroPredracuni}
             label="Predračuni"
             to={PREDRACUNI.INDEX}
+          />
+          <SidebarLink
+            ImageSource={heroUlazniRacuni}
+            label="Ulazni Računi"
+            to={ULAZNI_RACUNI.INDEX}
           />
         </ul>
       </div>
