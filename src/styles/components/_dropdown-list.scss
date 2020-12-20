@@ -50,9 +50,9 @@
       top: 3.5rem;
       right: 0;
       display: block;
-
-      @include respond(big-desktop) {
-        top: 3.3rem;
+      
+      @include respond(big-desktop){
+        top:3.3rem;
       }
       svg {
         stroke: $color-text-light;

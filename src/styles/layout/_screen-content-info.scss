@@ -1,17 +1,18 @@
 .screen-content-info {
-  .title {
+
+  .title{
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     button {
       position: relative;
-      &:hover {
-        .drop-down {
+      &:hover{
+        .drop-down{
           top: 4.1rem;
           right: 0;
           display: block;
-          svg {
+          svg{
             stroke: $color-text-light;
           }
         }
@@ -21,14 +22,14 @@
   .main-content__box {
     display: flex;
 
-    @include respond(tab-land) {
+    @include respond(tab-land){
       flex-direction: column;
     }
   }
   .side-info {
     width: 30%;
 
-    @include respond(tab-land) {
+    @include respond(tab-land){
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -36,7 +37,7 @@
   }
   .content {
     width: 70%;
-    @include respond(tab-land) {
+    @include respond(tab-land){
       width: 100%;
     }
   }
@@ -45,17 +46,17 @@
 
     svg {
       margin-right: 2rem;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out; /** Chrome & Safari **/
-      -moz-transition: all 0.3s ease-in-out; /** Firefox **/
-      -o-transition: all 0.3s ease-in-out; /** Opera **/
+      transition: all .3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out; /** Chrome & Safari **/
+      -moz-transition: all .3s ease-in-out; /** Firefox **/
+      -o-transition: all .3s ease-in-out; /** Opera **/
     }
     &:hover {
       svg {
-        transform: translate(-0.5rem, 0);
-        -webkit-transform: translate(-0.5rem, 0); /** Chrome & Safari **/
-        -o-transform: translate(-0.5rem, 0); /** Opera **/
-        -moz-transform: translate(-0.5rem, 0); /** Firefox **/
+        transform: translate(-.5rem, 0);
+        -webkit-transform: translate(-.5rem, 0); /** Chrome & Safari **/
+        -o-transform: translate(-.5rem, 0); /** Opera **/
+        -moz-transform: translate(-.5rem, 0); /** Firefox **/
       }
     }
   }

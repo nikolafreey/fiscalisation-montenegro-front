@@ -45,15 +45,15 @@ const racuniReducer = (state = initialState, action) =>
         draft.noviRacun = initialState.noviRacun;
         break;
       case SET_KOLICINA_ROBE:
-        if (!draft.noviRacun.robe[action.payload.roba.id]) draft.noviRacun.robe[action.payload.roba.id] = {};
-        if (!draft.noviRacun.robe[action.payload.roba.id].kolicina) {
-          draft.noviRacun.robe[action.payload.roba.id] = action.payload.roba;
+        if (!draft.noviRacun.robe[action.payload.roba.roba.id]) draft.noviRacun.robe[action.payload.roba.roba.id] = {};
+        if (!draft.noviRacun.robe[action.payload.roba.roba.id].kolicina) {
+          draft.noviRacun.robe[action.payload.roba.roba.id] = action.payload.roba;
         }
+        draft.noviRacun.robe[action.payload.roba.roba.id] =
+          {...draft.noviRacun.robe[action.payload.roba.roba.id], kolicina: action.payload.kolicina};
         if (action.payload.kolicina === 0) {
-          delete draft.noviRacun.robe[action.payload.roba.id];
+          delete draft.noviRacun.robe[action.payload.roba.roba.id];
         }
-        draft.noviRacun.robe[action.payload.roba.id] =
-          {...draft.noviRacun.robe[action.payload.roba.id], kolicina: action.payload.kolicina};
         break;
       case SET_KOLICINA_USLUGE:
         if (!draft.noviRacun.usluge[action.payload.usluga.id]) draft.noviRacun.usluge[action.payload.usluga.id] = {};
@@ -63,11 +63,14 @@ const racuniReducer = (state = initialState, action) =>
         if (action.payload.kolicina === 0) {
           delete draft.noviRacun.usluge[action.payload.usluga.id];
         }
-        draft.noviRacun.usluge[action.payload.usluga.id].kolicina =
-          action.payload.kolicina;
+        draft.noviRacun.usluge[action.payload.usluga.id] =
+          {...draft.noviRacun.usluge[action.payload.usluga.id], kolicina: action.payload.kolicina}
+        if (action.payload.kolicina === 0) {
+          delete draft.noviRacun.robe[action.payload.roba.roba.id];
+        }
         break;
       case UKLONI_ROBU:
-        delete draft.noviRacun.robe[action.payload.id];
+        delete draft.noviRacun.robe[action.payload.roba.id];
         break;
       case UKLONI_USLUGU:
         delete draft.noviRacun.usluge[action.payload.id];

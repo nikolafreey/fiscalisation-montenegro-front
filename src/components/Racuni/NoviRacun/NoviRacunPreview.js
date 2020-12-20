@@ -31,7 +31,7 @@ const NoviRacunPreview = () => {
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
       const roba = noviRacun.robe[robaId];
-      return suma + roba.ukupna_cijena * roba.kolicina;
+      return suma + roba.roba.cijene_roba[0].ukupna_cijena * roba.kolicina;
     }, 0);
 
     return sumaUsluga + sumaRoba;
@@ -47,7 +47,7 @@ const NoviRacunPreview = () => {
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
       const roba = noviRacun.robe[robaId];
-      return suma + roba.cijena_bez_pdv * roba.kolicina;
+      return suma + roba.roba.cijene_roba[0].cijena_bez_pdv * roba.kolicina;
     }, 0);
 
     return sumaUsluga + sumaRoba;
@@ -61,7 +61,7 @@ const NoviRacunPreview = () => {
       <div class="side-info__wrapper">
         <p class="txt-light txt-up">ukupno</p>
         <h1 class="heading-primary">
-          {ukupnaCijena} <span class="txt-light">€</span>
+          {ukupnaCijena.toFixed(2)} <span class="txt-light">€</span>
         </h1>
       </div>
 
@@ -77,13 +77,13 @@ const NoviRacunPreview = () => {
           <p>Ukupan PDV</p>
         </div>
         <div class="col-lg-4">
-          <p class="txt-right">{ukupnaCijena - ukupnaCijenaBezPdv}</p>
+          <p class="txt-right">{Number(ukupnaCijena - ukupnaCijenaBezPdv).toFixed(2)}</p>
         </div>
         <div class="col-lg-7">
           <p>Ukupno za plaćanje</p>
         </div>
         <div class="col-lg-5">
-          <p class="txt-right">{ukupnaCijena}</p>
+          <p class="txt-right">{ukupnaCijena.toFixed(2)}</p>
         </div>
       </div>
       <hr />

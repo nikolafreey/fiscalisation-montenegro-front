@@ -27,8 +27,8 @@
     background-color: transparent;
 
     &::before {
-      content: '';
-      background-image: url('../../assets/icon/search.svg');
+      content: "";
+      background-image: url("../../assets/icon/search.svg");
       width: 20px;
       height: 20px;
       z-index: 1;
@@ -47,29 +47,29 @@
     fill: $color-grey-light-4;
   }
 }
-.search-box {
+.search-box{
   border: 1px solid $color-content-lines;
   border-radius: 4px;
 
-  input {
-    padding: 0.8rem 1.5rem;
+  input{
+    padding: .8rem 1.5rem;
   }
 }
-.search-wrapper {
+.search-wrapper{
   padding: 1rem;
 }
-.search-big-box {
+.search-big-box{
   border: 1px solid $color-content-lines;
   border-radius: 4px;
-
-  .first-half {
+  
+  .first-half{
     width: 100%;
     border-right: 1px solid $color-content-lines;
   }
-  .second-half {
+  .second-half{
     width: 100%;
   }
-  input {
-    padding: 0.8rem 1.5rem;
+  input{
+    padding: .8rem 1.5rem;
   }
 }

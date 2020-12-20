@@ -1,0 +1,23 @@
+.filter{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    margin-top: 1.5rem;
+    &__tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-text-dark;
+        background-color: $color-background-light;
+        font-weight: 500;
+        border-radius: 17px;
+        padding: .2rem 1rem;
+        height: 2.2rem;
+        margin-right: 1.5rem;
+        cursor: pointer;
+    }
+    .active{
+        background-color: $color-background-dark!important;
+        color: $color-background-light;
+    }
+}

@@ -10,6 +10,11 @@
     flex-direction: column;
     width: 100%;
 
+    h1 {
+      margin: unset;
+      margin-bottom: 1.5rem;
+    }
+
     @include respond(tab-land) {
       width: 50%;
       margin: 2rem 0;
@@ -80,5 +85,11 @@
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
+  }
+  .danger {
+    color: $color-danger-dark;
+  }
+  .spn-mr-10{
+    margin-right: .5rem;
   }
 }

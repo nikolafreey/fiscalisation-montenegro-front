@@ -1,19 +1,19 @@
-.img-round {
-  position: relative;
-  display: block;
-  background-position: center;
-  background-size: cover;
-  border-radius: 100%;
-  &.sm {
-    height: 26px;
-    width: 26px;
-  }
-  &.lg {
-    height: 36px;
-    width: 36px;
-  }
-  &.xl {
-    height: 72px;
-    width: 72px;
-  }
+.img-round{
+    position: relative;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100%;
+    &.sm{
+        height: 26px;
+        width: 26px;
+    }
+    &.lg{
+        height: 36px;
+        width: 36px;
+    }
+    &.xl{
+        height: 72px;
+        width: 72px;
+    }
 }
