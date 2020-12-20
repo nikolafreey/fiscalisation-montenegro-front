@@ -8,8 +8,8 @@ export const ulazniRacuniSelector = () =>
     (ulazniRacuni) => ulazniRacuni.ulazniRacuni
   );
 
-export const racunSelector = () =>
+export const ulazniRacunSelector = () =>
   createSelector(
     ulazniRacuniStateSelector,
-    (ulazniRacun) => ulazniRacun.ulazniRacuni
+    (ulazniRacun) => ulazniRacun.ulazniRacun
   );

@@ -10,6 +10,7 @@ import {
   PREDUZECA,
   RACUNI,
   ROBE,
+  ULAZNI_RACUNI,
   USLUGE,
 } from '../constants/routes';
 import FizickaLicaRouter from './FizickaLicaRouter';
@@ -20,6 +21,7 @@ import UslugeRouter from './UslugeRouter';
 import RobeRouter from './RobeRouter';
 import RacuniRouter from './RacuniRouter';
 import PredracuniRouter from './PredracuniRoute';
+import UlazniRacuniRouter from './UlazniRacuniRouter';
 
 const SidebarRouter = () => {
   return (
@@ -39,6 +41,9 @@ const SidebarRouter = () => {
         </ProtectedRoute>
         <ProtectedRoute path={PREDRACUNI.INDEX}>
           <PredracuniRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={ULAZNI_RACUNI.INDEX}>
+          <UlazniRacuniRouter />
         </ProtectedRoute>
         <ProtectedRoute path={PREDUZECA.INDEX}>
           <PreduzecaRouter />

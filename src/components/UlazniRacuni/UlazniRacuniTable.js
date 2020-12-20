@@ -10,6 +10,7 @@ import UlazniRacuniTableRow from './UlazniRacuniTableRow';
 
 const UlazniRacuniTable = ({ ulazniRacuni }) => {
   const dispatch = useDispatch();
+  console.log('ulazniRacuni', ulazniRacuni);
 
   return (
     <>

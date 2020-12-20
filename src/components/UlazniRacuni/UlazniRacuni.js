@@ -40,7 +40,6 @@ const UlazniRacuni = () => {
   }, [ulazniRacuni, dispatch]);
 
   const handleSearch = (value) => {
-    console.log('value', value);
     dispatch(getUlazniRacuni(value));
   };
 
@@ -178,7 +177,7 @@ const UlazniRacuni = () => {
               </div>
             </div>
           </div>
-          <RacuniTable ulazniRacuni={UlazniRacuni} />
+          <RacuniTable ulazniRacuni={ulazniRacuni} />
         </div>
       </div>
     </>
