@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { racuniService } from '../../services/RacuniService';
-import { resetNoviRacun, setRacun, setRacuni } from '../actions/RacuniActions';
+import { resetNoviRacun, setRacun, setRacuni, setStavkeRobe, setStavkeUsluge } from '../actions/RacuniActions';
 import { noviRacunSelector } from '../selectors/RacuniSelector';
 
 export function* racunStore() {
@@ -48,3 +48,15 @@ export function* racunDelete({ payload }) {
     yield put(setGlobalError(error.message));
   }
 }
+
+export function* stavkeGet({ payload }) {
+  try {
+    const robeResponse = yield call(racuniService.getRobe, payload);
+    yield put(setStavkeRobe(robeResponse.data));
+    const uslugeResponse = yield call(racuniService.getUsluge, payload);
+    yield put(setStavkeUsluge(uslugeResponse.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+

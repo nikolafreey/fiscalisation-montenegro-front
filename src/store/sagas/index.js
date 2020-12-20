@@ -113,6 +113,7 @@ import {
   DELETE_RACUN,
   GET_RACUN,
   GET_RACUNI,
+  GET_STAVKE,
   STORE_RACUN,
   UPDATE_RACUN,
 } from '../actionTypes/RacuniActionTypes';
@@ -122,6 +123,7 @@ import {
   racuniGet,
   racunStore,
   racunUpdate,
+  stavkeGet,
 } from './RacuniSagas';
 import {
   DELETE_ULAZNI_RACUN,
@@ -171,6 +173,7 @@ export default function* rootSaga() {
     takeLatest(GET_RACUN, racunGet),
     takeLatest(UPDATE_RACUN, racunUpdate),
     takeLatest(DELETE_RACUN, racunDelete),
+    takeLatest(GET_STAVKE, stavkeGet),
 
     takeLatest(STORE_ULAZNI_RACUN, ulazniRacunStore),
     takeLatest(GET_ULAZNI_RACUNI, ulazniRacuniGet),

@@ -4,6 +4,7 @@ import { ERRORS, RACUNI } from '../constants/routes';
 import RacuniForm from '../components/Racuni/RacuniForm';
 import Racun from '../components/Racuni/Racun';
 import Racuni from '../components/Racuni/Racuni';
+import NoviRacun from '../components/Racuni/NoviRacun/NoviRacun';
 
 const RacuniRouter = () => {
   return (
@@ -12,7 +13,7 @@ const RacuniRouter = () => {
         <RacuniForm />
       </Route>
       <Route path={RACUNI.CREATE}>
-        <RacuniForm />
+        <NoviRacun />
       </Route>
       <Route path={RACUNI.SHOW}>
         <Racun />
