@@ -9,6 +9,9 @@ import userIcon from '../../assets/icon/user.svg';
 import loginIcon from '../../assets/icon/login.svg';
 import bellIcon from '../../assets/icon/bell.svg';
 
+import { ReactComponent as ProfileSvg } from '../../assets/icon/profile.svg';
+import { ReactComponent as LogoutSvg } from '../../assets/icon/logout.svg';
+
 const UserControls = () => {
   const dispatch = useDispatch();
 
@@ -54,20 +57,22 @@ const UserControls = () => {
       </div>
       {user ? (
         <div class="user-nav__profile" id="profile">
-          <div class="user-nav__profile--text">{user.ime + ' ' + user.prezime}</div>
+          <div class="user-nav__profile--text">
+            {user.ime + ' ' + user.prezime}
+          </div>
           <div
             class="img-round lg"
             style={{ backgroundImage: `url(${user.avatar})` }}
           ></div>
           <div class="drop-down" id="ddl">
             <a>
-              <img className="icon icon__dark md icon__drop-down" src={userIcon} alt="profile" />
+              <ProfileSvg />
               Profile
             </a>
             <a>
-              <img className="icon icon__dark md icon__drop-down" src={loginIcon} alt="logout" />
+              <LogoutSvg />
               <span onClick={() => dispatch(logoutUser())}> Log out</span>
-            </a>  
+            </a>
           </div>
         </div>
       ) : (
