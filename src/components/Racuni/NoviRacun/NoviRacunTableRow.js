@@ -5,7 +5,7 @@ import { noviRacunRobaSelector, noviRacunSelector, noviRacunUslugaSelector } fro
 import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({usluga={}, roba={}}) => {
-  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.roba.id)) || { kolicina: 0 };
+  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.id)) || { kolicina: 0 };
   const noviRacun = useSelector(noviRacunSelector());
 
   const dispatch = useDispatch();
