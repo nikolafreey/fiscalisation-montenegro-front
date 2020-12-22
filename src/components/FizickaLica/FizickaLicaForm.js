@@ -70,9 +70,7 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [
-          {broj_racuna: ''}
-        ],
+        ziro_racuni: [{ broj_racuna: '' }],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -104,6 +102,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="ime"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.ime')}
                           />
@@ -111,6 +110,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="prezime"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.prezime')}
                           />
@@ -127,6 +127,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="jmbg"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.jmbg')}
                           />
@@ -134,6 +135,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="ib"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.ib')}
                           />
@@ -267,6 +269,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-100">
                           <InputField
                             name="telefon"
+                            obavezno={true}
                             className="form__input w-48"
                             label={$t('fizickalica.telefon')}
                           />

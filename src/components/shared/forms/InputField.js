@@ -2,7 +2,7 @@ import { useField } from 'formik';
 import React from 'react';
 import Label from './Label';
 
-const InputField = ({ label, ...props }) => {
+const InputField = ({ label, obavezno = false, ...props }) => {
   const [field, meta] = useField(props);
 
   const id = props.id || props.name;
@@ -10,7 +10,7 @@ const InputField = ({ label, ...props }) => {
   return (
     <>
       <Label class="form__label" htmlFor={id}>
-        {label}
+        {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
       </Label>
 
       <input {...field} {...props} />

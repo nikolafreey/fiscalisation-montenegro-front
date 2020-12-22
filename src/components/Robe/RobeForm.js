@@ -157,6 +157,7 @@ const RobeForm = () => {
                       <div class="form__group">
                         <InputField
                           name="naziv"
+                          obavezno={true}
                           label={$t('robe.naziv')}
                           placeholder=""
                           className="form__input"
