@@ -392,7 +392,7 @@ const PreduzecaForm = () => {
                             name="email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>
@@ -484,7 +484,7 @@ const PreduzecaForm = () => {
                             name="ovlasceno_lice_kontakt_email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>
@@ -567,7 +567,7 @@ const PreduzecaForm = () => {
                             name="kontakt_email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>

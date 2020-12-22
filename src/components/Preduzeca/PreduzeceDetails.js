@@ -38,14 +38,18 @@ const PreduzeceDetails = ({ preduzece }) => {
         <div className="col-l">
           <p className="txt-up mb-20">pib</p>
           <p className="txt-up mb-20">pdv</p>
-          <p className="txt-up mb-20">iban</p>
-          <p className="txt-up mb-20">bic / swift</p>
+          <p className="txt-up mb-20"> {preduzece.iban ? 'iban' : null}</p>
+          <p className="txt-up mb-20">
+            {preduzece.bic_swift ? 'bic / swift' : null}
+          </p>
         </div>
         <div className="col-r">
           <p className="mb-20">{preduzece.pib}</p>
           <p className="mb-20">{preduzece.pdv}</p>
-          <p className="mb-20">{preduzece.iban}</p>
-          <p className="mb-20">{preduzece.bic_swift}</p>
+          <p className="mb-20">{preduzece.iban ? preduzece.iban : null}</p>
+          <p className="mb-20">
+            {preduzece.bic_swift ? preduzece.bic_swift : null}
+          </p>
         </div>
       </div>
       <div
@@ -84,34 +88,46 @@ const PreduzeceDetails = ({ preduzece }) => {
             <a href={`tel:${preduzece.telefon}`}>{preduzece.telefon}</a>
           </p>
           <div className="df ai-c jc-end">
-            <p>WhatsApp</p>
             {!!preduzece.telefon_whatsapp && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>WhatsApp</p>
+                <CheckIcon className="icon icon__dark sm" />
+              </>
             )}
           </div>
           <div className="df ai-c jc-end">
-            <p>Viber</p>
             {!!preduzece.telefon_viber && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>Viber</p>
+                <CheckIcon className="icon icon__dark sm" />
+              </>
             )}
           </div>
           <div className="df ai-c jc-end">
-            <p>Facetime</p>
             {!!preduzece.telefon_facetime && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>Facetime</p>
+                <CheckIcon className="icon icon__dark sm" />{' '}
+              </>
             )}
           </div>
         </div>
       </div>
       <div className="side-info__info">
         <div className="col-l">
-          <p className="mb-20">Fax</p>
-          <p className="mb-20">Email</p>
-          <p className="mb-20">Websajt</p>
-          <p className="mb-20">Twitter</p>
-          <p className="mb-20">Instagram</p>
-          <p className="mb-20">Facebook</p>
-          <p className="mb-20">Skype</p>
+          <p className="mb-20">{preduzece.fax ? 'Fax' : null}</p>
+          <p className="mb-20">{preduzece.email ? 'Email' : null}</p>
+          <p className="mb-20">{preduzece.website ? 'Websajt' : null}</p>
+          <p className="mb-20">
+            {preduzece.twitter_username ? 'Twitter' : null}
+          </p>
+          <p className="mb-20">
+            {preduzece.instagram_username ? 'Instagram' : null}
+          </p>
+          <p className="mb-20">
+            {preduzece.facebook_username ? 'Facebook' : null}
+          </p>
+          <p className="mb-20">{preduzece.skype_username ? 'Skype' : null}</p>
         </div>
         <div className="col-r">
           <p className="mb-20">
@@ -168,80 +184,104 @@ const PreduzeceDetails = ({ preduzece }) => {
         </div>
       </div>
       <hr />
-      <h3 className="heading-tertiary">Ovlašćeno lice</h3>
+      {preduzece.ovlascena_lica?.length > 0 && (
+        <>
+          <h3 className="heading-tertiary">Ovlašćeno lice</h3>
+          <div className="side-info__info">
+            <div className="col-l">
+              <p className="mb-20">Ime i prezime</p>
+            </div>
+            <div className="col-r">
+              <p className="mb-20">
+                {preduzece.ovlascena_lica[0].ime +
+                  ' ' +
+                  preduzece.ovlascena_lica[0].prezime}
+              </p>
+            </div>
+          </div>
+        </>
+      )}
       <div className="side-info__info">
-        <div className="col-l">
-          <p className="mb-20">Ime i prezime</p>
-        </div>
-        <div className="col-r">
-          {preduzece.ovlascena_lica?.length > 0 && (
-            <p className="mb-20">
-              {preduzece.ovlascena_lica[0].ime +
-                ' ' +
-                preduzece.ovlascena_lica[0].prezime}
-            </p>
-          )}
-        </div>
-      </div>
-      <div className="side-info__info">
-        <div className="col-l">
-          <div className="mb-20">Telefon</div>
-        </div>
         {preduzece.ovlascena_lica?.length > 0 && (
-        <div className="col-r mb-20">
-        <div className="df ai-c jc-end">
-            <p>WhatsApp</p>
-            {!!preduzece.ovlascena_lica[0].telefon_whatsapp && (
-              <CheckIcon className="icon icon__dark sm" />
-            )}
+          <div className="col-r mb-20">
+            <div className="df ai-c jc-end">
+              {!!preduzece.ovlascena_lica[0].telefon_whatsapp && (
+                <>
+                  <p>WhatsApp</p>
+                  <CheckIcon className="icon icon__dark sm" />{' '}
+                </>
+              )}
+            </div>
+            <div className="df ai-c jc-end">
+              {!!preduzece.ovlascena_lica[0].telefon_viber && (
+                <>
+                  <p>Viber</p>
+                  <CheckIcon className="icon icon__dark sm" />
+                </>
+              )}
+            </div>
+            <div className="df ai-c jc-end">
+              {!!preduzece.ovlascena_lica[0].telefon_facetime && (
+                <>
+                  <p>Facetime</p>
+                  <CheckIcon className="icon icon__dark sm" />
+                </>
+              )}
+            </div>
           </div>
-          <div className="df ai-c jc-end">
-            <p>Viber</p>
-            {!!preduzece.ovlascena_lica[0].telefon_viber && (
-              <CheckIcon className="icon icon__dark sm" />
-            )}
-          </div>
-          <div className="df ai-c jc-end">
-            <p>Facetime</p>
-            {!!preduzece.ovlascena_lica[0].telefon_facetime && (
-              <CheckIcon className="icon icon__dark sm" />
-            )}
-          </div>
-        </div>)}
+        )}
       </div>
-      <hr />
-      <h3 className="heading-tertiary">Osoba za kontakt</h3>
+      {(preduzece.kontakt_ime || preduzece.kontakt_prezime) && (
+        <>
+          <h3 className="heading-tertiary">Osoba za kontakt</h3>
+          <div className="side-info__info">
+            <div className="col-l">
+              <p className="mb-20">
+                {preduzece.kontakt_ime || preduzece.kontakt_prezime
+                  ? 'Ime i prezime'
+                  : null}
+              </p>
+            </div>
+            <div className="col-r">
+              <p className="mb-20">
+                {preduzece.kontakt_ime ? preduzece.kontakt_ime + ' ' : null}
+                {preduzece.kontakt_prezime ? preduzece.kontakt_prezime : null}
+              </p>
+            </div>
+          </div>
+        </>
+      )}
       <div className="side-info__info">
-        <div className="col-l">
-          <p className="mb-20">Ime i prezime</p>
-        </div>
-        <div className="col-r">
-          <p className="mb-20">
-            {preduzece.kontakt_ime + ' ' + preduzece.kontakt_prezime}
-          </p>
-        </div>
-      </div>
-      <div className="side-info__info">
-        <div className="col-l">
-          <div className="mb-20">Telefon</div>
-        </div>
+        {(!!preduzece.kontakt_whatsapp ||
+          !!preduzece.kontakt_viber ||
+          !!preduzece.kontakt_facetime) && (
+          <div className="col-l">
+            <div className="mb-20">Telefon</div>
+          </div>
+        )}
         <div className="col-r mb-20">
           <div className="df ai-c jc-end">
-            <p>WhatsApp</p>
             {!!preduzece.kontakt_whatsapp && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>WhatsApp</p>
+                <CheckIcon className="icon icon__dark sm" />{' '}
+              </>
             )}
           </div>
           <div className="df ai-c jc-end">
-            <p>Viber</p>
             {!!preduzece.kontakt_viber && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>Viber</p>
+                <CheckIcon className="icon icon__dark sm" />{' '}
+              </>
             )}
           </div>
           <div className="df ai-c jc-end">
-            <p>Facetime</p>
             {!!preduzece.kontakt_facetime && (
-              <CheckIcon className="icon icon__dark sm" />
+              <>
+                <p>Facetime</p>
+                <CheckIcon className="icon icon__dark sm" />
+              </>
             )}
           </div>
         </div>
