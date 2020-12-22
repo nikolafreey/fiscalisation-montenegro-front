@@ -119,7 +119,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to="/stavke" className="link df">
+          <Link to="#stavke" className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 

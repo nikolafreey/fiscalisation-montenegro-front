@@ -3,6 +3,8 @@ import { ReactComponent as Badge } from '../../assets/icon/badge.svg';
 import { ReactComponent as Edit } from '../../assets/icon/edit.svg';
 import { ReactComponent as Delete } from '../../assets/icon/delete.svg';
 import { ReactComponent as Dots } from '../../assets/icon/dots.svg';
+import { Link } from 'react-router-dom';
+import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
 
 const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
   console.log(selectedId);
@@ -50,10 +52,16 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           <button type="button" class="btn btn__light btn__xs">
             <Dots className="icon lg" />
             <div class="drop-down" id="ddl">
-              <a href="#">
+              <Link
+                to={
+                  partner.preduzece
+                    ? `preduzeca/edit/${partner.preduzece.id}`
+                    : `fizicka-lica/edit/${partner.fizicko_lice.id}`
+                }
+              >
                 <Edit className="icon icon__dark md" />
                 Izmijeni
-              </a>
+              </Link>
               <a href="#">
                 <Delete className="icon icon__dark md" />
                 Obriši

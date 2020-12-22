@@ -70,9 +70,7 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [
-          {broj_racuna: ''}
-        ],
+        ziro_racuni: [{ broj_racuna: '' }],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -210,12 +208,6 @@ const FizickaLicaForm = () => {
                         ></textarea>
                       </div>
                       <div className="form__group form__area">
-                        <InputField
-                          className="form__input w-100"
-                          name="avatar"
-                          label={$t('fizickalica.avatar')}
-                        />
-
                         <div className="file-dummy">
                           <div className="success">
                             Uspješno ste selektovali fajl!

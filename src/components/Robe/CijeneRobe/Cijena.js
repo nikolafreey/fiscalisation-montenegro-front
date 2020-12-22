@@ -115,6 +115,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
               name="pdv_ukljucen"
               label={$t('cijene.pdv_ukljucen')}
               options={options}
+              defaultValue={options[1]}
             />
           </div>
         </div>
