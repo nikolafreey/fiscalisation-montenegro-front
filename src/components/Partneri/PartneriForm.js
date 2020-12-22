@@ -99,7 +99,7 @@ const PartneriForm = () => {
           label={$t('partneri.preduzece_id')}
           loadOptions={preduzecaService.getPreduzecaDropdown}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Sačuvaj</button>
         <button
           type="button"
           onClick={() => dispatch(deletePartner(params.id))}

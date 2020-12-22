@@ -152,6 +152,7 @@ const PreduzecaForm = () => {
                             name="kratki_naziv"
                             label={$t('preduzeca.kratki_naziv')}
                             placeholder=""
+                            obavezno={true}
                             type="text"
                             className="form__input"
                           />
@@ -159,6 +160,7 @@ const PreduzecaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="oblik_preduzeca"
+                            obavezno={true}
                             label={$t('preduzeca.oblik_preduzeca')}
                             placeholder=""
                             className="form__input"
@@ -179,6 +181,7 @@ const PreduzecaForm = () => {
                           name="pdv"
                           label={$t('preduzeca.pdv')}
                           placeholder=""
+                          obavezno={true}
                           type="text"
                           className="form__input w-100"
                         />
@@ -188,6 +191,7 @@ const PreduzecaForm = () => {
                           name="pib"
                           label={$t('preduzeca.pib')}
                           placeholder=""
+                          obavezno={true}
                           type="text"
                           className="form__input w-100"
                         />
@@ -601,6 +605,7 @@ const PreduzecaForm = () => {
                             name="twitter_username"
                             label={$t('preduzeca.twitter')}
                             placeholder="@restartIt"
+                            obavezno={true}
                             type="text"
                             className="form__input"
                           />
@@ -609,6 +614,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="facebook_username"
                             label={$t('preduzeca.facebook')}
+                            obavezno={true}
                             placeholder="@restartIt"
                             type="text"
                             className="form__input"
@@ -621,6 +627,7 @@ const PreduzecaForm = () => {
                             name="instagram_username"
                             label={$t('preduzeca.instagram')}
                             placeholder="@restartIt"
+                            obavezno={true}
                             type="text"
                             className="form__input"
                           />
@@ -628,6 +635,7 @@ const PreduzecaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="skype_username"
+                            obavezno={true}
                             label={$t('preduzeca.skype')}
                             placeholder="@restartIt"
                             type="text"
