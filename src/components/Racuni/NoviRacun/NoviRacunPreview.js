@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
+import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPreviewPorezi from './NoviRacunPreviewPorezi';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 
@@ -86,6 +87,7 @@ const NoviRacunPreview = () => {
           <p class="txt-right">{ukupnaCijena.toFixed(2)}</p>
         </div>
       </div>
+      <NoviRacunKusur ukupnaCijena={ukupnaCijena}/>
       <hr />
       <button class="btn btn__dark mb-10">Fiskalizuj i štampaj</button>
       <button class="btn btn__transparent">Sačuvaj</button>

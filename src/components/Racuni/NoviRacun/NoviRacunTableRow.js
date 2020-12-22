@@ -1,14 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setKolicinaRobe, setKolicinaUsluge } from '../../../store/actions/RacuniActions';
 import { noviRacunRobaSelector, noviRacunSelector, noviRacunUslugaSelector } from '../../../store/selectors/RacuniSelector';
 import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({usluga={}, roba={}}) => {
-  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.roba.id));
+  const stavka = useSelector(usluga.id ? noviRacunUslugaSelector(usluga.id) : noviRacunRobaSelector(roba.id)) || { kolicina: 0 };
   const noviRacun = useSelector(noviRacunSelector());
-  console.log('asdfasdf', noviRacun);
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    if (stavka.kolicina > 0) return;
+    if (usluga.id) {
+      dispatch(setKolicinaUsluge(usluga, stavka.kolicina + 1));
+    }
+    if (roba.id) {
+      dispatch(setKolicinaRobe(roba, stavka.kolicina + 1));
+    }
+  }
+
   return (
-    <tr>
+    <tr onClick={handleClick} className={stavka.kolicina ? 'active' : '' }>
       <td>
         <p>{usluga.naziv || roba.roba.naziv}</p>
         <h3 class="heading-quaternary">{usluga.opis || roba.roba.opis}</h3>

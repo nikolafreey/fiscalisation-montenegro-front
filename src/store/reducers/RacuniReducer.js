@@ -33,6 +33,7 @@ const initialState = {
 
 const racuniReducer = (state = initialState, action) =>
   produce(state, (draft) => {
+    let id;
     /*eslint-disable indent */
     switch (action.type) {
       case SET_RACUNI:
@@ -45,32 +46,33 @@ const racuniReducer = (state = initialState, action) =>
         draft.noviRacun = initialState.noviRacun;
         break;
       case SET_KOLICINA_ROBE:
-        if (!draft.noviRacun.robe[action.payload.roba.roba.id]) draft.noviRacun.robe[action.payload.roba.roba.id] = {};
-        if (!draft.noviRacun.robe[action.payload.roba.roba.id].kolicina) {
-          draft.noviRacun.robe[action.payload.roba.roba.id] = action.payload.roba;
+        id = action.payload.roba.id;
+
+        if (!draft.noviRacun.robe[id]) draft.noviRacun.robe[id] = {};
+        if (!draft.noviRacun.robe[id].kolicina) {
+          draft.noviRacun.robe[id] = action.payload.roba;
         }
-        draft.noviRacun.robe[action.payload.roba.roba.id] =
-          {...draft.noviRacun.robe[action.payload.roba.roba.id], kolicina: action.payload.kolicina};
+        draft.noviRacun.robe[id] =
+          {...draft.noviRacun.robe[id], kolicina: action.payload.kolicina};
         if (action.payload.kolicina === 0) {
-          delete draft.noviRacun.robe[action.payload.roba.roba.id];
+          delete draft.noviRacun.robe[id];
         }
         break;
       case SET_KOLICINA_USLUGE:
-        if (!draft.noviRacun.usluge[action.payload.usluga.id]) draft.noviRacun.usluge[action.payload.usluga.id] = {};
-        if (!draft.noviRacun.usluge[action.payload.usluga.id].kolicina) {
-          draft.noviRacun.usluge[action.payload.usluga.id] = action.payload.usluga;
+        id = action.payload.usluga.id;
+
+        if (!draft.noviRacun.usluge[id]) draft.noviRacun.usluge[id] = {};
+        if (!draft.noviRacun.usluge[id].kolicina) {
+          draft.noviRacun.usluge[id] = action.payload.usluga;
         }
+        draft.noviRacun.usluge[id] =
+          {...draft.noviRacun.usluge[id], kolicina: action.payload.kolicina}
         if (action.payload.kolicina === 0) {
-          delete draft.noviRacun.usluge[action.payload.usluga.id];
-        }
-        draft.noviRacun.usluge[action.payload.usluga.id] =
-          {...draft.noviRacun.usluge[action.payload.usluga.id], kolicina: action.payload.kolicina}
-        if (action.payload.kolicina === 0) {
-          delete draft.noviRacun.robe[action.payload.roba.roba.id];
+          delete draft.noviRacun.usluge[id];
         }
         break;
       case UKLONI_ROBU:
-        delete draft.noviRacun.robe[action.payload.roba.id];
+        delete draft.noviRacun.robe[action.payload.id];
         break;
       case UKLONI_USLUGU:
         delete draft.noviRacun.usluge[action.payload.id];

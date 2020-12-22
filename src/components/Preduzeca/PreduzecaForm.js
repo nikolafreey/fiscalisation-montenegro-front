@@ -11,8 +11,9 @@ import {
   updatePreduzece,
 } from '../../store/actions/PreduzecaActions';
 import DropDown from '../shared/forms/DropDown';
+import { ReactComponent as LinkPreduzecaSvg } from '../../assets/icon/link.svg';
 import InputField from '../shared/forms/InputField';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import { kategorijeService } from '../../services/KategorijeService';
@@ -22,6 +23,7 @@ import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { djelatnostiService } from '../../services/DjelatnostiService';
 import MapContainer from '../shared/forms/MapContainer';
+import { PREDUZECA } from '../../constants/routes';
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
@@ -125,6 +127,11 @@ const PreduzecaForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
+          <Link to={PREDUZECA.INDEX} className="link df">
+            <LinkPreduzecaSvg />
+            <p>Povratak na Preduzeća</p>
+          </Link>
+          <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
           <div className="main-content__box">
             <div className="content">
               <Form>

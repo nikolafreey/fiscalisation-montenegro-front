@@ -1,20 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { LIST } from '../../../constants/layout';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import List from '../../shared/lists/List';
 import PaginationControls from '../../shared/lists/PaginationControls';
 import NoviRacunTableRow from './NoviRacunTableRow';
 
 
-const NoviRacunTable = ({ robe, usluge }) => {
+const NoviRacunTable = ({ robe, usluge, view }) => {
   const dispatch = useDispatch();
 
   return (
     <>
-      <div className="table-wrapper">
-        <table className="table">
+      <div className={view === LIST ? "table-wrapper" : "table-wrapper-grid-view"}>
+        <table className={view === LIST ? "table" : "table-grid-view"}>
           <thead>
-            <tr>
+            <tr className={view === LIST ? "" : "d-none"}>
               <th>
                 <span className="heading-quaternary">Usluge/robe</span>
               </th>

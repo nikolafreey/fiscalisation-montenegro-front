@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
@@ -7,9 +7,13 @@ import { stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selecto
 import { getStavke } from '../../../store/actions/RacuniActions';
 import NoviRacunTable from './NoviRacunTable';
 import NoviRacunPreview from './NoviRacunPreview';
+import { LIST, GRID } from '../../../constants/layout';
+import ChooseView from '../../shared/lists/ChooseView';
 
 const NoviRacun = () => {
   const dispatch = useDispatch();
+
+  const [view, setView] = useState(LIST);
 
   const robe = useSelector(stavkeRobeSelector());
   const usluge = useSelector(stavkeUslugeSelector());
@@ -29,12 +33,13 @@ const NoviRacun = () => {
         <div class="content">
           <div class="main-content__search-wrapper">
             <SearchForm handleSubmit={handleSearch} />
+            <ChooseView view={view} setView={setView}/>
           </div>
-          <NoviRacunTable robe={robe} usluge={usluge} />
+          <NoviRacunTable view={view} robe={robe} usluge={usluge} />
           <div class="df jc-center ai-c fd-column">
             <hr class="w-60 " />
             <p class="mb-25">
-              ili kreirajte novi unos ako preduzeće nije u listi
+              ili kreirajte novi unos ako usluga/roba nije u listi
             </p>
             {/*<Link exact to={PREDUZECA.CREATE}>
               <button class="btn btn__dark btn__xl">
