@@ -12,6 +12,7 @@ import {
 } from '../../store/actions/PreduzecaActions';
 import DropDown from '../shared/forms/DropDown';
 import { ReactComponent as LinkPreduzecaSvg } from '../../assets/icon/link.svg';
+import { ReactComponent as IconFillSvg } from '../../assets/icon/icon_fill.svg';
 import InputField from '../shared/forms/InputField';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
@@ -219,6 +220,7 @@ const PreduzecaForm = () => {
                             name="drzava"
                             label={$t('preduzeca.drzava')}
                             placeholder=""
+                            type="text"
                             className="form__input"
                           />
                         </div>
@@ -399,7 +401,7 @@ const PreduzecaForm = () => {
                             name="email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>
@@ -491,7 +493,7 @@ const PreduzecaForm = () => {
                             name="ovlasceno_lice_kontakt_email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>
@@ -574,7 +576,7 @@ const PreduzecaForm = () => {
                             name="kontakt_email"
                             label={$t('preduzeca.email')}
                             placeholder=""
-                            type="text"
+                            type="email"
                             className="form__input"
                           />
                         </div>
@@ -598,7 +600,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="twitter_username"
                             label={$t('preduzeca.twitter')}
-                            placeholder=""
+                            placeholder="@restartIt"
                             type="text"
                             className="form__input"
                           />
@@ -607,7 +609,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="facebook_username"
                             label={$t('preduzeca.facebook')}
-                            placeholder=""
+                            placeholder="@restartIt"
                             type="text"
                             className="form__input"
                           />
@@ -618,7 +620,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="instagram_username"
                             label={$t('preduzeca.instagram')}
-                            placeholder=""
+                            placeholder="@restartIt"
                             type="text"
                             className="form__input"
                           />
@@ -627,7 +629,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="skype_username"
                             label={$t('preduzeca.skype')}
-                            placeholder=""
+                            placeholder="@restartIt"
                             type="text"
                             className="form__input"
                           />
@@ -677,13 +679,19 @@ const PreduzecaForm = () => {
                         </div>
                       </div>
                       <div className="df mtb-25">
-                        <InputField
+                        {/* <InputField
                           name="verifikovan"
                           label={$t('preduzeca.verifikovan')}
                           placeholder=""
                           type="radio"
                           className="form__radio-input"
-                        />
+                        /> */}
+                        {values.verifikovan ? (
+                          <>
+                            <IconFillSvg />
+                            <span>Verifikovano preduzeće</span>
+                          </>
+                        ) : null}
                       </div>
                     </div>
                     <div className="col-md-4">
