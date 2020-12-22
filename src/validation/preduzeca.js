@@ -2,25 +2,37 @@ import * as Yup from 'yup';
 import $t from '../lang';
 
 export const PreduzecaSchema = Yup.object().shape({
-  //   kontakt_ime: Yup.string()
-  //     .min(3, $t('validacija.unosKratak'))
-  //     .max(50, $t('validacija.unosDugacak'))
-  //     .required($t('validacija.obavezno')),
-  /*prezime: Yup.string()
+  kratki_naziv: Yup.string()
     .min(3, $t('validacija.unosKratak'))
     .max(50, $t('validacija.unosDugacak'))
     .required($t('validacija.obavezno')),
-  jmbg: Yup.string()
+  oblik_preduzeca: Yup.string()
+    .min(3, $t('validacija.unosKratak'))
+    .max(50, $t('validacija.unosDugacak'))
+    .required($t('validacija.obavezno')),
+  pib: Yup.string()
+    .min(3, $t('validacija.unosKratak'))
+    .max(50, $t('validacija.unosDugacak'))
+    .required($t('validacija.obavezno')),
+  pdv: Yup.string()
     .min(13, $t('validacija.unosKratak'))
     .max(13, $t('validacija.unosDugacak'))
     .required($t('validacija.obavezno')),
-  ib: Yup.string()
-    .min(8, $t('validacija.unosKratak'))
-    .max(8, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  adresa: Yup.string()
+  twitter_username: Yup.string()
     .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
+    .max(100, $t('validacija.unosDugacak'))
+    .required($t('validacija.obavezno')),
+  instagram_username: Yup.string()
+    .min(3, $t('validacija.unosKratak'))
+    .max(100, $t('validacija.unosDugacak'))
+    .required($t('validacija.obavezno')),
+  facebook_username: Yup.string()
+    .min(3, $t('validacija.unosKratak'))
+    .max(100, $t('validacija.unosDugacak'))
+    .required($t('validacija.obavezno')),
+  skype_username: Yup.string()
+    .min(3, $t('validacija.unosKratak'))
+    .max(100, $t('validacija.unosDugacak'))
     .required($t('validacija.obavezno')),
   telefon: Yup.string()
     .min(3, $t('validacija.unosKratak'))
@@ -29,29 +41,6 @@ export const PreduzecaSchema = Yup.object().shape({
   email: Yup.string()
     .min(3, $t('validacija.unosKratak'))
     .max(50, $t('validacija.unosDugacak'))
+    .email($t('validacija.email'))
     .required($t('validacija.obavezno')),
-  zanimanje: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  radno_mjesto: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  drzavljanstvo: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  nacionalnost: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  cv_link: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),
-  avatar: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(50, $t('validacija.unosDugacak'))
-    .required($t('validacija.obavezno')),*/
 });
