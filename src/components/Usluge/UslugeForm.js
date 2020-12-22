@@ -55,7 +55,7 @@ const UslugeForm = () => {
             values.ukupna_cijena
           ),
           ...values,
-          status: values.status === 'true' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
     }
@@ -66,8 +66,8 @@ const UslugeForm = () => {
   ];
 
   const statusOptions = [
-    { key: 'Aktivan', value: true },
-    { key: 'Neaktivan', value: false },
+    { key: 'Aktivan', value: 'Aktivan' },
+    { key: 'Neaktivan', value: 'Neaktivan' },
   ];
 
   const poreziDropdown = useSelector(poreziDropdownSelector());

@@ -28,8 +28,8 @@ const FizickaLicaForm = () => {
 
   const fizickoLice = useSelector(fizickoLiceSelector());
   const statusOptions = [
-    { key: 'Aktivan', value: true },
-    { key: 'Neaktivan', value: false },
+    { key: 'Aktivan', value: 'Aktivan' },
+    { key: 'Neaktivan', value: 'Neaktivan' },
   ];
   useEffect(() => {
     if (params.id) dispatch(getFizickoLice(params.id));
@@ -41,7 +41,7 @@ const FizickaLicaForm = () => {
       dispatch(
         storeFizickoLice({
           ...values,
-          status: values.status === 'true' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
   };
