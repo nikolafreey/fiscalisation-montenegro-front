@@ -168,10 +168,10 @@ const RobeForm = () => {
                         <div class="form__group">
                           <InputField
                             name="naziv"
-                            obavezno={true}
                             label={$t('robe.naziv')}
                             placeholder=""
                             className="form__input"
+                            obavezno
                           />
                         </div>
                         <div class="form__group">
@@ -201,63 +201,26 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div class="col-md-8 mtb-25">
-                          <div class="form__group">
-                            <InputField
-                              name="naziv"
-                              label={$t('robe.naziv')}
-                              placeholder=""
+                        <div class="df jc-sb">
+                          <div class="form__group w-48">
+                            <DropDown
+                              name="proizvodjac_robe_id"
+                              label={$t('robe.proizvodjac')}
+                              loadOptions={
+                                proizvodjacService.getProizvodjaciDropdown
+                              }
                               className="form__input"
                             />
                           </div>
-                          <div class="form__group">
-                            <InputField
-                              name="ean"
-                              label={$t('robe.ean')}
-                              placeholder=""
+                          <div class="form__group w-48">
+                            <DropDown
+                              name="jedinica_mjere_id"
+                              label={$t('robe.jedinica_mjere')}
+                              loadOptions={
+                                jediniceMjereService.getJediniceMjereDropdown
+                              }
                               className="form__input"
                             />
-                          </div>
-                          <div class="form__group">
-                            <InputField
-                              name="interna_sifra_proizvoda"
-                              label={$t('robe.interna_sifra_proizvoda')}
-                              placeholder=""
-                              className="form__input"
-                            />
-                          </div>
-                          <div class="form__group">
-                            <Textarea
-                              control="text"
-                              name="opis"
-                              label={$t('robe.opis')}
-                              cols="30"
-                              rows="5"
-                              placeholder=""
-                              className="form__input"
-                            />
-                          </div>
-                          <div class="df jc-sb">
-                            <div class="form__group w-48">
-                              <DropDown
-                                name="proizvodjac_robe_id"
-                                label={$t('robe.proizvodjac')}
-                                loadOptions={
-                                  proizvodjacService.getProizvodjaciDropdown
-                                }
-                                className="form__input"
-                              />
-                            </div>
-                            <div class="form__group w-48">
-                              <DropDown
-                                name="jedinica_mjere_id"
-                                label={$t('robe.jedinica_mjere')}
-                                loadOptions={
-                                  jediniceMjereService.getJediniceMjereDropdown
-                                }
-                                className="form__input"
-                              />
-                            </div>
                           </div>
                         </div>
                       </div>
