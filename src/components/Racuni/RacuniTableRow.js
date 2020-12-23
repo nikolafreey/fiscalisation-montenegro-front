@@ -16,6 +16,11 @@ const RacuniTableRow = ({ item }) => {
     privremen: { klasa: 'tag tag__neutral', naziv: 'Privremen' },
   };
 
+  const currencyFormat = (num) => {
+    // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    return num.toString().replace('.', ',');
+  };
+
   return (
     <tr>
       <td className="cl">{item.ikof && <Success />}</td>
@@ -28,10 +33,14 @@ const RacuniTableRow = ({ item }) => {
             item.partner?.fizicko_lice?.prezime}
       </td>
       <td className="cd fw-500 dshow-cell">
-        {item.ukupna_cijena_bez_pdv + '€'}
+        {currencyFormat(item.ukupna_cijena_bez_pdv) + '€'}
       </td>
-      <td className="cd fw-500 dshow-cell">{item.ukupan_iznos_pdv + '€'}</td>
-      <td className="cd fw-500">{item.ukupna_cijena_sa_pdv + '€'}</td>
+      <td className="cd fw-500 dshow-cell">
+        {currencyFormat(item.ukupan_iznos_pdv) + '€'}
+      </td>
+      <td className="cd fw-500">
+        {currencyFormat(item.ukupna_cijena_sa_pdv) + '€'}
+      </td>
       <td className="cd fw-500">
         {/* <span className={bojaStatus[item.status].klasa}>
           {bojaStatus[item.status].naziv}

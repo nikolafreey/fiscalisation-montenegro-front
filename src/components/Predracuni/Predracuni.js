@@ -141,7 +141,8 @@ const Predracuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {predracuni?.ukupna_cijena?.toFixed(2) + '€'}
+                  {predracuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
+                    '€'}
                 </h3>
               </div>
               <div className="box">

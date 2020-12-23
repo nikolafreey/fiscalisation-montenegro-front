@@ -181,6 +181,7 @@ const UslugeForm = () => {
                       <div className="form__group w-100">
                         <InputField
                           name="naziv"
+                          obavezno
                           className="form__input"
                           label={$t('usluge.naziv')}
                         />
@@ -241,6 +242,8 @@ const UslugeForm = () => {
                           value={getPriceNoVat}
                           className="form__input"
                           name="cijena_bez_pdv"
+                          obavezno
+                          label=""
                         />
                       </div>
                     </div>

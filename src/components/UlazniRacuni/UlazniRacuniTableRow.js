@@ -31,10 +31,14 @@ const UlazniRacuniTableRow = ({ item }) => {
             item.partner?.fizicko_lice?.prezime}
       </td>
       <td className="cd fw-500 dshow-cell">
-        {item.ukupna_cijena_bez_pdv + '€'}
+        {Number(item.ukupna_cijena_bez_pdv).toFixed(2).replace('.', ',') + '€'}
       </td>
-      <td className="cd fw-500 dshow-cell">{item.ukupan_iznos_pdv + '€'}</td>
-      <td className="cd fw-500">{item.ukupna_cijena_sa_pdv + '€'}</td>
+      <td className="cd fw-500 dshow-cell">
+        {Number(item.ukupan_iznos_pdv).toFixed(2).replace('.', ',') + '€'}
+      </td>
+      <td className="cd fw-500">
+        {Number(item.ukupna_cijena_sa_pdv).toFixed(2).replace('.', ',') + '€'}
+      </td>
       <td className="cd fw-500">
         {/* <span className={bojaStatus[item.status].klasa}>
           {bojaStatus[item.status].naziv}

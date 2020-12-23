@@ -13,7 +13,13 @@ const InputField = ({ label, obavezno = false, ...props }) => {
         {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
       </Label>
 
-      <input {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error-text">
+          <input {...field} {...props} />
+        </div>
+      ) : (
+        <input {...field} {...props} />
+      )}
 
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>

@@ -44,25 +44,37 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
           <div class="col-r mt-30">
             <p className="mb-10">/</p>
             <p className="mb-10">
-              {getPriceNoVat(
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {Number(
+                getPriceNoVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )
+              )
+                .toFixed(2)
+                .replace('.', ',') + '€'}
             </p>
             <p className="mb-10">
-              {getVat(
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {Number(
+                getVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )
+              )
+                .toFixed(2)
+                .replace('.', ',') + '€'}
             </p>
             <p className="mb-10">
-              {getPriceVat(
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {Number(
+                getPriceVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )
+              )
+                .toFixed(2)
+                .replace('.', ',') + '€'}
             </p>
           </div>
         </div>

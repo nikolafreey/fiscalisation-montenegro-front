@@ -27,7 +27,8 @@ const NoviRacunPreview = () => {
       (suma, uslugaId) => {
         const usluga = noviRacun.usluge[uslugaId];
         return suma + usluga.ukupna_cijena * usluga.kolicina;
-      }, 0
+      },
+      0
     );
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
@@ -43,7 +44,8 @@ const NoviRacunPreview = () => {
       (suma, uslugaId) => {
         const usluga = noviRacun.usluge[uslugaId];
         return suma + usluga.cijena_bez_pdv * usluga.kolicina;
-      }, 0
+      },
+      0
     );
 
     const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
@@ -62,7 +64,8 @@ const NoviRacunPreview = () => {
       <div class="side-info__wrapper">
         <p class="txt-light txt-up">ukupno</p>
         <h1 class="heading-primary">
-          {ukupnaCijena.toFixed(2)} <span class="txt-light">€</span>
+          {ukupnaCijena.toFixed(2).replace('.', ',')}{' '}
+          <span class="txt-light">€</span>
         </h1>
       </div>
 
@@ -78,16 +81,22 @@ const NoviRacunPreview = () => {
           <p>Ukupan PDV</p>
         </div>
         <div class="col-lg-4">
-          <p class="txt-right">{Number(ukupnaCijena - ukupnaCijenaBezPdv).toFixed(2)}</p>
+          <p class="txt-right">
+            {Number(ukupnaCijena - ukupnaCijenaBezPdv)
+              .toFixed(2)
+              .replace('.', ',') + '€'}
+          </p>
         </div>
         <div class="col-lg-7">
           <p>Ukupno za plaćanje</p>
         </div>
         <div class="col-lg-5">
-          <p class="txt-right">{ukupnaCijena.toFixed(2)}</p>
+          <p class="txt-right">
+            {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
+          </p>
         </div>
       </div>
-      <NoviRacunKusur ukupnaCijena={ukupnaCijena}/>
+      <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
       <hr />
       <button class="btn btn__dark mb-10">Fiskalizuj i štampaj</button>
       <button class="btn btn__transparent">Sačuvaj</button>

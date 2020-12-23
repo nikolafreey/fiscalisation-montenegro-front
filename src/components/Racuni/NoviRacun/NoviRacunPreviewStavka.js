@@ -26,8 +26,12 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
         <div class="df jc-end">
           <span class="spn-mr-10">
             {roba
-              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena).toFixed(2)
-              : Number(stavka.kolicina * usluga.ukupna_cijena).toFixed(2)}
+              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'
+              : Number(stavka.kolicina * usluga.ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'}
           </span>
           <span class="btn btn__link danger" onClick={handleRemove}>
             x
@@ -36,7 +40,11 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
       </div>
       <div class="df jc-end">
         {stavka.kolicina} x{' '}
-        {roba ? Number(roba.roba.cijene_roba[0].ukupna_cijena).toFixed(2) : Number(usluga.ukupna_cijena).toFixed(2)}
+        {roba
+          ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
+              .toFixed(2)
+              .replace('.', ',') + '€'
+          : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
       </div>
       {stavka.popust_procenat && (
         <>
@@ -44,14 +52,21 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
             <p>Popust {stavka.popust_procenat}%</p>
           </div>
           <div class="col-lg-4">
-            <span>-{stavka.popust_iznos}</span>
+            <span>
+              -{Number(stavka.popust_iznos).toFixed(2).replace('.', ',') + '€'}
+            </span>
           </div>
           <div class="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
           <div class="col-lg-4">
             <div class="df jc-end w-62">
-              <span>{stavka.ukupna_cijena.toFixed(2) - stavka.popust_iznos.toFixed(2)}</span>
+              <span>
+                {stavka.ukupna_cijena.toFixed(2).replace('.', ',') +
+                  '€' -
+                  stavka.popust_iznos.toFixed(2).replace('.', ',') +
+                  '€'}
+              </span>
             </div>
           </div>
         </>
