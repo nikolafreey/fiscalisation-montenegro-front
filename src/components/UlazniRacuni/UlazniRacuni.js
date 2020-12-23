@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { debounce } from 'lodash';
 import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
+import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import RacuniTable from './UlazniRacuniTable';
 import { ulazniRacuniSelector } from '../../store/selectors/UlazniRacuniSelector';
@@ -13,14 +14,12 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getRacun, setRacun } from '../../store/actions/RacuniActions';
+import { Link } from 'react-router-dom';
+import { ULAZNI_RACUNI } from '../../constants/routes';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
-  { value: 'nenaplativ', label: 'Nenaplativ' },
-  { value: 'cekaSe', label: 'Čeka Se' },
-  { value: 'privremeni', label: 'Privremeni' },
-  { value: 'nenaplativDug', label: 'Nenaplativ Dug' },
-  { value: 'status', label: 'Status' },
+  { value: 'nijePlacen', label: 'Nije Plaćen' },
 ];
 
 const searchParams = {};
@@ -110,6 +109,15 @@ const UlazniRacuni = () => {
 
   return (
     <>
+      <div className="title">
+        <h1 className="heading-primary">Ulazni računi</h1>
+        <Link exact to={ULAZNI_RACUNI.CREATE}>
+          <button className="btn btn__dark btn__xl">
+            <ButtonPlusSvg />
+            Novi ulazni račun
+          </button>
+        </Link>
+      </div>
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__search-wrapper df">

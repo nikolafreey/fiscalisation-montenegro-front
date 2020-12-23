@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { debounce } from 'lodash';
 import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
+import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import RacuniTable from './RacuniTable';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Link } from 'react-router-dom';
+import { RACUNI } from '../../constants/routes';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -107,6 +110,15 @@ const Racuni = () => {
 
   return (
     <>
+      <div className="title">
+        <h1 className="heading-primary">Izlazni računi</h1>
+        <Link exact to={RACUNI.CREATE}>
+          <button className="btn btn__dark btn__xl">
+            <ButtonPlusSvg />
+            Novi račun
+          </button>
+        </Link>
+      </div>
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__search-wrapper df">

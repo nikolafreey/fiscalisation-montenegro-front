@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
+import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { debounce } from 'lodash';
@@ -11,6 +12,8 @@ import {
   setPredracun,
 } from '../../store/actions/PredracuniActions';
 import PredracuniTable from './PredracuniTable';
+import { Link } from 'react-router-dom';
+import { PREDRACUNI } from '../../constants/routes';
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
   { value: 'poslat', label: 'Poslat' },
@@ -107,6 +110,15 @@ const Predracuni = () => {
 
   return (
     <>
+      <div className="title">
+        <h1 className="heading-primary">Predračuni</h1>
+        <Link exact to={PREDRACUNI.INDEX}>
+          <button className="btn btn__dark btn__xl">
+            <ButtonPlusSvg />
+            Novi predračun
+          </button>
+        </Link>
+      </div>
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__search-wrapper df">
