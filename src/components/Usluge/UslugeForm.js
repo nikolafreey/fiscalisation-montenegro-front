@@ -119,7 +119,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to="/stavke" className="link df">
+          <Link to="#stavke" className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
@@ -184,6 +184,7 @@ const UslugeForm = () => {
                           obavezno
                           className="form__input"
                           label={$t('usluge.naziv')}
+                          obavezno
                         />
                       </div>
                       <div className="form__group">
@@ -226,6 +227,7 @@ const UslugeForm = () => {
                             name="pdv_ukljucen"
                             label={$t('usluge.pdv_ukljucen')}
                             options={options}
+                            defaultValue={options[1]}
                           />
                         </div>
                       </div>

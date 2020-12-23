@@ -1,30 +1,40 @@
 import { ErrorMessage, useField } from 'formik';
 import React, { useState } from 'react';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import Label from './Label';
 
-const DropDownStatic = ({ label, options, ...props }) => {
+const CreatableDropDown = ({
+  label,
+  defaultOptions = true,
+  loadOptions,
+  ...props
+}) => {
   const [selectedLabel, setSelectedLabel] = useState(null);
 
   const [field, meta, helpers] = useField(props);
 
   const { error } = meta;
   const { setValue } = helpers;
-  console.log('default', props.defaultValue);
+
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
 
-      <Select
-        options={options}
+      <CreatableSelect
         name={field.name}
         onChange={(option) => {
-          setValue(option.value);
-          console.log(option);
+          if (props.isMulti) {
+            setValue(option.map((item) => item.value));
+          } else setValue(option.value);
+          console.log('asdf', option);
           setSelectedLabel(option);
         }}
-        value={selectedLabel === null ? props.defaultValue : selectedLabel}
+        value={selectedLabel}
+        cacheOptions
+        defaultOptions={defaultOptions}
+        loadOptions={loadOptions}
         isSearchable
+        {...props}
       />
 
       {!!error && <ErrorMessage>{error}</ErrorMessage>}
@@ -32,4 +42,4 @@ const DropDownStatic = ({ label, options, ...props }) => {
   );
 };
 
-export default DropDownStatic;
+export default CreatableDropDown;
