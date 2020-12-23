@@ -18,6 +18,11 @@ const options = [
 
 const searchParams = {};
 
+let visibleStatus = false;
+let visibleSearch = false;
+let visibleDateStart = false;
+let visibleDateEnd = false;
+
 const searchDebounced = debounce((callback) => callback(), 500);
 const Predracuni = () => {
   const dispatch = useDispatch();
@@ -47,23 +52,27 @@ const Predracuni = () => {
     handleSearch(searchParams);
     setStartDate(null);
     setEndDate(null);
+    visibleDateStart = false;
+    visibleDateEnd = false;
   };
 
   const resetSearch = () => {
     searchParams.search = null;
+    visibleSearch = false;
     setSearch('');
     handleSearch(searchParams);
   };
 
   const resetStatus = () => {
     searchParams.status = null;
-
+    visibleStatus = false;
     setStatus('');
     handleSearch(searchParams);
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
+    visibleSearch = true;
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -71,17 +80,20 @@ const Predracuni = () => {
 
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
+    visibleStatus = true;
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
+    visibleDateStart = true;
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
   };
 
   const handleEndDateChange = (date) => {
+    visibleDateEnd = true;
     searchParams.endDate = date;
     setEndDate(date);
     handleSearch(searchParams);
@@ -145,31 +157,45 @@ const Predracuni = () => {
                     '€'}
                 </h3>
               </div>
-              <div className="box">
-                <p className="txt-light">Pretraga</p>
-                <h3 className="heading-tertiary">{search}</h3>
-                <span onClick={resetSearch} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
-              <div className="box">
-                <p className="txt-light">Status</p>
-                <h3 className="heading-tertiary">{status}</h3>
-                <span onClick={resetStatus} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
-              <div className="box">
-                <p className="txt-light">Datum</p>
-                <h3 className="heading-tertiary">
-                  {(startDate ? startDate?.toLocaleDateString('en-US') : '') +
-                    '-' +
-                    (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
-                </h3>
-                <span onClick={resetDatePicker} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
+              {visibleSearch ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Pretraga</p>
+                    <h3 className="heading-tertiary">{search}</h3>
+                    <span onClick={resetSearch} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
+              {visibleStatus ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Status</p>
+                    <h3 className="heading-tertiary">{status}</h3>
+                    <span onClick={resetStatus} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
+              {visibleDateEnd || visibleDateStart ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Datum</p>
+                    <h3 className="heading-tertiary">
+                      {(startDate
+                        ? startDate?.toLocaleDateString('en-US')
+                        : '') +
+                        '-' +
+                        (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                    </h3>
+                    <span onClick={resetDatePicker} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
             </div>
           </div>
           <PredracuniTable predracuni={predracuni} />
