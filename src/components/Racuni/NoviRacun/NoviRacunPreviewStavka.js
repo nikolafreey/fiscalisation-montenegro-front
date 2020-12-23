@@ -16,6 +16,18 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
     }
   };
 
+  function getPopustProcenat() {
+    return roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti;
+  }
+
+  function getPopustIznos() {
+    return roba?.atribut_robe?.popust_iznos || usluga?.grupa?.popust_iznos;
+  }
+
+  function getUkupnaCijena() {
+    return roba ? Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena).toFixed(2) : Number(usluga?.ukupna_cijena).toFixed(2);
+  }
+
   return (
     <div class="row mb-15">
       <div class="col-lg-8">
@@ -38,20 +50,20 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
         {stavka.kolicina} x{' '}
         {roba ? Number(roba.roba.cijene_roba[0].ukupna_cijena).toFixed(2) : Number(usluga.ukupna_cijena).toFixed(2)}
       </div>
-      {stavka.popust_procenat && (
+      {getPopustIznos() && (
         <>
           <div class="col-lg-8">
-            <p>Popust {stavka.popust_procenat}%</p>
+            <p>Popust {getPopustProcenat()}%</p>
           </div>
           <div class="col-lg-4">
-            <span>-{stavka.popust_iznos}</span>
+            <span>-{getPopustIznos()}</span>
           </div>
           <div class="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
           <div class="col-lg-4">
             <div class="df jc-end w-62">
-              <span>{stavka.ukupna_cijena.toFixed(2) - stavka.popust_iznos.toFixed(2)}</span>
+              <span>{getUkupnaCijena() - getPopustIznos()}</span>
             </div>
           </div>
         </>

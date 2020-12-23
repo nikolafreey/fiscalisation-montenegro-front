@@ -4,28 +4,29 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const getPorezi = () => {
     const porezi = {};
 
-    console.log('noviRacun', noviRacun);
-
     Object.keys(noviRacun.usluge).forEach((uslugaId) => {
       const usluga = noviRacun.usluge[uslugaId];
       
       if (!porezi[usluga.porez.id]) {
         porezi[usluga.porez.id] = {
           ukupno: 0,
+          pdvIznos: 0,
           stopa: usluga.porez.stopa,
           naziv: usluga.porez.naziv,
         };
       }
+
       porezi[usluga.porez.id].pdvIznos +=
         usluga.kolicina * (usluga.ukupna_cijena - usluga.cijena_bez_pdv);
+
+      console.log('uslugaa', porezi[usluga.porez.id]);
 
       porezi[usluga.porez.id].ukupno += usluga.kolicina * usluga.ukupna_cijena;
     });
 
     Object.keys(noviRacun.robe).forEach((robaId) => {
       const roba = noviRacun.robe[robaId];
-      
-      console.log('porez', roba.roba.cijene_roba[0].porez);
+
       const porezRobe = roba.roba.cijene_roba[0].porez;
 
       if (!porezi[porezRobe.id]) {

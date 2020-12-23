@@ -3,28 +3,59 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
 import SearchForm from '../../shared/forms/SearchForm';
-import { stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selectors/RacuniSelector';
+import { odabraniAtributGrupaSelector, stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selectors/RacuniSelector';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import NoviRacunTable from './NoviRacunTable';
 import NoviRacunPreview from './NoviRacunPreview';
 import { LIST, GRID } from '../../../constants/layout';
 import ChooseView from '../../shared/lists/ChooseView';
+import NoviRacunFilteri from './NoviRacunFilteri';
+import { debounce } from 'lodash';
+
+const filteri = {}
+
+const searchDebounced = debounce((callback) => callback(), 500);
 
 const NoviRacun = () => {
   const dispatch = useDispatch();
 
   const [view, setView] = useState(LIST);
+  const [search, setSearch] = useState('');
 
   const robe = useSelector(stavkeRobeSelector());
   const usluge = useSelector(stavkeUslugeSelector());
+  const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
 
   useEffect(() => {
     dispatch(getStavke());
   }, [dispatch]);
 
-  const handleSearch = (values) => {
-    dispatch(getStavke(values));
+  useEffect(() => {
+    if(!odabraniAtributGrupa) {
+      filteri.grupa_id = undefined;
+      filteri.tip_atributa_id = undefined;
+    }
+    if(odabraniAtributGrupa?.tip_atributa_id) {
+      filteri.grupa_id = undefined;
+      filteri.tip_atributa_id = odabraniAtributGrupa.tip_atributa_id;
+    }
+    if(odabraniAtributGrupa?.grupa_id) {
+      filteri.tip_atributa_id = undefined;
+      filteri.grupa_id = odabraniAtributGrupa.grupa_id;
+    }
+    dispatch(getStavke(filteri));
+  }, [odabraniAtributGrupa]);
+
+  const handleSearch = () => {
+    dispatch(getStavke(filteri));
   };
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+    if (event.target.value !== '') filteri.search = event.target.value;
+    else filteri.search = undefined;
+    searchDebounced(() => handleSearch(event.target.value));
+  }
 
   return (
     <>
@@ -32,7 +63,17 @@ const NoviRacun = () => {
       <div class="main-content__box">
         <div class="content">
           <div class="main-content__search-wrapper">
-            <SearchForm handleSubmit={handleSearch} />
+            <form className="search">
+              <button className="search__button" type="submit"></button>
+              <input
+                name="search"
+                placeholder="Naziv ili PIB preduzeca"
+                class="search__input"
+                value={search}
+                onChange={handleChange}
+              />
+            </form>
+            <NoviRacunFilteri />
             <ChooseView view={view} setView={setView}/>
           </div>
           <NoviRacunTable view={view} robe={robe} usluge={usluge} />

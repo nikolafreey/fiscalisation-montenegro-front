@@ -1,11 +1,14 @@
 import {
   DELETE_RACUN,
+  GET_ATRIBUTI_GRUPE,
   GET_RACUN,
   GET_RACUNI,
   GET_STAVKE,
   RESET_NOVI_RACUN,
+  SET_ATRIBUTI_GRUPE,
   SET_KOLICINA_ROBE,
   SET_KOLICINA_USLUGE,
+  SET_ODABRANI_ATRIBUT_GRUPA,
   SET_RACUN,
   SET_RACUNI,
   SET_STAVKE_ROBE,
@@ -89,3 +92,20 @@ export const setStavkeUsluge = (payload) => ({
   type: SET_STAVKE_USLUGE,
   payload,
 });
+
+
+export const getAtributiGrupe = (payload) => ({
+  type: GET_ATRIBUTI_GRUPE,
+  payload,
+});
+
+export const setAtributiGrupe = (payload) => ({
+  type: SET_ATRIBUTI_GRUPE,
+  payload,
+});
+
+export const setOdabraniAtributGrupa = (payload) => ({
+  type: SET_ODABRANI_ATRIBUT_GRUPA,
+  payload,
+});
+

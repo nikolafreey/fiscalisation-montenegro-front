@@ -1,8 +1,9 @@
 import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { racuniService } from '../../services/RacuniService';
-import { resetNoviRacun, setRacun, setRacuni, setStavkeRobe, setStavkeUsluge } from '../actions/RacuniActions';
+import { resetNoviRacun, setAtributiGrupe, setRacun, setRacuni, setStavkeRobe, setStavkeUsluge } from '../actions/RacuniActions';
 import { noviRacunSelector } from '../selectors/RacuniSelector';
+import { emptyPaginated } from '../reducers/RacuniReducer';
 
 export function* racunStore() {
   try {
@@ -51,10 +52,27 @@ export function* racunDelete({ payload }) {
 
 export function* stavkeGet({ payload }) {
   try {
-    const robeResponse = yield call(racuniService.getRobe, payload);
-    yield put(setStavkeRobe(robeResponse.data));
-    const uslugeResponse = yield call(racuniService.getUsluge, payload);
-    yield put(setStavkeUsluge(uslugeResponse.data));
+    if (payload?.grupa_id) {
+      yield put(setStavkeRobe(emptyPaginated))
+    } else {
+      const robeResponse = yield call(racuniService.getRobe, payload);
+      yield put(setStavkeRobe(robeResponse.data));
+    }
+    if (payload?.atribut_id || payload?.tip_atributa_id) {
+      yield put(setStavkeUsluge(emptyPaginated))
+    } else {
+      const uslugeResponse = yield call(racuniService.getUsluge, payload);
+      yield put(setStavkeUsluge(uslugeResponse.data));
+    }
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* atributiGrupeGet({ payload }) {
+  try {
+    const { data } = yield call(racuniService.getAtributiGrupe, payload);
+    yield put(setAtributiGrupe(data));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

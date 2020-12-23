@@ -111,6 +111,7 @@ import {
 } from './AtributiSagas';
 import {
   DELETE_RACUN,
+  GET_ATRIBUTI_GRUPE,
   GET_RACUN,
   GET_RACUNI,
   GET_STAVKE,
@@ -118,6 +119,7 @@ import {
   UPDATE_RACUN,
 } from '../actionTypes/RacuniActionTypes';
 import {
+  atributiGrupeGet,
   racunDelete,
   racunGet,
   racuniGet,
@@ -174,6 +176,7 @@ export default function* rootSaga() {
     takeLatest(UPDATE_RACUN, racunUpdate),
     takeLatest(DELETE_RACUN, racunDelete),
     takeLatest(GET_STAVKE, stavkeGet),
+    takeLatest(GET_ATRIBUTI_GRUPE, atributiGrupeGet),
 
     takeLatest(STORE_ULAZNI_RACUN, ulazniRacunStore),
     takeLatest(GET_ULAZNI_RACUNI, ulazniRacuniGet),
