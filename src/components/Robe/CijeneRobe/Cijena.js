@@ -37,33 +37,54 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
             <p className="mb-10">Bez PDV-a:</p>
             <p className="mb-10">
               PDV
-              {getStopaPerId(values.porez_id) * 100}%:
+              {isNaN(getStopaPerId(values.porez_id) * 100)
+                ? ''
+                : getStopaPerId(values.porez_id) * 100 + '%'}
+              :
             </p>
             <p className="mb-10">Ukupna cijena</p>
           </div>
           <div class="col-r mt-30">
-            <p className="mb-10">/</p>
+            <p className="mb-10">0,00€</p>
             <p className="mb-10">
-              {Number(
+              {isNaN(
                 getPriceNoVat(
                   values.pdv_ukljucen,
                   values.porez_id,
                   values.ukupna_cijena
                 )
               )
-                .toFixed(2)
-                .replace('.', ',') + '€'}
+                ? 0
+                : Number(
+                    getPriceNoVat(
+                      values.pdv_ukljucen,
+                      values.porez_id,
+                      values.ukupna_cijena
+                    )
+                  )
+                    .toFixed(2)
+                    .replace('.', ',') + '€'}
             </p>
             <p className="mb-10">
-              {Number(
-                getVat(
-                  values.pdv_ukljucen,
-                  values.porez_id,
-                  values.ukupna_cijena
+              {isNaN(
+                Number(
+                  getVat(
+                    values.pdv_ukljucen,
+                    values.porez_id,
+                    values.ukupna_cijena
+                  )
                 )
               )
-                .toFixed(2)
-                .replace('.', ',') + '€'}
+                ? '0,00€'
+                : Number(
+                    getVat(
+                      values.pdv_ukljucen,
+                      values.porez_id,
+                      values.ukupna_cijena
+                    )
+                  )
+                    .toFixed(2)
+                    .replace('.', ',') + '€'}
             </p>
             <p className="mb-10">
               {Number(
