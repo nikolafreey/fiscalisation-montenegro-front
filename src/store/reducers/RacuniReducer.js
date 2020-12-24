@@ -1,8 +1,10 @@
 import produce from 'immer';
 import {
   RESET_NOVI_RACUN,
+  SET_ATRIBUTI_GRUPE,
   SET_KOLICINA_ROBE,
   SET_KOLICINA_USLUGE,
+  SET_ODABRANI_ATRIBUT_GRUPA,
   SET_RACUN,
   SET_RACUNI,
   SET_STAVKE_ROBE,
@@ -11,7 +13,7 @@ import {
   UKLONI_USLUGU,
 } from '../actionTypes/RacuniActionTypes';
 
-const emptyPaginated = {
+export const emptyPaginated = {
   current_page: 1,
   last_page: 1,
   total: 0,
@@ -28,7 +30,9 @@ const initialState = {
   stavke: {
     robe: { ...emptyPaginated },
     usluge: { ...emptyPaginated }
-  }
+  },
+  atributiGrupe: [],
+  odabraniAtributGrupa: null,
 };
 
 const racuniReducer = (state = initialState, action) =>
@@ -82,6 +86,12 @@ const racuniReducer = (state = initialState, action) =>
         break;
       case SET_STAVKE_USLUGE:
         draft.stavke.usluge = action.payload;
+        break;
+      case SET_ATRIBUTI_GRUPE:
+        draft.atributiGrupe = action.payload;
+        break;
+      case SET_ODABRANI_ATRIBUT_GRUPA:
+        draft.odabraniAtributGrupa = action.payload;
         break;
       default:
         break;

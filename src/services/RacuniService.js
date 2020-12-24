@@ -5,6 +5,7 @@ const ENDPOINTS = {
   RACUN: 'racuni/{id}',
   ROBE: 'robe-racuni',
   USLUGE: 'usluge',
+  ATRIBUTI_GRUPE: 'atributi-grupe',
 };
 
 class RacuniService extends ApiService {
@@ -48,6 +49,10 @@ class RacuniService extends ApiService {
       label: racun.ime,
     }));
   };
+
+  getAtributiGrupe = (params) => {
+    return this.apiClient.get(ENDPOINTS.ATRIBUTI_GRUPE, { params });
+  } 
 }
 
 export const racuniService = new RacuniService();

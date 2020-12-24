@@ -83,17 +83,32 @@ const UslugeForm = () => {
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return Math.round(100 * ukupna_cijena) / 100;
+      let temp1 = Math.round(100 * ukupna_cijena) / 100;
+      if (isNaN(temp1)) {
+        temp1 = '0,00€';
+      }
+      return temp1;
     } else {
-      return Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
+      let temp2 = Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
+      if (isNaN(temp2)) {
+        temp2 = '0,00€';
+      }
+      return temp2;
     }
   };
 
   const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return ukupna_cijena + ukupna_cijena * +stopa;
+      let temp1 = ukupna_cijena + ukupna_cijena * +stopa;
+      if (isNaN(temp1)) {
+        temp1 = '0,00€';
+      }
+      return temp1;
     } else {
+      if (isNaN(ukupna_cijena)) {
+        ukupna_cijena = '0,00€';
+      }
       return ukupna_cijena;
     }
   };
@@ -102,13 +117,20 @@ const UslugeForm = () => {
     const stopa = getStopaPerId(porez_id);
 
     if (pdv_ukljucen === 0) {
-      return Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+      let temp1 = Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+      if (isNaN(temp1)) {
+        temp1 = '0,00€';
+      }
+      return temp1;
     } else {
-      return (
+      let temp2 =
         Math.round(
           100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
-        ) / 100
-      );
+        ) / 100;
+      if (isNaN(temp2)) {
+        temp2 = '0,00€';
+      }
+      return temp2;
     }
   };
 
@@ -165,7 +187,7 @@ const UslugeForm = () => {
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
-                            <p className="mb-10">/</p>
+                            <p className="mb-10">0,00€</p>
                             <p className="mb-10">
                               {getPriceNoVat(
                                 values.pdv_ukljucen,
@@ -196,9 +218,9 @@ const UslugeForm = () => {
                       <div className="form__group w-100">
                         <InputField
                           name="naziv"
+                          obavezno
                           className="form__input"
                           label={$t('usluge.naziv')}
-                          obavezno
                         />
                       </div>
                       <div className="form__group">
@@ -259,6 +281,8 @@ const UslugeForm = () => {
                           value={getPriceNoVat}
                           className="form__input"
                           name="cijena_bez_pdv"
+                          obavezno
+                          label=""
                         />
                       </div>
                     </div>

@@ -22,3 +22,9 @@ export const stavkeRobeSelector = () =>
 
 export const stavkeUslugeSelector = () =>
   createSelector(racuniStateSelector, (racuniState) => racuniState.stavke.usluge);
+
+export const atributiGrupeSelector = () =>
+  createSelector(racuniStateSelector, (racuniState) => racuniState.atributiGrupe);
+
+export const odabraniAtributGrupaSelector = () =>
+  createSelector(racuniStateSelector, (racuniState) => racuniState.odabraniAtributGrupa);

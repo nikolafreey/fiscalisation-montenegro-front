@@ -22,8 +22,8 @@ const Login = () => {
       onSubmit={(values) => dispatch(loginUser(values))}
     >
       <Form>
-        <InputField name="email" label={$t('auth.email')} />
-        <InputField name="password" label={$t('auth.password')} />
+        <InputField name="email" obavezno label={$t('auth.email')} />
+        <InputField name="password" obavezno label={$t('auth.password')} />
 
         {!!loginError.errors && <div>{loginError.errors.email}</div>}
 

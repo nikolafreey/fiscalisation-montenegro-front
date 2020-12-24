@@ -4,11 +4,9 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const getPorezi = () => {
     const porezi = {};
 
-    console.log('noviRacun', noviRacun);
-
     Object.keys(noviRacun.usluge).forEach((uslugaId) => {
       const usluga = noviRacun.usluge[uslugaId];
-      
+
       if (!porezi[usluga.porez.id]) {
         porezi[usluga.porez.id] = {
           ukupno: 0,
@@ -29,6 +27,10 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
     Object.keys(noviRacun.robe).forEach((robaId) => {
       const roba = noviRacun.robe[robaId];
 
+<<<<<<< HEAD
+=======
+      console.log('porez', roba.roba.cijene_roba[0].porez);
+>>>>>>> a660a5db66e5311e0515cff4c04021d5e078246d
       const porezRobe = roba.roba.cijene_roba[0].porez;
 
       if (!porezi[porezRobe.id]) {

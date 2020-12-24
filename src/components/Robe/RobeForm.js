@@ -43,7 +43,10 @@ const RobeForm = () => {
   const porezi = useSelector(poreziSelector());
 
   const getStopaPerId = (porez_id) => {
-    const stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
+    let stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
+    if (isNaN(stopa)) {
+      stopa = 0;
+    }
     return stopa;
   };
 
@@ -57,7 +60,10 @@ const RobeForm = () => {
     } else {
       cijenaBezPdv =
         Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
-
+      if (isNaN(cijenaBezPdv)) {
+        cijenaBezPdv = 0;
+      }
+      console.log('cijenaBezPDV', cijenaBezPdv);
       return cijenaBezPdv;
     }
   };
@@ -65,8 +71,15 @@ const RobeForm = () => {
   const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return ukupna_cijena + ukupna_cijena * +stopa;
+      let temp = ukupna_cijena + ukupna_cijena * +stopa;
+      if (isNaN(temp)) {
+        temp = 0;
+      }
+      return temp;
     } else {
+      if (isNaN(ukupna_cijena)) {
+        ukupna_cijena = 0;
+      }
       return ukupna_cijena;
     }
   };
@@ -75,13 +88,20 @@ const RobeForm = () => {
     const stopa = getStopaPerId(porez_id);
 
     if (pdv_ukljucen === 0) {
-      return Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+      let temp1 = Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+      if (isNaN(temp1)) {
+        temp1 = 0;
+      }
+      return temp1;
     } else {
-      return (
+      let temp2 =
         Math.round(
           100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
-        ) / 100
-      );
+        ) / 100;
+      if (isNaN(temp2)) {
+        temp2 = 0;
+      }
+      return;
     }
   };
 
