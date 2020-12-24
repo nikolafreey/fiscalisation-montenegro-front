@@ -1,0 +1,98 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { ukloniRobu, ukloniUslugu } from '../../../store/actions/RacuniActions';
+
+const NoviRacunPreviewStavka = ({ roba, usluga }) => {
+  const dispatch = useDispatch();
+
+  const stavka = roba || usluga;
+
+  const handleRemove = () => {
+    if (roba) {
+      dispatch(ukloniRobu(roba));
+    }
+    if (usluga) {
+      dispatch(ukloniUslugu(usluga));
+    }
+  };
+
+  function getPopustProcenat() {
+    return roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti;
+  }
+
+  function getPopustIznos() {
+    return roba?.atribut_robe?.popust_iznos || usluga?.grupa?.popust_iznos;
+  }
+
+  function getUkupnaCijena() {
+    return roba ? Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena).toFixed(2) : Number(usluga?.ukupna_cijena).toFixed(2);
+  }
+
+  return (
+    <div class="row mb-15">
+      <div class="col-lg-8">
+        <p>{roba ? roba.roba.naziv : usluga.naziv}</p>
+        <p class="txt-light">{stavka.opis}</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="df jc-end">
+          <span class="spn-mr-10">
+            {roba
+              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'
+              : Number(stavka.kolicina * usluga.ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'}
+          </span>
+          <span class="btn btn__link danger" onClick={handleRemove}>
+            x
+          </span>
+        </div>
+      </div>
+      <div class="df jc-end">
+        {stavka.kolicina} x{' '}
+        {roba
+          ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
+              .toFixed(2)
+              .replace('.', ',') + '€'
+          : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
+      </div>
+      {getPopustIznos() && (
+        <>
+          <div class="col-lg-8">
+            <p>Popust {getPopustProcenat()}%</p>
+          </div>
+          <div class="col-lg-4">
+<<<<<<< HEAD
+            <span>-{getPopustIznos()}</span>
+=======
+            <span>
+              -{Number(stavka.popust_iznos).toFixed(2).replace('.', ',') + '€'}
+            </span>
+>>>>>>> a660a5db66e5311e0515cff4c04021d5e078246d
+          </div>
+          <div class="col-lg-8">
+            <p>Cijena sa popustom</p>
+          </div>
+          <div class="col-lg-4">
+            <div class="df jc-end w-62">
+<<<<<<< HEAD
+              <span>{getUkupnaCijena() - getPopustIznos()}</span>
+=======
+              <span>
+                {stavka.ukupna_cijena.toFixed(2).replace('.', ',') +
+                  '€' -
+                  stavka.popust_iznos.toFixed(2).replace('.', ',') +
+                  '€'}
+              </span>
+>>>>>>> a660a5db66e5311e0515cff4c04021d5e078246d
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default NoviRacunPreviewStavka;
