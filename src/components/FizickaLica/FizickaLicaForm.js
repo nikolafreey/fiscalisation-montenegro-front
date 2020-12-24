@@ -28,8 +28,8 @@ const FizickaLicaForm = () => {
 
   const fizickoLice = useSelector(fizickoLiceSelector());
   const statusOptions = [
-    { key: 'Aktivan', value: true },
-    { key: 'Neaktivan', value: false },
+    { key: 'Aktivan', value: 'Aktivan' },
+    { key: 'Neaktivan', value: 'Neaktivan' },
   ];
   useEffect(() => {
     if (params.id) dispatch(getFizickoLice(params.id));
@@ -41,7 +41,7 @@ const FizickaLicaForm = () => {
       dispatch(
         storeFizickoLice({
           ...values,
-          status: values.status === 'true' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
   };
@@ -70,9 +70,7 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [
-          {broj_racuna: ''}
-        ],
+        ziro_racuni: [{ broj_racuna: '' }],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -104,6 +102,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="ime"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.ime')}
                           />
@@ -111,6 +110,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="prezime"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.prezime')}
                           />
@@ -127,6 +127,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="jmbg"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.jmbg')}
                           />
@@ -134,6 +135,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48">
                           <InputField
                             name="ib"
+                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.ib')}
                           />
@@ -210,12 +212,6 @@ const FizickaLicaForm = () => {
                         ></textarea>
                       </div>
                       <div className="form__group form__area">
-                        <InputField
-                          className="form__input w-100"
-                          name="avatar"
-                          label={$t('fizickalica.avatar')}
-                        />
-
                         <div className="file-dummy">
                           <div className="success">
                             Uspješno ste selektovali fajl!
@@ -267,6 +263,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-100">
                           <InputField
                             name="telefon"
+                            obavezno={true}
                             className="form__input w-48"
                             label={$t('fizickalica.telefon')}
                           />

@@ -4,6 +4,8 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const getPorezi = () => {
     const porezi = {};
 
+    console.log('noviRacun', noviRacun);
+
     Object.keys(noviRacun.usluge).forEach((uslugaId) => {
       const usluga = noviRacun.usluge[uslugaId];
       
@@ -37,9 +39,13 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
           naziv: porezRobe.naziv,
         };
       }
-      porezi[porezRobe.id].pdvIznos += roba.kolicina * (Number(roba.roba.cijene_roba[0].ukupna_cijena) - Number(roba.roba.cijene_roba[0].cijena_bez_pdv));
+      porezi[porezRobe.id].pdvIznos +=
+        roba.kolicina *
+        (Number(roba.roba.cijene_roba[0].ukupna_cijena) -
+          Number(roba.roba.cijene_roba[0].cijena_bez_pdv));
 
-      porezi[porezRobe.id].ukupno += roba.kolicina * Number(roba.roba.cijene_roba[0].ukupna_cijena);
+      porezi[porezRobe.id].ukupno +=
+        roba.kolicina * Number(roba.roba.cijene_roba[0].ukupna_cijena);
     });
 
     return porezi;
@@ -55,13 +61,17 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
             <p>Ukupno za {porezi[porezId].naziv}</p>
           </div>
           <div classname="col-lg-4">
-            <p classname="txt-right">{porezi[porezId].ukupno.toFixed(2)}</p>
+            <p classname="txt-right">
+              {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+            </p>
           </div>
           <div classname="col-lg-8">
             <p>{porezi[porezId].naziv}</p>
           </div>
           <div classname="col-lg-4">
-            <p classname="txt-right">{porezi[porezId].pdvIznos.toFixed(2)}</p>
+            <p classname="txt-right">
+              {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
+            </p>
           </div>
         </>
       ))}

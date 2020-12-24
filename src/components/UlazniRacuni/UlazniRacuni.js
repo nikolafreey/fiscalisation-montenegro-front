@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { debounce } from 'lodash';
 import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
+import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import RacuniTable from './UlazniRacuniTable';
 import { ulazniRacuniSelector } from '../../store/selectors/UlazniRacuniSelector';
@@ -13,17 +14,20 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getRacun, setRacun } from '../../store/actions/RacuniActions';
+import { Link } from 'react-router-dom';
+import { ULAZNI_RACUNI } from '../../constants/routes';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
-  { value: 'nenaplativ', label: 'Nenaplativ' },
-  { value: 'cekaSe', label: 'Čeka Se' },
-  { value: 'privremeni', label: 'Privremeni' },
-  { value: 'nenaplativDug', label: 'Nenaplativ Dug' },
-  { value: 'status', label: 'Status' },
+  { value: 'nijePlacen', label: 'Nije Plaćen' },
 ];
 
 const searchParams = {};
+
+let visibleStatus = true;
+let visibleSearch = true;
+let visibleDateStart = true;
+let visibleDateEnd = true;
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -42,6 +46,8 @@ const UlazniRacuni = () => {
   const resetDatePicker = () => {
     searchParams.startDate = null;
     searchParams.endDate = null;
+    visibleDateEnd = false;
+    visibleDateStart = false;
     setStartDate(null);
     setEndDate(null);
     handleSearch(searchParams);
@@ -49,36 +55,42 @@ const UlazniRacuni = () => {
 
   const resetSearch = () => {
     searchParams.search = null;
+    visibleSearch = false;
     setSearch('');
     handleSearch(searchParams);
   };
 
   const resetStatus = () => {
     searchParams.status = null;
+    visibleStatus = false;
     setStatus('');
     handleSearch(searchParams);
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
+    visibleSearch = true;
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
   };
 
   const handleStatusChange = (selectedStatusOption) => {
+    visibleStatus = true;
     setStatus(selectedStatusOption.label);
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
+    visibleDateStart = true;
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
   };
 
   const handleEndDateChange = (date) => {
+    visibleDateEnd = true;
     searchParams.endDate = date;
     setEndDate(date);
     handleSearch(searchParams);
@@ -97,6 +109,15 @@ const UlazniRacuni = () => {
 
   return (
     <>
+      <div className="title">
+        <h1 className="heading-primary">Ulazni računi</h1>
+        <Link exact to={ULAZNI_RACUNI.CREATE}>
+          <button className="btn btn__dark btn__xl">
+            <ButtonPlusSvg />
+            Novi ulazni račun
+          </button>
+        </Link>
+      </div>
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__search-wrapper df">
@@ -143,34 +164,49 @@ const UlazniRacuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {ulazniRacuni?.ukupna_cijena?.toFixed(2) + '€'}
+                  {ulazniRacuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
+                    '€'}
                 </h3>
               </div>
-              <div className="box">
-                <p className="txt-light">Pretraga</p>
-                <h3 className="heading-tertiary">{search}</h3>
-                <span onClick={resetSearch} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
-              <div className="box">
-                <p className="txt-light">Status</p>
-                <h3 className="heading-tertiary">{status}</h3>
-                <span onClick={resetStatus} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
-              <div className="box">
-                <p className="txt-light">Datum</p>
-                <h3 className="heading-tertiary">
-                  {(startDate ? startDate?.toLocaleDateString('en-US') : '') +
-                    '-' +
-                    (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
-                </h3>
-                <span onClick={resetDatePicker} className="box__close">
-                  <BoxCloseSvg />
-                </span>
-              </div>
+              {visibleSearch ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Pretraga</p>
+                    <h3 className="heading-tertiary">{search}</h3>
+                    <span onClick={resetSearch} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
+              {visibleStatus ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Status</p>
+                    <h3 className="heading-tertiary">{status}</h3>
+                    <span onClick={resetStatus} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
+              {visibleDateStart || visibleDateEnd ? (
+                <>
+                  <div className="box">
+                    <p className="txt-light">Datum</p>
+                    <h3 className="heading-tertiary">
+                      {(startDate
+                        ? startDate?.toLocaleDateString('en-US')
+                        : '') +
+                        '-' +
+                        (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                    </h3>
+                    <span onClick={resetDatePicker} className="box__close">
+                      <BoxCloseSvg />
+                    </span>
+                  </div>
+                </>
+              ) : null}
             </div>
           </div>
           <RacuniTable ulazniRacuni={ulazniRacuni} />

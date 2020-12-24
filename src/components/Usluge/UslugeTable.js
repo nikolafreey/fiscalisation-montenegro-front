@@ -20,9 +20,9 @@ const UslugeTable = ({ usluge }) => {
       <th scope="row">{item.id}</th>
       <td>{item.naziv}</td>
       <td>{item.opis}</td>
-      <td>{item.cijena_bez_pdv}</td>
-      <td>{item.pdv_iznos}</td>
-      <td>{item.ukupna_cijena}</td>
+      <td>{Number(item.cijena_bez_pdv).toFixed(2).replace('.', ',')}</td>
+      <td>{Number(item.pdv_iznos).toFixed(2).replace('.', ',')}</td>
+      <td>{Number(item.ukupna_cijena).toFixed(2).replace('.', ',')}</td>
       <td>{item.status}</td>
     </tr>
   );

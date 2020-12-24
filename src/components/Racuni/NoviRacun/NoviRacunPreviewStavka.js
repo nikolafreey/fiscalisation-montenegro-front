@@ -38,8 +38,12 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
         <div class="df jc-end">
           <span class="spn-mr-10">
             {roba
-              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena).toFixed(2)
-              : Number(stavka.kolicina * usluga.ukupna_cijena).toFixed(2)}
+              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'
+              : Number(stavka.kolicina * usluga.ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'}
           </span>
           <span class="btn btn__link danger" onClick={handleRemove}>
             x
@@ -48,7 +52,11 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
       </div>
       <div class="df jc-end">
         {stavka.kolicina} x{' '}
-        {roba ? Number(roba.roba.cijene_roba[0].ukupna_cijena).toFixed(2) : Number(usluga.ukupna_cijena).toFixed(2)}
+        {roba
+          ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
+              .toFixed(2)
+              .replace('.', ',') + '€'
+          : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
       </div>
       {getPopustIznos() && (
         <>
@@ -56,14 +64,14 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
             <p>Popust {getPopustProcenat()}%</p>
           </div>
           <div class="col-lg-4">
-            <span>-{getPopustIznos()}</span>
+            <span>-{getPopustIznos().toFixed(2).replace('.', ',') + '€'}</span>
           </div>
           <div class="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
           <div class="col-lg-4">
             <div class="df jc-end w-62">
-              <span>{getUkupnaCijena() - getPopustIznos()}</span>
+              <span>{getUkupnaCijena().toFixed(2) - getPopustIznos().toFixed(2)}</span>
             </div>
           </div>
         </>
