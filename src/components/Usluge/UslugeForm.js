@@ -246,7 +246,7 @@ const UslugeForm = () => {
                             className="form__input"
                             name="grupa_id"
                             label={$t('usluge.grupa')}
-                            loadOptions={temp}
+                            loadOptions={setTemp}
                             onCreateOption={handleCreate}
                           />
                         </div>
