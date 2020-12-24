@@ -55,8 +55,11 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
               <Link
                 to={
                   partner.preduzece
-                    ? `preduzeca/edit/${partner.preduzece.id}`
-                    : `fizicka-lica/edit/${partner.fizicko_lice.id}`
+                    ? PREDUZECA.EDIT.replace(':id', `${partner.preduzece.id}`)
+                    : FIZICKA_LICA.EDIT.replace(
+                        ':id',
+                        `${partner.fizicko_lice.id}`
+                      )
                 }
               >
                 <Edit className="icon icon__dark md" />

@@ -153,6 +153,20 @@ import {
   predracunStore,
   predracunUpdate,
 } from './PredracuniSagas';
+import {
+  DELETE_GRUPA,
+  GET_GRUPA,
+  GET_GRUPE,
+  STORE_GRUPA,
+  UPDATE_GRUPA,
+} from '../actionTypes/GrupeActionTypes';
+import {
+  grupaDelete,
+  grupaGet,
+  grupaStore,
+  grupaUpdate,
+  grupeGet,
+} from './GrupeSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -210,6 +224,12 @@ export default function* rootSaga() {
     takeLatest(DELETE_USLUGA, uslugaDelete),
     takeLatest(UPDATE_USLUGA, uslugaUpdate),
     takeLatest(GET_POREZI, poreziGet),
+
+    takeLatest(STORE_GRUPA, grupaStore),
+    takeLatest(GET_GRUPA, grupaGet),
+    takeLatest(GET_GRUPE, grupeGet),
+    takeLatest(DELETE_GRUPA, grupaDelete),
+    takeLatest(UPDATE_GRUPA, grupaUpdate),
 
     takeLatest(LOGIN, userLogin),
     takeLatest(LOGOUT, userLogout),

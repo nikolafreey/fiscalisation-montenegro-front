@@ -26,6 +26,8 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
       {values.ziro_racuni.map((ziro_racun, index) => (
         <div className="pr df ai-c">
           <InputField
+            label={''}
+            obavezno
             className="form__input w-50 mb-20"
             name={`ziro_racuni.${index}.broj_racuna`}
           />

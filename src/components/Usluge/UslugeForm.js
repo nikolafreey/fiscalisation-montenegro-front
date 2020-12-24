@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
@@ -26,6 +26,8 @@ import { jediniceMjereService } from '../../services/JediniceMjereService';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
+import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
+import { getGrupe, storeGrupa } from '../../store/actions/GrupeActions';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -108,6 +110,19 @@ const UslugeForm = () => {
         ) / 100
       );
     }
+  };
+
+  const [temp, setTemp] = useState(grupeService.getGrupeDropdown());
+
+  // let a = grupeService.getGrupeDropdown();
+  const handleCreate = async (inputValue) => {
+    dispatch(
+      storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
+    );
+    await grupeService.getGrupeDropdown().then((data) => setTemp(data));
+    // do whatever you need with vm.feed below
+
+    //grupeService.getGrupeDropdown().then((data) => (a = data));
   };
 
   return (
@@ -205,11 +220,12 @@ const UslugeForm = () => {
                           />
                         </div>
                         <div className="form__group w-48">
-                          <DropDown
+                          <AysncCreatableDropDown
                             className="form__input"
                             name="grupa_id"
                             label={$t('usluge.grupa')}
-                            loadOptions={grupeService.getGrupeDropdown}
+                            loadOptions={temp}
+                            onCreateOption={handleCreate}
                           />
                         </div>
                       </div>
