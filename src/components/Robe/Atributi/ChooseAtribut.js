@@ -44,13 +44,19 @@ const ChooseAtribut = () => {
   const [fieldTipVisible, setFieldTipVisible] = useState(false);
   const [naziv, setNaziv] = useState('');
 
-  const handleSubmitTipAtributa = () => {
-    dispatch(storeTipAtributa({ naziv }));
-    setFieldVisible(false);
+  const handleSubmitTipAtributa = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(storeTipAtributa({ naziv }));
+      setFieldTipVisible(false);
+      setNaziv(null);
+    }
   };
-  const handleSubmitAtribut = () => {
-    dispatch(storeAtribut({ naziv, tip_atributa_id: tipAtributa.id }));
-    setFieldVisible(false);
+  const handleSubmitAtribut = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(storeAtribut({ naziv, tip_atributa_id: tipAtributa.id }));
+      setFieldVisible(false);
+      setNaziv(null);
+    }
   };
   const handleChangeTipAtributa = (event) => {
     setNaziv(event.target.value);
@@ -109,15 +115,10 @@ const ChooseAtribut = () => {
                   name="naziv"
                   type="text"
                   class="search__input"
-                  placeholder="Novi tip"
+                  onKeyDown={handleSubmitTipAtributa}
+                  placeholder="Unesite novi tip i pritisnite ENTER"
                   onChange={handleChangeTipAtributa}
                 />
-                <button
-                  class="btn btn__dark jc-center"
-                  onClick={handleSubmitTipAtributa}
-                >
-                  Dodaj tip atributa
-                </button>
               </div>
             ) : (
               <p class="link" onClick={() => setFieldTipVisible(true)}>
@@ -159,14 +160,9 @@ const ChooseAtribut = () => {
                   type="text"
                   class="search__input"
                   onChange={handleChangeNoviAtribut}
-                  placeholder="Novi atribut"
+                  onKeyDown={handleSubmitAtribut}
+                  placeholder="Unesite novi atribut i pritisnite ENTER"
                 />
-                <button
-                  class="btn btn__dark jc-center"
-                  onClick={handleSubmitAtribut}
-                >
-                  Dodaj atribut
-                </button>
               </div>
             ) : (
               <p class="link" onClick={() => setFieldVisible(true)}>

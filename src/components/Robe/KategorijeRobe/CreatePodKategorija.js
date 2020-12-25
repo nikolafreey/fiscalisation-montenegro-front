@@ -13,7 +13,11 @@ const CreatePodKategorija = () => {
 
   const handleSubmit = () => {
     dispatch(
-      storePodkategorijaRobe({ naziv, kategorija_id: kategorija.value })
+      storePodkategorijaRobe({
+        naziv,
+        kategorija_id: kategorija.value,
+        preduzece_id: 1,
+      })
     );
     setFieldVisible(false);
   };
