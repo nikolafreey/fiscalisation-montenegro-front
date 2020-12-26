@@ -34,7 +34,7 @@ const ChooseAtribut = () => {
         values.atributi.filter((atributId) => atributId !== atribut.id)
       );
   };
-  const checkedAtributi = () => {
+  const checkedAtributi = (tipAtributa) => {
     const a = tipAtributa.atributi?.filter((atribut) =>
       values.atributi?.includes(atribut.id)
     );
@@ -77,12 +77,18 @@ const ChooseAtribut = () => {
         </p>
         <div class="mt-30">
           <p class="txt-light">Izabrani atributi:</p>
-          <p class="txt-dark">{tipAtributa.naziv}:</p>
-          <p class="txt-light mb-15">
-            {checkedAtributi()
-              ?.map((atribut) => atribut.naziv)
-              ?.join(' , ')}
-          </p>
+          { tipoviAtributa.map(tipAtributa => {
+            const odabraniAtributi = checkedAtributi(tipAtributa);
+            return odabraniAtributi.length ? (<>
+              <p class="txt-dark">{tipAtributa.naziv}:</p>
+              <p class="txt-light mb-15">
+                {odabraniAtributi
+                  ?.map((atribut) => atribut.naziv)
+                  ?.join(', ')}
+              </p>
+            </>) : null;
+          })
+          }
         </div>
       </div>
       <div class="col-md-8">
