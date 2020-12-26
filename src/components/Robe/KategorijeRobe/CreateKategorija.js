@@ -9,7 +9,11 @@ const CreateKategorija = () => {
   const [naziv, setNaziv] = useState('');
 
   const handleSubmit = () => {
-    dispatch(storeKategorijaRobe({ naziv }));
+    dispatch(
+      storeKategorijaRobe({
+        naziv,
+      })
+    );
     setFieldVisible(false);
   };
 
