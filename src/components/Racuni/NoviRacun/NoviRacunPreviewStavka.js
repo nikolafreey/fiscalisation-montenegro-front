@@ -64,14 +64,14 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
             <p>Popust {getPopustProcenat()}%</p>
           </div>
           <div class="col-lg-4">
-            <span>-{getPopustIznos().toFixed(2).replace('.', ',') + '€'}</span>
+            <span>-{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}</span>
           </div>
           <div class="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
           <div class="col-lg-4">
             <div class="df jc-end w-62">
-              <span>{getUkupnaCijena().toFixed(2) - getPopustIznos().toFixed(2)}</span>
+              <span>{Number(getUkupnaCijena()).toFixed(2) - Number(getPopustIznos()).toFixed(2)}</span>
             </div>
           </div>
         </>

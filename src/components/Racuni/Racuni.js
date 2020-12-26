@@ -12,6 +12,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
 import { RACUNI } from '../../constants/routes';
+import DropDownStatic from '../shared/forms/DropDownStatic';
+import $t from '../../lang';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -141,6 +143,7 @@ const Racuni = () => {
                 value={status}
                 className="select w-20"
               />
+
               <div className="select w-25 df">
                 <DatePicker
                   selected={startDate}

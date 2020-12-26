@@ -15,19 +15,14 @@ class RacuniService extends ApiService {
     const usluge = Object.keys(noviRacun.usluge).map(uslugaId => ({
       usluga_id: uslugaId,
       kolicina: noviRacun.usluge[uslugaId].kolicina,
-      popust_procenat: 0,
-      popust_iznos: 0,
-      popust_na_jedinicnu_cijenu: 0,
     }));
     const robe = Object.keys(noviRacun.robe).map(robaId => ({
       usluga_id: robaId,
+      atribut_id: noviRacun.robe[robaId].atribut_robe?.id,
       kolicina: noviRacun.robe[robaId].kolicina,
-      popust_procenat: 0,
-      popust_iznos: 0,
-      popust_na_jedinicnu_cijenu: 0,
     }));
     const stavke = [...usluge, ...robe];
-    this.apiClient.post(ENDPOINTS.RACUNI, { stavke });
+    this.apiClient.post(ENDPOINTS.RACUNI, { stavke, preduzece_id: '00331d67-2537-47e2-911b-3399826cd175' });
   }
 
   getRobe = (params) => this.apiClient.get(ENDPOINTS.ROBE, { params });

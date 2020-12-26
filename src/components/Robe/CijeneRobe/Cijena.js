@@ -45,7 +45,6 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
             <p className="mb-10">Ukupna cijena</p>
           </div>
           <div class="col-r mt-30">
-            <p className="mb-10">0,00€</p>
             <p className="mb-10">
               {isNaN(
                 getPriceNoVat(
