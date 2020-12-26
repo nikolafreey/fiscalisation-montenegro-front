@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
@@ -9,12 +9,10 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
   poreziDropdownSelector,
-  porezIdSelector,
   uslugaSelector,
   poreziSelector,
 } from '../../store/selectors/UslugeSelector';
 import {
-  deleteUsluga,
   getPorezi,
   getUsluga,
   storeUsluga,
@@ -27,11 +25,8 @@ import DropDownStatic from '../shared/forms/DropDownStatic';
 import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
-import { getGrupe, storeGrupa } from '../../store/actions/GrupeActions';
-import Select from 'react-select';
-import AsyncCreatableSelect from 'react-select/async-creatable';
-import CreatableSelect from 'react-select/creatable';
-import { uslugeService } from '../../services/UslugeService';
+import { storeGrupa } from '../../store/actions/GrupeActions';
+import { isNumber } from 'lodash';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -48,11 +43,15 @@ const UslugeForm = () => {
     if (params.id) dispatch(getUsluga(params.id));
   }, [dispatch, params]);
 
+  let tempLen = [];
+  let tempLength = grupeService
+    .getGrupeDropdown()
+    .then((data) => (tempLen = data.length));
+
   const handleSubmit = (values) => {
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
     } else {
-      console.log(values);
       dispatch(
         storeUsluga({
           cijena_bez_pdv: getPriceNoVat(
@@ -60,8 +59,11 @@ const UslugeForm = () => {
             values.porez_id,
             values.ukupna_cijena
           ),
-          ...values,
+          grupa_id: isNumber(values.grupa_id)
+            ? values.grupa_id
+            : tempLen.slice(-1)[0].value + 1,
           status: values.status === 'Aktivan' ? true : false,
+          ...values,
         })
       );
     }
@@ -116,37 +118,11 @@ const UslugeForm = () => {
     }
   };
 
-  let [optionsGrupa, setOptionsGrupa] = useState(
-    grupeService.getGrupeDropdown()
-  );
-  const [valueGrupa, setValueGrupa] = useState();
-  // const [options, setOptions] = useState(grupeService.getGrupeDropdown());
-  const uslugeDropdown = useRef(null);
-
-  // const handleCreate = async (inputValue) => {
-  //   dispatch(
-  //     storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
-  //   );
-  //   await grupeService.getGrupeDropdown().then((data) => {
-  //     console.log('data', data);
-  //     setTemp(data);
-  //     // uslugeDropdown.focus();
-  //   });
-  // };
-
-  const handleCreate = (inputValue) => {
-    let options = optionsGrupa;
-    const newOption = inputValue;
-    options = [...options, newOption];
-    optionsGrupa = options;
-    setValueGrupa({ value: newOption, label: newOption });
+  const handleCreate = async (inputValue) => {
+    dispatch(
+      storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
+    );
   };
-
-  const handleChange = (newValue) => {
-    setValueGrupa({ value: newValue, label: newValue });
-  };
-
-  const defaultOptions = grupeService.getGrupeDropdown();
 
   return (
     <Formik
@@ -193,27 +169,51 @@ const UslugeForm = () => {
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
-                            <p className="mb-10">/</p>
+                            <p className="mb-10">0,00€</p>
                             <p className="mb-10">
-                              {getPriceNoVat(
-                                values.pdv_ukljucen,
-                                values.porez_id,
-                                values.ukupna_cijena
-                              )}
+                              {isNaN(
+                                getPriceNoVat(
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )
+                              )
+                                ? '0,00€'
+                                : getPriceNoVat(
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                             <p className="mb-10">
-                              {getVat(
-                                values.pdv_ukljucen,
-                                values.porez_id,
-                                values.ukupna_cijena
-                              )}
+                              {isNaN(
+                                getVat(
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )
+                              )
+                                ? '0,00€'
+                                : getVat(
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                             <p className="mb-10">
-                              {getPriceVat(
-                                values.pdv_ukljucen,
-                                values.porez_id,
-                                values.ukupna_cijena
-                              )}
+                              {isNaN(
+                                getPriceVat(
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )
+                              )
+                                ? '0,00€'
+                                : getPriceVat(
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                           </div>
                         </div>
@@ -251,20 +251,22 @@ const UslugeForm = () => {
                           <AysncCreatableDropDown
                             className="form__input"
                             // autoload={false}
-                            // key={() => JSON.stringify(temp.length)}
+                            key={JSON.stringify(
+                              grupeService.getGrupeDropdown.value
+                            )}
                             // defaultOptions={() => temp}
                             // ref={uslugeDropdown}
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
-                            onCreateOption={handleCreate}
+                            // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
                             isClearable
                             onChange={handleChange}
                             onCreateOption={handleCreate}
-                            options={optionsGrupa}
-                            // value={valueGrupa.value}
+                            options={optionsGrupaDefault}
+                            value={valueGrupa.value}
                             className="form__input"
                             cacheOptions
                             defaultOptions
@@ -302,6 +304,8 @@ const UslugeForm = () => {
                           value={getPriceNoVat}
                           className="form__input"
                           name="cijena_bez_pdv"
+                          obavezno
+                          label=""
                         />
                       </div>
                     </div>
