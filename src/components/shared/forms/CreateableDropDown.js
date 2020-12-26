@@ -19,7 +19,6 @@ const AysncCreatableDropDown = ({
 
   const { error } = meta;
   const { setValue } = helpers;
-  console.log('proops', props);
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
@@ -30,7 +29,6 @@ const AysncCreatableDropDown = ({
           if (props.isMulti) {
             setValue(option.map((item) => item.value));
           } else setValue(option.value);
-          console.log('asdf', option);
           setSelectedLabel(option);
         }}
         value={selectedLabel}

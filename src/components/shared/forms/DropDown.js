@@ -21,7 +21,6 @@ const DropDown = ({ label, defaultOptions = true, loadOptions, ...props }) => {
           if (props.isMulti) {
             setValue(option.map((item) => item.value));
           } else setValue(option.value);
-          console.log('asdf', option);
           setSelectedLabel(option);
         }}
         value={selectedLabel}

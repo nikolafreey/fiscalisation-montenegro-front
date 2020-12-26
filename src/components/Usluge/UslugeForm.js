@@ -48,7 +48,6 @@ const UslugeForm = () => {
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
     } else {
-      console.log(values);
       dispatch(
         storeUsluga({
           cijena_bez_pdv: getPriceNoVat(

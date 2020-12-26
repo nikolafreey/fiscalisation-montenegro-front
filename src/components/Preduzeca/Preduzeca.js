@@ -21,7 +21,7 @@ const Preduzeca = () => {
   const match = useRouteMatch();
   const preduzeca = useSelector(preduzecaSelector());
   const preduzece = useSelector(preduzeceSelector());
-  console.log('putanja', match);
+
   useEffect(() => {
     dispatch(getPreduzeca());
   }, [dispatch]);

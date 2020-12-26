@@ -42,7 +42,7 @@ const Racuni = () => {
   }, [dispatch]);
 
   const handleSearch = (value) => {
-    console.log('value', value);
+    
     dispatch(getRacuni(value));
   };
 

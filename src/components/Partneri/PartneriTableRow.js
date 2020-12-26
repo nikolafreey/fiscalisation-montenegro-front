@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
 
 const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
-  console.log(selectedId);
   return (
     <tr
       onClick={() => onItemClick(partner)}

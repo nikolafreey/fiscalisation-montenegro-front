@@ -10,7 +10,6 @@ const DropDownStatic = ({ label, options, ...props }) => {
 
   const { error } = meta;
   const { setValue } = helpers;
-  console.log('default', props.defaultValue);
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
@@ -20,7 +19,6 @@ const DropDownStatic = ({ label, options, ...props }) => {
         name={field.name}
         onChange={(option) => {
           setValue(option.value);
-          console.log(option);
           setSelectedLabel(option);
         }}
         value={selectedLabel === null ? props.defaultValue : selectedLabel}

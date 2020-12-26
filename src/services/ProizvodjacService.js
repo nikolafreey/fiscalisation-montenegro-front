@@ -22,7 +22,6 @@ class ProizvodjacService extends ApiService {
 
   getProizvodjaciDropdown = async (search) => {
     const { data } = await this.getProizvodjac({ search });
-    console.log('proizvodjac: ', data);
     return data.map((proizvodjac) => ({
       value: proizvodjac.id,
       label: proizvodjac.naziv,

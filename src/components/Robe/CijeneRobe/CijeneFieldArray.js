@@ -9,7 +9,6 @@ import Cijena from './Cijena';
 
 const CijeneFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
-  console.log('dadada', values);
   return (
     <div>
       {values.cijene.map((cijena, index) => (

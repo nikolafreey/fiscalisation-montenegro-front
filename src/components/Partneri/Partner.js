@@ -11,7 +11,6 @@ const Partner = () => {
   const { params } = useRouteMatch();
 
   const partner = useSelector(partnerSelector());
-  console.log(partner);
   useEffect(() => {
     if (params.id) dispatch(getPartner(params.id));
   }, [dispatch, params]);

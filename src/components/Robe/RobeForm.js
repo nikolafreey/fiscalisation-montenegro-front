@@ -63,7 +63,7 @@ const RobeForm = () => {
       if (isNaN(cijenaBezPdv)) {
         cijenaBezPdv = 0;
       }
-      console.log('cijenaBezPDV', cijenaBezPdv);
+
       return cijenaBezPdv;
     }
   };
@@ -101,7 +101,7 @@ const RobeForm = () => {
       if (isNaN(temp2)) {
         temp2 = 0;
       }
-      return;
+      return temp2;
     }
   };
 
@@ -110,7 +110,7 @@ const RobeForm = () => {
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-    console.log(values);
+
     if (params.id)
       dispatch(
         updateRoba({

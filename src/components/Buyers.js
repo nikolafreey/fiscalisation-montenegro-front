@@ -9,8 +9,6 @@ const Buyers = () => {
 
   const fizicka_lica = useSelector(fizickaLicaSelector());
 
-  console.log(fizicka_lica);
-
   useEffect(() => {
     (async () => {
       //await authService.getCsrfCookie();

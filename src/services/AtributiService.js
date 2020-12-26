@@ -40,7 +40,6 @@ class AtributiService extends ApiService {
 
   getTipoviAtributaDropdown = async () => {
     const { data } = await this.getTipoviAtributa();
-    console.log(data);
     return data.map((atribut) => ({
       value: atribut.id,
       label: atribut.naziv,

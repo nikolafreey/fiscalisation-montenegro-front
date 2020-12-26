@@ -8,7 +8,6 @@ import { storeRacun } from '../../store/actions/RacuniActions';
 
 const UlazniRacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
-  console.log('item', item);
 
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },

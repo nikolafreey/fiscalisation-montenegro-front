@@ -4,8 +4,6 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const getPorezi = () => {
     const porezi = {};
 
-    console.log('noviRacun', noviRacun);
-
     Object.keys(noviRacun.usluge).forEach((uslugaId) => {
       const usluga = noviRacun.usluge[uslugaId];
       
@@ -20,8 +18,6 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
 
       porezi[usluga.porez.id].pdvIznos +=
         usluga.kolicina * (usluga.ukupna_cijena - usluga.cijena_bez_pdv);
-
-      console.log('uslugaa', porezi[usluga.porez.id]);
 
       porezi[usluga.porez.id].ukupno += usluga.kolicina * usluga.ukupna_cijena;
     });

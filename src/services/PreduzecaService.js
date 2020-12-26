@@ -22,7 +22,7 @@ class PreduzecaService extends ApiService {
 
   getPreduzecaDropdown = async (search) => {
     const { data } = await this.getPreduzeca({ search });
-    console.log('data', data);
+
     return data.data.map((preduzece) => ({
       value: preduzece.id,
       label: preduzece.kratki_naziv,

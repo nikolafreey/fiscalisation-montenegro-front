@@ -30,7 +30,6 @@ class KategorijeRobeService extends ApiService {
 
   getKategorijeRobeDropdown = async () => {
     const { data } = await this.getKategorijeRobe();
-    console.log(data);
     return data.map((kategorija_robe) => ({
       value: kategorija_robe.id,
       label: kategorija_robe.naziv,
