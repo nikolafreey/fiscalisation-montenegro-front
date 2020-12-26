@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeRacun } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPreviewPorezi from './NoviRacunPreviewPorezi';
@@ -7,6 +8,11 @@ import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 
 const NoviRacunPreview = () => {
   const noviRacun = useSelector(noviRacunSelector());
+  const dispatch = useDispatch();
+
+  const handleSacuvaj = () => {
+    dispatch(storeRacun());
+  }
 
   const usluge = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
@@ -107,7 +113,7 @@ const NoviRacunPreview = () => {
       <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
       <hr />
       <button class="btn btn__dark mb-10">Fiskalizuj i štampaj</button>
-      <button class="btn btn__transparent">Sačuvaj</button>
+      <button class="btn btn__transparent" onClick={handleSacuvaj}>Sačuvaj</button>
     </div>
   );
 };
