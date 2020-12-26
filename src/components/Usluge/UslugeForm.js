@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
@@ -28,6 +28,10 @@ import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { getGrupe, storeGrupa } from '../../store/actions/GrupeActions';
+import Select from 'react-select';
+import AsyncCreatableSelect from 'react-select/async-creatable';
+import CreatableSelect from 'react-select/creatable';
+import { uslugeService } from '../../services/UslugeService';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -134,18 +138,37 @@ const UslugeForm = () => {
     }
   };
 
-  const [temp, setTemp] = useState(grupeService.getGrupeDropdown());
+  let [optionsGrupa, setOptionsGrupa] = useState(
+    grupeService.getGrupeDropdown()
+  );
+  const [valueGrupa, setValueGrupa] = useState();
+  // const [options, setOptions] = useState(grupeService.getGrupeDropdown());
+  const uslugeDropdown = useRef(null);
 
-  // let a = grupeService.getGrupeDropdown();
-  const handleCreate = async (inputValue) => {
-    dispatch(
-      storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
-    );
-    await grupeService.getGrupeDropdown().then((data) => setTemp(data));
-    // do whatever you need with vm.feed below
+  // const handleCreate = async (inputValue) => {
+  //   dispatch(
+  //     storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
+  //   );
+  //   await grupeService.getGrupeDropdown().then((data) => {
+  //     console.log('data', data);
+  //     setTemp(data);
+  //     // uslugeDropdown.focus();
+  //   });
+  // };
 
-    //grupeService.getGrupeDropdown().then((data) => (a = data));
+  const handleCreate = (inputValue) => {
+    let options = optionsGrupa;
+    const newOption = inputValue;
+    options = [...options, newOption];
+    optionsGrupa = options;
+    setValueGrupa({ value: newOption, label: newOption });
   };
+
+  const handleChange = (newValue) => {
+    setValueGrupa({ value: newValue, label: newValue });
+  };
+
+  const defaultOptions = grupeService.getGrupeDropdown();
 
   return (
     <Formik
@@ -182,7 +205,12 @@ const UslugeForm = () => {
                             <p className="mb-10">Bez PDV-a:</p>
                             <p className="mb-10">
                               PDV
-                              {getStopaPerId(values.porez_id) * 100}%:
+                              {isNaN(getStopaPerId(values.porez_id))
+                                ? ''
+                                : (
+                                    getStopaPerId(values.porez_id) * 100
+                                  ).toFixed(2)}
+                              %:
                             </p>
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
@@ -244,11 +272,26 @@ const UslugeForm = () => {
                         <div className="form__group w-48">
                           <AysncCreatableDropDown
                             className="form__input"
+                            // autoload={false}
+                            // key={() => JSON.stringify(temp.length)}
+                            // defaultOptions={() => temp}
+                            // ref={uslugeDropdown}
                             name="grupa_id"
                             label={$t('usluge.grupa')}
-                            loadOptions={setTemp}
+                            loadOptions={grupeService.getGrupeDropdown}
                             onCreateOption={handleCreate}
                           />
+                          {/* <CreatableSelect
+                            isClearable
+                            onChange={handleChange}
+                            onCreateOption={handleCreate}
+                            options={optionsGrupa}
+                            // value={valueGrupa.value}
+                            className="form__input"
+                            cacheOptions
+                            defaultOptions
+                            // loadOptions={grupeService.getGrupeDropdown}
+                          /> */}
                         </div>
                       </div>
                       <div className="df jc-sb">

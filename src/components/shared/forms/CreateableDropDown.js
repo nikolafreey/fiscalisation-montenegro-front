@@ -34,7 +34,6 @@ const AysncCreatableDropDown = ({
           setSelectedLabel(option);
         }}
         value={selectedLabel}
-        cacheOptions
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}
         isSearchable
