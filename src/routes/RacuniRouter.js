@@ -5,10 +5,14 @@ import RacuniForm from '../components/Racuni/RacuniForm';
 import Racun from '../components/Racuni/Racun';
 import Racuni from '../components/Racuni/Racuni';
 import NoviRacun from '../components/Racuni/NoviRacun/NoviRacun';
+import Bezgotovinski from '../components/Racuni/NoviRacun/Bezgotovinski';
 
 const RacuniRouter = () => {
   return (
     <Switch>
+      <Route path={RACUNI.BEZGOTOVINSKI.CREATE}>
+        <Bezgotovinski />
+      </Route>
       <Route path={RACUNI.EDIT}>
         <RacuniForm />
       </Route>

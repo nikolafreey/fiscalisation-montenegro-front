@@ -13,6 +13,7 @@ import {
   SET_RACUNI,
   SET_STAVKE_ROBE,
   SET_STAVKE_USLUGE,
+  STORE_BEZGOTOVINSKI_RACUN,
   STORE_RACUN,
   UKLONI_ROBU,
   UKLONI_USLUGU,
@@ -21,6 +22,11 @@ import {
 
 export const storeRacun = () => ({
   type: STORE_RACUN,
+});
+
+export const storeBezgotovinskiRacun = (payload) => ({
+  type: STORE_BEZGOTOVINSKI_RACUN,
+  payload
 });
 
 export const getRacuni = (payload) => ({

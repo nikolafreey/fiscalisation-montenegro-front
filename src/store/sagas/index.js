@@ -115,11 +115,13 @@ import {
   GET_RACUN,
   GET_RACUNI,
   GET_STAVKE,
+  STORE_BEZGOTOVINSKI_RACUN,
   STORE_RACUN,
   UPDATE_RACUN,
 } from '../actionTypes/RacuniActionTypes';
 import {
   atributiGrupeGet,
+  bezgotovinskiRacunStore,
   racunDelete,
   racunGet,
   racuniGet,
@@ -185,6 +187,7 @@ export default function* rootSaga() {
     takeLatest(DELETE_FIZICKO_LICE, fizickoLiceDelete),
 
     takeLatest(STORE_RACUN, racunStore),
+    takeLatest(STORE_BEZGOTOVINSKI_RACUN, bezgotovinskiRacunStore),
     takeLatest(GET_RACUNI, racuniGet),
     takeLatest(GET_RACUN, racunGet),
     takeLatest(UPDATE_RACUN, racunUpdate),

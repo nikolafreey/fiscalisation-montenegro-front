@@ -27,6 +27,7 @@ import Cijena from './CijeneRobe/Cijena';
 
 import CijeneFieldArray from './CijeneRobe/CijeneFieldArray';
 import { poreziSelector } from '../../store/selectors/UslugeSelector';
+import { usePorezi } from '../../hooks/PoreziHook';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -40,70 +41,14 @@ const RobeForm = () => {
 
   const roba = useSelector(robaSelector());
 
-  const porezi = useSelector(poreziSelector());
+  const {
+    getStopaPerId,
+    getPriceVat,
+    getPriceNoVat,
+    getVat,
+    porezi
+  } = usePorezi();
 
-  const getStopaPerId = (porez_id) => {
-    let stopa = porezi.find((porez) => porez.id === porez_id)?.stopa;
-    if (isNaN(stopa)) {
-      stopa = 0;
-    }
-    return stopa;
-  };
-
-  const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
-    const stopa = getStopaPerId(porez_id);
-    let cijenaBezPdv = 0;
-    if (pdv_ukljucen === 0) {
-      cijenaBezPdv = Math.round(100 * ukupna_cijena) / 100;
-
-      return cijenaBezPdv;
-    } else {
-      cijenaBezPdv =
-        Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
-      if (isNaN(cijenaBezPdv)) {
-        cijenaBezPdv = 0;
-      }
-
-      return cijenaBezPdv;
-    }
-  };
-
-  const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
-    const stopa = getStopaPerId(porez_id);
-    if (pdv_ukljucen === 0) {
-      let temp = ukupna_cijena + ukupna_cijena * +stopa;
-      if (isNaN(temp)) {
-        temp = 0;
-      }
-      return temp;
-    } else {
-      if (isNaN(ukupna_cijena)) {
-        ukupna_cijena = 0;
-      }
-      return ukupna_cijena;
-    }
-  };
-
-  const getVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
-    const stopa = getStopaPerId(porez_id);
-
-    if (pdv_ukljucen === 0) {
-      let temp1 = Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
-      if (isNaN(temp1)) {
-        temp1 = 0;
-      }
-      return temp1;
-    } else {
-      let temp2 =
-        Math.round(
-          100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
-        ) / 100;
-      if (isNaN(temp2)) {
-        temp2 = 0;
-      }
-      return temp2;
-    }
-  };
 
   useEffect(() => {
     if (params.id) dispatch(getRoba(params.id));

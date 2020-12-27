@@ -20,6 +20,9 @@ export const RACUNI = {
   EDIT: '/racuni/edit/:id',
   CREATE: '/racuni/create',
   SHOW: '/racuni/:id',
+  BEZGOTOVINSKI: {
+    CREATE: '/racuni/bezgotovinski/create'
+  }
 };
 export const ULAZNI_RACUNI = {
   INDEX: '/ulazni-racuni',

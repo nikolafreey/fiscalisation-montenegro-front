@@ -18,10 +18,12 @@ const BezgotovinskiStavkeFieldArray = ({insert, remove}) => {
           className="form__input"
           label={'Stavke'}
         />
+        <div onClick={() => remove(index)}>izbrisi</div>
         </div>
       ))
 
       }
+      <div onClick={() => insert(values.stavke.length)}>dodaj</div>
     </div>
   )
 }

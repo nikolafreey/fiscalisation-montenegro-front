@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
-import SearchForm from '../../shared/forms/SearchForm';
 import { odabraniAtributGrupaSelector, stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selectors/RacuniSelector';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import NoviRacunTable from './NoviRacunTable';
 import NoviRacunPreview from './NoviRacunPreview';
-import { LIST, GRID } from '../../../constants/layout';
+import { LIST } from '../../../constants/layout';
 import ChooseView from '../../shared/lists/ChooseView';
 import NoviRacunFilteri from './NoviRacunFilteri';
 import { debounce } from 'lodash';

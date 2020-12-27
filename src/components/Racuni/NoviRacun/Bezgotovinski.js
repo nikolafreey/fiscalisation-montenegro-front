@@ -2,17 +2,20 @@ import { FieldArray, Form, Formik } from 'formik';
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
+import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
 import { usePorezi } from '../../../hooks/PoreziHook';
 
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
+import { useDispatch } from 'react-redux';
+import { storeBezgotovinskiRacun } from '../../../store/actions/RacuniActions';
 
 const Bezgotovinski = () => {
+  const dispatch = useDispatch();
 
   const { params } = useRouteMatch();
   
   const handleSubmit = (values) => {
-    // TODO: create new submit action and submit formik values
+    dispatch(storeBezgotovinskiRacun(values));
   };
 
   const {
@@ -20,6 +23,7 @@ const Bezgotovinski = () => {
     getPriceVat,
     getPriceNoVat,
     getVat,
+    porezi
   } = usePorezi();
   
 

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import { stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selectors/RacuniSelector';
-import Label from './Label';
+import Label from '../../shared/forms/Label';
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -21,7 +21,7 @@ const StavkeDropdown = ({ label, ...props }) => {
   ];
 
   function onInputChange(searchValue) {
-    searchDebounced(() => dispatch(getStavke(searchValue)));
+    searchDebounced(() => dispatch(getStavke({search: searchValue || undefined})));
   }
 
   function onStavkaChange(option) {

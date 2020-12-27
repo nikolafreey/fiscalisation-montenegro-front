@@ -1,4 +1,5 @@
 export const STORE_RACUN = 'STORE_RACUN';
+export const STORE_BEZGOTOVINSKI_RACUN = 'STORE_BEZGOTOVINSKI_RACUN';
 
 export const GET_RACUNI = 'GET_RACUNI';
 export const SET_RACUNI = 'SET_RACUNI';
