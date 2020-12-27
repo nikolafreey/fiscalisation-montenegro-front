@@ -25,7 +25,7 @@ const StavkeDropdown = ({ label, ...props }) => {
   }
 
   function onStavkaChange(option) {
-    setValue(option);
+    setValue(option.value);
   }
 
   const [field, meta, helpers] = useField(props);
@@ -41,7 +41,7 @@ const StavkeDropdown = ({ label, ...props }) => {
         name={field.name}
         onChange={onStavkaChange}
         onInputChange={onInputChange}
-        value={field.value}
+        value={{label: field.value.roba?.naziv || field.value.naziv, value: field.value}}
       />
 
       {!!error && <ErrorMessage>{error}</ErrorMessage>}

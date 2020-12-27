@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { izracunajUkupnuCijenuStavki, izracunajUkupnuCijenuStavkiBezPdv } from '../../../helpers/racuni';
 import { storeRacun } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunKusur from './NoviRacunKusur';
@@ -28,50 +29,12 @@ const NoviRacunPreview = () => {
     />
   ));
 
-  const izracunajUkupnuCijenu = () => {
-    const sumaUsluga = Object.keys(noviRacun.usluge).reduce(
-      (suma, uslugaId) => {
-        const usluga = noviRacun.usluge[uslugaId];
-        if (usluga.grupa?.popust_iznos) 
-          return suma + (usluga.ukupna_cijena - usluga.grupa.popust_iznos) * usluga.kolicina;
-        return suma + usluga.ukupna_cijena * usluga.kolicina;
-      },
-      0
-    );
 
-    const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
-      const roba = noviRacun.robe[robaId];
-      if (roba.atribut_robe?.popust_iznos) 
-        return suma + (roba.roba.cijene_roba[0].ukupna_cijena - roba.atribut_robe.popust_iznos) * roba.kolicina;
-      return suma + roba.roba.cijene_roba[0].ukupna_cijena * roba.kolicina;
-    }, 0);
+  const uslugeArray = Object.keys(noviRacun.usluge).map(id => noviRacun.usluge[id]);
+  const robeArray = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
 
-    return sumaUsluga + sumaRoba;
-  };
-
-  const izracunajUkupnuCijenuBezPdv = () => {
-    const sumaUsluga = Object.keys(noviRacun.usluge).reduce(
-      (suma, uslugaId) => {
-        const usluga = noviRacun.usluge[uslugaId];
-        if (usluga.grupa?.popust_iznos)
-          return suma + (usluga.cijena_bez_pdv - usluga.grupa.popust_iznos) * usluga.kolicina;
-        return suma + usluga.cijena_bez_pdv * usluga.kolicina;
-      },
-      0
-    );
-
-    const sumaRoba = Object.keys(noviRacun.robe).reduce((suma, robaId) => {
-      const roba = noviRacun.robe[robaId];
-      if (roba.atribut_robe?.popust_iznos) 
-        return suma + (roba.roba.cijene_roba[0].cijena_bez_pdv - roba.atribut_robe.popust_iznos) * roba.kolicina;
-      return suma + roba.roba.cijene_roba[0].cijena_bez_pdv * roba.kolicina;
-    }, 0);
-
-    return sumaUsluga + sumaRoba;
-  };
-
-  const ukupnaCijena = izracunajUkupnuCijenu();
-  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuBezPdv();
+  const ukupnaCijena = izracunajUkupnuCijenuStavki([...uslugeArray, ...robeArray]);
+  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv([...uslugeArray, ...robeArray]);
 
   return (
     <div class="side-info">

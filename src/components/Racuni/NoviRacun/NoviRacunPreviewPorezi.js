@@ -1,53 +1,12 @@
 import React from 'react';
+import { izracunajPojedinacnePoreze } from '../../../helpers/racuni';
 
 const NoviRacunPreviewPorezi = ({ noviRacun }) => {
-  const getPorezi = () => {
-    const porezi = {};
+  
+  const usluge = Object.keys(noviRacun.usluge).map(id => noviRacun.usluge[id]);
+  const robe = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
 
-    Object.keys(noviRacun.usluge).forEach((uslugaId) => {
-      const usluga = noviRacun.usluge[uslugaId];
-      
-      if (!porezi[usluga.porez.id]) {
-        porezi[usluga.porez.id] = {
-          ukupno: 0,
-          pdvIznos: 0,
-          stopa: usluga.porez.stopa,
-          naziv: usluga.porez.naziv,
-        };
-      }
-
-      porezi[usluga.porez.id].pdvIznos +=
-        usluga.kolicina * (usluga.ukupna_cijena - usluga.cijena_bez_pdv);
-
-      porezi[usluga.porez.id].ukupno += usluga.kolicina * usluga.ukupna_cijena;
-    });
-
-    Object.keys(noviRacun.robe).forEach((robaId) => {
-      const roba = noviRacun.robe[robaId];
-
-      const porezRobe = roba.roba.cijene_roba[0].porez;
-
-      if (!porezi[porezRobe.id]) {
-        porezi[porezRobe.id] = {
-          ukupno: 0,
-          pdvIznos: 0,
-          stopa: porezRobe.stopa,
-          naziv: porezRobe.naziv,
-        };
-      }
-      porezi[porezRobe.id].pdvIznos +=
-        roba.kolicina *
-        (Number(roba.roba.cijene_roba[0].ukupna_cijena) -
-          Number(roba.roba.cijene_roba[0].cijena_bez_pdv));
-
-      porezi[porezRobe.id].ukupno +=
-        roba.kolicina * Number(roba.roba.cijene_roba[0].ukupna_cijena);
-    });
-
-    return porezi;
-  };
-
-  const porezi = getPorezi();
+  const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
 
   return (
     <div classname="row mb-15">
