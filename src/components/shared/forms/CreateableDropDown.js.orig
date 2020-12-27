@@ -5,6 +5,9 @@ import Label from './Label';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeFizickoLice } from '../../../store/actions/FizickaLicaActions';
 import { storePreduzece } from '../../../store/actions/PreduzecaActions';
+import { storeGrupa } from '../../../store/actions/GrupeActions';
+import { grupeService } from '../../../services/GrupeService';
+import { isNumber } from 'lodash';
 
 const AysncCreatableDropDown = ({
   label,
@@ -19,6 +22,8 @@ const AysncCreatableDropDown = ({
 
   const { error } = meta;
   const { setValue } = helpers;
+<<<<<<< HEAD
+=======
 
   let tempLen = 0;
   let tempLength = grupeService
@@ -52,14 +57,24 @@ const AysncCreatableDropDown = ({
   //   setSelectedLabel('test');
   // };
 
+>>>>>>> c72f2cc76638cdd268fe36380f9325624976bcc2
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
 
       <AsyncCreatableSelect
         name={field.name}
+<<<<<<< HEAD
+        onChange={(option) => {
+          if (props.isMulti) {
+            setValue(option.map((item) => item.value));
+          } else setValue(option.value);
+          setSelectedLabel(option);
+        }}
+=======
         onChange={onChangeHandler}
         // onCreateOption={handleCreate}
+>>>>>>> c72f2cc76638cdd268fe36380f9325624976bcc2
         value={selectedLabel}
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}
