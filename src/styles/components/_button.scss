@@ -63,7 +63,7 @@
     padding: 0;
     width: auto;
     font-size: $font-size-default;
-    &.warning {
+    &.danger {
       margin-bottom: 2rem;
       margin-left: 1rem;
       color: $color-danger-dark;
@@ -81,7 +81,7 @@
     height: 4rem;
     font-size: $font-size-default;
     font-weight: 600;
-    padding: 1rem 2rem;
+    padding: 1rem;
   }
   &__lg{
     width: 13rem;
