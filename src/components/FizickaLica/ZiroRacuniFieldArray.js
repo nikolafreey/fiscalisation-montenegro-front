@@ -10,10 +10,20 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
     if (broj_racuna) {
       const prvaTri = broj_racuna.substring(0, 3);
 
-      if (prvaTri.includes('563')) {
-        return 'NLB';
+      if (prvaTri.includes('550')) {
+        return 'Podgorička';
+      } else if (prvaTri.includes('535')) {
+        return 'Prva';
       } else if (prvaTri.includes('555')) {
+        return 'Addiko';
+      } else if (prvaTri.includes('510')) {
         return 'CKB';
+      } else if (prvaTri.includes('530')) {
+        return 'Montenegro AD';
+      } else if (prvaTri.includes('540')) {
+        return 'ERSTE';
+      } else if (prvaTri.includes('520')) {
+        return 'Hipotekarna';
       }
     }
   };
