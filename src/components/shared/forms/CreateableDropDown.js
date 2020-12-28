@@ -16,18 +16,14 @@ const AysncCreatableDropDown = ({
   ...props
 }) => {
   const [selectedLabel, setSelectedLabel] = useState(null);
-
   const [field, meta, helpers] = useField(props);
   const dispatch = useDispatch();
-
   const { error } = meta;
   const { setValue } = helpers;
-
   let tempLen = 0;
   let tempLength = grupeService
     .getGrupeDropdown()
     .then((data) => (tempLen = data));
-
   const onChangeHandler = (option) => {
     if (!isNumber(option.value)) {
       setValue(tempLen.slice(-1)[0].value + 1);
@@ -48,7 +44,6 @@ const AysncCreatableDropDown = ({
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
-
       <AsyncCreatableSelect
         name={field.name}
         onChange={onChangeHandler}
@@ -59,10 +54,8 @@ const AysncCreatableDropDown = ({
         isSearchable
         {...props}
       />
-
       {!!error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
 };
-
 export default AysncCreatableDropDown;

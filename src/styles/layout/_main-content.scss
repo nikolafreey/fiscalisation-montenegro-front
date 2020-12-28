@@ -1,13 +1,73 @@
 .main-content {
   position: relative;
-  
+
   &__box {
-    min-height: 70vh;
+    // min-height: 70vh;
     width: 100%;
+    position: relative;
     background-color: $color-white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    margin-bottom: 8rem;
+    margin-bottom: 3rem;
+
+    &--inner-wrapper,
+    &--header,
+    &--footer {
+      padding: 1.2rem;
+    }
+    &--inner-wrapper {
+      .form__box{
+        height: 8rem;
+      }
+    }
+    &--header {
+      border-radius: 4px 4px 0px 0px;
+      background-color: $color-content-light;
+    }
+    &--body {
+      //padding: 0 1.2rem;
+      h2 {
+        margin: 0;
+      }
+      .btn__link.danger {
+        margin: 0;
+      }
+      span {
+        margin-left: 0.5rem;
+      }
+      .form__span {
+        left: 68%;
+      }
+      .text-area {
+        background-color: #f9fafb;
+        color: #111827;
+        font-size: 14px;
+        padding: 1.2rem;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border: 1px solid #d1d5db;
+        width: 100%;
+        &:focus {
+          outline: none;
+          padding: 1.1rem;
+          border: 2px solid #6b7280;
+          border-radius: 4px;
+        }
+      }
+      .form__box {
+        height: 9rem;
+      }
+    }
+    &--footer {
+      background-color: $color-white;
+      border-radius: 0px 0px 4px 4px;
+    }
+    .hr-main {
+      border: 0;
+      height: 1px;
+      background-color: #d1d5db;
+      margin-bottom: 0;
+    }
 
     // .search__icon {
     //   width: 20px;

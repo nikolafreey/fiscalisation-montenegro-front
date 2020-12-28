@@ -4,6 +4,23 @@
     margin-bottom: 2rem;
   }
 
+  &__box {
+    position: relative;
+    background-color: $color-white;
+    color: $color-text-dark;
+    font-size: $font-size-default;
+    padding: 1rem;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border: 1px solid $border-input-lines;
+    width: 100%;
+    h2 {
+      position: absolute;
+      bottom: 1rem;
+      margin-bottom: unset;
+    }
+  }
+
   &__area {
     width: 100%;
     position: relative;
@@ -147,7 +164,7 @@
     font-size: $font-size-default;
     cursor: pointer;
     position: relative;
-    padding-left: 4.5rem;
+    padding-left: 2.5rem;
   }
   &__radio-button {
     height: 1.5rem;

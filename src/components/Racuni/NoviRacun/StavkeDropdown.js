@@ -41,7 +41,7 @@ const StavkeDropdown = ({ label, ...props }) => {
         name={field.name}
         onChange={onStavkaChange}
         onInputChange={onInputChange}
-        value={{label: field.value.roba?.naziv || field.value.naziv, value: field.value}}
+        value={{label: field.value?.roba?.naziv || field.value?.naziv, value: field.value}}
       />
 
       {!!error && <ErrorMessage>{error}</ErrorMessage>}

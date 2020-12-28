@@ -52,6 +52,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
             <Dots className="icon lg" />
             <div class="drop-down" id="ddl">
               <Link
+                disabled
                 to={
                   partner.preduzece
                     ? PREDUZECA.EDIT.replace(':id', `${partner.preduzece.id}`)
