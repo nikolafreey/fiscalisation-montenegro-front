@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 
 const PreduzeceDetails = ({ preduzece }) => {
+  let c = '';
+  let a = '';
+
+  const ziroRacuni = () => {
+    console.log('pred', preduzece);
+    return preduzece.ziro_racuni?.map((racun) => {
+      a = racun.broj_racuna;
+      console.log(a);
+      if (a) {
+        const prvaTri = a.substring(0, 3);
+
+        if (prvaTri.includes('550')) {
+          return <p class="mb-20">{'Podgorička' + a}</p>;
+        } else if (prvaTri.includes('535')) {
+          return <p class="mb-20">{'Prva' + a}</p>;
+        } else if (prvaTri.includes('555')) {
+          return <p class="mb-20">{'Addiko' + a}</p>;
+        } else if (prvaTri.includes('510')) {
+          return <p class="mb-20">{'CKB ' + a}</p>;
+        } else if (prvaTri.includes('530')) {
+          return <p class="mb-20">{'Montenegro AD' + a}</p>;
+        } else if (prvaTri.includes('540')) {
+          return <p class="mb-20">{'ERSTE' + a}</p>;
+        } else if (prvaTri.includes('520')) {
+          return <p class="mb-20">{'Hipotekarna' + a}</p>;
+        }
+        return <p class="mb-20">{a}</p>;
+      }
+    });
+  };
   return (
     <div className="side-info">
       <div
@@ -64,18 +94,8 @@ const PreduzeceDetails = ({ preduzece }) => {
       <hr />
       <h3 className="heading-tertiary">Žiro računi</h3>
       <div className="side-info__info">
-        <div className="col-l">
-          <p className="txt-up mb-20">pib</p>
-          <p className="txt-up mb-20">pdv</p>
-          <p className="txt-up mb-20">iban</p>
-          <p className="txt-up mb-20">bic / swift</p>
-        </div>
-        <div className="col-r">
-          <p className="mb-20">02834567</p>
-          <p className="mb-20">31/45-5435-3535</p>
-          <p className="mb-20">1268768768834567</p>
-          <p className="mb-20">423423424234</p>
-        </div>
+        {/* <div className="col-l">{c}</div> */}
+        <div className="col-r">{ziroRacuni()}</div>
       </div>
       <hr />
       <h3 className="heading-tertiary">Kontakt informacije</h3>
