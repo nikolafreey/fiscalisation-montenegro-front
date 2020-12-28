@@ -5,6 +5,9 @@ import Label from './Label';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeFizickoLice } from '../../../store/actions/FizickaLicaActions';
 import { storePreduzece } from '../../../store/actions/PreduzecaActions';
+import { grupeService } from '../../../services/GrupeService';
+import { storeGrupa } from '../../../store/actions/GrupeActions';
+import { isNumber } from 'lodash';
 
 const AysncCreatableDropDown = ({
   label,
@@ -41,16 +44,6 @@ const AysncCreatableDropDown = ({
     } else setValue(option.value);
     setSelectedLabel(option);
   };
-
-  // const handleCreate = async (inputValue) => {
-  //   dispatch(
-  //     storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
-  //   );
-  //   console.log('inputValue', inputValue);
-  //   onChangeHandler(inputValue);
-  //   setValue(inputValue);
-  //   setSelectedLabel('test');
-  // };
 
   return (
     <div>

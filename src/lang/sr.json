@@ -1,7 +1,8 @@
 {
   "test": "test",
   "auth": {
-    "email": "E-mail",
+    "email": "Email adresa",
+    "remember_me": "Zapamti me na ovom uređaju",
     "password": "Lozinka",
     "forgotPassword": "Zaboravili ste lozinku?"
   },

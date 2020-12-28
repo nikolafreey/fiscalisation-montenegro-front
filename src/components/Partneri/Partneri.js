@@ -77,7 +77,7 @@ const Partneri = () => {
                 <input
                   type="text"
                   className="search__input"
-                  placeholder="Naziv ili PIB preduzeca"
+                  placeholder="Naziv ili PIB Preduzeca ili Fizicko Lice"
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                 />
