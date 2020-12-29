@@ -18,6 +18,16 @@ class PartneriService extends ApiService {
 
   deletePartner = (id) =>
     this.apiClient.delete(ENDPOINTS.PARTNER.replace('{id}', id));
+
+  getPartneriDropdown = async (search) => {
+    const { data } = await this.getPartneri({ search });
+
+    return data.data.map((partner) => ({
+      value: partner.id,
+      label: partner.preduzece?.kratki_naziv 
+        || `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
+    }));
+  };
 }
 
 export const partneriService = new PartneriService();

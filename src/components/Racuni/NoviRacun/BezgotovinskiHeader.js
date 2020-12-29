@@ -1,6 +1,14 @@
+import { useFormikContext } from 'formik';
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
+import { TIPOVI_RACUNA } from '../../../constants/racuni';
+import { partneriService } from '../../../services/PartneriService';
+import DropDown from '../../shared/forms/DropDown';
+import DropDownStatic from '../../shared/forms/DropDownStatic';   
 
 const BezgotovinskiHeader = () => {
+  const { values, setFieldValue } = useFormikContext();
+  
   return (
     <div class="main-content__box">
       <div class="main-content__box--inner-wrapper">
@@ -16,14 +24,16 @@ const BezgotovinskiHeader = () => {
               <label class="form__label" for="">
                 Kupac
               </label>
-              <select name="customer" id="" class="form__input mb-12">
-                <option value="">Preduzeće ili Fizičko lice</option>
-                <option value="">Fizicko lice</option>
-              </select>
-              <input
-                type="text"
-                class="form__input"
-                placeholder="Datum izdavanja"
+              <DropDown
+                name="partner_id"
+                loadOptions={
+                  partneriService.getPartneriDropdown
+                }
+              />
+              <ReactDatePicker
+                selected={values.datum_izdavanja}
+                onChange={(date) => setFieldValue('datum_izdavanja', date)}
+                className="select"
               />
             </div>
           </div>
@@ -32,15 +42,14 @@ const BezgotovinskiHeader = () => {
               <label class="form__label" for="">
                 Tip računa
               </label>
-              <select name="customer" id="" class="form__input mb-12">
-                <option value="">Račun</option>
-                <option value="">--------</option>
-                <option value="">--------</option>
-              </select>
-              <input
-                type="text"
-                class="form__input"
-                placeholder="Rok za plaćanje"
+              <DropDownStatic 
+                name="tip_racuna"
+                options={TIPOVI_RACUNA}
+              />
+              <ReactDatePicker
+                selected={values.datum_za_placanje}
+                onChange={(date) => setFieldValue('datum_za_placanje', date)}
+                className="select"
               />
             </div>
           </div>

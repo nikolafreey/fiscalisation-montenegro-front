@@ -231,7 +231,7 @@ const PreduzecaForm = () => {
                       </div>
                       <div className="df jc-sb">
                         <div className="form__group w-48">
-                          <DropDown
+                        <DropDown
                             name="djelatnost"
                             label={$t('preduzeca.djelatnost')}
                             loadOptions={

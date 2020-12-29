@@ -25,7 +25,7 @@ const StavkeDropdown = ({ label, ...props }) => {
   }
 
   function onStavkaChange(option) {
-    setValue(option.value);
+    setValue({...option.value, kolicina: 0, tip_popusta: 'procenat'});
   }
 
   const [field, meta, helpers] = useField(props);
