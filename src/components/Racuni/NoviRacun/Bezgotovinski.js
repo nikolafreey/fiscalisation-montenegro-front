@@ -35,6 +35,8 @@ const Bezgotovinski = () => {
       initialValues={{ stavke: [] }}
       onSubmit={handleSubmit}
       enableReinitialize
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {({ values }) => (
         <Form>

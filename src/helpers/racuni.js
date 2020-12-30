@@ -1,3 +1,7 @@
+export function formatirajCijenu(cijena) {
+  return cijena ? Number(cijena).toFixed(2).replace('.', ',') + ' €' : '0 €'
+}
+
 export function roundUp(cijena) {
   let cijenaInt = Math.ceil(cijena);
   const stepenDesetke = Math.pow(10, cijenaInt.toString().length - 1);
