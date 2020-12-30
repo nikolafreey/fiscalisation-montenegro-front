@@ -1,6 +1,13 @@
+import { useFormikContext } from 'formik';
 import React from 'react';
+import { formatirajCijenu, izracunajPojedinacnePoreze } from '../../../helpers/racuni';
 
 const BezgotovinskiPorezi = () => {
+  const { values } = useFormikContext();
+
+  const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
+  //console.log(porezi);
+
   return (
     <>
       <h2 class="heading-secondary">Porez pojedinačno</h2>
@@ -22,20 +29,21 @@ const BezgotovinskiPorezi = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="w-33">PDV 7%</td>
-                  <td class="w-33">120,30</td>
-                  <td class="txt-right w-33">
-                    12,00 <span class="txt-light">EUR</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="w-33">PDV 21%</td>
-                  <td class="w-33">230,40</td>
-                  <td class="txt-right w-33">
-                    42,40 <span class="txt-light">EUR</span>
-                  </td>
-                </tr>
+                {Object.keys(porezi).map(porezId => {
+                  const porez = porezi[porezId];
+
+                  return (
+                    <tr>
+                      <td class="w-33">{porez.naziv}</td>
+                      <td class="w-33">{ formatirajCijenu(porez.ukupno - porez.pdvIznos) }</td>
+                      <td class="txt-right w-33">
+                        {formatirajCijenu(porez.pdvIznos)} <span class="txt-light"></span>
+                      </td>
+                    </tr>
+                  )
+                })
+                }
+        
               </tbody>
             </table>
           </div>

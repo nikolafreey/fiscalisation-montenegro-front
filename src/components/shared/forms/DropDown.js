@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import Label from './Label';
 
-const DropDown = ({ label, defaultOptions = true, loadOptions, ...props }) => {
+const DropDown = ({ onChangeExtra = null, label, defaultOptions = true, loadOptions, ...props }) => {
   const [selectedLabel, setSelectedLabel] = useState(null);
 
   const [field, meta, helpers] = useField(props);
@@ -22,6 +22,7 @@ const DropDown = ({ label, defaultOptions = true, loadOptions, ...props }) => {
             setValue(option.map((item) => item.value));
           } else setValue(option.value);
           setSelectedLabel(option);
+          if(onChangeExtra) onChangeExtra(option);
         }}
         value={selectedLabel}
         cacheOptions

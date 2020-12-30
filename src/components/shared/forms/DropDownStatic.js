@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import Label from './Label';
 
-const DropDownStatic = ({ label, options, ...props }) => {
+const DropDownStatic = ({ onChangeExtra, label, options, ...props }) => {
   const [selectedLabel, setSelectedLabel] = useState(null);
 
   const [field, meta, helpers] = useField(props);
@@ -20,6 +20,7 @@ const DropDownStatic = ({ label, options, ...props }) => {
         onChange={(option) => {
           setValue(option.value);
           setSelectedLabel(option);
+          if (onChangeExtra) onChangeExtra(option);
         }}
         value={selectedLabel === null ? props.defaultValue : selectedLabel}
         isSearchable

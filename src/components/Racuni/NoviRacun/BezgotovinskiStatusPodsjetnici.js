@@ -1,6 +1,9 @@
+import { useFormikContext } from 'formik';
 import React from 'react';
 
 const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
+  const { values, setFieldValue } = useFormikContext();
+  
   return (
     <>
       <div class="container">

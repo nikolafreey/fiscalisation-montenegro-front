@@ -10,6 +10,7 @@ import { jediniceMjereService } from '../../../services/JediniceMjereService';
 import { poreziService } from '../../../services/PoreziService';
 import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
+import { uslugaSelector } from '../../../store/selectors/UslugeSelector';
 
 const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   const dispatch = useDispatch();
@@ -23,16 +24,35 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     (async () => setPorezi((await poreziService.getPorezi()).data))();
   }, []);
 
-  function getCijenaStavkeBezPdv(stavka) {
-    return stavka?.roba?.cijene_roba?.[0]?.cijena_bez_pdv || stavka?.cijena_bez_pdv || 0;
+  function izracunajCijenuSaPopustom(stavka, cijena) {
+    if(!stavka.tip_popusta) return cijena;
+    if(stavka.tip_popusta === 'iznos') return cijena - Number(stavka.popust || 0);
+    if(stavka.tip_popusta === 'procenat') return cijena - Number(stavka.popust || 0) * cijena / 100; 
   }
 
-  function getUkupnaCijenaStavke(stavka) {
-    return stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
+  function getCijenaStavkeBezPdv(stavka) {
+    return izracunajCijenuSaPopustom(stavka, 
+      stavka?.roba?.cijene_roba?.[0]?.cijena_bez_pdv 
+      || stavka?.cijena_bez_pdv 
+      || 0
+    );
+  }
+
+  function getPorezForId(porezId) {
+    return porezi?.find(porez => porez.id === porezId) || {};
   }
 
   function getPorezStopaForId(porezId) {
-    return porezi?.find(porez => porez.id === porezId)?.stopa || 0;
+    return getPorezForId(porezId)?.stopa || 0;
+  }
+  
+  function getIznosPdv(stavka) {
+    return getPorezStopaForId(stavka?.porez_id) * getCijenaStavkeBezPdv(stavka);
+  }
+
+  function getUkupnaCijenaStavke(stavka) {
+    return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
+    //stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
@@ -46,6 +66,18 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   function getUkupanIznosPdv(stavka) {
     return getUkupnaCijenaSaPdv(stavka) - getUkupnaCijenaBezPdv(stavka);
   }
+
+  function handleChoosePopust(option, stavka, index) {
+    if (option.value === 'procenat') {
+      setFieldValue(`values.${index}.popust`, 
+        stavka.roba ? stavka.roba?.cijene_roba[0]?.popust_procenti : stavka.grupa.popust_procenti);
+    } else if (option.value === 'iznos') {
+      setFieldValue(`values.${index}.popust`, 
+        stavka.roba ? stavka.roba?.cijene_roba[0]?.popust_iznos : stavka.grupa.popust_iznos);
+    } else {
+      setFieldValue(`values.${index}.popust`, 0);
+    }
+  }
   
   return (
     <>
@@ -54,7 +86,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
           <div class="main-content__box--body mb-20">
             <div class="container">
               <div class="df jc-sb ai-c w-100">
-                <h2 class="heading-secondary">1</h2>
+                <h2 class="heading-secondary">{index + 1}</h2>
                 <p onClick={() => remove(index)} class="btn btn__link danger">
                   Ukloni stavku
                   <span>
@@ -101,6 +133,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       loadOptions={
                         poreziService.getPoreziDropdown
                       }
+                      onChangeExtra={
+                        (option) => setFieldValue(`stavke.${index}.porez`, getPorezForId(option.value))
+                      }
                     />
                   </div>
                 </div>
@@ -109,6 +144,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDownStatic 
                       name={`stavke.${index}.tip_popusta`}
                       options={TIPOVI_POPUSTA}
+                      onChangeExtra={(option) => handleChoosePopust(option, stavka, index)}
                     />
                   </div>
                 </div>
@@ -168,8 +204,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           type="number"
                           class="form__input mb-12"
-                          value={stavka?.popust_procenat}
-                          onChange={(event) => setFieldValue(`stavke.${index}.popust_procenat`, event.target.valueAsNumber)}
+                          value={stavka?.popust}
+                          onChange={(event) => setFieldValue(`stavke.${index}.popust`, event.target.valueAsNumber)}
                         />
                       </div>
                     </div>

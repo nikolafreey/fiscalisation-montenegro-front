@@ -1,6 +1,20 @@
+import { useFormikContext } from 'formik';
 import React from 'react';
+import { TIPOVI_POPUSTA } from '../../../constants/racuni';
+import {
+  formatirajCijenu,
+  izracunajUkupnuCijenuStavki,
+  izracunajUkupnuCijenuStavkiBezPdv,
+} from '../../../helpers/racuni';
+import DropDownStatic from '../../shared/forms/DropDownStatic';
 
 const BezgotovinskiUkupno = () => {
+  const { values, setFieldValue } = useFormikContext();
+
+  const ukupnaCijena = izracunajUkupnuCijenuStavki(values.stavke);
+  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv(values.stavke);
+  const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
+
   return (
     <>
       <h2 class="heading-secondary">Ukupno</h2>
@@ -14,12 +28,15 @@ const BezgotovinskiUkupno = () => {
                     Napomena
                   </label>
                   <textarea
-                    name="note"
-                    id=""
+                    name="opis"
                     id=""
                     cols="30"
                     rows="6"
                     class="form__input h-83"
+                    value={values.opis}
+                    onChange={(event) =>
+                      setFieldValue('opis', event.target.value)
+                    }
                   ></textarea>
                 </div>
               </div>
@@ -30,14 +47,15 @@ const BezgotovinskiUkupno = () => {
                       <label for="" class="form__label">
                         Tip popusta
                       </label>
-                      <select name="customer" id="" class="form__input mb-12">
-                        <option value="">Procenat %</option>
-                        <option value="">--------</option>
-                        <option value="">--------</option>
-                      </select>
+                      <DropDownStatic
+                        name="tip_popusta"
+                        options={TIPOVI_POPUSTA}
+                      />
                       <div class="form__box">
                         <p class="txt-light">Ukupan iznos PDV-a</p>
-                        <h2 class="heading-secondary">94,30</h2>
+                        <h2 class="heading-secondary">
+                          {formatirajCijenu(ukupnoPdv)}
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -46,14 +64,18 @@ const BezgotovinskiUkupno = () => {
                       <label for="" class="form__label">
                         Popust bez PDV-a
                       </label>
-                      <select name="customer" id="" class="form__input mb-12">
-                        <option value="">Da</option>
-                        <option value="">--------</option>
-                        <option value="">--------</option>
-                      </select>
+                      <DropDownStatic
+                        name={`popust_bez_pdv`}
+                        options={[
+                          { value: true, label: 'DA' },
+                          { value: false, label: 'NE' },
+                        ]}
+                      />
                       <div class="form__box">
-                        <p class="txt-light">Ukupan iznos PDV-a</p>
-                        <h2 class="heading-secondary">94,30</h2>
+                        <p class="txt-light">Ukupna cijena bez PDV-a</p>
+                        <h2 class="heading-secondary">
+                          {formatirajCijenu(ukupnaCijenaBezPdv)}
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -62,10 +84,19 @@ const BezgotovinskiUkupno = () => {
                       <label for="" class="form__label">
                         Iznos popusta
                       </label>
-                      <input type="text" class="form__input mb-12" value="23" />
+                      <input
+                        type="number"
+                        class="form__input mb-12"
+                        value={values.popust}
+                        onChange={(event) =>
+                          setFieldValue('popust', event.target.valueAsNumber)
+                        }
+                      />
                       <div class="form__box">
-                        <p class="txt-light">Ukupan iznos PDV-a</p>
-                        <h2 class="heading-secondary">94,30</h2>
+                        <p class="txt-light">Ukupna cijena sa PDV-om</p>
+                        <h2 class="heading-secondary">
+                          {formatirajCijenu(ukupnaCijena)}
+                        </h2>
                       </div>
                     </div>
                   </div>
