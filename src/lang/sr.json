@@ -2,6 +2,7 @@
   "test": "test",
   "auth": {
     "email": "Email adresa",
+    "forgot_password": "Unesite Vašu Email adresu",
     "remember_me": "Zapamti me na ovom uređaju",
     "password": "Lozinka",
     "forgotPassword": "Zaboravili ste lozinku?"

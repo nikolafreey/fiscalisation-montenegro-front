@@ -8,6 +8,7 @@ import { storeRacun } from '../../store/actions/RacuniActions';
 
 const RacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
+  console.log('item', item);
 
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
@@ -26,11 +27,9 @@ const RacuniTableRow = ({ item }) => {
       <td className="cl">{item.ikof && <Success />}</td>
       <td className="cl">{item.broj_racuna}</td>
       <td className="cd fw-500">
-        {item.preduzece_id
-          ? item.partner?.preduzece?.kratki_naziv
-          : item.partner?.fizicko_lice?.ime +
-            ' ' +
-            item.partner?.fizicko_lice?.prezime}
+        {item.partner?.preduzece?.kratki_naziv ||
+          `${item.partner?.fizicko_lice?.ime}
+           ${item.partner?.fizicko_lice?.prezime}`}
       </td>
       <td className="cd fw-500 dshow-cell">
         {currencyFormat(item.ukupna_cijena_bez_pdv) + '€'}

@@ -20,7 +20,11 @@ const PredracuniTableRow = ({ item }) => {
   return (
     <tr>
       <td className="cl">{item.broj_racuna}</td>
-      <td className="cd fw-500">{item.preduzece_id}</td>
+      <td className="cd fw-500">
+        {item.partner?.preduzece?.kratki_naziv ||
+          `${item.partner?.fizicko_lice?.ime}
+           ${item.partner?.fizicko_lice?.prezime}`}
+      </td>
       <td className="cd fw-500 dshow-cell">
         {Number(item.ukupna_cijena_bez_pdv).toFixed(2).replace('.', ',') + '€'}
       </td>
