@@ -17,7 +17,7 @@ export function* racunStore() {
 
 export function* bezgotovinskiRacunStore({ payload }) {
   try {
-    yield call(racuniService.storeRacun, payload);
+    yield call(racuniService.storeBezgotovinskiRacun, payload);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

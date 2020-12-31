@@ -19,7 +19,17 @@ const Bezgotovinski = () => {
   const { params } = useRouteMatch();
 
   const handleSubmit = (values) => {
-    dispatch(storeBezgotovinskiRacun(values));
+    const noviRacun = {
+      ...values,
+      vrsta_racuna: 'bezgotovinski',
+      popust_procenat: values.tip_popusta === 'procenat' ? values.popust : null,
+      popust_iznos: values.tip_popusta === 'iznos' ? values.popust : null,
+      popust_na_cijenu_bez_pdv: values.popust_bez_pdv,
+      datum_izdavanja: values.datum_izdavanja?.toISOString().split('T')[0],
+      datum_za_placanje: values.datum_za_placanje?.toISOString().split('T')[0],
+    }
+
+    dispatch(storeBezgotovinskiRacun(noviRacun));
   };
 
   const {
@@ -95,7 +105,7 @@ const Bezgotovinski = () => {
                   >
                     Fiskalizuj i Pošalji
                   </button>
-                  <button class="btn btn__transparent btn__xl ml-m">
+                  <button onClick={() => handleSubmit(values)} class="btn btn__transparent btn__xl ml-m">
                     Sačuvaj kao privremeni
                   </button>
                   <button class="btn btn__link ml-m">Obustavi</button>

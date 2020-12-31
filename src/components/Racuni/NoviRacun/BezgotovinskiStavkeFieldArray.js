@@ -25,7 +25,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }, []);
 
   function izracunajCijenuSaPopustom(stavka, cijena) {
-    if(!stavka.tip_popusta) return cijena;
+    if(!stavka?.tip_popusta) return cijena;
     if(stavka.tip_popusta === 'iznos') return cijena - Number(stavka.popust || 0);
     if(stavka.tip_popusta === 'procenat') return cijena - Number(stavka.popust || 0) * cijena / 100; 
   }

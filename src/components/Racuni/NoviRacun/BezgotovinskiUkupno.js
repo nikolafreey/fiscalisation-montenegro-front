@@ -3,6 +3,7 @@ import React from 'react';
 import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import {
   formatirajCijenu,
+  izracunajPojedinacnePoreze,
   izracunajUkupnuCijenuStavki,
   izracunajUkupnuCijenuStavkiBezPdv,
 } from '../../../helpers/racuni';
@@ -11,9 +12,64 @@ import DropDownStatic from '../../shared/forms/DropDownStatic';
 const BezgotovinskiUkupno = () => {
   const { values, setFieldValue } = useFormikContext();
 
-  const ukupnaCijena = izracunajUkupnuCijenuStavki(values.stavke);
-  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv(values.stavke);
-  const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
+  const popust = values.popust ? {
+    popust: values.popust,
+    tip_popusta: values.tip_popusta,
+    popust_bez_pdv: values.popust_bez_pdv
+  } : null;
+
+  function izracunajPopustNaCijenu(cijena) {
+    if (popust.tip_popusta === 'procenat') {
+      return cijena * popust.popust / 100;
+    }
+    if (popust.tip_popusta === 'iznos') {
+      return popust.popust;
+    }
+  }
+
+  function izracunajCijeneSaPopustom() {
+    const ukupnaCijena = izracunajUkupnuCijenuStavki(values.stavke, true);
+    const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv(values.stavke, true);
+    const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
+
+    if (!popust) return {
+      ukupnaCijena,
+      ukupnaCijenaBezPdv,
+      ukupnoPdv
+    };
+    
+    if (popust.popust_bez_pdv) {
+      return {
+        ukupnaCijena: ukupnaCijena - izracunajPopustNaCijenu(ukupnaCijena),
+        ukupnaCijenaBezPdv,
+        ukupnoPdv
+      } 
+    } else {
+      const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
+      
+      return Object.keys(porezi).reduce((cijene, porezId) => {
+        const porez = porezi[porezId];
+        const bezPdv = porez.ukupno - porez.pdvIznos;
+
+        const bezPdvSaPopustom = bezPdv - izracunajPopustNaCijenu(bezPdv);
+        const iznosPdvSaPopustom = Number(porez.stopa) * bezPdvSaPopustom;
+        const ukupnoSaPopustom = bezPdvSaPopustom + iznosPdvSaPopustom;
+
+
+        return {
+          ukupnaCijena: cijene.ukupnaCijena + ukupnoSaPopustom,
+          ukupnaCijenaBezPdv: cijene.ukupnaCijenaBezPdv + bezPdvSaPopustom,
+          ukupnoPdv: cijene.ukupnoPdv + iznosPdvSaPopustom
+        }
+      }, {
+        ukupnaCijena: 0,
+        ukupnaCijenaBezPdv: 0,
+        ukupnoPdv: 0
+      });
+    }
+  }
+
+  const cijene = izracunajCijeneSaPopustom();
 
   return (
     <>
@@ -54,7 +110,7 @@ const BezgotovinskiUkupno = () => {
                       <div class="form__box">
                         <p class="txt-light">Ukupan iznos PDV-a</p>
                         <h2 class="heading-secondary">
-                          {formatirajCijenu(ukupnoPdv)}
+                          {formatirajCijenu(cijene.ukupnoPdv)}
                         </h2>
                       </div>
                     </div>
@@ -74,7 +130,7 @@ const BezgotovinskiUkupno = () => {
                       <div class="form__box">
                         <p class="txt-light">Ukupna cijena bez PDV-a</p>
                         <h2 class="heading-secondary">
-                          {formatirajCijenu(ukupnaCijenaBezPdv)}
+                          {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}
                         </h2>
                       </div>
                     </div>
@@ -95,7 +151,7 @@ const BezgotovinskiUkupno = () => {
                       <div class="form__box">
                         <p class="txt-light">Ukupna cijena sa PDV-om</p>
                         <h2 class="heading-secondary">
-                          {formatirajCijenu(ukupnaCijena)}
+                          {formatirajCijenu(cijene.ukupnaCijena)}
                         </h2>
                       </div>
                     </div>

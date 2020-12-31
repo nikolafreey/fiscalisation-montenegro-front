@@ -68,22 +68,22 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
     Number(roba.kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
 }
 
-export function izracunajUkupnuCijenuStavki(stavke) {
+export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
   const suma = stavke.reduce((suma, stavka) => {
     if (!stavka) return;
-    if (stavka.roba) return dodajRobuNaSumu(suma, stavka);
-    else return dodajUsluguNaSumu(suma, stavka);
+    if (stavka.roba) return dodajRobuNaSumu(suma, stavka, bezDefaultPopusta);
+    else return dodajUsluguNaSumu(suma, stavka, bezDefaultPopusta);
   }, 0);
   return suma;
 }
 
-function dodajUsluguNaSumu(suma, usluga) {
+function dodajUsluguNaSumu(suma, usluga, bezDefaultPopusta) {
   const ukupna_cijena = (1 + Number(usluga.porez.stopa)) * Number(usluga.cijena_bez_pdv);
   
   if (usluga.tip_popusta && usluga.popust) {
     return suma + izracunajPopust(ukupna_cijena, usluga.popust, usluga.tip_popusta) * usluga.kolicina;
   }
-  if (usluga.grupa?.popust_iznos)
+  if (!bezDefaultPopusta && usluga.grupa?.popust_iznos)
     return (
       suma +
       (ukupna_cijena - usluga.grupa.popust_iznos) * usluga.kolicina
@@ -91,14 +91,14 @@ function dodajUsluguNaSumu(suma, usluga) {
   return suma + ukupna_cijena * usluga.kolicina;
 }
 
-function dodajRobuNaSumu(suma, roba) {
+function dodajRobuNaSumu(suma, roba, bezDefaultPopusta) {
   const porezRobe = roba.porez || roba.roba.cijene_roba[0].porez;
   const ukupna_cijena = (1 + Number(porezRobe.stopa)) * Number(roba.roba.cijene_roba[0].cijena_bez_pdv);
   
   if (roba.tip_popusta && roba.popust) {
     return suma + izracunajPopust(ukupna_cijena, roba.popust, roba.tip_popusta) * roba.kolicina;
   }
-  if (roba.atribut_robe?.popust_iznos)
+  if (!bezDefaultPopusta && roba.atribut_robe?.popust_iznos)
     return (
       suma +
       (ukupna_cijena -
@@ -108,20 +108,20 @@ function dodajRobuNaSumu(suma, roba) {
   return suma + ukupna_cijena * roba.kolicina;
 }
 
-export function izracunajUkupnuCijenuStavkiBezPdv(stavke) {
+export function izracunajUkupnuCijenuStavkiBezPdv(stavke, bezDefaultPopusta) {
   const suma = stavke.reduce((suma, stavka) => {
     if (!stavka) return;
-    if (stavka.roba) return dodajRobuNaSumuBezPdv(suma, stavka);
-    else return dodajUsluguNaSumuBezPdv(suma, stavka);
+    if (stavka.roba) return dodajRobuNaSumuBezPdv(suma, stavka, bezDefaultPopusta);
+    else return dodajUsluguNaSumuBezPdv(suma, stavka, bezDefaultPopusta);
   }, 0);
   return suma;
 }
 
-function dodajUsluguNaSumuBezPdv(suma, usluga) {
+function dodajUsluguNaSumuBezPdv(suma, usluga, bezDefaultPopusta) {
   if (usluga.tip_popusta && usluga.popust) {
     return suma + izracunajPopust(usluga.cijena_bez_pdv, usluga.popust, usluga.tip_popusta) * usluga.kolicina;
   }
-  if (usluga.grupa?.popust_iznos)
+  if (!bezDefaultPopusta && usluga.grupa?.popust_iznos)
     return (
       suma +
       (usluga.cijena_bez_pdv - usluga.grupa.popust_iznos) * usluga.kolicina
@@ -129,11 +129,11 @@ function dodajUsluguNaSumuBezPdv(suma, usluga) {
   return suma + usluga.cijena_bez_pdv * usluga.kolicina;
 }
 
-function dodajRobuNaSumuBezPdv(suma, roba) {
+function dodajRobuNaSumuBezPdv(suma, roba, bezDefaultPopusta) {
   if (roba.tip_popusta && roba.popust) {
     return suma + izracunajPopust(roba.roba.cijene_roba[0].cijena_bez_pdv, roba.popust, roba.tip_popusta) * roba.kolicina;
   }
-  if (roba.atribut_robe?.popust_iznos)
+  if (!bezDefaultPopusta && roba.atribut_robe?.popust_iznos)
     return (
       suma +
       (roba.roba.cijene_roba[0].cijena_bez_pdv -
