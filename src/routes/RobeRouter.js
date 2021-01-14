@@ -17,9 +17,6 @@ const RobeRouter = () => {
       <Route path={ROBE.SHOW}>
         <Roba />
       </Route>
-      <Route exact path={ROBE.INDEX}>
-        <Robe />
-      </Route>
       <Redirect to={ERRORS.NOT_FOUND} />
     </Switch>
   );

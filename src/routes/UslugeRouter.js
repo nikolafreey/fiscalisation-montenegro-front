@@ -17,9 +17,6 @@ const UslugeRouter = () => {
       <Route path={USLUGE.SHOW}>
         <Usluga />
       </Route>
-      <Route exact path={USLUGE.INDEX}>
-        <Usluge />
-      </Route>
       <Redirect to={ERRORS.NOT_FOUND} />
     </Switch>
   );
