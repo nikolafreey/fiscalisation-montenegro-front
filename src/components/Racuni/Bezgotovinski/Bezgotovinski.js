@@ -6,15 +6,19 @@ import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
 import { usePorezi } from '../../../hooks/PoreziHook';
 
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { storeBezgotovinskiRacun } from '../../../store/actions/RacuniActions';
 import BezgotovinskiPorezi from './BezgotovinskiPorezi';
 import BezgotovinskiUkupno from './BezgotovinskiUkupno';
 import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
 import BezgotovinskiHeader from './BezgotovinskiHeader';
 
+import { RACUNI } from '../../../constants/routes';
+
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
+  // const racuni = useSelector(racuniSelector());
+  // console.log(racuni)
 
   const { params } = useRouteMatch();
 
@@ -51,7 +55,7 @@ const Bezgotovinski = () => {
       {({ values }) => (
         <Form>
           <div className="screen-content">
-            <Link to="#racuni" className="link df">
+            <Link to={RACUNI.INDEX} className="link df">
               <LinkSvg /> <p>Povratak na Račune</p>
             </Link>
 
@@ -60,25 +64,26 @@ const Bezgotovinski = () => {
             </h1>
 
             <BezgotovinskiHeader />
-
-            <h2 class="heading-secondary">Stavke</h2>
-            <div class="main-content__box" style={{display: 'block'}}>
-              <div class="main-content__box--header">
-                <div class="row">
-                  <div class="col-xl-4">
-                    <h4 class="heading-quaternary">Naziv usluge / robe</h4>
+          
+          {/* STAVKE */}
+            <h2 className="heading-secondary">Stavke</h2>
+            <div className="main-content__box" style={{display: 'block'}}>
+              <div className="main-content__box--header">
+                <div className="row">
+                  <div className="col-xl-4">
+                    <h4 className="heading-quaternary">Naziv usluge / robe</h4>
                   </div>
-                  <div class="col-xl-2">
-                    <h4 class="heading-quaternary">jedinična cijena</h4>
+                  <div className="col-xl-2">
+                    <h4 className="heading-quaternary">jedinična cijena</h4>
                   </div>
-                  <div class="col-xl-2">
-                    <h4 class="heading-quaternary">JM / Količina</h4>
+                  <div className="col-xl-2">
+                    <h4 className="heading-quaternary">JM / Količina</h4>
                   </div>
-                  <div class="col-xl-2">
-                    <h4 class="heading-quaternary">PDV stopa</h4>
+                  <div className="col-xl-2">
+                    <h4 className="heading-quaternary">PDV stopa</h4>
                   </div>
-                  <div class="col-xl-2">
-                    <h4 class="heading-quaternary txt-right">
+                  <div className="col-xl-2">
+                    <h4 className="heading-quaternary txt-right">
                       Tip Popusta/iznos
                     </h4>
                   </div>
@@ -90,28 +95,32 @@ const Bezgotovinski = () => {
                 )}
               </FieldArray>
             </div>
+            {/* STAVKE */}
 
             <BezgotovinskiPorezi />
             <BezgotovinskiUkupno />
-            <h2 class="heading-secondary">Status i podsjetnici</h2>
-            <div class="main-content__box">
-              <div class="form">
-                <div class="content pt-12"></div>
+
+            {/* STAS I PODSJETNICI */}
+            <h2 className="heading-secondary">Status i podsjetnici</h2>
+            <div className="main-content__box">
+              <div className="form">
+                <div className="content pt-12"></div>
                 <BezgotovinskiStatusPodsjetnici />
-                <div class="form__footer">
+                <div className="form__footer">
                   <button
                     onClick={(values) => handleSubmit(values)}
-                    class="btn btn__dark btn__lg"
+                    className="btn btn__dark btn__lg"
                   >
                     Fiskalizuj i Pošalji
                   </button>
-                  <button onClick={() => handleSubmit(values)} class="btn btn__transparent btn__xl ml-m">
+                  <button onClick={() => handleSubmit(values)} className="btn btn__transparent btn__xl ml-m">
                     Sačuvaj kao privremeni
                   </button>
-                  <button class="btn btn__link ml-m">Obustavi</button>
+                  <button className="btn btn__link ml-m">Obustavi</button>
                 </div>
               </div>
             </div>
+            {/* STAS I PODSJETNICI */}
           </div>
         </Form>
       )}

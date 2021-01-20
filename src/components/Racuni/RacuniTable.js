@@ -14,7 +14,7 @@ const RacuniTable = ({ racuni }) => {
 
   return (
     <>
-      <div className="table-wrapper">
+      <div className="table-wrapper" >
         <table className="table">
           <thead>
             <tr>

@@ -27,6 +27,7 @@ import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
+import { RACUNI } from '../../constants/routes';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const UslugeForm = () => {
     } else {
       dispatch(
         storeUsluga({
+          ...values,
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
@@ -62,8 +64,8 @@ const UslugeForm = () => {
           grupa_id: isNumber(values.grupa_id)
             ? values.grupa_id
             : tempLen.slice(-1)[0].value + 1,
-          status: values.status === 'Aktivan' ? true : false,
-          ...values,
+          status: values.status == "Aktivan" ? true : false,
+          
         })
       );
     }
@@ -133,7 +135,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to="#stavke" className="link df">
+          <Link to={RACUNI.CREATE} className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 

@@ -51,13 +51,13 @@ const Partneri = () => {
 
   return (
     <>
-      <div class="screen-content-info">
-        <div class="title">
-          <h1 class="heading-primary">Partneri</h1>
-          <button class="btn btn__dark btn__xl">
+      <div className="screen-content-info">
+        <div className="title">
+          <h1 className="heading-primary">Partneri</h1>
+          <button className="btn btn__dark btn__xl">
             <PlusLightSvg />
             Novi partner
-            <div class="drop-down" id="ddl">
+            <div className="drop-down" id="ddl">
               <Link to={PREDUZECA.CREATE}>
                 <PreduzeceSvg />
                 Preduzeće

@@ -5,13 +5,17 @@ import RacuniForm from '../components/Racuni/RacuniForm';
 import Racun from '../components/Racuni/Racun';
 import Racuni from '../components/Racuni/Racuni';
 import NoviRacun from '../components/Racuni/NoviRacun/NoviRacun';
-import Bezgotovinski from '../components/Racuni/NoviRacun/Bezgotovinski';
+import Bezgotovinski from '../components/Racuni/Bezgotovinski/Bezgotovinski';
+import BezgotovinskiPreview from '../components/Racuni/Bezgotovinski/BezgotovinskiPreview';
 
 const RacuniRouter = () => {
   return (
     <Switch>
       <Route path={RACUNI.BEZGOTOVINSKI.CREATE}>
         <Bezgotovinski />
+      </Route>
+      <Route path={RACUNI.BEZGOTOVINSKI.SHOW}>
+        <BezgotovinskiPreview />
       </Route>
       <Route path={RACUNI.EDIT}>
         <RacuniForm />

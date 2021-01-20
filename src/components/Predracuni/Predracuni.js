@@ -120,7 +120,7 @@ const Predracuni = () => {
         </Link>
       </div>
       <div className="main-content__box">
-        <div className="content">
+        <div className="content" style={{width: '100%'}}>
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100">
               <div className="search df ai-c w-53">
@@ -129,7 +129,7 @@ const Predracuni = () => {
                   <input
                     name="search"
                     placeholder="Pretraži Račune"
-                    class="search__input"
+                    className="search__input"
                     value={search}
                     onChange={handleChange}
                   />

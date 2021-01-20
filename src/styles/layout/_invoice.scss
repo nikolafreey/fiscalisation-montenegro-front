@@ -1,0 +1,46 @@
+.invoice{
+    position: relative;
+    h2{
+        margin-bottom: 1rem;
+    }
+    .status{
+        position: absolute;
+        right: 3rem;
+        top: 3rem;
+    }
+    &__header{
+        padding: 3rem;
+        span{
+            margin-bottom: 1rem;
+        }
+        
+        &--logo{
+            display: block;
+            height: auto;
+            width: 200px;
+        }
+        &--box {
+            padding: 1.5rem;
+            border: 2px solid $color-text-dark; 
+            p{
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    &__qr{
+        width: 100%;
+        height: auto;
+    }
+    &__footer{
+        padding: 3rem;
+        span, .fw-500{
+            margin-bottom: 1rem;
+        }
+    }
+    th {
+        padding: 1.2rem 3rem;
+    }
+    td {
+        padding: 3rem;
+    }
+}

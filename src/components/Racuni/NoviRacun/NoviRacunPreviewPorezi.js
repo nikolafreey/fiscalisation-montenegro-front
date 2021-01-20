@@ -9,22 +9,22 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
 
   return (
-    <div classname="row mb-15">
+    <div className="row mb-15">
       {Object.keys(porezi).map((porezId) => (
         <>
-          <div classname="col-lg-8">
+          <div className="col-lg-8">
             <p>Ukupno za {porezi[porezId].naziv}</p>
           </div>
-          <div classname="col-lg-4">
-            <p classname="txt-right">
+          <div className="col-lg-4">
+            <p className="txt-right">
               {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
             </p>
           </div>
-          <div classname="col-lg-8">
+          <div className="col-lg-8">
             <p>{porezi[porezId].naziv}</p>
           </div>
-          <div classname="col-lg-4">
-            <p classname="txt-right">
+          <div className="col-lg-4">
+            <p className="txt-right">
               {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
             </p>
           </div>

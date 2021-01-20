@@ -10,18 +10,18 @@ const BezgotovinskiHeader = () => {
   const { values, setFieldValue } = useFormikContext();
   
   return (
-    <div class="main-content__box">
-      <div class="main-content__box--inner-wrapper">
-        <div class="row">
-          <div class="col-xl-4 pr-0">
-            <h2 class="heading-secondary">Novi račun</h2>
-            <p class="txt-light">
+    <div className="main-content__box">
+      <div className="main-content__box--inner-wrapper">
+        <div className="row">
+          <div className="col-xl-4 pr-0">
+            <h2 className="heading-secondary">Novi račun</h2>
+            <p className="txt-light">
               Unesite kupca, tip računa i krajnji datum za plaćanje
             </p>
           </div>
-          <div class="col-xl-4 pr-0">
-            <div class="form-group">
-              <label class="form__label" for="">
+          <div className="col-xl-4 pr-0">
+            <div className="form-group">
+              <label className="form__label" for="">
                 Kupac
               </label>
               <DropDown
@@ -37,9 +37,9 @@ const BezgotovinskiHeader = () => {
               />
             </div>
           </div>
-          <div class="col-xl-4">
-            <div class="form-group">
-              <label class="form__label" for="">
+          <div className="col-xl-4">
+            <div className="form-group">
+              <label className="form__label" for="">
                 Tip računa
               </label>
               <DropDownStatic 

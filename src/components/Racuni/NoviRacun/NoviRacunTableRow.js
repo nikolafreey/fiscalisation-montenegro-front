@@ -12,6 +12,8 @@ import {
 import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
+
+  console.log('roba',roba)
   const stavka = useSelector(
     usluga.id
       ? noviRacunUslugaSelector(usluga.id)
@@ -35,12 +37,12 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
     <tr onClick={handleClick} className={stavka.kolicina ? 'active' : ''}>
       <td>
         <p>{usluga.naziv || roba.roba.naziv}</p>
-        <h3 class="heading-quaternary">{usluga.opis || roba.roba.opis}</h3>
+        <h3 className="heading-quaternary">{usluga.opis || roba.roba.opis}</h3>
       </td>
-      <td class="cl">
+      <td className="cl">
         {usluga.jedinica_mjere?.naziv || roba.roba.jedinica_mjere?.naziv}
       </td>
-      <td class="cd fw-500 txt-right">
+      <td className="cd fw-500 txt-right">
         <p>
           {usluga.ukupna_cijena ||
             roba.roba.cijene_roba[0]?.ukupna_cijena.replace('.', ',') + '€'}

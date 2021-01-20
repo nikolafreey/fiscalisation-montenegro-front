@@ -5,11 +5,14 @@ import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
 import { storeRacun } from '../../store/actions/RacuniActions';
+import { useHistory } from "react-router-dom";
 
 const RacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
-  console.log('item', item);
 
+  const history = useHistory();
+
+  console.log(item)
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
     neNaplativ: { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },
@@ -22,8 +25,12 @@ const RacuniTableRow = ({ item }) => {
     return num.toString().replace('.', ',');
   };
 
+  const handleClick = () => {
+    history.push(`/racuni/bezgotovinski/show/${item.id}`);
+  }
+
   return (
-    <tr>
+    <tr onClick={handleClick}>
       <td className="cl">{item.ikof && <Success />}</td>
       <td className="cl">{item.broj_racuna}</td>
       <td className="cd fw-500">

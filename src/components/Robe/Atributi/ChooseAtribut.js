@@ -67,21 +67,21 @@ const ChooseAtribut = () => {
   };
   return (
     <>
-      <div class="col-md-4">
-        <h2 class="heading-secondary">
-          Atributi <span class="span-light"> - Opciono</span>
+      <div className="col-md-4">
+        <h2 className="heading-secondary">
+          Atributi <span className="span-light"> - Opciono</span>
         </h2>
         <p>
           Consequat eget volutpat enim libero nulla neque ultrices. Sed
           tristique nullam erat in interdum.
         </p>
-        <div class="mt-30">
-          <p class="txt-light">Izabrani atributi:</p>
+        <div className="mt-30">
+          <p className="txt-light">Izabrani atributi:</p>
           { tipoviAtributa.map(tipAtributa => {
             const odabraniAtributi = checkedAtributi(tipAtributa);
             return odabraniAtributi.length ? (<>
-              <p class="txt-dark">{tipAtributa.naziv}:</p>
-              <p class="txt-light mb-15">
+              <p className="txt-dark">{tipAtributa.naziv}:</p>
+              <p className="txt-light mb-15">
                 {odabraniAtributi
                   ?.map((atribut) => atribut.naziv)
                   ?.join(', ')}
@@ -91,22 +91,22 @@ const ChooseAtribut = () => {
           }
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="search-big-box df">
-          <div class="first-half">
-            <div class="search-wrapper">
+      <div className="col-md-8">
+        <div className="search-big-box df">
+          <div className="first-half">
+            <div className="search-wrapper">
               <input
                 type="text"
-                class="search__input"
+                className="search__input"
                 placeholder="Pronađite tip atribut"
               />
             </div>
 
-            <ul class="item-list">
+            <ul className="item-list">
               {tipoviAtributa.map((tipAtributa) => (
                 <li
                   onClick={() => dispatch(setTipAtributa(tipAtributa))}
-                  class="item-f"
+                  className="item-f"
                 >
                   <span>
                     {tipAtributa.naziv}
@@ -116,36 +116,36 @@ const ChooseAtribut = () => {
               ))}
             </ul>
             {fieldTipVisible ? (
-              <div class="search-wrapper">
+              <div className="search-wrapper">
                 <input
                   name="naziv"
                   type="text"
-                  class="search__input"
+                  className="search__input"
                   onKeyDown={handleSubmitTipAtributa}
                   placeholder="Unesite novi tip i pritisnite ENTER"
                   onChange={handleChangeTipAtributa}
                 />
               </div>
             ) : (
-              <p class="link" onClick={() => setFieldTipVisible(true)}>
+              <p className="link" onClick={() => setFieldTipVisible(true)}>
                 + Kreiraj tip atributa
               </p>
             )}
           </div>
-          <div class="second-half">
-            <div class="search-wrapper">
+          <div className="second-half">
+            <div className="search-wrapper">
               <input
                 type="text"
-                class="search__input"
+                className="search__input"
                 placeholder="Pronađite atribut"
               />
             </div>
-            <ul class="item-list">
+            <ul className="item-list">
               {tipAtributa.atributi?.map((atribut) => (
                 <div key={atribut.id}>
-                  <li class="item-check">
+                  <li className="item-check">
                     <input
-                      class="form__checkbox"
+                      className="form__checkbox"
                       type="checkbox"
                       name="atributi"
                       value={atribut.id}
@@ -154,24 +154,24 @@ const ChooseAtribut = () => {
                         handleChangeAtribut(event.target.checked, atribut)
                       }
                     />
-                    <label class="form__checkbox-label">{atribut.naziv}</label>
+                    <label className="form__checkbox-label">{atribut.naziv}</label>
                   </li>
                 </div>
               ))}
             </ul>
 
             {fieldVisible ? (
-              <div class="search-wrapper">
+              <div className="search-wrapper">
                 <input
                   type="text"
-                  class="search__input"
+                  className="search__input"
                   onChange={handleChangeNoviAtribut}
                   onKeyDown={handleSubmitAtribut}
                   placeholder="Unesite novi atribut i pritisnite ENTER"
                 />
               </div>
             ) : (
-              <p class="link" onClick={() => setFieldVisible(true)}>
+              <p className="link" onClick={() => setFieldVisible(true)}>
                 + Kreiraj atribut
               </p>
             )}

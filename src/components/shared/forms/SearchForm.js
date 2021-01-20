@@ -25,7 +25,7 @@ const SearchForm = ({ handleSubmit }) => {
       <input
         name="search"
         placeholder="Naziv ili PIB preduzeca"
-        class="search__input"
+        className="search__input"
         value={search}
         onChange={handleChange}
       />

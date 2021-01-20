@@ -10,21 +10,21 @@ const BezgotovinskiPorezi = () => {
 
   return (
     <>
-      <h2 class="heading-secondary">Porez pojedinačno</h2>
-      <div class="main-content__box">
-        <div class="content">
-          <div class="table-wrapper">
-            <table class="table">
+      <h2 className="heading-secondary">Porez pojedinačno</h2>
+      <div className="main-content__box">
+        <div className="content">
+          <div className="table-wrapper">
+            <table className="table">
               <thead>
                 <tr>
-                  <th class="w-33">
-                    <span class="heading-quaternary">PDV stopa</span>
+                  <th className="w-33">
+                    <span className="heading-quaternary">PDV stopa</span>
                   </th>
-                  <th class="w-33">
-                    <span class="heading-quaternary">osnovica</span>
+                  <th className="w-33">
+                    <span className="heading-quaternary">osnovica</span>
                   </th>
-                  <th class="w-33">
-                    <span class="heading-quaternary">iznos poreza</span>
+                  <th className="w-33">
+                    <span className="heading-quaternary">iznos poreza</span>
                   </th>
                 </tr>
               </thead>
@@ -34,10 +34,10 @@ const BezgotovinskiPorezi = () => {
 
                   return (
                     <tr>
-                      <td class="w-33">{porez.naziv}</td>
-                      <td class="w-33">{ formatirajCijenu(porez.ukupno - porez.pdvIznos) }</td>
-                      <td class="txt-right w-33">
-                        {formatirajCijenu(porez.pdvIznos)} <span class="txt-light"></span>
+                      <td className="w-33">{porez.naziv}</td>
+                      <td className="w-33">{ formatirajCijenu(porez.ukupno - porez.pdvIznos) }</td>
+                      <td className="txt-right w-33">
+                        {formatirajCijenu(porez.pdvIznos)} <span className="txt-light"></span>
                       </td>
                     </tr>
                   )

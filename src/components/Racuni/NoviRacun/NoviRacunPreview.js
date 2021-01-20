@@ -1,83 +1,134 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { izracunajUkupnuCijenuStavki, izracunajUkupnuCijenuStavkiBezPdv } from '../../../helpers/racuni';
+import { useReactToPrint } from 'react-to-print';
+import { izracunajUkupnuCijenuStavki, izracunajUkupnuCijenuStavkiBezPdv, izracunajPojedinacnePoreze } from '../../../helpers/racuni';
 import { storeRacun } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
-import NoviRacunKusur from './NoviRacunKusur';
-import NoviRacunPreviewPorezi from './NoviRacunPreviewPorezi';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
+import NoviRacunKusur from './NoviRacunKusur';
+import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
+
 
 const NoviRacunPreview = () => {
+  const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
+
   const dispatch = useDispatch();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const handleSacuvaj = () => {
     dispatch(storeRacun());
   }
 
-  const usluge = Object.keys(noviRacun.usluge).map((uslugaId) => (
+  const usluge = Object.keys(noviRacun.usluge).map(id => noviRacun.usluge[id]);
+  const robe = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
+  const ukupnaCijena = izracunajUkupnuCijenuStavki([...usluge, ...robe]);
+  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv([...usluge, ...robe]);
+  const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
+
+  const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
       usluga={{ ...noviRacun.usluge[uslugaId], usluga_id: uslugaId }}
     />
   ));
 
-  const robe = Object.keys(noviRacun.robe).map((robaId) => (
+  const robeStavka = Object.keys(noviRacun.robe).map((robaId) => (
     <NoviRacunPreviewStavka
       key={'roba_' + robaId}
       roba={{ ...noviRacun.robe[robaId], roba_id: robaId }}
     />
   ));
 
-
-  const uslugeArray = Object.keys(noviRacun.usluge).map(id => noviRacun.usluge[id]);
-  const robeArray = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
-
-  const ukupnaCijena = izracunajUkupnuCijenuStavki([...uslugeArray, ...robeArray]);
-  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv([...uslugeArray, ...robeArray]);
-
   return (
-    <div class="side-info">
-      <div class="side-info__wrapper">
-        <p class="txt-light txt-up">ukupno</p>
-        <h1 class="heading-primary">
+    <div className="side-info">
+      {/* NoviRacunPrint - Template */}
+      <div style={{ display: 'none' }}>
+        <NoviRacunPrintTemplate
+          ref={componentRef}
+          ukupnaCijena={ukupnaCijena}
+          usluge={uslugeStavka} robe={robeStavka} noviRacun={noviRacun}
+          ukupnaCijenaBezPdv={ukupnaCijenaBezPdv}
+          ukupnoPlacanje={ukupnaCijena}
+          porezi={porezi}
+        />
+      </div>
+
+      <div className="side-info__wrapper">
+        {/* Ukupno */}
+        <p className="txt-light txt-up">ukupno</p>
+        <h1 className="heading-primary">
           {ukupnaCijena.toFixed(2).replace('.', ',')}{' '}
-          <span class="txt-light">€</span>
+          <span className="txt-light">€</span>
         </h1>
       </div>
 
-      {usluge}
-
-      {robe}
+      {uslugeStavka}
+      {robeStavka}
 
       <hr />
-      <NoviRacunPreviewPorezi noviRacun={noviRacun} />
+
+      {/* Porezi */}
+      <div className="row mb-15">
+        {Object.keys(porezi).map((porezId) => (
+          <>
+            <div className="col-lg-8">
+              <p>Ukupno za {porezi[porezId].naziv}</p>
+            </div>
+            <div className="col-lg-4">
+              <p className="txt-right">
+                {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+              </p>
+            </div>
+            <div className="col-lg-8">
+              <p>{porezi[porezId].naziv}</p>
+            </div>
+            <div className="col-lg-4">
+              <p className="txt-right">
+                {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
+              </p>
+            </div>
+          </>
+        ))}
+      </div>
+
       <hr />
-      <div class="row mb-20">
-        <div class="col-lg-8">
+
+      <div className="row mb-20">
+        {/* Ukupan PDV */}
+        <div className="col-lg-8">
           <p>Ukupan PDV</p>
         </div>
-        <div class="col-lg-4">
-          <p class="txt-right">
+        <div className="col-lg-4">
+          <p className="txt-right">
             {Number(ukupnaCijena - ukupnaCijenaBezPdv)
               .toFixed(2)
               .replace('.', ',') + '€'}
           </p>
         </div>
-        <div class="col-lg-7">
+
+        {/* Ukupno za plaćanje */}
+        <div className="col-lg-7">
           <p>Ukupno za plaćanje</p>
         </div>
-        <div class="col-lg-5">
-          <p class="txt-right">
+        <div className="col-lg-5">
+          <p className="txt-right">
             {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
           </p>
         </div>
       </div>
+      {/* Kusur */}
       <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
+
       <hr />
-      <button class="btn btn__dark mb-10">Fiskalizuj i štampaj</button>
-      <button class="btn btn__transparent" onClick={handleSacuvaj}>Sačuvaj</button>
+      {/* onClick={handlePrint} */}
+      <button className="btn btn__dark mb-10">Fiskalizuj i štampaj</button>
+      <button className="btn btn__transparent" onClick={handleSacuvaj}>Sačuvaj</button>
     </div>
+
   );
 };
 

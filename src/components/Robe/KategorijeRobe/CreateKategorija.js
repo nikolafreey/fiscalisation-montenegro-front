@@ -27,17 +27,17 @@ const CreateKategorija = () => {
         <div>
           <input
             name="naziv"
-            class="form__input mb-10"
+            className="form__input mb-10"
             placeholder="Naziv kategorije"
             value={naziv}
             onChange={handleChange}
           />
-          <button class="btn btn__dark jc-center" onClick={handleSubmit}>
+          <button className="btn btn__dark jc-center" onClick={handleSubmit}>
             Kreiraj kategoriju
           </button>
         </div>
       ) : (
-        <p class="link" onClick={() => setFieldVisible(true)}>
+        <p className="link" onClick={() => setFieldVisible(true)}>
           + Kreiraj kategoriju
         </p>
       )}

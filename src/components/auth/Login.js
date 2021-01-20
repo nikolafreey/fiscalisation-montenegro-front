@@ -24,16 +24,16 @@ const Login = () => {
       onSubmit={(values) => dispatch(loginUser(values))}
     >
       <div className="login">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="logo">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-4">
+              <div className="logo">
                 <LogoRacuniSvg />
               </div>
-              <div class="main-content__box">
+              <div className="main-content__box">
                 <Form>
-                  <h2 class="heading-secundary">Dobrodošli!</h2>
-                  <div class="form-group mb-12">
+                  <h2 className="heading-secundary">Dobrodošli!</h2>
+                  <div className="form-group mb-12">
                     <InputField
                       name="email"
                       className="form__input"
@@ -42,7 +42,7 @@ const Login = () => {
                       placeholder="Unesite Vašu email adresu"
                     />
                   </div>
-                  <div class="form-group mb-12">
+                  <div className="form-group mb-12">
                     <InputField
                       name="password"
                       className="form__input"
@@ -51,7 +51,7 @@ const Login = () => {
                       placeholder="Unesite Vašu lozinku"
                     />
                   </div>
-                  <div class="form__checkbox-group mb-12">
+                  <div className="form__checkbox-group mb-12">
                     <Checkbox
                       name="remember_me"
                       label={$t('auth.remember_me')}
@@ -59,12 +59,12 @@ const Login = () => {
                       type="checkbox"
                     />
                   </div>
-                  <button type="submit" class="btn btn__dark mb-12">
+                  <button type="submit" className="btn btn__dark mb-12">
                     Uloguj se
                   </button>
                   {!!loginError.errors && <div>{loginError.errors.email}</div>}
                   <Link className="df ai-c" to={AUTH.FORGOT}>
-                    <svg width="17" height="17" fill="none" class="mr-s">
+                    <svg width="17" height="17" fill="none" className="mr-s">
                       <path
                         d="M8.367 16.328c4.36 0 7.969-3.617 7.969-7.969C16.336 4 12.719.391 8.359.391 4.008.39.4 4 .4 8.359c0 4.352 3.617 7.97 7.968 7.97zm0-1.328a6.609 6.609 0 01-6.633-6.64A6.602 6.602 0 018.36 1.718a6.627 6.627 0 016.649 6.64A6.61 6.61 0 018.368 15zm-.164-5.023c.39 0 .633-.243.633-.555v-.094c0-.437.25-.71.797-1.07.758-.5 1.297-.961 1.297-1.89 0-1.306-1.157-2-2.485-2-1.343 0-2.226.632-2.437 1.35-.04.134-.07.259-.07.391 0 .344.28.54.539.54.445 0 .515-.243.765-.532.258-.43.633-.687 1.156-.687.711 0 1.172.398 1.172 1 0 .53-.328.789-1.008 1.258-.562.39-.984.804-.984 1.57v.101c0 .414.227.618.625.618zm-.015 2.335c.453 0 .843-.359.843-.812 0-.46-.383-.813-.844-.813-.46 0-.843.36-.843.813 0 .445.39.813.843.813z"
                         fill="#2563EB"
@@ -74,11 +74,11 @@ const Login = () => {
                   </Link>
                 </Form>
               </div>
-              <p class="txt-center  mb-12">
+              <p className="txt-center  mb-12">
                 Autorska prava zadržava Restart IT d.o.o.
               </p>
-              <div class="row">
-                <div class="col-md-6 df jc-end">
+              <div className="row">
+                <div className="col-md-6 df jc-end">
                   <svg
                     width="108"
                     height="27"
@@ -92,7 +92,7 @@ const Login = () => {
                     />
                   </svg>
                 </div>
-                <div class="col-md-6">
+                <div className="col-md-6">
                   <svg
                     width="111"
                     height="33"

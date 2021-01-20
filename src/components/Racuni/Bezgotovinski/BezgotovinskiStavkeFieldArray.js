@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
-import StavkeDropdown from './StavkeDropdown';
+import StavkeDropdown from '../NoviRacun/StavkeDropdown';
 import { ReactComponent as RemoveIcon } from '../../../assets/icon/remove.svg';
 import { useDispatch } from 'react-redux';
 import { getStavke } from '../../../store/actions/RacuniActions';
@@ -83,20 +83,20 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     <>
       {values.stavke.map((stavka, index) => (
         <>
-          <div class="main-content__box--body mb-20">
-            <div class="container">
-              <div class="df jc-sb ai-c w-100">
-                <h2 class="heading-secondary">{index + 1}</h2>
-                <p onClick={() => remove(index)} class="btn btn__link danger">
+          <div className="main-content__box--body mb-20">
+            <div className="container">
+              <div className="df jc-sb ai-c w-100">
+                <h2 className="heading-secondary">{index + 1}</h2>
+                <p onClick={() => remove(index)} className="btn btn__link danger">
                   Ukloni stavku
                   <span>
                     <RemoveIcon/>
                   </span>
                 </p>
               </div>
-              <div class="row">
-                <div class="col-xl-4 pr-0">
-                  <div class="form-group">
+              <div className="row">
+                <div className="col-xl-4 pr-0">
+                  <div className="form-group">
                     <StavkeDropdown
                       name={`stavke.${index}`}
                       className="form__input"
@@ -104,20 +104,20 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     />
                   </div>
                 </div>
-                <div class="col-xl-2 pr-0">
-                  <div class="form-group">
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
                     <input
                       type="text"
                       value={formatirajCijenu(getCijenaStavkeBezPdv(stavka))}
-                      class="form__input"
+                      className="form__input"
                       placeholder="Bez PDV"
                       disabled
                       readOnly
                     />
                   </div>
                 </div>
-                <div class="col-xl-2 pr-0">
-                  <div class="form-group">
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
                   <DropDown
                     name={`stavke.${index}.jedinica_mjere_id`}
                     loadOptions={
@@ -126,8 +126,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   />
                   </div>
                 </div>
-                <div class="col-xl-2 pr-0">
-                  <div class="form-group">
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
                     <DropDown
                       name={`stavke.${index}.porez_id`}
                       loadOptions={
@@ -139,8 +139,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     />
                   </div>
                 </div>
-                <div class="col-xl-2">
-                  <div class="form-group">
+                <div className="col-xl-2">
+                  <div className="form-group">
                     <DropDownStatic 
                       name={`stavke.${index}.tip_popusta`}
                       options={TIPOVI_POPUSTA}
@@ -149,89 +149,89 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xl-4 pr-0">
-                  <div class="form-group h-100">
+              <div className="row">
+                <div className="col-xl-4 pr-0">
+                  <div className="form-group h-100">
                     <textarea
                       name="opis"
                       id=""
                       cols="30"
                       rows="6"
-                      class="text-area h-100"
+                      className="text-area h-100"
                       placeholder="Opis usluge"
                       value={stavka?.opis || ''}
                       onChange={(event) => setFieldValue(`stavke.${index}.opis`, event.target.value)}
                     ></textarea>
                   </div>
                 </div>
-                <div class="col-lg-8">
-                  <div class="row">
-                    <div class="col-xl-3 pr-0">
-                      <div class="form-group">
+                <div className="col-lg-8">
+                  <div className="row">
+                    <div className="col-xl-3 pr-0">
+                      <div className="form-group">
                         <input
                           type="text"
                           value={formatirajCijenu(getUkupnaCijenaStavke(stavka))}
-                          class="form__input mb-12"
+                          className="form__input mb-12"
                           placeholder="Sa PDV"
                           disabled
                           readOnly
                         />
                       </div>
                     </div>
-                    <div class="col-xl-3 pr-0">
-                      <div class="form-group">
+                    <div className="col-xl-3 pr-0">
+                      <div className="form-group">
                         <input
                           name="kolicina"
                           type="number"
-                          class="form__input mb-12"
+                          className="form__input mb-12"
                           value={stavka?.kolicina}
                           onChange={(event) => setFieldValue(`stavke.${index}.kolicina`, event.target.valueAsNumber)}
                         />
                       </div>
                     </div>
-                    <div class="col-xl-3 pr-0">
-                      <div class="form-group">
+                    <div className="col-xl-3 pr-0">
+                      <div className="form-group">
                         <input
                           type="text"
-                          class="form__input mb-12"
+                          className="form__input mb-12"
                           value={formatirajCijenu(getPorezStopaForId(stavka?.porez_id) * getCijenaStavkeBezPdv(stavka))}
                           readOnly
                         />
                       </div>
                     </div>
-                    <div class="col-xl-3">
-                      <div class="form-group">
+                    <div className="col-xl-3">
+                      <div className="form-group">
                         <input
                           type="number"
-                          class="form__input mb-12"
+                          className="form__input mb-12"
                           value={stavka?.popust}
                           onChange={(event) => setFieldValue(`stavke.${index}.popust`, event.target.valueAsNumber)}
                         />
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-xl-4 pr-0">
-                      <div class="form-group">
-                        <div class="form__box">
-                          <p class="txt-light">Ukupan iznos PDV-a</p>
-                          <h2 class="heading-secondary">{formatirajCijenu(getUkupanIznosPdv(stavka))}</h2>
+                  <div className="row">
+                    <div className="col-xl-4 pr-0">
+                      <div className="form-group">
+                        <div className="form__box">
+                          <p className="txt-light">Ukupan iznos PDV-a</p>
+                          <h2 className="heading-secondary">{formatirajCijenu(getUkupanIznosPdv(stavka))}</h2>
                         </div>
                       </div>
                     </div>
-                    <div class="col-xl-4 pr-0">
-                      <div class="form-group">
-                        <div class="form__box">
-                          <p class="txt-light">Ukupna cijena bez PDV-a</p>
-                          <h2 class="heading-secondary">{formatirajCijenu(getUkupnaCijenaBezPdv(stavka))}</h2>
+                    <div className="col-xl-4 pr-0">
+                      <div className="form-group">
+                        <div className="form__box">
+                          <p className="txt-light">Ukupna cijena bez PDV-a</p>
+                          <h2 className="heading-secondary">{formatirajCijenu(getUkupnaCijenaBezPdv(stavka))}</h2>
                         </div>
                       </div>
                     </div>
-                    <div class="col-xl-4">
-                      <div class="form-group">
-                        <div class="form__box">
-                          <p class="txt-light">Ukupna cijena sa PDV-om</p>
-                          <h2 class="heading-secondary">{formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}</h2>
+                    <div className="col-xl-4">
+                      <div className="form-group">
+                        <div className="form__box">
+                          <p className="txt-light">Ukupna cijena sa PDV-om</p>
+                          <h2 className="heading-secondary">{formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}</h2>
                         </div>
                       </div>
                     </div>
@@ -240,11 +240,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
               </div>
             </div>
           </div>
-          <hr class="hr-main" />
+          <hr className="hr-main" />
           
         </>
       ))}
-      <div onClick={() => insert(values.stavke.length)} class="main-content__box--footer">
+      <div onClick={() => insert(values.stavke.length)} className="main-content__box--footer">
         <span>+ dodaj novu stavku</span>
       </div>
     </>
