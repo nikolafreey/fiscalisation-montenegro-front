@@ -16,6 +16,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 // import { getRacun, setRacun } from '../../store/actions/RacuniActions';
 import { Link } from 'react-router-dom';
 import { ULAZNI_RACUNI } from '../../constants/routes';
+import Moment from 'react-moment';
+import 'moment/locale/me';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -207,11 +209,18 @@ const UlazniRacuni = () => {
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
-                    {(startDate
+                    {/* {(startDate
                       ? startDate?.toLocaleDateString('en-US')
                       : '') +
                       '-' +
-                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')} */}
+                    {startDate && <Moment locale="me" format="DD. MMM YYYY">
+                      {startDate}
+                    </Moment>}
+                    -
+                    {endDate && <Moment locale="me" format="DD. MMM YYYY">
+                      {endDate}
+                    </Moment>}
                   </h3>
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
