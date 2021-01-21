@@ -75,9 +75,9 @@
     }
   }
  
-  input[type="checkbox"]{
-    border: 1px solid violet;
-  }
+  // input[type="checkbox"]{
+  //   border: 1px solid violet;
+  // }
   &__input {
     background-color: $color-content-light;
     color: $color-text-dark;
@@ -145,15 +145,79 @@
     align-items: center;
   }
   &__checkbox{
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 4px;
-    border: 1px solid $border-input-lines;
-    background-color: $color-content-light;
+    position: absolute;
+    opacity: 0;
+    // width: 1.5rem;
+    // height: 1.5rem;
+    // border-radius: 4px;
+    // border: 1px solid $border-input-lines;
+    // background-color: $color-content-light;
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      &:focus{
+        outline: none;
+      }
+    }
+  
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: $color-content-light;
+      border-radius:4px;
+      border:1px solid $border-input-lines;
+      
+    }
+  //   // Box focus
+  // &:focus + label:before {
+  //   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  // }
+
+  // Box checked
+  &:checked + label:before {
+    background: $color-link-dark;
   }
-  &__checkbox-label{
-    margin-left: .7rem;
+  
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
   }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    background: $color-white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 
+      2px 0 0  $color-white,
+      4px 0 0  $color-white,
+      4px -2px 0  $color-white,
+      4px -4px 0  $color-white,
+      4px -6px 0  $color-white,
+      4px -8px 0  $color-white;
+    transform: rotate(45deg);
+  }
+  }
+  // &__checkbox-label{
+  //   margin-left: .7rem;
+  // }
   &__radio-group {
     margin: 1rem 0;
   }

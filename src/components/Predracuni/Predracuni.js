@@ -21,10 +21,10 @@ const options = [
 
 const searchParams = {};
 
-let visibleStatus = false;
-let visibleSearch = false;
-let visibleDateStart = false;
-let visibleDateEnd = false;
+// let visibleStatus = false;
+// let visibleSearch = false;
+// let visibleDateStart = false;
+// let visibleDateEnd = false;
 
 const searchDebounced = debounce((callback) => callback(), 500);
 const Predracuni = () => {
@@ -36,6 +36,12 @@ const Predracuni = () => {
   const [status, setStatus] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+
+  const [statusVisible, setStatusVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [dateStartVisible, setDateStartVisible] = useState(false);
+  const [dateEndVisible, setDateEndVisible] = useState(false);
 
   useEffect(() => {
     dispatch(getPredracuni());
@@ -55,27 +61,32 @@ const Predracuni = () => {
     handleSearch(searchParams);
     setStartDate(null);
     setEndDate(null);
-    visibleDateStart = false;
-    visibleDateEnd = false;
+    // visibleDateStart = false;
+    // visibleDateEnd = false;
+    setDateStartVisible(false);
+    setDateEndVisible(false);
   };
 
   const resetSearch = () => {
     searchParams.search = null;
-    visibleSearch = false;
+    // visibleSearch = false;
+    setSearchVisible(false)
     setSearch('');
     handleSearch(searchParams);
   };
 
   const resetStatus = () => {
     searchParams.status = null;
-    visibleStatus = false;
+    // visibleStatus = false;
+    setStatusVisible(false)
     setStatus('');
     handleSearch(searchParams);
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    visibleSearch = true;
+    // visibleSearch = true;
+    setSearchVisible(true)
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -83,30 +94,33 @@ const Predracuni = () => {
 
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
-    visibleStatus = true;
+    // visibleStatus = true;
+    setStatusVisible(true)
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
-    visibleDateStart = true;
+    // visibleDateStart = true;
+    setDateStartVisible(true)
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
   };
 
   const handleEndDateChange = (date) => {
-    visibleDateEnd = true;
+    // visibleDateEnd = true;
+    setDateEndVisible(true);
     searchParams.endDate = date;
     setEndDate(date);
     handleSearch(searchParams);
   };
 
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
+  // const onChange = (dates) => {
+  //   const [start, end] = dates;
+  //   setStartDate(start);
+  //   setEndDate(end);
+  // };
 
   return (
     <>
@@ -120,7 +134,7 @@ const Predracuni = () => {
         </Link>
       </div>
       <div className="main-content__box">
-        <div className="content" style={{width: '100%'}}>
+        <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100">
               <div className="search df ai-c w-53">
@@ -142,7 +156,7 @@ const Predracuni = () => {
                 className="select w-20"
               />
               <div className="select w-25 df">
-              <DatePicker
+                <DatePicker
                   selected={startDate}
                   onChange={(date) => handleStartDateChange(date)}
                   selectsStart
@@ -169,45 +183,42 @@ const Predracuni = () => {
                     '€'}
                 </h3>
               </div>
-              {visibleSearch ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Pretraga</p>
-                    <h3 className="heading-tertiary">{search}</h3>
-                    <span onClick={resetSearch} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
-              {visibleStatus ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Status</p>
-                    <h3 className="heading-tertiary">{status}</h3>
-                    <span onClick={resetStatus} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
-              {visibleDateEnd || visibleDateStart ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Datum</p>
-                    <h3 className="heading-tertiary">
-                      {(startDate
-                        ? startDate?.toLocaleDateString('en-US')
-                        : '') +
-                        '-' +
-                        (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
-                    </h3>
-                    <span onClick={resetDatePicker} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
+
+              {searchVisible &&
+                <div className="box">
+                  <p className="txt-light">Pretraga</p>
+                  <h3 className="heading-tertiary">{search}</h3>
+                  <span onClick={resetSearch} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+              }
+
+              {statusVisible &&
+                <div className="box">
+                  <p className="txt-light">Status</p>
+                  <h3 className="heading-tertiary">{status}</h3>
+                  <span onClick={resetStatus} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+              }
+
+              {dateStartVisible || dateEndVisible ?
+                <div className="box">
+                  <p className="txt-light">Datum</p>
+                  <h3 className="heading-tertiary">
+                    {(startDate
+                      ? startDate?.toLocaleDateString('en-US')
+                      : '') +
+                      '-' +
+                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                  </h3>
+                  <span onClick={resetDatePicker} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+                : null}
             </div>
           </div>
           <PredracuniTable predracuni={predracuni} />
