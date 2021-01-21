@@ -6,6 +6,8 @@ import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
 import { storeRacun } from '../../store/actions/RacuniActions';
 import { useHistory } from "react-router-dom";
+import Moment from 'react-moment';
+import 'moment/locale/me';
 
 const RacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
@@ -63,7 +65,10 @@ const RacuniTableRow = ({ item }) => {
         {<span className="tag tag__success">{item.status}</span>}
       </td>
       <td className="cd fw-500">
-        {new Date(item.created_at).toLocaleDateString('en-GB')}
+        {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
+        <Moment locale="me" format="DD.MMMM.YYYY">
+          {item.created_at}
+        </Moment>
       </td>
       <td>
         <div className="df jc-end ai-c">

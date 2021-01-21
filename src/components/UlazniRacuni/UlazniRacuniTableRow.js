@@ -4,7 +4,9 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
-import { storeRacun } from '../../store/actions/RacuniActions';
+// import { storeRacun } from '../../store/actions/RacuniActions';
+import Moment from 'react-moment';
+import 'moment/locale/me';
 
 const UlazniRacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
@@ -51,7 +53,10 @@ const UlazniRacuniTableRow = ({ item }) => {
         {<span className="tag tag__success">{item.status}</span>}
       </td>
       <td className="cd fw-500">
-        {new Date(item.created_at).toLocaleDateString('en-GB')}
+        {/* {new Date(item.created_at).toLocaleDateString('cnr')} */}
+        <Moment locale="me" format="DD. MMM YYYY">
+          {item.created_at}
+        </Moment>
       </td>
       <td>
         <div className="df jc-end ai-c">

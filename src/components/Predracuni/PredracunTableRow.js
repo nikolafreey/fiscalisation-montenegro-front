@@ -1,7 +1,9 @@
 import React from 'react';
-import { ReactComponent as Success } from '../../assets/icon/success.svg';
+// import { ReactComponent as Success } from '../../assets/icon/success.svg';
 import { useDispatch } from 'react-redux';
 import { storeRacun } from '../../store/actions/RacuniActions';
+import Moment from 'react-moment';
+import 'moment/locale/me';
 
 const PredracuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
@@ -41,7 +43,10 @@ const PredracuniTableRow = ({ item }) => {
         {<span className="tag tag__success">{item.status}</span>}
       </td>
       <td className="cd fw-500">
-        {new Date(item.created_at).toLocaleDateString('en-GB')}
+        {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
+        <Moment locale="me" format="DD.MMMM.YYYY">
+          {item.created_at}
+        </Moment>
       </td>
     </tr>
   );

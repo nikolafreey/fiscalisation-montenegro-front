@@ -14,6 +14,11 @@ import {
 import PredracuniTable from './PredracuniTable';
 import { Link } from 'react-router-dom';
 import { PREDRACUNI } from '../../constants/routes';
+import Moment from 'react-moment';
+import 'moment/locale/me';
+
+
+
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
   { value: 'poslat', label: 'Poslat' },
@@ -208,11 +213,18 @@ const Predracuni = () => {
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
-                    {(startDate
-                      ? startDate?.toLocaleDateString('en-US')
-                      : '') +
+                    {/* {(startDate ? startDate?.toLocaleDateString('en-US') : '') +
                       '-' +
-                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')
+                    } */}
+
+                    {startDate && <Moment locale="me" format="DD. MMM YYYY">
+                      {startDate}
+                    </Moment>}
+                    -
+                    {endDate && <Moment locale="me" format="DD. MMM YYYY">
+                      {endDate}
+                    </Moment>}
                   </h3>
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
