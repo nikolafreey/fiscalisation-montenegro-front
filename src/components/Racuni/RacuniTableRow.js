@@ -29,6 +29,15 @@ const RacuniTableRow = ({ item }) => {
     history.push(`/racuni/bezgotovinski/show/${item.id}`);
   }
 
+
+  const handleIzmjeni = (e) => {
+    e.stopPropagation()
+  }
+
+  const handleObrisi = (e) => {
+    e.stopPropagation()
+  }
+
   return (
     <tr onClick={handleClick}>
       <td className="cl">{item.ikof && <Success />}</td>
@@ -61,11 +70,11 @@ const RacuniTableRow = ({ item }) => {
           <button className="btn btn__light btn__xs">
             <IconLg />
             <div className="drop-down">
-              <a href="#">
+              <a onClick={handleIzmjeni} className={`${item.ikof && item.jikr ? 'disabled' : ''}`}>
                 <Izmjeni />
                 Izmjeni
               </a>
-              <a href="#">
+              <a onClick={handleObrisi} className={`${item.ikof && item.jikr ? 'disabled' : ''}`}>
                 <Obrisi />
                 Obriši
               </a>
