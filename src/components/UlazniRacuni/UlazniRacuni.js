@@ -24,10 +24,10 @@ const options = [
 
 const searchParams = {};
 
-let visibleStatus = true;
-let visibleSearch = true;
-let visibleDateStart = true;
-let visibleDateEnd = true;
+let visibleStatus = false;
+let visibleSearch = false;
+let visibleDateStart = false;
+let visibleDateEnd = false;
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
