@@ -48,6 +48,10 @@ th {
 }
 td {
   padding: 2rem 1.5rem;
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 }
 th {
   padding: 1.5rem;
