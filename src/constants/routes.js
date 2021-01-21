@@ -22,6 +22,7 @@ export const RACUNI = {
   SHOW: '/racuni/:id',
   BEZGOTOVINSKI: {
     CREATE: '/racuni/bezgotovinski/create',
+    SHOW: '/racuni/bezgotovinski/show/:id',
   },
 };
 export const ULAZNI_RACUNI = {

@@ -26,9 +26,9 @@ const NoviRacunFilteri = () => {
   }
   
   return (
-    <div class="filter">
+    <div className="filter">
       <div 
-        class={"filter__tab" + (!odabraniAtributGrupa ? ' active' : '')} 
+        className={"filter__tab" + (!odabraniAtributGrupa ? ' active' : '')} 
         onClick={() => handleFilterClick(null)}
       >
         Sve
@@ -39,7 +39,7 @@ const NoviRacunFilteri = () => {
             key={atributGrupa.tip_atributa_id 
               ? ('atribut' + atributGrupa.tip_atributa_id) 
               : ('grupa' + atributGrupa.grupa_id) }
-            class={"filter__tab" + (isSelected(atributGrupa) ? ' active' : '') }
+            className={"filter__tab" + (isSelected(atributGrupa) ? ' active' : '') }
             onClick={() => handleFilterClick(atributGrupa)}
           >
             { atributGrupa.naziv }

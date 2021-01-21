@@ -11,7 +11,7 @@ const Checkbox = ({ label, ...props }) => {
     <>
       <input {...field} {...props} />
 
-      <Label class="form__checkbox-label" htmlFor={id}>
+      <Label className="form__checkbox-label" htmlFor={id}>
         {label}
       </Label>
 

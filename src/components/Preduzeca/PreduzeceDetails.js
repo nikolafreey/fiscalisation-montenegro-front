@@ -14,21 +14,21 @@ const PreduzeceDetails = ({ preduzece }) => {
         const prvaTri = a.substring(0, 3);
 
         if (prvaTri.includes('550')) {
-          return <p class="mb-20">{'Podgorička' + a}</p>;
+          return <p className="mb-20">{'Podgorička' + a}</p>;
         } else if (prvaTri.includes('535')) {
-          return <p class="mb-20">{'Prva' + a}</p>;
+          return <p className="mb-20">{'Prva' + a}</p>;
         } else if (prvaTri.includes('555')) {
-          return <p class="mb-20">{'Addiko' + a}</p>;
+          return <p className="mb-20">{'Addiko' + a}</p>;
         } else if (prvaTri.includes('510')) {
-          return <p class="mb-20">{'CKB ' + a}</p>;
+          return <p className="mb-20">{'CKB ' + a}</p>;
         } else if (prvaTri.includes('530')) {
-          return <p class="mb-20">{'Montenegro AD' + a}</p>;
+          return <p className="mb-20">{'Montenegro AD' + a}</p>;
         } else if (prvaTri.includes('540')) {
-          return <p class="mb-20">{'ERSTE' + a}</p>;
+          return <p className="mb-20">{'ERSTE' + a}</p>;
         } else if (prvaTri.includes('520')) {
-          return <p class="mb-20">{'Hipotekarna' + a}</p>;
+          return <p className="mb-20">{'Hipotekarna' + a}</p>;
         }
-        return <p class="mb-20">{a}</p>;
+        return <p className="mb-20">{a}</p>;
       }
     });
   };

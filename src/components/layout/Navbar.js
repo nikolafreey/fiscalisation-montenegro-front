@@ -3,12 +3,12 @@ import UserControls from '../auth/UserControls';
 
 const Navbar = () => {
   return (
-    <div class="header">
-      <form action="#" class="search df ai-c">
-        <button class="search__button"></button>
+    <div className="header">
+      <form action="#" className="search df ai-c">
+        <button className="search__button"></button>
         <input
           type="text"
-          class="search__input"
+          className="search__input"
           placeholder="Pretraga  (kliknite ovdje ili pritisnite na tastaturi “/”)"
         />
       </form>

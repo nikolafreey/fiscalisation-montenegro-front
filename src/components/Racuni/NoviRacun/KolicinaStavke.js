@@ -35,12 +35,12 @@ const KolicinaStavke = ({ stavka={ kolicina: 0 }, usluga, roba }) => {
   }
   
   return (
-    <div class="stepper">
-      <button class="stepper__btn-left" onClick={handleMinusClick}>
+    <div className="stepper">
+      <button className="stepper__btn-left" onClick={handleMinusClick}>
         <StepperMinus />
       </button>
-      <input onChange={handleInputChange} class="stepper__input" value={stavka.kolicina}/>
-      <button class="stepper__btn-right" onClick={handlePlusClick}>
+      <input onChange={handleInputChange} className="stepper__input" value={stavka.kolicina}/>
+      <button className="stepper__btn-right" onClick={handlePlusClick}>
         <StepperPlus /> 
       </button>
     </div>

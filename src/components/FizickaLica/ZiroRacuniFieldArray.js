@@ -41,7 +41,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
             className="form__input w-50 mb-20"
             name={`ziro_racuni.${index}.broj_racuna`}
           />
-          <span class="form__span">{getBank(ziro_racun.broj_racuna)}</span>
+          <span className="form__span">{getBank(ziro_racun.broj_racuna)}</span>
           <button
             className="btn btn__link warning"
             type="button"
@@ -51,14 +51,14 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           </button>
         </div>
       ))}
-      <div class="df ai-c">
+      <div className="df ai-c">
         <button
           type="button"
-          class="btn btn__link df"
+          className="btn btn__link df"
           onClick={() => insert(values.ziro_racuni.length, '')}
         >
-          <Plus class="icon icon__stroke-link sm" />
-          <span class="btn btn__link success">{$t('common.dodajNovi')}</span>
+          <Plus className="icon icon__stroke-link sm" />
+          <span className="btn btn__link success">{$t('common.dodajNovi')}</span>
         </button>
       </div>
     </div>

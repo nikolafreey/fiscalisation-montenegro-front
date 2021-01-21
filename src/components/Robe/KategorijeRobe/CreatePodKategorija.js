@@ -30,29 +30,29 @@ const CreatePodKategorija = () => {
     <div>
       {fieldVisible ? (
         <div>
-          <label class="form__label">Kreirajte novu podkategoriju</label>
+          <label className="form__label">Kreirajte novu podkategoriju</label>
 
           <input
             name="naziv"
-            class="form__input mb-10"
+            className="form__input mb-10"
             placeholder="Naziv podkategorije"
             value={naziv}
             onChange={handleChange}
           />
           <Async
-            class="form__input mb-10"
+            className="form__input mb-10"
             loadOptions={kategorijeRobeService.getKategorijeRobeDropdown}
             defaultOptions
             cacheOptions
             value={kategorija}
             onChange={setKategorija}
           />
-          <button class="btn btn__dark jc-center" onClick={handleSubmit}>
+          <button className="btn btn__dark jc-center" onClick={handleSubmit}>
             Kreiraj podkategoriju
           </button>
         </div>
       ) : (
-        <p class="link" onClick={() => setFieldVisible(true)}>
+        <p className="link" onClick={() => setFieldVisible(true)}>
           +Kreiraj podkategoriju
         </p>
       )}

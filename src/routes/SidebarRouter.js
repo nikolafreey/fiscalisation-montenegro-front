@@ -25,7 +25,7 @@ import UlazniRacuniRouter from './UlazniRacuniRouter';
 
 const SidebarRouter = () => {
   return (
-    <div class="screen-content-info">
+    <div className="screen-content-info">
       <Switch>
         <ProtectedRoute exact path={HOME}>
           <Pregled />

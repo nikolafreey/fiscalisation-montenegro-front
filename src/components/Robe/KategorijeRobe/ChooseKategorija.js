@@ -60,8 +60,8 @@ const ChooseKategorija = () => {
       {kategorija.podkategorije_robe.map(
         (podkategorija, index_podkategorija) => (
           <div key={podkategorija.id}>
-            <li class="sub-item-check">
-              <div class="form__checkbox-group">
+            <li className="sub-item-check">
+              <div className="form__checkbox-group">
                 <input
                   style={{ marginLeft: '2rem' }}
                   type="checkbox"

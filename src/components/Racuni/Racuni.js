@@ -12,8 +12,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
 import { RACUNI } from '../../constants/routes';
-import DropDownStatic from '../shared/forms/DropDownStatic';
-import $t from '../../lang';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -111,18 +109,34 @@ const Racuni = () => {
 
   return (
     <>
-      <div className="title">
+      {/* <div className="title">
         <h1 className="heading-primary">Izlazni računi</h1>
-        <Link exact to={RACUNI.CREATE}>
-          <button className="btn btn__dark btn__xl">
-            <ButtonPlusSvg />
-            Novi račun
+   
+  
+      </div> */}
+
+      <div class="title">
+        <h1 className="heading-primary">Izlazni računi</h1>
+
+        <div class="df w-50 jc-end">
+          <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
+            <button className="btn btn__dark btn__xl" style={{width: '22rem'}}>
+              <ButtonPlusSvg />
+            Novi gotovinski račun
           </button>
-        </Link>
+          </Link>
+          <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
+            <button className="btn btn__dark btn__xl" style={{width: '22rem'}}>
+              <ButtonPlusSvg />
+            Novi bezgotovisnki račun
+          </button>
+          </Link>
+        </div>
+
       </div>
       <div className="main-content__box">
-        <div className="content">
-          <div className="main-content__search-wrapper df">
+        <div className="content" style={{ width: '100%' }}>
+          <div className="main-content__search-wrapper df" >
             <div className="df jc-sb w-100">
               <div className="search df ai-c w-53">
                 <form className="search">
@@ -130,7 +144,7 @@ const Racuni = () => {
                   <input
                     name="search"
                     placeholder="Pretraži Račune"
-                    class="search__input"
+                    className="search__input"
                     value={search}
                     onChange={handleChange}
                   />
@@ -211,7 +225,9 @@ const Racuni = () => {
               ) : null}
             </div>
           </div>
-          <RacuniTable racuni={racuni} />
+          <div>
+            <RacuniTable racuni={racuni} />
+          </div>
         </div>
       </div>
     </>

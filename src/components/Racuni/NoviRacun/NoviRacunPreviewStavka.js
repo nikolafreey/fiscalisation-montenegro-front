@@ -29,14 +29,14 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   }
 
   return (
-    <div class="row mb-15">
-      <div class="col-lg-8">
+    <div className="row mb-15">
+      <div className="col-lg-8">
         <p>{roba ? roba.roba.naziv : usluga.naziv}</p>
-        <p class="txt-light">{stavka.opis}</p>
+        <p className="txt-light">{stavka.opis}</p>
       </div>
-      <div class="col-lg-4">
-        <div class="df jc-end">
-          <span class="spn-mr-10">
+      <div className="col-lg-4">
+        <div className="df jc-end">
+          <span className="spn-mr-10">
             {roba
               ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena)
                   .toFixed(2)
@@ -45,12 +45,12 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
                   .toFixed(2)
                   .replace('.', ',') + '€'}
           </span>
-          <span class="btn btn__link danger" onClick={handleRemove}>
+          <span className="btn btn__link danger" onClick={handleRemove}>
             x
           </span>
         </div>
       </div>
-      <div class="df jc-end">
+      <div className="df jc-end">
         {stavka.kolicina} x{' '}
         {roba
           ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
@@ -60,17 +60,17 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
       </div>
       {getPopustIznos() && (
         <>
-          <div class="col-lg-8">
+          <div className="col-lg-8">
             <p>Popust {getPopustProcenat()}%</p>
           </div>
-          <div class="col-lg-4">
+          <div className="col-lg-4">
             <span>-{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}</span>
           </div>
-          <div class="col-lg-8">
+          <div className="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
-          <div class="col-lg-4">
-            <div class="df jc-end w-62">
+          <div className="col-lg-4">
+            <div className="df jc-end w-62">
               <span>{Number(getUkupnaCijena()).toFixed(2) - Number(getPopustIznos()).toFixed(2)}</span>
             </div>
           </div>

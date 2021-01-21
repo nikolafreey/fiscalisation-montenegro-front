@@ -13,7 +13,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
     <div>
       {values.cijene.map((cijena, index) => (
         <div className="df jc-sb mt-15">
-          <div class="form__group w-28">
+          <div className="form__group w-28">
             <DropDown
               name={`cijene.${index}.tip_atributa_id`}
               className="form__input"
@@ -21,7 +21,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
               loadOptions={atributiService.getTipoviAtributaDropdown}
             />
           </div>
-          <div class="form__group w-40">
+          <div className="form__group w-40">
             <DropDown
               isMulti
               name={`cijene.${index}.atribut_id`}
@@ -36,7 +36,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
               }
             />
           </div>
-          <div class="form__group w-28">
+          <div className="form__group w-28">
             <InputField
               type="number"
               name={`cijene.${index}.ukupna_cijena`}
@@ -53,14 +53,14 @@ const CijeneFieldArray = ({ insert, remove }) => {
           </button>
         </div>
       ))}
-      <div class="df ai-c">
+      <div className="df ai-c">
         <button
           type="button"
-          class="link"
+          className="link"
           onClick={() => insert(values.cijene.length, '')}
         >
-          <Plus class="icon icon__stroke-link sm" />
-          <span class="btn btn__link success">{$t('common.dodajNovi')}</span>
+          <Plus className="icon icon__stroke-link sm" />
+          <span className="btn btn__link success">{$t('common.dodajNovi')}</span>
         </button>
       </div>
     </div>

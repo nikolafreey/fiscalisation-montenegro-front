@@ -15,13 +15,13 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
       }}
     >
       <td>
-        <div class="inner-td-wrapper">
+        <div className="inner-td-wrapper">
           <div
-            class="img-round sm"
+            className="img-round sm"
             style={{ backgroundImage: `url(${partner.preduzece?.logotip})` }}
           ></div>
-          <div class="td-title">
-            <div class="df ai-c">
+          <div className="td-title">
+            <div className="df ai-c">
               <p>
                 {partner.preduzece
                   ? partner.preduzece.kratki_naziv
@@ -30,7 +30,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
               <Badge className="icon icon__fill-color-badge ml-s sm" />
             </div>
             {partner.preduzece && (
-              <h3 class="heading-quaternary">{partner.preduzece.grad}</h3>
+              <h3 className="heading-quaternary">{partner.preduzece.grad}</h3>
             )}
           </div>
         </div>
@@ -47,10 +47,10 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
       </td>
 
       <td>
-        <div class="df jc-end ai-c">
-          <button type="button" class="btn btn__light btn__xs">
+        <div className="df jc-end ai-c">
+          <button type="button" className="btn btn__light btn__xs">
             <Dots className="icon lg" />
-            <div class="drop-down" id="ddl">
+            <div className="drop-down" id="ddl">
               <Link
                 disabled
                 to={

@@ -37,24 +37,24 @@ const Preduzeca = () => {
   return (
     <>
       {match.path === PREDUZECA.PARTNERI ? (
-        <h1 class="heading-primary">Dodajte partnera iz liste preduzeća</h1>
+        <h1 className="heading-primary">Dodajte partnera iz liste preduzeća</h1>
       ) : (
-        <h1 class="heading-primary">Preduzeća</h1>
+        <h1 className="heading-primary">Preduzeća</h1>
       )}
-      <div class="main-content__box">
-        <div class="content">
-          <div class="main-content__search-wrapper">
+      <div className="main-content__box">
+        <div className="content">
+          <div className="main-content__search-wrapper">
             <SearchForm handleSubmit={handleSearch} />
           </div>
           <PreduzecaTable preduzeca={preduzeca} />
           {match.path === PREDUZECA.PARTNERI ? (
-            <div class="df jc-center ai-c fd-column">
-              <hr class="w-60 " />
-              <p class="mb-25">
+            <div className="df jc-center ai-c fd-column">
+              <hr className="w-60 " />
+              <p className="mb-25">
                 ili kreirajte novi unos ako preduzeće nije u listi
               </p>
               <Link exact to={PREDUZECA.CREATE}>
-                <button class="btn btn__dark btn__xl">
+                <button className="btn btn__dark btn__xl">
                   <Plus className="icon icon__light lg" />
                   Novo preduzeće
                 </button>

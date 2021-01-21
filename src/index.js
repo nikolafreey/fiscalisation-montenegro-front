@@ -19,15 +19,15 @@ const ErrorBoundary = Bugsnag.getPlugin('react')
   .createErrorBoundary(React);
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
       </ConnectedRouter>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

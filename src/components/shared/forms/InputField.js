@@ -9,7 +9,7 @@ const InputField = ({ label, obavezno = false, ...props }) => {
 
   return (
     <>
-      <Label class="form__label" htmlFor={id}>
+      <Label className="form__label" htmlFor={id}>
         {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
       </Label>
 

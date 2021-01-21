@@ -1,7 +1,7 @@
 
 import { push } from 'connected-react-router';
 import { call, put, select } from 'redux-saga/effects';
-import { AUTH, HOME } from '../../constants/routes';
+import { AUTH, HOME, RACUNI } from '../../constants/routes';
 import { authService } from '../../services/AuthService';
 import { setGlobalError, setLoginError } from '../actions/ErrorActions';
 import { setRequestedRoute } from '../actions/RouteActions';

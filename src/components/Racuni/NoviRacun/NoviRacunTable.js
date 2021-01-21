@@ -33,12 +33,12 @@ const NoviRacunTable = ({ robe, usluge, view }) => {
           <tbody>
             <List
               data={robe.data}
-              renderItem={({item}) => <NoviRacunTableRow roba={item}/>}
+              renderItem={({item}) => <NoviRacunTableRow key={item.id} roba={item}/>}
               onItemClick={() => {}}
             />
             <List
               data={usluge.data}
-              renderItem={({item}) => <NoviRacunTableRow usluga={item}/>}
+              renderItem={({item}) => <NoviRacunTableRow key={item.id} usluga={item}/>}
               onItemClick={() => {}}
             />
           </tbody>

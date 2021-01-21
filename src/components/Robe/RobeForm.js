@@ -110,27 +110,27 @@ const RobeForm = () => {
             <div className="main-content__box">
               <div className="content">
                 <Form>
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-4 mt-25">
-                        <h2 class="heading-secondary">Informacije</h2>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-md-4 mt-25">
+                        <h2 className="heading-secondary">Informacije</h2>
                         <p>
                           Unesite puni naziv i opis artikla/robe za brzo
                           dodavanje. Ukoliko želite da ih razvrstate po
                           kategorijama ili određenim specifičnostima unesite
                           željene atribute u sekciji ispod.
                         </p>
-                        <a href="" class="link">
+                        <a href="" className="link">
                           Upravljanje Proizvođačima
                         </a>
                         <br />
-                        <a href="" class="link">
+                        <a href="" className="link">
                           Unosite veliki broj artikala/roba? Javite nam se da
                           ubrzamo proces
                         </a>
                       </div>
-                      <div class="col-md-8 mtb-25">
-                        <div class="form__group">
+                      <div className="col-md-8 mtb-25">
+                        <div className="form__group">
                           <InputField
                             name="naziv"
                             label={$t('robe.naziv')}
@@ -139,7 +139,7 @@ const RobeForm = () => {
                             obavezno
                           />
                         </div>
-                        <div class="form__group">
+                        <div className="form__group">
                           <InputField
                             name="ean"
                             label={$t('robe.ean')}
@@ -147,7 +147,7 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div class="form__group">
+                        <div className="form__group">
                           <InputField
                             name="interna_sifra_proizvoda"
                             label={$t('robe.interna_sifra_proizvoda')}
@@ -155,7 +155,7 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div class="form__group">
+                        <div className="form__group">
                           <Textarea
                             control="text"
                             name="opis"
@@ -166,8 +166,8 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div class="df jc-sb">
-                          <div class="form__group w-48">
+                        <div className="df jc-sb">
+                          <div className="form__group w-48">
                             <DropDown
                               name="proizvodjac_robe_id"
                               label={$t('robe.proizvodjac')}
@@ -177,7 +177,7 @@ const RobeForm = () => {
                               className="form__input"
                             />
                           </div>
-                          <div class="form__group w-48">
+                          <div className="form__group w-48">
                             <DropDown
                               name="jedinica_mjere_id"
                               label={$t('robe.jedinica_mjere')}
@@ -200,29 +200,29 @@ const RobeForm = () => {
                           Izaberite kategorije i podkategorije kojima
                           artikal/roba pripada.
                         </p>
-                        <a href="" class="link">
+                        <a href="" className="link">
                           Upravljanje kategorijama
                         </a>
                       </div>
                       <div className="col-md-4">
-                        <div class="search-box">
-                          <div class="search-wrapper">
+                        <div className="search-box">
+                          <div className="search-wrapper">
                             <input
                               type="text"
-                              class="search__input"
+                              className="search__input"
                               placeholder="Pronađite kategoriju"
                             />
                           </div>
                         </div>
-                        <ul class="item-list">
+                        <ul className="item-list">
                           <ChooseKategorija />
                         </ul>
                       </div>
-                      <div class="col-md-4">
-                        <div class="form__group">
+                      <div className="col-md-4">
+                        <div className="form__group">
                           <CreateKategorija />
                         </div>
-                        <div class="form__group">
+                        <div className="form__group">
                           <CreatePodKategorija />
                         </div>
                       </div>
@@ -235,8 +235,8 @@ const RobeForm = () => {
                     </div>
                   </div>
                   <hr />
-                  <div class="container">
-                    <div class="row">
+                  <div className="container">
+                    <div className="row">
                       <Cijena
                         getPriceNoVat={getPriceNoVat}
                         getPriceVat={getPriceVat}

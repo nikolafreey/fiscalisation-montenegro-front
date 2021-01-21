@@ -56,14 +56,14 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
 
   return (
     <>
-      <div class="col-md-4">
-        <h2 class="heading-secondary">Cijena </h2>
-        <p class="txt-light">
+      <div className="col-md-4">
+        <h2 className="heading-secondary">Cijena </h2>
+        <p className="txt-light">
           Možete kreirati cijene za pojedinačne atribute. Na pr. ako unosite
           artikal/robu “Majica” za veličine XS i S možete dodati posebne cijene.
         </p>
-        <div class="df jc-sb mtb-25">
-          <div class="col-l txt-light">
+        <div className="df jc-sb mtb-25">
+          <div className="col-l txt-light">
             <p className="mb-10">Cijena artikla / robe:</p>
             <p className="mb-10">Bez PDV-a:</p>
             <p className="mb-10">
@@ -73,7 +73,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
             </p>
             <p className="mb-10">Ukupna cijena</p>
           </div>
-          <div class="col-r mt-30">
+          <div className="col-r mt-30">
             <p className="mb-10">
               {getFormattedPriceString(
                 getPriceNoVat,
@@ -102,24 +102,24 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
         </div>
         {values.cijene.map((cijena) => {
           return (
-            <div class="df jc-sb mtb-25">
-              <div class="col-l txt-light">
+            <div className="df jc-sb mtb-25">
+              <div className="col-l txt-light">
                 <p>Cijena za:</p>
-                <p class="mb-10 txt-dark">
+                <p className="mb-10 txt-dark">
                   {getAtributiZaCijenuString(cijena)}
                 </p>
-                <p class="mb-10">Bez PDV-a:</p>
-                <p class="mb-10">
+                <p className="mb-10">Bez PDV-a:</p>
+                <p className="mb-10">
                   PDV&nbsp;
                   {isNaN(getStopaPerId(values.porez_id) * 100)
                     ? ''
                     : getStopaPerId(values.porez_id) * 100 + '%'}
                   :
                 </p>
-                <p class="mb-10">Ukupna cijena</p>
+                <p className="mb-10">Ukupna cijena</p>
               </div>
-              <div class="col-r mt-50">
-                <p class="mb-10">
+              <div className="col-r mt-50">
+                <p className="mb-10">
                   {getFormattedPriceString(
                     getPriceNoVat,
                     values.pdv_ukljucen,
@@ -127,7 +127,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
                     cijena.ukupna_cijena
                   )}
                 </p>
-                <p class="mb-10">
+                <p className="mb-10">
                   {getFormattedPriceString(
                     getVat,
                     values.pdv_ukljucen,
@@ -135,7 +135,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
                     cijena.ukupna_cijena
                   )}
                 </p>
-                <p class="mb-10">
+                <p className="mb-10">
                   {getFormattedPriceString(
                     getPriceVat,
                     values.pdv_ukljucen,
@@ -149,9 +149,9 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
         })}
       </div>
 
-      <div class="col-md-8">
-        <div class="df jc-sb">
-          <div class="form__group w-48">
+      <div className="col-md-8">
+        <div className="df jc-sb">
+          <div className="form__group w-48">
             <InputField
               type="number"
               name="nabavna_cijena_bez_pdv"
@@ -159,7 +159,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
               label={$t('cijene.nabavna_bez_pdv')}
             />
           </div>
-          <div class="form__group w-48">
+          <div className="form__group w-48">
             <InputField
               type="number"
               name="nabavna_cijena_sa_pdv"
@@ -169,15 +169,15 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
           </div>
         </div>
 
-        <div class="df jc-sb">
-          <div class="form__group w-48">
+        <div className="df jc-sb">
+          <div className="form__group w-48">
             <DropDown
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
             />
           </div>
-          <div class="form__group w-48">
+          <div className="form__group w-48">
             <DropDownStatic
               name="pdv_ukljucen"
               label={$t('cijene.pdv_ukljucen')}
@@ -186,7 +186,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
             />
           </div>
         </div>
-        <div class="form__group">
+        <div className="form__group">
           <InputField
             type="number"
             name="ukupna_cijena"
