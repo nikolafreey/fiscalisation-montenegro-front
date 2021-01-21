@@ -24,16 +24,27 @@ const options = [
 
 const searchParams = {};
 
-let visibleStatus = false;
-let visibleSearch = false;
-let visibleDateStart = false;
-let visibleDateEnd = false;
+// let visibleStatus = false;
+// let visibleSearch = false;
+// let visibleDateStart = false;
+// let visibleDateEnd = false;
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
 const Racuni = () => {
   const dispatch = useDispatch();
   const racuni = useSelector(racuniSelector());
+
+  const [search, setSearch] = useState('');
+  const [status, setStatus] = useState('');
+
+  const [statusVisible, setStatusVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [dateStartVisible, setDateStartVisible] = useState(false);
+  const [dateEndVisible, setDateEndVisible] = useState(false);
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     dispatch(getRacuni());
@@ -49,27 +60,32 @@ const Racuni = () => {
     setStartDate(null);
     setEndDate(null);
     handleSearch(searchParams);
-    visibleDateStart = false;
-    visibleDateEnd = false;
+    // visibleDateStart = false;
+    // visibleDateEnd = false;
+    setDateStartVisible(false);
+    setDateEndVisible(false);
   };
 
   const resetSearch = () => {
     searchParams.search = null;
     setSearch('');
     handleSearch(searchParams);
-    visibleSearch = false;
+    // visibleSearch = false;
+    setSearchVisible(false)
   };
 
   const resetStatus = () => {
     searchParams.status = null;
     setStatus('');
     handleSearch(searchParams);
-    visibleStatus = false;
+    // visibleStatus = false;
+    setStatusVisible(false)
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    visibleSearch = true;
+    // visibleSearch = true;
+    setSearchVisible(true)
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -77,56 +93,49 @@ const Racuni = () => {
 
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
-    visibleStatus = true;
+    // visibleStatus = true;
+    setStatusVisible(true)
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
-    visibleDateStart = true;
+    // visibleDateStart = true;
+    setDateStartVisible(true)
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
   };
 
   const handleEndDateChange = (date) => {
-    visibleDateEnd = true;
+    // visibleDateEnd = true;
+    setDateEndVisible(true);
     searchParams.endDate = date;
     setEndDate(date);
     handleSearch(searchParams);
   };
 
-  const [search, setSearch] = useState('');
-  const [status, setStatus] = useState('');
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
+  // const onChange = (dates) => {
+  //   const [start, end] = dates;
+  //   setStartDate(start);
+  //   setEndDate(end);
+  // };
 
   return (
     <>
-      {/* <div className="title">
-        <h1 className="heading-primary">Izlazni računi</h1>
-   
-  
-      </div> */}
-
       <div class="title">
         <h1 className="heading-primary">Izlazni računi</h1>
 
         <div class="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
-            <button className="btn btn__dark btn__xl" style={{width: '22rem'}}>
+            <button className="btn btn__dark btn__xl" style={{ width: '22rem' }}>
               <ButtonPlusSvg />
             Novi gotovinski račun
           </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button className="btn btn__dark btn__xl" style={{width: '22rem'}}>
+            <button className="btn btn__dark btn__xl" style={{ width: '22rem' }}>
               <ButtonPlusSvg />
             Novi bezgotovisnki račun
           </button>
@@ -184,45 +193,43 @@ const Racuni = () => {
                   {racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'}
                 </h3>
               </div>
-              {visibleSearch ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Pretraga</p>
-                    <h3 className="heading-tertiary">{search}</h3>
-                    <span onClick={resetSearch} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
-              {visibleStatus ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Status</p>
-                    <h3 className="heading-tertiary">{status}</h3>
-                    <span onClick={resetStatus} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
-              {visibleDateStart || visibleDateEnd ? (
-                <>
-                  <div className="box">
-                    <p className="txt-light">Datum</p>
-                    <h3 className="heading-tertiary">
-                      {(startDate
-                        ? startDate?.toLocaleDateString('en-US')
-                        : '') +
-                        '-' +
-                        (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
-                    </h3>
-                    <span onClick={resetDatePicker} className="box__close">
-                      <BoxCloseSvg />
-                    </span>
-                  </div>
-                </>
-              ) : null}
+
+
+              {searchVisible &&
+                <div className="box">
+                  <p className="txt-light">Pretraga</p>
+                  <h3 className="heading-tertiary">{search}</h3>
+                  <span onClick={resetSearch} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+              }
+
+              {statusVisible &&
+                <div className="box">
+                  <p className="txt-light">Status</p>
+                  <h3 className="heading-tertiary">{status}</h3>
+                  <span onClick={resetStatus} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+              }
+
+              {dateStartVisible || dateEndVisible ?
+                <div className="box">
+                  <p className="txt-light">Datum</p>
+                  <h3 className="heading-tertiary">
+                    {(startDate
+                      ? startDate?.toLocaleDateString('en-US')
+                      : '') +
+                      '-' +
+                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')}
+                  </h3>
+                  <span onClick={resetDatePicker} className="box__close">
+                    <BoxCloseSvg />
+                  </span>
+                </div>
+                : null}
             </div>
           </div>
           <div>

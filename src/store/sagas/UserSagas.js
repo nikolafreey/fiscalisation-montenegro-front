@@ -28,7 +28,7 @@ export function* userLogin({ payload }) {
     yield put(getUser());
 
     const requestedRoute = yield select(requestedRouteSelector());
-    yield put(push(requestedRoute || HOME));
+    yield put(push(requestedRoute || RACUNI.INDEX));
     yield put(setRequestedRoute(null));
 
   } catch (error) {
