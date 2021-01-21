@@ -12,7 +12,7 @@ const RacuniTableRow = ({ item }) => {
 
   const history = useHistory();
 
-  console.log(item)
+  // console.log(item)
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
     neNaplativ: { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },

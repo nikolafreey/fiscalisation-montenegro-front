@@ -40,7 +40,7 @@ const PreduzecaTable = ({ preduzeca }) => {
               data={preduzeca.data}
               renderItem={PreduzecaTableRow}
               onItemClick={(item) => dispatch(setPreduzece(item))}
-              selectedId={selectedPreduzece.id}
+              selectedId={selectedPreduzece?.id}
             />
           </tbody>
         </table>

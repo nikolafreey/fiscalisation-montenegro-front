@@ -75,7 +75,9 @@ th {
   border-bottom: 1px solid $color-content-lines;
   text-align: left;
 }
-
+td:last-child{
+  text-align: right;
+}
 .inner-td-wrapper {
   display: flex;
   align-items: center;
