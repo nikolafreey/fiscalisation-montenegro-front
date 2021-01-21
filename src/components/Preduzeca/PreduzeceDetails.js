@@ -7,7 +7,7 @@ const PreduzeceDetails = ({ preduzece }) => {
 
   const ziroRacuni = () => {
     console.log('pred', preduzece);
-    return preduzece.ziro_racuni?.map((racun) => {
+    return preduzece?.ziro_racuni?.map((racun) => {
       a = racun.broj_racuna;
       console.log(a);
       if (a) {
@@ -36,11 +36,11 @@ const PreduzeceDetails = ({ preduzece }) => {
     <div className="side-info">
       <div
         className="side-info__logo"
-        style={{ backgroundImage: `url('${preduzece.logotip}')` }}
+        style={{ backgroundImage: `url('${preduzece?.logotip}')` }}
       />
       <div className="side-info__desc">
         <div className="df ai-c">
-          <h2>{preduzece.kratki_naziv}</h2>
+          <h2>{preduzece?.kratki_naziv}</h2>
           <svg
             className="icon icon__fill-color-badge ml-s lg"
             xmlns="http://www.w3.org/2000/svg"
@@ -54,31 +54,31 @@ const PreduzeceDetails = ({ preduzece }) => {
             />
           </svg>
         </div>
-        <p className="cl">{preduzece.puni_naziv}</p>
+        <p className="cl">{preduzece?.puni_naziv}</p>
         <ul className="list">
-          <li className="item cl">{preduzece.djelatnost}</li>
-          <li className="item cl">{preduzece.adresa}</li>
+          <li className="item cl">{preduzece?.djelatnost}</li>
+          <li className="item cl">{preduzece?.adresa}</li>
           <li className="item cl">
-            {preduzece.grad}, {preduzece.drzava}
+            {preduzece?.grad}, {preduzece?.drzava}
           </li>
         </ul>
-        <p className="lh-sm">{preduzece.opis}</p>
+        <p className="lh-sm">{preduzece?.opis}</p>
       </div>
       <div className="side-info__info">
         <div className="col-l">
           <p className="txt-up mb-20">pib</p>
           <p className="txt-up mb-20">pdv</p>
-          <p className="txt-up mb-20"> {preduzece.iban ? 'iban' : null}</p>
+          <p className="txt-up mb-20"> {preduzece?.iban ? 'iban' : null}</p>
           <p className="txt-up mb-20">
-            {preduzece.bic_swift ? 'bic / swift' : null}
+            {preduzece?.bic_swift ? 'bic / swift' : null}
           </p>
         </div>
         <div className="col-r">
-          <p className="mb-20">{preduzece.pib}</p>
-          <p className="mb-20">{preduzece.pdv}</p>
-          <p className="mb-20">{preduzece.iban ? preduzece.iban : null}</p>
+          <p className="mb-20">{preduzece?.pib}</p>
+          <p className="mb-20">{preduzece?.pdv}</p>
+          <p className="mb-20">{preduzece?.iban ? preduzece?.iban : null}</p>
           <p className="mb-20">
-            {preduzece.bic_swift ? preduzece.bic_swift : null}
+            {preduzece?.bic_swift ? preduzece?.bic_swift : null}
           </p>
         </div>
       </div>
@@ -105,10 +105,10 @@ const PreduzeceDetails = ({ preduzece }) => {
         </div>
         <div className="col-r mb-20">
           <p>
-            <a href={`tel:${preduzece.telefon}`}>{preduzece.telefon}</a>
+            <a href={`tel:${preduzece?.telefon}`}>{preduzece?.telefon}</a>
           </p>
           <div className="df ai-c jc-end">
-            {!!preduzece.telefon_whatsapp && (
+            {!!preduzece?.telefon_whatsapp && (
               <>
                 <p>WhatsApp</p>
                 <CheckIcon className="icon icon__dark sm" />
@@ -116,7 +116,7 @@ const PreduzeceDetails = ({ preduzece }) => {
             )}
           </div>
           <div className="df ai-c jc-end">
-            {!!preduzece.telefon_viber && (
+            {!!preduzece?.telefon_viber && (
               <>
                 <p>Viber</p>
                 <CheckIcon className="icon icon__dark sm" />
@@ -124,7 +124,7 @@ const PreduzeceDetails = ({ preduzece }) => {
             )}
           </div>
           <div className="df ai-c jc-end">
-            {!!preduzece.telefon_facetime && (
+            {!!preduzece?.telefon_facetime && (
               <>
                 <p>Facetime</p>
                 <CheckIcon className="icon icon__dark sm" />{' '}
@@ -135,76 +135,76 @@ const PreduzeceDetails = ({ preduzece }) => {
       </div>
       <div className="side-info__info">
         <div className="col-l">
-          <p className="mb-20">{preduzece.fax ? 'Fax' : null}</p>
-          <p className="mb-20">{preduzece.email ? 'Email' : null}</p>
-          <p className="mb-20">{preduzece.website ? 'Websajt' : null}</p>
+          <p className="mb-20">{preduzece?.fax ? 'Fax' : null}</p>
+          <p className="mb-20">{preduzece?.email ? 'Email' : null}</p>
+          <p className="mb-20">{preduzece?.website ? 'Websajt' : null}</p>
           <p className="mb-20">
-            {preduzece.twitter_username ? 'Twitter' : null}
+            {preduzece?.twitter_username ? 'Twitter' : null}
           </p>
           <p className="mb-20">
-            {preduzece.instagram_username ? 'Instagram' : null}
+            {preduzece?.instagram_username ? 'Instagram' : null}
           </p>
           <p className="mb-20">
-            {preduzece.facebook_username ? 'Facebook' : null}
+            {preduzece?.facebook_username ? 'Facebook' : null}
           </p>
-          <p className="mb-20">{preduzece.skype_username ? 'Skype' : null}</p>
+          <p className="mb-20">{preduzece?.skype_username ? 'Skype' : null}</p>
         </div>
         <div className="col-r">
           <p className="mb-20">
-            <a href={`tel:${preduzece.fax}`}>{preduzece.fax}</a>
+            <a href={`tel:${preduzece?.fax}`}>{preduzece?.fax}</a>
           </p>
           <p className="mb-20">
-            <a href={`mailto:${preduzece.email}`}>{preduzece.email}</a>
+            <a href={`mailto:${preduzece?.email}`}>{preduzece?.email}</a>
           </p>
           <p className="mb-20">
             <a
-              href={preduzece.website}
+              href={preduzece?.website}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {preduzece.website}
+              {preduzece?.website}
             </a>
           </p>
           <p className="mb-20">
             <a
-              href={`http://www.twiter.com/${preduzece.twitter_username}`}
+              href={`http://www.twiter.com/${preduzece?.twitter_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {preduzece.twitter_username}
+              {preduzece?.twitter_username}
             </a>
           </p>
           <p className="mb-20">
             <a
-              href={`http://www.instagram.com/${preduzece.instagram_username}`}
+              href={`http://www.instagram.com/${preduzece?.instagram_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {preduzece.instagram_username}
+              {preduzece?.instagram_username}
             </a>
           </p>
           <p className="mb-20">
             <a
-              href={`http://www.facebook.com/${preduzece.facebook_username}`}
+              href={`http://www.facebook.com/${preduzece?.facebook_username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {preduzece.facebook_username}
+              {preduzece?.facebook_username}
             </a>
           </p>
           <p className="mb-20">
             <a
-              href={`skype:${preduzece.skype_username}?call`}
+              href={`skype:${preduzece?.skype_username}?call`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {preduzece.skype_username}
+              {preduzece?.skype_username}
             </a>
           </p>
         </div>
       </div>
       <hr />
-      {preduzece.ovlascena_lica?.length > 0 && (
+      {preduzece?.ovlascena_lica?.length > 0 && (
         <>
           <h3 className="heading-tertiary">Ovlašćeno lice</h3>
           <div className="side-info__info">
@@ -213,19 +213,19 @@ const PreduzeceDetails = ({ preduzece }) => {
             </div>
             <div className="col-r">
               <p className="mb-20">
-                {preduzece.ovlascena_lica[0].ime +
+                {preduzece?.ovlascena_lica[0].ime +
                   ' ' +
-                  preduzece.ovlascena_lica[0].prezime}
+                  preduzece?.ovlascena_lica[0].prezime}
               </p>
             </div>
           </div>
         </>
       )}
       <div className="side-info__info">
-        {preduzece.ovlascena_lica?.length > 0 && (
+        {preduzece?.ovlascena_lica?.length > 0 && (
           <div className="col-r mb-20">
             <div className="df ai-c jc-end">
-              {!!preduzece.ovlascena_lica[0].telefon_whatsapp && (
+              {!!preduzece?.ovlascena_lica[0].telefon_whatsapp && (
                 <>
                   <p>WhatsApp</p>
                   <CheckIcon className="icon icon__dark sm" />{' '}
@@ -233,7 +233,7 @@ const PreduzeceDetails = ({ preduzece }) => {
               )}
             </div>
             <div className="df ai-c jc-end">
-              {!!preduzece.ovlascena_lica[0].telefon_viber && (
+              {!!preduzece?.ovlascena_lica[0].telefon_viber && (
                 <>
                   <p>Viber</p>
                   <CheckIcon className="icon icon__dark sm" />
@@ -241,7 +241,7 @@ const PreduzeceDetails = ({ preduzece }) => {
               )}
             </div>
             <div className="df ai-c jc-end">
-              {!!preduzece.ovlascena_lica[0].telefon_facetime && (
+              {!!preduzece?.ovlascena_lica[0].telefon_facetime && (
                 <>
                   <p>Facetime</p>
                   <CheckIcon className="icon icon__dark sm" />
@@ -251,37 +251,37 @@ const PreduzeceDetails = ({ preduzece }) => {
           </div>
         )}
       </div>
-      {(preduzece.kontakt_ime || preduzece.kontakt_prezime) && (
+      {(preduzece?.kontakt_ime || preduzece?.kontakt_prezime) && (
         <>
           <h3 className="heading-tertiary">Osoba za kontakt</h3>
           <div className="side-info__info">
             <div className="col-l">
               <p className="mb-20">
-                {preduzece.kontakt_ime || preduzece.kontakt_prezime
+                {preduzece?.kontakt_ime || preduzece?.kontakt_prezime
                   ? 'Ime i prezime'
                   : null}
               </p>
             </div>
             <div className="col-r">
               <p className="mb-20">
-                {preduzece.kontakt_ime ? preduzece.kontakt_ime + ' ' : null}
-                {preduzece.kontakt_prezime ? preduzece.kontakt_prezime : null}
+                {preduzece?.kontakt_ime ? preduzece?.kontakt_ime + ' ' : null}
+                {preduzece?.kontakt_prezime ? preduzece?.kontakt_prezime : null}
               </p>
             </div>
           </div>
         </>
       )}
       <div className="side-info__info">
-        {(!!preduzece.kontakt_whatsapp ||
-          !!preduzece.kontakt_viber ||
-          !!preduzece.kontakt_facetime) && (
+        {(!!preduzece?.kontakt_whatsapp ||
+          !!preduzece?.kontakt_viber ||
+          !!preduzece?.kontakt_facetime) && (
           <div className="col-l">
             <div className="mb-20">Telefon</div>
           </div>
         )}
         <div className="col-r mb-20">
           <div className="df ai-c jc-end">
-            {!!preduzece.kontakt_whatsapp && (
+            {!!preduzece?.kontakt_whatsapp && (
               <>
                 <p>WhatsApp</p>
                 <CheckIcon className="icon icon__dark sm" />{' '}
@@ -289,7 +289,7 @@ const PreduzeceDetails = ({ preduzece }) => {
             )}
           </div>
           <div className="df ai-c jc-end">
-            {!!preduzece.kontakt_viber && (
+            {!!preduzece?.kontakt_viber && (
               <>
                 <p>Viber</p>
                 <CheckIcon className="icon icon__dark sm" />{' '}
@@ -297,7 +297,7 @@ const PreduzeceDetails = ({ preduzece }) => {
             )}
           </div>
           <div className="df ai-c jc-end">
-            {!!preduzece.kontakt_facetime && (
+            {!!preduzece?.kontakt_facetime && (
               <>
                 <p>Facetime</p>
                 <CheckIcon className="icon icon__dark sm" />
