@@ -5,23 +5,24 @@
   flex-direction: column;
   margin-right: 4rem;
   min-height: 100vh;
+  transition: width 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
-  @include respond(tab-land){
+  @include respond(tab-land) {
     position: absolute;
     left: 0;
-    width: 100%;
+    width: 9rem;
     margin-right: 0;
-    margin-top: 5rem;
+    margin-top: 15rem;
   }
 
-  &__heading{
-    color:$color-text-light;
+  &__heading {
+    color: $color-text-light;
     text-transform: uppercase;
     font-weight: 500;
     font-size: $font-size-quatenary;
     letter-spacing: 1.5px;
 
-    @include respond(tab-land){
+    @include respond(tab-land) {
       font-size: 8px;
       letter-spacing: unset;
     }
@@ -32,6 +33,9 @@
 
     @include respond(tab-land) {
       display: block;
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
     }
   }
 
@@ -52,7 +56,7 @@
   .item,
   h3 {
     padding: 1rem 1.5rem;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       padding: 1rem 0;
     }
   }
@@ -64,19 +68,36 @@
     background-color: transparent;
     transition: all 0.1s ease-in-out;
 
-    @include respond(tab-land){
+    &.active {
       border-radius: 4px;
       background-color: $color-hover;
+      span {
+        background-color: $color-background-light;
+      }
+      .sidebar-icon {
+        stroke: $color-text-light;
+      }
+      .link {
+        color: $color-text-light;
+      }
+    }
+
+    @include respond(tab-land) {
+      border-radius: 4px;
+      background-color: $color-hover;
+      padding: 1rem 2.5rem;
+      display: flex;
       align-items: center;
-      justify-content: center;
     }
 
     .link {
       color: $color-text-dark;
       text-decoration: none;
+      transition: opacity 0.5s ease-in;
 
       @include respond(tab-land) {
         display: none;
+        opacity: 0;
       }
     }
 
@@ -87,15 +108,16 @@
       stroke: $color-sidebar-icon;
       margin-right: 2rem;
 
-      @include respond(tab-land){
+      @include respond(tab-land) {
         align-items: center;
         height: 36px;
-        width:36px;
+        width: 36px;
         margin-right: 0;
       }
     }
 
-    &:hover {
+    &:hover,
+    .active {
       border-radius: 4px;
       background-color: $color-hover;
       span {
@@ -103,7 +125,6 @@
       }
       .sidebar-icon {
         stroke: $color-text-light;
-        
       }
       .link {
         color: $color-text-light;
