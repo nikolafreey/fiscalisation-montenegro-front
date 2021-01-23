@@ -44,7 +44,7 @@ const PredracuniTableRow = ({ item }) => {
       </td>
       <td className="cd fw-500">
         {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
-        <Moment locale="me" format="DD.MMMM.YYYY">
+        <Moment locale="me" format="DD. MMM YYYY.">
           {item.created_at}
         </Moment>
       </td>

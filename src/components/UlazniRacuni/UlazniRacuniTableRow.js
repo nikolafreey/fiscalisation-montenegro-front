@@ -54,7 +54,7 @@ const UlazniRacuniTableRow = ({ item }) => {
       </td>
       <td className="cd fw-500">
         {/* {new Date(item.created_at).toLocaleDateString('cnr')} */}
-        <Moment locale="me" format="DD. MMM YYYY">
+        <Moment locale="me" format="DD. MMM YYYY.">
           {item.created_at}
         </Moment>
       </td>

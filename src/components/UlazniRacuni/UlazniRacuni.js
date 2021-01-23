@@ -214,11 +214,11 @@ const UlazniRacuni = () => {
                       : '') +
                       '-' +
                       (endDate ? endDate?.toLocaleDateString('en-GB') : '')} */}
-                    {startDate && <Moment locale="me" format="DD. MMM YYYY">
+                    {startDate && <Moment locale="me" format="DD. MMM YYYY.">
                       {startDate}
                     </Moment>}
                     -
-                    {endDate && <Moment locale="me" format="DD. MMM YYYY">
+                    {endDate && <Moment locale="me" format="DD. MMM YYYY.">
                       {endDate}
                     </Moment>}
                   </h3>

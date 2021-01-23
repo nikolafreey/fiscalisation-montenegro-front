@@ -1,7 +1,16 @@
 /* BEGIN Medium */
 @font-face {
 	font-family: "Inter";
-	@include fontdef($InterPath, "Medium");
+	@include fontdef-inter($InterPath, "Medium");
+	font-weight: 500;
+	font-style: normal;
+}
+/* END Medium */
+
+/* BEGIN Medium */
+@font-face {
+	font-family: "Inconsolata";
+	@include fontdef-inconsolata($InconsolataPath, "Medium");
 	font-weight: 500;
 	font-style: normal;
 }
