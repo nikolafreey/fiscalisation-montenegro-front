@@ -21,7 +21,7 @@ const BezgotovinskiHeader = () => {
           </div>
           <div className="col-xl-4 pr-0">
             <div className="form-group">
-              <label className="form__label" for="">
+              <label className="form__label">
                 Kupac
               </label>
               <DropDown
@@ -39,7 +39,7 @@ const BezgotovinskiHeader = () => {
           </div>
           <div className="col-xl-4">
             <div className="form-group">
-              <label className="form__label" for="">
+              <label className="form__label">
                 Tip računa
               </label>
               <DropDownStatic 

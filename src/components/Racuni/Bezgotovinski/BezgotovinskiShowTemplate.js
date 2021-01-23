@@ -1,48 +1,69 @@
 import React from 'react';
 import QRCode from "react-qr-code";
+import noLogo from '../../../assets/img/no-logo.png';
+import List from '../../shared/lists/List';
+import BezgotovinskiTableRow from './BezgotovinskiTableRow';
+import Moment from 'react-moment';
+import 'moment/locale/me';
 
 class BezgotovinskiShowTemplate extends React.Component {
 
 
     render() {
-        const { ikof, jikr, broj_racuna } = this.props.racun;
+        const {
+            ikof,
+            jikr,
+            broj_racuna,
+            status,
+            preduzece,
+            opis,
+            partner,
+            created_at,
+            stavke, ukupna_cijena_bez_pdv, ukupna_cijena_sa_pdv, ukupan_iznos_pdv } = this.props.racun;
 
         return (
             <>
                 <div className="invoice" style={{ width: '100%' }}>
                     <div className="invoice__header">
+                        <div class="status">
+                            {status && <div class="tag tag__warning">{status}</div>}
+                        </div>
                         <div className="invoice__header--logo">
                             <img
-                                src="https://picsum.photos/seed/picsum/200/100"
+                                src={preduzece && preduzece.logotip ? preduzece.logotip : noLogo}
                                 alt="logo"
+                                style={{ widt: 200, height: 100 }}
                             />
                         </div>
                         <div className="row">
                             <div style={{ width: '33.3333333333%' }} className="col-md-4">
+                                <p className="txt-light">{preduzece && preduzece.puni_naziv ? preduzece.puni_naziv : ''}</p>
+                                <p className="txt-light">{preduzece && preduzece.djelatnost ? preduzece.djelatnost : ''}</p>
+                                <p className="txt-light">{preduzece && preduzece.opis ? preduzece.opis : ''}</p>
+                                <p className="txt-light">{preduzece && preduzece.adresa ? preduzece.adresa : ''}</p>
                                 <p className="txt-light">
-                                    Restart IT doo - Društvo za određene radnje i djelatnosti</p>
-                                <p className="txt-light">Kompjutersko programiranje</p>
-                                <p className="txt-light">Ulica Marka Jonovića 36a</p>
-                                <p className="txt-light">Podgorica, Crna Gora</p>
+                                    {preduzece && preduzece.grad ? preduzece.grad : ''}, &nbsp;
+                                    {preduzece && preduzece.drzava ? preduzece.drzava : ''}
+                                </p>
                             </div>
                             <div style={{ width: '33.3333333333%' }} className="col-md-4">
                                 <div className="df jc-sb">
                                     <div className="df fd-column">
-                                        <p className="txt-light">PIB</p>
-                                        <p className="txt-light">PDV</p>
-                                        <p className="txt-light">IBAN</p>
-                                        <p className="txt-light">BIC/SWIFT</p>
+                                        <p className="txt-light">{preduzece && preduzece.pib ? 'PIB' : ''}</p>
+                                        <p className="txt-light">{preduzece && preduzece.pdv ? 'PDV' : ''}</p>
+                                        <p className="txt-light">{preduzece && preduzece.iban ? 'IBAN' : ''}</p>
+                                        <p className="txt-light">{preduzece && preduzece.bic_swift ? 'BIC/SWIFT' : ''}</p>
                                     </div>
                                     <div className="df fd-column">
-                                        <p className="txt-right">02834567</p>
-                                        <p className="txt-right">31/45-5435-3535</p>
-                                        <p className="txt-right">1268768768834567</p>
-                                        <p className="txt-right">423423424234</p>
+                                        <p className="txt-right">{preduzece && preduzece.pib ? preduzece.pib : ''}</p>
+                                        <p className="txt-right">{preduzece && preduzece.pdv ? preduzece.pdv : ''}</p>
+                                        <p className="txt-right">{preduzece && preduzece.iban ? preduzece.iban : ''}</p>
+                                        <p className="txt-right">{preduzece && preduzece.bic_swift ? preduzece.bic_swift : ''}</p>
                                     </div>
                                 </div>
                             </div>
                             <div style={{ width: '33.3333333333%' }} className="col-md-4">
-                                <div className="df jc-sb">
+                                <div className="df jc-sb" style={{ display: 'none' }}>
                                     <div className="df fd-column">
                                         <p className="txt-light">CKB</p>
                                         <p className="txt-light">NLB</p>
@@ -59,25 +80,30 @@ class BezgotovinskiShowTemplate extends React.Component {
 
                         <div className="mtb-50">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div style={{ width: '50%' }} className="col-md-6">
                                     <h2 className="heading-secondary">Račun {broj_racuna}</h2>
-                                    <p>Podgorica, 12.1.2021.</p>
+                                    <p>{preduzece && preduzece.grad ? preduzece.grad : ''}, &nbsp;
+                                    {created_at && <Moment locale="me" format="DD. MMM YYYY.">
+                                            {created_at}
+                                        </Moment>} </p>
                                 </div>
-                                <div className="col-md-6">
+                                <div style={{ width: '50%' }} className="col-md-6">
                                     <div className="invoice__header--box">
-                                        <h2 className="heading-secondary">Yahting Montenegro</h2>
+                                        <h2 className="heading-secondary">
+                                            {partner && partner.kontakt_ime ? partner.kontakt_ime : ''} &nbsp;
+                                            {partner && partner.kontakt_prezime ? partner.kontakt_prezime : ''}</h2>
                                         <div className="df jc-sb">
                                             <div className="df fd-column">
-                                                <p className="txt-light">PIB</p>
-                                                <p className="txt-light">PDV</p>
-                                                <p className="txt-light">IBAN</p>
-                                                <p className="txt-light">BIC/SWIFT</p>
+                                                <p className="txt-light">{partner && partner.pib ? 'PIB' : ''}</p>
+                                                <p className="txt-light">{partner && partner.pib ? 'PDV' : ''}</p>
+                                                <p className="txt-light">{partner && partner.pib ? 'IBAN' : ''}</p>
+                                                <p className="txt-light">{partner && partner.pib ? 'BIC/SWIFT' : ''}</p>
                                             </div>
                                             <div className="df fd-column">
-                                                <p className="txt-right">02834567</p>
-                                                <p className="txt-right">31/45-5435-3535</p>
-                                                <p className="txt-right">1268768768834567</p>
-                                                <p className="txt-right">423423424234</p>
+                                                <p className="txt-right">{partner && partner.pib ? partner.pib : ''}</p>
+                                                <p className="txt-right">{partner && partner.pib ? partner.pib : ''}</p>
+                                                <p className="txt-right">{partner && partner.pib ? partner.pib : ''}</p>
+                                                <p className="txt-right">{partner && partner.pib ? partner.pib : ''}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +111,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                             </div>
                         </div>
                     </div>
-
 
                     <div className="table-wrapper">
                         <table className="table">
@@ -99,32 +124,13 @@ class BezgotovinskiShowTemplate extends React.Component {
                                         >Jedinična cijena</span>
                                     </th>
                                     <th>
-                                        <span className="heading-quaternary">Ukupno</span>
+                                        <span className="heading-quaternary">Kolicina</span>
                                     </th>
                                     <th><span className="heading-quaternary">Iznos</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className="cd fw-500">Usluge izrade web sajta</td>
-                                    <td className="cl">1.010,00</td>
-                                    <td className="cl">1.010,00</td>
-                                    <td>
-                                        <p className="cd fw-500">
-                                            1.240,00 <span className="txt-up txt-light">eur</span>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="cd fw-500">Usluge obnove domena</td>
-                                    <td className="cl">20,00</td>
-                                    <td className="cl">20,00</td>
-                                    <td>
-                                        <p className="cd fw-500">
-                                            20,00 <span className="txt-up txt-light">eur</span>
-                                        </p>
-                                    </td>
-                                </tr>
+                                <List data={stavke ? stavke : []} renderItem={BezgotovinskiTableRow} />
                             </tbody>
                         </table>
                     </div>
@@ -155,26 +161,28 @@ class BezgotovinskiShowTemplate extends React.Component {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <p className="fw-500">Napomena:</p>
-                                <p className="txt-light mb-25">
-                                    Egestas mattis nec eu posuere. Ullamcorper quam
-                                    molestie sollicitudin suspendisse mi.
-                                </p>
+                                {opis &&
+                                    <>
+                                        <p className="fw-500">Napomena:</p>
+                                        <p className="txt-light mb-25">
+                                            {opis}
+                                        </p>
+                                    </>}
                                 <div className="row">
                                     <div className="col-md-4">
-                                    {/* ------------------ QR CODE ------------------ */}
-                                    <QRCode value="Set url here" size="64"/>
-                                     {/*------------------ QR CODE ------------------*/}
+                                        {/* ------------------ QR CODE ------------------ */}
+                                        <QRCode value="Set url here" size="64" />
+                                        {/*------------------ QR CODE ------------------*/}
                                     </div>
                                     <div className="col-md-8">
                                         <div className="df jc-sb">
                                             <div className="df fd-column">
-                                                <p className="txt-light">JIKR</p>
-                                                <p className="txt-light">IKOF</p>
+                                                <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
+                                                <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
                                             </div>
                                             <div className="df fd-column">
-                                                <p className="txt-right">{jikr}</p>
-                                                <p className="txt-right">{ikof}</p>
+                                                <p className="txt-right">{jikr ? jikr : ''}</p>
+                                                <p className="txt-right">{ikof ? ikof : ''}</p>
                                             </div>
                                         </div>
                                     </div>

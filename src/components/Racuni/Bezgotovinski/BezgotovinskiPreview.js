@@ -22,11 +22,12 @@ const BezgotovinskiPreview = () => {
     const componentRef = useRef();
 
     useEffect(() => {
+        console.log('---------', params)
         if (params.id) dispatch(getRacun(params.id));
-    }, [dispatch, params]);
+    }, [params]);
 
     const racun = useSelector(racunSelector());
-    console.log(racun)
+    console.log('GetRacunById', racun)
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,

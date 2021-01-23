@@ -127,10 +127,10 @@ const Racuni = () => {
 
   return (
     <>
-      <div class="title">
+      <div className="title">
         <h1 className="heading-primary">Izlazni računi</h1>
 
-        <div class="df w-50 jc-end">
+        <div className="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
             <button className="btn btn__dark btn__xl" style={{ width: '22rem' }}>
               <ButtonPlusSvg />

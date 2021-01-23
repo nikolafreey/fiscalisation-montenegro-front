@@ -33,11 +33,11 @@ class RacuniService extends ApiService {
     return this.apiClient.post(ENDPOINTS.RACUNI, { ...values, preduzece_id: 'eeb7d941-ceed-474f-a27f-c6422183cb77' });
   }
 
-  getRobe = (params) => this.apiClient.get(ENDPOINTS.ROBE, { params });
+  getRobe = params => this.apiClient.get(ENDPOINTS.ROBE, { params });
   
-  getUsluge = (params) => this.apiClient.get(ENDPOINTS.USLUGE, { params });
+  getUsluge = params => this.apiClient.get(ENDPOINTS.USLUGE, { params });
 
-  getRacun = (id) => this.apiClient.get(ENDPOINTS.RACUN.replace('{id}', id));
+  getRacun = id => this.apiClient.get(ENDPOINTS.RACUN.replace('{id}', id));
 
   updateRacun = (data) =>
     this.apiClient.put(ENDPOINTS.RACUN.replace('{id}', data.id), data);
