@@ -27,14 +27,18 @@ class RacuniService extends ApiService {
 
   storeBezgotovinskiRacun = (values) => {
     values.stavke = values.stavke.map(stavka => {
-      if(!stavka.roba_id) return { ...stavka, usluga_id: stavka.id }
+      if (!stavka.roba_id) return { ...stavka, usluga_id: stavka.id }
       else return stavka
     });
-    return this.apiClient.post(ENDPOINTS.RACUNI, { ...values, preduzece_id: 'eeb7d941-ceed-474f-a27f-c6422183cb77' });
+    return this.apiClient.post(ENDPOINTS.RACUNI, {
+      ...values,
+      user_id: '7c3b0ca3-eb51-447d-85a4-00c37b8c675e',
+      preduzece_id: '028b4491-6a9a-459b-be42-f7bccca522d6'
+    });
   }
 
   getRobe = params => this.apiClient.get(ENDPOINTS.ROBE, { params });
-  
+
   getUsluge = params => this.apiClient.get(ENDPOINTS.USLUGE, { params });
 
   getRacun = id => this.apiClient.get(ENDPOINTS.RACUN.replace('{id}', id));
@@ -55,7 +59,7 @@ class RacuniService extends ApiService {
 
   getAtributiGrupe = (params) => {
     return this.apiClient.get(ENDPOINTS.ATRIBUTI_GRUPE, { params });
-  } 
+  }
 }
 
 export const racuniService = new RacuniService();

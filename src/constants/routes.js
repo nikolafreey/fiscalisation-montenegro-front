@@ -23,6 +23,7 @@ export const RACUNI = {
   BEZGOTOVINSKI: {
     CREATE: '/racuni/bezgotovinski/create',
     SHOW: '/racuni/bezgotovinski/show/:id',
+    EDIT: '/racuni/bezgotovinski/edit/:id',
   },
 };
 export const ULAZNI_RACUNI = {

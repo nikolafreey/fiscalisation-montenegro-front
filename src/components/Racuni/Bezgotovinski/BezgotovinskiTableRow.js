@@ -9,7 +9,7 @@ const BezgotovinskiTableRow = ({ item }) => {
     };
 
     const calcIznos = ({ jedinicna_cijena_bez_pdv, kolicina }) => (
-        Math.round(jedinicna_cijena_bez_pdv * kolicina).toFixed(2).toString().replace('.', ',')
+        (Math.floor(jedinicna_cijena_bez_pdv * kolicina * 100) / 100).toString().replace('.', ',')
     )
 
     return (

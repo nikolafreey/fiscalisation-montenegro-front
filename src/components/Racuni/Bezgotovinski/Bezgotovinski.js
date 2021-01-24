@@ -14,11 +14,12 @@ import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
 import BezgotovinskiHeader from './BezgotovinskiHeader';
 
 import { RACUNI } from '../../../constants/routes';
+import { useHistory } from "react-router-dom";
 
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
-  // console.log(racuni)
+  const history = useHistory();
 
   const { params } = useRouteMatch();
 
@@ -31,9 +32,11 @@ const Bezgotovinski = () => {
       popust_na_cijenu_bez_pdv: values.popust_bez_pdv,
       datum_izdavanja: values.datum_izdavanja?.toISOString().split('T')[0],
       datum_za_placanje: values.datum_za_placanje?.toISOString().split('T')[0],
+      datum_uplate: values.datum_uplate?.toISOString().split('T')[0]
     }
 
     dispatch(storeBezgotovinskiRacun(noviRacun));
+    history.push(`/racuni`);
   };
 
   const {

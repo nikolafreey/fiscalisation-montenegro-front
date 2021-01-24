@@ -34,6 +34,7 @@ const BezgotovinskiHeader = () => {
                 selected={values.datum_izdavanja}
                 onChange={(date) => setFieldValue('datum_izdavanja', date)}
                 className="select"
+                placeholderText="Datum Izdavanja"
               />
             </div>
           </div>
@@ -50,6 +51,7 @@ const BezgotovinskiHeader = () => {
                 selected={values.datum_za_placanje}
                 onChange={(date) => setFieldValue('datum_za_placanje', date)}
                 className="select"
+                placeholderText="Rok za placanje"
               />
             </div>
           </div>

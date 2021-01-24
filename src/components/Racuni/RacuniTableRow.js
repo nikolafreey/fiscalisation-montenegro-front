@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { ReactComponent as Success } from '../../assets/icon/success.svg';
 import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch } from 'react-redux';
-import { storeRacun } from '../../store/actions/RacuniActions';
+import { storeRacun, deleteRacun, getRacuni } from '../../store/actions/RacuniActions';
 import { useHistory } from "react-router-dom";
 import Moment from 'react-moment';
 import 'moment/locale/me';
@@ -13,8 +13,6 @@ const RacuniTableRow = ({ item }) => {
   const dispatch = useDispatch();
 
   const history = useHistory();
-
-  // console.log(item)
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
     neNaplativ: { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },
@@ -31,13 +29,15 @@ const RacuniTableRow = ({ item }) => {
     history.push(`/racuni/bezgotovinski/show/${item.id}`);
   }
 
-
   const handleIzmjeni = (e) => {
     e.stopPropagation()
+    history.push(`/racuni/bezgotovinski/edit/${item.id}`);
   }
 
   const handleObrisi = (e) => {
     e.stopPropagation()
+     dispatch(deleteRacun(item.id))
+     dispatch(getRacuni());
   }
 
   return (

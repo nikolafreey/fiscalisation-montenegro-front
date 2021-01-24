@@ -10,23 +10,22 @@ class BezgotovinskiShowTemplate extends React.Component {
 
 
     render() {
-        const {
-            ikof,
-            jikr,
-            broj_racuna,
-            status,
-            preduzece,
-            opis,
-            partner,
-            created_at,
-            stavke, ukupna_cijena_bez_pdv, ukupna_cijena_sa_pdv, ukupan_iznos_pdv } = this.props.racun;
+        const ikof = this.props.ikof;
+        const jikr = this.props.jikr;
+        const broj_racuna = this.props.broj_racuna;
+        const status = this.props.status;
+        const preduzece = this.props.preduzece;
+        const opis = this.props.opis;
+        const partner = this.props.partner;
+        const created_at = this.props.created_at;
+        const stavke = this.props.stavke;
 
         return (
             <>
                 <div className="invoice" style={{ width: '100%' }}>
                     <div className="invoice__header">
-                        <div class="status">
-                            {status && <div class="tag tag__warning">{status}</div>}
+                        <div className="status">
+                            {status && <div className="tag tag__warning">{status}</div>}
                         </div>
                         <div className="invoice__header--logo">
                             <img
@@ -137,8 +136,10 @@ class BezgotovinskiShowTemplate extends React.Component {
 
                     <div className="invoice__footer">
                         <div className="row">
-                            <div className="offset-md-8"></div>
-                            <div className="col-md-4">
+                            {/* <div className="offset-md-8"></div> */}
+                            <div style={{width: '33.3333333333%'}}></div>
+                            <div style={{width: '33.3333333333%'}}></div>
+                            <div style={{width: '33.3333333333%'}} className="col-md-4">
                                 <div className="df jc-sb">
                                     <div className="df fd-column">
                                         <p className="fw-500">Bez PDV-a:</p>
@@ -160,7 +161,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-6">
+                            <div style={{width: '50%'}} className="col-md-6">
                                 {opis &&
                                     <>
                                         <p className="fw-500">Napomena:</p>
@@ -169,12 +170,12 @@ class BezgotovinskiShowTemplate extends React.Component {
                                         </p>
                                     </>}
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div style={{width: '33.3333333333%'}} className="col-md-4">
                                         {/* ------------------ QR CODE ------------------ */}
-                                        <QRCode value="Set url here" size="64" />
+                                        {jikr && ikof ? <QRCode value="Set url here" size="64" /> : null}
                                         {/*------------------ QR CODE ------------------*/}
                                     </div>
-                                    <div className="col-md-8">
+                                    <div style={{width: '66.6666666667%'}} className="col-md-8">
                                         <div className="df jc-sb">
                                             <div className="df fd-column">
                                                 <p className="txt-light">{jikr ? 'JIKR' : ''}</p>

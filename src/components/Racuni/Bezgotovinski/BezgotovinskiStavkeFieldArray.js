@@ -12,6 +12,7 @@ import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
 import { uslugaSelector } from '../../../store/selectors/UslugeSelector';
 
+
 const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   const dispatch = useDispatch();
   
@@ -56,11 +57,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
-    return getCijenaStavkeBezPdv(stavka) * (stavka?.kolicina || 0);
+    return getCijenaStavkeBezPdv(stavka) * (stavka && stavka.kolicina ? stavka.kolicina : 1);
   }
 
   function getUkupnaCijenaSaPdv(stavka) {
-    return getUkupnaCijenaStavke(stavka) * (stavka?.kolicina || 0);
+    return getUkupnaCijenaStavke(stavka) * (stavka && stavka.kolicina ? stavka.kolicina : 1);
   }
 
   function getUkupanIznosPdv(stavka) {
@@ -78,7 +79,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       setFieldValue(`values.${index}.popust`, 0);
     }
   }
-  
+
   return (
     <>
       {values.stavke.map((stavka, index) => (
@@ -94,14 +95,12 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   </span>
                 </p>
               </div>
-              <div className="row">
+              <div className="row" style={{marginBottom: 11}}>
                 <div className="col-xl-4 pr-0">
                   <div className="form-group">
                     <StavkeDropdown
                       name={`stavke.${index}`}
-                      className="form__input"
-                      label={'Stavke'}
-                    />
+                      className="form__input"/>
                   </div>
                 </div>
                 <div className="col-xl-2 pr-0">
@@ -184,10 +183,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           name="kolicina"
                           type="number"
                           className="form__input mb-12"
-                          value={stavka?.kolicina}
+                          value={stavka && stavka.kolicina ? stavka.kolicina : 1 }
                           onChange={(event) => setFieldValue(`stavke.${index}.kolicina`, event.target.valueAsNumber)}
                         />
                       </div>
+                    
                     </div>
                     <div className="col-xl-3 pr-0">
                       <div className="form-group">
