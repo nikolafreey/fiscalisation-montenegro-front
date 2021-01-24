@@ -19,10 +19,8 @@ import 'moment/locale/me';
 const options = [
   { value: 'placen', label: 'Plaćen' },
   { value: 'nenaplativ', label: 'Nenaplativ' },
-  { value: 'cekaSe', label: 'Čeka Se' },
+  { value: 'ceka se', label: 'Čeka Se' },
   { value: 'privremeni', label: 'Privremeni' },
-  { value: 'nenaplativDug', label: 'Nenaplativ Dug' },
-  { value: 'status', label: 'Status' },
 ];
 
 const searchParams = {};
@@ -74,7 +72,7 @@ const Racuni = () => {
     setSearch('');
     handleSearch(searchParams);
     // visibleSearch = false;
-    setSearchVisible(false)
+    setSearchVisible(false);
   };
 
   const resetStatus = () => {
@@ -82,13 +80,13 @@ const Racuni = () => {
     setStatus('');
     handleSearch(searchParams);
     // visibleStatus = false;
-    setStatusVisible(false)
+    setStatusVisible(false);
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
     // visibleSearch = true;
-    setSearchVisible(true)
+    setSearchVisible(true);
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -97,14 +95,14 @@ const Racuni = () => {
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
     // visibleStatus = true;
-    setStatusVisible(true)
+    setStatusVisible(true);
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
     // visibleDateStart = true;
-    setDateStartVisible(true)
+    setDateStartVisible(true);
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
@@ -117,7 +115,6 @@ const Racuni = () => {
     setEndDate(date);
     handleSearch(searchParams);
   };
-
 
   // const onChange = (dates) => {
   //   const [start, end] = dates;
@@ -132,23 +129,28 @@ const Racuni = () => {
 
         <div class="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
-            <button className="btn btn__dark btn__xl" style={{ width: '22rem' }}>
+            <button
+              className="btn btn__dark btn__xl"
+              style={{ width: '22rem' }}
+            >
               <ButtonPlusSvg />
-            Novi gotovinski račun
-          </button>
+              Novi gotovinski račun
+            </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button className="btn btn__dark btn__xl" style={{ width: '22rem' }}>
+            <button
+              className="btn btn__dark btn__xl"
+              style={{ width: '22rem' }}
+            >
               <ButtonPlusSvg />
-            Novi bezgotovisnki račun
-          </button>
+              Novi bezgotovisnki račun
+            </button>
           </Link>
         </div>
-
       </div>
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
-          <div className="main-content__search-wrapper df" >
+          <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100">
               <div className="search df ai-c w-53">
                 <form className="search">
@@ -197,8 +199,7 @@ const Racuni = () => {
                 </h3>
               </div>
 
-
-              {searchVisible &&
+              {searchVisible && (
                 <div className="box">
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
@@ -206,9 +207,9 @@ const Racuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {statusVisible &&
+              {statusVisible && (
                 <div className="box">
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
@@ -216,9 +217,9 @@ const Racuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {dateStartVisible || dateEndVisible ?
+              {dateStartVisible || dateEndVisible ? (
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
@@ -227,19 +228,23 @@ const Racuni = () => {
                       : '') +
                       '-' +
                       (endDate ? endDate?.toLocaleDateString('en-GB') : '')} */}
-                    {startDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {startDate}
-                    </Moment>}
+                    {startDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {startDate}
+                      </Moment>
+                    )}
                     -
-                    {endDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {endDate}
-                    </Moment>}
+                    {endDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {endDate}
+                      </Moment>
+                    )}
                   </h3>
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
                   </span>
                 </div>
-                : null}
+              ) : null}
             </div>
           </div>
           <div>
