@@ -167,7 +167,7 @@ const Racuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                value={status}
+                value={{ label: status }}
                 className="select w-20"
               />
 

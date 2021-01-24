@@ -70,7 +70,7 @@ const UlazniRacuni = () => {
   const resetSearch = () => {
     searchParams.search = null;
     // visibleSearch = false;
-    setSearchVisible(false)
+    setSearchVisible(false);
     setSearch('');
     handleSearch(searchParams);
   };
@@ -78,7 +78,7 @@ const UlazniRacuni = () => {
   const resetStatus = () => {
     searchParams.status = null;
     // visibleStatus = false;
-    setStatusVisible(false)
+    setStatusVisible(false);
     setStatus('');
     handleSearch(searchParams);
   };
@@ -86,7 +86,7 @@ const UlazniRacuni = () => {
   const handleChange = (event) => {
     setSearch(event.target.value);
     // visibleSearch = true;
-    setSearchVisible(true)
+    setSearchVisible(true);
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -94,7 +94,7 @@ const UlazniRacuni = () => {
 
   const handleStatusChange = (selectedStatusOption) => {
     // visibleStatus = true;
-    setStatusVisible(true)
+    setStatusVisible(true);
     setStatus(selectedStatusOption.label);
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
@@ -102,7 +102,7 @@ const UlazniRacuni = () => {
 
   const handleStartDateChange = (date) => {
     // visibleDateStart = true;
-    setDateStartVisible(true)
+    setDateStartVisible(true);
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
@@ -115,7 +115,6 @@ const UlazniRacuni = () => {
     setEndDate(date);
     handleSearch(searchParams);
   };
-
 
   // const onChange = (dates) => {
   //   const [start, end] = dates;
@@ -153,7 +152,7 @@ const UlazniRacuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                value={status}
+                value={{ label: status }}
                 className="select w-20"
               />
               <div className="select w-25 df">
@@ -185,7 +184,7 @@ const UlazniRacuni = () => {
                 </h3>
               </div>
 
-              {searchVisible &&
+              {searchVisible && (
                 <div className="box">
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
@@ -193,9 +192,9 @@ const UlazniRacuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {statusVisible &&
+              {statusVisible && (
                 <div className="box">
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
@@ -203,9 +202,9 @@ const UlazniRacuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {dateStartVisible || dateEndVisible ?
+              {dateStartVisible || dateEndVisible ? (
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
@@ -214,19 +213,23 @@ const UlazniRacuni = () => {
                       : '') +
                       '-' +
                       (endDate ? endDate?.toLocaleDateString('en-GB') : '')} */}
-                    {startDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {startDate}
-                    </Moment>}
+                    {startDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {startDate}
+                      </Moment>
+                    )}
                     -
-                    {endDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {endDate}
-                    </Moment>}
+                    {endDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {endDate}
+                      </Moment>
+                    )}
                   </h3>
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
                   </span>
                 </div>
-                : null}
+              ) : null}
             </div>
           </div>
           <RacuniTable ulazniRacuni={ulazniRacuni} />
