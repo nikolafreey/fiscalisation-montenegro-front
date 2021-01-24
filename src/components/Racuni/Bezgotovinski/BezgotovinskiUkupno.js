@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import {
   formatirajCijenu,
@@ -11,6 +11,7 @@ import DropDownStatic from '../../shared/forms/DropDownStatic';
 
 const BezgotovinskiUkupno = () => {
   const { values, setFieldValue } = useFormikContext();
+  const [popustVisible, setPopustVisible] = useState(false)
 
   const popust = values.popust ? {
     popust: values.popust,
@@ -37,16 +38,16 @@ const BezgotovinskiUkupno = () => {
       ukupnaCijenaBezPdv,
       ukupnoPdv
     };
-    
+
     if (popust.popust_bez_pdv) {
       return {
         ukupnaCijena: ukupnaCijena - izracunajPopustNaCijenu(ukupnaCijena),
         ukupnaCijenaBezPdv,
         ukupnoPdv
-      } 
+      }
     } else {
       const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
-      
+
       return Object.keys(porezi).reduce((cijene, porezId) => {
         const porez = porezi[porezId];
         const bezPdv = porez.ukupno - porez.pdvIznos;
@@ -98,16 +99,23 @@ const BezgotovinskiUkupno = () => {
               </div>
               <div className="col-xl-8">
                 <div className="row">
+                  {!popustVisible && <div onClick={() => setPopustVisible(!popustVisible)} className="main-content__box--footer col-xl-10">
+                    <span>+ Dodaj popust</span>
+                  </div>}
                   <div className="col-xl-4">
                     <div className="form-group">
-                      <label for="" className="form__label">
-                        Tip popusta
+
+                      {popustVisible && <>
+                        <label for="" className="form__label">
+                          Tip popusta
                       </label>
-                      <DropDownStatic
-                        name="tip_popusta"
-                        options={TIPOVI_POPUSTA}
-                      />
-                      <div className="form__box">
+                        <DropDownStatic
+                          name="tip_popusta"
+                          options={TIPOVI_POPUSTA}
+                          className="mb-12"
+                        />
+                      </>}
+                      <div className="form__box" style={{ marginTop: 12 }}>
                         <p className="txt-light">Ukupan iznos PDV-a</p>
                         <h2 className="heading-secondary">
                           {formatirajCijenu(cijene.ukupnoPdv)}
@@ -117,17 +125,20 @@ const BezgotovinskiUkupno = () => {
                   </div>
                   <div className="col-xl-4">
                     <div className="form-group">
-                      <label for="" className="form__label">
-                        Popust bez PDV-a
+                      {popustVisible && <>
+                        <label for="" className="form__label">
+                          Popust bez PDV-a
                       </label>
-                      <DropDownStatic
-                        name={`popust_bez_pdv`}
-                        options={[
-                          { value: true, label: 'DA' },
-                          { value: false, label: 'NE' },
-                        ]}
-                      />
-                      <div className="form__box">
+                        <DropDownStatic
+                          name={`popust_bez_pdv`}
+                          options={[
+                            { value: true, label: 'DA' },
+                            { value: false, label: 'NE' },
+                          ]}
+                          className="mb-12"
+                        />
+                      </>}
+                      <div className="form__box" style={{ marginTop: 12 }}>
                         <p className="txt-light">Ukupna cijena bez PDV-a</p>
                         <h2 className="heading-secondary">
                           {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}
@@ -137,18 +148,20 @@ const BezgotovinskiUkupno = () => {
                   </div>
                   <div className="col-xl-4">
                     <div className="form-group">
-                      <label for="" className="form__label">
-                        Iznos popusta
+                      {popustVisible && <>
+                        <label for="" className="form__label">
+                          Iznos popusta
                       </label>
-                      <input
-                        type="number"
-                        className="form__input mb-12"
-                        value={values.popust}
-                        onChange={(event) =>
-                          setFieldValue('popust', event.target.valueAsNumber)
-                        }
-                      />
-                      <div className="form__box">
+                        <input
+                          type="number"
+                          className="form__input"
+                          value={values.popust}
+                          onChange={(event) =>
+                            setFieldValue('popust', event.target.valueAsNumber)
+                          }
+                        />
+                      </>}
+                      <div className="form__box" style={{ marginTop: 12 }}>
                         <p className="txt-light">Ukupna cijena sa PDV-om</p>
                         <h2 className="heading-secondary">
                           {formatirajCijenu(cijene.ukupnaCijena)}

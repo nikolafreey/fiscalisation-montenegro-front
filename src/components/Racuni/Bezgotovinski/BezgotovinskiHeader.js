@@ -21,7 +21,7 @@ const BezgotovinskiHeader = () => {
           </div>
           <div className="col-xl-4 pr-0">
             <div className="form-group">
-              <label className="form__label" for="">
+              <label className="form__label">
                 Kupac
               </label>
               <DropDown
@@ -34,12 +34,13 @@ const BezgotovinskiHeader = () => {
                 selected={values.datum_izdavanja}
                 onChange={(date) => setFieldValue('datum_izdavanja', date)}
                 className="select"
+                placeholderText="Datum Izdavanja"
               />
             </div>
           </div>
           <div className="col-xl-4">
             <div className="form-group">
-              <label className="form__label" for="">
+              <label className="form__label">
                 Tip računa
               </label>
               <DropDownStatic 
@@ -50,6 +51,7 @@ const BezgotovinskiHeader = () => {
                 selected={values.datum_za_placanje}
                 onChange={(date) => setFieldValue('datum_za_placanje', date)}
                 className="select"
+                placeholderText="Rok za placanje"
               />
             </div>
           </div>
