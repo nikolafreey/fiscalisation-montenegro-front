@@ -5,13 +5,10 @@ import {
   RIGHT_PAGE,
 } from '../../../helpers/pagination';
 
-const PaginationControls = ({
-  paginatedData,
-  onPageChange,
-  pageNeighbours = 2,
-}) => {
-  const { current_page, last_page } = paginatedData;
+const PaginationControls = ({ paginatedData, onPageChange, pageNeighbours }) => {
 
+  const { current_page, last_page } = paginatedData;
+  pageNeighbours = current_page + 1;
   const handleClick = (page) => {
     onPageChange(page);
   };
@@ -25,7 +22,6 @@ const PaginationControls = ({
   //   event.preventDefault();
   //   onPageChange(current_page + pageNeighbours * 2 + 1);
   // };
-
   const pages = fetchPageNumbers(current_page, last_page, pageNeighbours);
 
   return (
