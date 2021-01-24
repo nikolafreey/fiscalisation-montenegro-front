@@ -104,10 +104,10 @@ console.log(values)
                   type="radio"
                   className="form__radio-input"
                   id="paid"
-                  value="placen"
+                  value="Plaćen"
                   name="status"
-                  checked={values && values.status === "placen"}
-                  onChange={(event) => setFieldValue("status", "placen")}
+                  checked={values && values.status === "Plaćen"}
+                  onChange={(event) => setFieldValue("status", "Plaćen")}
                 />
                 <label for="paid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -119,10 +119,10 @@ console.log(values)
                   type="radio"
                   className="form__radio-input"
                   id="partiallyPaid"
-                  value="djelimicno_placen"
+                  value="Djelimično plaćen"
                   name="status"
-                  checked={values &&  values.status === "djelimicno_placen"}
-                  onChange={(event) => setFieldValue("status", "djelimicno_placen")}
+                  checked={values &&  values.status === "Djelimično plaćen"}
+                  onChange={(event) => setFieldValue("status", "Djelimično plaćen")}
                 />
                 <label for="partiallyPaid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -134,10 +134,10 @@ console.log(values)
                   type="radio"
                   className="form__radio-input"
                   id="notPaid"
-                  value="nije_placen"
+                  value="Nije plaćen"
                   name="status"
-                  checked={values &&  values.status === "nije_placen"}
-                  onChange={(event) => setFieldValue("status", "nije_placen")}
+                  checked={values &&  values.status === "Nije plaćen"}
+                  onChange={(event) => setFieldValue("status", "Nije plaćen")}
                 />
                 <label for="notPaid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -150,10 +150,10 @@ console.log(values)
                   type="radio"
                   className="form__radio-input"
                   id="uncollectible"
-                  value="nenaplativ"
+                  value="Nenaplativ"
                   name="status"
-                  checked={values && values.status === "nenaplativ"}
-                  onChange={(event) => setFieldValue("status", "nenaplativ")}
+                  checked={values && values.status === "Nenaplativ"}
+                  onChange={(event) => setFieldValue("status", "Nenaplativ")}
                 />
                 <label for="uncollectible" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -165,10 +165,10 @@ console.log(values)
                   type="radio"
                   className="form__radio-input"
                   id="temporary"
-                  value="privremeni"
+                  value="Privremeni"
                   name="status"
-                  checked={values && values.status === "privremeni"}
-                  onChange={(event) => setFieldValue('status', 'privremeni')}
+                  checked={values && values.status === "Privremeni"}
+                  onChange={(event) => setFieldValue('status', 'Privremeni')}
                 />
                 <label for="temporary" className="form__radio-label">
                   <span className="form__radio-button"></span>
