@@ -17,8 +17,6 @@ import { PREDRACUNI } from '../../constants/routes';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
-
-
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
   { value: 'poslat', label: 'Poslat' },
@@ -41,7 +39,6 @@ const Predracuni = () => {
   const [status, setStatus] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
 
   const [statusVisible, setStatusVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -75,7 +72,7 @@ const Predracuni = () => {
   const resetSearch = () => {
     searchParams.search = null;
     // visibleSearch = false;
-    setSearchVisible(false)
+    setSearchVisible(false);
     setSearch('');
     handleSearch(searchParams);
   };
@@ -83,7 +80,7 @@ const Predracuni = () => {
   const resetStatus = () => {
     searchParams.status = null;
     // visibleStatus = false;
-    setStatusVisible(false)
+    setStatusVisible(false);
     setStatus('');
     handleSearch(searchParams);
   };
@@ -91,7 +88,7 @@ const Predracuni = () => {
   const handleChange = (event) => {
     setSearch(event.target.value);
     // visibleSearch = true;
-    setSearchVisible(true)
+    setSearchVisible(true);
     const value = event.target.value;
     searchParams.search = value;
     searchDebounced(() => handleSearch(searchParams));
@@ -100,14 +97,14 @@ const Predracuni = () => {
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
     // visibleStatus = true;
-    setStatusVisible(true)
+    setStatusVisible(true);
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
     // visibleDateStart = true;
-    setDateStartVisible(true)
+    setDateStartVisible(true);
     searchParams.startDate = date;
     setStartDate(date);
     handleSearch(searchParams);
@@ -157,7 +154,7 @@ const Predracuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                value={status}
+                value={{ label: status }}
                 className="select w-20"
               />
               <div className="select w-25 df">
@@ -189,7 +186,7 @@ const Predracuni = () => {
                 </h3>
               </div>
 
-              {searchVisible &&
+              {searchVisible && (
                 <div className="box">
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
@@ -197,9 +194,9 @@ const Predracuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {statusVisible &&
+              {statusVisible && (
                 <div className="box">
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
@@ -207,9 +204,9 @@ const Predracuni = () => {
                     <BoxCloseSvg />
                   </span>
                 </div>
-              }
+              )}
 
-              {dateStartVisible || dateEndVisible ?
+              {dateStartVisible || dateEndVisible ? (
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
@@ -217,20 +214,23 @@ const Predracuni = () => {
                       '-' +
                       (endDate ? endDate?.toLocaleDateString('en-GB') : '')
                     } */}
-
-                    {startDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {startDate}
-                    </Moment>}
+                    {startDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {startDate}
+                      </Moment>
+                    )}
                     -
-                    {endDate && <Moment locale="me" format="DD. MMM YYYY.">
-                      {endDate}
-                    </Moment>}
+                    {endDate && (
+                      <Moment locale="me" format="DD. MMM YYYY.">
+                        {endDate}
+                      </Moment>
+                    )}
                   </h3>
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
                   </span>
                 </div>
-                : null}
+              ) : null}
             </div>
           </div>
           <PredracuniTable predracuni={predracuni} />
