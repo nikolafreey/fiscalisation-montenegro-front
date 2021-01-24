@@ -43,5 +43,5 @@ export const fetchPageNumbers = (currentPage, lastPage, pageNeighbours) => {
     return [1, ...pages, totalPages];
   }
 
-  return range(1, totalPages);
+  return range(1, totalPages + 1);
 };
