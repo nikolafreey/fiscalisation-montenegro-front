@@ -111,7 +111,7 @@ const Bezgotovinski = () => {
                 <BezgotovinskiStatusPodsjetnici />
                 <div className="form__footer">
                   <button
-                    onClick={(values) => handleSubmit(values)}
+                    onClick={() => handleSubmit(values)}
                     className="btn btn__dark btn__lg"
                   >
                     Fiskalizuj i Pošalji
