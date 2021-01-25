@@ -4,11 +4,11 @@ import ReactDatePicker from 'react-datepicker';
 import { KOREKTIVNI_RACUN } from '../../../constants/racuni';
 import { partneriService } from '../../../services/PartneriService';
 import DropDown from '../../shared/forms/DropDown';
-import DropDownStatic from '../../shared/forms/DropDownStatic';   
+import DropDownStatic from '../../shared/forms/DropDownStatic';
 
 const BezgotovinskiHeader = () => {
   const { values, setFieldValue } = useFormikContext();
-  
+
   return (
     <div className="main-content__box">
       <div className="main-content__box--inner-wrapper">
@@ -21,14 +21,11 @@ const BezgotovinskiHeader = () => {
           </div>
           <div className="col-xl-4 pr-0">
             <div className="form-group">
-              <label className="form__label">
-                Kupac
-              </label>
+              <label className="form__label">Kupac</label>
               <DropDown
                 name="partner_id"
-                loadOptions={
-                  partneriService.getPartneriDropdown
-                }
+                loadOptions={partneriService.getPartneriDropdown}
+                isSearchable
               />
               <ReactDatePicker
                 selected={values.datum_izdavanja}
@@ -41,10 +38,8 @@ const BezgotovinskiHeader = () => {
           </div>
           <div className="col-xl-4">
             <div className="form-group">
-              <label className="form__label">
-                Korektivni račun
-              </label>
-              <DropDownStatic 
+              <label className="form__label">Korektivni račun</label>
+              <DropDownStatic
                 name="korektivni_racun"
                 options={KOREKTIVNI_RACUN}
                 defaultValue={KOREKTIVNI_RACUN[0]}

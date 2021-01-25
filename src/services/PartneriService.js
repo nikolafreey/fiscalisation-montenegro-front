@@ -21,11 +21,13 @@ class PartneriService extends ApiService {
 
   getPartneriDropdown = async (search) => {
     const { data } = await this.getPartneri({ search });
+    console.log('getPartneriDropdown:', data);
 
-    return data.data.map((partner) => ({
+    return data.map((partner) => ({
       value: partner.id,
-      label: partner.preduzece?.kratki_naziv 
-        || `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
+      label:
+        partner.preduzece?.kratki_naziv ||
+        `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
     }));
   };
 }
