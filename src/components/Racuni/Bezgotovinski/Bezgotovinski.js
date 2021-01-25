@@ -49,9 +49,13 @@ const Bezgotovinski = () => {
   //   porezi,
   // } = usePorezi();
 
+  const today = new Date();
+  const seven_days = new Date();
+  seven_days.setDate(seven_days.getDate() + 7);
+
   return (
     <Formik
-      initialValues={{ stavke: [] }}
+      initialValues={{ stavke: [], datum_izdavanja: today, datum_za_placanje: seven_days}}
       onSubmit={handleSubmit}
       enableReinitialize
       validateOnChange={false}
