@@ -1,9 +1,10 @@
-import { useFormikContext } from 'formik';
 import React from 'react';
+import { useFormikContext } from 'formik';
+import ReactDatePicker from 'react-datepicker';
 
-const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
+const BezgotovinskiStatusPodsjetnici = () => {
   const { values, setFieldValue } = useFormikContext();
-  
+
   return (
     <>
       <div className="container">
@@ -17,7 +18,7 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
           </div>
           <div className="col-md-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Pošalji podsjetnik
               </label>
               <select name="customer" id="" className="form__input">
@@ -29,7 +30,7 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
           </div>
           <div className="col-md-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Tekst podsjetnika
               </label>
               <textarea
@@ -58,7 +59,7 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
           </div>
           <div className="col-xl-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Kreiraj i pošalji novi račun
               </label>
               <select name="customer" id="" className="form__input">
@@ -70,13 +71,13 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
           </div>
           <div className="col-xl-4">
             <div className="form-group">
-              <label for="" className="form__label">
+              <label  className="form__label">
                 Dan za slanje
               </label>
               <input type="text" className="form__input mb-12" value="" />
             </div>
             <div className="form-group">
-              <label for="" className="form__label">
+              <label  className="form__label">
                 Vrijeme slanja
               </label>
               <input
@@ -103,7 +104,10 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
                   type="radio"
                   className="form__radio-input"
                   id="paid"
+                  value="Plaćen"
                   name="status"
+                  checked={values && values.status === "Plaćen"}
+                  onChange={(event) => setFieldValue("status", "Plaćen")}
                 />
                 <label for="paid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -115,7 +119,10 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
                   type="radio"
                   className="form__radio-input"
                   id="partiallyPaid"
+                  value="Djelimično plaćen"
                   name="status"
+                  checked={values &&  values.status === "Djelimično plaćen"}
+                  onChange={(event) => setFieldValue("status", "Djelimično plaćen")}
                 />
                 <label for="partiallyPaid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -127,7 +134,10 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
                   type="radio"
                   className="form__radio-input"
                   id="notPaid"
+                  value="Nije plaćen"
                   name="status"
+                  checked={values &&  values.status === "Nije plaćen"}
+                  onChange={(event) => setFieldValue("status", "Nije plaćen")}
                 />
                 <label for="notPaid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -135,11 +145,15 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
                 </label>
               </div>
               <div className="form__radio-group">
+
                 <input
                   type="radio"
                   className="form__radio-input"
                   id="uncollectible"
+                  value="Nenaplativ"
                   name="status"
+                  checked={values && values.status === "Nenaplativ"}
+                  onChange={(event) => setFieldValue("status", "Nenaplativ")}
                 />
                 <label for="uncollectible" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -151,7 +165,10 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
                   type="radio"
                   className="form__radio-input"
                   id="temporary"
+                  value="Privremeni"
                   name="status"
+                  checked={values && values.status === "Privremeni"}
+                  onChange={(event) => setFieldValue('status', 'Privremeni')}
                 />
                 <label for="temporary" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -161,18 +178,28 @@ const BezgotovinskiStatusPodsjetnici = ({ footer }) => {
             </div>
           </div>
           <div className="col-md-5">
-            <a href="">+ Dodaj novi iznos uplate</a>
-            <div className="form__group">
-              <div className="form__label">Iznos uplate</div>
-              <div className="df jc-sb">
-                <input type="text" className="form__input w-48" value="100,00" />
-                <input
-                  type="text"
-                  className="form__input w-48"
-                  value="Datum uplate"
-                />
+            {values && values.status === "djelimicno_placen" && <>
+              {/* <a href="">+ Dodaj novi iznos uplate</a> */}
+              <div className="form__group">
+                <div className="form__label">Iznos uplate</div>
+                <div className="df jc-sb">
+                  <input
+                    style={{ marginRight: 20 }}
+                    name="iznos_uplate"
+                    type="text"
+                    className="form__input w-48"
+                    value={values && values.iznos_uplate}
+                    placeholder="100,00"
+                    onChange={(event) => setFieldValue(`iznos_uplate`, event.target.value)} />
+                  <ReactDatePicker
+                    selected={values && values.datum_uplate}
+                    onChange={(date) => setFieldValue('datum_uplate', date)}
+                    className="select"
+                    placeholderText="Datum uplate"
+                  />
+                </div>
               </div>
-            </div>
+            </>}
           </div>
         </div>
       </div>

@@ -17,6 +17,10 @@ const NoviRacunPreview = () => {
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    pageStyle: () => `
+    @page {
+      size: 50mm 100mm;
+    }`
   });
 
   const handleSacuvaj = () => {

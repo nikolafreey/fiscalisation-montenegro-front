@@ -17,6 +17,9 @@ const RacuniRouter = () => {
       <Route path={RACUNI.BEZGOTOVINSKI.SHOW}>
         <BezgotovinskiPreview />
       </Route>
+      <Route path={RACUNI.BEZGOTOVINSKI.EDIT}>
+        <BezgotovinskiPreview />
+      </Route>
       <Route path={RACUNI.EDIT}>
         <RacuniForm />
       </Route>

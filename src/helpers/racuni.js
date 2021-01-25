@@ -31,6 +31,9 @@ function izracunajPopust(cijena, popust, tip_popusta) {
   }
 
 function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
+  if (usluga && usluga.kolicina === 0) {
+    usluga.kolicina = 1;
+  }
   const cijena = izracunajPopust(usluga.cijena_bez_pdv, usluga.popust, usluga.tip_popusta);
   
   if (!porezi[usluga.porez.id]) {
@@ -78,6 +81,9 @@ export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
 }
 
 function dodajUsluguNaSumu(suma, usluga, bezDefaultPopusta) {
+  if (usluga && usluga.kolicina === 0) {
+    usluga.kolicina = 1;
+  }
   const ukupna_cijena = (1 + Number(usluga.porez.stopa)) * Number(usluga.cijena_bez_pdv);
   
   if (usluga.tip_popusta && usluga.popust) {
@@ -118,6 +124,9 @@ export function izracunajUkupnuCijenuStavkiBezPdv(stavke, bezDefaultPopusta) {
 }
 
 function dodajUsluguNaSumuBezPdv(suma, usluga, bezDefaultPopusta) {
+  if (usluga && usluga.kolicina === 0) {
+    usluga.kolicina = 1;
+  }
   if (usluga.tip_popusta && usluga.popust) {
     return suma + izracunajPopust(usluga.cijena_bez_pdv, usluga.popust, usluga.tip_popusta) * usluga.kolicina;
   }

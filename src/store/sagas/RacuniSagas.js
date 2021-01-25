@@ -26,6 +26,7 @@ export function* bezgotovinskiRacunStore({ payload }) {
 export function* racuniGet({ payload }) {
   try {
     const { data } = yield call(racuniService.getRacuni, payload);
+   
     yield put(setRacuni(data));
   } catch (error) {
     yield put(setGlobalError(error.message));

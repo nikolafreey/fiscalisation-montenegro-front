@@ -3,12 +3,13 @@ import React from 'react';
 import TextError from './TextError';
 
 const RadioButton = (props) => {
-  const { label, name, options, ...rest } = props;
+  const { label, name, options, onChange, ...rest } = props;
   return (
     <div className="form-control">
       <label>{label}</label>
       <Field name={name} {...rest}>
         {({ field }) => {
+          console.log(field)
           return options.map((option) => {
             return (
               <React.Fragment key={options.key}>
@@ -20,6 +21,7 @@ const RadioButton = (props) => {
                     {...field}
                     value={option.value}
                     checked={field.value === option.value}
+                    onChange={onChange}
                   />
                   <label className="form__radio-label" htmlFor={option.value}>
                     <span className="form__radio-button"></span>

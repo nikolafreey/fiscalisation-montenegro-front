@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
+// import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 
 const FizickoLiceDetails = ({ fizickoLice = {} }) => {
   return (

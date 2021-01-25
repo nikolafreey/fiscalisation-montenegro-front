@@ -6,7 +6,6 @@ import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  deleteFizickoLice,
   getFizickoLice,
   storeFizickoLice,
   updateFizickoLice,
@@ -200,7 +199,7 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
                       <div className="form__group">
-                        <label className="form__label" for="">
+                        <label className="form__label" >
                           Opis
                         </label>
                         <textarea

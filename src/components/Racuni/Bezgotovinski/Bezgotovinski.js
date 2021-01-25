@@ -14,13 +14,14 @@ import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
 import BezgotovinskiHeader from './BezgotovinskiHeader';
 
 import { RACUNI } from '../../../constants/routes';
+import { useHistory } from "react-router-dom";
 
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
-  // console.log(racuni)
+  const history = useHistory();
 
-  const { params } = useRouteMatch();
+  // const { params } = useRouteMatch();
 
   const handleSubmit = (values) => {
     const noviRacun = {
@@ -31,22 +32,30 @@ const Bezgotovinski = () => {
       popust_na_cijenu_bez_pdv: values.popust_bez_pdv,
       datum_izdavanja: values.datum_izdavanja?.toISOString().split('T')[0],
       datum_za_placanje: values.datum_za_placanje?.toISOString().split('T')[0],
+      datum_uplate: values.datum_uplate?.toISOString().split('T')[0],
+      korektivni_racun: values.korektivni_racun === "0" ? 0 : 1,
+      korektivni_racun_vrsta: values.korektivni_racun === "0" ? null : values.korektivni_racun
     }
 
     dispatch(storeBezgotovinskiRacun(noviRacun));
+    history.push(`/racuni`);
   };
 
-  const {
-    getStopaPerId,
-    getPriceVat,
-    getPriceNoVat,
-    getVat,
-    porezi,
-  } = usePorezi();
+  // const {
+  //   getStopaPerId,
+  //   getPriceVat,
+  //   getPriceNoVat,
+  //   getVat,
+  //   porezi,
+  // } = usePorezi();
+
+  const today = new Date();
+  const seven_days = new Date();
+  seven_days.setDate(seven_days.getDate() + 7);
 
   return (
     <Formik
-      initialValues={{ stavke: [] }}
+      initialValues={{ stavke: [], korektivni_racun: "0", datum_izdavanja: today, datum_za_placanje: seven_days}}
       onSubmit={handleSubmit}
       enableReinitialize
       validateOnChange={false}
@@ -108,7 +117,7 @@ const Bezgotovinski = () => {
                 <BezgotovinskiStatusPodsjetnici />
                 <div className="form__footer">
                   <button
-                    onClick={(values) => handleSubmit(values)}
+                    onClick={() => handleSubmit(values)}
                     className="btn btn__dark btn__lg"
                   >
                     Fiskalizuj i Pošalji

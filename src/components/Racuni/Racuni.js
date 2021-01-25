@@ -19,10 +19,8 @@ import 'moment/locale/me';
 const options = [
   { value: 'placen', label: 'Plaćen' },
   { value: 'nenaplativ', label: 'Nenaplativ' },
-  { value: 'cekaSe', label: 'Čeka Se' },
+  { value: 'ceka se', label: 'Čeka Se' },
   { value: 'privremeni', label: 'Privremeni' },
-  { value: 'nenaplativDug', label: 'Nenaplativ Dug' },
-  { value: 'status', label: 'Status' },
 ];
 
 const searchParams = {};
@@ -126,10 +124,10 @@ const Racuni = () => {
 
   return (
     <>
-      <div class="title">
+      <div className="title">
         <h1 className="heading-primary">Izlazni računi</h1>
 
-        <div class="df w-50 jc-end">
+        <div className="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
             <button
               className="btn btn__dark btn__xl"

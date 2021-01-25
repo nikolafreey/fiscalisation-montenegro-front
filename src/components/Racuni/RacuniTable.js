@@ -48,7 +48,8 @@ const RacuniTable = ({ racuni }) => {
             </tr>
           </thead>
           <tbody>
-            <List data={racuni.data || []} renderItem={RacuniTableRow} />
+            {/* <List data={racuni.data || []} renderItem={RacuniTableRow} /> */}
+            {racuni && racuni.data.map((item) => <RacuniTableRow key={item.id} item={item} />)}
           </tbody>
         </table>
       </div>

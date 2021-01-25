@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const SidebarLink = ({ label, ImageSource, num, ...props }) => {
   const location = useLocation();
-  console.log('props SidebarLink:', props);
 
   return (
     <Link {...props}>
