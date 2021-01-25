@@ -17,8 +17,8 @@ import {
 const ChooseAtribut = () => {
   const dispatch = useDispatch();
 
-  const tipoviAtributa = useSelector(tipoviAtributaSelector());
   const tipAtributa = useSelector(tipAtributaSelector());
+  const tipoviAtributa = useSelector(tipoviAtributaSelector());
 
   const { values, setFieldValue } = useFormikContext();
 
@@ -65,6 +65,22 @@ const ChooseAtribut = () => {
   const handleChangeNoviAtribut = (event) => {
     setNaziv(event.target.value);
   };
+
+  const [tipoviAtributaSearch, setTipoviAtributaSearch] = useState('');
+  const [tipoviAtributaValue, setTipoviAtributaValue] = useState('');
+
+  const handleTipAtributaSearch = (event) => {
+    console.log('tipoviAtributa:', tipoviAtributa);
+    const filteredTipoviAtributa = tipoviAtributa.filter((tipAtributa) => {
+      return tipAtributa.naziv
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase());
+    });
+
+    setTipoviAtributaSearch(event.target.value);
+    setTipoviAtributaValue(filteredTipoviAtributa);
+  };
+
   return (
     <>
       <div className="col-md-4">
@@ -77,18 +93,19 @@ const ChooseAtribut = () => {
         </p>
         <div className="mt-30">
           <p className="txt-light">Izabrani atributi:</p>
-          { tipoviAtributa.map(tipAtributa => {
+          {tipoviAtributa.map((tipAtributa) => {
             const odabraniAtributi = checkedAtributi(tipAtributa);
-            return odabraniAtributi.length ? (<>
-              <p className="txt-dark">{tipAtributa.naziv}:</p>
-              <p className="txt-light mb-15">
-                {odabraniAtributi
-                  ?.map((atribut) => atribut.naziv)
-                  ?.join(', ')}
-              </p>
-            </>) : null;
-          })
-          }
+            return odabraniAtributi.length ? (
+              <>
+                <p className="txt-dark">{tipAtributa.naziv}:</p>
+                <p className="txt-light mb-15">
+                  {odabraniAtributi
+                    ?.map((atribut) => atribut.naziv)
+                    ?.join(', ')}
+                </p>
+              </>
+            ) : null;
+          })}
         </div>
       </div>
       <div className="col-md-8">
@@ -98,12 +115,14 @@ const ChooseAtribut = () => {
               <input
                 type="text"
                 className="search__input"
-                placeholder="Pronađite tip atribut"
+                onChange={handleTipAtributaSearch}
+                value={tipoviAtributaSearch}
+                placeholder="Pronađite Tip Atributa"
               />
             </div>
 
             <ul className="item-list">
-              {tipoviAtributa.map((tipAtributa) => (
+              {(tipoviAtributaValue || tipoviAtributa).map((tipAtributa) => (
                 <li
                   onClick={() => dispatch(setTipAtributa(tipAtributa))}
                   className="item-f"
@@ -154,7 +173,9 @@ const ChooseAtribut = () => {
                         handleChangeAtribut(event.target.checked, atribut)
                       }
                     />
-                    <label className="form__checkbox-label">{atribut.naziv}</label>
+                    <label className="form__checkbox-label">
+                      {atribut.naziv}
+                    </label>
                   </li>
                 </div>
               ))}

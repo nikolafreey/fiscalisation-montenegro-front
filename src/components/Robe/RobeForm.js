@@ -29,7 +29,6 @@ import CijeneFieldArray from './CijeneRobe/CijeneFieldArray';
 import { poreziSelector } from '../../store/selectors/UslugeSelector';
 import { usePorezi } from '../../hooks/PoreziHook';
 import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSelector';
-import { tipoviAtributaSelector } from '../../store/selectors/AtributiSelector';
 import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
 const RobeForm = () => {
@@ -85,25 +84,11 @@ const RobeForm = () => {
   };
 
   const kategorije = useSelector(kategorijeRobeSelector());
-  const tipoviAtributa = useSelector(tipoviAtributaSelector());
-  console.log('kategorije:', kategorije);
-  console.log('tipoviAtributa', tipoviAtributa);
-
   const [search, setSearch] = useState('');
 
   const [filtered, setFiltered] = useState();
   const handleChange = (event) => {
     const filterKat = kategorije.filter((kategorija) => {
-      console.log(
-        'kategorija.naziv.concat:',
-        kategorija.naziv.concat(
-          kategorija.podkategorije_robe
-            ?.flat()
-            .map((podKat) => podKat.naziv)
-            .join()
-            .toLowerCase()
-        )
-      );
       return kategorija.naziv
         .concat(
           kategorija.podkategorije_robe
@@ -114,7 +99,6 @@ const RobeForm = () => {
         )
         .includes(event.target.value.toLowerCase());
     });
-    console.log('filteredKategorije', filterKat);
     setSearch(event.target.value);
     setFiltered(filterKat);
   };
