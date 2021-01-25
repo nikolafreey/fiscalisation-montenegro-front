@@ -94,7 +94,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
         <div className="row">
           <div className="col-md-4">
             <h2 className="heading-secondary">Status</h2>
-            <p className="txt-light">Označite status računa</p>
+            {/* <p className="txt-light">Označite status računa</p> */}
           </div>
           <div className="col-md-3">
             <div className="form__label">Status</div>
@@ -114,7 +114,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   Plaćen
                 </label>
               </div>
-              <div className="form__radio-group">
+              {/* <div className="form__radio-group">
                 <input
                   type="radio"
                   className="form__radio-input"
@@ -128,7 +128,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   <span className="form__radio-button"></span>
                   Djelimično plaćen
                 </label>
-              </div>
+              </div> */}
               <div className="form__radio-group">
                 <input
                   type="radio"
@@ -178,8 +178,8 @@ const BezgotovinskiStatusPodsjetnici = () => {
             </div>
           </div>
           <div className="col-md-5">
-            {values && values.status === "djelimicno_placen" && <>
-              {/* <a href="">+ Dodaj novi iznos uplate</a> */}
+            {/* {values && values.status === "djelimicno_placen" && <>
+              <a href="">+ Dodaj novi iznos uplate</a> 
               <div className="form__group">
                 <div className="form__label">Iznos uplate</div>
                 <div className="df jc-sb">
@@ -199,7 +199,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   />
                 </div>
               </div>
-            </>}
+            </>} */}
           </div>
         </div>
       </div>
