@@ -47,6 +47,7 @@ const BezgotovinskiHeader = () => {
               <DropDownStatic 
                 name="korektivni_racun"
                 options={KOREKTIVNI_RACUN}
+                defaultValue={KOREKTIVNI_RACUN[0]}
               />
               <ReactDatePicker
                 selected={values.datum_za_placanje}

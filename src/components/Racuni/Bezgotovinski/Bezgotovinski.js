@@ -55,7 +55,7 @@ const Bezgotovinski = () => {
 
   return (
     <Formik
-      initialValues={{ stavke: [], datum_izdavanja: today, datum_za_placanje: seven_days}}
+      initialValues={{ stavke: [], korektivni_racun: "0", datum_izdavanja: today, datum_za_placanje: seven_days}}
       onSubmit={handleSubmit}
       enableReinitialize
       validateOnChange={false}

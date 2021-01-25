@@ -22,7 +22,7 @@ const DropDownStatic = ({ onChangeExtra, label, options, ...props }) => {
           setSelectedLabel(option);
           if (onChangeExtra) onChangeExtra(option);
         }}
-        value={selectedLabel === null ? props.defaultValue : selectedLabel}
+        value={selectedLabel ? selectedLabel : props.defaultValue }
         isSearchable
       />
 
