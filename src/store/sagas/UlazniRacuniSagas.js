@@ -1,7 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
-import { racuniService } from '../../services/RacuniService';
-import { setRacun, setRacuni } from '../actions/RacuniActions';
+import { setRacun } from '../actions/RacuniActions';
 import { ulazniRacuniService } from '../../services/UlazniRacuniService';
 import {
   setUlazniRacun,

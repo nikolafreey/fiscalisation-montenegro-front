@@ -4,7 +4,7 @@ import ReactDatePicker from 'react-datepicker';
 
 const BezgotovinskiStatusPodsjetnici = () => {
   const { values, setFieldValue } = useFormikContext();
-console.log(values)
+
   return (
     <>
       <div className="container">
@@ -18,7 +18,7 @@ console.log(values)
           </div>
           <div className="col-md-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Pošalji podsjetnik
               </label>
               <select name="customer" id="" className="form__input">
@@ -30,7 +30,7 @@ console.log(values)
           </div>
           <div className="col-md-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Tekst podsjetnika
               </label>
               <textarea
@@ -59,7 +59,7 @@ console.log(values)
           </div>
           <div className="col-xl-4">
             <div className="form__group">
-              <label className="form__label" for="">
+              <label className="form__label" >
                 Kreiraj i pošalji novi račun
               </label>
               <select name="customer" id="" className="form__input">
@@ -71,13 +71,13 @@ console.log(values)
           </div>
           <div className="col-xl-4">
             <div className="form-group">
-              <label for="" className="form__label">
+              <label  className="form__label">
                 Dan za slanje
               </label>
               <input type="text" className="form__input mb-12" value="" />
             </div>
             <div className="form-group">
-              <label for="" className="form__label">
+              <label  className="form__label">
                 Vrijeme slanja
               </label>
               <input
