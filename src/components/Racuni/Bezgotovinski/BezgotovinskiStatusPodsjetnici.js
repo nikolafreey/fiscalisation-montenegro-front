@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormikContext } from 'formik';
 import ReactDatePicker from 'react-datepicker';
 
+import { POSALJI_PODSJETNIK, VRIJEME_PODSJETNIKA, DAN_SLANJA_NEDELJA } from '../../../constants/racuni';
+import DropDownStatic from '../../shared/forms/DropDownStatic';
+
 const BezgotovinskiStatusPodsjetnici = () => {
   const { values, setFieldValue } = useFormikContext();
+
+  const [tekstPodsjetnik, setTekstPodsjetnik] = useState('bez_slanja')
+  const [vrijemePodsjetnik, setVrijemePodsjetnik] = useState('svaki_dan')
+
+  const DAN_SLANJA_MJESEC = [];
+
+  useEffect(() => {
+    if (vrijemePodsjetnik === 'svakog_mjeseca') {
+      for (let i = 1; i < 32; i++) {
+        DAN_SLANJA_MJESEC.push({ value: i, label: `Svakog ${i}. u mjesecu` })
+      }
+    }
+  }, [vrijemePodsjetnik])
 
   return (
     <>
@@ -11,6 +27,9 @@ const BezgotovinskiStatusPodsjetnici = () => {
         <div className="row">
           <div className="col-md-4">
             <h2 className="heading-secondary">Podsjetnici za plaćanje</h2>
+            <div style={{marginTop: -25, marginBottom: 20}} className="status">
+              <div style={{width: 160}} className="tag tag__warning">Dostupno od 1. juna</div>
+            </div>
             <p className="txt-light">
               Možete izabrati da se podsjetnici za plaćanje šalju kupcu ukoliko
               račun nije označen kao plaćen.
@@ -21,15 +40,18 @@ const BezgotovinskiStatusPodsjetnici = () => {
               <label className="form__label" >
                 Pošalji podsjetnik
               </label>
-              <select name="customer" id="" className="form__input">
-                <option value="">Bez slanja podsjetnika</option>
-                <option value="">--------</option>
-                <option value="">--------</option>
-              </select>
+              <DropDownStatic
+                name="posalji_podsjetnik"
+                options={POSALJI_PODSJETNIK}
+                defaultValue={POSALJI_PODSJETNIK[0]}
+                onChangeExtra={
+                  (option) => setTekstPodsjetnik(option.value)
+                }
+              />
             </div>
           </div>
           <div className="col-md-4">
-            <div className="form__group">
+            {tekstPodsjetnik !== "bez_slanja" ? <div className="form__group">
               <label className="form__label" >
                 Tekst podsjetnika
               </label>
@@ -40,7 +62,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                 className="form__input"
                 placeholder="Podsjetnik za plaćanje računa"
               ></textarea>
-            </div>
+            </div> : null}
           </div>
         </div>
       </div>
@@ -51,6 +73,9 @@ const BezgotovinskiStatusPodsjetnici = () => {
             <h2 className="heading-secondary">
               Automatizovano slanje periodičnih računa
             </h2>
+            <div style={{marginTop: -25, marginBottom: 20}} className="status">
+              <div style={{width: 160}} className="tag tag__warning">Dostupno od 1. juna</div>
+            </div>
             <p className="txt-light">
               Možete izabrati da se novi račun sa gore navedenim stavkama šalje
               kupcu svakog dana, nedjelje, mjeseca ili godine za usluge koje se
@@ -62,31 +87,59 @@ const BezgotovinskiStatusPodsjetnici = () => {
               <label className="form__label" >
                 Kreiraj i pošalji novi račun
               </label>
-              <select name="customer" id="" className="form__input">
-                <option value="">Svakog mjeseca</option>
-                <option value="">--------</option>
-                <option value="">--------</option>
-              </select>
-            </div>
-          </div>
-          <div className="col-xl-4">
-            <div className="form-group">
-              <label  className="form__label">
-                Dan za slanje
-              </label>
-              <input type="text" className="form__input mb-12" value="" />
-            </div>
-            <div className="form-group">
-              <label  className="form__label">
-                Vrijeme slanja
-              </label>
-              <input
-                type="text"
-                className="form__input mb-12"
-                value="Svakog 5. u mjesecu"
+
+              <DropDownStatic
+                name="kreiraj_i_posalji"
+                options={VRIJEME_PODSJETNIKA}
+                defaultValue={VRIJEME_PODSJETNIKA[0]}
+                onChangeExtra={
+                  (option) => setVrijemePodsjetnik(option.value)
+                }
               />
+
             </div>
           </div>
+          {vrijemePodsjetnik !== 'svaki_dan' ?
+            <div className="col-xl-4">
+              <div className="form-group">
+                <label className="form__label">
+                  Dan za slanje
+              </label>
+                {vrijemePodsjetnik === 'svake_nedjelje' ?
+                  <DropDownStatic
+                    name="dan_slanja"
+                    options={DAN_SLANJA_NEDELJA}
+                    defaultValue={DAN_SLANJA_NEDELJA[0]}
+                  /> : null
+                }
+                {vrijemePodsjetnik === 'svakog_mjeseca' ?
+                  <DropDownStatic
+                    name="mijesec_slanja"
+                    options={DAN_SLANJA_MJESEC}
+                    defaultValue={DAN_SLANJA_MJESEC[0]}
+                  /> : null
+                }
+
+                {vrijemePodsjetnik === 'svake_godine' ?
+                  <ReactDatePicker
+                    selected={values.godina_slanja}
+                    className="select"
+                    placeholderText="Datum Slanja"
+                    dateFormat="dd/MM/yyyy"
+                  /> : null
+                }
+              </div>
+              <div className="form-group">
+                <label className="form__label">
+                  Vrijeme slanja
+              </label>
+                <input
+                  type="text"
+                  className="form__input mb-12"
+                  value="Vrijeme slanja"
+                />
+              </div>
+            </div> : null}
         </div>
       </div>
       <hr />
@@ -136,7 +189,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   id="notPaid"
                   value="Nije plaćen"
                   name="status"
-                  checked={values &&  values.status === "Nije plaćen"}
+                  checked={values && values.status === "Nije plaćen"}
                   onChange={(event) => setFieldValue("status", "Nije plaćen")}
                 />
                 <label for="notPaid" className="form__radio-label">
