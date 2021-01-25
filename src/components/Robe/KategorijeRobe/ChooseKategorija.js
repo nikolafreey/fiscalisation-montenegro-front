@@ -5,10 +5,10 @@ import { getKategorijeRobe } from '../../../store/actions/KategorijeRobeActions'
 import { kategorijeRobeSelector } from '../../../store/selectors/KategorijeRobeSelector';
 import { omit } from 'lodash';
 
-const ChooseKategorija = () => {
+const ChooseKategorija = (props) => {
   const dispatch = useDispatch();
 
-  const kategorije = useSelector(kategorijeRobeSelector());
+  const kategorije = props.kategorije; //useSelector(kategorijeRobeSelector());
 
   const { values, setFieldValue } = useFormikContext();
 

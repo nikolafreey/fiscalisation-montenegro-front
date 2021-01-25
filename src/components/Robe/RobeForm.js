@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +28,9 @@ import Cijena from './CijeneRobe/Cijena';
 import CijeneFieldArray from './CijeneRobe/CijeneFieldArray';
 import { poreziSelector } from '../../store/selectors/UslugeSelector';
 import { usePorezi } from '../../hooks/PoreziHook';
+import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSelector';
+import { tipoviAtributaSelector } from '../../store/selectors/AtributiSelector';
+import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -46,16 +49,14 @@ const RobeForm = () => {
     getPriceVat,
     getPriceNoVat,
     getVat,
-    porezi
+    porezi,
   } = usePorezi();
-
 
   useEffect(() => {
     if (params.id) dispatch(getRoba(params.id));
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-
     if (params.id)
       dispatch(
         updateRoba({
@@ -81,6 +82,41 @@ const RobeForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+  };
+
+  const kategorije = useSelector(kategorijeRobeSelector());
+  const tipoviAtributa = useSelector(tipoviAtributaSelector());
+  console.log('kategorije:', kategorije);
+  console.log('tipoviAtributa', tipoviAtributa);
+
+  const [search, setSearch] = useState('');
+
+  const [filtered, setFiltered] = useState();
+  const handleChange = (event) => {
+    const filterKat = kategorije.filter((kategorija) => {
+      console.log(
+        'kategorija.naziv.concat:',
+        kategorija.naziv.concat(
+          kategorija.podkategorije_robe
+            ?.flat()
+            .map((podKat) => podKat.naziv)
+            .join()
+            .toLowerCase()
+        )
+      );
+      return kategorija.naziv
+        .concat(
+          kategorija.podkategorije_robe
+            ?.flat()
+            .map((podKat) => podKat.naziv)
+            .join()
+            .toLowerCase()
+        )
+        .includes(event.target.value.toLowerCase());
+    });
+    console.log('filteredKategorije', filterKat);
+    setSearch(event.target.value);
+    setFiltered(filterKat);
   };
 
   return (
@@ -211,11 +247,15 @@ const RobeForm = () => {
                               type="text"
                               className="search__input"
                               placeholder="Pronađite kategoriju"
+                              onChange={handleChange}
+                              value={search}
                             />
                           </div>
                         </div>
                         <ul className="item-list">
-                          <ChooseKategorija />
+                          <ChooseKategorija
+                            kategorije={filtered || kategorije}
+                          />
                         </ul>
                       </div>
                       <div className="col-md-4">
