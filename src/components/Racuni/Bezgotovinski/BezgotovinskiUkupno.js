@@ -81,7 +81,7 @@ const BezgotovinskiUkupno = () => {
             <div className="row">
               <div className="col-xl-4">
                 <div className="form-group h-100">
-                  <label for="" className="form__label">
+                  <label  className="form__label">
                     Napomena
                   </label>
                   <textarea
@@ -106,7 +106,7 @@ const BezgotovinskiUkupno = () => {
                     <div className="form-group">
 
                       {popustVisible && <>
-                        <label for="" className="form__label">
+                        <label  className="form__label">
                           Tip popusta
                       </label>
                         <DropDownStatic
@@ -126,7 +126,7 @@ const BezgotovinskiUkupno = () => {
                   <div className="col-xl-4">
                     <div className="form-group">
                       {popustVisible && <>
-                        <label for="" className="form__label">
+                        <label  className="form__label">
                           Popust bez PDV-a
                       </label>
                         <DropDownStatic
@@ -149,7 +149,7 @@ const BezgotovinskiUkupno = () => {
                   <div className="col-xl-4">
                     <div className="form-group">
                       {popustVisible && <>
-                        <label for="" className="form__label">
+                        <label  className="form__label">
                           Iznos popusta
                       </label>
                         <input

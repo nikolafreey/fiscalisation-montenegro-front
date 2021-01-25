@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import $t from '../lang';
 
 export const RacuniSchema = Yup.object().shape({
   //   kontakt_ime: Yup.string()

@@ -33,13 +33,13 @@ const Partneri = () => {
     if (filter === 'sve') filters.filter = null;
     else filters.filter = filter;
     getFiltered();
-  }, [dispatch, filter]);
+  }, [filter]);
 
   useEffect(() => {
     if (search === '') filters.search = null;
     else filters.search = search;
     searchDebounced(getFiltered);
-  }, [dispatch, search]);
+  }, [search]);
 
   useEffect(() => {
     if (partneri.total > 0) dispatch(setPartner(partneri.data[0]));

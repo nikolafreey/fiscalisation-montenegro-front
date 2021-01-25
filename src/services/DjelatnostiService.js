@@ -1,5 +1,4 @@
 import ApiService from './ApiService';
-import { poreziService } from './PoreziService';
 
 const ENDPOINTS = {
   DJELATNOSTI: 'djelatnosti',

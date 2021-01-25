@@ -15,3 +15,11 @@ export const TIPOVI_POPUSTA = [
   { value: 'procenat', label: 'Procenat %' },
   { value: 'iznos', label: 'Iznos'}
 ]
+
+
+export const KOREKTIVNI_RACUN = [
+  { value: '0', label: 'Nije' },
+  { value: 'CORRECTIV', label: 'Korektivni račun'},
+  { value: 'DEBIT', label: 'Korektivni račun'},
+  { value: 'CREDIT', label: 'Korektivni račun'}
+];

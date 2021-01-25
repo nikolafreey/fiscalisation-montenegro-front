@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 import ReactDatePicker from 'react-datepicker';
-import { TIPOVI_RACUNA } from '../../../constants/racuni';
+import { KOREKTIVNI_RACUN } from '../../../constants/racuni';
 import { partneriService } from '../../../services/PartneriService';
 import DropDown from '../../shared/forms/DropDown';
 import DropDownStatic from '../../shared/forms/DropDownStatic';   
@@ -41,11 +41,11 @@ const BezgotovinskiHeader = () => {
           <div className="col-xl-4">
             <div className="form-group">
               <label className="form__label">
-                Tip računa
+                Korektivni račun
               </label>
               <DropDownStatic 
-                name="tip_racuna"
-                options={TIPOVI_RACUNA}
+                name="korektivni_racun"
+                options={KOREKTIVNI_RACUN}
               />
               <ReactDatePicker
                 selected={values.datum_za_placanje}

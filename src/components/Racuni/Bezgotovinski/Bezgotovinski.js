@@ -21,7 +21,7 @@ const Bezgotovinski = () => {
   // const racuni = useSelector(racuniSelector());
   const history = useHistory();
 
-  const { params } = useRouteMatch();
+  // const { params } = useRouteMatch();
 
   const handleSubmit = (values) => {
     const noviRacun = {
@@ -32,20 +32,22 @@ const Bezgotovinski = () => {
       popust_na_cijenu_bez_pdv: values.popust_bez_pdv,
       datum_izdavanja: values.datum_izdavanja?.toISOString().split('T')[0],
       datum_za_placanje: values.datum_za_placanje?.toISOString().split('T')[0],
-      datum_uplate: values.datum_uplate?.toISOString().split('T')[0]
+      datum_uplate: values.datum_uplate?.toISOString().split('T')[0],
+      korektivni_racun: values.korektivni_racun === "0" ? 0 : 1,
+      korektivni_racun_vrsta: values.korektivni_racun === "0" ? null : values.korektivni_racun
     }
 
     dispatch(storeBezgotovinskiRacun(noviRacun));
     history.push(`/racuni`);
   };
 
-  const {
-    getStopaPerId,
-    getPriceVat,
-    getPriceNoVat,
-    getVat,
-    porezi,
-  } = usePorezi();
+  // const {
+  //   getStopaPerId,
+  //   getPriceVat,
+  //   getPriceNoVat,
+  //   getVat,
+  //   porezi,
+  // } = usePorezi();
 
   return (
     <Formik

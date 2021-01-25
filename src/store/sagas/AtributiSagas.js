@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { atributiService } from '../../services/AtributiService';
 import {
-  getAtributi,
   getTipoviAtributa,
   setAtributi,
   setTipAtributa,
