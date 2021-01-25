@@ -28,7 +28,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
           <div className="col-md-4">
             <h2 className="heading-secondary">Podsjetnici za plaćanje</h2>
             <div style={{marginTop: -25, marginBottom: 20}} className="status">
-              <div style={{width: 158}} className="tag tag__warning">Dostupno od 1. juna</div>
+              <div style={{width: 160}} className="tag tag__warning">Dostupno od 1. juna</div>
             </div>
             <p className="txt-light">
               Možete izabrati da se podsjetnici za plaćanje šalju kupcu ukoliko
@@ -74,7 +74,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
               Automatizovano slanje periodičnih računa
             </h2>
             <div style={{marginTop: -25, marginBottom: 20}} className="status">
-              <div style={{width: 158}} className="tag tag__warning">Dostupno od 1. juna</div>
+              <div style={{width: 160}} className="tag tag__warning">Dostupno od 1. juna</div>
             </div>
             <p className="txt-light">
               Možete izabrati da se novi račun sa gore navedenim stavkama šalje
