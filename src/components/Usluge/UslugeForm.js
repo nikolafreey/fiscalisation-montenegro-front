@@ -35,6 +35,7 @@ const UslugeForm = () => {
   const { params } = useRouteMatch();
 
   const usluga = useSelector(uslugaSelector());
+  console.log('usluga', usluga);
 
   useEffect(() => {
     dispatch(getPorezi());
@@ -50,6 +51,7 @@ const UslugeForm = () => {
     .then((data) => (tempLen = data.length));
 
   const handleSubmit = (values) => {
+    console.log('values', values);
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
     } else {
@@ -61,11 +63,10 @@ const UslugeForm = () => {
             values.porez_id,
             values.ukupna_cijena
           ),
-          grupa_id: isNumber(values.grupa_id)
-            ? values.grupa_id
-            : tempLen.slice(-1)[0].value + 1,
-          status: values.status == "Aktivan" ? true : false,
-          
+          grupa_id: isNumber(values?.grupa_id)
+            ? values?.grupa_id
+            : tempLen?.slice(-1)[0].value + 1,
+          status: values.status == 'Aktivan' ? true : false,
         })
       );
     }
@@ -128,7 +129,10 @@ const UslugeForm = () => {
 
   return (
     <Formik
-      initialValues={usluga}
+      initialValues={{
+        status: 'Aktivan',
+        ...usluga,
+      }}
       onSubmit={handleSubmit}
       //  validationSchema={FizickaLicaSchema}
       enableReinitialize

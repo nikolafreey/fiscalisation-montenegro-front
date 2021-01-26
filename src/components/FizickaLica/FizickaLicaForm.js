@@ -55,12 +55,11 @@ const FizickaLicaForm = () => {
         adresa: '',
         grad: '',
         drzava: '',
-
         telefon: '',
         telefon_viber: false,
         telefon_whatsapp: false,
         telefon_facetime: false,
-        status: false,
+        status: true,
         email: '',
         zanimanje: '',
         radno_mjesto: '',
@@ -199,9 +198,7 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
                       <div className="form__group">
-                        <label className="form__label" >
-                          Opis
-                        </label>
+                        <label className="form__label">Opis</label>
                         <textarea
                           name=""
                           id=""
