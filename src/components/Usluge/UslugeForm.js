@@ -4,7 +4,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
@@ -27,11 +27,11 @@ import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
-import { RACUNI } from '../../constants/routes';
+import { USLUGE } from '../../constants/routes';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const { params } = useRouteMatch();
 
   const usluga = useSelector(uslugaSelector());
@@ -51,9 +51,10 @@ const UslugeForm = () => {
     .then((data) => (tempLen = data.length));
 
   const handleSubmit = (values) => {
-    console.log('values', values);
+  
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
+      history.push(`/usluge`);
     } else {
       dispatch(
         storeUsluga({
@@ -139,7 +140,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to={RACUNI.CREATE} className="link df">
+          <Link to={USLUGE.INDEX} className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
@@ -168,8 +169,8 @@ const UslugeForm = () => {
                               {isNaN(getStopaPerId(values.porez_id))
                                 ? ''
                                 : (
-                                    getStopaPerId(values.porez_id) * 100
-                                  ).toFixed(2)}
+                                  getStopaPerId(values.porez_id) * 100
+                                ).toFixed(2)}
                               %:
                             </p>
                             <p className="mb-10">Ukupna cijena</p>
@@ -186,10 +187,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getPriceNoVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
-                                  )}
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -201,10 +202,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
-                                  )}
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -216,10 +217,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getPriceVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
-                                  )}
+                                  values.pdv_ukljucen,
+                                  values.porez_id,
+                                  values.ukupna_cijena
+                                )}
                             </p>
                           </div>
                         </div>
@@ -265,7 +266,7 @@ const UslugeForm = () => {
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
-                            // onCreateOption={handleCreate}
+                          // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
                             isClearable
@@ -346,7 +347,11 @@ const UslugeForm = () => {
                   <button className="btn btn__dark btn__md" type="submit">
                     Sačuvaj
                   </button>
-                  <button className="btn btn__link ml-m">Nazad</button>
+                  <button className="btn btn__link ml-m">
+                    <Link to={USLUGE.INDEX}>
+                      Nazad
+                    </Link>
+                  </button>
 
                   {/* <button
                   type="button"

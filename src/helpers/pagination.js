@@ -4,7 +4,8 @@ export const LEFT_PAGE = 'LEFT';
 export const RIGHT_PAGE = 'RIGHT';
 
 export const fetchPageNumbers = (currentPage, lastPage, pageNeighbours) => {
-  const totalPages = lastPage;
+  
+  const totalPages = lastPage === 1 ? lastPage : lastPage+1;
   const totalNumbers = pageNeighbours * 2 + 3;
   const totalBlocks = totalNumbers + 2;
 
@@ -43,5 +44,5 @@ export const fetchPageNumbers = (currentPage, lastPage, pageNeighbours) => {
     return [1, ...pages, totalPages];
   }
 
-  return range(1, totalPages + 1);
+  return range(1, totalPages);
 };
