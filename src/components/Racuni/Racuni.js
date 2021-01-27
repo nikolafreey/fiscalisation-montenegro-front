@@ -25,11 +25,6 @@ const options = [
 
 const searchParams = {};
 
-// let visibleStatus = false;
-// let visibleSearch = false;
-// let visibleDateStart = false;
-// let visibleDateEnd = false;
-
 const searchDebounced = debounce((callback) => callback(), 500);
 
 const Racuni = () => {
@@ -61,8 +56,6 @@ const Racuni = () => {
     setStartDate(null);
     setEndDate(null);
     handleSearch(searchParams);
-    // visibleDateStart = false;
-    // visibleDateEnd = false;
     setDateStartVisible(false);
     setDateEndVisible(false);
   };
@@ -71,7 +64,6 @@ const Racuni = () => {
     searchParams.search = null;
     setSearch('');
     handleSearch(searchParams);
-    // visibleSearch = false;
     setSearchVisible(false);
   };
 
@@ -79,13 +71,11 @@ const Racuni = () => {
     searchParams.status = null;
     setStatus('');
     handleSearch(searchParams);
-    // visibleStatus = false;
     setStatusVisible(false);
   };
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    // visibleSearch = true;
     setSearchVisible(true);
     const value = event.target.value;
     searchParams.search = value;
@@ -94,14 +84,12 @@ const Racuni = () => {
 
   const handleStatusChange = (selectedStatusOption) => {
     setStatus(selectedStatusOption.label);
-    // visibleStatus = true;
     setStatusVisible(true);
     searchParams.status = selectedStatusOption.value;
     handleSearch(searchParams);
   };
 
   const handleStartDateChange = (date) => {
-    // visibleDateStart = true;
     setDateStartVisible(true);
     searchParams.startDate = date;
     setStartDate(date);
@@ -109,18 +97,11 @@ const Racuni = () => {
   };
 
   const handleEndDateChange = (date) => {
-    // visibleDateEnd = true;
     setDateEndVisible(true);
     searchParams.endDate = date;
     setEndDate(date);
     handleSearch(searchParams);
   };
-
-  // const onChange = (dates) => {
-  //   const [start, end] = dates;
-  //   setStartDate(start);
-  //   setEndDate(end);
-  // };
 
   return (
     <>
@@ -223,11 +204,6 @@ const Racuni = () => {
                 <div className="box">
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
-                    {/* {(startDate
-                      ? startDate?.toLocaleDateString('en-US')
-                      : '') +
-                      '-' +
-                      (endDate ? endDate?.toLocaleDateString('en-GB') : '')} */}
                     {startDate && (
                       <Moment locale="me" format="DD. MMM YYYY.">
                         {startDate}

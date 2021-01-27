@@ -8,12 +8,16 @@ import { ERRORS, USLUGE } from '../constants/routes';
 const UslugeRouter = () => {
   return (
     <Switch>
-      <Route path={USLUGE.EDIT}>
-        <UslugeForm />
-      </Route>
       <Route path={USLUGE.CREATE}>
         <UslugeForm />
       </Route>
+      <Route path={USLUGE.EDIT}>
+        <UslugeForm />
+      </Route>
+      <Route path={USLUGE.INDEX}>
+        <Usluge />
+      </Route>
+
       <Route path={USLUGE.SHOW}>
         <Usluga />
       </Route>
