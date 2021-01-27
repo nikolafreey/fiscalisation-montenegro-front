@@ -20,15 +20,17 @@ class PartneriService extends ApiService {
     this.apiClient.delete(ENDPOINTS.PARTNER.replace('{id}', id));
 
   getPartneriDropdown = async (search) => {
-    const { data } = await this.getPartneri({ search });
-    console.log('getPartneriDropdown:', data);
+    const  response = await this.getPartneri({ search });
+    // console.log('getPartneriDropdown:', response.data.data);
+    if (response.data.data) {
+      return response.data.data.map((partner) => ({
+        value: partner.id,
+        label:
+          partner.preduzece?.kratki_naziv ||
+          `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
+      }));
+    }
 
-    return data.map((partner) => ({
-      value: partner.id,
-      label:
-        partner.preduzece?.kratki_naziv ||
-        `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
-    }));
   };
 }
 

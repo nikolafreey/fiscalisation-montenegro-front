@@ -10,10 +10,10 @@ function ProtectedRoute({ children, ...props }) {
 
   const location = useLocation();
 
-  // if (!authService.isAuthenticated()) {
-  //   dispatch(setRequestedRoute(location));
-  //   return <Redirect to={AUTH.LOGIN} />
-  // };
+  if (!authService.isAuthenticated()) {
+    dispatch(setRequestedRoute(location));
+    return <Redirect to={AUTH.LOGIN} />
+  };
 
   return <Route {...props}>{children}</Route>;
 }

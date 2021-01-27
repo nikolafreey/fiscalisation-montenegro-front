@@ -19,8 +19,8 @@ export const TIPOVI_POPUSTA = [
 export const KOREKTIVNI_RACUN = [
   { value: '0', label: 'Nije' },
   { value: 'CORRECTIV', label: 'Korektivni račun' },
-  { value: 'DEBIT', label: 'Korektivni račun' },
-  { value: 'CREDIT', label: 'Korektivni račun' }
+  { value: 'DEBIT', label: 'Debit' },
+  { value: 'CREDIT', label: 'Credit' }
 ];
 
 
