@@ -330,32 +330,35 @@ const UslugeForm = () => {
                     </div>
                     <div className="col-md-4">
                       <label className="form__label">Status</label>
-                      <div className="form__group">
-                        <div className="form__radio-group">
-                          {/* <RadioButton
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
+                        {/* <RadioButton
                             name="status"
                             label="Status"
                             options={statusOptions}
                           /> */}
-                          <div
-                            className="form__group"
-                            onChange={(event) => {
-                              console.log(
-                                'event.target.value',
-                                event.target.value
-                              );
-                              values.status = event.target.value;
-                            }}
+                        <div className="form__radio-group">
+                          <input type="radio" value="Aktivan" name="status" />
+                          <label
+                            htmlFor="Aktivan"
+                            className="form__radio-label"
                           >
-                            <input type="radio" value="Aktivan" name="status" />
                             Aktivan
-                            <input
-                              type="radio"
-                              value="Neaktivan"
-                              name="status"
-                            />
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input type="radio" value="Neaktivan" name="status" />
+                          <label
+                            htmlFor="Neaktivan"
+                            className="form__radio-label"
+                          >
                             Neaktivan
-                          </div>
+                          </label>
                         </div>
                       </div>
                     </div>
