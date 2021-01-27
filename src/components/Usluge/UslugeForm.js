@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import React, { useEffect } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,7 +51,6 @@ const UslugeForm = () => {
     .then((data) => (tempLen = data.length));
 
   const handleSubmit = (values) => {
-    console.log('values', values);
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
     } else {
@@ -70,6 +69,7 @@ const UslugeForm = () => {
         })
       );
     }
+    console.log('values', values);
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
@@ -329,13 +329,33 @@ const UslugeForm = () => {
                       </p>
                     </div>
                     <div className="col-md-4">
+                      <label className="form__label">Status</label>
                       <div className="form__group">
                         <div className="form__radio-group">
-                          <RadioButton
+                          {/* <RadioButton
                             name="status"
                             label="Status"
                             options={statusOptions}
-                          />
+                          /> */}
+                          <div
+                            className="form__group"
+                            onChange={(event) => {
+                              console.log(
+                                'event.target.value',
+                                event.target.value
+                              );
+                              values.status = event.target.value;
+                            }}
+                          >
+                            <input type="radio" value="Aktivan" name="status" />
+                            Aktivan
+                            <input
+                              type="radio"
+                              value="Neaktivan"
+                              name="status"
+                            />
+                            Neaktivan
+                          </div>
                         </div>
                       </div>
                     </div>
