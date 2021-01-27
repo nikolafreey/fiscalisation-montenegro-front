@@ -70,15 +70,29 @@ const ChooseAtribut = () => {
   const [tipoviAtributaValue, setTipoviAtributaValue] = useState('');
 
   const handleTipAtributaSearch = (event) => {
-    console.log('tipoviAtributa:', tipoviAtributa);
     const filteredTipoviAtributa = tipoviAtributa.filter((tipAtributa) => {
       return tipAtributa.naziv
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
-
     setTipoviAtributaSearch(event.target.value);
     setTipoviAtributaValue(filteredTipoviAtributa);
+  };
+
+  const [atributSearch, setAtributSearch] = useState('');
+  const [atributValue, setAtributValue] = useState('');
+
+  const handleAtributSearch = (event) => {
+    const filteredAtributi = tipAtributa.atributi.filter((atribut) => {
+      return atribut.naziv
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase());
+    });
+    setAtributSearch(event.target.value);
+    setAtributValue(filteredAtributi);
+    console.log('tipAtributa1', tipAtributa);
+    console.log('filteredAtributi', filteredAtributi);
+    console.log('atributValue', atributValue);
   };
 
   return (
@@ -124,7 +138,11 @@ const ChooseAtribut = () => {
             <ul className="item-list">
               {(tipoviAtributaValue || tipoviAtributa).map((tipAtributa) => (
                 <li
-                  onClick={() => dispatch(setTipAtributa(tipAtributa))}
+                  onClick={() => {
+                    dispatch(setTipAtributa(tipAtributa));
+                    setAtributValue(tipAtributa);
+                    console.log('tipAtributa', tipAtributa);
+                  }}
                   className="item-f"
                 >
                   <span>
@@ -156,29 +174,51 @@ const ChooseAtribut = () => {
               <input
                 type="text"
                 className="search__input"
+                onChange={handleAtributSearch}
+                value={atributSearch}
                 placeholder="Pronađite atribut"
               />
             </div>
             <ul className="item-list">
-              {tipAtributa.atributi?.map((atribut) => (
-                <div key={atribut.id}>
-                  <li className="item-check">
-                    <input
-                      className="form__checkbox"
-                      type="checkbox"
-                      name="atributi"
-                      value={atribut.id}
-                      checked={values.atributi?.includes(atribut.id)}
-                      onChange={(event) =>
-                        handleChangeAtribut(event.target.checked, atribut)
-                      }
-                    />
-                    <label className="form__checkbox-label">
-                      {atribut.naziv}
-                    </label>
-                  </li>
-                </div>
-              ))}
+              {!atributSearch
+                ? tipAtributa?.atributi?.map((atribut) => (
+                    <div key={atribut.id}>
+                      <li className="item-check">
+                        <input
+                          className="form__checkbox"
+                          type="checkbox"
+                          name="atributi"
+                          value={atribut.id}
+                          checked={values.atributi?.includes(atribut.id)}
+                          onChange={(event) =>
+                            handleChangeAtribut(event.target.checked, atribut)
+                          }
+                        />
+                        <label className="form__checkbox-label">
+                          {atribut.naziv}
+                        </label>
+                      </li>
+                    </div>
+                  ))
+                : atributValue?.map((atribut) => (
+                    <div key={atribut.id}>
+                      <li className="item-check">
+                        <input
+                          className="form__checkbox"
+                          type="checkbox"
+                          name="atributi"
+                          value={atribut.id}
+                          checked={values.atributi?.includes(atribut.id)}
+                          onChange={(event) =>
+                            handleChangeAtribut(event.target.checked, atribut)
+                          }
+                        />
+                        <label className="form__checkbox-label">
+                          {atribut.naziv}
+                        </label>
+                      </li>
+                    </div>
+                  ))}
             </ul>
 
             {fieldVisible ? (

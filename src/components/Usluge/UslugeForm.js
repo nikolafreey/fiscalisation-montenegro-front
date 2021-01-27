@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import React, { useEffect } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +35,7 @@ const UslugeForm = () => {
   const { params } = useRouteMatch();
 
   const usluga = useSelector(uslugaSelector());
+  console.log('usluga', usluga);
 
   useEffect(() => {
     dispatch(getPorezi());
@@ -61,14 +62,14 @@ const UslugeForm = () => {
             values.porez_id,
             values.ukupna_cijena
           ),
-          grupa_id: isNumber(values.grupa_id)
-            ? values.grupa_id
-            : tempLen.slice(-1)[0].value + 1,
-          status: values.status == "Aktivan" ? true : false,
-          
+          grupa_id: isNumber(values?.grupa_id)
+            ? values?.grupa_id
+            : tempLen?.slice(-1)[0].value + 1,
+          status: values.status == 'Aktivan' ? true : false,
         })
       );
     }
+    console.log('values', values);
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
@@ -128,7 +129,10 @@ const UslugeForm = () => {
 
   return (
     <Formik
-      initialValues={usluga}
+      initialValues={{
+        status: 'Aktivan',
+        ...usluga,
+      }}
       onSubmit={handleSubmit}
       //  validationSchema={FizickaLicaSchema}
       enableReinitialize
@@ -325,13 +329,36 @@ const UslugeForm = () => {
                       </p>
                     </div>
                     <div className="col-md-4">
-                      <div className="form__group">
-                        <div className="form__radio-group">
-                          <RadioButton
+                      <label className="form__label">Status</label>
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
+                        {/* <RadioButton
                             name="status"
                             label="Status"
                             options={statusOptions}
-                          />
+                          /> */}
+                        <div className="form__radio-group">
+                          <input type="radio" value="Aktivan" name="status" />
+                          <label
+                            htmlFor="Aktivan"
+                            className="form__radio-label"
+                          >
+                            Aktivan
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input type="radio" value="Neaktivan" name="status" />
+                          <label
+                            htmlFor="Neaktivan"
+                            className="form__radio-label"
+                          >
+                            Neaktivan
+                          </label>
                         </div>
                       </div>
                     </div>
