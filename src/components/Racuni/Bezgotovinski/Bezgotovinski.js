@@ -35,6 +35,7 @@ const Bezgotovinski = () => {
       datum_uplate: values.datum_uplate?.toISOString().split('T')[0],
       korektivni_racun: values.korektivni_racun === "0" ? 0 : 1,
       korektivni_racun_vrsta: values.korektivni_racun === "0" ? null : values.korektivni_racun
+    
     }
 
     dispatch(storeBezgotovinskiRacun(noviRacun));
