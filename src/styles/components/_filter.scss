@@ -3,6 +3,8 @@
     width: 80%;
     align-items: center;
     margin-top: 1.5rem;
+    overflow: hidden;
+    overflow-x: auto;
     &__tab {
         display: flex;
         align-items: center;
