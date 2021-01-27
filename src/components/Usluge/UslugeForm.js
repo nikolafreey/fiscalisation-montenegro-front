@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import React, { useEffect } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,7 +51,6 @@ const UslugeForm = () => {
     .then((data) => (tempLen = data.length));
 
   const handleSubmit = (values) => {
-  
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
       history.push(`/usluge`);
@@ -71,6 +70,7 @@ const UslugeForm = () => {
         })
       );
     }
+    console.log('values', values);
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
@@ -330,13 +330,36 @@ const UslugeForm = () => {
                       </p>
                     </div>
                     <div className="col-md-4">
-                      <div className="form__group">
-                        <div className="form__radio-group">
-                          <RadioButton
+                      <label className="form__label">Status</label>
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
+                        {/* <RadioButton
                             name="status"
                             label="Status"
                             options={statusOptions}
-                          />
+                          /> */}
+                        <div className="form__radio-group">
+                          <input type="radio" value="Aktivan" name="status" />
+                          <label
+                            htmlFor="Aktivan"
+                            className="form__radio-label"
+                          >
+                            Aktivan
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input type="radio" value="Neaktivan" name="status" />
+                          <label
+                            htmlFor="Neaktivan"
+                            className="form__radio-label"
+                          >
+                            Neaktivan
+                          </label>
                         </div>
                       </div>
                     </div>

@@ -5,11 +5,9 @@ const BezgotovinskiTableRow = ({ item }) => {
     if (num) return num.toString().replace('.', ',');
   };
 
-  const calcIznos = ({ jedinicna_cijena_bez_pdv, kolicina }) =>
-    (Math.floor(jedinicna_cijena_bez_pdv * kolicina * 100) / 100)
-      .toString()
-      .replace('.', ',');
-
+  const calcIznos = ({ jedinicna_cijena_bez_pdv, kolicina }) => {
+    return (jedinicna_cijena_bez_pdv * kolicina).toFixed(2).replace('.', ',');
+  };
   return (
     <tr>
       <td className="cd fw-500">{item && item.naziv ? item.naziv : ''}</td>
@@ -26,7 +24,7 @@ const BezgotovinskiTableRow = ({ item }) => {
           ? item.popust_iznos + ' EUR'
           : item && item.popust_procenat
           ? item.popust_procenat +
-            '% ( - ' +
+            '% (- ' +
             (
               (item.popust_procenat / 100) *
               item.jedinicna_cijena_bez_pdv
