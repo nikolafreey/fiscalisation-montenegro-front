@@ -52,7 +52,15 @@ const UslugeForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) {
-      dispatch(updateUsluga({ id: params.id, ...values }));
+      // dispatch(updateUsluga({ id: params.id, ...values }));
+      // history.push(STAVKE.INDEX);
+      dispatch(
+        updateUsluga({
+          id: params.id,
+          ...values,
+          status: values.status == 'Aktivan' ? true : false,
+        })
+      );
       history.push(STAVKE.INDEX);
     } else {
       dispatch(
@@ -170,14 +178,13 @@ const UslugeForm = () => {
                               {isNaN(getStopaPerId(values.porez_id))
                                 ? ''
                                 : (
-                                  getStopaPerId(values.porez_id) * 100
-                                ).toFixed(2)}
+                                    getStopaPerId(values.porez_id) * 100
+                                  ).toFixed(2)}
                               %:
                             </p>
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
-                            <p className="mb-10">0,00€</p>
                             <p className="mb-10">
                               {isNaN(
                                 getPriceNoVat(
@@ -188,10 +195,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getPriceNoVat(
-                                  values.pdv_ukljucen,
-                                  values.porez_id,
-                                  values.ukupna_cijena
-                                )}
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -203,10 +210,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getVat(
-                                  values.pdv_ukljucen,
-                                  values.porez_id,
-                                  values.ukupna_cijena
-                                )}
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -218,10 +225,10 @@ const UslugeForm = () => {
                               )
                                 ? '0,00€'
                                 : getPriceVat(
-                                  values.pdv_ukljucen,
-                                  values.porez_id,
-                                  values.ukupna_cijena
-                                )}
+                                    values.pdv_ukljucen,
+                                    values.porez_id,
+                                    values.ukupna_cijena
+                                  )}
                             </p>
                           </div>
                         </div>
@@ -267,7 +274,7 @@ const UslugeForm = () => {
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
-                          // onCreateOption={handleCreate}
+                            // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
                             isClearable
@@ -375,6 +382,7 @@ const UslugeForm = () => {
                     <Link to={STAVKE.INDEX}>
                       Nazad
                     </Link>
+                    <Link to={USLUGE.INDEX}>Nazad</Link>
                   </button>
 
                   {/* <button
