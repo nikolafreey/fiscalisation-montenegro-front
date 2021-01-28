@@ -52,7 +52,13 @@ const UslugeForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) {
-      dispatch(updateUsluga({ id: params.id, ...values }));
+      dispatch(
+        updateUsluga({
+          id: params.id,
+          ...values,
+          status: values.status == 'Aktivan' ? true : false,
+        })
+      );
       history.push(`/usluge`);
     } else {
       dispatch(
@@ -176,7 +182,6 @@ const UslugeForm = () => {
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
-                            <p className="mb-10">0,00€</p>
                             <p className="mb-10">
                               {isNaN(
                                 getPriceNoVat(
