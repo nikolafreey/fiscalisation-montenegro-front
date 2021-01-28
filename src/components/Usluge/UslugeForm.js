@@ -382,7 +382,6 @@ const UslugeForm = () => {
                     <Link to={STAVKE.INDEX}>
                       Nazad
                     </Link>
-                    <Link to={USLUGE.INDEX}>Nazad</Link>
                   </button>
 
                   {/* <button
