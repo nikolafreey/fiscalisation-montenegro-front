@@ -51,6 +51,15 @@ export const PREDUZECA = {
   CREATE: '/preduzeca/create',
   SHOW: '/preduzeca/:id',
 };
+
+export const STAVKE = {
+  INDEX: '/stavke',
+  EDIT_USLUGE: '/stavke/usluge/edit/:id',
+  EDIT_ROBE: '/stavke/robe/edit/:id',
+  CREATE_USLUGE: '/stavke/usluge/create',
+  CREATE_ROBE: '/stavke/robe/create',
+};
+
 export const ROBE = {
   INDEX: '/robe',
   EDIT: '/robe/edit/:id',
@@ -64,6 +73,8 @@ export const USLUGE = {
   CREATE: '/usluge/create',
   SHOW: '/usluge/:id',
 };
+
+
 
 export const ERRORS = {
   NOT_FOUND: '/not_found',

@@ -8,6 +8,7 @@ import {
   RACUNI,
   ULAZNI_RACUNI,
   USLUGE,
+  STAVKE
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
@@ -56,7 +57,7 @@ const Sidebar = () => {
           <SidebarLink
             ImageSource={heroStavke}
             label="Stavke"
-            to={USLUGE.INDEX}
+            to={STAVKE.INDEX}
           />
         </ul>
         <ul className="items">

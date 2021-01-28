@@ -27,7 +27,7 @@ import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
-import { USLUGE } from '../../constants/routes';
+import { STAVKE } from '../../constants/routes';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const UslugeForm = () => {
   
     if (params.id) {
       dispatch(updateUsluga({ id: params.id, ...values }));
-      history.push(`/usluge`);
+      history.push(STAVKE.INDEX);
     } else {
       dispatch(
         storeUsluga({
@@ -70,6 +70,7 @@ const UslugeForm = () => {
           status: values.status == 'Aktivan' ? true : false,
         })
       );
+      history.push(STAVKE.INDEX);
     }
   };
   const options = [
@@ -140,7 +141,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to={USLUGE.INDEX} className="link df">
+          <Link to={STAVKE.INDEX} className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
@@ -348,7 +349,7 @@ const UslugeForm = () => {
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">
-                    <Link to={USLUGE.INDEX}>
+                    <Link to={STAVKE.INDEX}>
                       Nazad
                     </Link>
                   </button>

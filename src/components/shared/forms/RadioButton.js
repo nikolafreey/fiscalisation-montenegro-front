@@ -11,7 +11,7 @@ const RadioButton = (props) => {
         {({ field }) => {
           return options.map((option) => {
             field.value = option.value;
-            console.log(field);
+            // console.log(field);
             return (
               <React.Fragment key={options.key}>
                 <div className="form__radio-group">
