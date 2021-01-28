@@ -282,13 +282,43 @@ const RobeForm = () => {
                         </p>
                       </div>
                       <div className="col-md-4">
-                        <div className="form__group">
+                        <label className="form__label">Status</label>
+                        <div
+                          className="form__group"
+                          onChange={(event) => {
+                            console.log(
+                              'event.target.value',
+                              event.target.value
+                            );
+                            values.status = event.target.value;
+                          }}
+                        >
+                          {/* <RadioButton
+                            name="status"
+                            label="Status"
+                            options={statusOptions}
+                          /> */}
                           <div className="form__radio-group">
-                            <RadioButton
+                            <input type="radio" value="Aktivan" name="status" />
+                            <label
+                              htmlFor="Aktivan"
+                              className="form__radio-label"
+                            >
+                              Aktivan
+                            </label>
+                          </div>
+                          <div className="form__radio-group">
+                            <input
+                              type="radio"
+                              value="Neaktivan"
                               name="status"
-                              label="Status"
-                              options={informacijeKontakt}
                             />
+                            <label
+                              htmlFor="Neaktivan"
+                              className="form__radio-label"
+                            >
+                              Neaktivan
+                            </label>
                           </div>
                         </div>
                       </div>
