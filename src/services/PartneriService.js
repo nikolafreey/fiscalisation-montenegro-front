@@ -20,7 +20,7 @@ class PartneriService extends ApiService {
     this.apiClient.delete(ENDPOINTS.PARTNER.replace('{id}', id));
 
   getPartneriDropdown = async (search) => {
-    const  response = await this.getPartneri({ search });
+    const response = await this.getPartneri({ search });
     // console.log('getPartneriDropdown:', response.data.data);
     if (response.data.data) {
       return response.data.data.map((partner) => ({
@@ -30,7 +30,6 @@ class PartneriService extends ApiService {
           `${partner.fizicko_lice.ime} ${partner.fizicko_lice.prezime}`,
       }));
     }
-
   };
 }
 
