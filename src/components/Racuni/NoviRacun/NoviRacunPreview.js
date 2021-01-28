@@ -13,7 +13,7 @@ const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
 
-  console.log('noviRacun', noviRacun);
+  // console.log('noviRacun', noviRacun);
 
   const dispatch = useDispatch();
 
