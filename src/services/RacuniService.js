@@ -22,7 +22,7 @@ class RacuniService extends ApiService {
       kolicina: noviRacun.robe[robaId].kolicina,
     }));
     const stavke = [...usluge, ...robe];
-    return this.apiClient.post(ENDPOINTS.RACUNI, { stavke, preduzece_id: 'eeb7d941-ceed-474f-a27f-c6422183cb77' });
+    return this.apiClient.post(ENDPOINTS.RACUNI, { stavke, vrsta_racuna: "gotovinski" });
   }
 
   storeBezgotovinskiRacun = (values) => {
@@ -32,8 +32,7 @@ class RacuniService extends ApiService {
     });
     return this.apiClient.post(ENDPOINTS.RACUNI, {
       ...values,
-      user_id: '7c3b0ca3-eb51-447d-85a4-00c37b8c675e',
-      preduzece_id: '028b4491-6a9a-459b-be42-f7bccca522d6'
+      // preduzece_id: '028b4491-6a9a-459b-be42-f7bccca522d6'
     });
   }
 

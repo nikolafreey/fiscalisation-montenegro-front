@@ -31,6 +31,8 @@ import { usePorezi } from '../../hooks/PoreziHook';
 import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSelector';
 import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
+import { STAVKE } from '../../constants/routes';
+
 const RobeForm = () => {
   const dispatch = useDispatch();
 
@@ -119,9 +121,9 @@ const RobeForm = () => {
       {({ values }) => (
         <>
           <div className="screen-content">
-            <Link to="#stavke" className="link df">
-              <LinkSvg /> <p>Povratak na Stavke</p>
-            </Link>
+            <Link to={STAVKE.INDEX} className="link df">
+            <LinkSvg /> <p>Povratak na Stavke</p>
+          </Link>
           </div>
 
           <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
@@ -326,13 +328,19 @@ const RobeForm = () => {
                     <button className="btn btn__dark btn__md" type="submit">
                       Sačuvaj
                     </button>
-                    <button
+
+                    <button className="btn btn__link ml-m">
+                    <Link to={STAVKE.INDEX}>
+                      Nazad
+                    </Link>
+                  </button>
+                    {/* <button
                       type="button"
                       className="btn btn__link ml-m"
                       onClick={() => dispatch(deleteRoba(params.id))}
                     >
                       Nazad
-                    </button>
+                    </button> */}
                   </div>
                 </Form>
               </div>

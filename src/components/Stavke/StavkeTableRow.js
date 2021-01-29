@@ -7,14 +7,15 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 
-const UslugeTableRow = ({ usluga = {}, roba = {} }) => {
-    // console.log(roba)
-    // console.log(usluga)
+const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
+
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleIzmjeni = (id) => {
-        history.push(`/usluge/edit/${id}`);
+    const handleIzmjeni = () => {
+        (usluga && usluga.id) ?
+            history.push(`/stavke/usluge/edit/${usluga.id}`) :
+            history.push(`/stavke/robe/edit/${roba.id}`);
     }
 
     const handleObrisi = (id) => {
@@ -46,7 +47,7 @@ const UslugeTableRow = ({ usluga = {}, roba = {} }) => {
                         <button className="btn btn__light btn__xs">
                             <IconLg />
                             <div className="drop-down">
-                                <a onClick={() => handleIzmjeni(usluga.id || roba.roba.id)}>
+                                <a onClick={handleIzmjeni}>
                                     <Izmjeni />
                 Izmjeni
               </a>
@@ -64,4 +65,4 @@ const UslugeTableRow = ({ usluga = {}, roba = {} }) => {
 }
 
 
-export default UslugeTableRow;
+export default StavkeTableRow;

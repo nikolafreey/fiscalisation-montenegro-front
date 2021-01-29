@@ -27,7 +27,7 @@ import RadioButton from '../shared/forms/RadioButton';
 import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
-import { USLUGE } from '../../constants/routes';
+import { STAVKE, USLUGE } from '../../constants/routes';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -52,8 +52,16 @@ const UslugeForm = () => {
 
   const handleSubmit = (values) => {
     if (params.id) {
-      dispatch(updateUsluga({ id: params.id, ...values }));
-      history.push(`/usluge`);
+      // dispatch(updateUsluga({ id: params.id, ...values }));
+      // history.push(STAVKE.INDEX);
+      dispatch(
+        updateUsluga({
+          id: params.id,
+          ...values,
+          status: values.status == 'Aktivan' ? true : false,
+        })
+      );
+      history.push(STAVKE.INDEX);
     } else {
       dispatch(
         storeUsluga({
@@ -69,6 +77,7 @@ const UslugeForm = () => {
           status: values.status == 'Aktivan' ? true : false,
         })
       );
+      history.push(STAVKE.INDEX);
     }
     console.log('values', values);
   };
@@ -140,7 +149,7 @@ const UslugeForm = () => {
     >
       {({ values }) => (
         <div className="screen-content">
-          <Link to={USLUGE.INDEX} className="link df">
+          <Link to={STAVKE.INDEX} className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
@@ -176,7 +185,6 @@ const UslugeForm = () => {
                             <p className="mb-10">Ukupna cijena</p>
                           </div>
                           <div className="col-r">
-                            <p className="mb-10">0,00€</p>
                             <p className="mb-10">
                               {isNaN(
                                 getPriceNoVat(
@@ -371,7 +379,9 @@ const UslugeForm = () => {
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">
-                    <Link to={USLUGE.INDEX}>Nazad</Link>
+                    <Link to={STAVKE.INDEX}>
+                      Nazad
+                    </Link>
                   </button>
 
                   {/* <button

@@ -13,7 +13,7 @@ import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
 
-  console.log('roba',roba)
+  // console.log('roba',roba)
   const stavka = useSelector(
     usluga.id
       ? noviRacunUslugaSelector(usluga.id)
