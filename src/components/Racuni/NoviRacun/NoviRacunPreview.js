@@ -20,9 +20,9 @@ const NoviRacunPreview = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     pageStyle: () => `
-    @page {
-      size: 70mm 180mm;
-    }`
+    // @page {
+    //   size: 70mm 180mm;
+    // }`
   });
 
   const handleSacuvaj = () => {
@@ -131,7 +131,7 @@ const NoviRacunPreview = () => {
 
       <hr />
       {/* onClick={handlePrint} */}
-      <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button>
+      {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
       <button className="btn btn__transparent" onClick={handleSacuvaj}>Sačuvaj</button>
     </div>
 
