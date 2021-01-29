@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { odabraniAtributGrupaSelector, stavkeRobeSelector, stavkeUslugeSelector } from '../../../store/selectors/RacuniSelector';
+import {
+  odabraniAtributGrupaSelector,
+  stavkeRobeSelector,
+  stavkeUslugeSelector,
+} from '../../../store/selectors/RacuniSelector';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import NoviRacunTable from './NoviRacunTable';
 import NoviRacunPreview from './NoviRacunPreview';
@@ -12,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { USLUGE } from '../../../constants/routes';
 import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
 
-const filteri = {}
+const filteri = {};
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -55,7 +59,7 @@ const NoviRacun = () => {
     if (event.target.value !== '') filteri.search = event.target.value;
     else filteri.search = undefined;
     searchDebounced(() => handleSearch(event.target.value));
-  }
+  };
 
   return (
     <>
@@ -67,7 +71,7 @@ const NoviRacun = () => {
               <button className="search__button" type="submit"></button>
               <input
                 name="search"
-                placeholder="Naziv ili PIB preduzeca"
+                placeholder="Naziv Usluge/Robe"
                 className="search__input"
                 value={search}
                 onChange={handleChange}
@@ -88,7 +92,6 @@ const NoviRacun = () => {
                 Novo preduzeće
               </button>
   </Link>*/}
-
 
             <Link exact to={USLUGE.CREATE}>
               <button className="btn btn__dark btn__xl">

@@ -1,13 +1,16 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useReactToPrint } from 'react-to-print';
-import { izracunajUkupnuCijenuStavki, izracunajUkupnuCijenuStavkiBezPdv, izracunajPojedinacnePoreze } from '../../../helpers/racuni';
+import {
+  izracunajUkupnuCijenuStavki,
+  izracunajUkupnuCijenuStavkiBezPdv,
+  izracunajPojedinacnePoreze,
+} from '../../../helpers/racuni';
 import { storeRacun } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
-
 
 const NoviRacunPreview = () => {
   const componentRef = useRef();
@@ -22,17 +25,22 @@ const NoviRacunPreview = () => {
     pageStyle: () => `
     // @page {
     //   size: 70mm 180mm;
-    // }`
+    // }`,
   });
 
   const handleSacuvaj = () => {
     dispatch(storeRacun());
-  }
+  };
 
-  const usluge = Object.keys(noviRacun.usluge).map(id => noviRacun.usluge[id]);
-  const robe = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
+  const usluge = Object.keys(noviRacun.usluge).map(
+    (id) => noviRacun.usluge[id]
+  );
+  const robe = Object.keys(noviRacun.robe).map((id) => noviRacun.robe[id]);
   const ukupnaCijena = izracunajUkupnuCijenuStavki([...usluge, ...robe]);
-  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv([...usluge, ...robe]);
+  const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv([
+    ...usluge,
+    ...robe,
+  ]);
   const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
 
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
@@ -53,14 +61,14 @@ const NoviRacunPreview = () => {
     <div className="side-info">
       {/* NoviRacunPrint - Template */}
       <div style={{ display: 'none' }}>
-        <NoviRacunPrintTemplate
+        {/* <NoviRacunPrintTemplate
           ref={componentRef}
           ukupnaCijena={ukupnaCijena}
           usluge={uslugeStavka} robe={robeStavka} noviRacun={noviRacun}
           ukupnaCijenaBezPdv={ukupnaCijenaBezPdv}
           ukupnoPlacanje={ukupnaCijena}
           porezi={porezi}
-        />
+        /> */}
       </div>
 
       <div className="side-info__wrapper">
@@ -132,9 +140,10 @@ const NoviRacunPreview = () => {
       <hr />
       {/* onClick={handlePrint} */}
       {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
-      <button className="btn btn__transparent" onClick={handleSacuvaj}>Sačuvaj</button>
+      <button className="btn btn__transparent" onClick={handleSacuvaj}>
+        Sačuvaj
+      </button>
     </div>
-
   );
 };
 

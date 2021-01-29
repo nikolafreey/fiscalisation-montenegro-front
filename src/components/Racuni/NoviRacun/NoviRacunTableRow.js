@@ -12,11 +12,10 @@ import {
 import KolicinaStavke from './KolicinaStavke';
 
 const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
-
   // console.log('roba',roba)
   const stavka = useSelector(
-    usluga.id
-      ? noviRacunUslugaSelector(usluga.id)
+    usluga?.id
+      ? noviRacunUslugaSelector(usluga?.id)
       : noviRacunRobaSelector(roba.id)
   ) || { kolicina: 0 };
   const noviRacun = useSelector(noviRacunSelector());
@@ -25,7 +24,7 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
 
   const handleClick = () => {
     if (stavka.kolicina > 0) return;
-    if (usluga.id) {
+    if (usluga?.id) {
       dispatch(setKolicinaUsluge(usluga, stavka.kolicina + 1));
     }
     if (roba.id) {
@@ -36,15 +35,17 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
   return (
     <tr onClick={handleClick} className={stavka.kolicina ? 'active' : ''}>
       <td>
-        <p>{usluga.naziv || roba.roba.naziv}</p>
-        <h3 className="heading-quaternary">{usluga.opis || roba.roba.opis}</h3>
+        <p>{usluga?.naziv || roba.roba.naziv}</p>
+        <h3 className="heading-quaternary">
+          {usluga?.opis || roba?.roba?.opis}
+        </h3>
       </td>
       <td className="cl">
-        {usluga.jedinica_mjere?.naziv || roba.roba.jedinica_mjere?.naziv}
+        {usluga?.jedinica_mjere?.naziv || roba.roba.jedinica_mjere?.naziv}
       </td>
       <td className="cd fw-500 txt-right">
         <p>
-          {usluga.ukupna_cijena ||
+          {usluga?.ukupna_cijena ||
             roba.roba.cijene_roba[0]?.ukupna_cijena.replace('.', ',') + '€'}
         </p>
       </td>
