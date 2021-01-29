@@ -14,7 +14,7 @@ const RacuniTable = ({ racuni }) => {
 
   return (
     <>
-      <div className="table-wrapper" >
+      <div className="table-wrapper">
         <table className="table">
           <thead>
             <tr>
@@ -39,6 +39,7 @@ const RacuniTable = ({ racuni }) => {
               <th>
                 <span className="heading-quaternary">Status</span>
               </th>
+
               <th>
                 <span className="heading-quaternary">Datum</span>
               </th>
@@ -49,7 +50,10 @@ const RacuniTable = ({ racuni }) => {
           </thead>
           <tbody>
             {/* <List data={racuni.data || []} renderItem={RacuniTableRow} /> */}
-            {racuni && racuni.data.map((item) => <RacuniTableRow key={item.id} item={item} />)}
+            {racuni &&
+              racuni.data.map((item) => (
+                <RacuniTableRow key={item.id} item={item} />
+              ))}
           </tbody>
         </table>
       </div>
