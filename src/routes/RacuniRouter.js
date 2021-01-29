@@ -2,7 +2,9 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ERRORS, RACUNI } from '../constants/routes';
 import RacuniForm from '../components/Racuni/RacuniForm';
-import Racun from '../components/Racuni/Racun';
+// import Racun from '../components/Racuni/Racun';
+import NoviRacunShowTemplate from '../components/Racuni/NoviRacun/NoviRacunShowTemplate';
+
 import Racuni from '../components/Racuni/Racuni';
 import NoviRacun from '../components/Racuni/NoviRacun/NoviRacun';
 import Bezgotovinski from '../components/Racuni/Bezgotovinski/Bezgotovinski';
@@ -27,7 +29,7 @@ const RacuniRouter = () => {
         <NoviRacun />
       </Route>
       <Route path={RACUNI.SHOW}>
-        <Racun />
+        <NoviRacunShowTemplate />
       </Route>
       <Route exact path={RACUNI.INDEX}>
         <Racuni />

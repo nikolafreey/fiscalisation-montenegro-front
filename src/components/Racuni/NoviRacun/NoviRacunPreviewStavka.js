@@ -71,7 +71,7 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
           </div>
           <div className="col-lg-4">
             <div className="df jc-end w-62">
-              <span>{Number(getUkupnaCijena()).toFixed(2) - Number(getPopustIznos()).toFixed(2)}</span>
+              <span>{(Number(getUkupnaCijena()) - Number(getPopustIznos())).toFixed(2)}</span>
             </div>
           </div>
         </>
