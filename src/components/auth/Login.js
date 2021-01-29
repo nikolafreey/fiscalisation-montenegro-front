@@ -55,7 +55,7 @@ const Login = () => {
                     <Checkbox
                       name="remember_me"
                       label={$t('auth.remember_me')}
-                      className="form__checkbox"
+                      // className="form__checkbox"
                       type="checkbox"
                     />
                   </div>
