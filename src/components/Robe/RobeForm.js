@@ -108,7 +108,7 @@ const RobeForm = () => {
   return (
     <Formik
       initialValues={{
-        status: '',
+        status: true,
         kategorije: {},
         atributi: [],
         cijene: [],
@@ -122,8 +122,8 @@ const RobeForm = () => {
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="link df">
-            <LinkSvg /> <p>Povratak na Stavke</p>
-          </Link>
+              <LinkSvg /> <p>Povratak na Stavke</p>
+            </Link>
           </div>
 
           <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
@@ -299,7 +299,13 @@ const RobeForm = () => {
                             options={statusOptions}
                           /> */}
                           <div className="form__radio-group">
-                            <input type="radio" value="Aktivan" name="status" />
+                            <input
+                              type="radio"
+                              value="Aktivan"
+                              id="Aktivan"
+                              name="status"
+                              checked={values.status}
+                            />
                             <label
                               htmlFor="Aktivan"
                               className="form__radio-label"
@@ -311,6 +317,7 @@ const RobeForm = () => {
                             <input
                               type="radio"
                               value="Neaktivan"
+                              id="Neaktivan"
                               name="status"
                             />
                             <label
@@ -330,10 +337,8 @@ const RobeForm = () => {
                     </button>
 
                     <button className="btn btn__link ml-m">
-                    <Link to={STAVKE.INDEX}>
-                      Nazad
-                    </Link>
-                  </button>
+                      <Link to={STAVKE.INDEX}>Nazad</Link>
+                    </button>
                     {/* <button
                       type="button"
                       className="btn btn__link ml-m"

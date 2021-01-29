@@ -352,7 +352,13 @@ const UslugeForm = () => {
                             options={statusOptions}
                           /> */}
                         <div className="form__radio-group">
-                          <input type="radio" value="Aktivan" name="status" />
+                          <input
+                            type="radio"
+                            id="Aktivan"
+                            value="Aktivan"
+                            name="status"
+                            checked={values.status}
+                          />
                           <label
                             htmlFor="Aktivan"
                             className="form__radio-label"
@@ -361,7 +367,12 @@ const UslugeForm = () => {
                           </label>
                         </div>
                         <div className="form__radio-group">
-                          <input type="radio" value="Neaktivan" name="status" />
+                          <input
+                            type="radio"
+                            id="Neaktivan"
+                            value="Neaktivan"
+                            name="status"
+                          />
                           <label
                             htmlFor="Neaktivan"
                             className="form__radio-label"
@@ -379,9 +390,7 @@ const UslugeForm = () => {
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">
-                    <Link to={STAVKE.INDEX}>
-                      Nazad
-                    </Link>
+                    <Link to={STAVKE.INDEX}>Nazad</Link>
                   </button>
 
                   {/* <button
