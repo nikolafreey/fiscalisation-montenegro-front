@@ -1,5 +1,4 @@
 export function formatirajCijenu(cijena) {
-  console.log('cijenaaa', cijena);
   return cijena ? Number(cijena).toFixed(2).replace('.', ',') + ' €' : '0 €';
 }
 

@@ -122,8 +122,8 @@ const RobeForm = () => {
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="link df">
-            <LinkSvg /> <p>Povratak na Stavke</p>
-          </Link>
+              <LinkSvg /> <p>Povratak na Stavke</p>
+            </Link>
           </div>
 
           <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
@@ -330,10 +330,8 @@ const RobeForm = () => {
                     </button>
 
                     <button className="btn btn__link ml-m">
-                    <Link to={STAVKE.INDEX}>
-                      Nazad
-                    </Link>
-                  </button>
+                      <Link to={STAVKE.INDEX}>Nazad</Link>
+                    </button>
                     {/* <button
                       type="button"
                       className="btn btn__link ml-m"

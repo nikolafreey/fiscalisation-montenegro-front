@@ -7,7 +7,6 @@ import {
 
 const BezgotovinskiPorezi = () => {
   const { values } = useFormikContext();
-  console.log('formik', values);
   const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
   //console.log(porezi);
 
