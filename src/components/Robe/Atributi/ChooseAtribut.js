@@ -185,7 +185,7 @@ const ChooseAtribut = () => {
                     <div key={atribut.id}>
                       <li className="item-check">
                         <input
-                          className="form__checkbox"
+                          // className="form__checkbox"
                           type="checkbox"
                           name="atributi"
                           value={atribut.id}
@@ -204,7 +204,7 @@ const ChooseAtribut = () => {
                     <div key={atribut.id}>
                       <li className="item-check">
                         <input
-                          className="form__checkbox"
+                          // className="form__checkbox"
                           type="checkbox"
                           name="atributi"
                           value={atribut.id}

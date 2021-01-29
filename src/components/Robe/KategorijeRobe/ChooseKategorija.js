@@ -45,7 +45,7 @@ const ChooseKategorija = (props) => {
       <li className="item-check">
         <div className="form__checkbox-group">
           <input
-            className="form__checkbox"
+            // className="form__checkbox"
             type="checkbox"
             name="kategorije"
             value={kategorija.id}

@@ -231,7 +231,7 @@ const PreduzecaForm = () => {
                       </div>
                       <div className="df jc-sb">
                         <div className="form__group w-48">
-                        <DropDown
+                          <DropDown
                             name="djelatnost"
                             label={$t('preduzeca.djelatnost')}
                             loadOptions={
@@ -365,7 +365,7 @@ const PreduzecaForm = () => {
                                 name="telfon_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -374,7 +374,7 @@ const PreduzecaForm = () => {
                                 name="telfon_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -383,7 +383,7 @@ const PreduzecaForm = () => {
                                 name="telfon_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -468,7 +468,7 @@ const PreduzecaForm = () => {
                                 name="ovlasceno_lice_kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -477,7 +477,7 @@ const PreduzecaForm = () => {
                                 name="ovlasceno_lice_kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -486,7 +486,7 @@ const PreduzecaForm = () => {
                                 name="ovlasceno_lice_kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -551,7 +551,7 @@ const PreduzecaForm = () => {
                                 name="kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -560,7 +560,7 @@ const PreduzecaForm = () => {
                                 name="kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>
@@ -569,7 +569,7 @@ const PreduzecaForm = () => {
                                 name="kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
-                                className="form__checkbox"
+                                // className="form__checkbox"
                                 type="checkbox"
                               />
                             </div>

@@ -271,7 +271,7 @@ const FizickaLicaForm = () => {
                             name="telefon_whatsapp"
                             label={$t('fizickalica.whatsapp')}
                             placeholder=""
-                            className="form__checkbox"
+                            // className="form__checkbox"
                             type="checkbox"
                           />
                         </div>
@@ -280,7 +280,7 @@ const FizickaLicaForm = () => {
                             name="telefon_viber"
                             label={$t('fizickalica.viber')}
                             placeholder=""
-                            className="form__checkbox"
+                            // className="form__checkbox"
                             type="checkbox"
                           />
                         </div>
@@ -289,7 +289,7 @@ const FizickaLicaForm = () => {
                             name="telefon_facetime"
                             label={$t('fizickalica.facetime')}
                             placeholder=""
-                            className="form__checkbox"
+                            // className="form__checkbox"
                             type="checkbox"
                           />
                         </div>
