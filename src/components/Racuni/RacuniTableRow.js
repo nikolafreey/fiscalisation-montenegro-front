@@ -4,15 +4,20 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeRacun, deleteRacun, getRacuni, getRacun } from '../../store/actions/RacuniActions';
+import {
+  storeRacun,
+  deleteRacun,
+  getRacuni,
+  getRacun,
+} from '../../store/actions/RacuniActions';
 import { racunSelector } from '../../store/selectors/RacuniSelector';
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
 const RacuniTableRow = ({ item }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [_item, setItem] = useState(item);
 
   const { preduzece } = useSelector(racunSelector());
@@ -30,11 +35,13 @@ const RacuniTableRow = ({ item }) => {
     if (item.status === 'KREIRAN' && !item.partner) {
       dispatch(getRacun(item.id));
       if (preduzece) {
-        setItem({ ...item, partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } } })
+        setItem({
+          ...item,
+          partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } },
+        });
       }
     }
-
-  }, [])
+  }, []);
 
   const currencyFormat = (num) => {
     // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -45,26 +52,38 @@ const RacuniTableRow = ({ item }) => {
     if (item.status === 'KREIRAN' && !item.partner) {
       history.push(`/racuni/show/${item.id}`);
     } else {
-
       history.push(`/racuni/bezgotovinski/show/${item.id}`);
-
     }
-  }
+  };
 
   const handleIzmjeni = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     history.push(`/racuni/bezgotovinski/edit/${item.id}`);
-  }
+  };
 
   const handleObrisi = (e) => {
-    e.stopPropagation()
-    dispatch(deleteRacun(item.id))
+    e.stopPropagation();
+    dispatch(deleteRacun(item.id));
     dispatch(getRacuni());
-  }
+  };
+  const vrstaRacuna = (racun) => {
+    let value;
+    if (racun === 'gotovinski') {
+      value = racun.substring(0, 3) + '.';
+    } else if (racun === 'bezgotovinski') {
+      value = racun.substring(0, 6) + '.';
+    } else {
+      value = racun;
+    }
+    return value;
+  };
 
   return (
     <tr onClick={handleClick}>
-      <td className="cl">{_item.ikof && <Success />}</td>
+      <td className="cl">
+        {_item.ikof && <Success />}
+        {vrstaRacuna(_item.vrsta_racuna)}
+      </td>
       <td className="cl">{_item.broj_racuna}</td>
       <td className="cd fw-500">
         {_item.partner?.preduzece?.kratki_naziv ||
@@ -84,8 +103,14 @@ const RacuniTableRow = ({ item }) => {
         {/* <span className={bojaStatus[item.status].klasa}>
           {bojaStatus[item.status].naziv}
         </span> */}
-        {<span className="tag tag__success">{_item.status} {item.status === 'KREIRAN' && !item.partner ? '-Gr' : ''}</span>}
+        {
+          <span className="tag tag__success">
+            {_item.status}{' '}
+            {item.status === 'KREIRAN' && !item.partner ? '-Gr' : ''}
+          </span>
+        }
       </td>
+
       <td className="cd fw-500">
         {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
         <Moment locale="me" format="DD. MMM YYYY.">
@@ -97,11 +122,17 @@ const RacuniTableRow = ({ item }) => {
           <button className="btn btn__light btn__xs">
             <IconLg />
             <div className="drop-down">
-              <a onClick={handleIzmjeni} className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}>
+              <a
+                onClick={handleIzmjeni}
+                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+              >
                 <Izmjeni />
                 Izmjeni
               </a>
-              <a onClick={handleObrisi} className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}>
+              <a
+                onClick={handleObrisi}
+                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+              >
                 <Obrisi />
                 Obriši
               </a>
