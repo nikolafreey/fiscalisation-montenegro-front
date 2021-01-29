@@ -49,7 +49,11 @@ const RacuniTableRow = ({ item }) => {
   };
 
   const handleClick = () => {
-    if (item.status === 'KREIRAN' && !item.partner) {
+    if (
+      item.vrsta_racuna === 'GOTOVINSKI'
+      // item.status === 'KREIRAN' &&
+      // !item.partner
+    ) {
       history.push(`/racuni/show/${item.id}`);
     } else {
       history.push(`/racuni/bezgotovinski/show/${item.id}`);
