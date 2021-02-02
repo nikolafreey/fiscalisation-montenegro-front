@@ -111,7 +111,7 @@ const UslugeForm = () => {
   const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return ukupna_cijena + ukupna_cijena * +stopa;
+      return +ukupna_cijena + +ukupna_cijena * +stopa;
     } else {
       return ukupna_cijena;
     }
