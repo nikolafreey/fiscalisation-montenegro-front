@@ -1,5 +1,5 @@
 import { Form, Formik, Field } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
@@ -35,6 +35,9 @@ const UslugeForm = () => {
   const { params } = useRouteMatch();
 
   const usluga = useSelector(uslugaSelector());
+  const [radioChecked, setRadioChecked] = useState(
+    usluga?.status === 0 ? true : false
+  );
   console.log('usluga', usluga);
 
   useEffect(() => {
@@ -42,8 +45,10 @@ const UslugeForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (params.id) dispatch(getUsluga(params.id));
-  }, [dispatch, params]);
+    if (params.id) {
+      dispatch(getUsluga(params.id));
+    }
+  }, [dispatch, params, usluga?.jedinica_mjere?.naziv]);
 
   let tempLen = [];
   let tempLength = grupeService
@@ -260,6 +265,9 @@ const UslugeForm = () => {
                             loadOptions={
                               jediniceMjereService.getJediniceMjereDropdown
                             }
+                            placeholder={
+                              usluga && usluga?.jedinica_mjere?.naziv
+                            }
                           />
                         </div>
                         <div className="form__group w-48">
@@ -274,6 +282,7 @@ const UslugeForm = () => {
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
+                            placeholder={usluga?.grupa?.naziv}
                             // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
@@ -295,6 +304,7 @@ const UslugeForm = () => {
                             name="porez_id"
                             label={$t('usluge.porezi')}
                             loadOptions={poreziService.getPoreziDropdown}
+                            placeholder={usluga?.porez?.naziv}
                           />
                         </div>
                         <div className="form__group w-48">
@@ -344,6 +354,14 @@ const UslugeForm = () => {
                         onChange={(event) => {
                           console.log('event.target.value', event.target.value);
                           values.status = event.target.value;
+
+                          // if (usluga) {
+                          //   if (values.status === 'Aktivan') {
+                          //     setRadioChecked(true);
+                          //   } else {
+                          //     setRadioChecked(false);
+                          //   }
+                          // }
                         }}
                       >
                         {/* <RadioButton
@@ -357,7 +375,7 @@ const UslugeForm = () => {
                             id="Aktivan"
                             value="Aktivan"
                             name="status"
-                            checked={values.status}
+                            // checked={usluga && radioChecked}
                           />
                           <label
                             htmlFor="Aktivan"
@@ -372,6 +390,7 @@ const UslugeForm = () => {
                             id="Neaktivan"
                             value="Neaktivan"
                             name="status"
+                            // checked={usluga && radioChecked}
                           />
                           <label
                             htmlFor="Neaktivan"
