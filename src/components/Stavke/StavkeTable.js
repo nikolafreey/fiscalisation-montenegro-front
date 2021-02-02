@@ -9,7 +9,7 @@ const StavkeTable = ({ robe, usluge }) => {
 
   return (
     <>
-      <div className="table-wrapper" >
+      <div className="table-wrapper">
         <table className="table">
           <thead>
             <tr>
@@ -23,7 +23,9 @@ const StavkeTable = ({ robe, usluge }) => {
                 <span className="heading-quaternary">Kategorija / Grupa</span>
               </th>
               <th>
-                <span className="heading-quaternary txt-right">Cijena sa PDV</span>
+                <span className="heading-quaternary txt-right">
+                  Cijena sa PDV
+                </span>
               </th>
               <th className="w-5">
                 <span className="heading-quaternary"> </span>
@@ -31,8 +33,14 @@ const StavkeTable = ({ robe, usluge }) => {
             </tr>
           </thead>
           <tbody>
-            {robe && robe.data.map((item) => <StavkeTableRow key={item.id} roba={item} />)}
-            {usluge && usluge.data.map((item) => <StavkeTableRow key={item.id} usluga={item} />)}
+            {robe &&
+              robe?.data?.map((item) => (
+                <StavkeTableRow key={item.id} roba={item} />
+              ))}
+            {usluge &&
+              usluge?.data?.map((item) => (
+                <StavkeTableRow key={item.id} usluga={item} />
+              ))}
           </tbody>
         </table>
       </div>
