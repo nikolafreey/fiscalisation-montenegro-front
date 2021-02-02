@@ -5,7 +5,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
@@ -37,6 +37,7 @@ const RobeForm = () => {
   const dispatch = useDispatch();
 
   const { params } = useRouteMatch();
+  const history = useHistory();
 
   const informacijeKontakt = [
     { key: 'Aktivan', value: 'Aktivan' },
@@ -58,7 +59,7 @@ const RobeForm = () => {
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-    if (params.id)
+    if (params.id) {
       dispatch(
         updateRoba({
           ...values,
@@ -71,10 +72,17 @@ const RobeForm = () => {
           ),
         })
       );
-    else
+      history.push(STAVKE.INDEX);
+    } else {
       dispatch(
         storeRoba({
           ...values,
+          nabavna_cijena_sa_pdv: values.nabavna_cijena_sa_pdv
+            ? values.nabavna_cijena_sa_pdv
+            : 0,
+          nabavna_cijena_bez_pdv: values.nabavna_cijena_bez_pdv
+            ? values.nabavna_cijena_bez_pdv
+            : 0,
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
@@ -83,6 +91,8 @@ const RobeForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+    }
+    history.push(STAVKE.INDEX);
   };
 
   const kategorije = useSelector(kategorijeRobeSelector());
