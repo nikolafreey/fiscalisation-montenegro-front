@@ -65,6 +65,14 @@ const Cijena = ({
     checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena
   );
 
+  const [valueCijenaBezPdv, setValueCijenaBezPdv] = useState(
+    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena_bez_pdv
+  );
+
+  const [valueCijenaSaPdv, setValueCijenaSaPdv] = useState(
+    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena_sa_pdv
+  );
+
   return (
     <>
       <div className="col-md-4">
@@ -167,7 +175,11 @@ const Cijena = ({
               name="nabavna_cijena_bez_pdv"
               className="form__input"
               label={$t('cijene.nabavna_bez_pdv')}
-              value={
+              value={valueCijenaBezPdv}
+              onChange={(event) => {
+                setValueCijenaBezPdv(event.target.value);
+              }}
+              placeholder={
                 checkIfObjectEmpty(roba) &&
                 roba.cijene_roba[0].nabavna_cijena_bez_pdv
               }
@@ -179,10 +191,14 @@ const Cijena = ({
               name="nabavna_cijena_sa_pdv"
               className="form__input"
               label={$t('cijene.nabavna_sa_pdv')}
-              value={
+              value={valueCijenaSaPdv}
+              placeholder={
                 checkIfObjectEmpty(roba) &&
                 roba.cijene_roba[0].nabavna_cijena_sa_pdv
               }
+              onChange={(event) => {
+                setValueCijenaSaPdv(event.target.value);
+              }}
             />
           </div>
         </div>
@@ -216,8 +232,7 @@ const Cijena = ({
             label={$t('cijene.cijena')}
             value={valueUkupnaCijena}
             placeholder={
-              checkIfObjectEmpty(roba) &&
-              roba.cijene_roba[0].nabavna_cijena_sa_pdv
+              checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena
             }
             onChange={(event) => {
               setValueUkupnaCijena(event.target.value);
