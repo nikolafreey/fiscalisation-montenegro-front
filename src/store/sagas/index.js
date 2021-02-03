@@ -213,8 +213,8 @@ export default function* rootSaga() {
     takeLatest(DELETE_FIZICKO_LICE, fizickoLiceDelete),
 
     takeLatest(STORE_ROBE, robaStore),
-    takeLatest(GET_ROBA, robeGet),
-    takeLatest(GET_ROBE, robaGet),
+    takeLatest(GET_ROBA, robaGet),
+    takeLatest(GET_ROBE, robeGet),
     takeLatest(UPDATE_ROBE, robaUpdate),
     takeLatest(DELETE_ROBE, robeDelete),
 

@@ -176,7 +176,12 @@ const Cijena = ({
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
-              placeholder={roba?.porez?.naziv}
+              placeholder={
+                //Provjera da li je objekat prazan
+                Object.keys(roba).length !== 0 &&
+                roba.constructor === Object &&
+                roba?.cijene_roba[0]?.porez.naziv
+              }
             />
           </div>
           <div className="form__group w-48">
