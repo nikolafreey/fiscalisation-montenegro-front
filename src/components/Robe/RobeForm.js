@@ -254,6 +254,7 @@ const RobeForm = () => {
                         <ul className="item-list">
                           <ChooseKategorija
                             kategorije={filtered || kategorije}
+                            editKategorije={roba}
                           />
                         </ul>
                       </div>

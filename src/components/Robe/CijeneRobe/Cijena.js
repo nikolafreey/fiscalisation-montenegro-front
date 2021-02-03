@@ -55,8 +55,6 @@ const Cijena = ({
   const checkIfObjectEmpty = (roba) =>
     Object.keys(roba).length !== 0 && roba.constructor === Object;
 
-  console.log('Cijena Roba:', roba);
-
   useEffect(() => {
     dispatch(getPorezi());
   }, [dispatch]);
