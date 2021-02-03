@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $t from '../../../lang';
 import { poreziService } from '../../../services/PoreziService';
 import DropDown from '../../shared/forms/DropDown';
@@ -52,9 +52,18 @@ const Cijena = ({
     return isNaN(percentage) ? '' : percentage.toFixed(2) + '%';
   };
 
+  const checkIfObjectEmpty = (roba) =>
+    Object.keys(roba).length !== 0 && roba.constructor === Object;
+
+  console.log('Cijena Roba:', roba);
+
   useEffect(() => {
     dispatch(getPorezi());
   }, [dispatch]);
+
+  const [valueUkupnaCijena, setValueUkupnaCijena] = useState(
+    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena
+  );
 
   return (
     <>
@@ -158,6 +167,10 @@ const Cijena = ({
               name="nabavna_cijena_bez_pdv"
               className="form__input"
               label={$t('cijene.nabavna_bez_pdv')}
+              value={
+                checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].nabavna_cijena_bez_pdv
+              }
             />
           </div>
           <div className="form__group w-48">
@@ -166,6 +179,10 @@ const Cijena = ({
               name="nabavna_cijena_sa_pdv"
               className="form__input"
               label={$t('cijene.nabavna_sa_pdv')}
+              value={
+                checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].nabavna_cijena_sa_pdv
+              }
             />
           </div>
         </div>
@@ -178,9 +195,7 @@ const Cijena = ({
               loadOptions={poreziService.getPoreziDropdown}
               placeholder={
                 //Provjera da li je objekat prazan
-                Object.keys(roba).length !== 0 &&
-                roba.constructor === Object &&
-                roba?.cijene_roba[0]?.porez.naziv
+                checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.porez.naziv
               }
             />
           </div>
@@ -199,6 +214,14 @@ const Cijena = ({
             name="ukupna_cijena"
             className="form__input w-100"
             label={$t('cijene.cijena')}
+            value={valueUkupnaCijena}
+            placeholder={
+              checkIfObjectEmpty(roba) &&
+              roba.cijene_roba[0].nabavna_cijena_sa_pdv
+            }
+            onChange={(event) => {
+              setValueUkupnaCijena(event.target.value);
+            }}
           />
         </div>
         <FieldArray name="cijene">
