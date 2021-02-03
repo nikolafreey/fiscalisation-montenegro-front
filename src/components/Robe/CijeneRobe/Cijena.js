@@ -10,7 +10,13 @@ import { getPorezi } from '../../../store/actions/UslugeActions';
 import CijeneFieldArray from './CijeneFieldArray';
 import { tipoviAtributaSelector } from '../../../store/selectors/AtributiSelector';
 
-const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
+const Cijena = ({
+  getPriceNoVat,
+  getPriceVat,
+  getVat,
+  getStopaPerId,
+  roba,
+}) => {
   const dispatch = useDispatch();
   const { values, setFieldValue } = useFormikContext();
 
@@ -36,19 +42,15 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
 
   const getFormattedPriceString = (callback, ...args) => {
     const price = callback(...args);
-    
-    return isNaN(price)
-      ? 0
-      : Number(price)
-          .toFixed(2)
-          .replace('.', ',') + '€';
+
+    return isNaN(price) ? 0 : Number(price).toFixed(2).replace('.', ',') + '€';
   };
 
   const getFormattedPercentageString = (callback, ...args) => {
     const percentage = callback(...args) * 100;
-    
-    return isNaN(percentage) ? '' : percentage.toFixed(2) + '%'
-  }
+
+    return isNaN(percentage) ? '' : percentage.toFixed(2) + '%';
+  };
 
   useEffect(() => {
     dispatch(getPorezi());
@@ -68,8 +70,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
             <p className="mb-10">Bez PDV-a:</p>
             <p className="mb-10">
               PDV&nbsp;
-              {getFormattedPercentageString(getStopaPerId, values.porez_id)}
-              :
+              {getFormattedPercentageString(getStopaPerId, values.porez_id)}:
             </p>
             <p className="mb-10">Ukupna cijena</p>
           </div>
@@ -175,6 +176,7 @@ const Cijena = ({ getPriceNoVat, getPriceVat, getVat, getStopaPerId }) => {
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
+              placeholder={roba?.porez?.naziv}
             />
           </div>
           <div className="form__group w-48">

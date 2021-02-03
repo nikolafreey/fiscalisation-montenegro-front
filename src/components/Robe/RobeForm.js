@@ -208,7 +208,7 @@ const RobeForm = () => {
                                 proizvodjacService.getProizvodjaciDropdown
                               }
                               className="form__input"
-                              placeholder={roba?.porez?.naziv}
+                              placeholder={roba?.proizvodjac_robe?.naziv}
                             />
                           </div>
                           <div className="form__group w-48">
@@ -219,7 +219,7 @@ const RobeForm = () => {
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
                               className="form__input"
-                              placeholder={roba?.porez?.naziv}
+                              placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>
                         </div>
@@ -281,6 +281,7 @@ const RobeForm = () => {
                         getPriceVat={getPriceVat}
                         getVat={getVat}
                         getStopaPerId={getStopaPerId}
+                        roba={roba}
                       />
                     </div>
                   </div>
