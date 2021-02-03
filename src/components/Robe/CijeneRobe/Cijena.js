@@ -93,28 +93,35 @@ const Cijena = ({
           </div>
           <div className="col-r mt-30">
             <p className="mb-10">
-              {getFormattedPriceString(
-                getPriceNoVat,
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {(checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].cijena_bez_pdv) ||
+                getFormattedPriceString(
+                  getPriceNoVat,
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )}
             </p>
             <p className="mb-10">
-              {getFormattedPriceString(
-                getVat,
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {(checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].ukupna_cijena - checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].cijena_bez_pdv) ||
+                getFormattedPriceString(
+                  getVat,
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )}
             </p>
             <p className="mb-10">
-              {getFormattedPriceString(
-                getPriceVat,
-                values.pdv_ukljucen,
-                values.porez_id,
-                values.ukupna_cijena
-              )}
+              {(checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0].ukupna_cijena) ||
+                getFormattedPriceString(
+                  getPriceVat,
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                )}
             </p>
           </div>
         </div>
