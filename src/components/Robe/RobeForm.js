@@ -45,6 +45,7 @@ const RobeForm = () => {
   ];
 
   const roba = useSelector(robaSelector());
+  console.log('roba:', roba);
 
   const {
     getStopaPerId,
@@ -207,6 +208,7 @@ const RobeForm = () => {
                                 proizvodjacService.getProizvodjaciDropdown
                               }
                               className="form__input"
+                              placeholder={roba?.porez?.naziv}
                             />
                           </div>
                           <div className="form__group w-48">
@@ -217,6 +219,7 @@ const RobeForm = () => {
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
                               className="form__input"
+                              placeholder={roba?.porez?.naziv}
                             />
                           </div>
                         </div>
