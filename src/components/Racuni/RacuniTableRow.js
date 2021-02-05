@@ -41,7 +41,7 @@ const RacuniTableRow = ({ item }) => {
         });
       }
     }
-  }, []);
+  }, [dispatch, item, preduzece]);
 
   const currencyFormat = (num) => {
     // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -50,7 +50,8 @@ const RacuniTableRow = ({ item }) => {
 
   const handleClick = () => {
     if (
-      item.vrsta_racuna === 'GOTOVINSKI'
+      item.vrsta_racuna === 'GOTOVINSKI' ||
+      item.vrsta_racuna === 'gotovinski'
       // item.status === 'KREIRAN' &&
       // !item.partner
     ) {
