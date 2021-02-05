@@ -8,6 +8,7 @@ class NoviRacunPrintTemplate extends React.Component {
       stavke,
       ukupna_cijena_sa_pdv,
       ukupan_iznos_pdv,
+      ukupna_cijena_bez_pdv,
       jikr,
       ikof,
       broj_racuna,
@@ -40,8 +41,8 @@ class NoviRacunPrintTemplate extends React.Component {
 
             <div className="fiscal-bill__body">
               <table cellspacing="0" cellpadding="0">
-                {stavke.length > 0
-                  ? stavke.map((stavka) => {
+                {stavke?.length > 0
+                  ? stavke?.map((stavka) => {
                       return (
                         <tr>
                           <td className="left">{stavka.naziv}</td>
@@ -54,7 +55,7 @@ class NoviRacunPrintTemplate extends React.Component {
               <table cellspacing="0" cellpadding="0">
                 <tr>
                   <td className="left">Osnovica za PDV 21%</td>
-                  <td className="right">{ukupna_cijena_sa_pdv}</td>
+                  <td className="right">{ukupna_cijena_bez_pdv}</td>
                 </tr>
                 <tr>
                   <td className="left">Iznos PDV 21%</td>
@@ -62,7 +63,7 @@ class NoviRacunPrintTemplate extends React.Component {
                 </tr>
                 <tr>
                   <td className="left">Ukupno PDV</td>
-                  <td className="right">191,58</td>
+                  <td className="right">{ukupna_cijena_sa_pdv}</td>
                 </tr>
               </table>
               <table cellspacing="0" cellpadding="0">
