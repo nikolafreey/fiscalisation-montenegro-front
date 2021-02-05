@@ -141,6 +141,9 @@ const BezgotovinskiPreview = () => {
             partner={partner}
             created_at={created_at}
             stavke={stavke}
+            ukupna_cijena_bez_pdv={ukupna_cijena_bez_pdv}
+            ukupna_cijena_sa_pdv={ukupna_cijena_sa_pdv}
+            ukupan_iznos_pdv={ukupan_iznos_pdv}
           />
         </div>
 
@@ -350,7 +353,6 @@ const BezgotovinskiPreview = () => {
                         {ukupna_cijena_bez_pdv ? (
                           <span className="txt-up txt-light">Eur</span>
                         ) : null}
-                        ;
                       </p>
                       <p className="fw-500 txt-right">
                         {ukupan_iznos_pdv ? ukupan_iznos_pdv : ''}{' '}
