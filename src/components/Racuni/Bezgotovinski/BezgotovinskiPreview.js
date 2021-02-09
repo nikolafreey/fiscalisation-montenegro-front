@@ -31,6 +31,7 @@ const BezgotovinskiPreview = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const componentRef = useRef();
+  const testRef = useRef();
   const [editMode, setEditMode] = useState(false);
   const {
     ikof,
@@ -77,6 +78,9 @@ const BezgotovinskiPreview = () => {
 
     history.push(`/racuni`);
   };
+
+  console.log('componentRef', componentRef);
+  console.log('testRef', testRef);
 
   return (
     <>
@@ -296,7 +300,7 @@ const BezgotovinskiPreview = () => {
               </div>
             </div>
 
-            <div className="table-wrapper">
+            <div ref={testRef} className="table-wrapper">
               <table className="table">
                 <thead>
                   <tr>
