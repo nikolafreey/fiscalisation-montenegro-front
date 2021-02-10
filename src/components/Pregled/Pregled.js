@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'react-moment';
 import { ReactComponent as IconPrimary } from '../../assets/icon/icon_primary.svg';
+import { racuniSelector } from '../../store/selectors/RacuniSelector';
+import { getRacuni } from '../../store/actions/RacuniActions';
 
 const Pregled = () => {
+  const dispatch = useDispatch();
+  const racuni = useSelector(racuniSelector());
+
+  useEffect(() => {
+    dispatch(getRacuni());
+  }, [dispatch]);
+
+  console.log('racuni Pregled: ', racuni);
+
   return (
     <>
       <div className="container">
@@ -16,12 +28,12 @@ const Pregled = () => {
             </div>
             <div className="dashboard__subtitle">
               <div className="dashboard__subtitle--left">
-                <i class="icon lg mr-xs">
+                <i className="icon lg mr-xs">
                   <IconPrimary />
                 </i>
                 <p className="left">Restart IT doo</p>
                 <p className="right">
-                  <i class="icon lg mr-xs">
+                  <i className="icon lg mr-xs">
                     <svg fill="none" viewBox="0 0 17 20">
                       <path
                         fill="#16A34A"
@@ -34,9 +46,9 @@ const Pregled = () => {
               </div>
               <div className="dashboard__subtitle--right">
                 <p className="left">
-                  <i class="icon lg mr-xs">
+                  <i className="icon lg mr-xs">
                     <svg
-                      class="icon__primary"
+                      className="icon__primary"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -60,20 +72,20 @@ const Pregled = () => {
                 </div>
               </div>
             </div>
-            <hr class="mtb-30 tabp-mtb-20" />
+            <hr className="mtb-30 tabp-mtb-20" />
           </div>
         </div>
       </div>
       <div className="container">
         <div className="row">
-          <div class="col-md-11 col-xl-9 col-xs-12" id="main-content">
-            <div class="screen-content">
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">Blagajna</h2>
+          <div className="col-md-11 col-xl-9 col-xs-12" id="main-content">
+            <div className="screen-content">
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">Blagajna</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#6B7280"
@@ -81,19 +93,19 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           Stanje u blagajni
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">130,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">130,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#16A34A"
@@ -101,22 +113,22 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">Depozit</span>
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">Depozit</span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">28,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">28,00 €</h2>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">Izdati računi</h2>
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">Izdati računi</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#16A34A"
@@ -124,17 +136,19 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">Naplaćeno</span>
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
+                          Naplaćeno
+                        </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">12.340,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">12.340,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#FB923C"
@@ -142,19 +156,19 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           Čeka se uplata
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">1.215,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">1.215,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#DC2626"
@@ -162,24 +176,24 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           Nije moguće naplatiti
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">235,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">235,00 €</h2>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">PDV</h2>
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">PDV</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#6B7280"
@@ -187,17 +201,19 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">PDV za maj</span>
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
+                          PDV za maj
+                        </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">130,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">130,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#DC2626"
@@ -205,19 +221,19 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           PDV na izlaznim računima
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">168,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">168,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <i class="box-dashboard__icon">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <i className="box-dashboard__icon">
                         <svg fill="none" viewBox="0 0 19 19">
                           <path
                             fill="#16A34A"
@@ -225,30 +241,30 @@ const Pregled = () => {
                           />
                         </svg>
                       </i>
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           PDV na ulaznim računima
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df">28,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df">28,00 €</h2>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">U odnosu na prošli mjesec</h2>
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">U odnosu na prošli mjesec</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           Izdati računi
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df success">
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df success">
                           <i>
                             <svg fill="none" viewBox="0 0 14 17">
                               <path
@@ -259,19 +275,19 @@ const Pregled = () => {
                           </i>
                           168,00 €
                         </h2>
-                        <span class="right txt-light">maj 2020</span>
+                        <span className="right txt-light">maj 2020</span>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <span class="txt-light txt-up fw-500">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <span className="txt-light txt-up fw-500">
                           Izdati računi
                         </span>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <h2 class="heading-secondary df danger">
+                      <div className="box-dashboard__btm">
+                        <h2 className="heading-secondary df danger">
                           <i>
                             <svg fill="none" viewBox="0 0 14 17">
                               <path
@@ -282,107 +298,107 @@ const Pregled = () => {
                           </i>
                           168,00 €
                         </h2>
-                        <span class="right txt-light">maj 2020</span>
+                        <span className="right txt-light">maj 2020</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">Najveći kupci</h2>
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">Najveći kupci</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <h3 class="heading-tertiary df">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
                           <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             alt=""
-                            class="img-round sm mr-s"
+                            className="img-round sm mr-s"
                           />
                           Efel Motors
                         </h3>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <p class="txt-light">total:</p>
-                        <h2 class="heading-secondary df">1168,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">1168,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <h3 class="heading-tertiary df">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
                           <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             alt=""
-                            class="img-round sm mr-s"
+                            className="img-round sm mr-s"
                           />
                           Bonella
                         </h3>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <p class="txt-light">total:</p>
-                        <h2 class="heading-secondary df">987,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">987,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <h3 class="heading-tertiary df">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
                           <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             alt=""
-                            class="img-round sm mr-s"
+                            className="img-round sm mr-s"
                           />
                           Tre lecce
                         </h3>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <p class="txt-light">total:</p>
-                        <h2 class="heading-secondary df">564,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">564,00 €</h2>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="box-dashboard-wrapper">
-                <h2 class="heading-secondary">Najveći dužnici</h2>
+              <div className="box-dashboard-wrapper">
+                <h2 className="heading-secondary">Najveći dužnici</h2>
                 <div className="row">
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <h3 class="heading-tertiary df">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
                           <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             alt=""
-                            class="img-round sm mr-s"
+                            className="img-round sm mr-s"
                           />
                           Mašinopromet
                         </h3>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <p class="txt-light">total:</p>
-                        <h2 class="heading-secondary df">1168,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">1168,00 €</h2>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="box-dashboard">
-                      <div class="box-dashboard__top">
-                        <h3 class="heading-tertiary df">
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
                           <img
                             src="https://picsum.photos/seed/picsum/200/300"
                             alt=""
-                            class="img-round sm mr-s"
+                            className="img-round sm mr-s"
                           />
                           Telekom
                         </h3>
                       </div>
-                      <div class="box-dashboard__btm">
-                        <p class="txt-light">total:</p>
-                        <h2 class="heading-secondary df">987,00 €</h2>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">987,00 €</h2>
                       </div>
                     </div>
                   </div>
@@ -392,14 +408,14 @@ const Pregled = () => {
           </div>
         </div>
       </div>
-      <div class="footer-wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="offset-md-1 offset-xl-3"></div>
-            <div class="col-md-11 col-xl-9">
-              <div class="footer">
-                <div class="footer__left">
-                  <div class="footer__left--logo">
+      <div className="footer-wrapper">
+        <div className="container">
+          <div className="row">
+            <div className="offset-md-1 offset-xl-3"></div>
+            <div className="col-md-11 col-xl-9">
+              <div className="footer">
+                <div className="footer__left">
+                  <div className="footer__left--logo">
                     <svg
                       width="108"
                       height="27"
@@ -415,7 +431,7 @@ const Pregled = () => {
                   </div>
                   <p>Software development</p>
                 </div>
-                <div class="footer__right">
+                <div className="footer__right">
                   <a href="">
                     <svg
                       width="16"
