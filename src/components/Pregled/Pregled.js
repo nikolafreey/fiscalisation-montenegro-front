@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { ReactComponent as IconPrimary } from '../../assets/icon/icon_primary.svg';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
+import { racuniService } from '../../services/RacuniService';
 
 const Pregled = () => {
-  const dispatch = useDispatch();
-  const racuni = useSelector(racuniSelector());
+  const [racuni, setRacuni] = useState();
 
   useEffect(() => {
-    dispatch(getRacuni());
-  }, [dispatch]);
-
+    racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
+  }, []);
   console.log('racuni Pregled: ', racuni);
 
   return (
@@ -142,7 +140,9 @@ const Pregled = () => {
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">12.340,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {racuni?.ukupna_cijena_placeni.toFixed(2)}€
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,9 @@ const Pregled = () => {
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">1.215,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {racuni?.ukupna_cijena_ceka_se.toFixed(2)}€
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -182,7 +184,9 @@ const Pregled = () => {
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">235,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {racuni?.ukupna_cijena_nenaplativ.toFixed(2)}€
+                        </h2>
                       </div>
                     </div>
                   </div>
