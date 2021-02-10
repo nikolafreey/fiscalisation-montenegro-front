@@ -21,10 +21,15 @@ ORDER: BAse + Typography > general layout + grid > page layout > components
       @content;
     } //600px
   }
-  @if $breakpoint == tab-port {
-    @media (max-width: 56.25em) {
+  @if $breakpoint == big-phone {
+    @media (max-width: 47.9375em) {
       @content;
-    } //900px
+    } //767px
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 63.9375em) {
+      @content;
+    } //1023px
   }
   @if $breakpoint == tab-land {
     @media (max-width: 75em) {

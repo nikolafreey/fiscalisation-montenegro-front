@@ -18,6 +18,11 @@ $translateX: 0;
     top: 1.5rem;
     left: 0;
   }
+  @include respond(phone){
+    top: .8rem;
+    z-index: 100000;
+    left: 10px;
+  }
 
   .line {
     background: currentcolor;
@@ -43,5 +48,8 @@ $translateX: 0;
     .line-2 {
         transform: rotate(-45deg) translate(4.59px, -4.59px);
     }
+  }
+  &.active-mob {
+    
   }
 }

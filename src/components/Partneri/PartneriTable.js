@@ -40,6 +40,7 @@ const PartneriTable = ({ partneri }) => {
               renderItem={PartneriTableRow}
               onItemClick={(item) => dispatch(setPartner(item))}
               selectedId={selectedPartner.id}
+              key={partneri.preduzece?.id}
             />
           </tbody>
         </table>

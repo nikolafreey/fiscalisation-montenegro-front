@@ -105,14 +105,14 @@ const Racuni = () => {
 
   return (
     <>
-      <div className="title">
+      <div className="title jc-sb">
         <h1 className="heading-primary">Izlazni računi</h1>
 
         <div className="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
             <button
-              className="btn btn__dark btn__xl"
-              style={{ width: '22rem' }}
+              className="btn btn__dark"
+              
             >
               <ButtonPlusSvg />
               Novi gotovinski račun
@@ -120,8 +120,8 @@ const Racuni = () => {
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
             <button
-              className="btn btn__dark btn__xl"
-              style={{ width: '22rem' }}
+              className="btn btn__dark"
+             
             >
               <ButtonPlusSvg />
               Novi bezgotovisnki račun

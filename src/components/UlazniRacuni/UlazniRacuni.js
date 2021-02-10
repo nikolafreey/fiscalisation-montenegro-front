@@ -124,10 +124,10 @@ const UlazniRacuni = () => {
 
   return (
     <>
-      <div className="title">
+      <div className="title jc-sb">
         <h1 className="heading-primary">Ulazni računi</h1>
         <Link exact to={ULAZNI_RACUNI.CREATE}>
-          <button className="btn btn__dark btn__xl">
+          <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi ulazni račun
           </button>

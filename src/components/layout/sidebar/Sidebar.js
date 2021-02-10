@@ -8,7 +8,7 @@ import {
   RACUNI,
   ULAZNI_RACUNI,
   USLUGE,
-  STAVKE
+  STAVKE,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
@@ -29,9 +29,13 @@ import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska
 
 const Sidebar = () => {
   return (
-    <div className="col-md-3">
-      <div className="sidebar">
-        <div className="logo">računi</div>
+    <div class="col-md-1 col-xl-3" id="sidebar">
+      <div class="logo dshow">računi</div>
+      <div class="menu-icon">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+      </div>
+      <div class="sidebar">
         <ul className="items">
           <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
           <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />

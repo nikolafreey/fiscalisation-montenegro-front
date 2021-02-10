@@ -21,6 +21,9 @@
     width: 40px;
     height: 40px;
   }
+  &__primary {
+    stroke: $color-primary
+  }
   &__light {
     stroke: $color-content-light;
   }

@@ -41,7 +41,9 @@ const PreduzecaTable = ({ preduzeca }) => {
               renderItem={PreduzecaTableRow}
               onItemClick={(item) => dispatch(setPreduzece(item))}
               selectedId={selectedPreduzece?.id}
+              key={selectedPreduzece?.id}
             />
+           
           </tbody>
         </table>
       </div>

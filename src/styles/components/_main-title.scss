@@ -1,0 +1,38 @@
+.title {
+  display: flex;
+  //justify-content: space-between;
+  align-items: center;
+
+  button {
+    position: relative;
+    &:hover {
+      .drop-down {
+        top: 4.1rem;
+        right: 0;
+        display: block;
+        svg {
+          stroke: $color-text-light;
+        }
+      }
+    }
+  }
+}
+.main-link {
+  margin-top: 3rem;
+
+  svg {
+    margin-right: 2rem;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all 0.3s ease-in-out; /** Firefox **/
+    -o-transition: all 0.3s ease-in-out; /** Opera **/
+  }
+  &:hover {
+    svg {
+      transform: translate(-0.5rem, 0);
+      -webkit-transform: translate(-0.5rem, 0); /** Chrome & Safari **/
+      -o-transform: translate(-0.5rem, 0); /** Opera **/
+      -moz-transform: translate(-0.5rem, 0); /** Firefox **/
+    }
+  }
+}

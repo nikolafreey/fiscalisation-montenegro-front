@@ -27,6 +27,9 @@ body {
     font-weight: 600;
     backface-visibility: hidden;
     margin: 3rem 0;
+    @include respond(phone){
+      font-size: $font-size-secondary;
+    }
   }
   .heading-secondary{
     color: $color-text-dark;

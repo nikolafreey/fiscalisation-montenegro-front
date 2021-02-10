@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: $font-size-default;
+  font-weight: 600;
   padding: 0.8rem 1.2rem;
   border: none;
   border-radius: 4px;
@@ -68,15 +69,15 @@
       margin-bottom: 2rem;
       margin-left: 1rem;
       color: $color-danger-dark;
+      @include respond(phone){
+        margin-left: unset;
+      }
     }
     &.success{
       color: $color-link-dark;
     }
     &:focus {
       outline: none;
-    }
-    &a {
-      color: #111827;
     }
   }
 

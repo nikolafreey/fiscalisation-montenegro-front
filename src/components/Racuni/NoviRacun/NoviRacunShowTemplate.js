@@ -34,7 +34,7 @@ const NoviRacunShowTemplate = () => {
         </Link>
       </div>
 
-      <div className="title">
+      <div className="title jc-sb">
         <div className="df jc-end" style={{ width: '100%' }}>
           <button className="btn btn__transparent  mr-m" onClick={handlePrint}>
             <svg

@@ -2,6 +2,10 @@
     display: flex;
     justify-content: flex-end;
 
+    @include respond(phone){
+        justify-content: unset;
+    }
+
     &__btn-left, &__btn-right, &__btn{
         display: flex;
         justify-content: center;

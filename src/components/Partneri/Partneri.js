@@ -51,24 +51,24 @@ const Partneri = () => {
 
   return (
     <>
+      <div className="title jc-sb">
+        <h1 className="heading-primary">Partneri</h1>
+        <button className="btn btn__dark">
+          <PlusLightSvg />
+          Novi partner
+          <div className="drop-down" id="ddl">
+            <Link to={PREDUZECA.CREATE}>
+              <PreduzeceSvg />
+              Preduzeće
+            </Link>
+            <Link to={FIZICKA_LICA.CREATE}>
+              <UserSvg />
+              Fizičko lice
+            </Link>
+          </div>
+        </button>
+      </div>
       <div className="screen-content-info">
-        <div className="title">
-          <h1 className="heading-primary">Partneri</h1>
-          <button className="btn btn__dark btn__xl">
-            <PlusLightSvg />
-            Novi partner
-            <div className="drop-down" id="ddl">
-              <Link to={PREDUZECA.CREATE}>
-                <PreduzeceSvg />
-                Preduzeće
-              </Link>
-              <Link to={FIZICKA_LICA.CREATE}>
-                <UserSvg />
-                Fizičko lice
-              </Link>
-            </div>
-          </button>
-        </div>
         <div className="main-content__box">
           <div className="content">
             <div className="main-content__search-wrapper df">

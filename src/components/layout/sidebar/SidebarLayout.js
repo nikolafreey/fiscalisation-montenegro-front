@@ -7,7 +7,7 @@ const SidebarLayout = () => {
   return (
     <div className="row">
       <Sidebar/>
-      <div className="col-md-9">
+      <div class="col-md-11 col-xl-9 col-xs-12" id="main-content">
         <Navbar/>
         <SidebarRouter/>
       </div>

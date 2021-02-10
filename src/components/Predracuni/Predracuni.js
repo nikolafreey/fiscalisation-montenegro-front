@@ -126,10 +126,10 @@ const Predracuni = () => {
 
   return (
     <>
-      <div className="title">
+      <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
         <Link exact to={PREDRACUNI.INDEX}>
-          <button className="btn btn__dark btn__xl">
+          <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi predračun
           </button>
