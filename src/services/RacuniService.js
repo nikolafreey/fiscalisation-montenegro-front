@@ -5,6 +5,7 @@ const ENDPOINTS = {
   RACUN: 'racuni/{id}',
   ROBE: 'robe-racuni',
   STATUS: 'racuni-status',
+  PDV: 'racuni-pdv',
   USLUGE: 'usluge',
   ATRIBUTI_GRUPE: 'atributi-grupe',
 };
@@ -14,6 +15,8 @@ class RacuniService extends ApiService {
 
   getRacuniStatus = (params) =>
     this.apiClient.get(ENDPOINTS.STATUS, { params });
+
+  getRacuniPdv = (params) => this.apiClient.get(ENDPOINTS.PDV, { params });
 
   storeRacun = (noviRacun) => {
     const usluge = Object.keys(noviRacun.usluge).map((uslugaId) => ({

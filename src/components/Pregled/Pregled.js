@@ -4,14 +4,22 @@ import { ReactComponent as IconPrimary } from '../../assets/icon/icon_primary.sv
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
 import { racuniService } from '../../services/RacuniService';
+import { ulazniRacuniService } from '../../services/UlazniRacuniService';
 
 const Pregled = () => {
   const [racuni, setRacuni] = useState();
+  const [racuniPdv, setRacuniPdv] = useState();
+  const [ulazniRacuniPdv, setUlazniRacuniPdv] = useState();
 
   useEffect(() => {
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
+    racuniService.getRacuniPdv().then((resp) => setRacuniPdv(resp.data));
+    ulazniRacuniService
+      .getUlazniRacuniPdv()
+      .then((resp) => setUlazniRacuniPdv(resp.data));
   }, []);
-  console.log('racuni Pregled: ', racuni);
+  console.log('racuni PDV: ', racuniPdv);
+  console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
 
   return (
     <>
@@ -207,11 +215,17 @@ const Pregled = () => {
                       </i>
                       <div className="box-dashboard__top">
                         <span className="txt-light txt-up fw-500">
-                          PDV za maj
+                          PDV za{' '}
+                          <Moment locale="me" format="MMMM">
+                            {new Date()}
+                          </Moment>
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">130,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {racuniPdv?.ukupan_iznos_poslednji_mjesec.toFixed(2)}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -231,7 +245,10 @@ const Pregled = () => {
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">168,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {' '}
+                          {racuniPdv?.ukupan_iznos_pdv.toFixed(2)} €
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -251,7 +268,9 @@ const Pregled = () => {
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
-                        <h2 className="heading-secondary df">28,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {ulazniRacuniPdv?.ukupan_iznos_pdv.toFixed(2)} €
+                        </h2>
                       </div>
                     </div>
                   </div>

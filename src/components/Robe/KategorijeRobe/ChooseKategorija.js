@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getKategorijeRobe } from '../../../store/actions/KategorijeRobeActions';
 import { kategorijeRobeSelector } from '../../../store/selectors/KategorijeRobeSelector';
@@ -7,8 +7,12 @@ import { omit } from 'lodash';
 
 const ChooseKategorija = (props) => {
   const dispatch = useDispatch();
+  const checkboxKategorije = useRef();
 
   const kategorije = props.kategorije; //useSelector(kategorijeRobeSelector());
+
+  console.log('editKategorije', props.editKategorije);
+  console.log('Kategorije', kategorije);
 
   const { values, setFieldValue } = useFormikContext();
 
@@ -40,8 +44,10 @@ const ChooseKategorija = (props) => {
       );
   };
 
+  console.log('checkboxKategorije', checkboxKategorije);
+
   return kategorije.map((kategorija, index) => (
-    <div key={kategorija.id}>
+    <div ref={checkboxKategorije} key={kategorija.id}>
       <li className="item-check">
         <div className="form__checkbox-group">
           <input
@@ -49,7 +55,14 @@ const ChooseKategorija = (props) => {
             type="checkbox"
             name="kategorije"
             value={kategorija.id}
-            checked={values.kategorije[kategorija.id]}
+            checked={
+              (Object.keys(props?.editKategorije).length !== 0 &&
+                values.kategorije[
+                  props?.editKategorije?.robe_kategorije_podkategorije[0]
+                    ?.kategorija_robe_id
+                ]) ||
+              values?.kategorije[kategorija.id]
+            }
             onChange={(event) =>
               handleChangeKategorija(event.target.checked, kategorija)
             }
