@@ -378,7 +378,7 @@ const Pregled = () => {
                         <h3 className="heading-tertiary df">
                           <img
                             src={
-                              (najveciKupci && najveciKupci[0]?.logotip) ||
+                              (najveciKupci && najveciKupci[1]?.logotip) ||
                               'https://picsum.photos/seed/picsum/200/300'
                             }
                             alt=""
@@ -404,20 +404,20 @@ const Pregled = () => {
                         <h3 className="heading-tertiary df">
                           <img
                             src={
-                              (najveciKupci && najveciKupci[0]?.logotip) ||
+                              (najveciKupci && najveciKupci[2]?.logotip) ||
                               'https://picsum.photos/seed/picsum/200/300'
                             }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          {(najveciKupci && najveciKupci[1]?.kratki_naziv) ||
+                          {(najveciKupci && najveciKupci[2]?.kratki_naziv) ||
                             '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
                         <h2 className="heading-secondary df">
-                          {(najveciKupci && najveciKupci[3]?.ukupan_promet) ||
+                          {(najveciKupci && najveciKupci[2]?.ukupan_promet) ||
                             0.0}{' '}
                           €
                         </h2>
@@ -434,16 +434,26 @@ const Pregled = () => {
                       <div className="box-dashboard__top">
                         <h3 className="heading-tertiary df">
                           <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src={
+                              (najveciDuznici && najveciDuznici[0]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          Mašinopromet
+                          {(najveciDuznici &&
+                            najveciDuznici[0]?.kratki_naziv) ||
+                            '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
-                        <h2 className="heading-secondary df">1168,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {(najveciDuznici &&
+                            najveciDuznici[0]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -452,16 +462,54 @@ const Pregled = () => {
                       <div className="box-dashboard__top">
                         <h3 className="heading-tertiary df">
                           <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src={
+                              (najveciDuznici && najveciDuznici[1]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          Telekom
+                          {(najveciDuznici &&
+                            najveciDuznici[1]?.kratki_naziv) ||
+                            '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
-                        <h2 className="heading-secondary df">987,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {(najveciDuznici &&
+                            najveciDuznici[1]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="box-dashboard">
+                      <div className="box-dashboard__top">
+                        <h3 className="heading-tertiary df">
+                          <img
+                            src={
+                              (najveciDuznici && najveciDuznici[3]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
+                            alt=""
+                            className="img-round sm mr-s"
+                          />
+                          {(najveciDuznici &&
+                            najveciDuznici[3]?.kratki_naziv) ||
+                            '-'}
+                        </h3>
+                      </div>
+                      <div className="box-dashboard__btm">
+                        <p className="txt-light">total:</p>
+                        <h2 className="heading-secondary df">
+                          {(najveciDuznici &&
+                            najveciDuznici[3]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>
