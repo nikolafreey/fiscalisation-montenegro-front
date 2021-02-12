@@ -10,16 +10,24 @@ const Pregled = () => {
   const [racuni, setRacuni] = useState();
   const [racuniPdv, setRacuniPdv] = useState();
   const [ulazniRacuniPdv, setUlazniRacuniPdv] = useState();
+  const [najveciKupci, setNajveciKupci] = useState();
+  const [najveciDuznici, setNajveciDuznici] = useState();
 
   useEffect(() => {
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
     racuniService.getRacuniPdv().then((resp) => setRacuniPdv(resp.data));
+    racuniService.getRacuniKupci().then((resp) => setNajveciKupci(resp.data));
+    racuniService
+      .getRacuniDuznici()
+      .then((resp) => setNajveciDuznici(resp.data));
     ulazniRacuniService
       .getUlazniRacuniPdv()
       .then((resp) => setUlazniRacuniPdv(resp.data));
   }, []);
   console.log('racuni PDV: ', racuniPdv);
   console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
+  console.log('najveciKupci: ', najveciKupci);
+  console.log('najveciDuznici: ', najveciDuznici);
 
   return (
     <>
@@ -296,7 +304,11 @@ const Pregled = () => {
                               />
                             </svg>
                           </i>
-                          168,00 €
+                          {(
+                            racuniPdv?.poredjenje_pdv -
+                            racuniPdv?.ukupan_iznos_poslednji_mjesec
+                          ).toFixed(2)}{' '}
+                          €
                         </h2>
                         <span className="right txt-light">maj 2020</span>
                       </div>
@@ -306,7 +318,7 @@ const Pregled = () => {
                     <div className="box-dashboard">
                       <div className="box-dashboard__top">
                         <span className="txt-light txt-up fw-500">
-                          Izdati računi
+                          Primljeni računi
                         </span>
                       </div>
                       <div className="box-dashboard__btm">
@@ -319,7 +331,11 @@ const Pregled = () => {
                               />
                             </svg>
                           </i>
-                          168,00 €
+                          {(
+                            ulazniRacuniPdv?.poredjenje_pdv -
+                            ulazniRacuniPdv?.ukupan_iznos_poslednji_mjesec
+                          ).toFixed(2)}{' '}
+                          €
                         </h2>
                         <span className="right txt-light">maj 2020</span>
                       </div>
@@ -335,16 +351,24 @@ const Pregled = () => {
                       <div className="box-dashboard__top">
                         <h3 className="heading-tertiary df">
                           <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src={
+                              (najveciKupci && najveciKupci[0]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          Efel Motors
+                          {(najveciKupci && najveciKupci[0]?.kratki_naziv) ||
+                            '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
-                        <h2 className="heading-secondary df">1168,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {(najveciKupci && najveciKupci[0]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -353,16 +377,24 @@ const Pregled = () => {
                       <div className="box-dashboard__top">
                         <h3 className="heading-tertiary df">
                           <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src={
+                              (najveciKupci && najveciKupci[0]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          Bonella
+                          {(najveciKupci && najveciKupci[1]?.kratki_naziv) ||
+                            '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
-                        <h2 className="heading-secondary df">987,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {(najveciKupci && najveciKupci[1]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>
@@ -371,16 +403,24 @@ const Pregled = () => {
                       <div className="box-dashboard__top">
                         <h3 className="heading-tertiary df">
                           <img
-                            src="https://picsum.photos/seed/picsum/200/300"
+                            src={
+                              (najveciKupci && najveciKupci[0]?.logotip) ||
+                              'https://picsum.photos/seed/picsum/200/300'
+                            }
                             alt=""
                             className="img-round sm mr-s"
                           />
-                          Tre lecce
+                          {(najveciKupci && najveciKupci[1]?.kratki_naziv) ||
+                            '-'}
                         </h3>
                       </div>
                       <div className="box-dashboard__btm">
                         <p className="txt-light">total:</p>
-                        <h2 className="heading-secondary df">564,00 €</h2>
+                        <h2 className="heading-secondary df">
+                          {(najveciKupci && najveciKupci[3]?.ukupan_promet) ||
+                            0.0}{' '}
+                          €
+                        </h2>
                       </div>
                     </div>
                   </div>

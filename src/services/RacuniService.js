@@ -6,6 +6,8 @@ const ENDPOINTS = {
   ROBE: 'robe-racuni',
   STATUS: 'racuni-status',
   PDV: 'racuni-pdv',
+  KUPCI: 'racuni-najveci-kupci',
+  DUZNICI: 'racuni-najveci-duznici',
   USLUGE: 'usluge',
   ATRIBUTI_GRUPE: 'atributi-grupe',
 };
@@ -15,6 +17,11 @@ class RacuniService extends ApiService {
 
   getRacuniStatus = (params) =>
     this.apiClient.get(ENDPOINTS.STATUS, { params });
+
+  getRacuniKupci = (params) => this.apiClient.get(ENDPOINTS.KUPCI, { params });
+
+  getRacuniDuznici = (params) =>
+    this.apiClient.get(ENDPOINTS.DUZNICI, { params });
 
   getRacuniPdv = (params) => this.apiClient.get(ENDPOINTS.PDV, { params });
 
