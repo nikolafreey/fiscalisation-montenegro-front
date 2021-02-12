@@ -26,7 +26,8 @@ const RadioButton = (props) => {
                   />
                   <label className="form__radio-label" htmlFor={option.value}>
                     <span className="form__radio-button"></span>
-                    {option.key}
+                    <span className="mob-ml-10">{option.key}</span>
+                    
                   </label>
                 </div>
               </React.Fragment>

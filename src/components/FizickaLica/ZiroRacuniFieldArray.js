@@ -38,12 +38,12 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           <InputField
             label=""
             obavezno
-            className="form__input w-50 mb-20"
+            className="form__input half-wd-full-tab mb-20 mob-mr-10"
             name={`ziro_racuni.${index}.broj_racuna`}
           />
           <span className="form__span">{getBank(ziro_racun.broj_racuna)}</span>
           <button
-            className="btn btn__link warning"
+            className="btn btn__link danger"
             type="button"
             onClick={() => remove(index)}
           >
@@ -51,7 +51,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           </button>
         </div>
       ))}
-      <div className="df ai-c">
+      <div className="pr df ai-c">
         <button
           type="button"
           className="btn btn__link df"

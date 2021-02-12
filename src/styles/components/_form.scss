@@ -1,6 +1,11 @@
 .form {
   position: relative;
   position: relative;
+
+  hr {
+    margin: 2.5rem 0!important;
+  }
+
   &__group {
     @include respond(phone) {
       margin-bottom: 2rem !important;
@@ -110,7 +115,7 @@
 
     &:focus {
       outline: none;
-      padding: 0.93rem;
+      padding: .92rem;
       border: 2px solid $color-text-light;
       border-radius: 4px;
     }
@@ -290,11 +295,10 @@
     margin-top: 2rem;
     background-color: $color-content-light;
   }
-  hr {
-    margin: 2.5rem 0;
-  }
+ 
 
   &__map {
+    position: relative;
     width: 100%;
     height: 30rem;
     border-radius: 4px;

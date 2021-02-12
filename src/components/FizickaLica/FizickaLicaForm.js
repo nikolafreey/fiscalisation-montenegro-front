@@ -85,19 +85,19 @@ const FizickaLicaForm = () => {
           <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
           <div className="main-content__box">
             <div className="content">
-              <Form>
+              <Form className="form">
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4 mt-25">
                       <h2 className="heading-secondary">Informacije</h2>
-                      <p>
+                      <p className="txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8 mtb-25">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ime"
                             obavezno={true}
@@ -105,7 +105,7 @@ const FizickaLicaForm = () => {
                             label={$t('fizickalica.ime')}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="prezime"
                             obavezno={true}
@@ -121,8 +121,8 @@ const FizickaLicaForm = () => {
                           className="form__input w-100"
                         />
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="jmbg"
                             obavezno={true}
@@ -130,7 +130,7 @@ const FizickaLicaForm = () => {
                             label={$t('fizickalica.jmbg')}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ib"
                             obavezno={true}
@@ -146,15 +146,15 @@ const FizickaLicaForm = () => {
                           label={$t('fizickalica.adresa')}
                         />
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="grad"
                             className="form__input"
                             label={$t('fizickalica.grad')}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="drzava"
                             className="form__input"
@@ -163,15 +163,15 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
 
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="nacionalnost"
                             className="form__input"
                             label={$t('fizickalica.nacionalnost')}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             className="form__input"
                             name="drzavljanstvo"
@@ -180,16 +180,16 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
 
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="preduzece_id"
-                            className="form__input"
+                            // className="form__input"
                             label={$t('fizickalica.preduzece_id')}
                             loadOptions={preduzecaService.getPreduzecaDropdown}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="radno_mjesto"
                             className="form__input"
@@ -228,7 +228,7 @@ const FizickaLicaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Tekući računi</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
@@ -249,55 +249,59 @@ const FizickaLicaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8">
                       <div className="df jc-sb mb-20">
-                        <div className="form__group w-100">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="telefon"
                             obavezno={true}
-                            className="form__input w-48"
+                            className="form__input"
                             label={$t('fizickalica.telefon')}
                           />
+                          <div className="form__checkbox-groups-wrapper">
+                            <div className="form__checkbox-group">
+                              <Checkbox
+                                name="telefon_whatsapp"
+                                label={$t('fizickalica.whatsapp')}
+                                placeholder=""
+                                // className="form__checkbox"
+                                type="checkbox"
+                                id="telefon_whatsap"
+                              />
+                            </div>
+                            <div className="form__checkbox-group">
+                              <Checkbox
+                                name="telefon_viber"
+                                label={$t('fizickalica.viber')}
+                                placeholder=""
+                                // className="form__checkbox"
+                                type="checkbox"
+                                id="telefon_viber"
+                              />
+                            </div>
+                            <div className="form__checkbox-group">
+                              <Checkbox
+                                name="telefon_facetime"
+                                label={$t('fizickalica.facetime')}
+                                placeholder=""
+                                // className="form__checkbox"
+                                type="checkbox"
+                                id="telefon_facetime"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div className="df ai-c jc-sb">
-                        <div className="form__checkbox-group">
-                          <Checkbox
-                            name="telefon_whatsapp"
-                            label={$t('fizickalica.whatsapp')}
-                            placeholder=""
-                            // className="form__checkbox"
-                            type="checkbox"
-                          />
-                        </div>
-                        <div className="form__checkbox-group">
-                          <Checkbox
-                            name="telefon_viber"
-                            label={$t('fizickalica.viber')}
-                            placeholder=""
-                            // className="form__checkbox"
-                            type="checkbox"
-                          />
-                        </div>
-                        <div className="form__checkbox-group">
-                          <Checkbox
-                            name="telefon_facetime"
-                            label={$t('fizickalica.facetime')}
-                            placeholder=""
-                            // className="form__checkbox"
-                            type="checkbox"
-                          />
-                        </div>
-                      </div>
+
                       <div className="df fd-column">
                         <div className="form__group w-100">
                           <InputField
-                            className="form__input w-48"
+                            className="form__input w-48 mob-w-100"
                             name="email"
                             label={$t('fizickalica.email')}
                           />
@@ -305,7 +309,7 @@ const FizickaLicaForm = () => {
 
                         <div className="form__group w-100">
                           <InputField
-                            className="form__input w-48"
+                            className="form__input w-48 mob-w-100"
                             name="cv_link"
                             label={$t('fizickalica.cv_link')}
                           />
@@ -319,7 +323,7 @@ const FizickaLicaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Status</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
@@ -339,21 +343,34 @@ const FizickaLicaForm = () => {
                             options={statusOptions}
                           /> */}
                         <div className="form__radio-group">
-                          <input type="radio" value="Aktivan" name="status" />
-                          <label
-                            htmlFor="Aktivan"
-                            className="form__radio-label"
-                          >
-                            Aktivan
+                          {/* <input type="radio" value="Aktivan" name="status" /> */}
+                          <input
+                            type="radio"
+                            className="form__radio-input"
+                            id="active"
+                            value="Aktivan"
+                            name="status"
+                          />
+                          <label htmlFor="active" className="form__radio-label">
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Aktivan</span>
                           </label>
                         </div>
                         <div className="form__radio-group">
-                          <input type="radio" value="Neaktivan" name="status" />
+                          {/* <input type="radio" value="Neaktivan" name="status" /> */}
+                          <input
+                            type="radio"
+                            className="form__radio-input"
+                            id="inActive"
+                            value="Neaktivan"
+                            name="status"
+                          />
                           <label
-                            htmlFor="Neaktivan"
+                            htmlFor="inActive"
                             className="form__radio-label"
                           >
-                            Neaktivan
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Neaktivan</span>
                           </label>
                         </div>
                       </div>

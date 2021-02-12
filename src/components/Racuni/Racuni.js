@@ -110,19 +110,13 @@ const Racuni = () => {
 
         <div className="df w-50 jc-end">
           <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
-            <button
-              className="btn btn__dark"
-              
-            >
+            <button className="btn btn__dark">
               <ButtonPlusSvg />
               Novi gotovinski račun
             </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button
-              className="btn btn__dark"
-             
-            >
+            <button className="btn btn__dark">
               <ButtonPlusSvg />
               Novi bezgotovisnki račun
             </button>
@@ -132,9 +126,9 @@ const Racuni = () => {
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df">
-            <div className="df jc-sb w-100">
-              <div className="search df ai-c w-53">
-                <form className="search">
+            <div class="df jc-sb w-100 mob-fd-column">
+              {/* <div className="search df ai-c w-53"> */}
+                <form className="search df ai-c w-45 mob-w-100">
                   <button className="search__button" type="submit"></button>
                   <input
                     name="search"
@@ -144,33 +138,33 @@ const Racuni = () => {
                     onChange={handleChange}
                   />
                 </form>
-              </div>
+              {/* </div> */}
               <Select
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="select w-20"
+                className="mob-w-100 w-20 mob-mt-10"
               />
 
-              <div className="select w-25 df">
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => handleStartDateChange(date)}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  className="select"
-                />
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => handleEndDateChange(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  className="select"
-                />
-              </div>
+              {/* <div className="select w-25 df"> */}
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => handleStartDateChange(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                className="select mob-w-100 mob-mt-10"
+              />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => handleEndDateChange(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                className="select mob-w-100 mob-mt-10"
+              />
+              {/* </div> */}
             </div>
             <div className="box-wrapper">
               <div className="box">
