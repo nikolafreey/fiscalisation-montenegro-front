@@ -1,10 +1,9 @@
 .fiscal-bill {
   position: relative;
-  font-family: "Inconsolata", monospace!important;
+  font-family: 'Inconsolata', monospace !important;
   font-size: 24px;
   background-color: $color-white;
-  // height: 100vh;
-  padding: 10px;
+  height: 100%;
 
   &__header {
     position: relative;
@@ -46,23 +45,22 @@
     }
   }
   &__footer {
-      position: relative;
-      &--qr-code {
-          text-align: center;
-          margin-top: 2rem;
-          img {
-              height: 12rem;
-              width: 12rem;
-          }
+    position: relative;
+    &--qr-code {
+      text-align: center;
+      margin-top: 2rem;
+      img {
+        height: 12rem;
+        width: 12rem;
       }
-      p {
-          font-size: 18px!important;
-      }
+    }
+    p {
+      font-size: 18px !important;
+    }
   }
 
   p {
     font-size: 24px;
     line-height: 25px;
   }
- 
 }

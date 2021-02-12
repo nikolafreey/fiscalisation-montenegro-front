@@ -1,14 +1,18 @@
-@mixin fontdef-inter($InterPath, /*$InterVersion,*/ $FontType: "Regular") {
-	src: url("../../fonts/Inter/#{$FontType}/Inter-#{$FontType}.woff2") format("woff2"),
-		url("../../fonts/Inter/#{$FontType}/Inter-#{$FontType}.woff") format("woff"),
-		url("../../fonts/Inter/#{$FontType}/Inter-#{$FontType}.otf") format("otf"),
-		// url("#{$InterPath}/#{$FontType}/Inter-#{$FontType}.ttf") format("ttf");
+@mixin fontdef-inter($InterPath, /*$InterVersion,*/ $FontType: 'Regular') {
+  src: url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff2')
+      format('woff2'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.woff') format('woff'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.otf') format('otf'),
+    url('#{$InterPath}/#{$FontType}/Inter-#{$FontType}.ttf') format('ttf');
 }
 
-
-@mixin fontdef-inconsolata($InconsolataPath, $FontType: "Regular") {
-	src: url("../../fonts/Inconsolata/#{$FontType}/Inconsolata-#{$FontType}.woff2") format("woff2"),
-		url("../../fonts/Inconsolata/#{$FontType}/Inconsolata-#{$FontType}.woff") format("woff"),
-		url("../../fonts/Inconsolata/#{$FontType}/Inconsolata-#{$FontType}.eot") format("eot");
-				// url("../../fonts/Inconsolata/#{$FontType}/Inconsolata-#{$FontType}.ttf") format("truetype"),
+@mixin fontdef-inconsolata($MontserratPath, $FontType: 'Regular') {
+  src: url('#{$InconsolataPath}/#{$FontType}/Inconsolata-#{$FontType}.woff2')
+      format('woff2'),
+    url('#{$InconsolataPath}/#{$FontType}/Inconsolata-#{$FontType}.woff')
+      format('woff'),
+    url('#{$InconsolataPath}/#{$FontType}/Inconsolata-#{$FontType}.ttf')
+      format('truetype'),
+    url('#{$InconsolataPath}/#{$FontType}/Inconsolata-#{$FontType}.eot')
+      format('eot');
 }

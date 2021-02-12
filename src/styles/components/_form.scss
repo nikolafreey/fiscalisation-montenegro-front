@@ -1,5 +1,11 @@
 .form {
   position: relative;
+  position: relative;
+  &__group {
+    @include respond(phone) {
+      margin-bottom: 2rem !important;
+    }
+  }
   &__group:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -14,6 +20,19 @@
     -webkit-border-radius: 4px;
     border: 1px solid $border-input-lines;
     width: 100%;
+    .heading-secondary {
+      @include respond(phone) {
+        margin-bottom: 0;
+        font-size: 18px;
+      }
+    }
+
+    @include respond(phone) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     h2 {
       position: absolute;
       bottom: 1rem;
@@ -25,7 +44,7 @@
     width: 100%;
     position: relative;
 
-    input[type="file"] {
+    input[type='file'] {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -35,7 +54,7 @@
       bottom: 0;
       opacity: 0;
       cursor: pointer;
-      &:focus{
+      &:focus {
         outline: none;
       }
     }
@@ -57,12 +76,12 @@
       background-color: $color-content-light;
     }
 
-    input[type="file"]:focus + .file-dummy {
+    input[type='file']:focus + .file-dummy {
       outline: 2px solid rgba(255, 255, 255, 0.5);
       outline: -webkit-focus-ring-color auto 5px;
     }
 
-    input[type="file"]:valid + .file-dummy {
+    input[type='file']:valid + .file-dummy {
       border-color: rgba(0, 255, 0, 0.4);
       background-color: rgba(0, 255, 0, 0.3);
 
@@ -74,7 +93,7 @@
       }
     }
   }
- 
+
   // input[type="checkbox"]{
   //   border: 1px solid violet;
   // }
@@ -91,7 +110,7 @@
 
     &:focus {
       outline: none;
-      padding: .9rem;
+      padding: 0.93rem;
       border: 2px solid $color-text-light;
       border-radius: 4px;
     }
@@ -104,15 +123,15 @@
 
     //   }
   }
-  &__span{
+  &__span {
     position: absolute;
-    top: .7rem;
+    top: 0.7rem;
     left: 41%;
     color: $color-text-light;
     background-color: $color-content-light;
 
-    @include respond(tab-land){
-      top: .5rem;
+    @include respond(tab-land) {
+      top: 0.5rem;
       left: unset;
       right: 6rem;
     }
@@ -129,22 +148,22 @@
   //     transform: translateY(-4rem);
   //   }
 
-  &__checkbox-groups-wrapper{
+  &__checkbox-groups-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    @include respond(tab-land){
+
+    @include respond(tab-land) {
       flex-direction: column;
       align-items: flex-start;
     }
   }
-  &__checkbox-group{
+  &__checkbox-group {
     margin-top: 1rem;
     display: flex;
     align-items: center;
   }
-  &__checkbox{
+  &__checkbox {
     position: absolute;
     opacity: 0;
     // width: 1.5rem;
@@ -156,11 +175,11 @@
       position: relative;
       cursor: pointer;
       padding: 0;
-      &:focus{
+      &:focus {
         outline: none;
       }
     }
-  
+
     // Box.
     & + label:before {
       content: '';
@@ -170,50 +189,45 @@
       width: 20px;
       height: 20px;
       background: $color-content-light;
-      border-radius:4px;
-      border:1px solid $border-input-lines;
-      
+      border-radius: 4px;
+      border: 1px solid $border-input-lines;
     }
-  //   // Box focus
-  // &:focus + label:before {
-  //   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
-  // }
+    //   // Box focus
+    // &:focus + label:before {
+    //   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    // }
 
-  // Box checked
-  &:checked + label:before {
-    background: $color-link-dark;
-  }
-  
-  // Disabled state label.
-  &:disabled + label {
-    color: #b8b8b8;
-    cursor: auto;
-  }
+    // Box checked
+    &:checked + label:before {
+      background: $color-link-dark;
+    }
 
-  // Disabled box.
-  &:disabled + label:before {
-    box-shadow: none;
-    background: #ddd;
-  }
+    // Disabled state label.
+    &:disabled + label {
+      color: #b8b8b8;
+      cursor: auto;
+    }
 
-  // Checkmark. Could be replaced with an image
-  &:checked + label:after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 12px;
-    background: $color-white;
-    width: 2px;
-    height: 2px;
-    box-shadow: 
-      2px 0 0  $color-white,
-      4px 0 0  $color-white,
-      4px -2px 0  $color-white,
-      4px -4px 0  $color-white,
-      4px -6px 0  $color-white,
-      4px -8px 0  $color-white;
-    transform: rotate(45deg);
-  }
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 12px;
+      background: $color-white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 2px 0 0 $color-white, 4px 0 0 $color-white,
+        4px -2px 0 $color-white, 4px -4px 0 $color-white,
+        4px -6px 0 $color-white, 4px -8px 0 $color-white;
+      transform: rotate(45deg);
+    }
   }
   // &__checkbox-label{
   //   margin-left: .7rem;
@@ -229,6 +243,11 @@
     cursor: pointer;
     position: relative;
     padding-left: 2.5rem;
+
+    @include respond(phone) {
+      display: flex;
+      align-items: center;
+    }
   }
   &__radio-button {
     height: 1.5rem;
@@ -239,9 +258,14 @@
     position: absolute;
     left: 0;
     top: 0;
+    @include respond(phone) {
+      height: 2.5rem;
+      width: 2.5rem;
+      display: flex;
+    }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       height: 1.5rem;
       width: 1.5rem;
@@ -260,13 +284,13 @@
     opacity: 1;
   }
 
-  &__footer{
+  &__footer {
     display: flex;
     padding: 2rem 1.5rem;
     margin-top: 2rem;
     background-color: $color-content-light;
   }
-  hr{
+  hr {
     margin: 2.5rem 0;
   }
 

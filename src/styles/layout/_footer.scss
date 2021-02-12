@@ -1,0 +1,60 @@
+.footer-wrapper {
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+  @include respond(phone) {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+  }
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include respond(phone) {
+    flex-direction: column;
+    justify-content: unset;
+    align-items: unset;
+  }
+  &__left {
+    display: flex;
+    align-items: center;
+    &--logo {
+      svg {
+        width: auto;
+        height: 20px;
+        path {
+          fill: $color-primary;
+        }
+      }
+    }
+    p {
+      color: $color-primary;
+      margin-left: 1rem;
+    }
+  }
+  &__right {
+    display: flex;
+    a {
+      display: flex;
+      align-items: center;
+      @include respond(phone) {
+        align-items: baseline;
+        width: 80%;
+      }
+      span {
+        margin-left: 1rem;
+        @include respond(phone) {
+          display: flex;
+          align-self: center;
+        }
+      }
+      svg {
+        height: 22px;
+        width: 22px;
+        @include respond(phone) {
+          padding-top: 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,74 +1,76 @@
 body {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: $font-size-default;
-    line-height: 1.7;
-    color: $color-text-dark;
-    background-color: $color-background-light;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: $font-size-default;
+  line-height: 1.7;
+  color: $color-text-dark;
+  background-color: $color-background-light;
 
-    @include respond(tab-land){
-      font-size: $font-size-default-tab;
-    }
-    
+  @include respond(tab-land) {
+    font-size: $font-size-default-tab;
   }
-  p{
-    font-size: $font-size-default;
-    @include respond(tab-land){
-      font-size: $font-size-default-tab;
-    }
+}
+p {
+  font-size: $font-size-default;
+  @include respond(tab-land) {
+    font-size: $font-size-default-tab;
   }
-  a{
-    color: $color-link-light;
-    text-decoration: none;
-  }
-  .heading-primary {
-    color: $color-text-dark;
-    font-size: $font-size-primary;
-    font-weight: 600;
-    backface-visibility: hidden;
-    margin: 3rem 0;
-  }
-  .heading-secondary{
-    color: $color-text-dark;
+}
+a {
+  color: $color-link-light;
+  text-decoration: none;
+}
+.heading-primary {
+  color: $color-text-dark;
+  font-size: $font-size-primary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin: 3rem 0;
+  @include respond(phone) {
     font-size: $font-size-secondary;
-    font-weight: 600;
-    backface-visibility: hidden;
-    margin-bottom: 2.5rem;
   }
-  .heading-tertiary{
-    color: $color-text-dark;
-    font-weight: 600;
-    font-size: $font-size-tertiary;
-    //text-transform: uppercase;
-  }
-  .heading-quaternary{
-    color:$color-text-light;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: $font-size-quatenary;
-  }
-  .span-light {
-    font-size: $font-size-default;
-    font-weight: 400;
-    color: $color-text-light;
-  }
+}
+.heading-secondary {
+  color: $color-text-dark;
+  font-size: $font-size-secondary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin-bottom: 2.5rem;
+}
+.heading-tertiary {
+  color: $color-text-dark;
+  font-weight: 600;
+  font-size: $font-size-tertiary;
+  //text-transform: uppercase;
+}
+.heading-quaternary {
+  color: $color-text-light;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: $font-size-quatenary;
+}
+.span-light {
+  font-size: $font-size-default;
+  font-weight: 400;
+  color: $color-text-light;
+}
 
-  hr{
-    border: 0;
-    height: 1px;
-    background-color: $color-hover;
-    margin-bottom: 2.5rem;
+hr {
+  border: 0;
+  height: 1px;
+  background-color: $color-hover;
+  margin-bottom: 2.5rem;
 
-    // @include respond(tab-land){
-    //   width: 100%;
-    // }
-  }
-  .border-radius{
-    border-radius: 4px;
-  }
-  .txt-light {
-    color: $color-text-light;
-  }
-  .txt-dark{
-    color: $color-text-dark!important;
-  }
+  // @include respond(tab-land){
+  //   width: 100%;
+  // }
+}
+.border-radius {
+  border-radius: 4px;
+}
+.txt-light {
+  color: $color-text-light;
+}
+.txt-dark {
+  color: $color-text-dark !important;
+}

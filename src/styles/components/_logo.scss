@@ -2,10 +2,14 @@
   font-size: $font-size-secondary;
   font-weight: 600;
   padding: 1.5rem 2rem;
-  margin-bottom: 3rem;
+  //margin-bottom: 3rem;
 
   @include respond(tab-land) {
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    margin-bottom: unset;
+    padding: 1.2rem 3rem 1.2rem 0;
+  }
+  @include respond(phone) {
+    padding: 1.2rem 1rem 1.2rem 5rem;
   }
 }

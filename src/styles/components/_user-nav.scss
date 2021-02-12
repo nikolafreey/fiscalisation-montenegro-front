@@ -25,9 +25,16 @@
     padding: 1rem;
     cursor: pointer;
 
+    @include respond(phone) {
+      padding: 1rem 0 1rem 1rem;
+    }
+
     &--text {
       font-size: 14px;
       margin-right: 1rem;
+      @include respond(phone) {
+        display: none;
+      }
     }
     &--img {
       position: relative;
@@ -50,7 +57,7 @@
         right: 0;
         display: block;
         @include respond(big-desktop) {
-          top: 5.1rem
+          top: 5.1rem;
         }
         // svg{
         //   stroke: $color-text-light;

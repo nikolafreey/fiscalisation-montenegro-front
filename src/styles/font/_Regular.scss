@@ -1,17 +1,17 @@
 /* BEGIN Regular */
 @font-face {
-	font-family: "Inter";
-	@include fontdef-inter($InterPath, "Regular");
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Inter';
+  @include fontdef-inter($InterPath, 'Regular');
+  font-weight: normal;
+  font-style: normal;
 }
 /* END Regular */
 
 /* BEGIN Regular */
 @font-face {
-	font-family: "Inconsolata";
-	@include fontdef-inconsolata($InconsolataPath, "Regular");
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Inconsolata';
+  @include fontdef-inconsolata($InconsolataPath, 'Regular');
+  font-weight: normal;
+  font-style: normal;
 }
 /* END Regular */

@@ -9,6 +9,18 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     margin-bottom: 3rem;
+    .heading-secondary {
+      @include respond(phone) {
+        margin-bottom: 0.5rem;
+        line-height: 30px;
+      }
+    }
+
+    .pr-0 {
+      @include respond(phone) {
+        padding-right: 15px !important;
+      }
+    }
 
     &--inner-wrapper,
     &--header,
@@ -16,8 +28,18 @@
       padding: 1.2rem;
     }
     &--inner-wrapper {
-      .form__box{
+      .heading-secondary {
+        @include respond(phone) {
+          margin-bottom: 0.5rem;
+          line-height: 30px;
+        }
+      }
+      .form__box {
         height: 8rem;
+
+        @include respond(phone) {
+          height: 9rem;
+        }
       }
     }
     &--header {
@@ -101,25 +123,8 @@
     }
   }
 }
-
-.select {
-  background-color: $color-background-input;
-  color: $color-text-dark;
-  font-size: $font-size-default;
-  padding: 1rem;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border: 1px solid $border-input-lines;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.react-datepicker-wrapper{
-  width: 100%;
-  margin-top: 20px;
-}
 #main-content {
   // position: absolute;
   //left: 13rem;
-  transition: left .2s cubic-bezier(.17,.67,.83,.67);
+  transition: left 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }

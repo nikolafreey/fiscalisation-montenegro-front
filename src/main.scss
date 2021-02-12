@@ -6,7 +6,7 @@
 @import 'styles/base/typography';
 @import 'styles/base/utility';
 
-@import 'styles/font/inter.scss';
+// @import 'styles/font/inter-inconsolata.scss';
 
 @import 'styles/components/box';
 @import 'styles/components/button';
@@ -17,6 +17,8 @@
 @import 'styles/components/icon';
 @import 'styles/components/img-round';
 @import 'styles/components/logo';
+@import 'styles/components/main-title';
+@import 'styles/components/menu-icon';
 @import 'styles/components/pagination';
 @import 'styles/components/search';
 @import 'styles/components/select-field';
@@ -27,22 +29,23 @@
 @import 'styles/components/table';
 @import 'styles/components/tag';
 @import 'styles/components/user-nav';
-@import 'styles/components/menu-icon';
 
 @import 'styles/layout/fiscal-bill';
+@import 'styles/layout/footer';
 @import 'styles/layout/main-content';
 @import 'styles/layout/header';
+@import 'styles/layout/invoice-template-1';
+//@import "styles/layout/invoice-template-2";
+//@import "styles/layout/invoice-template-3";
+@import 'styles/layout/invoice';
 @import 'styles/layout/item-list';
 @import 'styles/layout/login';
 @import 'styles/layout/grid';
-@import 'styles/layout/navigation';
+// @import 'styles/layout/mob-nav';
 @import 'styles/layout/screen-content-info';
 @import 'styles/layout/screen-content';
 @import 'styles/layout/sidebar';
-@import 'styles/layout/invoice';
-@import "styles/layout/invoice-template-1";
-//@import "styles/layout/invoice-template-2";
-//@import "styles/layout/invoice-template-3";
 
 @import 'styles/pages/home';
+@import 'styles/pages/dashboard.scss';
 @import 'styles/pages/companies.scss';
