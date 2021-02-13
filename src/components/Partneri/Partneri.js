@@ -71,8 +71,8 @@ const Partneri = () => {
       <div className="screen-content-info">
         <div className="main-content__box">
           <div className="content">
-            <div className="main-content__search-wrapper df">
-              <form className="search df ai-c w-60">
+            <div className="main-content__search-wrapper df mob-fd-column">
+              <form className="search df ai-c w-75 mob-w-100">
                 <button className="search__button"></button>
                 <input
                   type="text"
@@ -83,7 +83,8 @@ const Partneri = () => {
                 />
               </form>
               <select
-                className="btn btn__dark btn__lg ml-xl"
+                className="btn btn__dark mob-mt-10" 
+                id="p-filter"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
               >

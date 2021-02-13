@@ -87,9 +87,9 @@ const Stavke = () => {
       </div>
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
-          <div class="main-content__search-wrapper df">
-            <div class="df jc-sb w-100 mob-fd-column">
-              <form class="search df ai-c mob-w-100">
+          <div className="main-content__search-wrapper df">
+            <div className="df jc-sb w-100 mob-fd-column">
+              <form className="search df ai-c mob-w-100">
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"

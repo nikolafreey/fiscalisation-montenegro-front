@@ -29,13 +29,13 @@ import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska
 
 const Sidebar = () => {
   return (
-    <div class="col-md-1 col-xl-3" id="sidebar">
-      <div class="logo dshow">računi</div>
-      <div class="menu-icon">
-        <span class="line line-1"></span>
-        <span class="line line-2"></span>
+    <div className="col-md-1 col-xl-3" id="sidebar">
+      <div className="logo dshow">računi</div>
+      <div className="menu-icon">
+        <span className="line line-1"></span>
+        <span className="line line-2"></span>
       </div>
-      <div class="sidebar">
+      <div className="sidebar">
         <ul className="items">
           <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
           <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />

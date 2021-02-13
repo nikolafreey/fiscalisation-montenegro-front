@@ -108,6 +108,9 @@ td:first-child {
 .inner-td-wrapper {
   display: flex;
   align-items: center;
+  @include respond(phone){
+    width: 85%;
+  }
 }
 .td-title {
   margin-left: 2rem;

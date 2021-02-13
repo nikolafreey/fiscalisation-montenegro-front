@@ -13,6 +13,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
       style={{
         backgroundColor: selectedId === partner.id ? '#F9FAFB' : 'white',
       }}
+      className="mob-relative-block"
     >
       <td>
         <div className="inner-td-wrapper">
@@ -50,7 +51,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           partner.preduzece?.telefon}
       </td>
 
-      <td>
+      <td className='mob-absolute-topright'>
         <div className="df jc-end ai-c">
           <button type="button" className="btn btn__light btn__xs">
             <Dots className="icon lg" />
@@ -69,10 +70,10 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
                 <Edit className="icon icon__dark md" />
                 Izmijeni
               </Link>
-              <a href="#">
+              <Link>
                 <Delete className="icon icon__dark md" />
                 Obriši
-              </a>
+              </Link>
             </div>
           </button>
         </div>

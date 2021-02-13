@@ -256,8 +256,8 @@ const UslugeForm = () => {
                           label={$t('usluge.opis')}
                         />
                       </div>
-                      <div class="df jc-sb mob-fd-column">
-                          <div class="form__group w-48 mob-w-100">
+                      <div className="df jc-sb mob-fd-column">
+                          <div className="form__group w-48 mob-w-100">
                           <DropDown
                             //className="form__input"
                             name="jedinica_mjere_id"
@@ -270,7 +270,7 @@ const UslugeForm = () => {
                             }
                           />
                         </div>
-                        <div class="form__group w-48 mob-w-100">
+                        <div className="form__group w-48 mob-w-100">
                           <AysncCreatableDropDown
                             //className="form__input"
                             // autoload={false}
@@ -298,8 +298,8 @@ const UslugeForm = () => {
                           /> */}
                         </div>
                       </div>
-                      <div class="df jc-sb mob-fd-column">
-                          <div class="form__group w-48 mob-w-100">
+                      <div className="df jc-sb mob-fd-column">
+                          <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="porez_id"
                             label={$t('usluge.porezi')}
@@ -307,7 +307,7 @@ const UslugeForm = () => {
                             placeholder={usluga?.porez?.naziv}
                           />
                         </div>
-                        <div class="form__group w-48 mob-w-100">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDownStatic
                             name="pdv_ukljucen"
                             label={$t('usluge.pdv_ukljucen')}
@@ -371,7 +371,7 @@ const UslugeForm = () => {
                           /> */}
                         <div className="form__radio-group">
                           <input
-                            class="form__radio-input"
+                            className="form__radio-input"
                             type="radio"
                             id="Aktivan"
                             value="Aktivan"
@@ -382,13 +382,13 @@ const UslugeForm = () => {
                             htmlFor="Aktivan"
                             className="form__radio-label"
                           >
-                            <span class="form__radio-button"></span>
-                            <span class="mob-ml-10">Aktivan</span>
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Aktivan</span>
                           </label>
                         </div>
                         <div className="form__radio-group">
                           <input
-                            class="form__radio-input"
+                            className="form__radio-input"
                             type="radio"
                             id="Neaktivan"
                             value="Neaktivan"
@@ -399,8 +399,8 @@ const UslugeForm = () => {
                             htmlFor="Neaktivan"
                             className="form__radio-label"
                           >
-                            <span class="form__radio-button"></span>
-                            <span class="mob-ml-10">Neaktivan</span>
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Neaktivan</span>
                           </label>
                         </div>
                       </div>
