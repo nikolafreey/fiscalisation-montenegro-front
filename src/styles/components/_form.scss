@@ -49,7 +49,7 @@
     width: 100%;
     position: relative;
 
-    input[type="file"] {
+    input[type='file'] {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -81,12 +81,12 @@
       background-color: $color-content-light;
     }
 
-    input[type="file"]:focus + .file-dummy {
+    input[type='file']:focus + .file-dummy {
       outline: 2px solid rgba(255, 255, 255, 0.5);
       outline: -webkit-focus-ring-color auto 5px;
     }
 
-    input[type="file"]:valid + .file-dummy {
+    input[type='file']:valid + .file-dummy {
       border-color: rgba(0, 255, 0, 0.4);
       background-color: rgba(0, 255, 0, 0.3);
 
@@ -270,7 +270,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       height: 1.5rem;
       width: 1.5rem;

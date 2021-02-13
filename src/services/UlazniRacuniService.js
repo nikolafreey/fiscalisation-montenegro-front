@@ -2,12 +2,16 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   ULAZNI_RACUNI: 'ulazni-racuni',
+  ULAZNI_RACUNI_PDV: 'ulazni-racuni-pdv',
   ULAZNI_RACUN: 'ulazni-racuni/{id}',
 };
 
 class UlazniRacuniService extends ApiService {
   getUlazniRacuni = (params) =>
     this.apiClient.get(ENDPOINTS.ULAZNI_RACUNI, { params });
+
+  getUlazniRacuniPdv = (params) =>
+    this.apiClient.get(ENDPOINTS.ULAZNI_RACUNI_PDV, { params });
 
   storeUlazniRacun = (data) =>
     this.apiClient.post(ENDPOINTS.ULAZNI_RACUNI, data);

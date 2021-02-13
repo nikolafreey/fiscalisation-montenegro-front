@@ -15,7 +15,7 @@
   @include respond(tab-land){
     right: -8px;
     top: 0;
-    background-color: rgba($color-background-dark, .6);
+    background-color: rgba($color-background-dark, 0.6);
     color: $color-background-light;
   }
   @include respond(phone){
@@ -23,6 +23,6 @@
     top: 17px;
   }
   .pro {
-      color: rgba($color-text-dark,.7)!important;
+    color: rgba($color-text-dark, 0.7) !important;
   }
 }

@@ -35,7 +35,6 @@ import { STAVKE } from '../../constants/routes';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
-
   const { params } = useRouteMatch();
   const history = useHistory();
 

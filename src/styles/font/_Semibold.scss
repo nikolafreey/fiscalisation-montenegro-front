@@ -1,8 +1,8 @@
 /* BEGIN Semibold */
 @font-face {
-	font-family: "Inter";
-	@include fontdef-inter($InterPath, "Semibold");
-	font-weight: 600;
-	font-style: normal;
+  font-family: 'Inter';
+  @include fontdef-inter($InterPath, 'Semibold');
+  font-weight: 600;
+  font-style: normal;
 }
 /* END Semibold */
