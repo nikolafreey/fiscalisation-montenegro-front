@@ -15,22 +15,18 @@ p {
   @include respond(tab-land) {
     font-size: $font-size-default-tab;
   }
-  a{
-    color: $color-link-light;
-    text-decoration: none;
-  }
-  .heading-primary {
-    color: $color-text-dark;
-    font-size: $font-size-primary;
-    font-weight: 600;
-    backface-visibility: hidden;
-    margin: 3rem 0;
-    @include respond(phone){
-      font-size: $font-size-secondary;
-    }
-  }
-  .heading-secondary{
-    color: $color-text-dark;
+}
+a {
+  color: $color-link-light;
+  text-decoration: none;
+}
+.heading-primary {
+  color: $color-text-dark;
+  font-size: $font-size-primary;
+  font-weight: 600;
+  backface-visibility: hidden;
+  margin: 3rem 0;
+  @include respond(phone) {
     font-size: $font-size-secondary;
   }
 }
