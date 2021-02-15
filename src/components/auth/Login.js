@@ -45,6 +45,7 @@ const Login = () => {
                   <div className="form-group">
                     <InputField
                       name="password"
+                      type="password"
                       className="form__input"
                       obavezno
                       label={$t('auth.password')}
@@ -61,7 +62,7 @@ const Login = () => {
                     />
                   </div>
                   <button type="submit" className="btn btn__dark">
-                    Uloguj se
+                    Ulazak
                   </button>
                   {!!loginError.errors && <div>{loginError.errors.email}</div>}
                   <Link className="df ai-c" to={AUTH.FORGOT}>
