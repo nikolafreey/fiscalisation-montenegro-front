@@ -4,7 +4,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory, Prompt } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
@@ -152,7 +152,7 @@ const UslugeForm = () => {
       //  validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty }) => (
         <div className="screen-content">
           <Link to={STAVKE.INDEX} className="link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
@@ -163,6 +163,10 @@ const UslugeForm = () => {
           <div className="main-content__box">
             <div className="content">
               <Form>
+                <Prompt
+                  when={dirty}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4 mt-25 jc-sb">
