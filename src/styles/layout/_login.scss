@@ -1,14 +1,51 @@
 .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $color-background-light;
-    height: 100vh;
-
-    .main-content__box{
-        padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-background-light;
+  height: 100vh;
+  @include respond(phone) {
+    padding: 2rem 0;
+    height: auto;
+  }
+  .main-content__box {
+    padding: 4rem;
+    @include respond(phone){
+        padding: 2rem;
     }
-    .logo {
-        text-align: center;
+  }
+  &__logo {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    @include respond(phone) {
+      svg {
+        width: 20rem;
+      }
     }
+  }
+  &__form {
+    .form-group,.form__checkbox-group, button {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__footer {
+    p {
+      margin-bottom: 2rem;
+    }
+    &--left {
+      svg {
+        @include respond(phone) {
+          width: 12rem;
+        }
+      }
+    }
+    &--right {
+      svg {
+        @include respond(phone) {
+          width: 12rem;
+        }
+      }
+    }
+  }
 }
