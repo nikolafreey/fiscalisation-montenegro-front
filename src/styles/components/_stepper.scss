@@ -4,8 +4,22 @@
 
   @include respond(phone) {
     justify-content: unset;
+    width: 10rem;
+    border-radius: 4px;
   }
 
+  &__btn-left {
+    border-radius: 4px 0px 0px 4px;
+    &:hover {
+      border-radius: 4px 0px 0px 4px;
+    }
+  }
+  &__btn-right {
+    border-radius: 0px 4px 4px 0px;
+    &:hover {
+      border-radius: 0px 4px 4px 0px;
+    }
+  }
   &__btn-left,
   &__btn-right,
   &__btn {
@@ -30,24 +44,13 @@
       height: 18px;
     }
   }
-  &__btn-left {
-    border-radius: 4px 0px 0px 4px;
-  }
-  &:hover {
-    background-color: rgba($color-background-dark, 0.7);
-  }
+
   svg {
     stroke: $color-background-light;
     width: 18px;
     height: 18px;
   }
 
-  &__btn-left {
-    border-radius: 4px 0px 0px 4px;
-  }
-  &__btn-right {
-    border-radius: 0px 4px 4px 0px;
-  }
   &__btn {
     border-radius: 4px;
   }

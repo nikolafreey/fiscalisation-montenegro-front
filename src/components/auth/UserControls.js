@@ -65,14 +65,14 @@ const UserControls = () => {
             style={{ backgroundImage: `url(${user.avatar})` }}
           ></div>
           <div className="drop-down" id="ddl">
-            <a>
+            <Link>
               <PodesavanjaSvg />
               Podešavanja
-            </a>
-            <a>
+            </Link>
+            <Link>
               <LogoutSvg />
               <span onClick={() => dispatch(logoutUser())}> Odjava</span>
-            </a>
+            </Link>
           </div>
         </div>
       ) : (

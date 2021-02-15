@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ukloniRobu, ukloniUslugu } from '../../../store/actions/RacuniActions';
+import DeleteIcon from '../../../assets/icon/x-delete.svg'
 
 const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   };
 
   function getPopustProcenat() {
-    return roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti;
+    return (
+      roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti
+    );
   }
 
   function getPopustIznos() {
@@ -25,7 +28,9 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   }
 
   function getUkupnaCijena() {
-    return roba ? Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena).toFixed(2) : Number(usluga?.ukupna_cijena).toFixed(2);
+    return roba
+      ? Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena).toFixed(2)
+      : Number(usluga?.ukupna_cijena).toFixed(2);
   }
 
   return (
@@ -46,17 +51,18 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
                   .replace('.', ',') + '€'}
           </span>
           <span className="btn btn__link danger" onClick={handleRemove}>
+            {/* <DeleteIcon /> */}
             x
           </span>
         </div>
-      </div>
-      <div className="df jc-end">
-        {stavka.kolicina} x{' '}
-        {roba
-          ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
-              .toFixed(2)
-              .replace('.', ',') + '€'
-          : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
+        <div className="df jc-end">
+          {stavka.kolicina} x{' '}
+          {roba
+            ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
+                .toFixed(2)
+                .replace('.', ',') + '€'
+            : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
+        </div>
       </div>
       {getPopustIznos() && (
         <>
@@ -64,14 +70,20 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
             <p>Popust {getPopustProcenat()}%</p>
           </div>
           <div className="col-lg-4">
-            <span>-{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}</span>
+            <span>
+              -{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}
+            </span>
           </div>
           <div className="col-lg-8">
             <p>Cijena sa popustom</p>
           </div>
           <div className="col-lg-4">
             <div className="df jc-end w-62">
-              <span>{(Number(getUkupnaCijena()) - Number(getPopustIznos())).toFixed(2)}</span>
+              <span>
+                {(Number(getUkupnaCijena()) - Number(getPopustIznos())).toFixed(
+                  2
+                )}
+              </span>
             </div>
           </div>
         </>

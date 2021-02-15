@@ -86,63 +86,65 @@ const NoviRacunPreview = () => {
       <hr />
 
       {/* Porezi */}
-      <div className="row mb-15">
-        {Object.keys(porezi).map((porezId) => (
-          <>
-            <div className="col-lg-8">
-              <p>Ukupno za {porezi[porezId].naziv}</p>
-            </div>
-            <div className="col-lg-4">
-              <p className="txt-right">
-                {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
-              </p>
-            </div>
-            <div className="col-lg-8">
-              <p>{porezi[porezId].naziv}</p>
-            </div>
-            <div className="col-lg-4">
-              <p className="txt-right">
-                {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
-              </p>
-            </div>
-          </>
-        ))}
+      <div className="container p-0">
+        <div className="row mb-15">
+          {Object.keys(porezi).map((porezId) => (
+            <>
+              <div className="col-lg-8 col-8">
+                <p>Ukupno za {porezi[porezId].naziv}</p>
+              </div>
+              <div className="col-lg-4 col-4">
+                <p className="txt-right">
+                  {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+                </p>
+              </div>
+              <div className="col-lg-8">
+                <p>{porezi[porezId].naziv}</p>
+              </div>
+              <div className="col-lg-4">
+                <p className="txt-right">
+                  {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
+                </p>
+              </div>
+            </>
+          ))}
+        </div>
+
+        <hr />
+
+        <div className="row mb-20">
+          {/* Ukupan PDV */}
+          <div className="col-lg-8">
+            <p>Ukupan PDV</p>
+          </div>
+          <div className="col-lg-4">
+            <p className="txt-right">
+              {Number(ukupnaCijena - ukupnaCijenaBezPdv)
+                .toFixed(2)
+                .replace('.', ',') + '€'}
+            </p>
+          </div>
+
+          {/* Ukupno za plaćanje */}
+          <div className="col-lg-7">
+            <p>Ukupno za plaćanje</p>
+          </div>
+          <div className="col-lg-5">
+            <p className="txt-right">
+              {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
+            </p>
+          </div>
+        </div>
+        {/* Kusur */}
+        <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
+
+        <hr />
+        {/* onClick={handlePrint} */}
+        {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
+        <button className="btn btn__transparent" onClick={handleSacuvaj}>
+          Sačuvaj
+        </button>
       </div>
-
-      <hr />
-
-      <div className="row mb-20">
-        {/* Ukupan PDV */}
-        <div className="col-lg-8">
-          <p>Ukupan PDV</p>
-        </div>
-        <div className="col-lg-4">
-          <p className="txt-right">
-            {Number(ukupnaCijena - ukupnaCijenaBezPdv)
-              .toFixed(2)
-              .replace('.', ',') + '€'}
-          </p>
-        </div>
-
-        {/* Ukupno za plaćanje */}
-        <div className="col-lg-7">
-          <p>Ukupno za plaćanje</p>
-        </div>
-        <div className="col-lg-5">
-          <p className="txt-right">
-            {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
-          </p>
-        </div>
-      </div>
-      {/* Kusur */}
-      <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
-
-      <hr />
-      {/* onClick={handlePrint} */}
-      {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
-      <button className="btn btn__transparent" onClick={handleSacuvaj}>
-        Sačuvaj
-      </button>
     </div>
   );
 };

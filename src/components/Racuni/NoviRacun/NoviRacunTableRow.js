@@ -43,7 +43,7 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
       <td className="cl">
         {usluga?.jedinica_mjere?.naziv || roba.roba.jedinica_mjere?.naziv}
       </td>
-      <td className="cd fw-500 txt-right">
+      <td className="cd fw-500 txt-right mob-txt-left">
         <p>
           {usluga?.ukupna_cijena ||
             roba.roba.cijene_roba[0]?.ukupna_cijena.replace('.', ',') + '€'}

@@ -33,6 +33,7 @@
     margin-top: 13rem;
   }
   @include respond(phone) {
+    display: none;
     visibility: hidden;
     position: absolute;
     top: 0;

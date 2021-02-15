@@ -105,20 +105,20 @@ const Racuni = () => {
 
   return (
     <>
-      <div className="title jc-sb">
+      <div className="title jc-sb mob-fd-column mob-ai-start">
         <h1 className="heading-primary">Izlazni računi</h1>
 
-        <div className="df w-50 jc-end">
-          <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m">
-            <button className="btn btn__dark">
+        <div className="df w-50 jc-end mob-w-100 mob-fd-column">
+          <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m mob-mr-0">
+            <button className="btn btn__dark mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi gotovinski račun
             </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button className="btn btn__dark">
+            <button className="btn btn__dark  mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
-              Novi bezgotovisnki račun
+              Novi bezgotovinski račun
             </button>
           </Link>
         </div>
@@ -128,22 +128,23 @@ const Racuni = () => {
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100 mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-                <form className="search df ai-c w-45 mob-w-100">
-                  <button className="search__button" type="submit"></button>
-                  <input
-                    name="search"
-                    placeholder="Pretraži Račune"
-                    className="search__input"
-                    value={search}
-                    onChange={handleChange}
-                  />
-                </form>
+              <form className="search df ai-c w-45 mob-w-100">
+                <button className="search__button" type="submit"></button>
+                <input
+                  name="search"
+                  placeholder="Pretraži Račune"
+                  className="search__input"
+                  value={search}
+                  onChange={handleChange}
+                />
+              </form>
               {/* </div> */}
               <Select
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
                 className="mob-w-100 w-20 mob-mt-10"
+                placeholder={`Type to search`} 
               />
 
               {/* <div className="select w-25 df"> */}
@@ -154,6 +155,7 @@ const Racuni = () => {
                 startDate={startDate}
                 endDate={endDate}
                 className="select mob-w-100 mob-mt-10"
+                placeholderText="Datum raspon od:"
               />
               <DatePicker
                 selected={endDate}
@@ -163,6 +165,7 @@ const Racuni = () => {
                 endDate={endDate}
                 minDate={startDate}
                 className="select mob-w-100 mob-mt-10"
+                placeholderText="Datum raspon do:"
               />
               {/* </div> */}
             </div>
