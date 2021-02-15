@@ -25,7 +25,7 @@
     padding: 1rem;
     cursor: pointer;
 
-    @include respond(phone) {
+    @include respond(phone){
       padding: 1rem 0 1rem 1rem;
     }
 

@@ -135,19 +135,19 @@ const PreduzecaForm = () => {
           <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
           <div className="main-content__box">
             <div className="content">
-              <Form>
+              <Form className="form">
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4 mt-25">
                       <h2 className="heading-secondary">Informacije</h2>
-                      <p>
+                      <p className="txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8 mtb-25">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="kratki_naziv"
                             label={$t('preduzeca.kratki_naziv')}
@@ -157,7 +157,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="oblik_preduzeca"
                             obavezno={true}
@@ -209,8 +209,8 @@ const PreduzecaForm = () => {
                           className="form__input w-100"
                         />
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="grad"
                             label={$t('preduzeca.grad')}
@@ -219,7 +219,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="drzava"
                             label={$t('preduzeca.drzava')}
@@ -229,25 +229,25 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="djelatnost"
                             label={$t('preduzeca.djelatnost')}
                             loadOptions={
                               djelatnostiService.getDjelatnostiDropdown
                             }
-                            className="form__input"
+                            //className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="kategorija_id"
                             label={$t('preduzeca.kategorija')}
                             loadOptions={
                               kategorijeService.getKategorijeDropdown
                             }
-                            className="form__input"
+                            //className="form__input"
                           />
                         </div>
                       </div>
@@ -286,7 +286,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Žiro računi</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
@@ -300,7 +300,7 @@ const PreduzecaForm = () => {
                             )}
                           </FieldArray>
                         </div>
-                        <div className="df ai-c"></div>
+                        {/* <div className="df ai-c"></div> */}
                       </div>
                     </div>
                   </div>
@@ -312,7 +312,7 @@ const PreduzecaForm = () => {
                       <h2 className="heading-secondary">
                         Plaćanje iz inostranstva
                       </h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
@@ -324,7 +324,7 @@ const PreduzecaForm = () => {
                           label={$t('preduzeca.iban')}
                           placeholder=""
                           type="text"
-                          className="form__input w-50"
+                          className="form__input half-wd-full-tab"
                         />
                       </div>
                       <div className="form__group">
@@ -333,7 +333,7 @@ const PreduzecaForm = () => {
                           label={$t('preduzeca.bic_swift')}
                           placeholder=""
                           type="text"
-                          className="form__input w-50"
+                          className="form__input half-wd-full-tab"
                         />
                       </div>
                     </div>
@@ -344,14 +344,14 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="telefon"
                             label={$t('preduzeca.telefon')}
@@ -363,6 +363,7 @@ const PreduzecaForm = () => {
                             <div className="form__checkbox-group">
                               <Checkbox
                                 name="telfon_whatsapp"
+                                id="telfon_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
                                 // className="form__checkbox"
@@ -372,6 +373,7 @@ const PreduzecaForm = () => {
                             <div className="form__checkbox-group">
                               <Checkbox
                                 name="telfon_viber"
+                                id="telfon_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
                                 // className="form__checkbox"
@@ -381,6 +383,7 @@ const PreduzecaForm = () => {
                             <div className="form__checkbox-group">
                               <Checkbox
                                 name="telfon_facetime"
+                                id="telfon_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
                                 // className="form__checkbox"
@@ -389,7 +392,7 @@ const PreduzecaForm = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="fax"
                             label={$t('preduzeca.fax')}
@@ -399,8 +402,8 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="email"
                             label={$t('preduzeca.email')}
@@ -409,7 +412,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="website"
                             label={$t('preduzeca.website')}
@@ -427,14 +430,14 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Ovlašćeno lice</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ovlasceno_lice_kontakt_ime"
                             label={$t('preduzeca.ime')}
@@ -443,7 +446,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ovlasceno_lice_kontakt_prezime"
                             label={$t('preduzeca.prezime')}
@@ -453,8 +456,8 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ovlasceno_lice_kontakt_telefon"
                             label={$t('preduzeca.telefon')}
@@ -465,6 +468,7 @@ const PreduzecaForm = () => {
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="ovlasceno_lice_kontakt_whatsapp"
                                 name="ovlasceno_lice_kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
@@ -474,6 +478,7 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="ovlasceno_lice_kontakt_viber"
                                 name="ovlasceno_lice_kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
@@ -483,6 +488,7 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="ovlasceno_lice_kontakt_facetime"
                                 name="ovlasceno_lice_kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
@@ -492,7 +498,7 @@ const PreduzecaForm = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ovlasceno_lice_kontakt_email"
                             label={$t('preduzeca.email')}
@@ -510,14 +516,14 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Osoba za kontakt</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="kontakt_ime"
                             label={$t('preduzeca.ime')}
@@ -526,7 +532,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="kontakt_prezime"
                             label={$t('preduzeca.prezime')}
@@ -536,8 +542,8 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="kontakt_telefon"
                             label={$t('preduzeca.telefon')}
@@ -575,7 +581,7 @@ const PreduzecaForm = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="kontakt_email"
                             label={$t('preduzeca.email')}
@@ -593,14 +599,14 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Društvene mreže</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="twitter_username"
                             label={$t('preduzeca.twitter')}
@@ -610,7 +616,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="facebook_username"
                             label={$t('preduzeca.facebook')}
@@ -621,8 +627,8 @@ const PreduzecaForm = () => {
                           />
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="instagram_username"
                             label={$t('preduzeca.instagram')}
@@ -632,7 +638,7 @@ const PreduzecaForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="skype_username"
                             obavezno={true}
@@ -651,7 +657,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Lokacija na mapi</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
@@ -659,7 +665,7 @@ const PreduzecaForm = () => {
                     <div className="col-md-8">
                       <span className="form__label">Lokacija</span>
                       <div className="form__map">
-                        <MapContainer google={true} />
+                        <MapContainer google={true} className="form__map" />
                       </div>
                     </div>
                   </div>
@@ -669,7 +675,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Status</h2>
-                      <p>
+                      <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>

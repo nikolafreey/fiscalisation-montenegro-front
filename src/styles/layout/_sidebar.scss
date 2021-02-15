@@ -3,6 +3,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    
   }
 }
 .sidebar {
@@ -11,12 +12,12 @@
   display: flex;
   flex-direction: column;
   margin-right: 4rem;
-  margin-top: -7rem;
+  margin-top: 3rem;
   min-height: 100vh;
-  transition: width 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  transition: width 0.25s linear;
 
-  &.active-mob {
-    @include respond(phone) {
+  &.active-mob{
+    @include respond(phone){
       visibility: visible;
       opacity: 1;
     }
@@ -29,9 +30,10 @@
     left: -16px;
     width: 9rem;
     margin-right: 0;
-    margin-top: unset;
+    margin-top: 13rem;
   }
   @include respond(phone) {
+    display: none;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -43,7 +45,7 @@
     z-index: 10000;
     background-color: $color-background-light;
     overflow: hidden;
-    transition: visibility 0.3s, opacity 0.2s linear;
+    transition: visibility 0.3s, opacity .2s linear;
   }
 
   &__heading {
@@ -110,7 +112,7 @@
       background-color: $color-hover;
       span {
         background-color: $color-background-light;
-        color: $color-text-dark !important;
+        color: $color-text-dark!important;
       }
       .sidebar-icon {
         stroke: $color-text-light;
@@ -119,7 +121,7 @@
         color: $color-text-light;
       }
 
-      @include respond(phone) {
+      @include respond(phone){
         border-radius: unset;
       }
     }
@@ -132,7 +134,7 @@
       align-items: center;
     }
 
-    @include respond(phone) {
+    @include respond(phone){
       background-color: transparent;
     }
 
@@ -167,7 +169,7 @@
         margin-right: 0;
         position: absolute;
       }
-      @include respond(phone) {
+      @include respond(phone){
         position: relative;
       }
     }
@@ -178,9 +180,9 @@
       background-color: $color-hover;
       .sidebar-badge {
         background-color: $color-background-light;
-        color: $color-text-dark !important;
+        color: $color-text-dark!important;
 
-        @include respond(phone) {
+        @include respond(phone){
         }
       }
       .sidebar-icon {

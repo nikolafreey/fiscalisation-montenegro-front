@@ -64,44 +64,46 @@ const NoviRacun = () => {
   return (
     <>
       <h1 className="heading-primary">Kreiranje novog gotovinskog računa</h1>
-      <div className="main-content__box">
-        <div className="content">
-          <div className="main-content__search-wrapper">
-            <form className="search">
-              <button className="search__button" type="submit"></button>
-              <input
-                name="search"
-                placeholder="Naziv Usluge/Robe"
-                className="search__input"
-                value={search}
-                onChange={handleChange}
-              />
-            </form>
-            <NoviRacunFilteri />
-            <ChooseView view={view} setView={setView} />
-          </div>
-          <NoviRacunTable view={view} robe={robe} usluge={usluge} />
-          <div className="df jc-center ai-c fd-column">
-            <hr className="w-60 " />
-            <p className="mb-25">
-              ili kreirajte novi unos ako usluga/roba nije u listi
-            </p>
-            {/*<Link exact to={PREDUZECA.CREATE}>
+      <div class="screen-content-info">
+        <div className="main-content__box">
+          <div className="content">
+            <div className="main-content__search-wrapper">
+              <form className="search df ai-c mob-w-100">
+                <button className="search__button" type="submit"></button>
+                <input
+                  name="search"
+                  placeholder="Naziv Usluge/Robe"
+                  className="search__input"
+                  value={search}
+                  onChange={handleChange}
+                />
+              </form>
+              <NoviRacunFilteri />
+              <ChooseView view={view} setView={setView} />
+            </div>
+            <NoviRacunTable view={view} robe={robe} usluge={usluge} />
+            <div className="df jc-center ai-c fd-column">
+              <hr className="w-60 " />
+              <p className="mb-25 p-margin">
+                ili kreirajte novi unos ako usluga/roba nije u listi
+              </p>
+              {/*<Link exact to={PREDUZECA.CREATE}>
               <button className="btn btn__dark btn__xl">
                 <Plus className="icon icon__light lg" />
                 Novo preduzeće
               </button>
   </Link>*/}
 
-            <Link exact to={USLUGE.CREATE}>
-              <button className="btn btn__dark btn__xl">
-                <Plus className="icon icon__light lg" />
-                Nova Stavke
-              </button>
-            </Link>
+              <Link exact to={USLUGE.CREATE}>
+                <button className="btn btn__dark mb-25">
+                  <Plus className="icon icon__light lg" />
+                  Nova Stavka
+                </button>
+              </Link>
+            </div>
           </div>
+          <NoviRacunPreview />
         </div>
-        <NoviRacunPreview />
       </div>
     </>
   );

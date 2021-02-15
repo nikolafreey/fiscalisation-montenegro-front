@@ -15,7 +15,7 @@ tbody {
   tr {
     cursor: pointer;
 
-    @include respond(phone) {
+    @include respond(phone){
       border-bottom: 1px solid $color-content-lines;
     }
   }
@@ -61,7 +61,7 @@ td {
 
   @include respond(phone) {
     display: block;
-    padding: 0.5rem 1.5rem;
+    padding: .5rem 1.5rem;
   }
 }
 th {
@@ -92,7 +92,7 @@ td,
 th {
   border-bottom: 1px solid $color-content-lines;
   text-align: left;
-  @include respond(phone) {
+  @include respond(phone){
     border-bottom: none;
   }
 }
@@ -101,21 +101,25 @@ td:last-child {
   padding-bottom: 2rem;
 }
 td:first-child {
-  @include respond(phone) {
+  @include respond(phone){
     padding-top: 2rem;
   }
 }
 .inner-td-wrapper {
   display: flex;
   align-items: center;
+  @include respond(phone){
+    width: 85%;
+  }
 }
 .td-title {
   margin-left: 2rem;
   p {
-    display: flex;
-    i {
-      display: flex;
-      align-self: flex-end;
+    position: relative;
+    display: block;
+    i{
+      position: absolute;
+      margin-top: .25rem;
     }
   }
 

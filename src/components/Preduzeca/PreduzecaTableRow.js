@@ -21,15 +21,18 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
     >
       <td>
         <div className="inner-td-wrapper">
-          <div
+          <img
+            src={item.logotip}
             className="img-round sm"
-            style={{ backgroundImage: `url('${item.logotip}')` }}
-          ></div>
+            alt={item.kratki_naziv}
+          />
           <div className="td-title">
-            <div className="df ai-c">
-              <p>{item.kratki_naziv}</p>
-              <Badge className="icon icon__fill-color-badge ml-s sm" />
-            </div>
+            <p>
+              {item.kratki_naziv}
+              <i>
+                <Badge className="icon icon__fill-color-badge ml-s sm" />
+              </i>
+            </p>
             <h3 className="heading-quaternary">{item.grad}</h3>
           </div>
         </div>

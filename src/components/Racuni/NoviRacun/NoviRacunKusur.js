@@ -13,11 +13,12 @@ const NoviRacunKusur = ({ ukupnaCijena }) => {
   return (
     <div>
       <input
+        className="form__input mb-20"
         placeholder="gotovina"
         value={gotovina}
         onChange={(event) => setGotovina(event.target.value)}
       />
-      <span>Kusur: </span>
+      <span className="ml-10">Kusur: </span>
       <span>{kusur > 0 ? kusur.toFixed(2).replace('.', ',') : ''}</span>
     </div>
   );

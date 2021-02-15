@@ -11,14 +11,13 @@
   height: 25px;
   padding: 2px 8px;
   transition: background-color 0.1s ease-in-out;
-
-  @include respond(tab-land) {
+  @include respond(tab-land){
     right: -8px;
     top: 0;
     background-color: rgba($color-background-dark, 0.6);
     color: $color-background-light;
   }
-  @include respond(phone) {
+  @include respond(phone){
     right: 50px;
     top: 17px;
   }

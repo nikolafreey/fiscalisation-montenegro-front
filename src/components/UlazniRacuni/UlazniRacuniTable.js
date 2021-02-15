@@ -33,7 +33,7 @@ const UlazniRacuniTable = ({ ulazniRacuni }) => {
               <th>
                 <span className="heading-quaternary">Iznos sa PDV</span>
               </th>
-              <th>
+              <th className="w-15">
                 <span className="heading-quaternary">Status</span>
               </th>
               <th>

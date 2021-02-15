@@ -38,12 +38,20 @@
     }
   }
   &__title {
-    display: flex;
-    align-items: center;
+    position: relative;
+    display: block;
+    span{
+      max-width: 90%;
+    }
+    i {
+      position: absolute;
+      margin-top: .5rem;
+    }
   }
   &__logo-wrapper {
     display: flex;
     justify-content: flex-start;
+    height: 8rem;
   }
   // &__logo {
   //   background-position: center;
@@ -91,7 +99,7 @@
       justify-content: space-between;
       //align-items: center;
       width: 100%;
-      margin-bottom: 2rem;
+      margin-bottom: .5rem;
     }
   }
   &__map {
@@ -118,7 +126,7 @@
   .danger {
     color: $color-danger-dark;
     margin-bottom: 0;
-    margin-left: 0.2rem;
+    margin-left: .2rem;
     // svg {
 
     // }

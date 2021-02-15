@@ -9,7 +9,7 @@ import userIcon from '../../assets/icon/user.svg';
 import loginIcon from '../../assets/icon/login.svg';
 import bellIcon from '../../assets/icon/bell.svg';
 
-import { ReactComponent as ProfileSvg } from '../../assets/icon/profile.svg';
+import { ReactComponent as PodesavanjaSvg } from '../../assets/icon/hero-podesavanja-dropdown.svg';
 import { ReactComponent as LogoutSvg } from '../../assets/icon/logout.svg';
 
 const UserControls = () => {
@@ -36,10 +36,10 @@ const UserControls = () => {
           </svg>
           Profile
         </a>
-        <a href="#"> 
+        <a href="#">
           <svg className="icon icon__dark md icon__drop-down" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-          </svg>                  
+          </svg>
           Log out
         </a>
       </div>
@@ -65,19 +65,19 @@ const UserControls = () => {
             style={{ backgroundImage: `url(${user.avatar})` }}
           ></div>
           <div className="drop-down" id="ddl">
-            <a>
-              <ProfileSvg />
-              Profile
-            </a>
-            <a>
+            <Link>
+              <PodesavanjaSvg />
+              Podešavanja
+            </Link>
+            <Link>
               <LogoutSvg />
-              <span onClick={() => dispatch(logoutUser())}> Log out</span>
-            </a>
+              <span onClick={() => dispatch(logoutUser())}> Odjava</span>
+            </Link>
           </div>
         </div>
       ) : (
         <div>
-          <Link to={AUTH.LOGIN}>Log in</Link>
+          <Link to={AUTH.LOGIN}>Prijava</Link>
         </div>
       )}
     </div>

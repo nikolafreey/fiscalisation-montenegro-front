@@ -9,7 +9,7 @@ const Checkbox = ({ label, ...props }) => {
 
   return (
     <>
-      <input {...field} {...props} />
+      <input {...field} {...props}  className="form__checkbox"/>
 
       <Label className="form__checkbox-label" htmlFor={id}>
         {label}

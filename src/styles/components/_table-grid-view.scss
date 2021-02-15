@@ -10,7 +10,7 @@
   tbody {
     display: flex;
     flex-wrap: wrap;
-    @include respond(phone) {
+    @include respond(phone){
       justify-content: space-between;
     }
     tr {

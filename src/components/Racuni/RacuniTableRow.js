@@ -84,7 +84,7 @@ const RacuniTableRow = ({ item }) => {
   };
 
   return (
-    <tr onClick={handleClick}>
+    <tr onClick={handleClick} className='mob-relative-block'>
       <td className="cl">
         {_item.ikof && <Success />}
         {vrstaRacuna(_item.vrsta_racuna)}
@@ -122,7 +122,7 @@ const RacuniTableRow = ({ item }) => {
           {_item.created_at}
         </Moment>
       </td>
-      <td>
+      <td className="mob-absolute-topright">
         <div className="df jc-end ai-c">
           <button className="btn btn__light btn__xs">
             <IconLg />

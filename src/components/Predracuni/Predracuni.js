@@ -124,12 +124,26 @@ const Predracuni = () => {
   //   setEndDate(end);
   // };
 
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      padding: ".15rem",
+      colors: {
+        ...styles.colors,
+        primary25: '#cccccc',
+        primary: 'violet',
+      },
+    }),
+  };
   return (
     <>
-      <div className="title">
+      {console.log(selectStyle)}
+      <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
         <Link exact to={PREDRACUNI.INDEX}>
-          <button className="btn btn__dark btn__xl">
+          <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi predračun
           </button>
@@ -138,44 +152,44 @@ const Predracuni = () => {
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df">
-            <div className="df jc-sb w-100">
-              <div className="search df ai-c w-53">
-                <form className="search">
-                  <button className="search__button" type="submit"></button>
-                  <input
-                    name="search"
-                    placeholder="Pretraži Račune"
-                    className="search__input"
-                    value={search}
-                    onChange={handleChange}
-                  />
-                </form>
-              </div>
+            <div className="df jc-sb w-100 mob-fd-column">
+              {/* <div className="search df ai-c w-53"> */}
+              <form className="search df ai-c w-45 mob-w-100">
+                <button className="search__button" type="submit"></button>
+                <input
+                  name="search"
+                  placeholder="Pretraži Račune"
+                  className="search__input"
+                  value={search}
+                  onChange={handleChange}
+                />
+              </form>
+
               <Select
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="select w-20"
+                className="mob-w-100 w-20 mob-mt-10"
+                styles={selectStyle}
+                placeholder="Status"
               />
-              <div className="select w-25 df">
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => handleStartDateChange(date)}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  className="select"
-                />
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => handleEndDateChange(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  className="select"
-                />
-              </div>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => handleStartDateChange(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                className="select mob-w-100 mob-mt-10"
+              />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => handleEndDateChange(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                className="select mob-w-100 mob-mt-10"
+              />
             </div>
             <div className="box-wrapper">
               <div className="box">

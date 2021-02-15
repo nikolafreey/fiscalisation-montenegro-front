@@ -260,10 +260,10 @@ const UslugeForm = () => {
                           label={$t('usluge.opis')}
                         />
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
-                            className="form__input"
+                            //className="form__input"
                             name="jedinica_mjere_id"
                             label={$t('usluge.jedinicaMjere')}
                             loadOptions={
@@ -274,9 +274,9 @@ const UslugeForm = () => {
                             }
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <AysncCreatableDropDown
-                            className="form__input"
+                            //className="form__input"
                             // autoload={false}
                             key={JSON.stringify(
                               grupeService.getGrupeDropdown.value
@@ -302,8 +302,8 @@ const UslugeForm = () => {
                           /> */}
                         </div>
                       </div>
-                      <div className="df jc-sb">
-                        <div className="form__group w-48">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="porez_id"
                             label={$t('usluge.porezi')}
@@ -311,7 +311,7 @@ const UslugeForm = () => {
                             placeholder={usluga?.porez?.naziv}
                           />
                         </div>
-                        <div className="form__group w-48">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDownStatic
                             name="pdv_ukljucen"
                             label={$t('usluge.pdv_ukljucen')}
@@ -375,6 +375,7 @@ const UslugeForm = () => {
                           /> */}
                         <div className="form__radio-group">
                           <input
+                            className="form__radio-input"
                             type="radio"
                             id="Aktivan"
                             value="Aktivan"
@@ -385,11 +386,13 @@ const UslugeForm = () => {
                             htmlFor="Aktivan"
                             className="form__radio-label"
                           >
-                            Aktivan
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Aktivan</span>
                           </label>
                         </div>
                         <div className="form__radio-group">
                           <input
+                            className="form__radio-input"
                             type="radio"
                             id="Neaktivan"
                             value="Neaktivan"
@@ -400,7 +403,8 @@ const UslugeForm = () => {
                             htmlFor="Neaktivan"
                             className="form__radio-label"
                           >
-                            Neaktivan
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Neaktivan</span>
                           </label>
                         </div>
                       </div>

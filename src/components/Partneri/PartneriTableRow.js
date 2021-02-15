@@ -13,24 +13,29 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
       style={{
         backgroundColor: selectedId === partner.id ? '#F9FAFB' : 'white',
       }}
+      className="mob-relative-block"
     >
       <td>
         <div className="inner-td-wrapper">
-          <div
+          {/* <div
             className="img-round sm"
             style={{ backgroundImage: `url(${partner.preduzece?.logotip})` }}
-          ></div>
+          ></div> */}
+          <img src={partner.preduzece?.logotip}  className="img-round sm" alt={partner.preduzece?.kratki_naziv}/>
           <div className="td-title">
-            <div className="df ai-c">
-              <p>
-                {partner.preduzece
-                  ? partner.preduzece.kratki_naziv
-                  : partner.fizicko_lice?.ime}
-              </p>
-              <Badge className="icon icon__fill-color-badge ml-s sm" />
-            </div>
+            <p>
+              <span>
+              {partner.preduzece
+                ? partner.preduzece.kratki_naziv
+                : partner.fizicko_lice?.ime}
+              </span>
+              <i>
+                <Badge className="icon icon__fill-color-badge sm" />
+              </i>
+            </p>
+
             {partner.preduzece && (
-              <h3 className="heading-quaternary">{partner.preduzece.grad}</h3>
+              <h4 className="heading-quaternary">{partner.preduzece.grad}</h4>
             )}
           </div>
         </div>
@@ -46,7 +51,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           partner.preduzece?.telefon}
       </td>
 
-      <td>
+      <td className='mob-absolute-topright'>
         <div className="df jc-end ai-c">
           <button type="button" className="btn btn__light btn__xs">
             <Dots className="icon lg" />
@@ -65,10 +70,10 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
                 <Edit className="icon icon__dark md" />
                 Izmijeni
               </Link>
-              <a href="#">
+              <Link>
                 <Delete className="icon icon__dark md" />
                 Obriši
-              </a>
+              </Link>
             </div>
           </button>
         </div>

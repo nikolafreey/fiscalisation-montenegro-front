@@ -11,7 +11,7 @@
     margin-bottom: 3rem;
     .heading-secondary {
       @include respond(phone) {
-        margin-bottom: 0.5rem;
+        margin-bottom: .5rem;
         line-height: 30px;
       }
     }
@@ -30,7 +30,7 @@
     &--inner-wrapper {
       .heading-secondary {
         @include respond(phone) {
-          margin-bottom: 0.5rem;
+          margin-bottom: .5rem;
           line-height: 30px;
         }
       }
@@ -125,6 +125,6 @@
 }
 #main-content {
   // position: absolute;
-  //left: 13rem;
-  transition: left 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  left: 0rem;
+  transition: left .2s linear;
 }

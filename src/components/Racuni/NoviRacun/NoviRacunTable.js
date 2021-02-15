@@ -16,16 +16,16 @@ const NoviRacunTable = ({ robe, usluge, view }) => {
         <table className={view === LIST ? "table" : "table-grid-view"}>
           <thead>
             <tr className={view === LIST ? "" : "d-none"}>
-              <th>
+              <th className="w-45 mob-w-100">
                 <span className="heading-quaternary">Usluge/robe</span>
               </th>
-              <th>
+              <th className="w-7">
                 <span className="heading-quaternary">JM</span>
               </th>
-              <th>
+              <th className="w-23 txt-right">
                 <span className="heading-quaternary">Cijena sa PDV</span>
               </th>
-              <th>
+              <th className="w-25">
                 <span className="heading-quaternary">Dodaj</span>
               </th>
             </tr>
