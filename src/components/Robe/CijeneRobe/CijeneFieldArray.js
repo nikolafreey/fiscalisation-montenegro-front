@@ -6,26 +6,27 @@ import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
 import DropDown from '../../shared/forms/DropDown';
 import { atributiService } from '../../../services/AtributiService';
 import Cijena from './Cijena';
+import { Link } from 'react-router-dom';
 
 const CijeneFieldArray = ({ insert, remove }) => {
   const { values } = useFormikContext();
   return (
-    <div>
+    <>
       {values.cijene.map((cijena, index) => (
         <div className="df jc-sb mt-15">
           <div className="form__group w-28">
             <DropDown
               name={`cijene.${index}.tip_atributa_id`}
-              className="form__input"
+              //className="form__input"
               label={$t('cijene.tip_atributa_id')}
               loadOptions={atributiService.getTipoviAtributaDropdown}
             />
           </div>
-          <div className="form__group w-40">
+          <div className="form__group w-28">
             <DropDown
               isMulti
               name={`cijene.${index}.atribut_id`}
-              className="form__input"
+              //className="form__input"
               label={$t('cijene.atribut_id')}
               defaultOptions={!!cijena.tip_atributa_id}
               key={cijena.tip_atributa_id}
@@ -45,7 +46,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
             />
           </div>
           <button
-            className="btn btn__link warning"
+            className="btn btn__link danger mb-0"
             type="button"
             onClick={() => remove(index)}
           >
@@ -54,16 +55,17 @@ const CijeneFieldArray = ({ insert, remove }) => {
         </div>
       ))}
       <div className="df ai-c">
-        <button
-          type="button"
-          className="link"
+        <Link
+          // type="button"
+          className="link mt-0"
           onClick={() => insert(values.cijene.length, '')}
         >
-          <Plus className="icon icon__stroke-link sm" />
-          <span className="btn btn__link success">{$t('common.dodajNovi')}</span>
-        </button>
+          
+          {`+ ${$t('common.dodajNovi')}`}
+          {/* <span className="btn btn__link success">{$t('common.dodajNovi')}</span> */}
+        </Link>
       </div>
-    </div>
+    </>
   );
 };
 export default CijeneFieldArray;

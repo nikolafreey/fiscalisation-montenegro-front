@@ -87,9 +87,9 @@ const NoviRacunPreview = () => {
 
       {/* Porezi */}
       <div className="container p-0">
-        <div className="row mb-15">
-          {Object.keys(porezi).map((porezId) => (
-            <>
+        {Object.keys(porezi).map((porezId) => (
+          <>
+            <div className="row mb-15">
               <div className="col-lg-8 col-8">
                 <p>Ukupno za {porezi[porezId].naziv}</p>
               </div>
@@ -98,6 +98,8 @@ const NoviRacunPreview = () => {
                   {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
                 </p>
               </div>
+            </div>
+            <div className="row">
               <div className="col-lg-8">
                 <p>{porezi[porezId].naziv}</p>
               </div>
@@ -106,9 +108,9 @@ const NoviRacunPreview = () => {
                   {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
                 </p>
               </div>
-            </>
-          ))}
-        </div>
+            </div>
+          </>
+        ))}
 
         <hr />
 

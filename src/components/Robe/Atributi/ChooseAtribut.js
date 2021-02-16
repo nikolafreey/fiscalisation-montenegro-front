@@ -1,4 +1,5 @@
 import { useFormikContext } from 'formik';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as RightSvg } from '../../../assets/icon/right.svg';
 
@@ -101,7 +102,7 @@ const ChooseAtribut = () => {
         <h2 className="heading-secondary">
           Atributi <span className="span-light"> - Opciono</span>
         </h2>
-        <p>
+        <p className="txt-light">
           Consequat eget volutpat enim libero nulla neque ultrices. Sed
           tristique nullam erat in interdum.
         </p>
@@ -145,10 +146,10 @@ const ChooseAtribut = () => {
                   }}
                   className="item-f"
                 >
-                  <span>
+                  <>
                     {tipAtributa.naziv}
                     <RightSvg />
-                  </span>
+                  </>
                 </li>
               ))}
             </ul>
@@ -164,9 +165,9 @@ const ChooseAtribut = () => {
                 />
               </div>
             ) : (
-              <p className="link" onClick={() => setFieldTipVisible(true)}>
+              <Link className="link ml-10 mb-10" onClick={() => setFieldTipVisible(true)}>
                 + Kreiraj tip atributa
-              </p>
+              </Link>
             )}
           </div>
           <div className="second-half">
@@ -182,11 +183,12 @@ const ChooseAtribut = () => {
             <ul className="item-list">
               {!atributSearch
                 ? tipAtributa?.atributi?.map((atribut) => (
-                    <div key={atribut.id}>
+                    <div className="form__checkbox-group" key={atribut.id}>
                       <li className="item-check">
                         <input
-                          // className="form__checkbox"
+                          className="form__checkbox"
                           type="checkbox"
+                          id={atribut.naziv}
                           name="atributi"
                           value={atribut.id}
                           checked={values.atributi?.includes(atribut.id)}
@@ -194,18 +196,19 @@ const ChooseAtribut = () => {
                             handleChangeAtribut(event.target.checked, atribut)
                           }
                         />
-                        <label className="form__checkbox-label">
+                        <label className="form__checkbox-label" htmlFor={atribut.naziv}>
                           {atribut.naziv}
                         </label>
                       </li>
                     </div>
                   ))
                 : atributValue?.map((atribut) => (
-                    <div key={atribut.id}>
+                    <div className="form__checkbox-group" key={atribut.id}>
                       <li className="item-check">
                         <input
-                          // className="form__checkbox"
+                          className="form__checkbox"
                           type="checkbox"
+                          id={atribut.naziv}
                           name="atributi"
                           value={atribut.id}
                           checked={values.atributi?.includes(atribut.id)}
@@ -213,7 +216,7 @@ const ChooseAtribut = () => {
                             handleChangeAtribut(event.target.checked, atribut)
                           }
                         />
-                        <label className="form__checkbox-label">
+                        <label className="form__checkbox-label" htmlFor={atribut.naziv}>
                           {atribut.naziv}
                         </label>
                       </li>
@@ -232,9 +235,9 @@ const ChooseAtribut = () => {
                 />
               </div>
             ) : (
-              <p className="link" onClick={() => setFieldVisible(true)}>
+              <Link className="link ml-10" onClick={() => setFieldVisible(true)}>
                 + Kreiraj atribut
-              </p>
+              </Link>
             )}
           </div>
         </div>
