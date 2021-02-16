@@ -12,6 +12,10 @@
     background-color: $color-background-light;
     padding: 0.5rem;
     margin-left: 1rem;
+
+    &:focus{
+      outline: none;
+    }
     @include respond(phone) {
       margin-left: 0;
     }

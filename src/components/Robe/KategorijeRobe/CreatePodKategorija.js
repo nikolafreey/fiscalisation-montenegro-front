@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Async from 'react-select/async';
 import { kategorijeRobeService } from '../../../services/KategorijeRobeService';
 import { storePodkategorijaRobe } from '../../../store/actions/KategorijeRobeActions';
@@ -27,9 +28,10 @@ const CreatePodKategorija = () => {
   };
 
   return (
-    <div>
+    <>
       {fieldVisible ? (
-        <div>
+        <>
+          {/* ovamo mora biti link za pravljenje nove podkat. */}
           <label className="form__label">Kreirajte novu podkategoriju</label>
 
           <input
@@ -40,7 +42,7 @@ const CreatePodKategorija = () => {
             onChange={handleChange}
           />
           <Async
-            className="form__input mb-10"
+            className="mb-10"
             loadOptions={kategorijeRobeService.getKategorijeRobeDropdown}
             defaultOptions
             cacheOptions
@@ -50,13 +52,13 @@ const CreatePodKategorija = () => {
           <button className="btn btn__dark jc-center" onClick={handleSubmit}>
             Kreiraj podkategoriju
           </button>
-        </div>
+        </>
       ) : (
-        <p className="link" onClick={() => setFieldVisible(true)}>
-          +Kreiraj podkategoriju
-        </p>
+        <Link className="link" onClick={() => setFieldVisible(true)}>
+          + Kreiraj podkategoriju
+        </Link>
       )}
-    </div>
+    </>
   );
 };
 

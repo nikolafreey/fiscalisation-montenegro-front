@@ -65,7 +65,7 @@ const Bezgotovinski = () => {
       {({ values }) => (
         <Form>
           <div className="screen-content">
-            <Link to={RACUNI.INDEX} className="link df">
+            <Link to={RACUNI.INDEX} className="back-link df">
               <LinkSvg /> <p>Povratak na Račune</p>
             </Link>
 

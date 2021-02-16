@@ -50,6 +50,8 @@
 .search-box{
   border: 1px solid $color-content-lines;
   border-radius: 4px;
+  height: 27rem;
+  overflow-x: hidden;
 
   input{
     padding: .8rem 1.5rem;

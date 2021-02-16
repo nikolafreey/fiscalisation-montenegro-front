@@ -9,6 +9,7 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
+import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.svg';
 
 import {
   deleteRoba,
@@ -131,7 +132,7 @@ const RobeForm = () => {
       {({ values }) => (
         <>
           <div className="screen-content">
-            <Link to={STAVKE.INDEX} className="link df">
+            <Link to={STAVKE.INDEX} className="back-link df">
               <LinkSvg /> <p>Povratak na Stavke</p>
             </Link>
           </div>
@@ -141,27 +142,28 @@ const RobeForm = () => {
           <div className="screen-content">
             <div className="main-content__box">
               <div className="content">
-                <Form>
+                <Form className="form">
                   <div className="container">
                     <div className="row">
                       <div className="col-md-4 mt-25">
                         <h2 className="heading-secondary">Informacije</h2>
-                        <p>
+                        <p className="txt-light mb-20">
                           Unesite puni naziv i opis artikla/robe za brzo
                           dodavanje. Ukoliko želite da ih razvrstate po
                           kategorijama ili određenim specifičnostima unesite
                           željene atribute u sekciji ispod.
                         </p>
-                        <a href="" className="link">
+                        <Link href="" className="link">
                           Upravljanje Proizvođačima
-                        </a>
+                        </Link>
                         <br />
-                        <a href="" className="link">
+                        <Link href="" className="link">
+                          <CloudPlusIcon />
                           Unosite veliki broj artikala/roba? Javite nam se da
                           ubrzamo proces
-                        </a>
+                        </Link>
                       </div>
-                      <div className="col-md-8 mtb-25">
+                      <div className="col-md-8 mt-25">
                         <div className="form__group">
                           <InputField
                             name="naziv"
@@ -198,26 +200,26 @@ const RobeForm = () => {
                             className="form__input"
                           />
                         </div>
-                        <div className="df jc-sb">
-                          <div className="form__group w-48">
+                        <div className="df jc-sb mob-fd-column mb-0">
+                          <div className="form__group w-48 mob-w-100 mb-0">
                             <DropDown
                               name="proizvodjac_robe_id"
                               label={$t('robe.proizvodjac')}
                               loadOptions={
                                 proizvodjacService.getProizvodjaciDropdown
                               }
-                              className="form__input"
+                              //className="form__input"
                               placeholder={roba?.proizvodjac_robe?.naziv}
                             />
                           </div>
-                          <div className="form__group w-48">
+                          <div className="form__group w-48 mob-w-100 mb-0">
                             <DropDown
                               name="jedinica_mjere_id"
                               label={$t('robe.jedinica_mjere')}
                               loadOptions={
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
-                              className="form__input"
+                              //className="form__input"
                               placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>
@@ -229,14 +231,17 @@ const RobeForm = () => {
                   <div className="container">
                     <div className="row">
                       <div className="col-md-4">
-                        <h2 className="heading-secondary">Kategorija</h2>
-                        <p>
+                        <h2 className="heading-secondary">
+                          Kategorija
+                          <span className="span-light"> - Opciono</span>
+                        </h2>
+                        <p className="txt-light mob-mb-20">
                           Izaberite kategorije i podkategorije kojima
                           artikal/roba pripada.
                         </p>
-                        <a href="" className="link">
+                        <Link href="" className="link">
                           Upravljanje kategorijama
-                        </a>
+                        </Link>
                       </div>
                       <div className="col-md-4">
                         <div className="search-box">
@@ -249,13 +254,13 @@ const RobeForm = () => {
                               value={search}
                             />
                           </div>
+                          <ul className="item-list">
+                            <ChooseKategorija
+                              kategorije={filtered || kategorije}
+                              editKategorije={roba}
+                            />
+                          </ul>
                         </div>
-                        <ul className="item-list">
-                          <ChooseKategorija
-                            kategorije={filtered || kategorije}
-                            editKategorije={roba}
-                          />
-                        </ul>
                       </div>
                       <div className="col-md-4">
                         <div className="form__group">
@@ -290,7 +295,7 @@ const RobeForm = () => {
                     <div className="row">
                       <div className="col-md-4">
                         <h2 className="heading-secondary">Status</h2>
-                        <p>
+                        <p className="txt-light">
                           Consequat eget volutpat enim libero nulla neque
                           ultrices. Sed tristique nullam erat in interdum.
                         </p>
@@ -314,6 +319,7 @@ const RobeForm = () => {
                           /> */}
                           <div className="form__radio-group">
                             <input
+                              className="form__radio-input"
                               type="radio"
                               value="Aktivan"
                               id="Aktivan"
@@ -324,11 +330,13 @@ const RobeForm = () => {
                               htmlFor="Aktivan"
                               className="form__radio-label"
                             >
-                              Aktivan
+                              <span class="form__radio-button"></span>
+                              <span class="mob-ml-20">Aktivan</span>
                             </label>
                           </div>
                           <div className="form__radio-group">
                             <input
+                              className="form__radio-input"
                               type="radio"
                               value="Neaktivan"
                               id="Neaktivan"
@@ -338,7 +346,8 @@ const RobeForm = () => {
                               htmlFor="Neaktivan"
                               className="form__radio-label"
                             >
-                              Neaktivan
+                              <span class="form__radio-button"></span>
+                              <span class="mob-ml-20">Neaktivan</span>
                             </label>
                           </div>
                         </div>
