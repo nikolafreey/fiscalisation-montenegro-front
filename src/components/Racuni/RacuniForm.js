@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { RacuniSchema } from '../../validation/racuni';
 import { useDispatch, useSelector } from 'react-redux';
 import InputField from '../shared/forms/InputField';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, Prompt } from 'react-router-dom';
 import RadioButton from '../shared/forms/RadioButton';
 import {
   deleteRacun,
@@ -70,11 +70,15 @@ const RacuniForm = () => {
       validationSchema={RacuniSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty }) => (
         <div className="screen-content">
           <div className="main-content__box">
             <div className="content">
               <Form>
+                <Prompt
+                  when={dirty}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <InputField />
                 <div className="row">
                   <div className="col-md-4">

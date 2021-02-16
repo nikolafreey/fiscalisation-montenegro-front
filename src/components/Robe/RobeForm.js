@@ -5,7 +5,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch, Prompt } from 'react-router-dom';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
@@ -128,7 +128,7 @@ const RobeForm = () => {
       //  validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty }) => (
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="link df">
@@ -142,6 +142,10 @@ const RobeForm = () => {
             <div className="main-content__box">
               <div className="content">
                 <Form>
+                  <Prompt
+                    when={dirty}
+                    message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                  />
                   <div className="container">
                     <div className="row">
                       <div className="col-md-4 mt-25">

@@ -12,7 +12,7 @@ import {
 } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, Prompt } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
@@ -75,7 +75,7 @@ const FizickaLicaForm = () => {
       validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty }) => (
         <div className="screen-content">
           <Link to={PREDUZECA.INDEX} className="link df">
             <LinkSvg />
@@ -86,6 +86,10 @@ const FizickaLicaForm = () => {
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
+                <Prompt
+                  when={dirty}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4 mt-25">
