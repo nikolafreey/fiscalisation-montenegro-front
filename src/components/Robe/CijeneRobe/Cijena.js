@@ -155,7 +155,7 @@ const Cijena = ({
                     getPriceNoVat,
                     values.pdv_ukljucen,
                     values.porez_id,
-                    values.ukupna_cijena
+                    cijena.ukupna_cijena
                   )}
                 </p>
                 <p className="mb-10">
@@ -181,8 +181,8 @@ const Cijena = ({
       </div>
 
       <div className="col-md-8">
-        <div className="df jc-sb mob-fd-column">
-          <div className="form__group w-48 w-48 mob-w-100">
+        <div className="df jc-sb">
+          <div className="form__group w-48">
             <InputField
               type="number"
               name="nabavna_cijena_bez_pdv"
@@ -199,7 +199,7 @@ const Cijena = ({
               }
             />
           </div>
-          <div className="form__group w-48 w-48 mob-w-100">
+          <div className="form__group w-48">
             <InputField
               type="number"
               name="nabavna_cijena_sa_pdv"
@@ -218,8 +218,8 @@ const Cijena = ({
           </div>
         </div>
 
-        <div className="df jc-sb mob-fd-column">
-          <div className="form__group w-48 w-48 mob-w-100">
+        <div className="df jc-sb">
+          <div className="form__group w-48">
             <DropDown
               name="porez_id"
               label={$t('cijene.porezi')}
@@ -230,7 +230,7 @@ const Cijena = ({
               }
             />
           </div>
-          <div className="form__group w-48 w-48 mob-w-100">
+          <div className="form__group w-48">
             <DropDownStatic
               name="pdv_ukljucen"
               label={$t('cijene.pdv_ukljucen')}

@@ -10,10 +10,24 @@ import { Link } from 'react-router-dom';
 import { AUTH } from '../../constants/routes';
 import Checkbox from '../shared/forms/Checkbox';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
 const Login = () => {
   const dispatch = useDispatch();
 
-  const loginError = useSelector(loginErrorSelector());
+  let loginError = useSelector(loginErrorSelector());
+
+  const notify = () => {
+    console.log('loginError', loginError);
+    if (loginError && loginError.message !== undefined) {
+      toast.error('Greška: ' + loginError.message);
+      loginError = null;
+    }
+    console.log('loginError after', loginError);
+  };
 
   return (
     <Formik
@@ -61,10 +75,25 @@ const Login = () => {
                       type="checkbox"
                     />
                   </div>
-                  <button type="submit" className="btn btn__dark">
+                  <button
+                    type="submit"
+                    className="btn btn__dark"
+                    onClick={notify}
+                  >
                     Ulazak
                   </button>
                   {!!loginError.errors && <div>{loginError.errors.email}</div>}
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
                   <Link className="df ai-c" to={AUTH.FORGOT}>
                     <svg width="17" height="17" fill="none" className="mr-s">
                       <path
