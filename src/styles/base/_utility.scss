@@ -155,6 +155,9 @@
 .mt-30 {
   margin-top: 3rem;
 }
+.mt-12 {
+  margin-top: 1.2rem;
+}
 .mt-15 {
   margin-top: 1.5rem;
 }
@@ -284,6 +287,11 @@
 .mob-mt-10 {
   @include respond(phone) {
     margin-top: 1rem;
+  }
+}
+.mob-mt-20 {
+  @include respond(phone) {
+    margin-top: 2rem;
   }
 }
 .mob-mr-10 {

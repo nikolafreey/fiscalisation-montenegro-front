@@ -29,4 +29,11 @@
           }
         }
       }
+      .link {
+        color: $color-link-dark;
+        transition: .2s;
+        &:hover {
+          color:$color-link-light;
+        }
+      }
 }

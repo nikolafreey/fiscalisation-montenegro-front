@@ -35,7 +35,7 @@ const Pregled = () => {
     <>
       <div className="dashboard">
         <div className="dashboard-title">
-          <h1 className="heading-primary">Dobar dan!</h1>
+          <h1 className="heading-primary mb-0">Dobar dan!</h1>
         </div>
       </div>
       <div className="dashboard__subtitle">
