@@ -42,10 +42,7 @@
 .box-dashboard-wrapper {
   position: relative;
   h2 {
-    margin-bottom: 2rem;
-    @include respond(phone) {
-      margin-bottom: 1rem;
-    }
+    margin-bottom: 1rem;
   }
 }
 .box-dashboard {
@@ -67,6 +64,8 @@
 
   h2 {
     margin-bottom: unset;
+    display: flex;
+    align-self: flex-start;
     @include respond(tab-land) {
       font-size: 21px;
     }
@@ -111,17 +110,20 @@
   }
   &__btm {
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     span {
       @include respond(tab-port){
         font-size: 14px;
+      }
+      h2{
+        align-self: baseline;
       }
     }
   }
   &__icon {
     position: absolute;
     top: 1.5rem;
-    right: 2rem;
+    right: 1.5rem;
     @include respond(tab-port) {
       top: 1rem;
       right: 1rem;

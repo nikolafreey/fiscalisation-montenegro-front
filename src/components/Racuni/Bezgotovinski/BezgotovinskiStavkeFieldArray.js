@@ -297,7 +297,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
         onClick={() => insert(values.stavke.length)}
         className="main-content__box--footer"
       >
-        <span>+ dodaj novu stavku</span>
+        <span className="link">+ dodaj novu stavku</span>
       </div>
     </>
   );

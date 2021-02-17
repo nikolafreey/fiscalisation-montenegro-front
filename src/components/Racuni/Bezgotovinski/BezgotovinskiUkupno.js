@@ -100,7 +100,7 @@ const BezgotovinskiUkupno = () => {
               <div className="col-xl-8">
                 <div className="row">
                   {!popustVisible && <div onClick={() => setPopustVisible(!popustVisible)} className="main-content__box--footer col-xl-10">
-                    <span>+ Dodaj popust</span>
+                    <span className="link">+ Dodaj popust</span>
                   </div>}
                   <div className="col-xl-4">
                     <div className="form-group">

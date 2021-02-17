@@ -28,6 +28,7 @@
       padding: 1.2rem;
     }
     &--inner-wrapper {
+      width: 100%;
       .heading-secondary {
         @include respond(phone) {
           margin-bottom: .5rem;
@@ -35,11 +36,14 @@
         }
       }
       .form__box {
-        height: 8rem;
+        height: 9rem;
 
-        @include respond(phone) {
-          height: 9rem;
-        }
+        // @include respond(phone) {
+        //   height: 9rem;
+        // }
+      }
+      .react-datepicker-wrapper{
+        width: 100%;
       }
     }
     &--header {
