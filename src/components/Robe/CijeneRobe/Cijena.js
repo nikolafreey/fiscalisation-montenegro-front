@@ -9,6 +9,7 @@ import { FieldArray, useFormikContext } from 'formik';
 import { getPorezi } from '../../../store/actions/UslugeActions';
 import CijeneFieldArray from './CijeneFieldArray';
 import { tipoviAtributaSelector } from '../../../store/selectors/AtributiSelector';
+import { useRouteMatch } from 'react-router-dom';
 
 const Cijena = ({
   getPriceNoVat,
@@ -19,6 +20,7 @@ const Cijena = ({
 }) => {
   const dispatch = useDispatch();
   const { values, setFieldValue } = useFormikContext();
+  const { params } = useRouteMatch();
 
   const tipoviAtributa = useSelector(tipoviAtributaSelector());
 
@@ -60,16 +62,22 @@ const Cijena = ({
   }, [dispatch]);
 
   const [valueUkupnaCijena, setValueUkupnaCijena] = useState(
-    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena
+    checkIfObjectEmpty(roba) && params.id && roba.cijene_roba[0].ukupna_cijena
   );
 
   const [valueCijenaBezPdv, setValueCijenaBezPdv] = useState(
-    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena_bez_pdv
+    checkIfObjectEmpty(roba) &&
+      params.id &&
+      roba.cijene_roba[0].ukupna_cijena_bez_pdv
   );
 
   const [valueCijenaSaPdv, setValueCijenaSaPdv] = useState(
-    checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena_sa_pdv
+    checkIfObjectEmpty(roba) &&
+      params.id &&
+      roba.cijene_roba[0].ukupna_cijena_sa_pdv
   );
+
+  console.log('roba', roba);
 
   return (
     <>
@@ -147,7 +155,7 @@ const Cijena = ({
                     getPriceNoVat,
                     values.pdv_ukljucen,
                     values.porez_id,
-                    cijena.ukupna_cijena
+                    values.ukupna_cijena
                   )}
                 </p>
                 <p className="mb-10">
@@ -183,6 +191,7 @@ const Cijena = ({
               value={valueCijenaBezPdv}
               onChange={(event) => {
                 setValueCijenaBezPdv(event.target.value);
+                setFieldValue('nabavna_cijena_bez_pdv', event.target.value);
               }}
               placeholder={
                 checkIfObjectEmpty(roba) &&
@@ -203,6 +212,7 @@ const Cijena = ({
               }
               onChange={(event) => {
                 setValueCijenaSaPdv(event.target.value);
+                setFieldValue('nabavna_cijena_sa_pdv', event.target.value);
               }}
             />
           </div>
@@ -241,6 +251,8 @@ const Cijena = ({
             }
             onChange={(event) => {
               setValueUkupnaCijena(event.target.value);
+              setFieldValue('ukupna_cijena', event.target.value);
+              console.log('setValueUkupnaCijena', valueUkupnaCijena);
             }}
           />
         </div>

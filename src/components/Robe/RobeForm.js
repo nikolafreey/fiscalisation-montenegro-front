@@ -32,6 +32,7 @@ import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSele
 import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
 import { STAVKE } from '../../constants/routes';
+import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const RobeForm = () => {
     { key: 'Neaktivan', value: 'Neaktivan' },
   ];
 
+  const globalError = useSelector(globalErrorSelector());
   const roba = useSelector(robaSelector());
   console.log('roba:', roba);
 
@@ -72,8 +74,9 @@ const RobeForm = () => {
           ),
         })
       );
-      history.push(STAVKE.INDEX);
+      if (globalError.message) history.push(STAVKE.INDEX);
     } else {
+      console.log('ukupna_cijena', values);
       dispatch(
         storeRoba({
           ...values,
@@ -92,7 +95,7 @@ const RobeForm = () => {
         })
       );
     }
-    history.push(STAVKE.INDEX);
+    if (globalError.message) history.push(STAVKE.INDEX);
   };
 
   const kategorije = useSelector(kategorijeRobeSelector());
@@ -128,7 +131,7 @@ const RobeForm = () => {
       //  validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values, dirty }) => (
+      {({ values, dirty, isSubmitting }) => (
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="link df">
@@ -350,8 +353,12 @@ const RobeForm = () => {
                     </div>
                   </div>
                   <div className="form__footer">
-                    <button className="btn btn__dark btn__md" type="submit">
-                      Sačuvaj
+                    <button
+                      className="btn btn__dark btn__md"
+                      type="submit"
+                      // disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}
                     </button>
 
                     <button className="btn btn__link ml-m">

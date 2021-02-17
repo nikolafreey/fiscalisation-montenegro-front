@@ -34,7 +34,7 @@ const FizickaLicaForm = () => {
     if (params.id) dispatch(getFizickoLice(params.id));
   }, [dispatch, params]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, isSubmitting) => {
     if (params.id) dispatch(updateFizickoLice({ id: params.id, ...values }));
     else
       dispatch(
@@ -43,6 +43,8 @@ const FizickaLicaForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+    isSubmitting.setSubmitting(false);
+    console.log('isSubmitting handleSubmit', isSubmitting.isSubmitting);
   };
 
   return (
@@ -72,10 +74,10 @@ const FizickaLicaForm = () => {
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
-      validationSchema={FizickaLicaSchema}
+      // validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values, dirty }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={PREDUZECA.INDEX} className="link df">
             <LinkSvg />
@@ -382,8 +384,13 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__md" type="submit">
-                    Sačuvaj
+                  <button
+                    onClick={() => console.log('isSubmitting', isSubmitting)}
+                    disabled={isSubmitting}
+                    className="btn btn__dark btn__md"
+                    type="submit"
+                  >
+                    {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>
 
