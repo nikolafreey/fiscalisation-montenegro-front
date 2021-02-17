@@ -10,7 +10,7 @@
         width: 100%;
         
     }
-    .link {
+    .back-link {
         margin-top: 4rem;
     
         svg {
@@ -27,6 +27,13 @@
             -o-transform: translate(-.5rem, 0); /** Opera **/
             -moz-transform: translate(-.5rem, 0); /** Firefox **/
           }
+        }
+      }
+      .link {
+        color: $color-link-dark;
+        transition: .2s;
+        &:hover {
+          color:$color-link-light;
         }
       }
 }

@@ -47,14 +47,15 @@ const ChooseKategorija = (props) => {
   console.log('checkboxKategorije', checkboxKategorije);
 
   return kategorije.map((kategorija, index) => (
-    <div ref={checkboxKategorije} key={kategorija.id}>
-      <li className="item-check">
+    <>
+      <li className="item-check" ref={checkboxKategorije} key={kategorija.id}>
         <div className="form__checkbox-group">
           <input
-            // className="form__checkbox"
+            className="form__checkbox"
             type="checkbox"
             name="kategorije"
             value={kategorija.id}
+            id={kategorija.naziv}
             checked={
               (Object.keys(props?.editKategorije).length !== 0 &&
                 values.kategorije[
@@ -67,17 +68,19 @@ const ChooseKategorija = (props) => {
               handleChangeKategorija(event.target.checked, kategorija)
             }
           />
-          <label>{kategorija.naziv}</label>
+          <label className="form__checkbox-label" htmlFor={kategorija.naziv}>{kategorija.naziv}</label>
         </div>
       </li>
       {kategorija.podkategorije_robe.map(
         (podkategorija, index_podkategorija) => (
-          <div key={podkategorija.id}>
-            <li className="sub-item-check">
+          <>
+            <li className="sub-item-check" key={podkategorija.id}>
               <div className="form__checkbox-group">
                 <input
                   style={{ marginLeft: '2rem' }}
                   type="checkbox"
+                  className="form__checkbox"
+                  id={podkategorija.naziv}
                   name="podkategorije"
                   value={podkategorija.id}
                   checked={values.kategorije[kategorija.id]?.includes(
@@ -91,13 +94,13 @@ const ChooseKategorija = (props) => {
                     )
                   }
                 />
-                <label>{podkategorija.naziv}</label>
+                <label className="form__checkbox-label" htmlFor={podkategorija.naziv}>{podkategorija.naziv}</label>
               </div>
             </li>
-          </div>
+          </>
         )
       )}
-    </div>
+    </>
   ));
 };
 

@@ -79,7 +79,7 @@ const FizickaLicaForm = () => {
     >
       {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
-          <Link to={PREDUZECA.INDEX} className="link df">
+          <Link to={PREDUZECA.INDEX} className="back-link df">
             <LinkSvg />
             <p>Povratak na Preduzeća</p>
           </Link>

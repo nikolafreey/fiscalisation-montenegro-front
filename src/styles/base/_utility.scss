@@ -22,6 +22,9 @@
 .fw-500 {
   font-weight: 500;
 }
+.fw-600 {
+  font-weight: 600;
+}
 .lh-sm {
   line-height: 1.5rem;
 }
@@ -92,6 +95,9 @@
 .w-80 {
   width: 80% !important;
 }
+.w-75 {
+  width: 75% !important;
+}
 .w-45 {
   width: 45% !important;
 }
@@ -140,11 +146,17 @@
     margin-bottom: 0;
   }
 }
+.mt-0 {
+  margin-top: 0;
+}
 .mt-50 {
   margin-top: 5rem;
 }
 .mt-30 {
   margin-top: 3rem;
+}
+.mt-12 {
+  margin-top: 1.2rem;
 }
 .mt-15 {
   margin-top: 1.5rem;
@@ -152,8 +164,14 @@
 .mt-25 {
   margin-top: 2.5rem;
 }
+.mt-20 {
+  margin-top: 2rem;
+}
 .mt-80 {
   margin-top: 8rem;
+}
+.mtb-20 {
+  margin: 2rem 0;
 }
 .mtb-25 {
   margin: 2.5rem 0;
@@ -179,8 +197,17 @@
 .mb-10 {
   margin-bottom: 1rem;
 }
+.ml-10 {
+  margin-left: 1rem;
+}
 .ml-15 {
   margin-left: 1.5rem;
+}
+.mr-35 {
+  margin-right: 3.5rem;
+}
+.mr-15 {
+  margin-right: 1.5rem;
 }
 .mr-m {
   margin-right: 2rem;
@@ -260,6 +287,11 @@
 .mob-mt-10 {
   @include respond(phone) {
     margin-top: 1rem;
+  }
+}
+.mob-mt-20 {
+  @include respond(phone) {
+    margin-top: 2rem;
   }
 }
 .mob-mr-10 {
@@ -355,4 +387,10 @@
   @include respond(phone){
     width: 100%;
   }
+}
+.w-break{
+  word-break: break-all;
+}
+.w-break-unset {
+  word-break: unset!important;
 }

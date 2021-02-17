@@ -50,6 +50,8 @@
 .search-box{
   border: 1px solid $color-content-lines;
   border-radius: 4px;
+  height: 27rem;
+  overflow-x: auto;
 
   input{
     padding: .8rem 1.5rem;
@@ -65,9 +67,13 @@
   .first-half{
     width: 100%;
     border-right: 1px solid $color-content-lines;
+    max-height: 27rem;
+    overflow: auto;
   }
   .second-half{
     width: 100%;
+    max-height: 27rem;
+    overflow: auto;
   }
   input{
     padding: .8rem 1.5rem;

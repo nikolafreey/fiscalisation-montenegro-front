@@ -43,7 +43,7 @@ const AysncCreatableDropDown = ({
 
   return (
     <div>
-      <Label htmlFor={props.id || props.name}>{label}</Label>
+      <Label htmlFor={props.id || props.name} className="form__label">{label}</Label>
       <AsyncCreatableSelect
         name={field.name}
         onChange={onChangeHandler}

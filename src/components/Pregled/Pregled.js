@@ -5,6 +5,8 @@ import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
 import { racuniService } from '../../services/RacuniService';
 import { ulazniRacuniService } from '../../services/UlazniRacuniService';
+import {ReactComponent as CloudPlusIcon} from '../../assets/icon/cloud-plus.svg';
+import { Link } from 'react-router-dom';
 
 const Pregled = () => {
   const [racuni, setRacuni] = useState();
@@ -33,7 +35,7 @@ const Pregled = () => {
     <>
       <div className="dashboard">
         <div className="dashboard-title">
-          <h1 className="heading-primary">Dobar dan!</h1>
+          <h1 className="heading-primary mb-0">Dobar dan!</h1>
         </div>
       </div>
       <div className="dashboard__subtitle">
@@ -505,21 +507,10 @@ const Pregled = () => {
             <p>Software development</p>
           </div>
           <div className="footer__right">
-            <a href="">
-              <svg
-                width="16"
-                height="15"
-                viewBox="0 0 16 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4.42871 14.6934C4.81836 14.6934 5.10547 14.502 5.57715 14.085L7.92188 12.0205H12.0371C14.0947 12.0205 15.25 10.8311 15.25 8.80078V3.48926C15.25 1.45898 14.0947 0.269531 12.0371 0.269531H3.32129C1.27051 0.269531 0.108398 1.45898 0.108398 3.48926V8.80078C0.108398 10.8379 1.30469 12.0205 3.27344 12.0205H3.55371V13.6953C3.55371 14.3037 3.875 14.6934 4.42871 14.6934ZM4.77051 13.1621V11.2139C4.77051 10.8105 4.59277 10.6533 4.20996 10.6533H3.36914C2.08398 10.6533 1.46875 10.0039 1.46875 8.75977V3.53027C1.46875 2.28613 2.08398 1.63672 3.36914 1.63672H11.9961C13.2744 1.63672 13.8896 2.28613 13.8896 3.53027V8.75977C13.8896 10.0039 13.2744 10.6533 11.9961 10.6533H7.84668C7.42969 10.6533 7.22461 10.7217 6.9375 11.0225L4.77051 13.1621ZM7.67578 9.2041C8.07227 9.2041 8.3252 8.93066 8.3252 8.50684V6.79785H10.1572C10.5674 6.79785 10.8545 6.55176 10.8545 6.15527C10.8545 5.75195 10.5742 5.50586 10.1572 5.50586H8.3252V3.6875C8.3252 3.26367 8.07227 2.99023 7.67578 2.99023C7.2793 2.99023 7.04004 3.27734 7.04004 3.6875V5.50586H5.21484C4.79102 5.50586 4.51074 5.75195 4.51074 6.15527C4.51074 6.55176 4.80469 6.79785 5.21484 6.79785H7.04004V8.50684C7.04004 8.91699 7.2793 9.2041 7.67578 9.2041Z"
-                  fill="#2563EB"
-                />
-              </svg>
+            <Link href="">
+              <CloudPlusIcon />
               <span>Nedostaje neka osobina? Javite nam</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

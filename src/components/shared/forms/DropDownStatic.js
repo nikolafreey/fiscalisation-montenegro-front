@@ -12,7 +12,7 @@ const DropDownStatic = ({ onChangeExtra, label, options, ...props }) => {
   const { setValue } = helpers;
   return (
     <div>
-      <Label htmlFor={props.id || props.name}>{label}</Label>
+      <Label htmlFor={props.id || props.name} className="form__label">{label}</Label>
 
       <Select
         options={options}
