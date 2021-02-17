@@ -83,27 +83,28 @@ const NoviRacunPreview = () => {
       {uslugeStavka}
       {robeStavka}
 
-      <hr />
+      <hr className="mtb-20"/>
 
       {/* Porezi */}
-      <div className="container p-0">
+      <>
+      <div className="side-info__wrapper">
         {Object.keys(porezi).map((porezId) => (
           <>
-            <div className="row mb-15">
-              <div className="col-lg-8 col-8">
+            <div className="side-info__info--inner-wrapper mb-0">
+              <div className="col-l w-break">
                 <p>Ukupno za {porezi[porezId].naziv}</p>
               </div>
-              <div className="col-lg-4 col-4">
+              <div className="col-r w-break-unset">
                 <p className="txt-right">
                   {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
                 </p>
               </div>
             </div>
-            <div className="row">
-              <div className="col-lg-8">
+            <div className="side-info__info--inner-wrapper mb-0">
+              <div className="col-l">
                 <p>{porezi[porezId].naziv}</p>
               </div>
-              <div className="col-lg-4">
+              <div className="col-r">
                 <p className="txt-right">
                   {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
                 </p>
@@ -111,42 +112,50 @@ const NoviRacunPreview = () => {
             </div>
           </>
         ))}
+      </div>
 
-        <hr />
+        <hr className="mtb-20"/>
+        <div className="side-info__wrapper">
+          <div className="side-info__info--inner-wrapper mb-0">
+            {/* Ukupan PDV */}
+            <div className="col-l">
+              <p>Ukupan PDV</p>
+            </div>
+            <div className="col-r">
+              <p className="txt-right">
+                {Number(ukupnaCijena - ukupnaCijenaBezPdv)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'}
+              </p>
+            </div>
+          </div>
 
-        <div className="row mb-20">
-          {/* Ukupan PDV */}
-          <div className="col-lg-8">
-            <p>Ukupan PDV</p>
-          </div>
-          <div className="col-lg-4">
-            <p className="txt-right">
-              {Number(ukupnaCijena - ukupnaCijenaBezPdv)
-                .toFixed(2)
-                .replace('.', ',') + '€'}
-            </p>
-          </div>
+            {/* Ukupno za plaćanje */}
 
-          {/* Ukupno za plaćanje */}
-          <div className="col-lg-7">
-            <p>Ukupno za plaćanje</p>
-          </div>
-          <div className="col-lg-5">
-            <p className="txt-right">
-              {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
-            </p>
-          </div>
+            <div className="side-info__info--inner-wrapper mb-0">
+              <div className="col-l">
+                <p className="fw-600">Ukupno za plaćanje</p>
+              </div>
+              <div className="col-r">
+                <p className="txt-right fw-600">
+                  {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
+                </p>
+              </div>
+            </div>
         </div>
-        {/* Kusur */}
-        <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
+        <hr className="mtb-20"/>
 
-        <hr />
+
+          {/* Kusur */}
+          <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
+
+        <hr className="mtb-20"/>
         {/* onClick={handlePrint} */}
         {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
         <button className="btn btn__transparent" onClick={handleSacuvaj}>
           Sačuvaj
         </button>
-      </div>
+      </>
     </div>
   );
 };

@@ -4,11 +4,11 @@
   width: 80%;
   align-items: center;
   margin-top: 1.5rem;
+  max-height: 11rem;
+  overflow-y: scroll;
 
   @include respond(phone) {
     width: 76%;
-    max-height: 11rem;
-    overflow-y: scroll;
   }
   &__tab {
     display: flex;

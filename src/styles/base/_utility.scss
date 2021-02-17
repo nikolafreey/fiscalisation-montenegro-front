@@ -22,6 +22,9 @@
 .fw-500 {
   font-weight: 500;
 }
+.fw-600 {
+  font-weight: 600;
+}
 .lh-sm {
   line-height: 1.5rem;
 }
@@ -158,8 +161,14 @@
 .mt-25 {
   margin-top: 2.5rem;
 }
+.mt-20 {
+  margin-top: 2rem;
+}
 .mt-80 {
   margin-top: 8rem;
+}
+.mtb-20 {
+  margin: 2rem 0;
 }
 .mtb-25 {
   margin: 2.5rem 0;
@@ -190,6 +199,12 @@
 }
 .ml-15 {
   margin-left: 1.5rem;
+}
+.mr-35 {
+  margin-right: 3.5rem;
+}
+.mr-15 {
+  margin-right: 1.5rem;
 }
 .mr-m {
   margin-right: 2rem;
@@ -364,4 +379,10 @@
   @include respond(phone){
     width: 100%;
   }
+}
+.w-break{
+  word-break: break-all;
+}
+.w-break-unset {
+  word-break: unset!important;
 }

@@ -34,66 +34,62 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   }
 
   return (
-    <div className="container p-0">
-      <div className="row">
-        <div className="col-lg-8 col-8">
-          <p>{roba ? roba.roba.naziv : usluga.naziv}</p>
+    <div className="side-info__info as-end mb-10">
+      <div className="side-info__info--inner-wrapper mb-0">
+        <div className="col-l w-break">
+          <p className="txt-dark">{roba ? roba.roba.naziv : usluga.naziv}</p>
           <p className="txt-light">{stavka.opis}</p>
         </div>
-        <div className="col-lg-4 col-4">
-          <div className="df jc-end">
-            <span className="spn-mr-10">
-              {roba
-                ? Number(
-                    stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena
-                  )
-                    .toFixed(2)
-                    .replace('.', ',') + '€'
-                : Number(stavka.kolicina * usluga.ukupna_cijena)
-                    .toFixed(2)
-                    .replace('.', ',') + '€'}
-            </span>
-
-            <span className="btn btn__link danger" onClick={handleRemove}>
+        <div className="col-r w-break-unset">
+          <div className="spn-mr-10 df">
+            {roba
+              ? Number(stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'
+              : Number(stavka.kolicina * usluga.ukupna_cijena)
+                  .toFixed(2)
+                  .replace('.', ',') + '€'}
+            <span className="btn btn__link danger df" onClick={handleRemove}>
               <DeleteIcon />
             </span>
           </div>
-          <div className="df jc-end">
-            {stavka.kolicina} x{' '}
-            {roba
-              ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
-                  .toFixed(2)
-                  .replace('.', ',') + '€'
-              : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
-          </div>
+        </div>
+      </div>
+      <div className="side-info__info--inner-wrapper mb-0">
+        <div className="col-l w-break">
+          <p className="ml-15 txt-dark">Količina</p>
+        </div>
+        <div className="col-r w-break-unset mr-m">
+          {stavka.kolicina} x{' '}
+          {roba
+            ? Number(roba.roba.cijene_roba[0].ukupna_cijena)
+                .toFixed(2)
+                .replace('.', ',') + '€'
+            : Number(usluga.ukupna_cijena).toFixed(2).replace('.', ',') + '€'}
         </div>
       </div>
       {getPopustIznos() && (
         <>
-          <div className="row">
-            <div className="col-lg-8">
-              <p>Popust {getPopustProcenat()}%</p>
+          <div className="side-info__info--inner-wrapper mb-0">
+            <div className="col-l w-break">
+              <p className="ml-15 txt-dark">Popust {getPopustProcenat()}%</p>
             </div>
-            <div className="col-lg-4">
-              <div className="df jc-end w-62">
-                <span>
-                  -{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}
-                </span>
-              </div>
+            <div className="col-r w-break-unset">
+              <span className="mr-m">
+                -{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}
+              </span>
             </div>
           </div>
-          <div className="row mb-15">
-            <div className="col-lg-8 col-8">
-              <p>Cijena sa popustom</p>
+          <div className="side-info__info--inner-wrapper mb-0">
+            <div className="col-l w-break">
+              <p className="ml-15 txt-dark">Cijena sa popustom</p>
             </div>
-            <div className="col-lg-4 col-4">
-              <div className="df jc-end w-62">
-                <span>
-                  {(
-                    Number(getUkupnaCijena()) - Number(getPopustIznos())
-                  ).toFixed(2)}
-                </span>
-              </div>
+            <div className="col-r w-break-unset">
+              <span className="mr-m">
+                {(Number(getUkupnaCijena()) - Number(getPopustIznos())).toFixed(
+                  2
+                )}
+              </span>
             </div>
           </div>
         </>

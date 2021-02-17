@@ -11,15 +11,19 @@ const NoviRacunKusur = ({ ukupnaCijena }) => {
   }, [ukupnaCijena]);
 
   return (
-    <div>
-      <input
-        className="form__input mb-20"
-        placeholder="gotovina"
-        value={gotovina}
-        onChange={(event) => setGotovina(event.target.value)}
-      />
-      <span className="ml-10">Kusur: </span>
-      <span>{kusur > 0 ? kusur.toFixed(2).replace('.', ',') : ''}</span>
+    <div className="side-info__info--inner-wrapper mb-0">
+      <div className="col-l">
+        <input
+          className="form__input"
+          placeholder="gotovina"
+          value={gotovina}
+          onChange={(event) => setGotovina(event.target.value)}
+        />
+      </div>
+      <div className="col-r">
+        <span className="ml-10">Kusur: </span>
+        <span className="ml-10">{kusur > 0 ? kusur.toFixed(2).replace('.', ',') : ''}</span>
+      </div>
     </div>
   );
 };
