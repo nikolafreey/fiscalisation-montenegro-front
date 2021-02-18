@@ -128,7 +128,7 @@ const Racuni = () => {
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100 mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-              <form className="search df ai-c w-45 mob-w-100">
+              <form className="search df ai-c w-45 mob-w-100 mr-15-mob-0">
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
@@ -143,30 +143,32 @@ const Racuni = () => {
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="mob-w-100 w-20 mob-mt-10"
-                placeholder={`Type to search`} 
+                className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
+                placeholder={`Type to search`}
               />
 
               {/* <div className="select w-25 df"> */}
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => handleStartDateChange(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                className="select mob-w-100 mob-mt-10"
-                placeholderText="Datum raspon od:"
-              />
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => handleEndDateChange(date)}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                className="select mob-w-100 mob-mt-10"
-                placeholderText="Datum raspon do:"
-              />
+              <div className="df jc-sb">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => handleStartDateChange(date)}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  className="select mob-w-100 mob-mt-10"
+                  placeholderText="Datum raspon od:"
+                />
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => handleEndDateChange(date)}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  className="select mob-w-100 mob-mt-10"
+                  placeholderText="Datum raspon do:"
+                />
+              </div>
               {/* </div> */}
             </div>
             <div className="box-wrapper">
