@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,23 +10,13 @@ import { Link } from 'react-router-dom';
 import { AUTH } from '../../constants/routes';
 import Checkbox from '../shared/forms/Checkbox';
 
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-toast.configure();
-
 const Login = () => {
   const dispatch = useDispatch();
 
-  let loginError = useSelector(loginErrorSelector());
+  const loginError = useSelector(loginErrorSelector());
 
-  const notify = () => {
-    console.log('loginError', loginError);
-    if (loginError && loginError.message !== undefined) {
-      toast.error('Greška: ' + loginError.message);
-      loginError = null;
-    }
-    console.log('loginError after', loginError);
+  const handleSubmit = (values) => {
+    dispatch(loginUser(values));
   };
 
   return (
@@ -35,7 +25,7 @@ const Login = () => {
         email: '',
         password: '',
       }}
-      onSubmit={(values) => dispatch(loginUser(values))}
+      onSubmit={handleSubmit}
     >
       <div className="login">
         <div className="container">
@@ -78,22 +68,13 @@ const Login = () => {
                   <button
                     type="submit"
                     className="btn btn__dark"
-                    onClick={notify}
+                    // onClick={notify}
                   >
                     Ulazak
                   </button>
-                  {!!loginError.errors && <div>{loginError.errors.email}</div>}
-                  <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                  />
+                  {!!loginError?.errors && (
+                    <div>{loginError?.errors?.email}</div>
+                  )}
                   <Link className="df ai-c" to={AUTH.FORGOT}>
                     <svg width="17" height="17" fill="none" className="mr-s">
                       <path
