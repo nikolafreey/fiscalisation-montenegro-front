@@ -4,6 +4,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { getStavke } from '../../../store/actions/RacuniActions';
+import { getRoba } from '../../../store/actions/RobeActions';
+import { getUsluga } from '../../../store/actions/UslugeActions';
 import {
   stavkeRobeSelector,
   stavkeUslugeSelector,
@@ -31,6 +33,9 @@ const StavkeDropdown = ({ label, ...props }) => {
 
   function onStavkaChange(option) {
     setValue({ ...option.value, kolicina: 0, tip_popusta: 'procenat' });
+    console.log('option', option);
+    option?.value?.roba_id && dispatch(getRoba(option.value.roba_id));
+    option?.value?.id && dispatch(getUsluga(option.value.id));
   }
 
   const [field, meta, helpers] = useField(props);

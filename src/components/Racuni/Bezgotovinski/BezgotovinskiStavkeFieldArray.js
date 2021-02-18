@@ -2,7 +2,7 @@ import { useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
 import StavkeDropdown from '../NoviRacun/StavkeDropdown';
 import { ReactComponent as RemoveIcon } from '../../../assets/icon/remove.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStavke } from '../../../store/actions/RacuniActions';
 import { formatirajCijenu } from '../../../helpers/racuni';
 import DropDown from '../../shared/forms/DropDown';
@@ -11,11 +11,28 @@ import { poreziService } from '../../../services/PoreziService';
 import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
 import { uslugaSelector } from '../../../store/selectors/UslugeSelector';
+import { robaSelector } from '../../../store/selectors/RobeSelector';
+import { getRobe } from '../../../store/actions/RobeActions';
+import { getUsluge } from '../../../store/actions/UslugeActions';
 
 const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getRobe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUsluge());
+  }, [dispatch]);
+
   const { values, setFieldValue } = useFormikContext();
+
+  const usluga = useSelector(uslugaSelector());
+  const roba = useSelector(robaSelector());
+
+  console.log('usluga', usluga);
+  console.log('roba', roba);
 
   const [porezi, setPorezi] = useState([]);
 
