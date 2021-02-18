@@ -84,7 +84,7 @@ const RacuniTableRow = ({ item }) => {
   };
 
   return (
-    <tr onClick={handleClick} className='mob-relative-block'>
+    <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
         {_item.ikof && <Success />}
         {vrstaRacuna(_item.vrsta_racuna)}
