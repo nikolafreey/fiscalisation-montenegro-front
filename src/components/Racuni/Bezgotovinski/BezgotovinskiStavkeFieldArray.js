@@ -156,6 +156,16 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   <div className="form-group">
                     <DropDown
                       name={`stavke.${index}.jedinica_mjere_id`}
+                      placeholder={
+                        Object.keys(usluga).length !== 0
+                          ? usluga?.jedinica_mjere?.naziv
+                          : roba?.jedinica_mjere?.naziv
+                      }
+                      defaultValue={
+                        Object.keys(usluga).length !== 0
+                          ? usluga?.jedinica_mjere?.id
+                          : roba?.jedinica_mjere?.id
+                      }
                       loadOptions={
                         jediniceMjereService.getJediniceMjereDropdown
                       }
