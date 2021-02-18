@@ -71,7 +71,7 @@ const NoviRacunPreview = () => {
         /> */}
       </div>
 
-      <div className="side-info__wrapper">
+      <div className="side-info__wrapper w-100-imp">
         {/* Ukupno */}
         <p className="txt-light txt-up">ukupno</p>
         <h1 className="heading-primary">

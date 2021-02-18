@@ -142,14 +142,14 @@ const PreduzecaForm = () => {
                 />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4 mt-25">
+                    <div className="col-lg-4 mt-25">
                       <h2 className="heading-secondary">Informacije</h2>
                       <p className="txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8 mtb-25">
+                    <div className="col-lg-8 mt-25">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -263,7 +263,7 @@ const PreduzecaForm = () => {
                         rows="5"
                         className="form__input"
                       />
-                      <div className="form__group form__area">
+                      <div className="form__group form__area mb-0">
                         <InputField
                           name="logotip"
                           label={$t('preduzeca.logotip')}
@@ -273,12 +273,12 @@ const PreduzecaForm = () => {
                           multiple="multiple"
                         />
                         <div className="file-dummy">
-                          <div className="success">
-                            Uspješno ste selektovali fajl!
-                          </div>
                           <div className="default">
                             Prevucite logotip ovdje <br />
                             ili kliknite da dodate
+                          </div>
+                          <div className="success">
+                            Uspješno ste selektovali fajl!
                           </div>
                         </div>
                       </div>
@@ -288,7 +288,7 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Žiro računi</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
@@ -297,13 +297,12 @@ const PreduzecaForm = () => {
                     </div>
                     <div className="col-md-8">
                       <div className="form__group">
-                        <div className="pr df ai-c">
-                          <FieldArray name="ziro_racuni">
-                            {(arrayHelpers) => (
-                              <ZiroRacuniFieldArray {...arrayHelpers} />
-                            )}
-                          </FieldArray>
-                        </div>
+                        <FieldArray name="ziro_racuni">
+                          {(arrayHelpers) => (
+                            <ZiroRacuniFieldArray {...arrayHelpers} />
+                          )}
+                        </FieldArray>
+
                         {/* <div className="df ai-c"></div> */}
                       </div>
                     </div>
@@ -312,7 +311,7 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">
                         Plaćanje iz inostranstva
                       </h2>
@@ -321,23 +320,23 @@ const PreduzecaForm = () => {
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
-                      <div className="form__group">
+                    <div className="col-md-7 col-lg-8">
+                      <div className="form__group half-wd-full-tab">
                         <InputField
                           name="iban"
                           label={$t('preduzeca.iban')}
                           placeholder=""
                           type="text"
-                          className="form__input half-wd-full-tab"
+                          className="form__input"
                         />
                       </div>
-                      <div className="form__group">
+                      <div className="form__group half-wd-full-tab">
                         <InputField
                           name="bic_swift"
                           label={$t('preduzeca.bic_swift')}
                           placeholder=""
                           type="text"
-                          className="form__input half-wd-full-tab"
+                          className="form__input"
                         />
                       </div>
                     </div>
@@ -346,14 +345,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -432,14 +431,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Ovlašćeno lice</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -518,14 +517,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Osoba za kontakt</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -549,6 +548,7 @@ const PreduzecaForm = () => {
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
+                            id="kontakt_telefon"
                             name="kontakt_telefon"
                             label={$t('preduzeca.telefon')}
                             placeholder=""
@@ -558,6 +558,7 @@ const PreduzecaForm = () => {
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="kontakt_whatsapp"
                                 name="kontakt_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
@@ -567,6 +568,7 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="kontakt_viber"
                                 name="kontakt_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
@@ -576,6 +578,7 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
+                                id="kontakt_facetime"
                                 name="kontakt_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
@@ -601,14 +604,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Društvene mreže</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -659,14 +662,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Lokacija na mapi</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <span className="form__label">Lokacija</span>
                       <div className="form__map">
                         <MapContainer google={true} className="form__map" />
@@ -677,14 +680,14 @@ const PreduzecaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-6 col-6">
                       <div className="form__group">
                         <div className="form__radio-group">
                           <div className="form__radio-group">
@@ -712,7 +715,7 @@ const PreduzecaForm = () => {
                         ) : null}
                       </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-6 col-6">
                       <div className="form__group">
                         <div className="form__radio-group">
                           <RadioButton
@@ -736,7 +739,7 @@ const PreduzecaForm = () => {
                   placeholder=""
                 /> */}
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__md" type="submit">
+                  <button className="btn btn__dark" type="submit">
                     Sačuvaj
                   </button>
                   <button
