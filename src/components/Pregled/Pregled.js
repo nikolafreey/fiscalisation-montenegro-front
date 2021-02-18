@@ -5,7 +5,7 @@ import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
 import { racuniService } from '../../services/RacuniService';
 import { ulazniRacuniService } from '../../services/UlazniRacuniService';
-import {ReactComponent as CloudPlusIcon} from '../../assets/icon/cloud-plus.svg';
+import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.svg';
 import { Link } from 'react-router-dom';
 
 const Pregled = () => {
@@ -40,10 +40,12 @@ const Pregled = () => {
       </div>
       <div className="dashboard__subtitle">
         <div className="dashboard__subtitle--left">
-          <i className="icon lg mr-xs">
-            <IconPrimary />
-          </i>
-          <p className="left">Restart IT doo</p>
+          <p className="left">
+            <i className="icon lg mr-xs">
+              <IconPrimary />
+            </i>
+            Restart IT doo
+          </p>
           <p className="right">
             <i className="icon lg mr-xs">
               <svg fill="none" viewBox="0 0 17 20">

@@ -44,8 +44,14 @@
 .h-70 {
   height: 70%;
 }
+.h-10r{
+  height: 10rem;
+}
 .w-100 {
   width: 100%;
+}
+.w-100-imp {
+  width: 100%!important;
 }
 .w-62 {
   width: 62% !important;
@@ -250,6 +256,12 @@
 .mr-s {
   margin-right: 0.5rem;
 }
+.mr-15-mob-0{
+  margin-right: 1.5rem;
+  @include respond(phone){
+    margin-right: 0;
+  }
+}
 .df {
   display: flex;
 }
@@ -275,7 +287,7 @@
   justify-content: center !important;
 }
 .mob-mb-20 {
-  @include respond(phone) {
+  @include respond(tab-port) {
     margin-bottom: 2rem;
   }
 }
@@ -382,12 +394,12 @@
   background-color: $color-background-light !important;
 }
 
-.react-datepicker-wrapper {
-  width: 15%;
-  @include respond(phone){
-    width: 100%;
-  }
-}
+// .react-datepicker-wrapper {
+//   width: 15%;
+//   @include respond(phone){
+//     width: 100%;
+//   }
+// }
 .w-break{
   word-break: break-all;
 }

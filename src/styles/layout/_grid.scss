@@ -2704,6 +2704,9 @@ html {
 .pr-0,
 .px-0 {
   padding-right: 0 !important;
+  @include respond(tab-land){
+    padding-right: 15px!important;
+  }
 }
 
 .pb-0,

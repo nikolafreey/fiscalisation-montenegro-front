@@ -88,14 +88,14 @@ const FizickaLicaForm = () => {
               <Form className="form">
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4 mt-25">
+                    <div className="col-lg-4 mt-25">
                       <h2 className="heading-secondary">Informacije</h2>
                       <p className="txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8 mtb-25">
+                    <div className="col-lg-8 mt-25">
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -198,16 +198,24 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
                       <div className="form__group">
-                        <label className="form__label">Opis</label>
+                        <label className="form__label" htmlFor="">Opis</label>
                         <textarea
                           name=""
                           id=""
                           cols="30"
                           rows="5"
-                          className="form__input"
+                          className="form__input h-10r"
                         ></textarea>
                       </div>
                       <div className="form__group form__area">
+                      <label className="form__label" htmlFor="logo">Fotografija</label>
+                          <input
+                            type="file"
+                            name="logo"
+                            id="logo"
+                            required="required"
+                            multiple="multiple"
+                          />
                         <div className="file-dummy">
                           <div className="success">
                             Uspješno ste selektovali fajl!
@@ -226,14 +234,14 @@ const FizickaLicaForm = () => {
 
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Tekući računi</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8 col-md-7">
                       <div className="form__group">
                         <FieldArray name="ziro_racuni">
                           {(arrayHelpers) => (
@@ -247,14 +255,14 @@ const FizickaLicaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
                         ultrices. Sed tristique nullam erat in interdum.
                       </p>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="df jc-sb mb-20">
                         <div className="form__group w-48 mob-w-100">
                           <InputField
@@ -299,17 +307,17 @@ const FizickaLicaForm = () => {
                       </div>
 
                       <div className="df fd-column">
-                        <div className="form__group w-100">
+                        <div className="form__group w-48">
                           <InputField
-                            className="form__input w-48 mob-w-100"
+                            className="form__input mob-w-100"
                             name="email"
                             label={$t('fizickalica.email')}
                           />
                         </div>
 
-                        <div className="form__group w-100">
+                        <div className="form__group w-48">
                           <InputField
-                            className="form__input w-48 mob-w-100"
+                            className="form__input mob-w-100"
                             name="cv_link"
                             label={$t('fizickalica.cv_link')}
                           />
@@ -321,7 +329,7 @@ const FizickaLicaForm = () => {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
@@ -378,7 +386,7 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__md" type="submit">
+                  <button className="btn btn__dark" type="submit">
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>

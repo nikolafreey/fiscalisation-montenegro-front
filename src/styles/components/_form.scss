@@ -2,8 +2,12 @@
   position: relative;
   position: relative;
 
+  .form-control {
+    margin-bottom: 1.5rem;
+  }
+
   hr {
-    margin: 2.5rem 0!important;
+    margin: 2.5rem 0 !important;
   }
 
   &__group {
@@ -26,8 +30,10 @@
     border: 1px solid $border-input-lines;
     width: 100%;
     .heading-secondary {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 0;
       @include respond(phone) {
-        margin-bottom: 0;
         font-size: 18px;
       }
     }
@@ -66,12 +72,16 @@
     .file-dummy {
       width: 100%;
       padding: 3rem;
+      height: 10rem;
       border-radius: 4px;
       background-color: $color-content-light;
       border: 2px dashed $border-input-lines;
       text-align: center;
       transition: background 0.3s ease-in-out;
 
+      @include respond(tab-land){
+        padding: 2rem;
+      }
       .success {
         display: none;
       }
@@ -115,7 +125,7 @@
 
     &:focus {
       outline: none;
-      padding: .92rem;
+      padding: 0.92rem;
       border: 2px solid $color-text-light;
       border-radius: 4px;
     }
@@ -143,7 +153,7 @@
   }
   &__label {
     font-size: $font-size-default;
-    margin-bottom: 0.7rem;
+    //margin-bottom: 0.7rem;
     display: block;
     transition: all 0.3s;
   }
@@ -180,6 +190,12 @@
       position: relative;
       cursor: pointer;
       padding: 0;
+      @include respond(big-phone) {
+        font-size: 16px;
+      }
+      @include respond(mini-phone) {
+        font-size: 12px;
+      }
       &:focus {
         outline: none;
       }
@@ -187,7 +203,7 @@
 
     // Box.
     & + label:before {
-      content: "";
+      content: '';
       margin-right: 10px;
       display: inline-block;
       vertical-align: text-top;
@@ -221,7 +237,7 @@
 
     // Checkmark. Could be replaced with an image
     &:checked + label:after {
-      content: "";
+      content: '';
       position: absolute;
       left: 5px;
       top: 12px;
@@ -248,6 +264,10 @@
     cursor: pointer;
     position: relative;
     padding-left: 2.5rem;
+    @include respond(tab-land){
+      font-size: 16px;
+      padding-left: 3.5rem;
+    }
 
     @include respond(phone) {
       display: flex;
@@ -263,7 +283,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    @include respond(phone) {
+    @include respond(tab-land) {
       height: 2.5rem;
       width: 2.5rem;
       display: flex;
@@ -283,6 +303,11 @@
       border: 6px solid $color-link-light;
       opacity: 0;
       transition: opacity 0.2s;
+      @include respond(tab-land) {
+        height: 2.5rem;
+        width: 2.5rem;
+        border: 8px solid $color-link-light;
+      }
     }
   }
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
@@ -295,7 +320,6 @@
     margin-top: 2rem;
     background-color: $color-content-light;
   }
- 
 
   &__map {
     position: relative;

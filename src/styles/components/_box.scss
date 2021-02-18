@@ -98,6 +98,8 @@
   }
   &__top {
     span {
+      width: 92%;
+      line-height: 17px;
       @include respond(tab-land) {
         font-size: 14px;
       }

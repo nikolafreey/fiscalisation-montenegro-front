@@ -12,7 +12,7 @@ import {
 } from '../../store/actions/RacuniActions';
 import { racunSelector } from '../../store/selectors/RacuniSelector';
 
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
@@ -95,16 +95,16 @@ const RacuniTableRow = ({ item }) => {
           `${_item.partner?.fizicko_lice?.ime}
            ${_item.partner?.fizicko_lice?.prezime}`}
       </td>
-      <td className="cd fw-500 dshow-cell">
+      <td className="cl dshow-cell">
         {currencyFormat(_item.ukupna_cijena_bez_pdv) + '€'}
       </td>
-      <td className="cd fw-500 dshow-cell">
+      <td className="cl dshow-cell">
         {currencyFormat(_item.ukupan_iznos_pdv) + '€'}
       </td>
       <td className="cd fw-500">
         {currencyFormat(_item.ukupna_cijena_sa_pdv) + '€'}
       </td>
-      <td className="cd fw-500">
+      <td className="cd">
         {/* <span className={bojaStatus[item.status].klasa}>
           {bojaStatus[item.status].naziv}
         </span> */}
@@ -116,7 +116,7 @@ const RacuniTableRow = ({ item }) => {
         }
       </td>
 
-      <td className="cd fw-500">
+      <td className="cl">
         {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
         <Moment locale="me" format="DD. MMM YYYY.">
           {_item.created_at}
@@ -127,20 +127,20 @@ const RacuniTableRow = ({ item }) => {
           <button className="btn btn__light btn__xs">
             <IconLg />
             <div className="drop-down">
-              <a
+              <Link
                 onClick={handleIzmjeni}
                 className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
               >
                 <Izmjeni />
                 Izmjeni
-              </a>
-              <a
+              </Link>
+              <Link
                 onClick={handleObrisi}
                 className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
               >
                 <Obrisi />
                 Obriši
-              </a>
+              </Link>
             </div>
           </button>
         </div>

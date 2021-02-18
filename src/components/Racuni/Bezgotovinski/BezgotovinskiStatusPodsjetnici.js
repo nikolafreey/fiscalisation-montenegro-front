@@ -101,7 +101,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
           </div>
           {vrijemePodsjetnik !== 'svaki_dan' ?
             <div className="col-xl-4">
-              <div className="form-group">
+              <div className="form-group mb-20">
                 <label className="form__label">
                   Dan za slanje
               </label>
