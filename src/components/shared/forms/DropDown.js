@@ -24,7 +24,6 @@ const DropDown = ({
       <Label htmlFor={props.id || props.name} className="form__label">
         {label}
       </Label>
-
       <AsyncSelect
         name={field.name}
         onChange={(option) => {

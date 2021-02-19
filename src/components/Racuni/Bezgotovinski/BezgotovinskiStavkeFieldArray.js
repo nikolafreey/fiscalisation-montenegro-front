@@ -137,6 +137,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <StavkeDropdown
                       name={`stavke.${index}`}
                       className="form__input"
+                      onChangeExtra={(option) => {
+                        console.log('option stavke:', option);
+                        setFieldValue(`stavke.${index}`, option);
+                      }}
                     />
                   </div>
                 </div>
@@ -200,6 +204,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDownStatic
                       name={`stavke.${index}.tip_popusta`}
                       options={TIPOVI_POPUSTA}
+                      defaultValue={{ value: 'procenat', label: 'Procenat %' }}
                       onChangeExtra={(option) =>
                         handleChoosePopust(option, stavka, index)
                       }

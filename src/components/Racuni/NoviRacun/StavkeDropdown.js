@@ -14,7 +14,7 @@ import Label from '../../shared/forms/Label';
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
-const StavkeDropdown = ({ label, ...props }) => {
+const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
   const dispatch = useDispatch();
 
   const robe = useSelector(stavkeRobeSelector()) || { data: [] };
@@ -41,6 +41,7 @@ const StavkeDropdown = ({ label, ...props }) => {
       dispatch(getUsluga(option.value.id));
       dispatch(setRoba({}));
     }
+    if (onChangeExtra) onChangeExtra(option.value);
   }
 
   const [field, meta, helpers] = useField(props);
