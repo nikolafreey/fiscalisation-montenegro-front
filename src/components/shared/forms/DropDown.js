@@ -1,4 +1,5 @@
 import { ErrorMessage, useField } from 'formik';
+import { placeholder } from 'i18n-js';
 import React, { useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import Label from './Label';
@@ -20,14 +21,20 @@ const DropDown = ({
 
   return (
     <div>
-      <Label htmlFor={props.id || props.name} className="form__label">{label}</Label>
+      <Label htmlFor={props.id || props.name} className="form__label">
+        {label}
+      </Label>
 
       <AsyncSelect
         name={field.name}
         onChange={(option) => {
           if (props.isMulti) {
             setValue(option.map((item) => item.value));
-          } else setValue(option.value);
+          } else {
+            setSelectedLabel(option.label);
+            setValue(option.value);
+            console.log('dropdown option', option);
+          }
           setSelectedLabel(option);
           if (onChangeExtra) onChangeExtra(option);
         }}

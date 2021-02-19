@@ -26,7 +26,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     dispatch(getUsluge());
   }, [dispatch]);
 
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue, setSelectedLabel } = useFormikContext();
 
   const usluga = useSelector(uslugaSelector());
   const roba = useSelector(robaSelector());
@@ -161,10 +161,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           ? usluga?.jedinica_mjere?.naziv
                           : roba?.jedinica_mjere?.naziv
                       }
-                      defaultValue={
-                        Object.keys(usluga).length !== 0
-                          ? usluga?.jedinica_mjere?.id
-                          : roba?.jedinica_mjere?.id
+                      onChangeExtra={(option) =>
+                        setFieldValue(
+                          `stavke.${index}.jedinica_mjere_id`,
+                          option
+                        )
                       }
                       loadOptions={
                         jediniceMjereService.getJediniceMjereDropdown
@@ -177,6 +178,14 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDown
                       name={`stavke.${index}.porez_id`}
                       loadOptions={poreziService.getPoreziDropdown}
+                      placeholder={
+                        Object.keys(usluga).length === 0 &&
+                        Object.keys(roba).length === 0
+                          ? ''
+                          : Object.keys(usluga).length !== 0
+                          ? usluga?.porez?.naziv
+                          : roba?.cijene_roba[0]?.porez?.naziv
+                      }
                       onChangeExtra={(option) =>
                         setFieldValue(
                           `stavke.${index}.porez`,
