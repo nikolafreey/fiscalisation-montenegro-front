@@ -165,12 +165,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           ? usluga?.jedinica_mjere?.naziv
                           : roba?.jedinica_mjere?.naziv
                       }
-                      onChangeExtra={(option) =>
+                      onChangeExtra={(option) => {
+                        console.log('jedinica-mjere option', option);
                         setFieldValue(
                           `stavke.${index}.jedinica_mjere_id`,
                           option
-                        )
-                      }
+                        );
+                      }}
                       loadOptions={
                         jediniceMjereService.getJediniceMjereDropdown
                       }
@@ -190,12 +191,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           ? usluga?.porez?.naziv
                           : roba?.cijene_roba[0]?.porez?.naziv
                       }
-                      onChangeExtra={(option) =>
+                      onChangeExtra={(option) => {
+                        console.log('porez option:', option);
                         setFieldValue(
                           `stavke.${index}.porez`,
                           getPorezForId(option.value)
-                        )
-                      }
+                        );
+                      }}
                     />
                   </div>
                 </div>

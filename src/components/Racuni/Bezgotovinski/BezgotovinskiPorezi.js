@@ -7,6 +7,7 @@ import {
 
 const BezgotovinskiPorezi = () => {
   const { values } = useFormikContext();
+  console.log('values', values);
   const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
 
   return (
@@ -32,6 +33,7 @@ const BezgotovinskiPorezi = () => {
               <tbody>
                 {Object.keys(porezi).map((porezId) => {
                   const porez = porezi[porezId];
+                  console.log('porezi: ', porezi);
                   console.log('pprezzz', porez);
                   return (
                     <tr>
