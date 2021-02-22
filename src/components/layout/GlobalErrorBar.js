@@ -8,20 +8,20 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const GlobalErrorBar = () => {
-  const notify = () => {
-    toast('Greška: ' + globalError);
-    console.log('globalError notify:', globalError);
-  };
+  // const notify = () => {
+  //   toast('Greška: ' + globalError);
+  //   console.log('globalError notify:', globalError);
+  // };
 
-  useEffect(() => {
-    console.log('globalError', globalError);
-    globalError && notify();
-  }, [notify]);
+  // useEffect(() => {
+  //   console.log('globalError', globalError);
+  //   globalError && notify();
+  // }, [notify]);
   const globalError = useSelector(globalErrorSelector());
 
   console.log('globalError', globalError);
 
-  return <div>{globalError}</div>;
+  return <div></div>;
 };
 
 export default GlobalErrorBar;
