@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,17 +15,13 @@ const Login = () => {
 
   const loginError = useSelector(loginErrorSelector());
 
-  const handleSubmit = (values) => {
-    dispatch(loginUser(values));
-  };
-
   return (
     <Formik
       initialValues={{
         email: '',
         password: '',
       }}
-      onSubmit={handleSubmit}
+      onSubmit={(values) => dispatch(loginUser(values))}
     >
       <div className="login">
         <div className="container">
@@ -65,11 +61,7 @@ const Login = () => {
                       type="checkbox"
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn__dark"
-                    // onClick={notify}
-                  >
+                  <button type="submit" className="btn btn__dark">
                     Ulazak
                   </button>
                   {!!loginError?.errors && (

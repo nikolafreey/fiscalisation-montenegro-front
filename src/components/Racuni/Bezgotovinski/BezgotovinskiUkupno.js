@@ -139,13 +139,8 @@ const BezgotovinskiUkupno = () => {
                     <div className="form-group">
                       {popustVisible && (
                         <>
-                          <label
-                            className="form__label"
-                            style={{ marginTop: 22 }}
-                          ></label>
+                          <label className="form__label">Iznos popusta</label>
                           <input
-                            disabled
-                            readOnly
                             type="number"
                             className="form__input"
                             value={values.popust}
@@ -170,17 +165,15 @@ const BezgotovinskiUkupno = () => {
                     <div className="form-group">
                       {popustVisible && (
                         <>
-                          <label className="form__label">Iznos popusta</label>
+                          <label
+                            className="form__label"
+                            style={{ marginTop: 22 }}
+                          ></label>
                           <input
+                            disabled
+                            readOnly
                             type="number"
                             className="form__input"
-                            value={values.popust}
-                            onChange={(event) =>
-                              setFieldValue(
-                                'popust',
-                                event.target.valueAsNumber
-                              )
-                            }
                           />
                         </>
                       )}
