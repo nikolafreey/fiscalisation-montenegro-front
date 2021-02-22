@@ -67,6 +67,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getIznosPdv(stavka) {
+    console.log();
     return getPorezStopaForId(stavka?.porez_id) * getCijenaStavkeBezPdv(stavka);
   }
 
@@ -76,17 +77,19 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
-    return (
+    let temp =
       getCijenaStavkeBezPdv(stavka) *
-      (stavka && stavka.kolicina ? stavka.kolicina : 1)
-    );
+      (stavka && stavka.kolicina ? stavka.kolicina : 1);
+    // console.log('getUkupnaCijenaBezPdv', temp);
+    return temp;
   }
 
   function getUkupnaCijenaSaPdv(stavka) {
-    return (
+    let temp =
       getUkupnaCijenaStavke(stavka) *
-      (stavka && stavka.kolicina ? stavka.kolicina : 1)
-    );
+      (stavka && stavka.kolicina ? stavka.kolicina : 1);
+    console.log('getUkupnaCijenaSaPdv', temp);
+    return temp;
   }
 
   function getUkupanIznosPdv(stavka) {
@@ -160,10 +163,21 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   <div className="form-group">
                     <DropDown
                       name={`stavke.${index}.jedinica_mjere_id`}
-                      placeholder={
+                      // placeholder={
+                      //   Object.keys(usluga).length !== 0
+                      //     ? usluga?.jedinica_mjere?.naziv
+                      //     : roba?.jedinica_mjere?.naziv
+                      // }
+                      defaultValue={
                         Object.keys(usluga).length !== 0
-                          ? usluga?.jedinica_mjere?.naziv
-                          : roba?.jedinica_mjere?.naziv
+                          ? {
+                              value: usluga?.jedinica_mjere?.id,
+                              label: usluga?.jedinica_mjere?.naziv,
+                            }
+                          : {
+                              value: roba?.jedinica_mjere?.id,
+                              label: roba?.jedinica_mjere?.naziv,
+                            }
                       }
                       onChangeExtra={(option) => {
                         console.log('jedinica-mjere option', option);
@@ -183,13 +197,27 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDown
                       name={`stavke.${index}.porez_id`}
                       loadOptions={poreziService.getPoreziDropdown}
-                      placeholder={
+                      // placeholder={
+                      //   Object.keys(usluga).length === 0 &&
+                      //   Object.keys(roba).length === 0
+                      //     ? ''
+                      //     : Object.keys(usluga).length !== 0
+                      //     ? usluga?.porez?.naziv
+                      //     : roba?.cijene_roba[0]?.porez?.naziv
+                      // }
+                      defaultValue={
                         Object.keys(usluga).length === 0 &&
                         Object.keys(roba).length === 0
-                          ? ''
+                          ? {}
                           : Object.keys(usluga).length !== 0
-                          ? usluga?.porez?.naziv
-                          : roba?.cijene_roba[0]?.porez?.naziv
+                          ? {
+                              value: usluga?.porez?.id,
+                              label: usluga?.porez?.naziv,
+                            }
+                          : {
+                              value: roba?.cijene_roba[0]?.porez?.id,
+                              label: roba?.cijene_roba[0]?.porez?.naziv,
+                            }
                       }
                       onChangeExtra={(option) => {
                         console.log('porez option:', option);

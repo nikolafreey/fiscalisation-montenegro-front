@@ -37,7 +37,7 @@ const DropDown = ({
           setSelectedLabel(option);
           if (onChangeExtra) onChangeExtra(option);
         }}
-        value={defaultValue ? defaultValue : selectedLabel}
+        value={selectedLabel !== null ? selectedLabel : defaultValue}
         cacheOptions
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}
