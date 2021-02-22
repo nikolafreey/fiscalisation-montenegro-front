@@ -26,7 +26,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     dispatch(getUsluge());
   }, [dispatch]);
 
-  const { values, setFieldValue, setSelectedLabel } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext();
 
   const usluga = useSelector(uslugaSelector());
   const roba = useSelector(robaSelector());
@@ -257,7 +257,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           type="number"
                           className="form__input mb-12"
                           value={
-                            stavka && stavka.kolicina ? stavka.kolicina : 1
+                            stavka && (stavka.kolicina ? stavka.kolicina : 1)
                           }
                           onChange={(event) =>
                             setFieldValue(
