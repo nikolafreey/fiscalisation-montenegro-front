@@ -62,13 +62,20 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     return porezi?.find((porez) => porez.id === porezId) || {};
   }
 
-  function getPorezStopaForId(porezId) {
-    return getPorezForId(porezId)?.stopa || 0;
+  function getPorezStopaForId(porezId, stavka) {
+    return (
+      stavka &&
+      (getPorezForId(porezId)?.stopa ||
+        getPorezForId(stavka?.roba?.cijene_roba[0]?.porez_id)?.stopa ||
+        0)
+    );
   }
 
   function getIznosPdv(stavka) {
-    console.log();
-    return getPorezStopaForId(stavka?.porez_id) * getCijenaStavkeBezPdv(stavka);
+    return (
+      getPorezStopaForId(stavka?.porez_id, stavka) *
+      getCijenaStavkeBezPdv(stavka)
+    );
   }
 
   function getUkupnaCijenaStavke(stavka) {
@@ -77,19 +84,17 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
-    let temp =
+    return (
       getCijenaStavkeBezPdv(stavka) *
-      (stavka && stavka.kolicina ? stavka.kolicina : 1);
-    // console.log('getUkupnaCijenaBezPdv', temp);
-    return temp;
+      (stavka && stavka.kolicina ? stavka.kolicina : 1)
+    );
   }
 
   function getUkupnaCijenaSaPdv(stavka) {
-    let temp =
+    return (
       getUkupnaCijenaStavke(stavka) *
-      (stavka && stavka.kolicina ? stavka.kolicina : 1);
-    console.log('getUkupnaCijenaSaPdv', temp);
-    return temp;
+      (stavka && stavka.kolicina ? stavka.kolicina : 1)
+    );
   }
 
   function getUkupanIznosPdv(stavka) {
@@ -141,7 +146,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       name={`stavke.${index}`}
                       className="form__input"
                       onChangeExtra={(option) => {
-                        console.log('option stavke:', option);
                         setFieldValue(`stavke.${index}`, option);
                       }}
                     />
@@ -180,7 +184,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             }
                       }
                       onChangeExtra={(option) => {
-                        console.log('jedinica-mjere option', option);
                         setFieldValue(
                           `stavke.${index}.jedinica_mjere_id`,
                           option
@@ -220,7 +223,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             }
                       }
                       onChangeExtra={(option) => {
-                        console.log('porez option:', option);
                         setFieldValue(
                           `stavke.${index}.porez`,
                           getPorezForId(option.value)
