@@ -16,7 +16,7 @@ const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
 
-  // console.log('noviRacun', noviRacun);
+  console.log('noviRacun', noviRacun);
 
   const dispatch = useDispatch();
 
@@ -79,42 +79,40 @@ const NoviRacunPreview = () => {
           <span className="txt-light">€</span>
         </h1>
       </div>
-
       {uslugeStavka}
       {robeStavka}
-
-      <hr className="mtb-20"/>
-
+      <hr className="mtb-20" />
       {/* Porezi */}
       <>
-      <div className="side-info__wrapper">
-        {Object.keys(porezi).map((porezId) => (
-          <>
-            <div className="side-info__info--inner-wrapper mb-0">
-              <div className="col-l w-break">
-                <p>Ukupno za {porezi[porezId].naziv}</p>
+        <div className="side-info__wrapper">
+          {Object.keys(porezi).map((porezId) => (
+            <>
+              <div className="side-info__info--inner-wrapper mb-0">
+                <div className="col-l w-break">
+                  <p>Ukupno za {porezi[porezId].naziv}</p>
+                </div>
+                <div className="col-r w-break-unset">
+                  <p className="txt-right">
+                    {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+                  </p>
+                </div>
               </div>
-              <div className="col-r w-break-unset">
-                <p className="txt-right">
-                  {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
-                </p>
+              <div className="side-info__info--inner-wrapper mb-0">
+                <div className="col-l">
+                  <p>{porezi[porezId].naziv}</p>
+                </div>
+                <div className="col-r">
+                  <p className="txt-right">
+                    {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') +
+                      '€'}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="side-info__info--inner-wrapper mb-0">
-              <div className="col-l">
-                <p>{porezi[porezId].naziv}</p>
-              </div>
-              <div className="col-r">
-                <p className="txt-right">
-                  {porezi[porezId].pdvIznos.toFixed(2).replace('.', ',') + '€'}
-                </p>
-              </div>
-            </div>
-          </>
-        ))}
-      </div>
+            </>
+          ))}
+        </div>
 
-        <hr className="mtb-20"/>
+        <hr className="mtb-20" />
         <div className="side-info__wrapper">
           <div className="side-info__info--inner-wrapper mb-0">
             {/* Ukupan PDV */}
@@ -130,26 +128,25 @@ const NoviRacunPreview = () => {
             </div>
           </div>
 
-            {/* Ukupno za plaćanje */}
+          {/* Ukupno za plaćanje */}
 
-            <div className="side-info__info--inner-wrapper mb-0">
-              <div className="col-l">
-                <p className="fw-600">Ukupno za plaćanje</p>
-              </div>
-              <div className="col-r">
-                <p className="txt-right fw-600">
-                  {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
-                </p>
-              </div>
+          <div className="side-info__info--inner-wrapper mb-0">
+            <div className="col-l">
+              <p className="fw-600">Ukupno za plaćanje</p>
             </div>
+            <div className="col-r">
+              <p className="txt-right fw-600">
+                {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
+              </p>
+            </div>
+          </div>
         </div>
-        <hr className="mtb-20"/>
+        <hr className="mtb-20" />
 
+        {/* Kusur */}
+        <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
 
-          {/* Kusur */}
-          <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
-
-        <hr className="mtb-20"/>
+        <hr className="mtb-20" />
         {/* onClick={handlePrint} */}
         {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
         <button className="btn btn__transparent" onClick={handleSacuvaj}>
