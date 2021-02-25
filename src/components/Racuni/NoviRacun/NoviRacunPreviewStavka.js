@@ -33,7 +33,10 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
     const popustRoba = roba?.atribut_robe?.popust_procenti / 100;
     const popustUsluga = usluga?.grupa?.popust_procenti / 100;
 
-    return ukupna_cijenaUsluga * popustUsluga || ukupna_cijenaRoba * popustRoba;
+    return (
+      ukupna_cijenaUsluga * popustUsluga * stavka.kolicina ||
+      ukupna_cijenaRoba * popustRoba * stavka.kolicina
+    );
   }
 
   function getUkupnaCijena() {
