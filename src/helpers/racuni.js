@@ -60,7 +60,7 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
 }
 
 function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
-  if (roba && roba.kolicina === 0) {
+  if (roba && roba?.kolicina === 0) {
     roba.kolicina = 1;
   }
   const porezRobe = roba.porez || roba.roba.cijene_roba[0].porez;
@@ -95,21 +95,26 @@ export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
 }
 
 function dodajUsluguNaSumu(suma, usluga, bezDefaultPopusta) {
-  if (usluga && usluga.kolicina === 0) {
+  if (usluga && usluga?.kolicina === 0) {
     usluga.kolicina = 1;
   }
   const ukupna_cijena =
     (1 + Number(usluga.porez.stopa)) * Number(usluga.cijena_bez_pdv);
 
-  if (usluga.tip_popusta && usluga.popust) {
+  if (usluga?.tip_popusta && usluga?.popust) {
     return (
       suma +
       izracunajPopust(ukupna_cijena, usluga.popust, usluga.tip_popusta) *
         usluga.kolicina
     );
   }
-  if (!bezDefaultPopusta && usluga.grupa?.popust_iznos)
-    return suma + (ukupna_cijena - usluga.grupa.popust_iznos) * usluga.kolicina;
+  if (!bezDefaultPopusta && usluga?.grupa?.popust_procenti) {
+    return (
+      suma +
+      (ukupna_cijena - (ukupna_cijena * usluga.grupa.popust_procenti) / 100) *
+        usluga.kolicina
+    );
+  }
   return suma + ukupna_cijena * usluga.kolicina;
 }
 
@@ -119,18 +124,26 @@ function dodajRobuNaSumu(suma, roba, bezDefaultPopusta) {
     (1 + Number(porezRobe.stopa)) *
     Number(roba.roba.cijene_roba[0].cijena_bez_pdv);
 
-  if (roba.tip_popusta && roba.popust) {
+  if (roba?.tip_popusta && roba?.popust) {
     return (
       suma +
       izracunajPopust(ukupna_cijena, roba.popust, roba.tip_popusta) *
         roba.kolicina
     );
   }
-  if (!bezDefaultPopusta && roba.atribut_robe?.popust_iznos)
+  // if (!bezDefaultPopusta && roba.atribut_robe?.popust_iznos)
+  //   return (
+  //     suma + (ukupna_cijena - roba.atribut_robe.popust_iznos) * roba.kolicina
+  //   );
+  if (!bezDefaultPopusta && roba?.atribut_robe?.popust_procenti) {
     return (
-      suma + (ukupna_cijena - roba.atribut_robe.popust_iznos) * roba.kolicina
+      suma +
+      (ukupna_cijena -
+        (ukupna_cijena * roba.atribut_robe.popust_procenti) / 100) *
+        roba.kolicina
     );
-  return suma + ukupna_cijena * roba.kolicina;
+  }
+  return suma + ukupna_cijena * roba?.kolicina;
 }
 
 export function izracunajUkupnuCijenuStavkiBezPdv(stavke, bezDefaultPopusta) {
@@ -144,10 +157,10 @@ export function izracunajUkupnuCijenuStavkiBezPdv(stavke, bezDefaultPopusta) {
 }
 
 function dodajUsluguNaSumuBezPdv(suma, usluga, bezDefaultPopusta) {
-  if (usluga && usluga.kolicina === 0) {
+  if (usluga && usluga?.kolicina === 0) {
     usluga.kolicina = 1;
   }
-  if (usluga.tip_popusta && usluga.popust) {
+  if (usluga?.tip_popusta && usluga?.popust) {
     return (
       suma +
       izracunajPopust(
@@ -158,16 +171,19 @@ function dodajUsluguNaSumuBezPdv(suma, usluga, bezDefaultPopusta) {
         usluga.kolicina
     );
   }
-  if (!bezDefaultPopusta && usluga.grupa?.popust_iznos)
+  if (!bezDefaultPopusta && usluga?.grupa?.popust_procenti) {
     return (
       suma +
-      (usluga.cijena_bez_pdv - usluga.grupa.popust_iznos) * usluga.kolicina
+      (usluga.cijena_bez_pdv -
+        (usluga.cijena_bez_pdv * usluga?.grupa?.popust_procenti) / 100) *
+        usluga.kolicina
     );
-  return suma + usluga.cijena_bez_pdv * usluga.kolicina;
+  }
+  return suma + usluga?.cijena_bez_pdv * usluga?.kolicina;
 }
 
 function dodajRobuNaSumuBezPdv(suma, roba, bezDefaultPopusta) {
-  if (roba.tip_popusta && roba.popust) {
+  if (roba?.tip_popusta && roba?.popust) {
     return (
       suma +
       izracunajPopust(
@@ -178,12 +194,18 @@ function dodajRobuNaSumuBezPdv(suma, roba, bezDefaultPopusta) {
         roba.kolicina
     );
   }
-  if (!bezDefaultPopusta && roba.atribut_robe?.popust_iznos)
+  if (!bezDefaultPopusta && roba?.atribut_robe?.popust_procenti) {
+    // console.log(
+    //   'dodajRobuNaSumuBezPdv izracunajPopust2',
+    //   roba.roba.cijene_roba[0].cijena_bez_pdv - roba.atribut_robe.popust_iznos
+    // );
     return (
       suma +
       (roba.roba.cijene_roba[0].cijena_bez_pdv -
-        roba.atribut_robe.popust_iznos) *
+        roba.roba.cijene_roba[0].cijena_bez_pdv *
+          (roba.atribut_robe.popust_procenti / 100)) *
         roba.kolicina
     );
-  return suma + roba.roba.cijene_roba[0].cijena_bez_pdv * roba.kolicina;
+  }
+  return suma + roba?.roba?.cijene_roba[0]?.cijena_bez_pdv * roba.kolicina;
 }

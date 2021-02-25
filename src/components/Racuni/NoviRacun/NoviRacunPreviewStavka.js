@@ -24,7 +24,16 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   }
 
   function getPopustIznos() {
-    return roba?.atribut_robe?.popust_iznos || usluga?.grupa?.popust_iznos;
+    const ukupna_cijenaUsluga = Number(usluga?.cijena_bez_pdv);
+
+    const ukupna_cijenaRoba = Number(
+      roba?.roba?.cijene_roba[0]?.cijena_bez_pdv
+    );
+
+    const popustRoba = roba?.atribut_robe?.popust_procenti / 100;
+    const popustUsluga = usluga?.grupa?.popust_procenti / 100;
+
+    return ukupna_cijenaUsluga * popustUsluga || ukupna_cijenaRoba * popustRoba;
   }
 
   function getUkupnaCijena() {
