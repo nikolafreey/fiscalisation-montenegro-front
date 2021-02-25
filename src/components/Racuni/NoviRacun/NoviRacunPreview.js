@@ -89,10 +89,11 @@ const NoviRacunPreview = () => {
             <>
               <div className="side-info__info--inner-wrapper mb-0">
                 <div className="col-l w-break">
-                  <p>Ukupno za {porezi[porezId].naziv}</p>
+                  <p>Ukupno za PDV {porezi[porezId].naziv}</p>
                 </div>
                 <div className="col-r w-break-unset">
                   <p className="txt-right">
+                    PDV{' '}
                     {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
                   </p>
                 </div>
