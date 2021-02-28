@@ -1,19 +1,19 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ERRORS, PREDRACUNI } from '../constants/routes';
-// import PredracuniForm from '../components/Predracuni/PredracuniForm';
 import Predracun from '../components/Predracuni/Predracun';
 import Predracuni from '../components/Predracuni/Predracuni';
+import PredracuniForm from '../components/Predracuni/PredracuniForm';
 
 const PredracuniRouter = () => {
   return (
     <Switch>
-      {/* <Route path={PREDRACUNI.EDIT}>
+      <Route path={PREDRACUNI.EDIT}>
         <PredracuniForm />
       </Route>
       <Route path={PREDRACUNI.CREATE}>
         <PredracuniForm />
-      </Route> */}
+      </Route>
       <Route path={PREDRACUNI.SHOW}>
         <Predracun />
       </Route>

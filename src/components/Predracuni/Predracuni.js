@@ -24,11 +24,6 @@ const options = [
 
 const searchParams = {};
 
-// let visibleStatus = false;
-// let visibleSearch = false;
-// let visibleDateStart = false;
-// let visibleDateEnd = false;
-
 const searchDebounced = debounce((callback) => callback(), 500);
 const Predracuni = () => {
   const dispatch = useDispatch();
@@ -129,7 +124,7 @@ const Predracuni = () => {
       ...styles,
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
-      padding: ".15rem",
+      padding: '.15rem',
       colors: {
         ...styles.colors,
         primary25: '#cccccc',
@@ -142,7 +137,7 @@ const Predracuni = () => {
       {console.log(selectStyle)}
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
-        <Link exact to={PREDRACUNI.INDEX}>
+        <Link exact to={PREDRACUNI.CREATE}>
           <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi predračun
