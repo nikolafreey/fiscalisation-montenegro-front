@@ -14,6 +14,7 @@ export function roundUp(cijena) {
 
 export function izracunajPojedinacnePoreze(stavke) {
   const porezi = {};
+  console.log('izracunajPojedinacnePoreze', stavke);
 
   stavke.forEach((stavka) => {
     if (!stavka) return;
@@ -33,6 +34,9 @@ function izracunajPopust(cijena, popust, tip_popusta) {
 
 function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
   if (usluga && usluga.kolicina === 0) {
+    usluga.kolicina = 1;
+  }
+  if (usluga && usluga.kolicina === null) {
     usluga.kolicina = 1;
   }
   const cijena = izracunajPopust(
@@ -60,8 +64,20 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
 }
 
 function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
+  let kolicina;
+
   if (roba && roba?.kolicina === 0) {
     roba.kolicina = 1;
+    kolicina = 1;
+  }
+
+  if (roba?.kolicina === null) {
+    roba.kolicina = 1;
+    kolicina = 1;
+  }
+
+  if (roba) {
+    kolicina = roba.kolicina;
   }
   const porezRobe = roba.porez || roba.roba.cijene_roba[0].porez;
   const cijena = izracunajPopust(
@@ -79,10 +95,10 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
     };
   }
   porezi[porezRobe.id].pdvIznos +=
-    roba.kolicina * (Number(porezRobe.stopa) * Number(cijena));
+    kolicina * (Number(porezRobe.stopa) * Number(cijena));
 
   porezi[porezRobe.id].ukupno +=
-    Number(roba.kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
+    Number(kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
 }
 
 export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {

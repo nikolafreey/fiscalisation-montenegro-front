@@ -62,19 +62,19 @@ const Cijena = ({
   }, [dispatch]);
 
   const [valueUkupnaCijena, setValueUkupnaCijena] = useState(
-    checkIfObjectEmpty(roba) && params.id && roba.cijene_roba[0].ukupna_cijena
+    checkIfObjectEmpty(roba) && params.id && roba.cijene_roba[0]?.ukupna_cijena
   );
 
   const [valueCijenaBezPdv, setValueCijenaBezPdv] = useState(
     checkIfObjectEmpty(roba) &&
       params.id &&
-      roba.cijene_roba[0].ukupna_cijena_bez_pdv
+      roba.cijene_roba[0]?.ukupna_cijena_bez_pdv
   );
 
   const [valueCijenaSaPdv, setValueCijenaSaPdv] = useState(
     checkIfObjectEmpty(roba) &&
       params.id &&
-      roba.cijene_roba[0].ukupna_cijena_sa_pdv
+      roba.cijene_roba[0]?.ukupna_cijena_sa_pdv
   );
 
   console.log('roba', roba);
@@ -93,35 +93,50 @@ const Cijena = ({
             <p className="mb-10">Bez PDV-a:</p>
             <p className="mb-10">
               PDV&nbsp;
-              {getFormattedPercentageString(getStopaPerId, values.porez_id)}:
+              {values.porez_id
+                ? getFormattedPercentageString(getStopaPerId, values.porez_id)
+                : getFormattedPercentageString(getStopaPerId, 4)}
+              :
             </p>
             <p className="mb-10">Ukupna cijena</p>
           </div>
           <div className="col-r mt-30">
             <p className="mb-10">
               {(checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].cijena_bez_pdv) ||
+                roba.cijene_roba[0]?.cijena_bez_pdv) ||
                 getFormattedPriceString(
                   getPriceNoVat,
                   values.pdv_ukljucen,
                   values.porez_id,
                   values.ukupna_cijena
-                )}
-            </p>
-            <p className="mb-10">
-              {(checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].ukupna_cijena - checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].cijena_bez_pdv) ||
+                ) ||
                 getFormattedPriceString(
-                  getVat,
+                  getPriceNoVat,
                   values.pdv_ukljucen,
-                  values.porez_id,
+                  4,
                   values.ukupna_cijena
                 )}
             </p>
             <p className="mb-10">
               {(checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].ukupna_cijena) ||
+                roba.cijene_roba[0]?.ukupna_cijena - checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0]?.cijena_bez_pdv) ||
+                getFormattedPriceString(
+                  getVat,
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  values.ukupna_cijena
+                ) ||
+                getFormattedPriceString(
+                  getVat,
+                  values.pdv_ukljucen,
+                  4,
+                  values.ukupna_cijena
+                )}
+            </p>
+            <p className="mb-10">
+              {(checkIfObjectEmpty(roba) &&
+                roba.cijene_roba[0]?.ukupna_cijena) ||
                 getFormattedPriceString(
                   getPriceVat,
                   values.pdv_ukljucen,
@@ -195,7 +210,7 @@ const Cijena = ({
               }}
               placeholder={
                 checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].nabavna_cijena_bez_pdv
+                roba.cijene_roba[0]?.nabavna_cijena_bez_pdv
               }
             />
           </div>
@@ -208,7 +223,7 @@ const Cijena = ({
               value={valueCijenaSaPdv}
               placeholder={
                 checkIfObjectEmpty(roba) &&
-                roba.cijene_roba[0].nabavna_cijena_sa_pdv
+                roba.cijene_roba[0]?.nabavna_cijena_sa_pdv
               }
               onChange={(event) => {
                 setValueCijenaSaPdv(event.target.value);
@@ -224,6 +239,7 @@ const Cijena = ({
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
+              defaultValue={{ label: '21%', value: 3 }}
               placeholder={
                 //Provjera da li je objekat prazan
                 checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.porez.naziv
@@ -247,7 +263,7 @@ const Cijena = ({
             label={$t('cijene.cijena')}
             value={valueUkupnaCijena}
             placeholder={
-              checkIfObjectEmpty(roba) && roba.cijene_roba[0].ukupna_cijena
+              checkIfObjectEmpty(roba) && roba.cijene_roba[0]?.ukupna_cijena
             }
             onChange={(event) => {
               setValueUkupnaCijena(event.target.value);

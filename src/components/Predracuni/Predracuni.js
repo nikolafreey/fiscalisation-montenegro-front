@@ -158,10 +158,10 @@ const Predracuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                value={{ label: status }}
+                // value={{ label: status }}
                 className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
                 styles={selectStyle}
-                placeholderText="Status"
+                placeholder="Status..."
               />
               <div className="df jc-sb">
                 <DatePicker

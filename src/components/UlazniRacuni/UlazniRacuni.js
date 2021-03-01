@@ -152,7 +152,8 @@ const UlazniRacuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                value={{ label: status }}
+                // value={{ label: status }}
+                placeholder="Status..."
                 className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
               />
               <div className="df jc-sb">

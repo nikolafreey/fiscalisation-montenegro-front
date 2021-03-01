@@ -34,7 +34,7 @@ const BezgotovinskiPorezi = () => {
                 {Object.keys(porezi).map((porezId) => {
                   const porez = porezi[porezId];
                   console.log('porezi: ', porezi);
-                  console.log('pprezzz', porez);
+                  console.log('porez', porez);
                   return (
                     <tr>
                       <td className="w-33">{porez.naziv}</td>

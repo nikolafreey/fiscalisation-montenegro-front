@@ -304,8 +304,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           type="text"
                           className="form__input mb-12"
                           value={formatirajCijenu(
-                            getPorezStopaForId(stavka?.porez_id) *
-                              getCijenaStavkeBezPdv(stavka)
+                            getUkupanIznosPdv(stavka)
+                            // getPorezStopaForId(stavka?.porez_id) *
+                            //   getCijenaStavkeBezPdv(stavka)
                           )}
                           readOnly
                         />
