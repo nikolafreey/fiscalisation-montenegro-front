@@ -15,9 +15,6 @@ import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
 const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
-
-  console.log('noviRacun', noviRacun);
-
   const dispatch = useDispatch();
 
   const handlePrint = useReactToPrint({
@@ -43,6 +40,23 @@ const NoviRacunPreview = () => {
   ]);
   const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
 
+  function vratiUkupanPdv() {
+    var pdvUkupno = 0;
+    for (const p in porezi) {
+      pdvUkupno += Number(porezi[p].pdvIznos);
+    }
+    return pdvUkupno;
+  }
+
+  function vratiUkupnoPlacanje() {
+    var upupnoPlacanje = 0;
+    for (const p in porezi) {
+      upupnoPlacanje += Number(porezi[p].ukupno);
+    }
+    return upupnoPlacanje;
+  }
+  const ukPdv=vratiUkupanPdv();
+  const ukPlati=vratiUkupnoPlacanje();
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
@@ -60,7 +74,7 @@ const NoviRacunPreview = () => {
   return (
     <div className="side-info">
       {/* NoviRacunPrint - Template */}
-      <div style={{ display: 'none' }}>
+      <div style={{ display: 'none' }}>{porezi.pdvUk}
         {/* <NoviRacunPrintTemplate
           ref={componentRef}
           ukupnaCijena={ukupnaCijena}
@@ -75,10 +89,11 @@ const NoviRacunPreview = () => {
         {/* Ukupno */}
         <p className="txt-light txt-up">ukupno</p>
         <h1 className="heading-primary">
-          {ukupnaCijena.toFixed(2).replace('.', ',')}{' '}
+          {ukPlati.toFixed(2).replace('.', ',')}{' '}
           <span className="txt-light">€</span>
         </h1>
       </div>
+   
       {uslugeStavka}
       {robeStavka}
       <hr className="mtb-20" />
@@ -93,14 +108,14 @@ const NoviRacunPreview = () => {
                 </div>
                 <div className="col-r w-break-unset">
                   <p className="txt-right">
-                    PDV{' '}
-                    {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+                   
+                   {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
                   </p>
                 </div>
               </div>
               <div className="side-info__info--inner-wrapper mb-0">
                 <div className="col-l">
-                  <p>{porezi[porezId].naziv}</p>
+                  <p>PDV{' '} {porezi[porezId].naziv}</p>
                 </div>
                 <div className="col-r">
                   <p className="txt-right">
@@ -122,7 +137,7 @@ const NoviRacunPreview = () => {
             </div>
             <div className="col-r">
               <p className="txt-right">
-                {Number(ukupnaCijena - ukupnaCijenaBezPdv)
+                {Number(ukPdv)
                   .toFixed(2)
                   .replace('.', ',') + '€'}
               </p>
@@ -137,7 +152,7 @@ const NoviRacunPreview = () => {
             </div>
             <div className="col-r">
               <p className="txt-right fw-600">
-                {ukupnaCijena.toFixed(2).replace('.', ',') + '€'}
+                {ukPlati.toFixed(2).replace('.', ',') + '€'}
               </p>
             </div>
           </div>
@@ -145,8 +160,7 @@ const NoviRacunPreview = () => {
         <hr className="mtb-20" />
 
         {/* Kusur */}
-        <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
-
+        <NoviRacunKusur ukupnaCijena={ukPlati} />
         <hr className="mtb-20" />
         {/* onClick={handlePrint} */}
         {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
