@@ -126,7 +126,7 @@ const PreduzecaForm = () => {
       validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values, dirty }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={PREDUZECA.INDEX} className="back-link df">
             <LinkPreduzecaSvg />
@@ -137,7 +137,7 @@ const PreduzecaForm = () => {
             <div className="content">
               <Form className="form">
                 <Prompt
-                  when={dirty}
+                  when={dirty && !isSubmitting}
                   message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
                 />
                 <div className="container">

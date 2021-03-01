@@ -6,14 +6,14 @@ import InputField from '../shared/forms/InputField';
 import { useRouteMatch, Prompt } from 'react-router-dom';
 import RadioButton from '../shared/forms/RadioButton';
 import {
-  deleteRacun,
-  getRacun,
-  storeRacun,
-  updateRacun,
-} from '../../store/actions/RacuniActions';
-import { racunSelector } from '../../store/selectors/RacuniSelector';
+  deletePredracun,
+  getPredracun,
+  storePredracun,
+  updatePredracun,
+} from '../../store/actions/PredracuniActions';
+import { predracunSelector } from '../../store/selectors/PredracuniSelector';
 
-const RacuniForm = () => {
+const PredracuniForm = () => {
   const dispatch = useDispatch();
 
   const { params } = useRouteMatch();
@@ -28,17 +28,17 @@ const RacuniForm = () => {
     { key: 'Javan', value: 'Javan' },
   ];
 
-  const racun = useSelector(racunSelector());
+  const predracun = useSelector(predracunSelector());
 
   useEffect(() => {
-    if (params.id) dispatch(getRacun(params.id));
+    if (params.id) dispatch(getPredracun(params.id));
   }, [dispatch, params]);
 
   const handleSubmit = (values) => {
-    if (params.id) dispatch(updateRacun({ id: params.id, ...values }));
+    if (params.id) dispatch(updatePredracun({ id: params.id, ...values }));
     else
       dispatch(
-        storeRacun({
+        storePredracun({
           ...values,
           status: values.status === 'true' ? true : false,
         })
@@ -53,8 +53,6 @@ const RacuniForm = () => {
         JIKR: '',
         tip_racuna: '',
         vrsta_racuna: '',
-        korektivni_racun: false,
-        korektivni_racun_vrsta: '',
         broj_racuna: '',
         ukupna_cijena_bez_pdv: 0,
         ukupna_cijena_sa_pdv: 0,
@@ -67,7 +65,7 @@ const RacuniForm = () => {
         status: '',
       }}
       onSubmit={handleSubmit}
-      validationSchema={RacuniSchema}
+      //   validationSchema={RacuniSchema}
       enableReinitialize
     >
       {({ values, dirty, isSubmitting }) => (
@@ -107,7 +105,7 @@ const RacuniForm = () => {
                   <button
                     type="button"
                     className="btn btn__link ml-m"
-                    onClick={() => dispatch(deleteRacun(params.id))}
+                    onClick={() => dispatch(deletePredracun(params.id))}
                   >
                     Nazad
                   </button>
@@ -121,4 +119,4 @@ const RacuniForm = () => {
   );
 };
 
-export default RacuniForm;
+export default PredracuniForm;

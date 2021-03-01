@@ -147,7 +147,7 @@ const RobeForm = () => {
               <div className="content">
                 <Form className="form">
                   <Prompt
-                    when={dirty}
+                    when={dirty && !isSubmitting}
                     message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
                   />
                   <div className="container">

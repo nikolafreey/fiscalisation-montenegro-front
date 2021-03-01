@@ -152,7 +152,7 @@ const UslugeForm = () => {
       //  validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values, dirty }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={STAVKE.INDEX} className="back-link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
@@ -164,7 +164,7 @@ const UslugeForm = () => {
             <div className="content">
               <Form>
                 <Prompt
-                  when={dirty}
+                  when={dirty && !isSubmitting}
                   message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
                 />
                 <div className="container">

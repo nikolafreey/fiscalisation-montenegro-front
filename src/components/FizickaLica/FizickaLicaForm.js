@@ -89,7 +89,7 @@ const FizickaLicaForm = () => {
             <div className="content">
               <Form className="form">
                 <Prompt
-                  when={dirty}
+                  when={dirty && !isSubmitting}
                   message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
                 />
                 <div className="container">
@@ -204,7 +204,9 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
                       <div className="form__group">
-                        <label className="form__label" htmlFor="">Opis</label>
+                        <label className="form__label" htmlFor="">
+                          Opis
+                        </label>
                         <textarea
                           name=""
                           id=""
@@ -214,14 +216,16 @@ const FizickaLicaForm = () => {
                         ></textarea>
                       </div>
                       <div className="form__group form__area">
-                      <label className="form__label" htmlFor="logo">Fotografija</label>
-                          <input
-                            type="file"
-                            name="logo"
-                            id="logo"
-                            required="required"
-                            multiple="multiple"
-                          />
+                        <label className="form__label" htmlFor="logo">
+                          Fotografija
+                        </label>
+                        <input
+                          type="file"
+                          name="logo"
+                          id="logo"
+                          required="required"
+                          multiple="multiple"
+                        />
                         <div className="file-dummy">
                           <div className="success">
                             Uspješno ste selektovali fajl!
