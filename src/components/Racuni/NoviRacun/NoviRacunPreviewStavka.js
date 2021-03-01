@@ -24,7 +24,6 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
   }
   
   function getPopustIznos() {
-   // console.log('u stavkama popust',usluga.grupa.popust_iznos,usluga.grupa.popust_procenti);
     return roba?.atribut_robe?.popust_iznos || usluga?.grupa?.popust_iznos;
   }
   function getUkupanPopustProcenat() {

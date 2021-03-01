@@ -25,7 +25,6 @@ export function izracunajPojedinacnePoreze(stavke) {
 }
 
 function izracunajPopust(cijena, popust, tip_popusta) {
-  console.log('u popustu', popust);
   if (!tip_popusta) return cijena;
   if (tip_popusta === 'iznos') return cijena - Number(popust || 0);
   if (tip_popusta === 'procenat')
@@ -38,16 +37,7 @@ function izracunajPopustUsluge(cijena, popustProcenat, popustIznos) {
   else return cijena - Number(popustIznos || 0);
 }
 
-// function izracunajPopustRobe(cijena, popustProcenat,popustIznos) {
-//   console.log('u popustu');
-
-//   if (popustIznos >0 ) return cijena - Number(popustIznos || 0);
-//   if (popustProcenat >0)
-//     return cijena - (Number(popustProcenat || 0) * cijena) / 100;
-// }
-
 function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
-  console.log('uslugaa==', usluga, usluga.ukupna_cijena);
   if (usluga && usluga.kolicina === 0) {
     usluga.kolicina = 1;
   }
@@ -158,14 +148,7 @@ function dodajRobuNaSumu(suma, roba, bezDefaultPopusta) {
         roba.kolicina
     );
   }
-  // if (!bezDefaultPopusta && roba?.atribut_robe?.popust_procenti) {
-  //   return (
-  //     suma +
-  //     (ukupna_cijena -
-  //       (ukupna_cijena * roba.atribut_robe.popust_procenti) / 100) *
-  //       roba.kolicina
-  //   );
-  // }
+  
   return suma + ukupna_cijena * roba.kolicina;
 }
 
