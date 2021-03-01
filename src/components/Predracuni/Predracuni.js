@@ -24,11 +24,6 @@ const options = [
 
 const searchParams = {};
 
-// let visibleStatus = false;
-// let visibleSearch = false;
-// let visibleDateStart = false;
-// let visibleDateEnd = false;
-
 const searchDebounced = debounce((callback) => callback(), 500);
 const Predracuni = () => {
   const dispatch = useDispatch();
@@ -129,12 +124,7 @@ const Predracuni = () => {
       ...styles,
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
-      padding: ".15rem",
-      colors: {
-        ...styles.colors,
-        primary25: '#cccccc',
-        primary: 'violet',
-      },
+      padding: '.15rem',
     }),
   };
   return (
@@ -142,7 +132,7 @@ const Predracuni = () => {
       {console.log(selectStyle)}
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
-        <Link exact to={PREDRACUNI.INDEX}>
+        <Link exact to={PREDRACUNI.CREATE}>
           <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi predračun
@@ -154,7 +144,7 @@ const Predracuni = () => {
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100 mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-              <form className="search df ai-c w-45 mob-w-100">
+              <form className="search df ai-c w-45 mob-w-100 mr-15-mob-0">
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
@@ -169,27 +159,31 @@ const Predracuni = () => {
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="mob-w-100 w-20 mob-mt-10"
+                className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
                 styles={selectStyle}
-                placeholder="Status"
+                placeholderText="Status"
               />
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => handleStartDateChange(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                className="select mob-w-100 mob-mt-10"
-              />
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => handleEndDateChange(date)}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                className="select mob-w-100 mob-mt-10"
-              />
+              <div className="df jc-sb">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => handleStartDateChange(date)}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  className="select mob-w-100 mob-mt-10"
+                  placeholderText="Datum od:"
+                />
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => handleEndDateChange(date)}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  className="select mob-w-100 mob-mt-10"
+                  placeholderText="Datum do:"
+                />
+              </div>
             </div>
             <div className="box-wrapper">
               <div className="box">

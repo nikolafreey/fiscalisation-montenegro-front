@@ -1,5 +1,5 @@
 #sidebar {
-  @include respond(phone) {
+  @include respond(big-phone) {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
   transition: width 0.25s linear;
 
   &.active-mob{
-    @include respond(phone){
+    @include respond(big-phone){
       visibility: visible;
       opacity: 1;
     }
@@ -32,7 +32,7 @@
     margin-right: 0;
     margin-top: 13rem;
   }
-  @include respond(phone) {
+  @include respond(big-phone) {
     display: none;
     visibility: hidden;
     position: absolute;
