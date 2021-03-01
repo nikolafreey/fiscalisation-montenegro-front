@@ -144,13 +144,15 @@ const NoviRacunPreview = () => {
         </div>
         <hr className="mtb-20" />
 
-        {/* Kusur */}
-        <NoviRacunKusur ukupnaCijena={ukupnaCijena} />
+          {/* Kusur */}
+          <NoviRacunKusur ukupnaCijena={ukupnaCijena}/>
 
-        <hr className="mtb-20" />
         {/* onClick={handlePrint} */}
         {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
-        <button className="btn btn__transparent" onClick={handleSacuvaj}>
+        <button className="btn btn__dark mb-10 w-100" onClick={handleSacuvaj}>
+          Fiskalizuj i štampaj
+        </button>
+        <button className="btn btn__transparent w-100" onClick={handleSacuvaj}>
           Sačuvaj
         </button>
       </>

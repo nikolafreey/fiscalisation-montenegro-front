@@ -82,11 +82,11 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
         </div>
       </div>
       <div
-        className="side-info__map"
+        className="side-info__map mt-20"
         style={{ bacgroundImage: `url('assets/img/map.jpg')` }}
       ></div>
 
-      <hr />
+      <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Tekući računi</h3>
         <div className="side-info__info">
@@ -116,7 +116,7 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Kontakt informacije</h3>
       </div>

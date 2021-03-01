@@ -394,12 +394,56 @@
   background-color: $color-background-light !important;
 }
 
-// .react-datepicker-wrapper {
-//   width: 15%;
-//   @include respond(phone){
-//     width: 100%;
-//   }
-// }
+.react-datepicker {
+  font-family: inherit;
+  font-size: $font-size-default;
+  background-color: $color-white;
+  color: $color-text-dark;
+  // border: 1px solid #aeaeae;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0px 4px 6px rgba($color-black, 0.2);
+  @include respond(phone){
+   font-size: 16px;
+  }
+  &__header{
+    background-color: $color-background-input;
+    border-bottom: 1px solid $color-content-lines;
+    border-top-left-radius: 4px;
+    padding-top: 8px;
+    position: relative;
+  }
+  &__current-month{
+    font-size: 18px;
+  }
+  &__day{
+    width: 3rem;
+    line-height: 3rem;
+    &--today, &--keyboard-selected{
+      background: $color-hover;
+      &:hover{
+        background: $color-hover;
+      }
+    }
+    &--in-range{
+      background-color: $color-hover;
+    }
+    &--in-selecting-range{
+      background-color: rgba($color-hover, 0.5);
+      &:hover{
+        background-color: $color-hover;
+      }
+    }
+  }
+  &__day-name{
+    width: 3rem;
+  }
+  &__triangle::before{
+    border-bottom-color: $color-background-input!important;
+  }
+}
 .w-break{
   word-break: break-all;
 }
