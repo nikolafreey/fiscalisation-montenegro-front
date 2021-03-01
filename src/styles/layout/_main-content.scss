@@ -11,7 +11,7 @@
     margin-bottom: 3rem;
     .heading-secondary {
       @include respond(phone) {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         line-height: 30px;
       }
     }
@@ -31,7 +31,7 @@
       width: 100%;
       .heading-secondary {
         @include respond(phone) {
-          margin-bottom: .5rem;
+          margin-bottom: 0.5rem;
           line-height: 30px;
         }
       }
@@ -42,7 +42,7 @@
         //   height: 9rem;
         // }
       }
-      .react-datepicker-wrapper{
+      .react-datepicker-wrapper {
         width: 100%;
       }
     }
@@ -106,20 +106,22 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1.5rem;
-    .react-datepicker-wrapper{
-     width: 60%;
-     @include respond(phone){
-      width: 100%;
+    .react-datepicker-wrapper {
+      width: 60%;
+      @include respond(phone) {
+        width: 100%;
+      }
     }
-    }
-    .react-datepicker-wrapper:first-of-type{
+    .react-datepicker-wrapper:first-of-type {
       margin-right: 1.5rem;
-      @include respond(phone){
+      @include respond(phone) {
         margin-right: 0;
       }
     }
     .search {
       width: 100%;
+      display: flex;
+      align-items: center;
       &__input {
         background-color: $color-background-input;
         width: 100%;
@@ -142,5 +144,5 @@
 #main-content {
   // position: absolute;
   left: 0rem;
-  transition: left .2s linear;
+  transition: left 0.2s linear;
 }

@@ -106,7 +106,7 @@ const PreduzeceDetails = ({ preduzece }) => {
         </div>
       </div>
       <div
-        className="side-info__map"
+        className="side-info__map mt-20"
         style={
           {
             /*"background-image: url('assets/img/map.png')"*/
@@ -114,7 +114,7 @@ const PreduzeceDetails = ({ preduzece }) => {
         }
       ></div>
 
-      <hr />
+      <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Žiro računi</h3>
         <div className="side-info__info">
@@ -124,7 +124,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary tab-ml-10p">Kontakt informacije</h3>
         <div className="side-info__info as-end">
@@ -266,7 +266,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="mtb-20"/>
       {preduzece?.ovlascena_lica?.length > 0 && (
         <div className="side-info__wrapper">
           <h3 className="heading-tertiary">Ovlašćeno lice</h3>
