@@ -109,7 +109,7 @@ const Racuni = () => {
         <h1 className="heading-primary">Izlazni računi</h1>
 
         <div className="df w-50 jc-end mob-w-100 mob-fd-column">
-          <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m mob-mr-0">
+          {/* <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m mob-mr-0">
             <button className="btn btn__dark mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi gotovinski račun
@@ -120,7 +120,21 @@ const Racuni = () => {
               <ButtonPlusSvg />
               Novi bezgotovinski račun
             </button>
-          </Link>
+          </Link> */}
+          <button className="btn btn__dark">
+            <ButtonPlusSvg />
+            Novi račun
+            <div className="drop-down" id="ddl">
+              <Link to={RACUNI.CREATE}>
+                {/* <PreduzeceSvg /> */}
+                Novi gotovinski
+              </Link>
+              <Link to={RACUNI.BEZGOTOVINSKI.CREATE}>
+                {/* <UserSvg /> */}
+                Novi bezgotovinski
+              </Link>
+            </div>
+          </button>
         </div>
       </div>
       <div className="main-content__box">
@@ -156,7 +170,7 @@ const Racuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   className="select mob-w-100 mob-mt-10"
-                  placeholderText="Datum raspon od:"
+                  placeholderText="Datum od:"
                 />
                 <DatePicker
                   selected={endDate}
@@ -166,7 +180,7 @@ const Racuni = () => {
                   endDate={endDate}
                   minDate={startDate}
                   className="select mob-w-100 mob-mt-10"
-                  placeholderText="Datum raspon do:"
+                  placeholderText="Datum do:"
                 />
               </div>
               {/* </div> */}

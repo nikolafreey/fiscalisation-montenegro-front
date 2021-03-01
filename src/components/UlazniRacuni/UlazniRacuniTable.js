@@ -36,8 +36,8 @@ const UlazniRacuniTable = ({ ulazniRacuni }) => {
               <th className="w-15">
                 <span className="heading-quaternary">Status</span>
               </th>
-              <th>
-                <span className="heading-quaternary">Datum</span>
+              <th className="w-15">
+                <span className="heading-quaternary cl">Datum</span>
               </th>
               <th className="w-5">
                 <span className="heading-quaternary"> </span>
