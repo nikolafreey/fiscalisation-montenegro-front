@@ -105,6 +105,7 @@ const UslugeForm = () => {
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
       return Math.round(10000 * ukupna_cijena) / 10000;
@@ -114,6 +115,7 @@ const UslugeForm = () => {
   };
 
   const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
       return +ukupna_cijena + +ukupna_cijena * +stopa;
@@ -123,8 +125,8 @@ const UslugeForm = () => {
   };
 
   const getVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
-
     if (pdv_ukljucen === 0) {
       return Math.round(10000 * (ukupna_cijena * Number(stopa))) / 10000;
     } else {
@@ -207,7 +209,7 @@ const UslugeForm = () => {
                                     values.pdv_ukljucen,
                                     values.porez_id,
                                     values.ukupna_cijena
-                                  )}
+                                  ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -222,7 +224,7 @@ const UslugeForm = () => {
                                     values.pdv_ukljucen,
                                     values.porez_id,
                                     values.ukupna_cijena
-                                  )}
+                                  ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -237,7 +239,7 @@ const UslugeForm = () => {
                                     values.pdv_ukljucen,
                                     values.porez_id,
                                     values.ukupna_cijena
-                                  )}
+                                  ) + '€'}
                             </p>
                           </div>
                         </div>
@@ -308,6 +310,7 @@ const UslugeForm = () => {
                             name="porez_id"
                             label={$t('usluge.porezi')}
                             loadOptions={poreziService.getPoreziDropdown}
+                            defaultValue={{ label: '21%', value: 3 }}
                             placeholder={usluga?.porez?.naziv}
                           />
                         </div>
