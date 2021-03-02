@@ -9,16 +9,24 @@ import { ulazniRacuniService } from '../../services/UlazniRacuniService';
 import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.svg';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const Pregled = () => {
+  const [depozit, setDepozit] = useState();
   const [racuni, setRacuni] = useState();
+  const [racuniDanas, setRacuniDanas] = useState();
   const [racuniPdv, setRacuniPdv] = useState();
   const [ulazniRacuniPdv, setUlazniRacuniPdv] = useState();
+  const [ulazniRacuniDanas, setUlazniRacuniDanas] = useState();
   const [najveciKupci, setNajveciKupci] = useState();
   const [najveciDuznici, setNajveciDuznici] = useState();
 
   useEffect(() => {
+    depozitWithdrawService
+      .getDepozitToday()
+      .then((resp) => setDepozit(resp.data));
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
+    racuniService.getRacuniDanas().then((resp) => setRacuniDanas(resp.data));
     racuniService.getRacuniPdv().then((resp) => setRacuniPdv(resp.data));
     racuniService.getRacuniKupci().then((resp) => setNajveciKupci(resp.data));
     racuniService
@@ -27,10 +35,15 @@ const Pregled = () => {
     ulazniRacuniService
       .getUlazniRacuniPdv()
       .then((resp) => setUlazniRacuniPdv(resp.data));
+    ulazniRacuniService
+      .getUlazniRacuniPdv()
+      .then((resp) => setUlazniRacuniDanas(resp.data));
   }, []);
 
   const userPreduzece = useSelector(userSelector());
 
+  console.log('Racuni Danas: ', racuniDanas);
+  console.log('ulazni Racuni Danas: ', ulazniRacuniDanas);
   console.log('racuni PDV: ', racuniPdv);
   console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
   console.log('najveciKupci: ', najveciKupci);
@@ -116,7 +129,15 @@ const Pregled = () => {
                   </span>
                 </div>
                 <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df">130,00 €</h2>
+                  <h2 className="heading-secondary df">
+                    {(depozit &&
+                      (
+                        racuniDanas?.ukupno_izlazni_racuni_danas +
+                        Number(depozit[0]?.iznos_depozit)
+                      ).toFixed(2)) ||
+                      0.0}{' '}
+                    €
+                  </h2>
                 </div>
               </div>
             </div>
@@ -134,7 +155,9 @@ const Pregled = () => {
                   <span className="txt-light txt-up fw-500">Depozit</span>
                 </div>
                 <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df">28,00 €</h2>
+                  <h2 className="heading-secondary df">
+                    {depozit && Number(depozit[0]?.iznos_depozit).toFixed(2)} €
+                  </h2>
                 </div>
               </div>
             </div>
