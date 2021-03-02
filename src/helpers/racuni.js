@@ -42,7 +42,6 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
   if (usluga && usluga.kolicina === 0) {
     usluga.kolicina = 1;
   }
-<<<<<<< Updated upstream
   if (usluga && usluga.kolicina === null) {
     usluga.kolicina = 1;
   }
@@ -50,13 +49,6 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
     usluga.cijena_bez_pdv,
     usluga.popust,
     usluga.tip_popusta
-=======
-  const cijena = izracunajPopustUsluge(
- 
-    usluga.ukupna_cijena,
-    usluga.grupa.popust_procenti,
-    usluga.grupa.popust_iznos
->>>>>>> Stashed changes
   );
   if (!porezi[usluga.porez.id]) {
     porezi[usluga.porez.id] = {
@@ -71,7 +63,6 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
     usluga.kolicina *
       ((Number(cijena) / (1 + Number(usluga.porez.stopa))) * usluga.porez.stopa)
   );
-<<<<<<< Updated upstream
 
   porezi[usluga.porez.id].ukupno += Number(usluga.kolicina * Number(cijena));
 }
@@ -80,14 +71,6 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
   let kolicina;
 
   if (roba && roba?.kolicina === 0) {
-=======
- 
-  porezi[usluga.porez.id].ukupno += Number(usluga.kolicina * Number(cijena)); 
-}
-
-function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
-  if (roba && roba.kolicina === 0) {
->>>>>>> Stashed changes
     roba.kolicina = 1;
     kolicina = 1;
   }
@@ -114,19 +97,12 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
       stopa: porezRobe.stopa,
       naziv: porezRobe.naziv,
     };
-  }  
+  }
   porezi[porezRobe.id].pdvIznos +=
-<<<<<<< Updated upstream
     kolicina * (Number(porezRobe.stopa) * Number(cijena));
 
   porezi[porezRobe.id].ukupno +=
     Number(kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
-=======
-    roba.kolicina *((Number(cijena) / (1+Number(porezRobe.stopa)))* Number(porezRobe.stopa));
-
-  porezi[porezRobe.id].ukupno +=
-    Number(roba.kolicina * Number(cijena));  
->>>>>>> Stashed changes
 }
 
 export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
