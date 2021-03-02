@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { ReactComponent as IconPrimary } from '../../assets/icon/icon_primary.svg';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
+import { userSelector } from '../../store/selectors/UserSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
 import { racuniService } from '../../services/RacuniService';
 import { ulazniRacuniService } from '../../services/UlazniRacuniService';
 import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.svg';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Pregled = () => {
   const [racuni, setRacuni] = useState();
@@ -26,6 +28,9 @@ const Pregled = () => {
       .getUlazniRacuniPdv()
       .then((resp) => setUlazniRacuniPdv(resp.data));
   }, []);
+
+  const userPreduzece = useSelector(userSelector());
+
   console.log('racuni PDV: ', racuniPdv);
   console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
   console.log('najveciKupci: ', najveciKupci);
@@ -48,7 +53,7 @@ const Pregled = () => {
             <i className="icon lg mr-xs">
               <IconPrimary />
             </i>
-            Restart IT doo
+            {userPreduzece?.preduzeca[0].kratki_naziv}
           </p>
           <p className="right">
             <i className="icon lg mr-xs">
