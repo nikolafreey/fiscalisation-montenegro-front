@@ -83,6 +83,7 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
   if (roba) {
     kolicina = roba.kolicina;
   }
+  console.log('roba=', roba.roba);
   const porezRobe = roba.porez || roba.roba.cijene_roba[0].porez;
   const cijena = izracunajPopustUsluge(
     roba.roba.cijene_roba[0].ukupna_cijena,
@@ -106,6 +107,7 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
 }
 
 export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
+  console.log('stavke=', stavke);
   const suma = stavke.reduce((suma, stavka) => {
     if (!stavka) return;
     if (stavka.roba) return dodajRobuNaSumu(suma, stavka, bezDefaultPopusta);
