@@ -130,12 +130,18 @@ const Pregled = () => {
                 </div>
                 <div className="box-dashboard__btm">
                   <h2 className="heading-secondary df">
-                    {(depozit &&
-                      (
-                        racuniDanas?.ukupno_izlazni_racuni_danas +
-                        Number(depozit[0]?.iznos_depozit)
-                      ).toFixed(2)) ||
-                      0.0}{' '}
+                    {isNaN(
+                      depozit &&
+                        (
+                          racuniDanas?.ukupno_izlazni_racuni_danas +
+                          Number(depozit[0]?.iznos_depozit)
+                        ).toFixed(2)
+                    )
+                      ? '0.00'
+                      : (
+                          racuniDanas?.ukupno_izlazni_racuni_danas +
+                          Number(depozit[0]?.iznos_depozit)
+                        ).toFixed(2)}{' '}
                     €
                   </h2>
                 </div>
@@ -156,7 +162,12 @@ const Pregled = () => {
                 </div>
                 <div className="box-dashboard__btm">
                   <h2 className="heading-secondary df">
-                    {depozit && Number(depozit[0]?.iznos_depozit).toFixed(2)} €
+                    {isNaN(
+                      depozit && Number(depozit[0]?.iznos_depozit).toFixed(2)
+                    )
+                      ? '0.00'
+                      : Number(depozit[0]?.iznos_depozit).toFixed(2)}{' '}
+                    €
                   </h2>
                 </div>
               </div>
