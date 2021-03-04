@@ -1,7 +1,11 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 import ReactDatePicker from 'react-datepicker';
-import { KOREKTIVNI_RACUN } from '../../../constants/racuni';
+import {
+  KOREKTIVNI_RACUN,
+  PDV_OBVEZNIK,
+  NACIN_PLACANJA_BEZGOTOVINSKI,
+} from '../../../constants/racuni';
 import { partneriService } from '../../../services/PartneriService';
 import DropDown from '../../shared/forms/DropDown';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
@@ -44,6 +48,7 @@ const BezgotovinskiHeader = () => {
                 name="korektivni_racun"
                 options={KOREKTIVNI_RACUN}
                 defaultValue={KOREKTIVNI_RACUN[0]}
+                onChange={(racun) => setFieldValue('korektivni_racun', racun)}
               />
               <ReactDatePicker
                 selected={values.datum_za_placanje}
@@ -51,6 +56,34 @@ const BezgotovinskiHeader = () => {
                 className="form__input w-100 mt-12 mob-mt-20"
                 placeholderText="Rok za placanje"
                 dateFormat="dd/MM/yyyy"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xl-4 col-md-4 pr-0">
+            <h2 className="heading-secondary"></h2>
+            <p className="txt-light"></p>
+          </div>
+          <div className="col-xl-4 col-md-4">
+            <div className="form-group">
+              <label className="form__label">Da li je u sistemu PDV-a</label>
+              <DropDownStatic
+                name="pdv_obveznik"
+                options={PDV_OBVEZNIK}
+                defaultValue={PDV_OBVEZNIK[0]}
+                onChange={(pdv) => setFieldValue('pdv_obveznik', pdv)}
+              />
+            </div>
+          </div>
+          <div className="col-xl-4 col-md-4">
+            <div className="form-group">
+              <label className="form__label">Način Plaćanja</label>
+              <DropDownStatic
+                name="nacin_placanja"
+                options={NACIN_PLACANJA_BEZGOTOVINSKI}
+                defaultValue={NACIN_PLACANJA_BEZGOTOVINSKI[0]}
+                onChange={(nacin) => setFieldValue('nacin_placanja', nacin)}
               />
             </div>
           </div>
