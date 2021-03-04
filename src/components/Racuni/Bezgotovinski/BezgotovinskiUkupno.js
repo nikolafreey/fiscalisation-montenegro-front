@@ -38,6 +38,10 @@ const BezgotovinskiUkupno = () => {
     );
     const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
 
+    console.log('ukupnaCijena: ', ukupnaCijena);
+    console.log('ukupnaCijenaBezPdv: ', ukupnaCijenaBezPdv);
+    console.log('ukupnoPdv: ', ukupnoPdv);
+
     if (!popust)
       return {
         ukupnaCijena,
