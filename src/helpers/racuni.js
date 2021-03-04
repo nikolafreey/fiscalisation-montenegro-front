@@ -69,19 +69,12 @@ function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
 
 function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
   let kolicina;
-
   if (roba && roba?.kolicina === 0) {
     roba.kolicina = 1;
-    kolicina = 1;
-  }
-
-  if (roba?.kolicina === null) {
-    roba.kolicina = 1;
-    kolicina = 1;
-  }
-
-  if (roba) {
     kolicina = roba.kolicina;
+  }
+  if (!roba.hasOwnProperty('kolicina')) {
+    kolicina = 1;
   }
   console.log('roba=', roba.roba);
   const porezRobe = roba.porez || roba.roba.cijene_roba[0].porez;
@@ -99,11 +92,21 @@ function izracunajPojedinacnePorezeZaRobu(roba, porezi) {
       naziv: porezRobe.naziv,
     };
   }
-  porezi[porezRobe.id].pdvIznos +=
-    kolicina * (Number(porezRobe.stopa) * Number(cijena));
+  if (roba.kolicina) {
+    porezi[porezRobe.id].pdvIznos +=
+      roba.kolicina * (Number(porezRobe.stopa) * Number(cijena));
+  } else {
+    porezi[porezRobe.id].pdvIznos +=
+      kolicina * (Number(porezRobe.stopa) * Number(cijena));
+  }
 
-  porezi[porezRobe.id].ukupno +=
-    Number(kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
+  if (roba.kolicina) {
+    porezi[porezRobe.id].ukupno +=
+      Number(roba.kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
+  } else {
+    porezi[porezRobe.id].ukupno +=
+      Number(kolicina) * (Number(cijena) * (1 + Number(porezRobe.stopa)));
+  }
 }
 
 export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
