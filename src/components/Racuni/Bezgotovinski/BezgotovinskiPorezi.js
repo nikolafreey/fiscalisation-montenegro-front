@@ -3,12 +3,14 @@ import React from 'react';
 import {
   formatirajCijenu,
   izracunajPojedinacnePoreze,
+  izracunajPojedinacnePorezeStavkeBezgotovinski,
 } from '../../../helpers/racuni';
 
 const BezgotovinskiPorezi = () => {
   const { values } = useFormikContext();
-  console.log('values', values);
-  const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
+  const porezi = values.stavke
+    ? izracunajPojedinacnePorezeStavkeBezgotovinski(values.stavke)
+    : {};
 
   return (
     <>
@@ -23,7 +25,7 @@ const BezgotovinskiPorezi = () => {
                     <span className="heading-quaternary">PDV stopa</span>
                   </th>
                   <th className="w-33">
-                    <span className="heading-quaternary">osnovica</span>
+                    <span className="heading-quaternary">Ukupno za PDV</span>
                   </th>
                   <th className="w-33">
                     <span className="heading-quaternary">iznos poreza</span>
@@ -33,14 +35,11 @@ const BezgotovinskiPorezi = () => {
               <tbody>
                 {Object.keys(porezi).map((porezId) => {
                   const porez = porezi[porezId];
-                  console.log('porezi: ', porezi);
-                  console.log('porez', porez);
+
                   return (
                     <tr>
                       <td className="w-33">{porez.naziv}</td>
-                      <td className="w-33">
-                        {formatirajCijenu(porez.ukupno - porez.pdvIznos)}
-                      </td>
+                      <td className="w-33">{formatirajCijenu(porez.ukupno)}</td>
                       <td className="txt-right w-33">
                         {formatirajCijenu(porez.pdvIznos)}{' '}
                         <span className="txt-light"></span>

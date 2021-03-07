@@ -5,9 +5,10 @@ import {
   formatirajCijenu,
   izracunajPojedinacnePoreze,
   izracunajUkupnuCijenuStavki,
-  izracunajUkupnuCijenuStavkiBezPdv,
+  izracunajUkupnuCijenuStavkiBezPdvBezgotovinski,
 } from '../../../helpers/racuni';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
+import { izracunajUkupnuCijenuStavkiBezgotovinski } from './../../../helpers/racuni';
 
 const BezgotovinskiUkupno = () => {
   const { values, setFieldValue } = useFormikContext();
@@ -31,20 +32,21 @@ const BezgotovinskiUkupno = () => {
   }
 
   function izracunajCijeneSaPopustom() {
-    const ukupnaCijena = izracunajUkupnuCijenuStavki(values.stavke, true);
-    const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdv(
+    const ukupnaCijena = izracunajUkupnuCijenuStavkiBezgotovinski(
+      values.stavke,
+      true
+    );
+    const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdvBezgotovinski(
       values.stavke,
       true
     );
     const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
-
     if (!popust)
       return {
         ukupnaCijena,
         ukupnaCijenaBezPdv,
         ukupnoPdv,
       };
-
     if (popust.popust_bez_pdv) {
       return {
         ukupnaCijena: ukupnaCijena - izracunajPopustNaCijenu(ukupnaCijena),
@@ -106,15 +108,15 @@ const BezgotovinskiUkupno = () => {
                 </div>
               </div>
               <div className="col-xl-8">
-                <div className="row">
-                  {!popustVisible && (
+                <div className="row" style={{ marginTop: 12 }}>
+                  {/* {!popustVisible && (
                     <div
                       onClick={() => setPopustVisible(!popustVisible)}
                       className="main-content__box--footer col-xl-10"
                     >
                       <span className="link">+ Dodaj popust</span>
                     </div>
-                  )}
+                  )} */}
                   <div className="col-xl-4">
                     <div className="form-group">
                       {popustVisible && (

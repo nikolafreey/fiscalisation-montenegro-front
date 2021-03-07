@@ -28,6 +28,7 @@ const BezgotovinskiHeader = () => {
                 loadOptions={partneriService.getPartneriDropdown}
                 isSearchable
               />
+              <label className="form__label">Datum Izdavanja</label>
               <ReactDatePicker
                 selected={values.datum_izdavanja}
                 onChange={(date) => setFieldValue('datum_izdavanja', date)}
@@ -37,7 +38,7 @@ const BezgotovinskiHeader = () => {
               />
             </div>
           </div>
-          <div className="col-xl-4 col-md-4">
+          <div className="col-xl-4 col-md-4 ">
             <div className="form-group">
               <label className="form__label">Korektivni račun</label>
               <DropDownStatic
@@ -45,11 +46,12 @@ const BezgotovinskiHeader = () => {
                 options={KOREKTIVNI_RACUN}
                 defaultValue={KOREKTIVNI_RACUN[0]}
               />
+              <label className="form__label">Rok za plaćanje</label>
               <ReactDatePicker
                 selected={values.datum_za_placanje}
                 onChange={(date) => setFieldValue('datum_za_placanje', date)}
                 className="form__input w-100 mt-12 mob-mt-20"
-                placeholderText="Rok za placanje"
+                placeholderText="Rok za plaćanje"
                 dateFormat="dd/MM/yyyy"
               />
             </div>
