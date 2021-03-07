@@ -14,7 +14,7 @@ import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
 import BezgotovinskiHeader from './BezgotovinskiHeader';
 
 import { RACUNI } from '../../../constants/routes';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ const Bezgotovinski = () => {
       datum_izdavanja: values.datum_izdavanja?.toISOString().split('T')[0],
       datum_za_placanje: values.datum_za_placanje?.toISOString().split('T')[0],
       datum_uplate: values.datum_uplate?.toISOString().split('T')[0],
-      korektivni_racun: values.korektivni_racun === "0" ? 0 : 1,
-      korektivni_racun_vrsta: values.korektivni_racun === "0" ? null : values.korektivni_racun
-    
-    }
+      korektivni_racun: values.korektivni_racun === '0' ? 0 : 1,
+      korektivni_racun_vrsta:
+        values.korektivni_racun === '0' ? null : values.korektivni_racun,
+    };
 
     dispatch(storeBezgotovinskiRacun(noviRacun));
     history.push(`/racuni`);
@@ -56,7 +56,13 @@ const Bezgotovinski = () => {
 
   return (
     <Formik
-      initialValues={{ stavke: [], korektivni_racun: "0", datum_izdavanja: today, datum_za_placanje: seven_days}}
+      initialValues={{
+        stavke: [],
+        korektivni_racun: '0',
+        datum_izdavanja: today,
+        datum_za_placanje: seven_days,
+        pdv_obveznik: 1,
+      }}
       onSubmit={handleSubmit}
       enableReinitialize
       validateOnChange={false}
@@ -74,10 +80,10 @@ const Bezgotovinski = () => {
             </h1>
 
             <BezgotovinskiHeader />
-          
-          {/* STAVKE */}
+
+            {/* STAVKE */}
             <h2 className="heading-secondary">Stavke</h2>
-            <div className="main-content__box" style={{display: 'block'}}>
+            <div className="main-content__box" style={{ display: 'block' }}>
               <div className="main-content__box--header">
                 <div className="row">
                   <div className="col-xl-4">
@@ -123,7 +129,10 @@ const Bezgotovinski = () => {
                   >
                     Fiskalizuj i Pošalji
                   </button>
-                  <button onClick={() => handleSubmit(values)} className="btn btn__transparent ml-m">
+                  <button
+                    onClick={() => handleSubmit(values)}
+                    className="btn btn__transparent ml-m"
+                  >
                     Sačuvaj kao privremeni
                   </button>
                   <button className="btn btn__link ml-m">Obustavi</button>

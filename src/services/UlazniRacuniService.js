@@ -4,6 +4,7 @@ const ENDPOINTS = {
   ULAZNI_RACUNI: 'ulazni-racuni',
   ULAZNI_RACUNI_PDV: 'ulazni-racuni-pdv',
   ULAZNI_RACUN: 'ulazni-racuni/{id}',
+  ULAZNI_RACUNI_DANAS: 'ulazni-racuni-danas',
 };
 
 class UlazniRacuniService extends ApiService {
@@ -12,6 +13,9 @@ class UlazniRacuniService extends ApiService {
 
   getUlazniRacuniPdv = (params) =>
     this.apiClient.get(ENDPOINTS.ULAZNI_RACUNI_PDV, { params });
+
+  getUlazniRacuniDanas = () =>
+    this.apiClient.get(ENDPOINTS.ULAZNI_RACUNI_DANAS);
 
   storeUlazniRacun = (data) =>
     this.apiClient.post(ENDPOINTS.ULAZNI_RACUNI, data);

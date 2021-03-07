@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useReactToPrint } from 'react-to-print';
 import {
@@ -11,11 +11,16 @@ import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
+import { NACIN_PLACANJA_GOTOVINSKI } from '../../../constants/racuni';
+import Select from 'react-select';
 
 const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
   const dispatch = useDispatch();
+
+  const [value, setValue] = useState(1);
+  const [selectedLabel, setSelectedLabel] = useState('');
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -55,8 +60,8 @@ const NoviRacunPreview = () => {
     }
     return upupnoPlacanje;
   }
-  const ukPdv=vratiUkupanPdv();
-  const ukPlati=vratiUkupnoPlacanje();
+  const ukPdv = vratiUkupanPdv();
+  const ukPlati = vratiUkupnoPlacanje();
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
@@ -74,7 +79,8 @@ const NoviRacunPreview = () => {
   return (
     <div className="side-info">
       {/* NoviRacunPrint - Template */}
-      <div style={{ display: 'none' }}>{porezi.pdvUk}
+      <div style={{ display: 'none' }}>
+        {porezi.pdvUk}
         {/* <NoviRacunPrintTemplate
           ref={componentRef}
           ukupnaCijena={ukupnaCijena}
@@ -93,7 +99,7 @@ const NoviRacunPreview = () => {
           <span className="txt-light">€</span>
         </h1>
       </div>
-   
+
       {uslugeStavka}
       {robeStavka}
       <hr className="mtb-20" />
@@ -108,14 +114,13 @@ const NoviRacunPreview = () => {
                 </div>
                 <div className="col-r w-break-unset">
                   <p className="txt-right">
-                   
-                   {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
+                    {porezi[porezId].ukupno.toFixed(2).replace('.', ',') + '€'}
                   </p>
                 </div>
               </div>
               <div className="side-info__info--inner-wrapper mb-0">
                 <div className="col-l">
-                  <p>PDV{' '} {porezi[porezId].naziv}</p>
+                  <p>PDV {porezi[porezId].naziv}</p>
                 </div>
                 <div className="col-r">
                   <p className="txt-right">
@@ -137,9 +142,7 @@ const NoviRacunPreview = () => {
             </div>
             <div className="col-r">
               <p className="txt-right">
-                {Number(ukPdv)
-                  .toFixed(2)
-                  .replace('.', ',') + '€'}
+                {Number(ukPdv).toFixed(2).replace('.', ',') + '€'}
               </p>
             </div>
           </div>
@@ -164,6 +167,19 @@ const NoviRacunPreview = () => {
         <hr className="mtb-20" />
         {/* onClick={handlePrint} */}
         {/* <button className="btn btn__dark mb-10" onClick={handlePrint}>Fiskalizuj i štampaj</button> */}
+        <div className="mtb-20">
+          <label className="form__label">Način Plaćanja</label>
+          <Select
+            options={NACIN_PLACANJA_GOTOVINSKI}
+            name="nacin_placanja"
+            onChange={(option) => {
+              setValue(option.value);
+              setSelectedLabel(option);
+            }}
+            value={selectedLabel ? selectedLabel : NACIN_PLACANJA_GOTOVINSKI[0]}
+            defaultValue={NACIN_PLACANJA_GOTOVINSKI[0]}
+          />
+        </div>
         <button className="btn btn__dark mb-10 w-100" onClick={handleSacuvaj}>
           Fiskalizuj i štampaj
         </button>

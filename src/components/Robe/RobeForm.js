@@ -95,6 +95,7 @@ const RobeForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+      console.log('handleSubmit', values);
     }
     if (globalError.message) history.push(STAVKE.INDEX);
   };
@@ -126,6 +127,7 @@ const RobeForm = () => {
         kategorije: {},
         atributi: [],
         cijene: [],
+        porez_id: 4,
         ...roba,
       }}
       onSubmit={handleSubmit}
@@ -367,7 +369,7 @@ const RobeForm = () => {
                       type="submit"
                       // disabled={isSubmitting}
                     >
-                      {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}
+                      Sačuvaj
                     </button>
 
                     <button className="btn btn__link ml-m">
