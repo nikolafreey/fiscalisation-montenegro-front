@@ -46,7 +46,9 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
       <td className="cd fw-500 txt-right mob-txt-left">
         <p>
           {usluga?.ukupna_cijena ||
-            roba.roba.cijene_roba[0]?.ukupna_cijena.replace('.', ',') + '€'}
+            Number(roba.roba.cijene_roba[0]?.ukupna_cijena)
+              ?.toFixed(2)
+              .replace('.', ',') + '€'}
         </p>
       </td>
       <td>
