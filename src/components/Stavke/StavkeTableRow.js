@@ -31,8 +31,8 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
               (roba && roba.roba && roba?.roba?.naziv)}
           </p>
           <h3 className="heading-quaternary">
-            {(usluga && usluga?.opis) ||
-              (roba && roba.roba && roba?.roba?.opis)}
+            {(usluga && usluga?.opis?.split('.')[0]) ||
+              (roba && roba.roba && roba?.roba?.opis?.split('.')[0])}
           </h3>
         </td>
         <td className="cl">
