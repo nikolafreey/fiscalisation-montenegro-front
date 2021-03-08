@@ -7,6 +7,8 @@ import StavkeTableRow from './StavkeTableRow';
 const StavkeTable = ({ robe, usluge }) => {
   const dispatch = useDispatch();
 
+  console.log('robe', robe);
+
   return (
     <>
       <div className="table-wrapper">
