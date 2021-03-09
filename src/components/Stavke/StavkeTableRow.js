@@ -32,14 +32,32 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
           </p>
           <h3 className="heading-quaternary">
             {(usluga && usluga?.opis?.split('.')[0]) ||
-              (roba && roba.roba && roba?.roba?.opis?.split('.')[0])}
+              (roba && roba.roba && roba?.roba?.proizvodjac_robe?.naziv) +
+                ' ,' +
+                (roba && roba.roba && roba?.atribut_robe?.tip_atributa?.naziv) +
+                ' ,' +
+                (roba && roba.roba && roba?.atribut_robe?.naziv)}
           </h3>
         </td>
         <td className="cl">
           {(usluga && usluga?.jedinica_mjere?.naziv) ||
             (roba && roba.roba && roba?.roba?.jedinica_mjere?.naziv)}
         </td>
-        <td className="cl">{usluga && usluga?.grupa?.naziv}</td>
+        <td className="cl">
+          {(usluga && usluga?.grupa?.naziv) ||
+            (roba &&
+              roba.roba &&
+              roba?.roba?.robe_kategorije_podkategorije.length !== 0 &&
+              roba?.roba?.robe_kategorije_podkategorije
+                ?.map(
+                  (tmp) =>
+                    ' ' +
+                    tmp.kategorije_roba.naziv +
+                    ' - ' +
+                    tmp.podkategorije_roba.naziv
+                )
+                .join())}
+        </td>
         <td className="cd fw-500 txt-right">
           <p>
             {(usluga &&
