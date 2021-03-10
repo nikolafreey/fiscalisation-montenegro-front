@@ -33,9 +33,9 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
           <h3 className="heading-quaternary">
             {(usluga && usluga?.opis?.split('.')[0]) ||
               (roba && roba.roba && roba?.roba?.proizvodjac_robe?.naziv) +
-                ' ,' +
+                ', ' +
                 (roba && roba.roba && roba?.atribut_robe?.tip_atributa?.naziv) +
-                ' ,' +
+                ', ' +
                 (roba && roba.roba && roba?.atribut_robe?.naziv)}
           </h3>
         </td>
@@ -52,9 +52,9 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
                 ?.map(
                   (tmp) =>
                     ' ' +
-                    tmp.kategorije_roba.naziv +
+                    tmp?.kategorije_roba?.naziv +
                     ' - ' +
-                    tmp.podkategorije_roba.naziv
+                    tmp?.podkategorije_roba?.naziv
                 )
                 .join())}
         </td>

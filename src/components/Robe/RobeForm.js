@@ -71,8 +71,17 @@ const RobeForm = () => {
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
-            values.ukupna_cijena
+            Number(values.ukupna_cijena)
           ),
+          ukupna_cijena:
+            values.pdv_ukljucen === 0
+              ? Number(values.ukupna_cijena) +
+                getVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  Number(values.ukupna_cijena)
+                )
+              : Number(values.ukupna_cijena),
         })
       );
       if (globalError.message) history.push(STAVKE.INDEX);
@@ -90,12 +99,22 @@ const RobeForm = () => {
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
-            values.ukupna_cijena
+            Number(values.ukupna_cijena)
           ),
           status: values.status === 'Aktivan' ? true : false,
+          ukupna_cijena:
+            values.pdv_ukljucen === 0
+              ? Number(values.ukupna_cijena) +
+                getVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  Number(values.ukupna_cijena)
+                )
+              : Number(values.ukupna_cijena),
         })
       );
       console.log('handleSubmit', values);
+      history.goBack();
     }
     if (globalError.message) history.push(STAVKE.INDEX);
   };
@@ -128,10 +147,13 @@ const RobeForm = () => {
         atributi: [],
         cijene: [],
         porez_id: 4,
+        pdv_ukljucen: 1,
+        nabavna_cijena_sa_pdv: 0,
+        nabavna_cijena_bez_pdv: 0,
         ...roba,
       }}
       onSubmit={handleSubmit}
-      //  validationSchema={PreduzecaSchema}
+      // validationSchema={PreduzecaSchema}
       enableReinitialize
     >
       {({ values, dirty, isSubmitting }) => (
@@ -217,7 +239,6 @@ const RobeForm = () => {
                               loadOptions={
                                 proizvodjacService.getProizvodjaciDropdown
                               }
-                              //className="form__input"
                               placeholder={roba?.proizvodjac_robe?.naziv}
                             />
                           </div>
@@ -228,7 +249,6 @@ const RobeForm = () => {
                               loadOptions={
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
-                              //className="form__input"
                               placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>

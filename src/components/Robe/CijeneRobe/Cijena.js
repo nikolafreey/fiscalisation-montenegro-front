@@ -44,7 +44,6 @@ const Cijena = ({
 
   const getFormattedPriceString = (callback, ...args) => {
     const price = callback(...args);
-
     return isNaN(price) ? 0 : Number(price).toFixed(2).replace('.', ',') + '€';
   };
 
@@ -108,13 +107,13 @@ const Cijena = ({
                   getPriceNoVat,
                   values.pdv_ukljucen,
                   values.porez_id,
-                  values.ukupna_cijena
+                  Number(values.ukupna_cijena)
                 ) ||
                 getFormattedPriceString(
                   getPriceNoVat,
                   values.pdv_ukljucen,
                   4,
-                  values.ukupna_cijena
+                  Number(values.ukupna_cijena)
                 )}
             </p>
             <p className="mb-10">
@@ -125,13 +124,13 @@ const Cijena = ({
                   getVat,
                   values.pdv_ukljucen,
                   values.porez_id,
-                  values.ukupna_cijena
+                  Number(values.ukupna_cijena)
                 ) ||
                 getFormattedPriceString(
                   getVat,
                   values.pdv_ukljucen,
                   4,
-                  values.ukupna_cijena
+                  Number(values.ukupna_cijena)
                 )}
             </p>
             <p className="mb-10">
@@ -141,7 +140,7 @@ const Cijena = ({
                   getPriceVat,
                   values.pdv_ukljucen,
                   values.porez_id,
-                  values.ukupna_cijena
+                  Number(values.ukupna_cijena)
                 )}
             </p>
           </div>
@@ -239,7 +238,7 @@ const Cijena = ({
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
-              defaultValue={{ label: '21%', value: 3 }}
+              defaultValue={{ label: '21%', value: 4 }}
               placeholder={
                 //Provjera da li je objekat prazan
                 checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.porez.naziv

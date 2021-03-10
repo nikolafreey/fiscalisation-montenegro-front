@@ -4,7 +4,7 @@ import { getStavke } from '../../store/actions/RacuniActions';
 import PaginationControls from '../shared/lists/PaginationControls';
 import StavkeTableRow from './StavkeTableRow';
 
-const StavkeTable = ({ robe, usluge }) => {
+const StavkeTable = ({ robe, usluge, filter }) => {
   const dispatch = useDispatch();
 
   console.log('robe', robe);
@@ -36,10 +36,26 @@ const StavkeTable = ({ robe, usluge }) => {
           </thead>
           <tbody>
             {robe &&
+              filter !== 'usluge' &&
+              filter !== 'robe' &&
               robe?.data?.map((item) => (
                 <StavkeTableRow key={item.id} roba={item} />
               ))}
             {usluge &&
+              filter !== 'usluge' &&
+              filter !== 'robe' &&
+              usluge?.data?.map((item) => (
+                <StavkeTableRow key={item.id} usluga={item} />
+              ))}
+          </tbody>
+          <tbody>
+            {robe &&
+              filter === 'robe' &&
+              robe?.data?.map((item) => (
+                <StavkeTableRow key={item.id} roba={item} />
+              ))}
+            {usluge &&
+              filter === 'usluge' &&
               usluge?.data?.map((item) => (
                 <StavkeTableRow key={item.id} usluga={item} />
               ))}

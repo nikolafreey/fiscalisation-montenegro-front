@@ -27,6 +27,11 @@ const Stavke = () => {
   const usluge = useSelector(stavkeUslugeSelector());
   const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
 
+  let robeKategorije = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
+  const robeKategorijeSet = new Set(robeKategorije);
+  robeKategorije = Array.from(robeKategorijeSet);
+  console.log('robeKategorije', robeKategorije);
+
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -93,7 +98,7 @@ const Stavke = () => {
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
-                  placeholder="Pretraži Usluga"
+                  placeholder="Pretraži Usluge"
                   className="search__input"
                   value={search}
                   onChange={handleChange}
@@ -105,6 +110,8 @@ const Stavke = () => {
                 onChange={(event) => setFilter(event.target.value)}
               >
                 <option value={'sve'}>Sve</option>
+                <option value={'usluge'}>Usluge</option>
+                <option value={'robe'}>Robe</option>
               </select>
             </div>
             {/* </div> */}
@@ -118,10 +125,19 @@ const Stavke = () => {
               >
                 Sve
               </div>
+              {robeKategorije.map((robeKat) => (
+                <div
+                  className={
+                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                  }
+                >
+                  {robeKat}
+                </div>
+              ))}
             </div>
           </div>
           <div>
-            <StavkeTable robe={robe} usluge={usluge} />
+            <StavkeTable robe={robe} usluge={usluge} filter={filter} />
           </div>
         </div>
       </div>

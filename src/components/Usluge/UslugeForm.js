@@ -24,7 +24,7 @@ import { jediniceMjereService } from '../../services/JediniceMjereService';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 // import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
-import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
+// import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
 import { STAVKE, USLUGE } from '../../constants/routes';
@@ -278,7 +278,7 @@ const UslugeForm = () => {
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
-                          <AysncCreatableDropDown
+                          <DropDown
                             //className="form__input"
                             // autoload={false}
                             key={JSON.stringify(
