@@ -236,11 +236,13 @@ const UslugeForm = () => {
                                 )
                               )
                                 ? '0,00€'
-                                : getPriceVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
-                                  ) + '€'}
+                                : Number(
+                                    getPriceVat(
+                                      values.pdv_ukljucen,
+                                      values.porez_id,
+                                      values.ukupna_cijena
+                                    )
+                                  ).toFixed(2) + '€'}
                             </p>
                           </div>
                         </div>
@@ -311,7 +313,14 @@ const UslugeForm = () => {
                             name="porez_id"
                             label={$t('usluge.porezi')}
                             loadOptions={poreziService.getPoreziDropdown}
-                            defaultValue={{ label: '21%', value: 4 }}
+                            defaultValue={
+                              params.id
+                                ? {
+                                    value: usluga?.porez?.id,
+                                    label: usluga?.porez?.naziv,
+                                  }
+                                : { label: '21%', value: 4 }
+                            }
                             placeholder={usluga?.porez?.naziv}
                           />
                         </div>
