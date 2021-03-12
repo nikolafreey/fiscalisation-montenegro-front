@@ -9,6 +9,7 @@ import {
   ULAZNI_RACUNI,
   USLUGE,
   STAVKE,
+  MODULI,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
@@ -95,7 +96,11 @@ const Sidebar = () => {
         <ul className="items">
           <h3 className="heading-quaternary">Podešavanja</h3>
 
-          <SidebarLink ImageSource={heroModuli} label="Moduli" to={'#'} />
+          <SidebarLink
+            ImageSource={heroModuli}
+            label="Moduli"
+            to={MODULI.INDEX}
+          />
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"

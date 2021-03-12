@@ -5,7 +5,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch, Prompt } from 'react-router-dom';
 import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
@@ -33,6 +33,7 @@ import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSele
 import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
 import { STAVKE } from '../../constants/routes';
+import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const RobeForm = () => {
     { key: 'Neaktivan', value: 'Neaktivan' },
   ];
 
+  const globalError = useSelector(globalErrorSelector());
   const roba = useSelector(robaSelector());
   console.log('roba:', roba);
 
@@ -69,12 +71,22 @@ const RobeForm = () => {
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
-            values.ukupna_cijena
+            Number(values.ukupna_cijena)
           ),
+          ukupna_cijena:
+            values.pdv_ukljucen === 0
+              ? Number(values.ukupna_cijena) +
+                getVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  Number(values.ukupna_cijena)
+                )
+              : Number(values.ukupna_cijena),
         })
       );
-      history.push(STAVKE.INDEX);
+      if (globalError.message) history.push(STAVKE.INDEX);
     } else {
+      console.log('ukupna_cijena', values);
       dispatch(
         storeRoba({
           ...values,
@@ -87,13 +99,24 @@ const RobeForm = () => {
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
-            values.ukupna_cijena
+            Number(values.ukupna_cijena)
           ),
           status: values.status === 'Aktivan' ? true : false,
+          ukupna_cijena:
+            values.pdv_ukljucen === 0
+              ? Number(values.ukupna_cijena) +
+                getVat(
+                  values.pdv_ukljucen,
+                  values.porez_id,
+                  Number(values.ukupna_cijena)
+                )
+              : Number(values.ukupna_cijena),
         })
       );
+      console.log('handleSubmit', values);
+      history.goBack();
     }
-    history.push(STAVKE.INDEX);
+    if (globalError.message) history.push(STAVKE.INDEX);
   };
 
   const kategorije = useSelector(kategorijeRobeSelector());
@@ -123,13 +146,17 @@ const RobeForm = () => {
         kategorije: {},
         atributi: [],
         cijene: [],
+        porez_id: 4,
+        pdv_ukljucen: 1,
+        nabavna_cijena_sa_pdv: 0,
+        nabavna_cijena_bez_pdv: 0,
         ...roba,
       }}
       onSubmit={handleSubmit}
-      //  validationSchema={PreduzecaSchema}
+      // validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty, isSubmitting }) => (
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="back-link df">
@@ -143,6 +170,10 @@ const RobeForm = () => {
             <div className="main-content__box">
               <div className="content">
                 <Form className="form">
+                  <Prompt
+                    when={dirty && !isSubmitting}
+                    message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                  />
                   <div className="container">
                     <div className="row">
                       <div className="col-md-4 mt-25">
@@ -208,7 +239,6 @@ const RobeForm = () => {
                               loadOptions={
                                 proizvodjacService.getProizvodjaciDropdown
                               }
-                              //className="form__input"
                               placeholder={roba?.proizvodjac_robe?.naziv}
                             />
                           </div>
@@ -219,7 +249,6 @@ const RobeForm = () => {
                               loadOptions={
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
-                              //className="form__input"
                               placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>
@@ -355,7 +384,11 @@ const RobeForm = () => {
                     </div>
                   </div>
                   <div className="form__footer">
-                    <button className="btn btn__dark btn__md" type="submit">
+                    <button
+                      className="btn btn__dark btn__md"
+                      type="submit"
+                      // disabled={isSubmitting}
+                    >
                       Sačuvaj
                     </button>
 

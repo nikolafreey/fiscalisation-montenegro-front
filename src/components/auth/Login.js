@@ -64,7 +64,9 @@ const Login = () => {
                   <button type="submit" className="btn btn__dark">
                     Ulazak
                   </button>
-                  {!!loginError.errors && <div>{loginError.errors.email}</div>}
+                  {!!loginError?.errors && (
+                    <div>{loginError?.errors?.email}</div>
+                  )}
                   <Link className="df ai-c" to={AUTH.FORGOT}>
                     <svg width="17" height="17" fill="none" className="mr-s">
                       <path

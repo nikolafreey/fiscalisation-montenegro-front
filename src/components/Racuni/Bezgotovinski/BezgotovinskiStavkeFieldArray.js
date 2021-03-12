@@ -2,20 +2,39 @@ import { useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
 import StavkeDropdown from '../NoviRacun/StavkeDropdown';
 import { ReactComponent as RemoveIcon } from '../../../assets/icon/remove.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStavke } from '../../../store/actions/RacuniActions';
-import { formatirajCijenu } from '../../../helpers/racuni';
+import {
+  formatirajCijenu,
+  getCijenaStavkeSaPdvPopustom,
+  izracunajPojedinacnePorezeZaUslugu,
+  izracunajPopust,
+} from '../../../helpers/racuni';
 import DropDown from '../../shared/forms/DropDown';
 import { jediniceMjereService } from '../../../services/JediniceMjereService';
 import { poreziService } from '../../../services/PoreziService';
 import { TIPOVI_POPUSTA } from '../../../constants/racuni';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
 import { uslugaSelector } from '../../../store/selectors/UslugeSelector';
+import { robaSelector } from '../../../store/selectors/RobeSelector';
+import { getRobe } from '../../../store/actions/RobeActions';
+import { getUsluge } from '../../../store/actions/UslugeActions';
 
 const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getRobe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUsluge());
+  }, [dispatch]);
+
   const { values, setFieldValue } = useFormikContext();
+
+  const usluga = useSelector(uslugaSelector());
+  const roba = useSelector(robaSelector());
 
   const [porezi, setPorezi] = useState([]);
 
@@ -24,6 +43,38 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     (async () => setPorezi((await poreziService.getPorezi()).data))();
   }, [dispatch]);
 
+  function getPopustStavke(stavka) {
+    if (
+      Number(stavka?.grupa?.popust_procenti) > 0 ||
+      Number(stavka?.atribut_robe?.popust_procenti) > 0
+    ) {
+      return {
+        iznos:
+          Number(stavka?.grupa?.popust_procenti) ||
+          Number(stavka?.atribut_robe?.popust_procenti) ||
+          0,
+        tip_popusta: 'procenat',
+      };
+    } else {
+      //stavka.tip_popusta='iznos';
+      return {
+        iznos:
+          Number(stavka?.grupa?.popust_iznos) ||
+          Number(stavka?.atribut_robe?.popust_iznos) ||
+          0,
+        tip_popusta: 'iznos',
+      };
+    }
+  }
+
+  const popust = values.popust
+    ? {
+        popust: values.popust,
+        tip_popusta: values.tip_popusta,
+        popust_bez_pdv: true,
+      }
+    : null;
+
   function izracunajCijenuSaPopustom(stavka, cijena) {
     if (!stavka?.tip_popusta) return cijena;
     if (stavka.tip_popusta === 'iznos')
@@ -31,28 +82,69 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     if (stavka.tip_popusta === 'procenat')
       return cijena - (Number(stavka.popust || 0) * cijena) / 100;
   }
-
-  function getCijenaStavkeBezPdv(stavka) {
-    return izracunajCijenuSaPopustom(
-      stavka,
-      stavka?.roba?.cijene_roba?.[0]?.cijena_bez_pdv ||
-        stavka?.cijena_bez_pdv ||
-        0
-    );
+  function izracunajPocetnuCijenuSaPopustom(stavka, cijena) {
+    let popustStart = getPopustStavke(stavka);
+    if (!popustStart?.tip_popusta) return cijena;
+    if (popustStart.tip_popusta === 'iznos')
+      return Number(cijena) - Number(popustStart.iznos);
+    if (popustStart?.tip_popusta === 'procenat')
+      return cijena - (Number(popustStart.iznos || 0) * cijena) / 100;
   }
 
+  function getCijenaStavkeBezPdv(stavka) {
+    let cijena_sa_popustom;
+    if (stavka?.tip_popusta) {
+      cijena_sa_popustom = izracunajCijenuSaPopustom(
+        stavka,
+        stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena ||
+          stavka?.ukupna_cijena ||
+          0
+      );
+    } else {
+      cijena_sa_popustom = izracunajPocetnuCijenuSaPopustom(
+        stavka,
+        stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena ||
+          stavka?.ukupna_cijena ||
+          0
+      );
+    }
+    if (stavka?.porez?.stopa > 0) {
+      return (
+        Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
+      );
+    } else {
+      return Number(cijena_sa_popustom);
+    }
+  }
   function getPorezForId(porezId) {
     return porezi?.find((porez) => porez.id === porezId) || {};
   }
 
-  function getPorezStopaForId(porezId) {
-    return getPorezForId(porezId)?.stopa || 0;
+  function getPorezStopaForId(porezId, stavka) {
+    return (
+      stavka &&
+      (getPorezForId(porezId)?.stopa ||
+        getPorezForId(stavka?.roba?.cijene_roba[0]?.porez_id)?.stopa ||
+        0)
+    );
   }
 
   function getIznosPdv(stavka) {
-    return getPorezStopaForId(stavka?.porez_id) * getCijenaStavkeBezPdv(stavka);
+    return (
+      getPorezStopaForId(stavka?.porez_id, stavka) *
+      getCijenaStavkeBezPdv(stavka)
+    );
   }
+  // odavde
 
+  function izracunajPopustNaCijenu(cijena) {
+    if (popust.tip_popusta === 'procenat') {
+      return (cijena * popust.popust) / 100;
+    }
+    if (popust.tip_popusta === 'iznos') {
+      return popust.popust;
+    }
+  }
   function getUkupnaCijenaStavke(stavka) {
     return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
     //stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
@@ -92,7 +184,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
           : stavka.grupa.popust_iznos
       );
     } else {
-      setFieldValue(`values.${index}.popust`, 0);
+      setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
     }
   }
 
@@ -120,6 +212,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <StavkeDropdown
                       name={`stavke.${index}`}
                       className="form__input"
+                      onChangeExtra={(option) => {
+                        setFieldValue(`stavke.${index}`, option);
+                      }}
                     />
                   </div>
                 </div>
@@ -139,6 +234,28 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   <div className="form-group">
                     <DropDown
                       name={`stavke.${index}.jedinica_mjere_id`}
+                      // placeholder={
+                      //   Object.keys(usluga).length !== 0
+                      //     ? usluga?.jedinica_mjere?.naziv
+                      //     : roba?.jedinica_mjere?.naziv
+                      // }
+                      defaultValue={
+                        Object.keys(usluga).length !== 0
+                          ? {
+                              value: usluga?.jedinica_mjere?.id,
+                              label: usluga?.jedinica_mjere?.naziv,
+                            }
+                          : {
+                              value: roba?.jedinica_mjere?.id,
+                              label: roba?.jedinica_mjere?.naziv,
+                            }
+                      }
+                      onChangeExtra={(option) => {
+                        setFieldValue(
+                          `stavke.${index}.jedinica_mjere_id`,
+                          option
+                        );
+                      }}
                       loadOptions={
                         jediniceMjereService.getJediniceMjereDropdown
                       }
@@ -150,12 +267,34 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDown
                       name={`stavke.${index}.porez_id`}
                       loadOptions={poreziService.getPoreziDropdown}
-                      onChangeExtra={(option) =>
+                      // placeholder={
+                      //   Object.keys(usluga).length === 0 &&
+                      //   Object.keys(roba).length === 0
+                      //     ? ''
+                      //     : Object.keys(usluga).length !== 0
+                      //     ? usluga?.porez?.naziv
+                      //     : roba?.cijene_roba[0]?.porez?.naziv
+                      // }
+                      defaultValue={
+                        Object.keys(usluga).length === 0 &&
+                        Object.keys(roba).length === 0
+                          ? {}
+                          : Object.keys(usluga).length !== 0
+                          ? {
+                              value: usluga?.porez?.id,
+                              label: usluga?.porez?.naziv,
+                            }
+                          : {
+                              value: roba?.cijene_roba[0]?.porez?.id,
+                              label: roba?.cijene_roba[0]?.porez?.naziv,
+                            }
+                      }
+                      onChangeExtra={(option) => {
                         setFieldValue(
                           `stavke.${index}.porez`,
                           getPorezForId(option.value)
-                        )
-                      }
+                        );
+                      }}
                     />
                   </div>
                 </div>
@@ -164,6 +303,14 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <DropDownStatic
                       name={`stavke.${index}.tip_popusta`}
                       options={TIPOVI_POPUSTA}
+                      //defaultValue={{ value: Number(getPopustStavke(stavka).iznos), label: getPopustStavke(stavka).tip_popusta }}
+                      defaultValue={{
+                        value: getPopustStavke(stavka).tip_popusta,
+                        label:
+                          getPopustStavke(stavka).tip_popusta === 'procenat'
+                            ? 'Procenat %'
+                            : 'Iznos',
+                      }}
                       onChangeExtra={(option) =>
                         handleChoosePopust(option, stavka, index)
                       }
@@ -196,14 +343,23 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <div className="col-xl-3 pr-0">
                       <div className="form-group">
                         <input
-                          type="text"
-                          value={formatirajCijenu(
-                            getUkupnaCijenaStavke(stavka)
-                          )}
+                          name="ukupna_cijena"
+                          type="number"
+                          // value={formatirajCijenu(
+                          //   getUkupnaCijenaStavke(stavka)
+                          // )}
+                          value={
+                            stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                            stavka?.ukupna_cijena
+                          }
                           className="form__input mb-12"
                           placeholder="Sa PDV"
-                          disabled
-                          readOnly
+                          onChange={(event) =>
+                            setFieldValue(
+                              `stavke.${index}.ukupna_cijena`,
+                              event.target.valueAsNumber
+                            )
+                          }
                         />
                       </div>
                     </div>
@@ -214,7 +370,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           type="number"
                           className="form__input mb-12"
                           value={
-                            stavka && stavka.kolicina ? stavka.kolicina : 1
+                            stavka && (stavka.kolicina ? stavka.kolicina : 1)
                           }
                           onChange={(event) =>
                             setFieldValue(
@@ -231,8 +387,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           type="text"
                           className="form__input mb-12"
                           value={formatirajCijenu(
-                            getPorezStopaForId(stavka?.porez_id) *
-                              getCijenaStavkeBezPdv(stavka)
+                            getUkupanIznosPdv(stavka)
+                            // getPorezStopaForId(stavka?.porez_id) *
+                            //   getCijenaStavkeBezPdv(stavka)
                           )}
                           readOnly
                         />
@@ -241,13 +398,18 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     <div className="col-xl-3">
                       <div className="form-group">
                         <input
+                          name="popust"
                           type="number"
                           className="form__input mb-12"
-                          value={stavka?.popust}
+                          value={
+                            stavka?.popust
+                              ? stavka?.popust
+                              : getPopustStavke(stavka).iznos
+                          }
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.popust`,
-                              event.target.valueAsNumber
+                              formatirajCijenu(event.target.valueAsNumber)
                             )
                           }
                         />

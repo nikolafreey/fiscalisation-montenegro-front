@@ -4,6 +4,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { getStavke } from '../../../store/actions/RacuniActions';
+import { getRoba, setRoba } from '../../../store/actions/RobeActions';
+import { getUsluga, setUsluga } from '../../../store/actions/UslugeActions';
 import {
   stavkeRobeSelector,
   stavkeUslugeSelector,
@@ -12,7 +14,7 @@ import Label from '../../shared/forms/Label';
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
-const StavkeDropdown = ({ label, ...props }) => {
+const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
   const dispatch = useDispatch();
 
   const robe = useSelector(stavkeRobeSelector()) || { data: [] };
@@ -31,6 +33,15 @@ const StavkeDropdown = ({ label, ...props }) => {
 
   function onStavkaChange(option) {
     setValue({ ...option.value, kolicina: 0, tip_popusta: 'procenat' });
+    console.log('option', option);
+    if (option?.value?.roba_id) {
+      dispatch(getRoba(option.value.roba_id));
+      dispatch(setUsluga({}));
+    } else {
+      dispatch(getUsluga(option.value.id));
+      dispatch(setRoba({}));
+    }
+    if (onChangeExtra) onChangeExtra(option.value);
   }
 
   const [field, meta, helpers] = useField(props);

@@ -45,7 +45,7 @@ const RacuniTableRow = ({ item }) => {
 
   const currencyFormat = (num) => {
     // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    return num.toString().replace('.', ',');
+    return Number(num).toFixed(2).replace('.', ',');
   };
 
   const handleClick = () => {
@@ -84,7 +84,7 @@ const RacuniTableRow = ({ item }) => {
   };
 
   return (
-    <tr onClick={handleClick} className='mob-relative-block'>
+    <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
         {_item.ikof && <Success />}
         {vrstaRacuna(_item.vrsta_racuna)}

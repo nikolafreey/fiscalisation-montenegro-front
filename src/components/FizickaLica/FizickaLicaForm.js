@@ -12,7 +12,7 @@ import {
 } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, Prompt } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
@@ -34,7 +34,7 @@ const FizickaLicaForm = () => {
     if (params.id) dispatch(getFizickoLice(params.id));
   }, [dispatch, params]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, isSubmitting) => {
     if (params.id) dispatch(updateFizickoLice({ id: params.id, ...values }));
     else
       dispatch(
@@ -43,6 +43,8 @@ const FizickaLicaForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+    isSubmitting.setSubmitting(false);
+    console.log('isSubmitting handleSubmit', isSubmitting.isSubmitting);
   };
 
   return (
@@ -72,10 +74,10 @@ const FizickaLicaForm = () => {
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
-      validationSchema={FizickaLicaSchema}
+      // validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={PREDUZECA.INDEX} className="back-link df">
             <LinkSvg />
@@ -86,6 +88,10 @@ const FizickaLicaForm = () => {
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
+                <Prompt
+                  when={dirty && !isSubmitting}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-4 mt-25">
@@ -198,7 +204,9 @@ const FizickaLicaForm = () => {
                         </div>
                       </div>
                       <div className="form__group">
-                        <label className="form__label" htmlFor="">Opis</label>
+                        <label className="form__label" htmlFor="">
+                          Opis
+                        </label>
                         <textarea
                           name=""
                           id=""
@@ -208,14 +216,16 @@ const FizickaLicaForm = () => {
                         ></textarea>
                       </div>
                       <div className="form__group form__area">
-                      <label className="form__label" htmlFor="logo">Fotografija</label>
-                          <input
-                            type="file"
-                            name="logo"
-                            id="logo"
-                            required="required"
-                            multiple="multiple"
-                          />
+                        <label className="form__label" htmlFor="logo">
+                          Fotografija
+                        </label>
+                        <input
+                          type="file"
+                          name="logo"
+                          id="logo"
+                          required="required"
+                          multiple="multiple"
+                        />
                         <div className="file-dummy">
                           <div className="success">
                             Uspješno ste selektovali fajl!
@@ -386,8 +396,13 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button className="btn btn__dark" type="submit">
-                    Sačuvaj
+                  <button
+                    onClick={() => console.log('isSubmitting', isSubmitting)}
+                    disabled={isSubmitting}
+                    className="btn btn__dark btn__md"
+                    type="submit"
+                  >
+                    {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>
 

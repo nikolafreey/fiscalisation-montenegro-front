@@ -73,6 +73,10 @@ export const USLUGE = {
   CREATE: '/usluge/create',
   SHOW: '/usluge/:id',
 };
+export const MODULI = {
+  INDEX: '/moduli',
+  
+};
 
 
 

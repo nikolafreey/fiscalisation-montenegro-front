@@ -2,21 +2,31 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { ReactComponent as IconPrimary } from '../../assets/icon/icon_primary.svg';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
+import { userSelector } from '../../store/selectors/UserSelector';
 import { getRacuni } from '../../store/actions/RacuniActions';
 import { racuniService } from '../../services/RacuniService';
 import { ulazniRacuniService } from '../../services/UlazniRacuniService';
 import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.svg';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const Pregled = () => {
+  const [depozit, setDepozit] = useState();
   const [racuni, setRacuni] = useState();
+  const [racuniDanas, setRacuniDanas] = useState();
   const [racuniPdv, setRacuniPdv] = useState();
   const [ulazniRacuniPdv, setUlazniRacuniPdv] = useState();
+  const [ulazniRacuniDanas, setUlazniRacuniDanas] = useState();
   const [najveciKupci, setNajveciKupci] = useState();
   const [najveciDuznici, setNajveciDuznici] = useState();
 
   useEffect(() => {
+    depozitWithdrawService
+      .getDepozitToday()
+      .then((resp) => setDepozit(resp.data));
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
+    racuniService.getRacuniDanas().then((resp) => setRacuniDanas(resp.data));
     racuniService.getRacuniPdv().then((resp) => setRacuniPdv(resp.data));
     racuniService.getRacuniKupci().then((resp) => setNajveciKupci(resp.data));
     racuniService
@@ -25,11 +35,23 @@ const Pregled = () => {
     ulazniRacuniService
       .getUlazniRacuniPdv()
       .then((resp) => setUlazniRacuniPdv(resp.data));
+    ulazniRacuniService
+      .getUlazniRacuniPdv()
+      .then((resp) => setUlazniRacuniDanas(resp.data));
   }, []);
+
+  const userPreduzece = useSelector(userSelector());
+
+  console.log('Racuni Danas: ', racuniDanas);
+  console.log('ulazni Racuni Danas: ', ulazniRacuniDanas);
   console.log('racuni PDV: ', racuniPdv);
   console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
   console.log('najveciKupci: ', najveciKupci);
   console.log('najveciDuznici: ', najveciDuznici);
+
+  let dateNow = new Date();
+  dateNow.setDate(1);
+  dateNow.setMonth(dateNow.getMonth() - 1);
 
   return (
     <>
@@ -44,7 +66,7 @@ const Pregled = () => {
             <i className="icon lg mr-xs">
               <IconPrimary />
             </i>
-            Restart IT doo
+            {userPreduzece?.preduzeca[0].kratki_naziv}
           </p>
           <p className="right">
             <i className="icon lg mr-xs">
@@ -75,15 +97,14 @@ const Pregled = () => {
                 />
               </svg>
             </i>
-            Danas /{' '}
             <Moment locale="me" format="DD. MMM YYYY.">
               {new Date()}
             </Moment>
           </p>
-          <div className="input-wrapper">
+          {/* <div className="input-wrapper">
             <input type="text" className="form__input bg-light" />
             <span></span>
-          </div>
+          </div> */}
         </div>
       </div>
       <hr className="mtb-30 tabp-mtb-20" />
@@ -108,7 +129,21 @@ const Pregled = () => {
                   </span>
                 </div>
                 <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df">130,00 €</h2>
+                  <h2 className="heading-secondary df">
+                    {isNaN(
+                      depozit &&
+                        (
+                          racuniDanas?.ukupno_izlazni_racuni_danas +
+                          Number(depozit[0]?.iznos_depozit)
+                        ).toFixed(2)
+                    )
+                      ? '0.00'
+                      : (
+                          racuniDanas?.ukupno_izlazni_racuni_danas +
+                          Number(depozit[0]?.iznos_depozit)
+                        ).toFixed(2)}{' '}
+                    €
+                  </h2>
                 </div>
               </div>
             </div>
@@ -126,7 +161,14 @@ const Pregled = () => {
                   <span className="txt-light txt-up fw-500">Depozit</span>
                 </div>
                 <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df">28,00 €</h2>
+                  <h2 className="heading-secondary df">
+                    {isNaN(
+                      depozit && Number(depozit[0]?.iznos_depozit).toFixed(2)
+                    )
+                      ? '0.00'
+                      : Number(depozit[0]?.iznos_depozit).toFixed(2)}{' '}
+                    €
+                  </h2>
                 </div>
               </div>
             </div>
@@ -202,6 +244,71 @@ const Pregled = () => {
           </div>
         </div>
         <div className="box-dashboard-wrapper">
+          <h2 className="heading-secondary">U odnosu na prošli mjesec</h2>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="box-dashboard">
+                <div className="box-dashboard__top">
+                  <span className="txt-light txt-up fw-500">Izdati računi</span>
+                </div>
+                <div className="box-dashboard__btm">
+                  <h2 className="heading-secondary df success">
+                    <i>
+                      <svg fill="none" viewBox="0 0 14 17">
+                        <path
+                          fill="#16A34A"
+                          d="M6.903 16.96c.457 0 .783-.316.783-.774V4.611L7.624 2.74l2.628 2.883 2.004 1.969c.14.14.343.21.554.21.439 0 .755-.333.755-.764 0-.21-.07-.395-.237-.571L7.492.62a.796.796 0 00-.589-.264.796.796 0 00-.589.264L.487 6.466a.801.801 0 00-.246.571c0 .43.317.765.756.765.211 0 .422-.07.554-.211l2.004-1.969L6.19 2.73l-.07 1.881v11.575c0 .458.325.774.782.774z"
+                        />
+                      </svg>
+                    </i>
+                    {(
+                      racuniPdv?.poredjenje_pdv -
+                      racuniPdv?.ukupan_iznos_poslednji_mjesec
+                    ).toFixed(2)}{' '}
+                    €
+                  </h2>
+                  <span className="right txt-light">
+                    <Moment locale="me" format="MMM YYYY">
+                      {dateNow}
+                    </Moment>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-dashboard">
+                <div className="box-dashboard__top">
+                  <span className="txt-light txt-up fw-500">
+                    Primljeni računi
+                  </span>
+                </div>
+                <div className="box-dashboard__btm">
+                  <h2 className="heading-secondary df danger">
+                    <i>
+                      <svg fill="none" viewBox="0 0 14 17">
+                        <path
+                          fill="#DC2626"
+                          d="M7.097.04c-.457 0-.783.316-.783.773V12.39l.062 1.872-2.628-2.883-2.004-1.969a.777.777 0 00-.554-.21.742.742 0 00-.755.764c0 .21.07.395.237.571l5.836 5.845c.167.176.369.264.589.264.22 0 .422-.088.589-.264l5.827-5.845a.801.801 0 00.246-.571.742.742 0 00-.756-.765c-.211 0-.422.07-.554.211l-2.004 1.969L7.81 14.27l.07-1.881V.813c0-.457-.325-.773-.782-.773z"
+                        />
+                      </svg>
+                    </i>
+                    {(
+                      ulazniRacuniPdv?.poredjenje_pdv -
+                      ulazniRacuniPdv?.ukupan_iznos_poslednji_mjesec
+                    ).toFixed(2)}{' '}
+                    €
+                  </h2>
+                  <span className="right txt-light">
+                    <Moment locale="me" format="MMM YYYY">
+                      {dateNow}
+                    </Moment>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="box-dashboard-wrapper">
           <h2 className="heading-secondary">PDV</h2>
           <div className="row">
             <div className="col-md-4">
@@ -271,63 +378,6 @@ const Pregled = () => {
                   <h2 className="heading-secondary df">
                     {ulazniRacuniPdv?.ukupan_iznos_pdv.toFixed(2)} €
                   </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="box-dashboard-wrapper">
-          <h2 className="heading-secondary">U odnosu na prošli mjesec</h2>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="box-dashboard">
-                <div className="box-dashboard__top">
-                  <span className="txt-light txt-up fw-500">Izdati računi</span>
-                </div>
-                <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df success">
-                    <i>
-                      <svg fill="none" viewBox="0 0 14 17">
-                        <path
-                          fill="#16A34A"
-                          d="M6.903 16.96c.457 0 .783-.316.783-.774V4.611L7.624 2.74l2.628 2.883 2.004 1.969c.14.14.343.21.554.21.439 0 .755-.333.755-.764 0-.21-.07-.395-.237-.571L7.492.62a.796.796 0 00-.589-.264.796.796 0 00-.589.264L.487 6.466a.801.801 0 00-.246.571c0 .43.317.765.756.765.211 0 .422-.07.554-.211l2.004-1.969L6.19 2.73l-.07 1.881v11.575c0 .458.325.774.782.774z"
-                        />
-                      </svg>
-                    </i>
-                    {(
-                      racuniPdv?.poredjenje_pdv -
-                      racuniPdv?.ukupan_iznos_poslednji_mjesec
-                    ).toFixed(2)}{' '}
-                    €
-                  </h2>
-                  <span className="right txt-light">maj 2020</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="box-dashboard">
-                <div className="box-dashboard__top">
-                  <span className="txt-light txt-up fw-500">
-                    Primljeni računi
-                  </span>
-                </div>
-                <div className="box-dashboard__btm">
-                  <h2 className="heading-secondary df danger">
-                    <i>
-                      <svg fill="none" viewBox="0 0 14 17">
-                        <path
-                          fill="#DC2626"
-                          d="M7.097.04c-.457 0-.783.316-.783.773V12.39l.062 1.872-2.628-2.883-2.004-1.969a.777.777 0 00-.554-.21.742.742 0 00-.755.764c0 .21.07.395.237.571l5.836 5.845c.167.176.369.264.589.264.22 0 .422-.088.589-.264l5.827-5.845a.801.801 0 00.246-.571.742.742 0 00-.756-.765c-.211 0-.422.07-.554.211l-2.004 1.969L7.81 14.27l.07-1.881V.813c0-.457-.325-.773-.782-.773z"
-                        />
-                      </svg>
-                    </i>
-                    {(
-                      ulazniRacuniPdv?.poredjenje_pdv -
-                      ulazniRacuniPdv?.ukupan_iznos_poslednji_mjesec
-                    ).toFixed(2)}{' '}
-                    €
-                  </h2>
-                  <span className="right txt-light">maj 2020</span>
                 </div>
               </div>
             </div>

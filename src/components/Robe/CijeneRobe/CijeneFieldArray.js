@@ -41,8 +41,9 @@ const CijeneFieldArray = ({ insert, remove }) => {
             <InputField
               type="number"
               name={`cijene.${index}.ukupna_cijena`}
-              className="form__input "
+              className="form__input"
               label={$t('cijene.cijena')}
+              obavezno
             />
           </div>
           <button
@@ -60,8 +61,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
           className="link mt-0"
           onClick={() => insert(values.cijene.length, '')}
         >
-          
-          {`+ ${$t('common.dodajNovi')}`}
+          {`+ ${$t('robe.dodajNovuPojedinacnuCijenu')}`}
           {/* <span className="btn btn__link success">{$t('common.dodajNovi')}</span> */}
         </Link>
       </div>

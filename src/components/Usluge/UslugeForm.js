@@ -4,7 +4,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory, Prompt } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
@@ -24,7 +24,7 @@ import { jediniceMjereService } from '../../services/JediniceMjereService';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 // import { l } from 'i18n-js';
 import RadioButton from '../shared/forms/RadioButton';
-import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
+// import AysncCreatableDropDown from '../shared/forms/CreateableDropDown';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
 import { STAVKE, USLUGE } from '../../constants/routes';
@@ -105,15 +105,17 @@ const UslugeForm = () => {
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return Math.round(100 * ukupna_cijena) / 100;
+      return Math.round(10000 * ukupna_cijena) / 10000;
     } else {
-      return Math.round(100 * (ukupna_cijena / (Number(stopa) + 1))) / 100;
+      return Math.round(10000 * (ukupna_cijena / (Number(stopa) + 1))) / 10000;
     }
   };
 
   const getPriceVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
       return +ukupna_cijena + +ukupna_cijena * +stopa;
@@ -123,15 +125,15 @@ const UslugeForm = () => {
   };
 
   const getVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
-
     if (pdv_ukljucen === 0) {
-      return Math.round(100 * (ukupna_cijena * Number(stopa))) / 100;
+      return Math.round(10000 * (ukupna_cijena * Number(stopa))) / 10000;
     } else {
       return (
         Math.round(
-          100 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
-        ) / 100
+          10000 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
+        ) / 10000
       );
     }
   };
@@ -146,13 +148,14 @@ const UslugeForm = () => {
     <Formik
       initialValues={{
         status: 'Aktivan',
+        porez_id: 4,
         ...usluga,
       }}
       onSubmit={handleSubmit}
       //  validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={STAVKE.INDEX} className="back-link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
@@ -162,7 +165,11 @@ const UslugeForm = () => {
 
           <div className="main-content__box">
             <div className="content">
-              <Form className="form">
+              <Form>
+                <Prompt
+                  when={dirty && !isSubmitting}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <div className="container">
                   <div className="row">
                     <div className="col-md-4 mt-25 jc-sb">
@@ -203,7 +210,7 @@ const UslugeForm = () => {
                                     values.pdv_ukljucen,
                                     values.porez_id,
                                     values.ukupna_cijena
-                                  )}
+                                  ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -218,7 +225,7 @@ const UslugeForm = () => {
                                     values.pdv_ukljucen,
                                     values.porez_id,
                                     values.ukupna_cijena
-                                  )}
+                                  ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
                               {isNaN(
@@ -229,11 +236,13 @@ const UslugeForm = () => {
                                 )
                               )
                                 ? '0,00€'
-                                : getPriceVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
-                                  )}
+                                : Number(
+                                    getPriceVat(
+                                      values.pdv_ukljucen,
+                                      values.porez_id,
+                                      values.ukupna_cijena
+                                    )
+                                  ).toFixed(2) + '€'}
                             </p>
                           </div>
                         </div>
@@ -257,7 +266,7 @@ const UslugeForm = () => {
                         />
                       </div>
                       <div className="df jc-sb mob-fd-column">
-                          <div className="form__group w-48 mob-w-100">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             //className="form__input"
                             name="jedinica_mjere_id"
@@ -271,7 +280,7 @@ const UslugeForm = () => {
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
-                          <AysncCreatableDropDown
+                          <DropDown
                             //className="form__input"
                             // autoload={false}
                             key={JSON.stringify(
@@ -299,11 +308,19 @@ const UslugeForm = () => {
                         </div>
                       </div>
                       <div className="df jc-sb mob-fd-column">
-                          <div className="form__group w-48 mob-w-100">
+                        <div className="form__group w-48 mob-w-100">
                           <DropDown
                             name="porez_id"
                             label={$t('usluge.porezi')}
                             loadOptions={poreziService.getPoreziDropdown}
+                            defaultValue={
+                              params.id
+                                ? {
+                                    value: usluga?.porez?.id,
+                                    label: usluga?.porez?.naziv,
+                                  }
+                                : { label: '21%', value: 4 }
+                            }
                             placeholder={usluga?.porez?.naziv}
                           />
                         </div>

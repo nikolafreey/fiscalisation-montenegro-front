@@ -24,11 +24,6 @@ const options = [
 
 const searchParams = {};
 
-// let visibleStatus = false;
-// let visibleSearch = false;
-// let visibleDateStart = false;
-// let visibleDateEnd = false;
-
 const searchDebounced = debounce((callback) => callback(), 500);
 const Predracuni = () => {
   const dispatch = useDispatch();
@@ -137,7 +132,7 @@ const Predracuni = () => {
       {console.log(selectStyle)}
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
-        <Link exact to={PREDRACUNI.INDEX}>
+        <Link exact to={PREDRACUNI.CREATE}>
           <button className="btn btn__dark">
             <ButtonPlusSvg />
             Novi predračun
@@ -166,7 +161,7 @@ const Predracuni = () => {
                 value={{ label: status }}
                 className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
                 styles={selectStyle}
-                placeholderText="Status"
+                placeholder="Status..."
               />
               <div className="df jc-sb tabp-w-100">
                 <DatePicker

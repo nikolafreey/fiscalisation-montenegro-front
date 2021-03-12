@@ -22,15 +22,23 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
       roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti
     );
   }
-
+  
   function getPopustIznos() {
     return roba?.atribut_robe?.popust_iznos || usluga?.grupa?.popust_iznos;
+  }
+  function getUkupanPopustProcenat() {
+    const popustProcenat=roba?.atribut_robe?.popust_procenti || usluga?.grupa?.popust_procenti;
+    return (Number(popustProcenat)*Number(getUkupnaCijena())/100).toFixed(2);
+  }
+  function getUkupanPopustIznos() {
+    //return stavka.grupa.popust_iznos * stavka.kolicina;
+    return getPopustIznos() * stavka.kolicina;
   }
 
   function getUkupnaCijena() {
     return roba
-      ? Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena).toFixed(2)
-      : Number(usluga?.ukupna_cijena).toFixed(2);
+      ? (Number(roba?.roba?.cijene_roba?.[0]?.ukupna_cijena)*Number(stavka.kolicina))
+      : (Number(usluga?.ukupna_cijena)*Number(stavka.kolicina));
   }
 
   return (
@@ -43,7 +51,7 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
           </div>
           <div className="col-r w-break-unset">
             <div className="spn-mr-10 df">
-              {roba
+              {/* {roba
                 ? Number(
                     stavka.kolicina * roba.roba.cijene_roba[0].ukupna_cijena
                   )
@@ -51,7 +59,15 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
                     .replace('.', ',') + '€'
                 : Number(stavka.kolicina * usluga.ukupna_cijena)
                     .toFixed(2)
-                    .replace('.', ',') + '€'}
+                    .replace('.', ',') + '€'} */}
+                 {Number(getPopustProcenat()) > 0
+                    ? (
+                       getUkupnaCijena() -
+                       Number(getUkupanPopustProcenat())
+                      ).toFixed(2).replace('.', ',') + '€'
+                    : (Number(getUkupnaCijena()) -
+                      Number(getUkupanPopustIznos())).toFixed(2).replace('.', ',') + '€'}
+                    
               <span className="btn btn__link danger df" onClick={handleRemove}>
                 <DeleteIcon />
               </span>
@@ -60,7 +76,7 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
         </div>
         <div className="side-info__info--inner-wrapper mb-0">
           <div className="col-l w-break">
-            <p className="ml-15 txt-dark">Količina</p>
+            <p className="ml-15 txt-dark">Kol <span>x</span> Cijena</p>
           </div>
           <div className="col-r w-break-unset mr-m">
             {stavka.kolicina} x{' '}
@@ -75,12 +91,28 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
           <>
             <div className="side-info__info--inner-wrapper mb-0">
               <div className="col-l w-break">
-                <p className="ml-15 txt-dark">Popust {getPopustProcenat()}%</p>
+                <p className="ml-15 txt-dark">
+                  Popust{' '}
+                  {Number(getPopustProcenat()) > 0
+                    ? getPopustProcenat() + '%'
+                    : 'u iznosu'}
+                </p>
               </div>
               <div className="col-r w-break-unset">
-                <span className="mr-m">
-                  -{Number(getPopustIznos()).toFixed(2).replace('.', ',') + '€'}
-                </span>
+                {Number(getUkupanPopustProcenat()) > 0 ? (
+                  <span className="mr-m">
+                    -
+                    {Number(getUkupanPopustProcenat())
+                      .toFixed(2)
+                      .replace('.', ',') + '€'}
+                  </span>
+                ) : (
+                  <span className="mr-m">
+                    -
+                    {Number(getUkupanPopustIznos()).toFixed(2).replace('.', ',') +
+                      '€'}
+                  </span>
+                )}
               </div>
             </div>
             <div className="side-info__info--inner-wrapper mb-0">
@@ -89,9 +121,15 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
               </div>
               <div className="col-r w-break-unset">
                 <span className="mr-m">
-                  {(
-                    Number(getUkupnaCijena()) - Number(getPopustIznos())
-                  ).toFixed(2)}
+                  {Number(getPopustProcenat()) > 0
+                    ? (
+                        Number(getUkupnaCijena()) -
+                        Number(getUkupanPopustProcenat())
+                      ).toFixed(2).replace('.', ',') +
+                      '€'
+                    : (Number(getUkupnaCijena()) -
+                      Number(getUkupanPopustIznos())).toFixed(2).replace('.', ',') +
+                      '€'}
                 </span>
               </div>
             </div>

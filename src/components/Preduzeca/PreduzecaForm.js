@@ -14,7 +14,7 @@ import DropDown from '../shared/forms/DropDown';
 import { ReactComponent as LinkPreduzecaSvg } from '../../assets/icon/link.svg';
 import { ReactComponent as IconFillSvg } from '../../assets/icon/icon_fill.svg';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, Prompt } from 'react-router-dom';
 import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import { kategorijeService } from '../../services/KategorijeService';
@@ -126,7 +126,7 @@ const PreduzecaForm = () => {
       validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values }) => (
+      {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
           <Link to={PREDUZECA.INDEX} className="back-link df">
             <LinkPreduzecaSvg />
@@ -136,6 +136,10 @@ const PreduzecaForm = () => {
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
+                <Prompt
+                  when={dirty && !isSubmitting}
+                  message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
+                />
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-4 mt-25">
