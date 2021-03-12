@@ -30,7 +30,7 @@ import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska
 const Sidebar = () => {
   return (
     <div className="col-md-1 col-xl-3" id="sidebar">
-      <div className="logo">računi</div>
+      <div className="logo dshow">računi</div>
       <div className="menu-icon">
         <span className="line line-1"></span>
         <span className="line line-2"></span>

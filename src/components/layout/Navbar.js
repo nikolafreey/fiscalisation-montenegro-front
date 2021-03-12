@@ -4,6 +4,7 @@ import UserControls from '../auth/UserControls';
 const Navbar = () => {
   return (
     <div className="header">
+      <div class="logo tshow">računi</div>
       <form action="#" className="search df ai-c">
         <button className="search__button"></button>
         <input

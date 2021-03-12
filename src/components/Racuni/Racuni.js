@@ -121,7 +121,7 @@ const Racuni = () => {
               Novi bezgotovinski račun
             </button>
           </Link> */}
-          <button className="btn btn__dark">
+          <button className="btn btn__dark mob-mb-20">
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">
@@ -140,9 +140,9 @@ const Racuni = () => {
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df">
-            <div className="df jc-sb w-100 mob-fd-column">
+            <div className="df jc-sb w-100 tabp-flex-wrap mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-              <form className="search df ai-c w-45 mob-w-100 mr-15-mob-0">
+              <form className="search df ai-c w-45 mob-w-100 mr-15-tabp-0 tabp-w-49">
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
@@ -157,12 +157,12 @@ const Racuni = () => {
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
+                className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
                 placeholder={`Type to search`}
               />
 
               {/* <div className="select w-25 df"> */}
-              <div className="df jc-sb">
+              <div className="df jc-sb tabp-w-100">
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => handleStartDateChange(date)}
