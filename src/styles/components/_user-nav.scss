@@ -24,8 +24,9 @@
     align-items: center;
     padding: 1rem;
     cursor: pointer;
+    transition: all .1s;
 
-    @include respond(phone){
+    @include respond(phone) {
       padding: 1rem 0 1rem 1rem;
     }
 
@@ -51,7 +52,10 @@
     }
     &:hover {
       border-radius: 4px;
-      background-color: $color-hover;
+      @include themify($themes) {
+        background-color: themed('profileBgHover');
+        color:themed('profileTextHover');
+      }
       .drop-down {
         top: 5.7rem;
         right: 0;

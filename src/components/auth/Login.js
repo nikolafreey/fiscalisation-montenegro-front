@@ -61,7 +61,7 @@ const Login = () => {
                       type="checkbox"
                     />
                   </div>
-                  <button type="submit" className="btn btn__dark">
+                  <button type="submit" className="btn btn__primary">
                     Ulazak
                   </button>
                   {!!loginError?.errors && (

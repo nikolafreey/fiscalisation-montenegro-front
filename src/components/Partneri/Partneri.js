@@ -53,7 +53,7 @@ const Partneri = () => {
     <>
       <div className="title jc-sb">
         <h1 className="heading-primary">Partneri</h1>
-        <button className="btn btn__dark">
+        <button className="btn btn__primary">
           <PlusLightSvg />
           Novi partner
           <div className="drop-down" id="ddl">
@@ -83,7 +83,7 @@ const Partneri = () => {
                 />
               </form>
               <select
-                className="btn btn__dark mob-mt-10" 
+                className="btn btn__primary mob-mt-10" 
                 id="p-filter"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
@@ -118,7 +118,7 @@ const Partneri = () => {
                 onChange={(event) => setSearch(event.target.value)}
               />
             </form>
-            <select className="btn btn__dark btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>
+            <select className="btn btn__primary btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>
               <option value={'sve'}>Sve</option>
               <option value={'fizicko_lice'}>Fizička lica</option>
               <option value={'preduzece'}>Preduzeća</option>

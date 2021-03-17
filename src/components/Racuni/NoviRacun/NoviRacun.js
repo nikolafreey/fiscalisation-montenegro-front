@@ -88,14 +88,14 @@ const NoviRacun = () => {
                 ili kreirajte novi unos ako usluga/roba nije u listi
               </p>
               {/*<Link exact to={PREDUZECA.CREATE}>
-              <button className="btn btn__dark btn__xl">
+              <button className="btn btn__primary btn__xl">
                 <Plus className="icon icon__light lg" />
                 Novo preduzeće
               </button>
   </Link>*/}
 
               <Link exact to={USLUGE.CREATE}>
-                <button className="btn btn__dark mb-25">
+                <button className="btn btn__primary mb-25">
                   <Plus className="icon icon__light lg" />
                   Nova Stavka
                 </button>

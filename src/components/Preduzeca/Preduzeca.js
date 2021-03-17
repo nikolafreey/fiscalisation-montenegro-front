@@ -54,7 +54,7 @@ const Preduzeca = () => {
                 ili kreirajte novi unos ako preduzeće nije u listi
               </p>
               <Link exact to={PREDUZECA.CREATE}>
-                <button className="btn btn__dark btn__xl">
+                <button className="btn btn__primary btn__xl">
                   <Plus className="icon icon__light lg" />
                   Novo preduzeće
                 </button>

@@ -3,7 +3,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    
   }
 }
 .sidebar {
@@ -16,8 +15,8 @@
   min-height: 100vh;
   transition: width 0.25s linear;
 
-  &.active-mob{
-    @include respond(big-phone){
+  &.active-mob {
+    @include respond(big-phone) {
       visibility: visible;
       opacity: 1;
     }
@@ -45,7 +44,7 @@
     z-index: 10000;
     background-color: $color-background-light;
     overflow: hidden;
-    transition: visibility 0.3s, opacity .2s linear;
+    transition: visibility 0.3s, opacity 0.2s linear;
   }
 
   &__heading {
@@ -105,23 +104,30 @@
     margin-bottom: 0.5rem;
     cursor: pointer;
     background-color: transparent;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.05s ease-in;
 
     &.active {
       border-radius: 4px;
-      background-color: $color-hover;
+      @include themify($themes) {
+        background-color: themed('menuItemBgColorActive');
+      }
       span {
         background-color: $color-background-light;
-        color: $color-text-dark!important;
+        color: $color-text-dark !important;
       }
       .sidebar-icon {
-        stroke: $color-text-light;
+        @include themify($themes) {
+          stroke: themed('menuItemIconColorActive');
+        }
       }
       .link {
+        @include themify($themes) {
+          color: themed('menuItemTextColorActive');
+        }
         color: $color-text-light;
       }
 
-      @include respond(phone){
+      @include respond(phone) {
         border-radius: unset;
       }
     }
@@ -134,7 +140,7 @@
       align-items: center;
     }
 
-    @include respond(phone){
+    @include respond(phone) {
       background-color: transparent;
     }
 
@@ -169,27 +175,33 @@
         margin-right: 0;
         position: absolute;
       }
-      @include respond(phone){
+      @include respond(phone) {
         position: relative;
       }
     }
 
-    &:hover,
-    .active {
+    &:hover {
       border-radius: 4px;
-      background-color: $color-hover;
+     
+      @include themify($themes) {
+        background-color: themed('menuItemBgColorHover');
+      }
       .sidebar-badge {
         background-color: $color-background-light;
-        color: $color-text-dark!important;
+        color: $color-text-dark !important;
 
-        @include respond(phone){
+        @include respond(phone) {
         }
       }
       .sidebar-icon {
-        stroke: $color-text-light;
+        @include themify($themes) {
+          stroke: themed('menuItemIconColorHover');
+        }
       }
       .link {
-        color: $color-text-light;
+        @include themify($themes) {
+          color: themed('menuItemTextColorHover');
+        }
       }
     }
   }

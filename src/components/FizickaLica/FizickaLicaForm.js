@@ -399,7 +399,7 @@ const FizickaLicaForm = () => {
                   <button
                     onClick={() => console.log('isSubmitting', isSubmitting)}
                     disabled={isSubmitting}
-                    className="btn btn__dark btn__md"
+                    className="btn btn__primary btn__md"
                     type="submit"
                   >
                     {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}

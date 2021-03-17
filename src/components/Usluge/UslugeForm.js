@@ -426,7 +426,7 @@ const UslugeForm = () => {
                 </div>
 
                 <div className="form__footer">
-                  <button className="btn btn__dark btn__md" type="submit">
+                  <button className="btn btn__primary btn__md" type="submit">
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">

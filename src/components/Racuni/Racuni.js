@@ -110,18 +110,18 @@ const Racuni = () => {
 
         <div className="df w-50 jc-end mob-w-100 mob-fd-column">
           {/* <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m mob-mr-0">
-            <button className="btn btn__dark mob-mb-20 mob-w-100">
+            <button className="btn btn__primary mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi gotovinski račun
             </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button className="btn btn__dark  mob-mb-20 mob-w-100">
+            <button className="btn btn__primary  mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi bezgotovinski račun
             </button>
           </Link> */}
-          <button className="btn btn__dark mob-mb-20">
+          <button className="btn btn__primary mob-mb-20">
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">

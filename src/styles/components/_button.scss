@@ -18,8 +18,12 @@
       transition: stroke 0.1s ease-in-out;
     }
     &:hover {
-      background-color: rgba($color-background-light, 0.7);
-      color: rgba($color-text-dark, 0.7);
+      @include themify($themes) {
+        background-color: themed('btnLightColor');
+        color: themed('primaryBtnTextColor');
+      }
+      // background-color: rgba($color-background-light, 0.7);
+      // color: rgba($color-text-dark, 0.7);
       svg {
         stroke: rgba($color-text-dark, 0.7);
       }
@@ -28,21 +32,31 @@
       outline: none;
     }
   }
-  &__dark {
+  &__primary {
+    @include themify($themes) {
+      background-color: themed('primaryBtnBgColor');
+      color: themed('primaryBtnTextColor');
+    }
     display: flex;
     justify-content: center;
-    background-color: $color-background-dark;
-    color: $color-content-light;
     transition: all 0.1s ease-in-out;
     svg {
+      @include themify($themes) {
+        stroke: themed('iconColorLight');
+      }
       transition: stroke 0.1s ease-in-out;
     }
     &:hover {
-      background-color: rgba($color-background-dark, 0.7);
-      color: rgba($color-content-light, 0.7);
-      svg {
-        stroke: rgba($color-content-light, 0.7);
+      @include themify($themes) {
+        background-color: themed('primaryBtnBgColorHover');
+        // color: themed('primaryBtnTextColorHover');
       }
+
+      // svg {
+      //   @include themify($themes) {
+      //     stroke: themed('iconColorLightHover');
+      //   }
+      // }
     }
     &:focus {
       outline: none;
@@ -69,11 +83,11 @@
       margin-bottom: 2rem;
       margin-left: 1rem;
       color: $color-danger-dark;
-      @include respond(phone){
+      @include respond(phone) {
         margin-left: unset;
       }
     }
-    &.success{
+    &.success {
       color: $color-link-dark;
     }
     &:focus {
@@ -88,10 +102,10 @@
     font-weight: 600;
     padding: 1rem;
   }
-  &__lg{
+  &__lg {
     width: 13rem;
   }
-  &__md{
+  &__md {
     width: 8.5rem;
     height: 4rem;
     font-size: $font-size-default;

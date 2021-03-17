@@ -385,7 +385,7 @@ const RobeForm = () => {
                   </div>
                   <div className="form__footer">
                     <button
-                      className="btn btn__dark btn__md"
+                      className="btn btn__primary btn__md"
                       type="submit"
                       // disabled={isSubmitting}
                     >

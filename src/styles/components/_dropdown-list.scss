@@ -2,7 +2,10 @@
   display: flex;
   position: absolute;
   display: none;
-  background-color: $color-hover;
+  @include themify($themes) {
+    background-color: themed('dropdownBgColor');
+  }
+  //background-color: $color-hover;
   border-radius: 4px;
   width: 16rem;
   z-index: 4;
@@ -13,19 +16,38 @@
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
-    color: $color-text-dark;
+    @include themify($themes) {
+      color: themed('dropdownTextColor');
+    }
+    //color: $color-text-dark;
     font-size: $font-size-default;
     font-weight: 400;
 
     svg {
       margin-right: 2rem;
-      stroke: $color-text-light;
+      @include themify($themes) {
+        stroke: themed('iconColorLight');
+      }
+      path {
+        @include themify($themes) {
+          stroke: themed('iconColorLight');
+        }
+      }
     }
     &:hover {
-      background-color: $color-background-dark;
+      @include themify($themes) {
+        background-color: themed('dropdownBgColorHover');
+      }
       color: $color-content-light;
       svg {
-        stroke: $color-sidebar-icon !important;
+        @include themify($themes) {
+          stroke: themed('iconColorLightHover');
+        }
+        path {
+          @include themify($themes) {
+            stroke: themed('iconColorLightHover');
+          }
+        }
       }
     }
     &:first-child {
@@ -50,9 +72,9 @@
       top: 3.5rem;
       right: 0;
       display: block;
-      
-      @include respond(big-desktop){
-        top:3.3rem;
+
+      @include respond(big-desktop) {
+        top: 3.3rem;
       }
       svg {
         stroke: $color-text-light;

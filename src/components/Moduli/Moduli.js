@@ -11,7 +11,7 @@ const Moduli = () => {
         <div className="box-modules-wrapper">
           <div className="title">
             <h2 className="heading-secondary fw-500">Paketi</h2>
-            <button className="btn btn__dark">Promijeni paket</button>
+            <button className="btn btn__primary">Promijeni paket</button>
           </div>
           <div className="row">
             <div className="col-md-4">
@@ -787,7 +787,7 @@ const Moduli = () => {
                     poslovanja
                   </p>
                 </h2>
-                <button className="btn btn__dark">Naruči module</button>
+                <button className="btn btn__primary">Naruči module</button>
               </div>
               <div className="row">
                 <div className="col-md-4">

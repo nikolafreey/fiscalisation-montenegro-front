@@ -133,7 +133,7 @@ const Predracuni = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
         <Link exact to={PREDRACUNI.CREATE}>
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Novi predračun
           </button>
