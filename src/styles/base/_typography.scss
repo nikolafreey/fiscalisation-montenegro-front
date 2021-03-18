@@ -17,8 +17,16 @@ p {
   }
 }
 a {
-  color: $color-link-light;
+  @include themify($themes) {
+    color: themed('linkColor');
+  }
   text-decoration: none;
+
+  &:hover {
+    @include themify($themes) {
+      color: themed('linkColorHover');
+    }
+  }
 }
 .heading-primary {
   color: $color-text-dark;

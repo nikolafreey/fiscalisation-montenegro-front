@@ -6,7 +6,7 @@ $themes: (
     primaryBtnBgColorHover: $blue-500,
     iconColorLight: $blue-100,
     iconColorLightHover: $blue-300,
-    dropdownBgColor: $blue-300,
+    dropdownBgColor: $blue-400,
     dropdownBgColorHover: $blue-600,
     dropdownTextColor: $blue-50,
     dropdownTextColorHover: $blue-100,
@@ -21,6 +21,14 @@ $themes: (
     menuItemIconColorActive: $blue-300,
     menuBadgeBgColor: $blue-200,
     menuBadgeTextColor: $blue-600,
+
+    linkColor: $blue-600,
+    linkColorHover: $blue-500,
+    linkIconColor: $blue-600,
+    checkboxColor: $blue-600,
+    radioButtonColor:$blue-600,
+    inputFocusColor:$blue-600,
+    tableRowBgActiveColor:$blue-50,
   ),
   blueGray: (
     primaryBtnBgColor: $blueGray-600,
@@ -44,6 +52,8 @@ $themes: (
     menuItemIconColorActive: $blueGray-300,
     menuBadgeBgColor: $blueGray-200,
     menuBadgeTextColor: $blueGray-600,
+
+
   ),
   coolGray: (
     primaryBtnBgColor: $coolGray-600,
@@ -121,7 +131,7 @@ $themes: (
     primaryBtnBgColorHover: $warmGray-500,
     iconColorLight: $warmGray-100,
     iconColorLightHover: $warmGray-300,
-    dropdownBgColor: $warmGray-300,
+    dropdownBgColor: $warmGray-400,
     dropdownBgColorHover: $warmGray-600,
     dropdownTextColor: $warmGray-50,
     dropdownTextColorHover: $warmGray-100,
@@ -144,7 +154,7 @@ $themes: (
     primaryBtnBgColorHover: $red-500,
     iconColorLight: $red-100,
     iconColorLightHover: $red-300,
-    dropdownBgColor: $red-300,
+    dropdownBgColor: $red-400,
     dropdownBgColorHover: $red-600,
     dropdownTextColor: $red-50,
     dropdownTextColorHover: $red-100,
@@ -159,6 +169,14 @@ $themes: (
     menuItemIconColorActive: $red-300,
     menuBadgeBgColor: $red-200,
     menuBadgeTextColor: $red-600,
+
+    linkColor: $red-600,
+    linkColorHover: $red-500,
+    linkIconColor: $red-600,
+    checkboxColor: $red-600,
+    radioButtonColor:$red-600,
+    inputFocusColor:$red-600,
+    tableRowBgActiveColor:$red-50,
   ),
   orange: (
     primaryBtnBgColor: $orange-600,

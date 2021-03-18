@@ -170,7 +170,7 @@ const Predracuni = () => {
                   selectsStart
                   startDate={startDate}
                   endDate={endDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum od:"
                 />
                 <DatePicker
@@ -180,7 +180,7 @@ const Predracuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum do:"
                 />
               </div>

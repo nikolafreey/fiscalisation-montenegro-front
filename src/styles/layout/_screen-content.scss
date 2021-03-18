@@ -1,39 +1,42 @@
 .screen-content {
-    position: relative;
-    .title{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  position: relative;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .content{
-        width: 100%;
-        
+  .content {
+    width: 100%;
+  }
+  .back-link {
+    margin-top: 4rem;
+
+    svg {
+      margin-right: 2rem;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out; /** Chrome & Safari **/
+      -moz-transition: all 0.3s ease-in-out; /** Firefox **/
+      -o-transition: all 0.3s ease-in-out; /** Opera **/
     }
-    .back-link {
-        margin-top: 4rem;
-    
-        svg {
-          margin-right: 2rem;
-          transition: all .3s ease-in-out;
-          -webkit-transition: all .3s ease-in-out; /** Chrome & Safari **/
-          -moz-transition: all .3s ease-in-out; /** Firefox **/
-          -o-transition: all .3s ease-in-out; /** Opera **/
-        }
-        &:hover {
-          svg {
-            transform: translate(-.5rem, 0);
-            -webkit-transform: translate(-.5rem, 0); /** Chrome & Safari **/
-            -o-transform: translate(-.5rem, 0); /** Opera **/
-            -moz-transform: translate(-.5rem, 0); /** Firefox **/
-          }
-        }
+    &:hover {
+      svg {
+        transform: translate(-0.5rem, 0);
+        -webkit-transform: translate(-0.5rem, 0); /** Chrome & Safari **/
+        -o-transform: translate(-0.5rem, 0); /** Opera **/
+        -moz-transform: translate(-0.5rem, 0); /** Firefox **/
       }
-      .link {
-        color: $color-link-dark;
-        transition: .2s;
-        &:hover {
-          color:$color-link-light;
-        }
+    }
+  }
+  .link {
+    @include themify($themes) {
+      color: themed('linkColor');
+    }
+    transition: 0.2s;
+    &:hover {
+      @include themify($themes) {
+        color: themed('linkColorHover');
       }
+    }
+  }
 }

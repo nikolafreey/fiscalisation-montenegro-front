@@ -20,7 +20,10 @@ tbody {
     }
   }
   .active {
-    background: $color-content-light;
+    @include themify($themes) {
+      background: themed('tableRowBgActiveColor');
+    }
+   // background: $color-content-light;
   }
 }
 th {
@@ -120,6 +123,10 @@ td:first-child {
     i{
       position: absolute;
       margin-top: .25rem;
+      margin-left: .25rem;
+      @include respond(tab-land){
+        margin-top: .5rem;
+      }
     }
   }
 
