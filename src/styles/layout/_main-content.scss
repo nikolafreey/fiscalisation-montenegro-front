@@ -151,6 +151,10 @@
     .select {
       margin-left: 2rem;
       width: 25%;
+      @include respond(phone){
+        margin-left: 0;
+        width: 100%;
+      }
     }
   }
 }

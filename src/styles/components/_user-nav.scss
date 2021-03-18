@@ -33,7 +33,7 @@
     &--text {
       font-size: 14px;
       margin-right: 1rem;
-      @include respond(phone) {
+      @include respond(big-phone) {
         display: none;
       }
     }
