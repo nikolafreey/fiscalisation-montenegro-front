@@ -31,12 +31,19 @@ const errorReducer = (state = initialState, action) =>
       case GLOBAL_ERROR_SET:
         draft.globalError = action.payload;
         console.log('action.payload', action.payload);
-        if (draft.globalError.length !== 0) {
+        console.log('draft.globalError.length', draft.globalError.length);
+        if (
+          Object.keys(action.payload).length !== 0 &&
+          action.payload.constructor === Object
+        ) {
           let objKey = Object.keys(action.payload);
           toast.error(
             'Greška: ' + action.payload?.errors[objKey[0]],
             toastSettings
           );
+        }
+        if (draft.globalError.length !== 0) {
+          toast.error('Greška: ' + action.payload, toastSettings);
         }
         break;
       case LOGIN_ERROR_SET:
