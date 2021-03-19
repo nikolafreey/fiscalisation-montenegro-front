@@ -171,7 +171,12 @@ const RobeForm = () => {
               <div className="content">
                 <Form className="form">
                   <Prompt
-                    when={dirty && !isSubmitting}
+                    when={
+                      dirty &&
+                      !isSubmitting &&
+                      values.atributi.length === 0 &&
+                      values.cijene.length === 0
+                    }
                     message="Da li ste sigurni da želite da se vratite nazad? Vaši podaci sa forme neće biti sačuvani"
                   />
                   <div className="container">
