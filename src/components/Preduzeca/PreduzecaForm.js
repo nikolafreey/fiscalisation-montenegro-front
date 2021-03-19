@@ -739,7 +739,7 @@ const PreduzecaForm = () => {
                   placeholder=""
                 /> */}
                 <div className="form__footer">
-                  <button className="btn btn__dark" type="submit">
+                  <button className="btn btn__primary" type="submit">
                     Sačuvaj
                   </button>
                   <button

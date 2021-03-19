@@ -34,7 +34,16 @@
     fill: $color-check-badge;
   }
   &__stroke-link {
-    stroke: $color-link-dark;
+    @include themify($themes) {
+      stroke: themed('linkIconColor');
+    }
+    // stroke: $color-link-dark;
+  }
+  &__fill-link {
+    @include themify($themes) {
+      fill: themed('linkIconColor');
+    }
+    // stroke: $color-link-dark;
   }
   &__drop-down {
     stroke: $color-sidebar-icon;

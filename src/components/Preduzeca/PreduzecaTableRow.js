@@ -15,9 +15,10 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
   return (
     <tr
       onClick={() => onItemClick(item)}
-      style={{
-        backgroundColor: selectedId === item.id ? '#F9FAFB' : 'white',
-      }}
+      className={
+        'mob-relative-block ' + (selectedId === item.id ? 'active' : '')
+      }
+     
     >
       <td>
         <div className="inner-td-wrapper">

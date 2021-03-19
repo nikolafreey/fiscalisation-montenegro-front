@@ -10,10 +10,9 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
   return (
     <tr
       onClick={() => onItemClick(partner)}
-      style={{
-        backgroundColor: selectedId === partner.id ? '#F9FAFB' : 'white',
-      }}
-      className="mob-relative-block"
+      className={
+        'mob-relative-block ' + (selectedId === partner.id ? 'active' : '')
+      }
     >
       <td>
         <div className="inner-td-wrapper">
@@ -21,13 +20,17 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
             className="img-round sm"
             style={{ backgroundImage: `url(${partner.preduzece?.logotip})` }}
           ></div> */}
-          <img src={partner.preduzece?.logotip}  className="img-round sm" alt={partner.preduzece?.kratki_naziv}/>
+          <img
+            src={partner.preduzece?.logotip}
+            className="img-round sm"
+            alt={partner.preduzece?.kratki_naziv}
+          />
           <div className="td-title">
             <p>
               <span>
-              {partner.preduzece
-                ? partner.preduzece.kratki_naziv
-                : partner.fizicko_lice?.ime}
+                {partner.preduzece
+                  ? partner.preduzece.kratki_naziv
+                  : partner.fizicko_lice?.ime}
               </span>
               <i>
                 <Badge className="icon icon__fill-color-badge sm" />
@@ -51,7 +54,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           partner.preduzece?.telefon}
       </td>
 
-      <td className='mob-absolute-topright'>
+      <td className="mob-absolute-topright">
         <div className="df jc-end ai-c">
           <button type="button" className="btn btn__light btn__xs">
             <Dots className="icon lg" />

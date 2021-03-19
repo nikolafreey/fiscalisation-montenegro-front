@@ -233,6 +233,21 @@
 .ml-xl {
   margin-left: 6rem;
 }
+.tabp-w-100{
+  @include respond(tab-port){
+    width: 100%;
+  }
+}
+.tabp-w-49{
+  @include respond(tab-port){
+    width: 49%!important;
+  }
+}
+.tabp-flex-wrap{
+  @include respond(tab-port){
+   flex-wrap: wrap;
+  }
+}
 .tabp-mtb-20 {
   @include respond(tab-port) {
     margin: 2rem 0;
@@ -253,12 +268,17 @@
     margin-left: 2rem;
   }
 }
+.mob-mb-20 {
+  @include respond(phone) {
+    margin-bottom: 2rem;
+  }
+}
 .mr-s {
   margin-right: 0.5rem;
 }
-.mr-15-mob-0{
+.mr-15-tabp-0{
   margin-right: 1.5rem;
-  @include respond(phone){
+  @include respond(tab-port){
     margin-right: 0;
   }
 }
@@ -373,14 +393,14 @@
   display: none;
 }
 .mob-absolute-topright {
-  @include respond(phone) {
+  @include respond(big-phone) {
     position: absolute;
     top: 0;
     right: 0;
   }
 }
 .mob-relative-block {
-  @include respond(phone) {
+  @include respond(big-phone) {
     position: relative;
     display: block;
   }
@@ -449,4 +469,7 @@
 }
 .w-break-unset {
   word-break: unset!important;
+}
+.flex-nowrap{
+  flex-wrap: nowrap;
 }

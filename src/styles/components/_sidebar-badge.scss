@@ -4,13 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-hover;
   border-radius: 18px;
-  color: $color-text-dark;
+  @include themify($themes) {
+    background-color: themed('menuBadgeBgColor');
+    color: themed('menuBadgeTextColor');
+  }
   font-size: 11px;
   height: 25px;
   padding: 2px 8px;
-  transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.05s ease-in;
   @include respond(tab-land){
     right: -8px;
     top: 0;

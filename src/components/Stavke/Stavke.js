@@ -83,7 +83,7 @@ const Stavke = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Stavke</h1>
         <div className="df w-50 jc-end">
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Nova stavka
             <div className="drop-down" id="ddl">
@@ -114,7 +114,7 @@ const Stavke = () => {
                 />
               </form>
               <select
-                className="btn btn__dark btn__lg ml-xl"
+                className="btn btn__primary btn__lg ml-xl"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
               >

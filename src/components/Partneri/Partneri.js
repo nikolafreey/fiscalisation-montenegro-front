@@ -53,17 +53,17 @@ const Partneri = () => {
     <>
       <div className="title jc-sb">
         <h1 className="heading-primary">Partneri</h1>
-        <button className="btn btn__dark">
+        <button className="btn btn__primary">
           <PlusLightSvg />
-          Novi partner
+          <p>Novi partner</p> 
           <div className="drop-down" id="ddl">
             <Link to={PREDUZECA.CREATE}>
               <PreduzeceSvg />
-              Preduzeće
+              <p>Preduzeće</p> 
             </Link>
             <Link to={FIZICKA_LICA.CREATE}>
               <UserSvg />
-              Fizičko lice
+              <p>Fizičko lice</p> 
             </Link>
           </div>
         </button>
@@ -71,8 +71,8 @@ const Partneri = () => {
       <div className="screen-content-info">
         <div className="main-content__box">
           <div className="content">
-            <div className="main-content__search-wrapper df mob-fd-column">
-              <form className="search df ai-c w-75 mob-w-100">
+            <div className="main-content__search-wrapper df mob-fd-column flex-nowrap">
+              <form className="search df ai-c mob-w-100">
                 <button className="search__button"></button>
                 <input
                   type="text"
@@ -83,7 +83,7 @@ const Partneri = () => {
                 />
               </form>
               <select
-                className="btn btn__dark mob-mt-10" 
+                className="select mob-mt-10" 
                 id="p-filter"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
@@ -118,7 +118,7 @@ const Partneri = () => {
                 onChange={(event) => setSearch(event.target.value)}
               />
             </form>
-            <select className="btn btn__dark btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>
+            <select className="btn btn__primary btn__lg ml-xl" value={filter} onChange={(event) => setFilter(event.target.value)}>
               <option value={'sve'}>Sve</option>
               <option value={'fizicko_lice'}>Fizička lica</option>
               <option value={'preduzece'}>Preduzeća</option>

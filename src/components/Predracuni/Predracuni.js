@@ -133,7 +133,7 @@ const Predracuni = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
         <Link exact to={PREDRACUNI.CREATE}>
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Novi predračun
           </button>
@@ -142,9 +142,9 @@ const Predracuni = () => {
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df">
-            <div className="df jc-sb w-100 mob-fd-column">
+            <div className="df jc-sb w-100 tabp-flex-wrap mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-              <form className="search df ai-c w-45 mob-w-100 mr-15-mob-0">
+              <form className="search df ai-c w-45 mob-w-100 mr-15-tabp-0 tabp-w-49">
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
@@ -158,19 +158,19 @@ const Predracuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
-                // value={{ label: status }}
-                className="mob-w-100 w-20 mob-mt-10 mr-15-mob-0"
+                value={{ label: status }}
+                className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
                 styles={selectStyle}
                 placeholder="Status..."
               />
-              <div className="df jc-sb">
+              <div className="df jc-sb tabp-w-100">
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => handleStartDateChange(date)}
                   selectsStart
                   startDate={startDate}
                   endDate={endDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum od:"
                 />
                 <DatePicker
@@ -180,7 +180,7 @@ const Predracuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum do:"
                 />
               </div>

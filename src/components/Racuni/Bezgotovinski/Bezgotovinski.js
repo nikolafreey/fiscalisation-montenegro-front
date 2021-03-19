@@ -125,7 +125,7 @@ const Bezgotovinski = () => {
                 <div className="form__footer">
                   <button
                     onClick={() => handleSubmit(values)}
-                    className="btn btn__dark"
+                    className="btn btn__primary"
                   >
                     Fiskalizuj i Pošalji
                   </button>
