@@ -27,10 +27,19 @@ const Stavke = () => {
   const usluge = useSelector(stavkeUslugeSelector());
   const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
 
-  let robeKategorije = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
-  const robeKategorijeSet = new Set(robeKategorije);
-  robeKategorije = Array.from(robeKategorijeSet);
-  console.log('robeKategorije', robeKategorije);
+  // let robeAtributi = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
+  // const robeAtributiSet = new Set(robeAtributi);
+  let robeAtributi = Array.from(
+    new Set(robe && robe.data.map((roba) => roba.atribut_robe.naziv))
+  ).map((naziv) => {
+    return robe.data.find((a) => a.atribut_robe.naziv === naziv);
+  });
+  console.log('robeAtributi', robeAtributi);
+  console.log('usluge', usluge);
+
+  let uslugaGrupe = usluge && usluge.data.map((usluga) => usluga.grupa.naziv);
+  const uslugaGrupeSet = new Set(uslugaGrupe);
+  uslugaGrupe = Array.from(uslugaGrupeSet);
 
   const [search, setSearch] = useState('');
 
@@ -125,13 +134,28 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robeKategorije.map((robeKat) => (
+              {robeAtributi.map((robeKat) => (
+                <div
+                  onClick={() =>
+                    console.log(
+                      'robeKat.atribut_robe.id',
+                      robeKat.atribut_robe.id
+                    )
+                  }
+                  className={
+                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                  }
+                >
+                  {robeKat.atribut_robe.naziv}
+                </div>
+              ))}
+              {uslugaGrupe.map((uslugaGrupa) => (
                 <div
                   className={
                     'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                   }
                 >
-                  {robeKat}
+                  {uslugaGrupa}
                 </div>
               ))}
             </div>
