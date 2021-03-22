@@ -15,7 +15,7 @@ import { USLUGE, STAVKE } from '../../constants/routes';
 import { debounce } from 'lodash';
 import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 
-const filteri = {};
+let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
 
 const Stavke = () => {
@@ -34,34 +34,56 @@ const Stavke = () => {
   ).map((naziv) => {
     return robe.data.find((a) => a.atribut_robe.naziv === naziv);
   });
-  console.log('robeAtributi', robeAtributi);
-  console.log('usluge', usluge);
 
-  let uslugaGrupe = usluge && usluge.data.map((usluga) => usluga.grupa.naziv);
-  const uslugaGrupeSet = new Set(uslugaGrupe);
-  uslugaGrupe = Array.from(uslugaGrupeSet);
+  let uslugaGrupe = Array.from(
+    new Set(usluge && usluge.data.map((usluga) => usluga.grupa.naziv))
+  ).map((naziv) => {
+    return usluge?.data?.find((u) => u.grupa.naziv === naziv);
+  });
+  console.log('uslugaGrupe', uslugaGrupe);
+
+  // let uslugaGrupe = usluge && usluge.data.map((usluga) => usluga.grupa.naziv);
+  // const uslugaGrupeSet = new Set(uslugaGrupe);
+  // uslugaGrupe = Array.from(uslugaGrupeSet);
 
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     dispatch(getStavke());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (!odabraniAtributGrupa) {
-      filteri.grupa_id = undefined;
-      filteri.tip_atributa_id = undefined;
-    }
-    if (odabraniAtributGrupa?.tip_atributa_id) {
-      filteri.grupa_id = undefined;
-      filteri.tip_atributa_id = odabraniAtributGrupa.tip_atributa_id;
-    }
-    if (odabraniAtributGrupa?.grupa_id) {
-      filteri.tip_atributa_id = undefined;
-      filteri.grupa_id = odabraniAtributGrupa.grupa_id;
-    }
-    dispatch(getStavke(filteri));
-  }, [odabraniAtributGrupa]);
+  // useEffect(() => {
+  //   if (!odabraniAtributGrupa) {
+  //     filteri.grupa_id = undefined;
+  //     filteri.tip_atributa_id = undefined;
+  //   }
+  //   if (odabraniAtributGrupa?.tip_atributa_id) {
+  //     filteri.grupa_id = undefined;
+  //     filteri.tip_atributa_id = odabraniAtributGrupa.tip_atributa_id;
+  //   }
+  //   if (odabraniAtributGrupa?.grupa_id) {
+  //     filteri.tip_atributa_id = undefined;
+  //     filteri.grupa_id = odabraniAtributGrupa.grupa_id;
+  //   }
+  //   dispatch(getStavke(filteri));
+  // }, [odabraniAtributGrupa]);
+
+  const resetFilters = () => {
+    filteri = {};
+    handleSearch(filteri);
+  };
+
+  const handleAtributChange = (event) => {
+    console.log('event', event);
+    filteri.atribut_id = event;
+    handleSearch(filteri);
+  };
+
+  const handleGrupaChange = (event) => {
+    console.log('event', event);
+    filteri.grupa_id = event;
+    handleSearch(filteri);
+  };
 
   const handleSearch = () => {
     dispatch(getStavke(filteri));
@@ -128,6 +150,7 @@ const Stavke = () => {
             {/* <NoviRacunFilteri /> */}
             <div className="filter">
               <div
+                onClick={() => resetFilters()}
                 className={
                   'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                 }
@@ -136,12 +159,7 @@ const Stavke = () => {
               </div>
               {robeAtributi.map((robeKat) => (
                 <div
-                  onClick={() =>
-                    console.log(
-                      'robeKat.atribut_robe.id',
-                      robeKat.atribut_robe.id
-                    )
-                  }
+                  onClick={() => handleAtributChange(robeKat.atribut_robe.id)}
                   className={
                     'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                   }
@@ -151,11 +169,12 @@ const Stavke = () => {
               ))}
               {uslugaGrupe.map((uslugaGrupa) => (
                 <div
+                  onClick={() => handleGrupaChange(uslugaGrupa.grupa.id)}
                   className={
                     'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                   }
                 >
-                  {uslugaGrupa}
+                  {uslugaGrupa.grupa.naziv}
                 </div>
               ))}
             </div>
