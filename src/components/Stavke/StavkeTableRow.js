@@ -3,9 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { getUsluge, deleteUsluga } from '../../store/actions/UslugeActions';
+import { deleteRoba } from '../../store/actions/RobeActions';
 import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
+import { getRobe } from '../../store/actions/RobeActions';
+import { getStavke } from '../../store/actions/RacuniActions';
 
 const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
   const dispatch = useDispatch();
@@ -19,12 +22,18 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
 
   const handleObrisi = (id) => {
     dispatch(deleteUsluga(id));
-    dispatch(getUsluge());
+    dispatch(getStavke());
+  };
+
+  const handleObrisiRoba = (id) => {
+    dispatch(deleteRoba(id));
+    dispatch(getStavke());
+    setTimeout(dispatch(getStavke()), 1000);
   };
 
   return (
     <>
-      <tr>
+      <tr isHidden>
         <td>
           <p>
             {(usluga && usluga?.naziv) ||
@@ -80,7 +89,13 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
                   <Izmjeni />
                   Izmjeni
                 </a>
-                <a onClick={() => handleObrisi(usluga?.id || roba?.roba?.id)}>
+                <a
+                  onClick={
+                    usluga?.id
+                      ? () => handleObrisi(usluga?.id)
+                      : () => handleObrisiRoba(roba?.roba?.id)
+                  }
+                >
                   <Obrisi />
                   Obriši
                 </a>

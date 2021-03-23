@@ -42,6 +42,8 @@ export function* uslugaUpdate({ payload }) {
 export function* uslugaDelete({ payload }) {
   try {
     yield call(uslugeService.deleteUsluga, payload);
+    const { data } = yield call(uslugeService.getUsluge);
+    yield put(setUsluge(data));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

@@ -41,6 +41,8 @@ export function* robaUpdate({ payload }) {
 export function* robeDelete({ payload }) {
   try {
     yield call(robeService.deleteRoba, payload);
+    const { data } = yield call(robeService.getRobe);
+    yield put(setRobe(data));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
