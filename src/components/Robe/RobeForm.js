@@ -32,7 +32,7 @@ import { usePorezi } from '../../hooks/PoreziHook';
 import { kategorijeRobeSelector } from '../../store/selectors/KategorijeRobeSelector';
 import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
-import { STAVKE } from '../../constants/routes';
+import { STAVKE, PREDUZECA } from '../../constants/routes';
 import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
 
 const RobeForm = () => {
@@ -237,6 +237,9 @@ const RobeForm = () => {
                           />
                         </div>
                         <div className="df jc-sb mob-fd-column mb-0">
+                          <Link className="link" to={PREDUZECA.CREATE}>
+                            +
+                          </Link>
                           <div className="form__group w-48 mob-w-100 mb-0">
                             <DropDown
                               name="proizvodjac_robe_id"
