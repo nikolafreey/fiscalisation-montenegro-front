@@ -16,6 +16,15 @@ import { ReactComponent as UserSvg } from '../../assets/icon/user.svg';
 import { Link } from 'react-router-dom';
 import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
 
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+
+const override = css`
+  display: block;
+  margin: 35px auto;
+  border-color: red;
+`;
+
 const searchDebounced = debounce((callback) => callback(), 500);
 
 const filters = {};
@@ -55,15 +64,15 @@ const Partneri = () => {
         <h1 className="heading-primary">Partneri</h1>
         <button className="btn btn__primary">
           <PlusLightSvg />
-          <p>Novi partner</p> 
+          <p>Novi partner</p>
           <div className="drop-down" id="ddl">
             <Link to={PREDUZECA.CREATE}>
               <PreduzeceSvg />
-              <p>Preduzeće</p> 
+              <p>Preduzeće</p>
             </Link>
             <Link to={FIZICKA_LICA.CREATE}>
               <UserSvg />
-              <p>Fizičko lice</p> 
+              <p>Fizičko lice</p>
             </Link>
           </div>
         </button>
@@ -83,7 +92,7 @@ const Partneri = () => {
                 />
               </form>
               <select
-                className="select mob-mt-10" 
+                className="select mob-mt-10"
                 id="p-filter"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
@@ -93,7 +102,11 @@ const Partneri = () => {
                 <option value={'preduzece'}>Preduzeća</option>
               </select>
             </div>
-            <PartneriTable partneri={partneri} />
+            {partneri.data.length === 0 ? (
+              <GridLoader css={override} size={15} />
+            ) : (
+              <PartneriTable partneri={partneri} />
+            )}
           </div>
           {partner.preduzece && (
             <PreduzeceDetails preduzece={partner.preduzece} />

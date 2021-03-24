@@ -16,6 +16,15 @@ import SearchForm from '../shared/forms/SearchForm';
 import PreduzecaTable from './PreduzecaTable';
 import PreduzeceDetails from './PreduzeceDetails';
 
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+
+const override = css`
+  display: block;
+  margin: 35px auto;
+  border-color: red;
+`;
+
 const Preduzeca = () => {
   const dispatch = useDispatch();
   const match = useRouteMatch();
@@ -46,7 +55,11 @@ const Preduzeca = () => {
           <div className="main-content__search-wrapper">
             <SearchForm handleSubmit={handleSearch} />
           </div>
-          <PreduzecaTable preduzeca={preduzeca} />
+          {preduzeca.data.length === 0 ? (
+            <GridLoader css={override} size={15} />
+          ) : (
+            <PreduzecaTable preduzeca={preduzeca} />
+          )}
           {match.path === PREDUZECA.PARTNERI ? (
             <div className="df jc-center ai-c fd-column">
               <hr className="w-60 " />

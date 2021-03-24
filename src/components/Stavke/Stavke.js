@@ -15,6 +15,22 @@ import { USLUGE, STAVKE } from '../../constants/routes';
 import { debounce } from 'lodash';
 import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+import PropagateLoader from 'react-spinners/PropagateLoader';
+
+const override = css`
+  display: block;
+  margin: 35px auto;
+  border-color: red;
+`;
+
+const overrideFilter = css`
+  display: block;
+  margin: auto;
+  border-color: red;
+`;
+
 let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -23,9 +39,14 @@ const Stavke = () => {
 
   const [filter, setFilter] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const robe = useSelector(stavkeRobeSelector());
   const usluge = useSelector(stavkeUslugeSelector());
   const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
+
+  console.log('robe', robe);
+  console.log('usluge', usluge);
 
   // let robeAtributi = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
   // const robeAtributiSet = new Set(robeAtributi);
@@ -158,30 +179,42 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robeAtributi.map((robeKat) => (
-                <div
-                  onClick={() => handleAtributChange(robeKat?.atribut_robe?.id)}
-                  className={
-                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
-                  }
-                >
-                  {robeKat?.atribut_robe?.naziv}
-                </div>
-              ))}
-              {uslugaGrupe.map((uslugaGrupa) => (
-                <div
-                  onClick={() => handleGrupaChange(uslugaGrupa?.grupa?.id)}
-                  className={
-                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
-                  }
-                >
-                  {uslugaGrupa?.grupa?.naziv}
-                </div>
-              ))}
+              {robe.data.length === 0 || usluge.data.length === 0 ? (
+                <PropagateLoader css={overrideFilter} size={15} />
+              ) : (
+                <>
+                  {robeAtributi.map((robeKat) => (
+                    <div
+                      onClick={() =>
+                        handleAtributChange(robeKat?.atribut_robe?.id)
+                      }
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {robeKat?.atribut_robe?.naziv}
+                    </div>
+                  ))}
+                  {uslugaGrupe.map((uslugaGrupa) => (
+                    <div
+                      onClick={() => handleGrupaChange(uslugaGrupa?.grupa?.id)}
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {uslugaGrupa?.grupa?.naziv}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
           <div>
-            <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            {robe.data.length === 0 || usluge.data.length === 0 ? (
+              <GridLoader css={override} size={15} />
+            ) : (
+              <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            )}
           </div>
         </div>
       </div>

@@ -14,8 +14,18 @@ import {
 import PredracuniTable from './PredracuniTable';
 import { Link } from 'react-router-dom';
 import { PREDRACUNI } from '../../constants/routes';
+
 import Moment from 'react-moment';
 import 'moment/locale/me';
+
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+
+const override = css`
+  display: block;
+  margin: 35px auto;
+  border-color: red;
+`;
 
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
@@ -189,8 +199,10 @@ const Predracuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {predracuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
-                    '€'}
+                  {predracuni?.ukupna_cijena
+                    ? predracuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
+                      '€'
+                    : '0,00€'}
                 </h3>
               </div>
 
@@ -241,7 +253,11 @@ const Predracuni = () => {
               ) : null}
             </div>
           </div>
-          <PredracuniTable predracuni={predracuni} />
+          {predracuni.data.length === 0 ? (
+            <GridLoader css={override} size={15} />
+          ) : (
+            <PredracuniTable predracuni={predracuni} />
+          )}
         </div>
       </div>
     </>
