@@ -30,10 +30,11 @@ const Stavke = () => {
   // let robeAtributi = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
   // const robeAtributiSet = new Set(robeAtributi);
   let robeAtributi = Array.from(
-    new Set(robe && robe.data.map((roba) => roba.atribut_robe.naziv))
+    new Set(robe && robe?.data.map((roba) => roba?.atribut_robe?.naziv))
   ).map((naziv) => {
-    return robe.data.find((a) => a.atribut_robe.naziv === naziv);
+    return robe?.data.find((a) => a?.atribut_robe?.naziv === naziv);
   });
+  console.log('robeAtributi', robeAtributi);
 
   let uslugaGrupe = Array.from(
     new Set(usluge && usluge.data.map((usluga) => usluga.grupa.naziv))
@@ -159,22 +160,22 @@ const Stavke = () => {
               </div>
               {robeAtributi.map((robeKat) => (
                 <div
-                  onClick={() => handleAtributChange(robeKat.atribut_robe.id)}
+                  onClick={() => handleAtributChange(robeKat?.atribut_robe?.id)}
                   className={
                     'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                   }
                 >
-                  {robeKat.atribut_robe.naziv}
+                  {robeKat?.atribut_robe?.naziv}
                 </div>
               ))}
               {uslugaGrupe.map((uslugaGrupa) => (
                 <div
-                  onClick={() => handleGrupaChange(uslugaGrupa.grupa.id)}
+                  onClick={() => handleGrupaChange(uslugaGrupa?.grupa?.id)}
                   className={
                     'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                   }
                 >
-                  {uslugaGrupa.grupa.naziv}
+                  {uslugaGrupa?.grupa?.naziv}
                 </div>
               ))}
             </div>
