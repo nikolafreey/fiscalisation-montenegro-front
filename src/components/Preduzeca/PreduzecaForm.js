@@ -24,7 +24,7 @@ import Textarea from '../shared/forms/Textarea';
 import RadioButton from '../shared/forms/RadioButton';
 import { djelatnostiService } from '../../services/DjelatnostiService';
 import MapContainer from '../shared/forms/MapContainer';
-import { PREDUZECA } from '../../constants/routes';
+import { PARTNERI, PREDUZECA } from '../../constants/routes';
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
@@ -128,9 +128,9 @@ const PreduzecaForm = () => {
     >
       {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
-          <Link to={PREDUZECA.INDEX} className="back-link df">
+          <Link to={PARTNERI.INDEX} className="back-link df">
             <LinkPreduzecaSvg />
-            <p>Povratak na Preduzeća</p>
+            <p>Povratak na Partnere</p>
           </Link>
           <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
           <div className="main-content__box">

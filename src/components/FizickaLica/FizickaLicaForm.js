@@ -17,7 +17,7 @@ import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
-import { PREDUZECA } from '../../constants/routes';
+import { PARTNERI, PREDUZECA } from '../../constants/routes';
 import RadioButton from '../shared/forms/RadioButton';
 
 const FizickaLicaForm = () => {
@@ -79,9 +79,9 @@ const FizickaLicaForm = () => {
     >
       {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
-          <Link to={PREDUZECA.INDEX} className="back-link df">
+          <Link to={PARTNERI.INDEX} className="back-link df">
             <LinkSvg />
-            <p>Povratak na Preduzeća</p>
+            <p>Povratak na Partnere</p>
           </Link>
 
           <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
