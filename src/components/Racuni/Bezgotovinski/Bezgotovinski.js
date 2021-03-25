@@ -62,6 +62,7 @@ const Bezgotovinski = () => {
         datum_izdavanja: today,
         datum_za_placanje: seven_days,
         pdv_obveznik: 1,
+        status: 'Nije plaćen',
       }}
       onSubmit={handleSubmit}
       enableReinitialize
