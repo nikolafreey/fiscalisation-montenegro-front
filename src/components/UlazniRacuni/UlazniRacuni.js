@@ -22,12 +22,7 @@ import 'moment/locale/me';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
-
-const override = css`
-  display: block;
-  margin: 35px auto;
-  border-color: red;
-`;
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -248,7 +243,7 @@ const UlazniRacuni = () => {
             </div>
           </div>
           {ulazniRacuni.data.length === 0 ? (
-            <GridLoader css={override} size={15} />
+            <GridLoader css={spinnerStyleGrid} size={15} />
           ) : (
             <RacuniTable ulazniRacuni={ulazniRacuni} />
           )}

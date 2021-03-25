@@ -18,18 +18,7 @@ import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-
-const override = css`
-  display: block;
-  margin: 35px auto;
-  border-color: red;
-`;
-
-const overrideFilter = css`
-  display: block;
-  margin: auto;
-  border-color: red;
-`;
+import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
 
 let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
@@ -180,7 +169,7 @@ const Stavke = () => {
                 Sve
               </div>
               {robe.data.length === 0 || usluge.data.length === 0 ? (
-                <PropagateLoader css={overrideFilter} size={15} />
+                <PropagateLoader css={spinnerStyleGrid} size={15} />
               ) : (
                 <>
                   {robeAtributi.map((robeKat) => (
@@ -211,7 +200,7 @@ const Stavke = () => {
           </div>
           <div>
             {robe.data.length === 0 || usluge.data.length === 0 ? (
-              <GridLoader css={override} size={15} />
+              <GridLoader css={spinnerStyleFilter} size={15} />
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />
             )}

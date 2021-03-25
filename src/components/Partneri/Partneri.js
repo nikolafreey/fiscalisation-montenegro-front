@@ -18,12 +18,7 @@ import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
-
-const override = css`
-  display: block;
-  margin: 35px auto;
-  border-color: red;
-`;
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -103,7 +98,7 @@ const Partneri = () => {
               </select>
             </div>
             {partneri.data.length === 0 ? (
-              <GridLoader css={override} size={15} />
+              <GridLoader css={spinnerStyleGrid} size={15} />
             ) : (
               <PartneriTable partneri={partneri} />
             )}

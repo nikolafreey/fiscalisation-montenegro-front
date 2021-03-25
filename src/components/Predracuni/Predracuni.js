@@ -20,12 +20,7 @@ import 'moment/locale/me';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
-
-const override = css`
-  display: block;
-  margin: 35px auto;
-  border-color: red;
-`;
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
@@ -254,7 +249,7 @@ const Predracuni = () => {
             </div>
           </div>
           {predracuni.data.length === 0 ? (
-            <GridLoader css={override} size={15} />
+            <GridLoader css={spinnerStyleGrid} size={15} />
           ) : (
             <PredracuniTable predracuni={predracuni} />
           )}

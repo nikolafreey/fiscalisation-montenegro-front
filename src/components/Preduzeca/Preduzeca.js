@@ -18,12 +18,7 @@ import PreduzeceDetails from './PreduzeceDetails';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
-
-const override = css`
-  display: block;
-  margin: 35px auto;
-  border-color: red;
-`;
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const Preduzeca = () => {
   const dispatch = useDispatch();
@@ -56,7 +51,7 @@ const Preduzeca = () => {
             <SearchForm handleSubmit={handleSearch} />
           </div>
           {preduzeca.data.length === 0 ? (
-            <GridLoader css={override} size={15} />
+            <GridLoader css={spinnerStyleGrid} size={15} />
           ) : (
             <PreduzecaTable preduzeca={preduzeca} />
           )}
