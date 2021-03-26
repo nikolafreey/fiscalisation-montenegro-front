@@ -8,9 +8,9 @@
     "forgotPassword": "Zaboravili ste lozinku?"
   },
   "validacija": {
-    "unosKratak": "Polje mora imati najmanje {broj} karaktera",
+    "unosKratak": "Polje mora imati najmanje 3 karaktera",
     "obavezno": "Polje je obavezno",
-    "unosDugacak": "{polje} može imati najviše {broj} karaktera",
+    "unosDugacak": "Polje može imati najviše 50 karaktera",
     "duzina": "{polje} mora imati tačno {broj} karaktera",
     "url": "Unesite validan link",
     "email": "Unesite validan e-mail"
@@ -44,8 +44,16 @@
     "ukupna_cijena": "Ukupna Cijena",
     "status": "Status",
     "grupa_id": "Grupa",
-    "jedinica_mjere_id": "Jedinica Mjere",
+    "proizvodjac_robe_id_id": "Jedinica Mjere",
     "porez_id": "Porez"
+  },
+  "bezgotovinskiValidated": {
+    "partner_id": "Kupac nedostaje",
+    "datum_izdavanja": "Datum izdavanja racuna nedostaje",
+    "datum_placanja": "Datum za placanje racuna nedostaje",
+    "ukupna_cijena":"Cijena stavke nedostaje",
+    "kolicina": "Kolicina stavke nedostaje",
+    "pozitivan": "Kolicina stavke mora biti broj veći od 0"
   },
   "robe": {
     "naziv": "Naziv",
@@ -57,7 +65,15 @@
     "status": "Status",
     "proizvodjac": "Proizvodjac Robe",
     "jedinica_mjere": "Jedinica Mjere",
-    "preduzece": "Preduzece"
+    "preduzece": "Preduzece",
+    "kreirajPojedinacneCijene":"Kreiraj Pojedinačne Cijene",
+    "dodajNovuPojedinacnuCijenu":"Dodaj Novu Pojedinačnu Cijenu"
+  },
+  "robeValidation": {
+    "naziv": "Naziv robe nedostaje",
+    "jedinica_mjere": "Jedinica Mjere robe nedostaje",
+    "proizvodjac_robe_id": "Proizvođač robe nedostaje",
+    "ukupna_cijena": "Cijena robe nedostaje"
   },
   "preduzeca": {
     "kratki_naziv": "Naziv",
@@ -106,7 +122,15 @@
     "porezi": "PDV stopa",
     "jedinicaMjere": "Jedinica mjere",
     "grupa": "Grupa/Kategorija",
-    "pdv_ukljucen": "PDV uljučen u cijenu"
+    "pdv_ukljucen": "PDV uključen u cijenu"
+  },
+  "uslugeValidation": {
+    "naziv": "Naziv usluge nedostaje",
+    "ukupna_cijena": "Cijena usluge nedostaje",
+    "status": "Po defaultu Aktivan",
+    "jedinicaMjere": "Jedinica mjere usluge nedostaje",
+    "pdv_ukljucen": "Po defaultu bez PDV-a",
+    "grupa_id": "Grupa usluge nedostaje"
   },
   "cijene": {
     "nabavna_bez_pdv": "Nabavna cijena bez PDV-a",
