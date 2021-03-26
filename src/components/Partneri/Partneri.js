@@ -10,7 +10,6 @@ import PreduzeceDetails from '../Preduzeca/PreduzeceDetails';
 import FizickoLiceDetails from '../FizickaLica/FizickoLiceDetails';
 import { debounce } from 'lodash';
 import { ReactComponent as PlusLightSvg } from '../../assets/icon/plusLight.svg';
-
 import { ReactComponent as PreduzeceSvg } from '../../assets/icon/hero-preduzecaDropdown.svg';
 import { ReactComponent as UserSvg } from '../../assets/icon/user.svg';
 import { Link } from 'react-router-dom';

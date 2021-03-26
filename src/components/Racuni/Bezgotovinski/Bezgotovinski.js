@@ -15,6 +15,7 @@ import BezgotovinskiHeader from './BezgotovinskiHeader';
 
 import { RACUNI } from '../../../constants/routes';
 import { useHistory } from 'react-router-dom';
+import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
 
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const Bezgotovinski = () => {
       }}
       onSubmit={handleSubmit}
       enableReinitialize
+      validationSchema={BezgotovinskiSchema}
       validateOnChange={false}
       validateOnBlur={false}
     >

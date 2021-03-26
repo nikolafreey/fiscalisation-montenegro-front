@@ -15,7 +15,6 @@ import { USLUGE, STAVKE } from '../../constants/routes';
 import { debounce } from 'lodash';
 import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 
-import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
@@ -140,7 +139,7 @@ const Stavke = () => {
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
-                  placeholder="Pretraži Usluge"
+                  placeholder="Pretraži Usluge i Robe"
                   className="search__input"
                   value={search}
                   onChange={handleChange}
@@ -168,7 +167,9 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robe.data.length === 0 || usluge.data.length === 0 ? (
+              {robe.data.length === 0 &&
+              usluge.data.length === 0 &&
+              filter?.length === 0 ? (
                 <PropagateLoader css={spinnerStyleGrid} size={15} />
               ) : (
                 <>
@@ -199,8 +200,10 @@ const Stavke = () => {
             </div>
           </div>
           <div>
-            {robe.data.length === 0 || usluge.data.length === 0 ? (
-              <GridLoader css={spinnerStyleFilter} size={15} />
+            {robe.data.length === 0 &&
+            usluge.data.length === 0 &&
+            filter?.length === 0 ? (
+              <GridLoader css={spinnerStyleGrid} size={15} />
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />
             )}
