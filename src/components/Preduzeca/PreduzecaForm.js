@@ -211,6 +211,7 @@ const PreduzecaForm = () => {
                           }}
                           type="text"
                           className="form__input w-100"
+                          obavezno
                         />
                       </div>
                       <div className="df jc-sb mob-fd-column">
