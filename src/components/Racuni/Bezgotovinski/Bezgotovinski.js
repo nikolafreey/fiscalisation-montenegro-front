@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
@@ -39,9 +39,29 @@ const Bezgotovinski = () => {
 
   // const { params } = useRouteMatch();
 
+  const [validationError, setValidationError] = useState(false);
+
   const handleSubmit = (values) => {
     if (values.stavke.length === 0) {
       toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+    }
+    if (values.stavke.kolicina == null || values.stavke.kolicina <= 0) {
+      toast.error('Kolicina stavke računa mora biti veca od 0', toastSettings);
+      return;
+    }
+    if (values.stavke.jedinica_mjere_id == null) {
+      toast.error('Jedinica mjere računa je neophodna', toastSettings);
+      return;
+    }
+    if (
+      values.stavke.ukupna_cijena == null ||
+      values.stavke.ukupna_cijena <= 0
+    ) {
+      toast.error('Stavka računa mora biti veca od 0', toastSettings);
+      return;
+    }
+    if (values.partner_id == null || values.partner_id === 0) {
+      toast.error('Kupac je neophodan', toastSettings);
       return;
     }
 
@@ -87,7 +107,7 @@ const Bezgotovinski = () => {
       }}
       onSubmit={handleSubmit}
       enableReinitialize
-      validationSchema={BezgotovinskiSchema}
+      // validationSchema={BezgotovinskiSchema}
       validateOnChange={false}
       validateOnBlur={false}
     >

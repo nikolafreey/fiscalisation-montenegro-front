@@ -14,6 +14,22 @@ import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
 import { NACIN_PLACANJA_GOTOVINSKI } from '../../../constants/racuni';
 import Select from 'react-select';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { select } from 'redux-saga/effects';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
@@ -31,6 +47,16 @@ const NoviRacunPreview = () => {
   });
 
   const handleSacuvaj = () => {
+    console.log('noviRacun.robe.length', noviRacun.robe);
+    console.log('noviRacun.usluge.length', noviRacun.usluge);
+    if (
+      (noviRacun.robe.length === 0 || noviRacun.robe.length == undefined) &&
+      (noviRacun.usluge.length === 0 || noviRacun.usluge.length == undefined)
+    ) {
+      toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+      return;
+    }
+
     dispatch(storeRacun());
   };
 
@@ -180,7 +206,10 @@ const NoviRacunPreview = () => {
             defaultValue={NACIN_PLACANJA_GOTOVINSKI[0]}
           />
         </div>
-        <button className="btn btn__primary mb-10 w-100" onClick={handleSacuvaj}>
+        <button
+          className="btn btn__primary mb-10 w-100"
+          onClick={handleSacuvaj}
+        >
           Fiskalizuj i štampaj
         </button>
         <button className="btn btn__transparent w-100" onClick={handleSacuvaj}>

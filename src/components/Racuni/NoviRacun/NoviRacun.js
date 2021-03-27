@@ -86,14 +86,8 @@ const NoviRacun = () => {
                   onChange={handleChange}
                 />
               </form>
-              {robe.data.length === 0 && usluge.data.length === 0 ? (
-                <PropagateLoader css={spinnerStyleFilter} size={15} />
-              ) : (
-                <>
-                  <NoviRacunFilteri />
-                  <ChooseView view={view} setView={setView} />
-                </>
-              )}
+              <NoviRacunFilteri />
+              <ChooseView view={view} setView={setView} />
             </div>
             {robe.data.length === 0 && usluge.data.length === 0 ? (
               <GridLoader css={spinnerStyleGrid} size={15} />

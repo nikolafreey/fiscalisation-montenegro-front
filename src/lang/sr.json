@@ -109,6 +109,14 @@
     "kategorija": "Kategorija",
     "ziro_racuni": "Lista žiro računa"
   },
+  "preduzecaValidation": {
+    "kratki_naziv": "Naziv preduzeća nedostaje",
+    "oblik_preduzeca": "Oblik preduzeća nedostaje",
+    "pib": "Proizvođač robe nedostaje",
+    "pdv": "Cijena robe nedostaje",
+    "kolicina": "Kolicina stavke nedostaje",
+    "pozitivan": "Kolicina stavke mora biti pozitivan broj."
+  },
   "common": {
     "izbrisi": "Izbriši",
     "dodajNovi": "Dodaj novi"
