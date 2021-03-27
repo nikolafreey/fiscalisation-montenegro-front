@@ -17,6 +17,21 @@ import { RACUNI } from '../../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
@@ -25,6 +40,11 @@ const Bezgotovinski = () => {
   // const { params } = useRouteMatch();
 
   const handleSubmit = (values) => {
+    if (values.stavke.length === 0) {
+      toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+      return;
+    }
+
     const noviRacun = {
       ...values,
       vrsta_racuna: 'bezgotovinski',

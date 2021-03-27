@@ -3,11 +3,11 @@ import { setGlobalError } from '../actions/ErrorActions';
 import { uslugeService } from '../../services/UslugeService';
 import { setPorezi, setUsluga, setUsluge } from '../actions/UslugeActions';
 import { poreziService } from '../../services/PoreziService';
+import { uslugeSelector } from '../selectors/UslugeSelector';
+import { stavkeUslugeSelector } from '../selectors/RacuniSelector';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { uslugeSelector } from '../selectors/UslugeSelector';
-import { stavkeUslugeSelector } from '../selectors/RacuniSelector';
 
 toast.configure();
 
