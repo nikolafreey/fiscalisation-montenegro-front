@@ -396,7 +396,7 @@ const UslugeForm = () => {
                             id="Aktivan"
                             value="Aktivan"
                             name="status"
-                            checked={values.status}
+                            // checked={values.status}
                           />
                           <label
                             htmlFor="Aktivan"

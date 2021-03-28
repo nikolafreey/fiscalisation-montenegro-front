@@ -364,7 +364,7 @@ const RobeForm = () => {
                               value="Aktivan"
                               id="Aktivan"
                               name="status"
-                              checked={values.status}
+                              // checked={values.status}
                             />
                             <label
                               htmlFor="Aktivan"

@@ -372,7 +372,6 @@ const FizickaLicaForm = () => {
                             id="active"
                             value="Aktivan"
                             name="status"
-                            checked={values.status}
                           />
                           <label htmlFor="active" className="form__radio-label">
                             <span className="form__radio-button"></span>
