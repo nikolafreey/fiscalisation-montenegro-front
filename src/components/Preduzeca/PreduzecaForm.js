@@ -77,10 +77,10 @@ const PreduzecaForm = () => {
       initialValues={{
         kratki_naziv: '',
         puni_naziv: '',
-        oblik_preduzeca: '',
+        oblik_preduzeca: 'D.O.O',
         adresa: '',
         grad: '',
-        drzava: '',
+        drzava: 'CG',
         telefon: '',
         telefon_viber: false,
         telefon_whatsapp: false,
@@ -115,7 +115,7 @@ const PreduzecaForm = () => {
         opis: '',
         lokacija_lat: 'Beograd',
         lokacija_long: 'Beograd',
-        status: '',
+        status: 'Aktivan',
         privatnost: '',
         verifikovan: false,
         kategorija_id: '',
@@ -156,7 +156,7 @@ const PreduzecaForm = () => {
                             name="kratki_naziv"
                             label={$t('preduzeca.kratki_naziv')}
                             placeholder=""
-                            obavezno={true}
+                            obavezno
                             type="text"
                             className="form__input"
                           />
@@ -164,9 +164,10 @@ const PreduzecaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="oblik_preduzeca"
-                            obavezno={true}
+                            obavezno
                             label={$t('preduzeca.oblik_preduzeca')}
-                            placeholder=""
+                            placeholder="D.O.O"
+                            defaultValue="D.O.O"
                             className="form__input"
                           />
                         </div>
@@ -185,7 +186,7 @@ const PreduzecaForm = () => {
                           name="pdv"
                           label={$t('preduzeca.pdv')}
                           placeholder=""
-                          obavezno={true}
+                          obavezno
                           type="text"
                           className="form__input w-100"
                         />
@@ -195,7 +196,7 @@ const PreduzecaForm = () => {
                           name="pib"
                           label={$t('preduzeca.pib')}
                           placeholder=""
-                          obavezno={true}
+                          obavezno
                           type="text"
                           className="form__input w-100"
                         />
@@ -205,10 +206,10 @@ const PreduzecaForm = () => {
                           name="adresa"
                           label={$t('preduzeca.adresa')}
                           placeholder=""
-                          onBlur={(e) => {
-                            // call the built-in handleBur
-                            handleBlur(e);
-                          }}
+                          // onBlur={(e) => {
+                          //   // call the built-in handleBur
+                          //   handleBlur(e);
+                          // }}
                           type="text"
                           className="form__input w-100"
                           obavezno
@@ -228,7 +229,7 @@ const PreduzecaForm = () => {
                           <InputField
                             name="drzava"
                             label={$t('preduzeca.drzava')}
-                            placeholder=""
+                            placeholder="CG"
                             type="text"
                             className="form__input"
                           />
@@ -259,7 +260,7 @@ const PreduzecaForm = () => {
                       <Textarea
                         control="text"
                         name="opis"
-                        label={$t('preduzeca.opis')}
+                        label={$t('preduzeca.opis') + ' - Nije Obavezno'}
                         cols="30"
                         rows="5"
                         className="form__input"
@@ -619,7 +620,6 @@ const PreduzecaForm = () => {
                             name="twitter_username"
                             label={$t('preduzeca.twitter')}
                             placeholder="@restartIt"
-                            obavezno={true}
                             type="text"
                             className="form__input"
                           />
@@ -628,7 +628,6 @@ const PreduzecaForm = () => {
                           <InputField
                             name="facebook_username"
                             label={$t('preduzeca.facebook')}
-                            obavezno={true}
                             placeholder="@restartIt"
                             type="text"
                             className="form__input"
@@ -641,7 +640,6 @@ const PreduzecaForm = () => {
                             name="instagram_username"
                             label={$t('preduzeca.instagram')}
                             placeholder="@restartIt"
-                            obavezno={true}
                             type="text"
                             className="form__input"
                           />
@@ -649,7 +647,6 @@ const PreduzecaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="skype_username"
-                            obavezno={true}
                             label={$t('preduzeca.skype')}
                             placeholder="@restartIt"
                             type="text"

@@ -36,6 +36,15 @@
     "avatar": "Fotografija",
     "preduzece_id": "Zaposlen kod"
   },
+  "fizickaLicaValidation": {
+    "ime": "Ime fizičkog lica nedostaje",
+    "prezime": "Prezime fizičkog lica nedostaje",
+    "jmbg": "JMBG fizičkog lica nedostaje",
+    "grad": "Grad fizičkog lica nedostaje",
+    "drzava": "Drzava fizičkog lica nedostaje",
+    "drzavljanstvo": "Državljanstvo fizičkog lica nedostaje",
+    "nacionalnost": "Nacionalnost fizičkog lica nedostaje"
+  },
   "racuni": {
     "naziv": "Naziv",
     "opis": "Opis",
@@ -112,9 +121,13 @@
   "preduzecaValidation": {
     "kratki_naziv": "Naziv preduzeća nedostaje",
     "oblik_preduzeca": "Oblik preduzeća nedostaje",
-    "pib": "Proizvođač robe nedostaje",
-    "pdv": "Cijena robe nedostaje",
-    "kolicina": "Kolicina stavke nedostaje",
+    "pib": "PIB preduzeća nedostaje",
+    "pdv": "PDV broj preduzeća nedostaje",
+    "adresa": "Adresa preduzeća nedostaje",
+    "grad": "Grad u kom se nalazi preduzeće nedostaje",
+    "drzava": "Drzava u kojoj se nalazi preduzeće nedostaje",
+    "djelatnost": "Djelatnost preduzeća nedostaje",
+    "kategorija_id": "Kategorija preduzeća nedostaje",
     "pozitivan": "Kolicina stavke mora biti pozitivan broj."
   },
   "common": {
