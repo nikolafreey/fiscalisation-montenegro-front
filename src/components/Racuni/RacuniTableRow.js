@@ -30,18 +30,18 @@ const RacuniTableRow = ({ item }) => {
     privremen: { klasa: 'tag tag__neutral', naziv: 'Privremen' },
   };
 
-  useEffect(() => {
-    // OBRISATI POSLE PREZENTACIJE
-    if (item.status === 'KREIRAN' && !item.partner) {
-      dispatch(getRacun(item.id));
-      if (preduzece) {
-        setItem({
-          ...item,
-          partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } },
-        });
-      }
-    }
-  }, [dispatch, item, preduzece]);
+  // useEffect(() => {
+  //   // OBRISATI POSLE PREZENTACIJE
+  //   if (item.status === 'KREIRAN' && !item.partner) {
+  //     dispatch(getRacun(item.id));
+  //     if (preduzece) {
+  //       setItem({
+  //         ...item,
+  //         partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } },
+  //       });
+  //     }
+  //   }
+  // }, [dispatch, item, preduzece]);
 
   const currencyFormat = (num) => {
     // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
