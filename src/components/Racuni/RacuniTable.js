@@ -52,7 +52,7 @@ const RacuniTable = ({ racuni }) => {
             {/* <List data={racuni.data || []} renderItem={RacuniTableRow} /> */}
             {racuni &&
               racuni.data.map((item) => (
-                <RacuniTableRow key={item.id} item={item} />
+                <RacuniTableRow key={item.id} item={item} racuni={racuni} />
               ))}
           </tbody>
         </table>

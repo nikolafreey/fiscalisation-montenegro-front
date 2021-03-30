@@ -16,11 +16,40 @@ import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
-const RacuniTableRow = ({ item }) => {
+const RacuniTableRow = ({ item, racuni }) => {
   const dispatch = useDispatch();
   const [_item, setItem] = useState(item);
+  const [_racuni, setRacuni] = useState(item);
 
   const { preduzece } = useSelector(racunSelector());
+
+  let fizickaLicaPartneri;
+  let preduzecaPartneri;
+  if (racuni.partneri) {
+    fizickaLicaPartneri = racuni.partneri
+      .map(
+        (tmp) =>
+          tmp.fizicko_lice && {
+            ime: tmp.fizicko_lice.ime + tmp.fizicko_lice.prezime,
+            id: tmp.id,
+          }
+      )
+      .filter((tmp) => tmp != null);
+    preduzecaPartneri = racuni?.partneri
+      ?.map(
+        (tmp) =>
+          !tmp.fizicko_lice && { ime: tmp.preduzece.kratki_naziv, id: tmp.id }
+      )
+      .filter((tmp) => tmp != null);
+  }
+
+  console.log('_item', _item.partner_id);
+  console.log('preduzecaPartneri', preduzecaPartneri);
+  console.log('fizickaLicaPartneri', fizickaLicaPartneri);
+  console.log(
+    'fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)',
+    fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)
+  );
 
   const history = useHistory();
   const bojaStatus = {
@@ -90,11 +119,23 @@ const RacuniTableRow = ({ item }) => {
         {vrstaRacuna(_item.vrsta_racuna)}
       </td>
       <td className="cl">{_item.broj_racuna}</td>
-      <td className="cd fw-500">
-        {_item.partner?.preduzece?.kratki_naziv ||
-          `${_item.partner?.fizicko_lice?.ime}
+      {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {preduzecaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+        </td>
+      )}
+      {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+        </td>
+      )}
+      {!preduzecaPartneri && !fizickaLicaPartneri && (
+        <td className="cd fw-500">
+          {_item.partner?.preduzece?.kratki_naziv ||
+            `${_item.partner?.fizicko_lice?.ime}
            ${_item.partner?.fizicko_lice?.prezime}`}
-      </td>
+        </td>
+      )}
       <td className="cl dshow-cell">
         {currencyFormat(_item.ukupna_cijena_bez_pdv) + '€'}
       </td>
