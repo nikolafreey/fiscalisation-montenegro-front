@@ -30,7 +30,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       .map(
         (tmp) =>
           tmp.fizicko_lice && {
-            ime: tmp.fizicko_lice.ime + tmp.fizicko_lice.prezime,
+            ime: tmp.fizicko_lice.ime + ' ' + tmp.fizicko_lice.prezime,
             id: tmp.id,
           }
       )
@@ -42,14 +42,6 @@ const RacuniTableRow = ({ item, racuni }) => {
       )
       .filter((tmp) => tmp != null);
   }
-
-  console.log('_item', _item.partner_id);
-  console.log('preduzecaPartneri', preduzecaPartneri);
-  console.log('fizickaLicaPartneri', fizickaLicaPartneri);
-  console.log(
-    'fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)',
-    fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)
-  );
 
   const history = useHistory();
   const bojaStatus = {
@@ -133,6 +125,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         <td className="cd fw-500">
           {_item.partner?.preduzece?.kratki_naziv ||
             `${_item.partner?.fizicko_lice?.ime}
+
            ${_item.partner?.fizicko_lice?.prezime}`}
         </td>
       )}

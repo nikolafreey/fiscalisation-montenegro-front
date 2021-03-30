@@ -5,7 +5,7 @@ import { storeRacun } from '../../store/actions/RacuniActions';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
-const PredracuniTableRow = ({ item }) => {
+const PredracuniTableRow = ({ item, predracuni }) => {
   const dispatch = useDispatch();
 
   const handleAddRacun = () => {
@@ -19,14 +19,50 @@ const PredracuniTableRow = ({ item }) => {
     privremen: { klasa: 'tag tag__neutral', naziv: 'Privremen' },
   };
 
+  let fizickaLicaPartneri;
+  let preduzecaPartneri;
+  if (predracuni.partneri) {
+    fizickaLicaPartneri = predracuni.partneri
+      .map(
+        (tmp) =>
+          tmp.fizicko_lice && {
+            ime: tmp.fizicko_lice.ime + ' ' + tmp.fizicko_lice.prezime,
+            id: tmp.id,
+          }
+      )
+      .filter((tmp) => tmp != null && tmp !== false);
+    preduzecaPartneri = predracuni?.partneri
+      ?.map(
+        (tmp) =>
+          !tmp.fizicko_lice && { ime: tmp.preduzece.kratki_naziv, id: tmp.id }
+      )
+      .filter((tmp) => tmp != null && tmp !== false);
+  }
+
   return (
     <tr>
       <td className="cl">{item.broj_racuna}</td>
-      <td className="cd fw-500">
-        {item.partner?.preduzece?.kratki_naziv ||
-          `${item.partner?.fizicko_lice?.ime}
+      {preduzecaPartneri && preduzecaPartneri.length !== 0 && (
+        <td className="cd fw-500">
+          {
+            preduzecaPartneri.find(
+              (preduzece) => preduzece.id === item.partner_id
+            ).ime
+          }
+        </td>
+      )}
+      {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {fizickaLicaPartneri.find((fl) => fl.id === item.partner_id).ime}
+        </td>
+      )}
+      {!preduzecaPartneri && !fizickaLicaPartneri && (
+        <td className="cd fw-500">
+          {item.partner?.preduzece?.kratki_naziv ||
+            `${item.partner?.fizicko_lice?.ime}
            ${item.partner?.fizicko_lice?.prezime}`}
-      </td>
+        </td>
+      )}
       <td className="cd fw-500 dshow-cell">
         {Number(item.ukupna_cijena_bez_pdv).toFixed(2).replace('.', ',') + '€'}
       </td>
