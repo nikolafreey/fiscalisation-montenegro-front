@@ -8,8 +8,31 @@ import { useDispatch } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
-const UlazniRacuniTableRow = ({ item }) => {
+const UlazniRacuniTableRow = ({ item, ulazniRacuni }) => {
   const dispatch = useDispatch();
+
+  let fizickaLicaPartneri;
+  let preduzecaPartneri;
+  if (ulazniRacuni.partneri) {
+    fizickaLicaPartneri = ulazniRacuni.partneri
+      .map(
+        (tmp) =>
+          tmp.fizicko_lice && {
+            ime: tmp.fizicko_lice.ime + ' ' + tmp.fizicko_lice.prezime,
+            id: tmp.id,
+          }
+      )
+      .filter((tmp) => tmp != null && tmp !== false);
+    preduzecaPartneri = ulazniRacuni?.partneri
+      ?.map(
+        (tmp) =>
+          !tmp.fizicko_lice && { ime: tmp.preduzece.kratki_naziv, id: tmp.id }
+      )
+      .filter((tmp) => tmp != null && tmp !== false);
+  }
+
+  console.log('fizickaLicaPartneri', fizickaLicaPartneri);
+  console.log('preduzecaPartneri', preduzecaPartneri);
 
   const bojaStatus = {
     placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
@@ -19,12 +42,12 @@ const UlazniRacuniTableRow = ({ item }) => {
   };
 
   const handleIzmjeni = (e) => {
-    e.stopPropagation()
-  }
+    e.stopPropagation();
+  };
 
   const handleObrisi = (e) => {
-    e.stopPropagation()
-  }
+    e.stopPropagation();
+  };
 
   return (
     <tr>
@@ -32,11 +55,27 @@ const UlazniRacuniTableRow = ({ item }) => {
         <Success />
       </td>
       <td className="cl">{item.broj_racuna}</td>
-      <td className="cd fw-500">
-        {item.partner?.preduzece?.kratki_naziv ||
-          `${item.partner?.fizicko_lice?.ime}
+      {preduzecaPartneri && preduzecaPartneri.length !== 0 && (
+        <td className="cd fw-500">
+          {
+            preduzecaPartneri.find(
+              (preduzece) => preduzece.id === item.partner_id
+            ).ime
+          }
+        </td>
+      )}
+      {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {fizickaLicaPartneri.find((fl) => fl.id === item.partner_id).ime}
+        </td>
+      )}
+      {!preduzecaPartneri && !fizickaLicaPartneri && (
+        <td className="cd fw-500">
+          {item.partner?.preduzece?.kratki_naziv ||
+            `${item.partner?.fizicko_lice?.ime}
            ${item.partner?.fizicko_lice?.prezime}`}
-      </td>
+        </td>
+      )}
       <td className="cd fw-500 dshow-cell">
         {Number(item.ukupna_cijena_bez_pdv).toFixed(2).replace('.', ',') + '€'}
       </td>
@@ -63,11 +102,17 @@ const UlazniRacuniTableRow = ({ item }) => {
           <button className="btn btn__light btn__xs">
             <IconLg />
             <div className="drop-down">
-              <a onClick={handleIzmjeni} className={`${item.ikof && item.jikr ? 'disabled' : ''}`}>
+              <a
+                onClick={handleIzmjeni}
+                className={`${item.ikof && item.jikr ? 'disabled' : ''}`}
+              >
                 <Izmjeni />
                 Izmjeni
               </a>
-              <a onClick={handleObrisi} className={`${item.ikof && item.jikr ? 'disabled' : ''}`}>
+              <a
+                onClick={handleObrisi}
+                className={`${item.ikof && item.jikr ? 'disabled' : ''}`}
+              >
                 <Obrisi />
                 Obriši
               </a>

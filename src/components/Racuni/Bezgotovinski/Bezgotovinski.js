@@ -42,24 +42,41 @@ const Bezgotovinski = () => {
   const [validationError, setValidationError] = useState(false);
 
   const handleSubmit = (values) => {
+    console.log('values', values);
     if (values.stavke.length === 0) {
       toast.error('Račun mora imati bar jednu stavku!', toastSettings);
     }
-    if (values.stavke.kolicina == null || values.stavke.kolicina <= 0) {
-      toast.error('Kolicina stavke računa mora biti veca od 0', toastSettings);
+    if (!values.stavke[0]) {
+      toast.error(
+        'Račun mora imati bar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
+        toastSettings
+      );
       return;
     }
-    if (values.stavke.jedinica_mjere_id == null) {
-      toast.error('Jedinica mjere računa je neophodna', toastSettings);
-      return;
-    }
-    if (
-      values.stavke.ukupna_cijena == null ||
-      values.stavke.ukupna_cijena <= 0
-    ) {
-      toast.error('Stavka računa mora biti veca od 0', toastSettings);
-      return;
-    }
+    values &&
+      values.stavke.forEach((racun, index) => {
+        if (racun.kolicina == null || racun.kolicina <= 0) {
+          toast.error(
+            'Kolicina stavke računa mora biti veca od 0 računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+        if (racun.jedinica_mjere_id == null) {
+          toast.error(
+            'Jedinica mjere računa je neophodna na računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+        if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
+          toast.error(
+            'Stavka računa mora biti veca od 0 na računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+      });
     if (values.partner_id == null || values.partner_id === 0) {
       toast.error('Kupac je neophodan', toastSettings);
       return;
