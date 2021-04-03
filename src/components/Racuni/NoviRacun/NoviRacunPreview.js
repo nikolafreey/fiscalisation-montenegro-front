@@ -13,6 +13,7 @@ import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
 import { NACIN_PLACANJA_GOTOVINSKI } from '../../../constants/racuni';
 import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
 
 const NoviRacunPreview = () => {
   const componentRef = useRef();
@@ -29,9 +30,10 @@ const NoviRacunPreview = () => {
     //   size: 70mm 180mm;
     // }`,
   });
-
+  const history = useHistory();
   const handleSacuvaj = () => {
     dispatch(storeRacun());
+    history.push(`/racuni`);
   };
 
   const usluge = Object.keys(noviRacun.usluge).map(
@@ -48,20 +50,23 @@ const NoviRacunPreview = () => {
   function vratiUkupanPdv() {
     var pdvUkupno = 0;
     for (const p in porezi) {
-      pdvUkupno += Number(porezi[p].pdvIznos);
+      pdvUkupno +=Math.round(Number(porezi[p].pdvIznos)*100)/100;
+     
     }
     return pdvUkupno;
   }
 
   function vratiUkupnoPlacanje() {
-    var upupnoPlacanje = 0;
+    var ukupnoPlacanje = 0;
     for (const p in porezi) {
-      upupnoPlacanje += Number(porezi[p].ukupno);
+      ukupnoPlacanje += Number(porezi[p].ukupno);
     }
-    return upupnoPlacanje;
+    return ukupnoPlacanje;
   }
   const ukPdv = vratiUkupanPdv();
   const ukPlati = vratiUkupnoPlacanje();
+  
+  console.log('noviRacun',noviRacun)
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
@@ -110,7 +115,7 @@ const NoviRacunPreview = () => {
             <>
               <div className="side-info__info--inner-wrapper mb-0">
                 <div className="col-l w-break">
-                  <p>Ukupno za PDV {porezi[porezId].naziv}</p>
+                  <p>Ukupno za PDV {porezi[porezId].naziv} </p>
                 </div>
                 <div className="col-r w-break-unset">
                   <p className="txt-right">

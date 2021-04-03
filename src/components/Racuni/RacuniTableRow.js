@@ -89,7 +89,7 @@ const RacuniTableRow = ({ item }) => {
         {_item.ikof && <Success />}
         {vrstaRacuna(_item.vrsta_racuna)}
       </td>
-      <td className="cl">{_item.broj_racuna}</td>
+      <td className="cl">{_item.id}</td>
       <td className="cd fw-500">
         {_item.partner?.preduzece?.kratki_naziv ||
           `${_item.partner?.fizicko_lice?.ime}

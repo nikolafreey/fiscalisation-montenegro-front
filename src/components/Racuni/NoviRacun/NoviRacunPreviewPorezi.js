@@ -7,6 +7,7 @@ const NoviRacunPreviewPorezi = ({ noviRacun }) => {
   const robe = Object.keys(noviRacun.robe).map(id => noviRacun.robe[id]);
 
   const porezi = izracunajPojedinacnePoreze([...usluge, ...robe]);
+  console.log('porezi',porezi)
 
   return (
     <div className="row mb-15">

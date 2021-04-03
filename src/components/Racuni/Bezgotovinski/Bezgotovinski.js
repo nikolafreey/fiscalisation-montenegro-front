@@ -1,10 +1,11 @@
-import { FieldArray, Form, Formik } from 'formik';
-import React from 'react';
+import {useFormikContext, FieldArray, Form, Formik,Field } from 'formik';
+import React,{ useState,useRef } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
 import { usePorezi } from '../../../hooks/PoreziHook';
 
+import BezgotovinskiStavkeFieldArrayNovi from './BezgotovinskiStavkeFieldArrayNovi';
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeBezgotovinskiRacun } from '../../../store/actions/RacuniActions';
@@ -20,10 +21,10 @@ const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
   const history = useHistory();
-
-  // const { params } = useRouteMatch();
-
+  
   const handleSubmit = (values) => {
+    values.stavke=values.niz;
+    console.log('u celom racunu',values.stavke);
     const noviRacun = {
       ...values,
       vrsta_racuna: 'bezgotovinski',
@@ -37,9 +38,10 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
-
+    console.log('u celom racunu',values.vrsta_racuna);
     dispatch(storeBezgotovinskiRacun(noviRacun));
     history.push(`/racuni`);
+  
   };
 
   // const {
@@ -53,22 +55,31 @@ const Bezgotovinski = () => {
   const today = new Date();
   const seven_days = new Date();
   seven_days.setDate(seven_days.getDate() + 7);
+  const initialValues={
+    stavke: [],
+    korektivni_racun: '0',
+    datum_izdavanja: today,
+    datum_za_placanje: seven_days,
+    pdv_obveznik: 1,
+    nacin_placanja:1,
+    niz:[],  
+   popustObjekat:{},
+    // a:[], 
+  }
+  
 
   return (
     <Formik
-      initialValues={{
-        stavke: [],
-        korektivni_racun: '0',
-        datum_izdavanja: today,
-        datum_za_placanje: seven_days,
-        pdv_obveznik: 1,
-      }}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
+      //innerRef={formikRef}
       enableReinitialize
       validateOnChange={false}
       validateOnBlur={false}
+   
     >
-      {({ values }) => (
+      {({ values }) =>
+         (
         <Form>
           <div className="screen-content">
             <Link to={RACUNI.INDEX} className="back-link df">

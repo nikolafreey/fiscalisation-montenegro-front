@@ -5,6 +5,8 @@ import List from '../../shared/lists/List';
 import BezgotovinskiTableRow from './BezgotovinskiTableRow';
 import Moment from 'react-moment';
 import 'moment/locale/me';
+import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
+
 
 class BezgotovinskiShowTemplate extends React.Component {
   render() {
@@ -17,10 +19,16 @@ class BezgotovinskiShowTemplate extends React.Component {
     const partner = this.props.partner;
     const created_at = this.props.created_at;
     const stavke = this.props.stavke;
-    const ukupna_cijena_bez_pdv = this.props.ukupna_cijena_bez_pdv;
-    const ukupna_cijena_sa_pdv = this.props.ukupna_cijena_sa_pdv;
+    const ukupna_cijena_bez_pdv = this.props.ukupnoBezPdvIpopusta;
+    const ukupna_cijena_sa_pdv = this.props.ukupnoSaPdvIpopusta;
     const ukupan_iznos_pdv = this.props.ukupan_iznos_pdv;
+    const ukupniPopust = this.props.popust_ukupno;
+    const ukupnoBezPdv = this.props.ukupnoBezPdv;
+    const ukupna_cijena_bez_pdv_popust = this.props.ukupna_cijena_bez_pdv_popust;
+    const ukupna_cijena_sa_pdv_popust = this.props.ukupna_cijena_sa_pdv_popust;
+    const sve_stavke=this.props.stavke;
 
+  console.log('props',sve_stavke);
     return (
       <>
         <div className="invoice" style={{ width: '100%' }}>
@@ -175,10 +183,10 @@ class BezgotovinskiShowTemplate extends React.Component {
               <thead>
                 <tr>
                   <th>
-                    <span className="heading-quaternary">Opis</span>
+                    <span className="heading-quaternary">Opis  </span>
                   </th>
                   <th>
-                    <span className="heading-quaternary">Jedinična cijena</span>
+                    <span className="heading-quaternary">Jedinična cijena  </span>
                   </th>
                   <th>
                     <span className="heading-quaternary">Kolicina</span>
@@ -196,6 +204,11 @@ class BezgotovinskiShowTemplate extends React.Component {
               </tbody>
             </table>
           </div>
+          <div className="table-wrapper" style={{ width: '100%' }}>
+           
+            <BezgotovinskiPoreziPreview stavke={stavke} />
+           
+          </div>
 
           <div className="invoice__footer">
             <div className="row">
@@ -205,21 +218,37 @@ class BezgotovinskiShowTemplate extends React.Component {
               <div style={{ width: '33.3333333333%' }} className="col-md-4">
                 <div className="df jc-sb">
                   <div className="df fd-column">
-                    <p className="fw-500">Bez PDV-a:</p>
-                    <p className="fw-500">PDV 21%:</p>
-                    <p className="fw-500">Ukupno:</p>
+                    <p className="fw-500">Ukupno bez PDV-a i popusta:</p>
+                   
+                    {/* <p className="fw-500">Ukupno bez popusta:</p> */}
+                    <p className="fw-500">Ukupan popust:</p>
+                    <p className="fw-500">Ukupan PDV:</p>
+                    <p className="fw-500">Ukupno sa popustom:</p>
+                    {/* <p className="fw-500">PDV 21%:</p>
+                    <p className="fw-500">Ukupno:</p> */}
                   </div>
                   <div className="df fd-column">
                     <p className="fw-500 txt-right">
-                      {ukupna_cijena_bez_pdv}{' '}
+                      {Number(ukupna_cijena_bez_pdv_popust).toFixed(2)}{' '}
+                      <span className="txt-up txt-light">Eur</span>
+                    </p>
+                    
+                    {/* <p className="fw-500 txt-right">
+                      {Number(ukupnoBezPdv).toFixed(2)}{' '}
+                      <span className="txt-up txt-light">Eur</span>
+                    </p> */}
+                    {ukupan_iznos_pdv>0
+                          &&  <p className="fw-500 txt-right">
+                      {'-'}{Number(ukupniPopust).toFixed(2)}{' '}
+                      <span className="txt-up txt-light">Eur</span>
+                    </p>}
+                   
+                    <p className="fw-500 txt-right">
+                      {Number(ukupan_iznos_pdv).toFixed(2)}{' '}
                       <span className="txt-up txt-light">Eur</span>
                     </p>
                     <p className="fw-500 txt-right">
-                      {ukupan_iznos_pdv}{' '}
-                      <span className="txt-up txt-light">Eur</span>
-                    </p>
-                    <p className="fw-500 txt-right">
-                      {ukupna_cijena_sa_pdv}{' '}
+                      {Number(ukupna_cijena_sa_pdv_popust).toFixed(2)}{' '}
                       <span className="txt-up txt-light">Eur</span>
                     </p>
                   </div>

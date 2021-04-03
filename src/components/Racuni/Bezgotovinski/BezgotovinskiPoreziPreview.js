@@ -6,26 +6,26 @@ import {
   izracunajPojedinacnePorezeStavkeBezgotovinski,
 } from '../../../helpers/racuni';
 
-const BezgotovinskiPorezi = () => {
-  const { values } = useFormikContext();
-  const porezi = values.stavke
-    ? izracunajPojedinacnePoreze(values.stavke)
+const BezgotovinskiPoreziPreview = (props) => {
+  //const stavke=Object.assign({},props.stavke);
+  const porezi = props.stavke
+    ? izracunajPojedinacnePorezeStavkeBezgotovinski(props.stavke)
     : {};
-
+console.log('porezi u html',props)
   return (
     <>
-      <h2 className="heading-secondary">Porez pojedinačno</h2>
-      <div className="main-content__box">
+    
+      <div className="main-content__box" style={{display: 'flex', justifyContent: 'flex-end'}}>
         <div className="content">
           <div className="table-wrapper">
             <table className="table">
               <thead>
                 <tr>
                   <th className="w-33">
-                    <span className="heading-quaternary">PDV stopa</span>
+                    <span className="heading-quaternary">PDV stopa </span>
                   </th>
                   <th className="w-33">
-                    <span className="heading-quaternary">Ukupno za PDV</span>
+                    <span className="heading-quaternary">Osnovica za PDV</span>
                   </th>
                   <th className="w-33">
                     <span className="heading-quaternary">iznos poreza</span>
@@ -38,10 +38,10 @@ const BezgotovinskiPorezi = () => {
 
                   return (
                     <tr>
-                      <td className="w-33">{porez.naziv}</td>
-                      <td className="w-33">{formatirajCijenu(porez.ukupno)}</td>
+                      <td className="w-33">{porezId === '1'?'Oslobogen PDV-a':porezId ==='2'?'0%':porezId ==='3'?'7%':'21%'}</td>
+                      <td className="w-33">{formatirajCijenu(porez.pdvUkupnoUkupno)}</td>
                       <td className="txt-right w-33">
-                        {formatirajCijenu(porez.pdvIznos)}{' '}
+                        {formatirajCijenu(porez.pdvIznosUkupno)}{' '}
                         <span className="txt-light"></span>
                       </td>
                     </tr>
@@ -56,4 +56,4 @@ const BezgotovinskiPorezi = () => {
   );
 };
 
-export default BezgotovinskiPorezi;
+export default BezgotovinskiPoreziPreview;

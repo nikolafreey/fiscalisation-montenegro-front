@@ -25,6 +25,9 @@ import {
 import { racunSelector } from '../../../store/selectors/RacuniSelector';
 import { useRouteMatch, useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { values } from 'lodash-es';
+import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
+import { formatirajCijenu } from './../../../helpers/racuni';
 
 const BezgotovinskiPreview = () => {
   const { params } = useRouteMatch();
@@ -37,14 +40,18 @@ const BezgotovinskiPreview = () => {
     ikof,
     jikr,
     broj_racuna,
+    id,
     status,
     preduzece,
     opis,
     partner,
     created_at,
     stavke,
+    popust_ukupno,
     ukupna_cijena_bez_pdv,
     ukupna_cijena_sa_pdv,
+    ukupna_cijena_bez_pdv_popust,
+    ukupna_cijena_sa_pdv_popust,
     ukupan_iznos_pdv,
     status_placanja,
     iznos_uplate,
@@ -78,9 +85,26 @@ const BezgotovinskiPreview = () => {
 
     history.push(`/racuni`);
   };
+  var ukupnoBezPdvIpopusta = 0;
+  var ukupnoBezPdv = 0;
+  var ukupnoSaPdvIpopusta = 0;
+  var ukupniPopust = 0;
+  var ukupniPdv = 0;
+  for (const i in stavke) {
+    if (Object.hasOwnProperty.call(stavke, i)) {
+      const stavka = stavke[i];
+      ukupnoBezPdvIpopusta +=
+        Number(stavka.jedinicna_cijena_bez_pdv) * Number(stavka.kolicina);
+      ukupnoBezPdv += Number(stavka.cijena_sa_pdv) * Number(stavka.kolicina);
+      ukupnoSaPdvIpopusta +=
+        Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina);
+      ukupniPdv += Number(stavka.pdv_iznos);
+      ukupniPopust += Number(stavka.popust_iznos);
+    }
+  }
 
-  console.log('componentRef', componentRef);
-  console.log('testRef', testRef);
+  console.log('ukupan_iznos_pdv', values, ukupan_iznos_pdv);
+  console.log('testRef values=jedinice_id!!', popust_ukupno);
 
   return (
     <>
@@ -145,8 +169,16 @@ const BezgotovinskiPreview = () => {
             partner={partner}
             created_at={created_at}
             stavke={stavke}
+            ukupnoBezPdvIpopusta={ukupnoBezPdvIpopusta}
+            ukupniPdv={ukupniPdv}
+            ukupnoBezPdv={ukupnoBezPdv}
+            ukupniPopust={ukupniPopust}
+            ukupnoSaPdvIpopusta={ukupnoSaPdvIpopusta}
+            popust_ukupno={popust_ukupno}
             ukupna_cijena_bez_pdv={ukupna_cijena_bez_pdv}
             ukupna_cijena_sa_pdv={ukupna_cijena_sa_pdv}
+            ukupna_cijena_bez_pdv_popust={ukupna_cijena_bez_pdv_popust}
+            ukupna_cijena_sa_pdv_popust={ukupna_cijena_sa_pdv_popust}
             ukupan_iznos_pdv={ukupan_iznos_pdv}
           />
         </div>
@@ -299,7 +331,6 @@ const BezgotovinskiPreview = () => {
                 </div>
               </div>
             </div>
-
             <div ref={testRef} className="table-wrapper">
               <table className="table">
                 <thead>
@@ -309,20 +340,22 @@ const BezgotovinskiPreview = () => {
                     </th>
                     <th>
                       <span className="heading-quaternary">
-                        Jedinična cijena
+                        Jedinična cijena bez pdv
                       </span>
                     </th>
                     <th>
                       <span className="heading-quaternary">Kolicina</span>
                     </th>
-                    <th>
-                      <span className="heading-quaternary">Popust</span>
-                    </th>
-                    <th>
+                    {/* <th>
                       <span className="heading-quaternary">PDV</span>
+                    </th> */}
+                    <th>
+                    {Number(popust_ukupno)>0 && <span className="heading-quaternary">Popust</span>}  
                     </th>
                     <th>
-                      <span className="heading-quaternary">Iznos</span>
+                      <span className="heading-quaternary">
+                        Ukupan  bez pdv{' '}
+                      </span>
                     </th>
                   </tr>
                 </thead>
@@ -334,7 +367,9 @@ const BezgotovinskiPreview = () => {
                 </tbody>
               </table>
             </div>
-
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <BezgotovinskiPoreziPreview stavke={stavke} />
+            </div>
             <div className="invoice__footer">
               <div className="row">
                 <div className="offset-md-8"></div>
@@ -342,37 +377,72 @@ const BezgotovinskiPreview = () => {
                   <div className="df jc-sb">
                     <div className="df fd-column">
                       <p className="fw-500">
-                        {ukupna_cijena_bez_pdv && 'Bez PDV-a:'}
+                        {ukupnoBezPdvIpopusta && 'Ukupno bez PDV-a i popusta:'}
                       </p>
+
+                      {/* <p className="fw-500">
+                        {ukupnoBezPdv && 'Ukupno bez popusta:'}
+                      </p> */}
                       <p className="fw-500">
-                        {ukupan_iznos_pdv && 'Ukupno PDV:'}
+                        {Number(popust_ukupno)>0>0 && 'Ukupan popust:'}
                       </p>
+                      <p className="fw-500">{ukupniPdv>0 && 'Ukupan PDV:'}</p>
                       <p className="fw-500">
-                        {ukupna_cijena_sa_pdv && 'Ukupno:'}
+                        {ukupnoSaPdvIpopusta && 'Ukupno sa popustom:'}
                       </p>
                     </div>
                     <div className="df fd-column">
                       <p className="fw-500 txt-right">
-                        {ukupna_cijena_bez_pdv ? ukupna_cijena_bez_pdv : ''}{' '}
-                        {ukupna_cijena_bez_pdv ? (
+                        {ukupna_cijena_bez_pdv_popust
+                          ? formatirajCijenu(ukupna_cijena_bez_pdv_popust)
+                          : ''}
+                        {/* {' '}
+                        {ukupnoBezPdvIpopusta ? (
                           <span className="txt-up txt-light">Eur</span>
-                        ) : null}
+                        ) : null} */}
                       </p>
+
+                      {/* <p className="fw-500 txt-right">
+                        {ukupna_cijena_bez_pdv_popust
+                          ? formatirajCijenu(ukupna_cijena_sa_pdv)
+                          : ''}
+                       
+                      </p> */}
                       <p className="fw-500 txt-right">
-                        {ukupan_iznos_pdv ? ukupan_iznos_pdv : ''}{' '}
-                        {ukupan_iznos_pdv ? (
-                          <span className="txt-up txt-light">Eur</span>
+                        {Number(popust_ukupno)>0? (
+                          <span className="txt-up txt-light">-</span>
                         ) : (
                           ''
                         )}
-                      </p>
-                      <p className="fw-500 txt-right">
-                        {ukupna_cijena_sa_pdv ? ukupna_cijena_sa_pdv : ''}{' '}
-                        {ukupna_cijena_sa_pdv ? (
+                        {Number(popust_ukupno)>0 ? formatirajCijenu(popust_ukupno) : ''}
+                        {/* {' '}
+                        {ukupniPopust ? (
                           <span className="txt-up txt-light">Eur</span>
                         ) : (
                           ''
-                        )}
+                        )} */}
+                      </p>
+                      <p className="fw-500 txt-right">
+                        {ukupan_iznos_pdv>0
+                          ? formatirajCijenu(ukupan_iznos_pdv)
+                          : ''}
+                        {/* {' '}
+                        {ukupniPdv ? (
+                          <span className="txt-up txt-light">Eur</span>
+                        ) : (
+                          ''
+                        )} */}
+                      </p>
+                      <p className="fw-500 txt-right">
+                        {ukupna_cijena_sa_pdv_popust
+                          ? formatirajCijenu(ukupna_cijena_sa_pdv_popust)
+                          : ''}
+                        {/* {' '}
+                        {ukupnoSaPdvIpopusta ? (
+                          <span className="txt-up txt-light">Eur</span>
+                        ) : (
+                          ''
+                        )} */}
                       </p>
                     </div>
                   </div>

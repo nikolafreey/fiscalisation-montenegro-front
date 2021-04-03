@@ -1,6 +1,12 @@
 export function formatirajCijenu(cijena) {
   return cijena ? Number(cijena).toFixed(2).replace('.', ',') + ' €' : '0 €';
 }
+export function formatirajCijenuBezE(cijena) {
+  return cijena ? Number(cijena).toFixed(2).replace('.', ',') : '0';
+}
+export function deFormatirajCijenu(cijena) {
+  return cijena ? cijena.replace(',', '.').replace(' €','') :'0';
+}
 
 export function roundUp(cijena) {
   let cijenaInt = Math.ceil(cijena);
@@ -23,13 +29,33 @@ export function izracunajPojedinacnePoreze(stavke) {
   return porezi;
 }
 export function izracunajPojedinacnePorezeStavkeBezgotovinski(stavke) {
-  const porezi = {};
+ var  porezi = {
+  };
 
+   var pdvIznosUkupno={};
+   var pdvUkupnoUkupno={};
+   stavke.forEach((stavka) => {
+    pdvIznosUkupno[stavka.porez_id]=0;
+    pdvUkupnoUkupno[stavka.porez_id]=0;
+    })
+   
+  
   stavke.forEach((stavka) => {
+ 
     if (!stavka) return;
-    if (stavka) izracunajPojedinacnePorezeZaStavku(stavka, porezi);
+    if (stavka){ 
+      izracunajPojedinacnePorezeZaStavkuPreview(stavka, porezi);
+      pdvIznosUkupno[stavka.porez_id] +=  Number(stavka.kolicina) *
+      Number(stavka.pdv_iznos);
+      pdvUkupnoUkupno[stavka.porez_id] +=  Number(stavka.kolicina) *
+      Number(stavka.cijena_bez_pdv_popust);
+       porezi[stavka.porez_id].pdvIznosUkupno = pdvIznosUkupno[stavka.porez_id];
+       porezi[stavka.porez_id].pdvUkupnoUkupno =pdvUkupnoUkupno[stavka.porez_id];
+     
+    
+    };
   });
-
+ console.log('poreziii=',porezi,pdvIznosUkupno,pdvUkupnoUkupno)
   return porezi;
 }
 
@@ -132,10 +158,10 @@ export function izracunajPojedinacnePorezeZaStavku(stavka, porezi) {
     kolicina = stavka.kolicina;
   }
   if (!stavka.hasOwnProperty('kolicina')) {
-    kolicina = 1;
+  kolicina = 1;
   }
 
-  const porezStavke = stavka.porez || stavka.roba.cijene_roba[0].porez;
+  const porezStavke = stavka.porez || stavka.roba.cijene_roba[0].porez||0;
   const cijena = getCijenaStavkeSaPdvPopustom(stavka);
 
   if (!porezi[porezStavke.id]) {
@@ -160,6 +186,46 @@ export function izracunajPojedinacnePorezeZaStavku(stavka, porezi) {
         Number(porezStavke.stopa));
     porezi[porezStavke.id].ukupno += Number(kolicina) * Number(cijena);
   }
+}
+export function izracunajPojedinacnePorezeZaStavkuPreview(stavka, porezi,broj) {
+  
+ 
+console.log('u pozivu',stavka.kolicina,porezi)
+  //const porezStavke=0 ;
+  //const cijena = getCijenaStavkeSaPdvPopustom(stavka);
+
+  
+  porezi[stavka.porez_id] = {
+    ukupno: 0,
+    pdvIznos: 0,
+    pdvIznosUkupno:0,
+    pdvUkupnoUkupno:0,
+  
+  };
+  if (broj === 0) {
+    // for (let i = 0; i < 5; i++) {
+    //   porezi[i].pdvIznosUkupno=0;
+    // porezi[i].pdvUkupnoUkupno=0;
+      
+    //}
+   
+  }
+  //porezi[stavka.porez_id].pdvIznosUkupno=0;
+    console.log('u pozivu porezi')
+  
+    porezi[stavka.porez_id].pdvIznos +=
+     Number(stavka.kolicina) *
+     Number(stavka.pdv_iznos);
+    porezi[stavka.porez_id].ukupno +=
+     Number(stavka.kolicina) *
+     Number(stavka.cijena_bez_pdv_popust);
+
+    
+    //  porezi[stavka.porez_id].pdvIznosUkupno += Number(porezi[stavka.porez_id].pdvIznos);
+    //  porezi[stavka.porez_id].pdvUkupnoUkupno += Number(porezi[stavka.porez_id].ukupno);
+     console.log('u pozivu porezi', porezi[stavka.porez_id].pdvUkupnoUkupno)
+   // porezi[stavka.porez_id].ukupno +=Number(porezi[stavka.porez_id]);
+  
 }
 
 export function izracunajUkupnuCijenuStavki(stavke, bezDefaultPopusta = false) {
