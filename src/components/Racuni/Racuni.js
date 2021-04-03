@@ -6,6 +6,7 @@ import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
 import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import RacuniTable from './RacuniTable';
+import Modal from '../../components/shared/forms/Modal';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
 import DatePicker from 'react-datepicker';
@@ -107,6 +108,8 @@ const Racuni = () => {
     handleSearch(searchParams);
   };
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <div className="title jc-sb mob-fd-column mob-ai-start">
@@ -125,6 +128,15 @@ const Racuni = () => {
               Novi bezgotovinski račun
             </button>
           </Link> */}
+          <Modal showModal={showModal} />
+          {!showModal && (
+            <button
+              className="btn btn__primary mob-mb-20"
+              onClick={() => setShowModal(true)}
+            >
+              Registracija Depozita
+            </button>
+          )}
           <button className="btn btn__primary mob-mb-20">
             <ButtonPlusSvg />
             Novi račun
