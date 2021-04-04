@@ -94,12 +94,12 @@ const BezgotovinskiPreview = () => {
     if (Object.hasOwnProperty.call(stavke, i)) {
       const stavka = stavke[i];
       ukupnoBezPdvIpopusta +=
-        Number(stavka.jedinicna_cijena_bez_pdv) * Number(stavka.kolicina);
-      ukupnoBezPdv += Number(stavka.cijena_sa_pdv) * Number(stavka.kolicina);
+       Math.round(Number(stavka.jedinicna_cijena_bez_pdv) * Number(stavka.kolicina)*100)/100;
+      ukupnoBezPdv += Math.round(Number(stavka.cijena_sa_pdv) * Number(stavka.kolicina)*100)/100;
       ukupnoSaPdvIpopusta +=
-        Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina);
-      ukupniPdv += Number(stavka.pdv_iznos);
-      ukupniPopust += Number(stavka.popust_iznos);
+      Math.round(Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina)*100)/100;
+      ukupniPdv += Math.round(Number(stavka.pdv_iznos)*100)/100;
+      ukupniPopust += Math.round(Number(stavka.popust_iznos)*100)/100;
     }
   }
 
