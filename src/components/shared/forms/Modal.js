@@ -33,10 +33,12 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
 
   useEffect(() => {
     depozitWithdrawService.getDepozitToday().then((data) => {
-      console.log('getDepozitToday', data.data[0].iznos_depozit);
-      setDepozitLoaded(data.data[0].iznos_depozit);
-      setDepozit(data.data[0].iznos_depozit);
-      toast.success('Depozit za današnji dan je već dodat.', toastSettings);
+      console.log('getDepozitToday', data);
+      if (data.data.length !== 0) {
+        setDepozitLoaded(data?.data[0]?.iznos_depozit);
+        setDepozit(data?.data[0]?.iznos_depozit);
+        toast.success('Depozit za današnji dan je već dodat.', toastSettings);
+      }
     });
   }, []);
 
