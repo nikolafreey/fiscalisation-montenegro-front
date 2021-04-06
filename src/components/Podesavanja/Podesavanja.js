@@ -69,6 +69,17 @@ const Podesavanja = () => {
       });
   };
 
+  const handleUkloniKorisnika = (user) => {
+    podesavanjaService
+      .deleteKorisnika(user.id)
+      .then((data) =>
+        toast.error(
+          'Obrisan korisnik pod nazivom: ' + user?.ime + ' ' + user?.prezime,
+          toastSettings
+        )
+      );
+  };
+
   const handleKorisnik = (e) => {
     e.preventDefault();
     podesavanjaService
@@ -624,7 +635,11 @@ const Podesavanja = () => {
                               {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
                             </p>
                           </div>
-                          <button class="btn btn__link danger mob-ml-10">
+                          <button
+                            type="button"
+                            class="btn btn__link danger mob-ml-10"
+                            onClick={() => handleUkloniKorisnika(user)}
+                          >
                             Ukloni
                           </button>
                         </div>

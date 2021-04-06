@@ -50,8 +50,10 @@ const NoviRacunPreview = () => {
     console.log('noviRacun.robe.length', noviRacun.robe);
     console.log('noviRacun.usluge.length', noviRacun.usluge);
     if (
-      (noviRacun.robe.length === 0 || noviRacun.robe.length == undefined) &&
-      (noviRacun.usluge.length === 0 || noviRacun.usluge.length == undefined)
+      // (noviRacun.robe.length === 0 || noviRacun.robe.length == undefined) &&
+      // (noviRacun.usluge.length === 0 || noviRacun.usluge.length == undefined)
+      noviRacun.robe.length === 0 &&
+      noviRacun.usluge.length === 0
     ) {
       toast.error('Račun mora imati bar jednu stavku!', toastSettings);
       return;

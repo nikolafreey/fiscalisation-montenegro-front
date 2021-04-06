@@ -20,6 +20,7 @@ import 'moment/locale/me';
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
+import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -109,6 +110,16 @@ const Racuni = () => {
   };
 
   const [showModal, setShowModal] = useState(false);
+  const [depozitLoaded, setDepozitLoaded] = useState(false);
+
+  useEffect(() => {
+    depozitWithdrawService.getDepozitToday().then((data) => {
+      console.log('getDepozitToday', data);
+      if (data.data.length !== 0) {
+        setDepozitLoaded(true);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -129,7 +140,7 @@ const Racuni = () => {
             </button>
           </Link> */}
           <Modal showModal={showModal} />
-          {!showModal && (
+          {!depozitLoaded && (
             <button
               className="btn btn__primary mob-mb-20"
               onClick={() => setShowModal(true)}
