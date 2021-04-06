@@ -35,9 +35,10 @@ const Podesavanja = () => {
   const [imePrezime, setImePrezime] = useState();
   const [email, setEmail] = useState();
   const [tipKorisnika, setTipKorisnika] = useState('default');
+  const [slanjeRacunaKupcu, setSlanjeRacunaKupcu] = useState(false);
 
   const godina = new Date().getFullYear();
-  const [redniBrojRacuna, setRedniBrojRacuna] = useState('1/' + godina);
+  const [redniBrojRacuna, setRedniBrojRacuna] = useState(1);
   const [softwareKod, setSoftwareKod] = useState();
   const [enu, setEnu] = useState();
   const [kodPj, setKodPj] = useState();
@@ -50,6 +51,7 @@ const Podesavanja = () => {
         puno_ime: imePrezime,
         email,
         uloga: tipKorisnika,
+        slanjeKupcu: slanjeRacunaKupcu,
         preduzece_id: user?.preduzeca[0]?.id,
         pecat: digitalniPecatFile,
         sertifikat: digitalniPotpisFile,
@@ -184,7 +186,14 @@ const Podesavanja = () => {
                   </div>
                   <div class="col-md-8 mt-25">
                     <div class="content__logo">
-                      <img src={user?.preduzeca[0]?.logotip} alt="logo" />
+                      <img
+                        src={
+                          user?.preduzeca[0].length !== 0
+                            ? user?.preduzeca[0]?.logotip
+                            : noLogo
+                        }
+                        alt="logo"
+                      />
                     </div>
                     <p class="w-50">
                       {user?.preduzeca[0]?.kratki_naziv +
@@ -288,6 +297,23 @@ const Podesavanja = () => {
                         value={redniBrojRacuna}
                         disabled={isEditable}
                       />
+                    </div>
+                    <div class="form__group mob-w-100 mb-30">
+                      <label class="form__label" for="">
+                        Slanje računa kupcu
+                      </label>
+                      <div class="form__checkbox-group">
+                        <input
+                          class="form__checkbox"
+                          type="checkbox"
+                          name="whatsApp"
+                          id="whatsAppCI"
+                          onChange={(e) => setSlanjeRacunaKupcu(e.target.value)}
+                        />
+                        <label class="form__checkbox-label" for="whatsAppCI">
+                          Pošalji račun kupcu odmah pri kreiranju
+                        </label>
+                      </div>
                     </div>
                     <div class="mb-10">
                       <p class="mb-20">
@@ -792,7 +818,7 @@ const Podesavanja = () => {
                   </div>
                 </div>
                 <hr />
-                {/* <div class="container">
+                <div class="container">
                   <div class="row">
                     <div class="col-md-4">
                       <h2 class="heading-secondary">Boje</h2>
@@ -872,7 +898,7 @@ const Podesavanja = () => {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
               <div class="form__footer">
                 <button class="btn btn__dark btn__md" onClick={handleSubmit}>
