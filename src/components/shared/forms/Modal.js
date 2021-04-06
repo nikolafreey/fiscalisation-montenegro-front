@@ -37,7 +37,7 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
       if (data.data.length !== 0) {
         setDepozitLoaded(data?.data[0]?.iznos_depozit);
         setDepozit(data?.data[0]?.iznos_depozit);
-        toast.success('Depozit za današnji dan je već dodat.', toastSettings);
+        toast.info('Depozit za današnji dan je već dodat.', toastSettings);
       }
     });
   }, []);

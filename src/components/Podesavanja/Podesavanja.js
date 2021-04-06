@@ -6,21 +6,71 @@ import invoicePicture from '../../assets/img/invoice-1.jpg';
 import DropDownStatic from '../shared/forms/DropDownStatic';
 import { podesavanjaService } from '../../services/PodesavanjaService';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const Podesavanja = () => {
   const user = useSelector(userSelector());
 
   const [korisniciVisible, setKorisniciVisible] = useState(false);
+  const [isEditable, setIsEditable] = useState(true);
+
+  const [digitalniPecatFile, setDigitalniPecatFile] = useState();
+  const [digitalniPotpisFile, setDigitalniPotpisFile] = useState();
+  const [sifraDigitalniPecat, setSifraDigitalniPecat] = useState();
+  const [sifraDigitalniPotpis, setSifraDigitalniPotpis] = useState();
 
   const [imePrezime, setImePrezime] = useState();
   const [email, setEmail] = useState();
   const [tipKorisnika, setTipKorisnika] = useState('default');
 
+  const godina = new Date().getFullYear();
+  const [redniBrojRacuna, setRedniBrojRacuna] = useState('1/' + godina);
+  const [softwareKod, setSoftwareKod] = useState();
+  const [enu, setEnu] = useState();
+  const [kodPj, setKodPj] = useState();
+  const [kodOp, setKodOp] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    podesavanjaService
+      .storePreduzece({
+        puno_ime: imePrezime,
+        email,
+        uloga: tipKorisnika,
+        preduzece_id: user?.preduzeca[0]?.id,
+        pecat: digitalniPecatFile,
+        sertifikat: digitalniPotpisFile,
+        pecatSifra: sifraDigitalniPecat,
+        sertifikatSifra: sifraDigitalniPotpis,
+        enu_kod: enu,
+        software_kod: softwareKod,
+        kod_operatera: kodOp,
+      })
+      .then((data) => console.log('response data:', data))
+      .catch((error) => {
+        console.error('error', error);
+        toast.error(
+          'Greška prilikom unosa podešavanja: ' + error,
+          toastSettings
+        );
+      });
+  };
+
   const handleKorisnik = (e) => {
     e.preventDefault();
-    console.log('imePrezime', imePrezime);
-    console.log('email', email);
-    console.log('tipKorisnika', tipKorisnika);
-
     podesavanjaService
       .storePreduzece({
         puno_ime: imePrezime,
@@ -28,7 +78,14 @@ const Podesavanja = () => {
         uloga: tipKorisnika,
         preduzece_id: user?.preduzeca[0]?.id,
       })
-      .then((data) => console.log('response data:', data));
+      .then((data) => console.log('response data:', data))
+      .catch((error) => {
+        console.error('error', error);
+        toast.error(
+          'Greška prilikom unosa podešavanja: ' + error,
+          toastSettings
+        );
+      });
   };
 
   const TIPOVI_KORISNIKA = [
@@ -73,7 +130,20 @@ const Podesavanja = () => {
       <div className="screen-content">
         <div class="main-content__box">
           <div class="content">
-            <button class="btn btn__dark content__btn">
+            <button
+              class="btn btn__dark content__btn"
+              onClick={() => {
+                if (!isEditable) {
+                  toast.info('Mod za pregled podešavanjana.', toastSettings);
+                } else {
+                  toast.info(
+                    'Mod za izmjene podešavanja aktivan.',
+                    toastSettings
+                  );
+                }
+                setIsEditable(!isEditable);
+              }}
+            >
               <svg
                 width="24"
                 height="24"
@@ -203,6 +273,9 @@ const Podesavanja = () => {
                         class="form__input"
                         id="redni_broj_racuna"
                         name="redni_broj_racuna"
+                        onChange={(e) => setRedniBrojRacuna(e.target.value)}
+                        value={redniBrojRacuna}
+                        disabled={isEditable}
                       />
                     </div>
                     <div class="mb-10">
@@ -293,7 +366,15 @@ const Podesavanja = () => {
                             </svg>
                           </a>
                         </div>
-                        <input type="text" class="form__input" id="enu" />
+                        <input
+                          type="text"
+                          class="form__input"
+                          id="enu"
+                          name="enu"
+                          onChange={(e) => setEnu(e.target.value)}
+                          value={enu}
+                          disabled={isEditable}
+                        />
                       </div>
                       <div class="form__group w-48 mob-w-100">
                         <div class="df jc-sb">
@@ -326,8 +407,11 @@ const Podesavanja = () => {
                         <input
                           type="text"
                           class="form__input"
-                          name="software"
-                          id="software"
+                          name="software_kod"
+                          id="software_kod"
+                          onChange={(e) => setSoftwareKod(e.target.value)}
+                          value={softwareKod}
+                          disabled={isEditable}
                         />
                       </div>
                     </div>
@@ -365,6 +449,9 @@ const Podesavanja = () => {
                           class="form__input"
                           name="kodpj"
                           id="kodpj"
+                          onChange={(e) => setKodPj(e.target.value)}
+                          value={kodPj}
+                          disabled={isEditable}
                         />
                       </div>
                       <div class="form__group w-48 mob-w-100">
@@ -400,6 +487,9 @@ const Podesavanja = () => {
                           class="form__input"
                           name="kodop"
                           id="kodop"
+                          onChange={(e) => setKodOp(e.target.value)}
+                          value={kodOp}
+                          disabled={isEditable}
                         />
                       </div>
                     </div>
@@ -450,20 +540,28 @@ const Podesavanja = () => {
                             <input
                               type="file"
                               class="form__input"
-                              value=""
                               id="d-signature"
+                              onChange={(e) =>
+                                setDigitalniPotpisFile(e.target.files[0])
+                              }
+                              disabled={isEditable}
                             />
                           </span>
                         </div>
                         <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="kodpj">
+                          <label class="form__label" for="sifraDigitalniPotpis">
                             Šifra za digitalni potpis
                           </label>
                           <input
                             type="text"
                             class="form__input"
-                            name="kodpj"
-                            id="kodpj"
+                            name="sifraDigitalniPotpis"
+                            id="sifraDigitalniPotpis"
+                            onChange={(e) =>
+                              setSifraDigitalniPotpis(e.target.value)
+                            }
+                            value={sifraDigitalniPotpis}
+                            disabled={isEditable}
                           />
                         </div>
                       </div>
@@ -476,20 +574,28 @@ const Podesavanja = () => {
                             <input
                               type="file"
                               class="form__input"
-                              value=""
                               id="d-stamp"
+                              onChange={(e) =>
+                                setDigitalniPecatFile(e.target.files[0])
+                              }
+                              disabled={isEditable}
                             />
                           </span>
                         </div>
                         <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="kodop">
+                          <label class="form__label" for="sifraDigitalniPecat">
                             Šifra za digitalni pečat
                           </label>
                           <input
                             type="text"
                             class="form__input"
-                            name="kodop"
-                            id="kodop"
+                            name="sifraDigitalniPecat"
+                            id="sifraDigitalniPecat"
+                            onChange={(e) =>
+                              setSifraDigitalniPecat(e.target.value)
+                            }
+                            value={sifraDigitalniPecat}
+                            disabled={isEditable}
                           />
                         </div>
                       </div>
@@ -562,6 +668,7 @@ const Podesavanja = () => {
                             name="user_name"
                             onChange={(e) => setImePrezime(e.target.value)}
                             value={imePrezime}
+                            disabled={isEditable}
                           />
                         </div>
                         <div class="form__group mob-w-100">
@@ -575,6 +682,7 @@ const Podesavanja = () => {
                             name="user_email"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
+                            disabled={isEditable}
                           />
                         </div>
                         <div class="form__group mob-w-100">
@@ -590,6 +698,7 @@ const Podesavanja = () => {
                               setTipKorisnika(option.target.value);
                             }}
                             value={tipKorisnika}
+                            disabled={isEditable}
                           >
                             <option value="">Knjigovođa</option>
                             <option value="default" defaultChecked>
@@ -751,7 +860,9 @@ const Podesavanja = () => {
                 </div> */}
               </div>
               <div class="form__footer">
-                <button class="btn btn__dark btn__md">Sačuvaj</button>
+                <button class="btn btn__dark btn__md" onClick={handleSubmit}>
+                  Sačuvaj
+                </button>
                 <button class="btn btn__link ml-m">Nazad</button>
               </div>
             </form>
