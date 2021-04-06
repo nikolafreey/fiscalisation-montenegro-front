@@ -3,7 +3,7 @@ import React from 'react';
 import TextError from './TextError';
 
 const RadioButton = (props) => {
-  const { label, name, options, onChange, ...rest } = props;
+  const { label, name, options, onChange, defaultValue, ...rest } = props;
   return (
     <div className="form-control">
       <label>{label}</label>
@@ -20,14 +20,13 @@ const RadioButton = (props) => {
                     type="radio"
                     id={option.value}
                     {...field}
-                    value={option.value}
+                    value={option.value || defaultValue.value}
                     // checked={field.value === option.value}
                     onChange={onChange}
                   />
                   <label className="form__radio-label" htmlFor={option.value}>
                     <span className="form__radio-button"></span>
                     <span className="mob-ml-10">{option.key}</span>
-                    
                   </label>
                 </div>
               </React.Fragment>

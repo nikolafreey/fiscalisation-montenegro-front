@@ -9,6 +9,8 @@ import UlazniRacuniTableRow from './UlazniRacuniTableRow';
 const UlazniRacuniTable = ({ ulazniRacuni }) => {
   const dispatch = useDispatch();
 
+  console.log('ulazniRacuni', ulazniRacuni);
+
   return (
     <>
       <div className="table-wrapper">
@@ -45,10 +47,19 @@ const UlazniRacuniTable = ({ ulazniRacuni }) => {
             </tr>
           </thead>
           <tbody>
-            <List
+            {/* <List
               data={ulazniRacuni.data || []}
               renderItem={UlazniRacuniTableRow}
-            />
+            /> */}
+            {ulazniRacuni
+              ? ulazniRacuni.data.map((item) => (
+                  <UlazniRacuniTableRow
+                    key={item.id}
+                    item={item}
+                    ulazniRacuni={ulazniRacuni}
+                  />
+                ))
+              : []}
           </tbody>
         </table>
       </div>

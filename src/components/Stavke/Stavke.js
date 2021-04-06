@@ -15,6 +15,10 @@ import { USLUGE, STAVKE } from '../../constants/routes';
 import { debounce } from 'lodash';
 import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 
+import GridLoader from 'react-spinners/GridLoader';
+import PropagateLoader from 'react-spinners/PropagateLoader';
+import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
+
 let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
 
@@ -23,17 +27,23 @@ const Stavke = () => {
 
   const [filter, setFilter] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const robe = useSelector(stavkeRobeSelector());
   const usluge = useSelector(stavkeUslugeSelector());
   const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
 
+  console.log('robe', robe);
+  console.log('usluge', usluge);
+
   // let robeAtributi = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
   // const robeAtributiSet = new Set(robeAtributi);
   let robeAtributi = Array.from(
-    new Set(robe && robe.data.map((roba) => roba.atribut_robe.naziv))
+    new Set(robe && robe?.data.map((roba) => roba?.atribut_robe?.naziv))
   ).map((naziv) => {
-    return robe.data.find((a) => a.atribut_robe.naziv === naziv);
+    return robe?.data.find((a) => a?.atribut_robe?.naziv === naziv);
   });
+  console.log('robeAtributi', robeAtributi);
 
   let uslugaGrupe = Array.from(
     new Set(usluge && usluge.data.map((usluga) => usluga.grupa.naziv))
@@ -129,7 +139,7 @@ const Stavke = () => {
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
-                  placeholder="Pretraži Usluge"
+                  placeholder="Pretraži Usluge i Robe"
                   className="search__input"
                   value={search}
                   onChange={handleChange}
@@ -157,30 +167,46 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robeAtributi.map((robeKat) => (
-                <div
-                  onClick={() => handleAtributChange(robeKat.atribut_robe.id)}
-                  className={
-                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
-                  }
-                >
-                  {robeKat.atribut_robe.naziv}
-                </div>
-              ))}
-              {uslugaGrupe.map((uslugaGrupa) => (
-                <div
-                  onClick={() => handleGrupaChange(uslugaGrupa.grupa.id)}
-                  className={
-                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
-                  }
-                >
-                  {uslugaGrupa.grupa.naziv}
-                </div>
-              ))}
+              {robe.data.length === 0 &&
+              usluge.data.length === 0 &&
+              filter?.length === 0 ? (
+                <PropagateLoader css={spinnerStyleGrid} size={15} />
+              ) : (
+                <>
+                  {robeAtributi.map((robeKat) => (
+                    <div
+                      onClick={() =>
+                        handleAtributChange(robeKat?.atribut_robe?.id)
+                      }
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {robeKat?.atribut_robe?.naziv}
+                    </div>
+                  ))}
+                  {uslugaGrupe.map((uslugaGrupa) => (
+                    <div
+                      onClick={() => handleGrupaChange(uslugaGrupa?.grupa?.id)}
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {uslugaGrupa?.grupa?.naziv}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
           <div>
-            <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            {robe.data.length === 0 &&
+            usluge.data.length === 0 &&
+            filter?.length === 0 ? (
+              <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : (
+              <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            )}
           </div>
         </div>
       </div>

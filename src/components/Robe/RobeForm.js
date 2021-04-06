@@ -34,6 +34,7 @@ import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 
 import { STAVKE, PREDUZECA } from '../../constants/routes';
 import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
+import { RobeSchema } from '../../validation/robe';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -102,6 +103,7 @@ const RobeForm = () => {
             Number(values.ukupna_cijena)
           ),
           status: values.status === 'Aktivan' ? true : false,
+          jedinica_mjere_id: 1,
           ukupna_cijena:
             values.pdv_ukljucen === 0
               ? Number(values.ukupna_cijena) +
@@ -153,7 +155,7 @@ const RobeForm = () => {
         ...roba,
       }}
       onSubmit={handleSubmit}
-      // validationSchema={PreduzecaSchema}
+      validationSchema={RobeSchema}
       enableReinitialize
     >
       {({ values, dirty, isSubmitting }) => (
@@ -229,7 +231,7 @@ const RobeForm = () => {
                           <Textarea
                             control="text"
                             name="opis"
-                            label={$t('robe.opis')}
+                            label={$t('robe.opis') + ' - Nije Obavezno'}
                             cols="30"
                             rows="5"
                             placeholder=""
@@ -257,6 +259,7 @@ const RobeForm = () => {
                               loadOptions={
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
+                              defaultValue={{ value: 0, label: 'kom' }}
                               placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>
@@ -270,7 +273,7 @@ const RobeForm = () => {
                       <div className="col-md-4">
                         <h2 className="heading-secondary">
                           Kategorija
-                          <span className="span-light"> - Opciono</span>
+                          <span className="span-light"></span>
                         </h2>
                         <p className="txt-light mob-mb-20">
                           Izaberite kategorije i podkategorije kojima
@@ -361,7 +364,7 @@ const RobeForm = () => {
                               value="Aktivan"
                               id="Aktivan"
                               name="status"
-                              checked={values.status}
+                              // checked={values.status}
                             />
                             <label
                               htmlFor="Aktivan"

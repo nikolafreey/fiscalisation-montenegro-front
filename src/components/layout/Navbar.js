@@ -6,12 +6,12 @@ const Navbar = () => {
     <div className="header">
       <div class="logo tshow">računi</div>
       <form action="#" className="search df ai-c">
-        <button className="search__button"></button>
+        {/* <button className="search__button"></button>
         <input
           type="text"
           className="search__input"
           placeholder="Pretraga  (kliknite ovdje ili pritisnite na tastaturi “/”)"
-        />
+        /> */}
       </form>
       <UserControls />
     </div>

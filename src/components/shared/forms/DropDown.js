@@ -19,6 +19,8 @@ const DropDown = ({
   const { error } = meta;
   const { setValue } = helpers;
 
+  const [blurred, setBlurred] = useState(false);
+
   return (
     <div>
       <Label htmlFor={props.id || props.name} className="form__label">
@@ -42,10 +44,11 @@ const DropDown = ({
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}
         isSearchable
+        onBlur={() => setBlurred(true)}
         {...props}
       />
-
-      {!!error && <ErrorMessage>{error}</ErrorMessage>}
+      {blurred && meta.error ? <div className="error">{meta.error}</div> : null}
+      {/* {!!error && <ErrorMessage>{error}</ErrorMessage>} */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { all, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest, takeEvery } from 'redux-saga/effects';
 import {
   DELETE_FIZICKO_LICE,
   GET_FIZICKA_LICA,
@@ -216,7 +216,7 @@ export default function* rootSaga() {
     takeLatest(GET_ROBA, robaGet),
     takeLatest(GET_ROBE, robeGet),
     takeLatest(UPDATE_ROBE, robaUpdate),
-    takeLatest(DELETE_ROBE, robeDelete),
+    takeEvery(DELETE_ROBE, robeDelete),
 
     takeLatest(STORE_PREDUZECE, preduzeceStore),
     takeLatest(GET_PREDUZECE, preduzeceGet),
@@ -227,7 +227,7 @@ export default function* rootSaga() {
     takeLatest(STORE_USLUGA, uslugaStore),
     takeLatest(GET_USLUGA, uslugaGet),
     takeLatest(GET_USLUGE, uslugeGet),
-    takeLatest(DELETE_USLUGA, uslugaDelete),
+    takeEvery(DELETE_USLUGA, uslugaDelete),
     takeLatest(UPDATE_USLUGA, uslugaUpdate),
     takeLatest(GET_POREZI, poreziGet),
 

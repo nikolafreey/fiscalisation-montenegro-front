@@ -135,15 +135,15 @@ export function izracunajPojedinacnePorezeZaStavku(stavka, porezi) {
     kolicina = 1;
   }
 
-  const porezStavke = stavka.porez || stavka.roba.cijene_roba[0].porez;
+  const porezStavke = stavka?.porez || stavka.roba?.cijene_roba[0].porez;
   const cijena = getCijenaStavkeSaPdvPopustom(stavka);
 
-  if (!porezi[porezStavke.id]) {
-    porezi[porezStavke.id] = {
+  if (!porezi[porezStavke?.id]) {
+    porezi[porezStavke?.id] = {
       ukupno: 0,
       pdvIznos: 0,
-      stopa: porezStavke.stopa,
-      naziv: porezStavke.naziv,
+      stopa: porezStavke?.stopa,
+      naziv: porezStavke?.naziv,
     };
   }
   //
