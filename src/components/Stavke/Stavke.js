@@ -15,7 +15,11 @@ import { USLUGE, STAVKE } from '../../constants/routes';
 import { debounce } from 'lodash';
 import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 
-const filteri = {};
+import GridLoader from 'react-spinners/GridLoader';
+import PropagateLoader from 'react-spinners/PropagateLoader';
+import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
+
+let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
 
 const Stavke = () => {
@@ -23,36 +27,73 @@ const Stavke = () => {
 
   const [filter, setFilter] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const robe = useSelector(stavkeRobeSelector());
   const usluge = useSelector(stavkeUslugeSelector());
   const odabraniAtributGrupa = useSelector(odabraniAtributGrupaSelector());
 
-  let robeKategorije = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
-  const robeKategorijeSet = new Set(robeKategorije);
-  robeKategorije = Array.from(robeKategorijeSet);
-  console.log('robeKategorije', robeKategorije);
+  console.log('robe', robe);
+  console.log('usluge', usluge);
+
+  // let robeAtributi = robe && robe.data.map((roba) => roba.atribut_robe.naziv);
+  // const robeAtributiSet = new Set(robeAtributi);
+  let robeAtributi = Array.from(
+    new Set(robe && robe?.data.map((roba) => roba?.atribut_robe?.naziv))
+  ).map((naziv) => {
+    return robe?.data.find((a) => a?.atribut_robe?.naziv === naziv);
+  });
+  console.log('robeAtributi', robeAtributi);
+
+  let uslugaGrupe = Array.from(
+    new Set(usluge && usluge.data.map((usluga) => usluga.grupa.naziv))
+  ).map((naziv) => {
+    return usluge?.data?.find((u) => u.grupa.naziv === naziv);
+  });
+  console.log('uslugaGrupe', uslugaGrupe);
+
+  // let uslugaGrupe = usluge && usluge.data.map((usluga) => usluga.grupa.naziv);
+  // const uslugaGrupeSet = new Set(uslugaGrupe);
+  // uslugaGrupe = Array.from(uslugaGrupeSet);
 
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     dispatch(getStavke());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (!odabraniAtributGrupa) {
-      filteri.grupa_id = undefined;
-      filteri.tip_atributa_id = undefined;
-    }
-    if (odabraniAtributGrupa?.tip_atributa_id) {
-      filteri.grupa_id = undefined;
-      filteri.tip_atributa_id = odabraniAtributGrupa.tip_atributa_id;
-    }
-    if (odabraniAtributGrupa?.grupa_id) {
-      filteri.tip_atributa_id = undefined;
-      filteri.grupa_id = odabraniAtributGrupa.grupa_id;
-    }
-    dispatch(getStavke(filteri));
-  }, [odabraniAtributGrupa]);
+  // useEffect(() => {
+  //   if (!odabraniAtributGrupa) {
+  //     filteri.grupa_id = undefined;
+  //     filteri.tip_atributa_id = undefined;
+  //   }
+  //   if (odabraniAtributGrupa?.tip_atributa_id) {
+  //     filteri.grupa_id = undefined;
+  //     filteri.tip_atributa_id = odabraniAtributGrupa.tip_atributa_id;
+  //   }
+  //   if (odabraniAtributGrupa?.grupa_id) {
+  //     filteri.tip_atributa_id = undefined;
+  //     filteri.grupa_id = odabraniAtributGrupa.grupa_id;
+  //   }
+  //   dispatch(getStavke(filteri));
+  // }, [odabraniAtributGrupa]);
+
+  const resetFilters = () => {
+    filteri = {};
+    handleSearch(filteri);
+  };
+
+  const handleAtributChange = (event) => {
+    console.log('event', event);
+    filteri.atribut_id = event;
+    handleSearch(filteri);
+  };
+
+  const handleGrupaChange = (event) => {
+    console.log('event', event);
+    filteri.grupa_id = event;
+    handleSearch(filteri);
+  };
 
   const handleSearch = () => {
     dispatch(getStavke(filteri));
@@ -74,7 +115,7 @@ const Stavke = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Stavke</h1>
         <div className="df w-50 jc-end">
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Nova stavka
             <div className="drop-down" id="ddl">
@@ -98,14 +139,14 @@ const Stavke = () => {
                 <button className="search__button" type="submit"></button>
                 <input
                   name="search"
-                  placeholder="Pretraži Usluge"
+                  placeholder="Pretraži Usluge i Robe"
                   className="search__input"
                   value={search}
                   onChange={handleChange}
                 />
               </form>
               <select
-                className="btn btn__dark btn__lg ml-xl"
+                className="btn btn__primary btn__lg ml-xl"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
               >
@@ -119,25 +160,53 @@ const Stavke = () => {
             {/* <NoviRacunFilteri /> */}
             <div className="filter">
               <div
+                onClick={() => resetFilters()}
                 className={
                   'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
                 }
               >
                 Sve
               </div>
-              {robeKategorije.map((robeKat) => (
-                <div
-                  className={
-                    'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
-                  }
-                >
-                  {robeKat}
-                </div>
-              ))}
+              {robe.data.length === 0 &&
+              usluge.data.length === 0 &&
+              filter?.length === 0 ? (
+                <PropagateLoader css={spinnerStyleGrid} size={15} />
+              ) : (
+                <>
+                  {robeAtributi.map((robeKat) => (
+                    <div
+                      onClick={() =>
+                        handleAtributChange(robeKat?.atribut_robe?.id)
+                      }
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {robeKat?.atribut_robe?.naziv}
+                    </div>
+                  ))}
+                  {uslugaGrupe.map((uslugaGrupa) => (
+                    <div
+                      onClick={() => handleGrupaChange(uslugaGrupa?.grupa?.id)}
+                      className={
+                        'filter__tab' + (!odabraniAtributGrupa ? ' active' : '')
+                      }
+                    >
+                      {uslugaGrupa?.grupa?.naziv}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
           <div>
-            <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            {robe.data.length === 0 &&
+            usluge.data.length === 0 &&
+            filter?.length === 0 ? (
+              <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : (
+              <StavkeTable robe={robe} usluge={usluge} filter={filter} />
+            )}
           </div>
         </div>
       </div>

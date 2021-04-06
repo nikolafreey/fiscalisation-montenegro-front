@@ -100,7 +100,7 @@ const ChooseAtribut = () => {
     <>
       <div className="col-md-4">
         <h2 className="heading-secondary">
-          Atributi <span className="span-light"> - Opciono</span>
+          Atributi <span className="span-light"></span>
         </h2>
         <p className="txt-light">
           Consequat eget volutpat enim libero nulla neque ultrices. Sed
@@ -165,7 +165,10 @@ const ChooseAtribut = () => {
                 />
               </div>
             ) : (
-              <Link className="link ml-10 mb-10" onClick={() => setFieldTipVisible(true)}>
+              <Link
+                className="link ml-10 mb-10"
+                onClick={() => setFieldTipVisible(true)}
+              >
                 + Kreiraj tip atributa
               </Link>
             )}
@@ -196,7 +199,10 @@ const ChooseAtribut = () => {
                             handleChangeAtribut(event.target.checked, atribut)
                           }
                         />
-                        <label className="form__checkbox-label" htmlFor={atribut.naziv}>
+                        <label
+                          className="form__checkbox-label"
+                          htmlFor={atribut.naziv}
+                        >
                           {atribut.naziv}
                         </label>
                       </li>
@@ -216,7 +222,10 @@ const ChooseAtribut = () => {
                             handleChangeAtribut(event.target.checked, atribut)
                           }
                         />
-                        <label className="form__checkbox-label" htmlFor={atribut.naziv}>
+                        <label
+                          className="form__checkbox-label"
+                          htmlFor={atribut.naziv}
+                        >
                           {atribut.naziv}
                         </label>
                       </li>
@@ -235,7 +244,10 @@ const ChooseAtribut = () => {
                 />
               </div>
             ) : (
-              <Link className="link ml-10" onClick={() => setFieldVisible(true)}>
+              <Link
+                className="link ml-10"
+                onClick={() => setFieldVisible(true)}
+              >
                 + Kreiraj atribut
               </Link>
             )}

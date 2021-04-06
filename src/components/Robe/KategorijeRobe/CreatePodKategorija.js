@@ -49,7 +49,7 @@ const CreatePodKategorija = () => {
             value={kategorija}
             onChange={setKategorija}
           />
-          <button className="btn btn__dark jc-center" onClick={handleSubmit}>
+          <button className="btn btn__primary jc-center" onClick={handleSubmit}>
             Kreiraj podkategoriju
           </button>
         </>

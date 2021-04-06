@@ -139,7 +139,7 @@ const BezgotovinskiPreview = () => {
               </svg>
               Štampaj
             </button>
-            <button className="btn btn__dark">
+            <button className="btn btn__primary">
               <svg
                 className="icon icon__light lg mr-xs"
                 viewBox="0 0 24 24"

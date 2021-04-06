@@ -393,14 +393,14 @@
   display: none;
 }
 .mob-absolute-topright {
-  @include respond(phone) {
+  @include respond(big-phone) {
     position: absolute;
     top: 0;
     right: 0;
   }
 }
 .mob-relative-block {
-  @include respond(phone) {
+  @include respond(big-phone) {
     position: relative;
     display: block;
   }
@@ -469,4 +469,7 @@
 }
 .w-break-unset {
   word-break: unset!important;
+}
+.flex-nowrap{
+  flex-wrap: nowrap;
 }

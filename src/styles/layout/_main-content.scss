@@ -132,7 +132,8 @@
         padding: 1rem 4rem;
       }
     }
-    .select {
+    .select,
+    .date-select {
       background-color: $color-background-input;
       color: $color-text-dark;
       font-size: $font-size-default;
@@ -142,6 +143,18 @@
       border: 1px solid $border-input-lines;
       width: 100%;
       box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .select {
+      margin-left: 2rem;
+      width: 25%;
+      @include respond(phone){
+        margin-left: 0;
+        width: 100%;
+      }
     }
   }
 }

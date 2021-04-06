@@ -6,6 +6,7 @@ import { ReactComponent as BoxCloseSvg } from '../../assets/icon/box-close.svg';
 import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import RacuniTable from './RacuniTable';
+import Modal from '../../components/shared/forms/Modal';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
 import DatePicker from 'react-datepicker';
@@ -15,6 +16,11 @@ import { RACUNI } from '../../constants/routes';
 
 import Moment from 'react-moment';
 import 'moment/locale/me';
+
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
+import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -103,6 +109,18 @@ const Racuni = () => {
     handleSearch(searchParams);
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [depozitLoaded, setDepozitLoaded] = useState(false);
+
+  useEffect(() => {
+    depozitWithdrawService.getDepozitToday().then((data) => {
+      console.log('getDepozitToday', data);
+      if (data.data.length !== 0) {
+        setDepozitLoaded(true);
+      }
+    });
+  }, []);
+
   return (
     <>
       <div className="title jc-sb mob-fd-column mob-ai-start">
@@ -110,18 +128,27 @@ const Racuni = () => {
 
         <div className="df w-50 jc-end mob-w-100 mob-fd-column">
           {/* <Link exact={`${true}`} to={RACUNI.CREATE} className="mr-m mob-mr-0">
-            <button className="btn btn__dark mob-mb-20 mob-w-100">
+            <button className="btn btn__primary mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi gotovinski račun
             </button>
           </Link>
           <Link exact={`${true}`} to={RACUNI.BEZGOTOVINSKI.CREATE}>
-            <button className="btn btn__dark  mob-mb-20 mob-w-100">
+            <button className="btn btn__primary  mob-mb-20 mob-w-100">
               <ButtonPlusSvg />
               Novi bezgotovinski račun
             </button>
           </Link> */}
-          <button className="btn btn__dark mob-mb-20">
+          <Modal showModal={showModal} />
+          {!depozitLoaded && (
+            <button
+              className="btn btn__primary mob-mb-20"
+              onClick={() => setShowModal(true)}
+            >
+              Registracija Depozita
+            </button>
+          )}
+          <button className="btn btn__primary mob-mb-20">
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">
@@ -169,7 +196,7 @@ const Racuni = () => {
                   selectsStart
                   startDate={startDate}
                   endDate={endDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum od:"
                 />
                 <DatePicker
@@ -179,7 +206,7 @@ const Racuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum do:"
                 />
               </div>
@@ -189,7 +216,9 @@ const Racuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'}
+                  {racuni?.ukupna_cijena !== undefined
+                    ? racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'
+                    : '0,00€'}
                 </h3>
               </div>
 
@@ -237,7 +266,11 @@ const Racuni = () => {
             </div>
           </div>
           <div>
-            <RacuniTable racuni={racuni} />
+            {racuni.data.length === 0 ? (
+              <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : (
+              <RacuniTable racuni={racuni} />
+            )}
           </div>
         </div>
       </div>

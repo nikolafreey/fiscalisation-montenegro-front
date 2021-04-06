@@ -10,6 +10,7 @@ import {
   USLUGE,
   STAVKE,
   MODULI,
+  PODESAVANJA,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
@@ -104,7 +105,7 @@ const Sidebar = () => {
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
-            to={'#'}
+            to={PODESAVANJA.INDEX}
           />
           <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} />
         </ul>

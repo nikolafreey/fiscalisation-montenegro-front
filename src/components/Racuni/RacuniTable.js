@@ -10,6 +10,8 @@ import RacuniTableRow from './RacuniTableRow';
 const RacuniTable = ({ racuni }) => {
   const dispatch = useDispatch();
 
+  console.log('racuni', racuni);
+
   const selectedRacun = useSelector(racunSelector());
 
   return (
@@ -51,9 +53,11 @@ const RacuniTable = ({ racuni }) => {
           <tbody>
             {/* <List data={racuni.data || []} renderItem={RacuniTableRow} /> */}
             {racuni &&
-              racuni.data.map((item) => (
-                <RacuniTableRow key={item.id} item={item} />
-              ))}
+              racuni.data
+                .filter((racun) => racun.tip_racuna === 'racun')
+                .map((item) => (
+                  <RacuniTableRow key={item.id} item={item} racuni={racuni} />
+                ))}
           </tbody>
         </table>
       </div>

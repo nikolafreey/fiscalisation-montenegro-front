@@ -16,6 +16,14 @@ import { Link } from 'react-router-dom';
 import { USLUGE } from '../../../constants/routes';
 import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
 
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+import PropagateLoader from 'react-spinners/PropagateLoader';
+import {
+  spinnerStyleGrid,
+  spinnerStyleFilter,
+} from '../../../constants/spinner';
+
 const filteri = {};
 
 const searchDebounced = debounce((callback) => callback(), 500);
@@ -81,21 +89,25 @@ const NoviRacun = () => {
               <NoviRacunFilteri />
               <ChooseView view={view} setView={setView} />
             </div>
-            <NoviRacunTable view={view} robe={robe} usluge={usluge} />
+            {robe.data.length === 0 && usluge.data.length === 0 ? (
+              <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : (
+              <NoviRacunTable view={view} robe={robe} usluge={usluge} />
+            )}
             <div className="df jc-center ai-c fd-column">
               <hr className="w-60 " />
               <p className="mb-25 p-margin">
                 ili kreirajte novi unos ako usluga/roba nije u listi
               </p>
               {/*<Link exact to={PREDUZECA.CREATE}>
-              <button className="btn btn__dark btn__xl">
+              <button className="btn btn__primary btn__xl">
                 <Plus className="icon icon__light lg" />
                 Novo preduzeće
               </button>
   </Link>*/}
 
               <Link exact to={USLUGE.CREATE}>
-                <button className="btn btn__dark mb-25">
+                <button className="btn btn__primary mb-25">
                   <Plus className="icon icon__light lg" />
                   Nova Stavka
                 </button>

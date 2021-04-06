@@ -463,8 +463,9 @@ console.log('val=a=', values.a,values);
                           type="number"
                           className="form__input mb-12"
                           value={
-                            stavka && (stavka.kolicina ? stavka.kolicina : 1)
+                            stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
                           }
+                          defaultValue={1}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.kolicina`,

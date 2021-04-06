@@ -16,8 +16,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 // import { getRacun, setRacun } from '../../store/actions/RacuniActions';
 import { Link } from 'react-router-dom';
 import { ULAZNI_RACUNI } from '../../constants/routes';
+
 import Moment from 'react-moment';
 import 'moment/locale/me';
+
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const options = [
   { value: 'placen', label: 'Plaćen' },
@@ -127,7 +132,7 @@ const UlazniRacuni = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Ulazni računi</h1>
         <Link exact to={ULAZNI_RACUNI.CREATE}>
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Novi ulazni račun
           </button>
@@ -162,7 +167,7 @@ const UlazniRacuni = () => {
                   selectsStart
                   startDate={startDate}
                   endDate={endDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum od:"
                 />
                 <DatePicker
@@ -172,7 +177,7 @@ const UlazniRacuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum do:"
                 />
               </div>
@@ -181,8 +186,11 @@ const UlazniRacuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {ulazniRacuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
-                    '€'}
+                  {ulazniRacuni?.ukupna_cijena
+                    ? ulazniRacuni?.ukupna_cijena
+                        ?.toFixed(2)
+                        .replace('.', ',') + '€'
+                    : '0,00€'}
                 </h3>
               </div>
 
@@ -234,7 +242,11 @@ const UlazniRacuni = () => {
               ) : null}
             </div>
           </div>
-          <RacuniTable ulazniRacuni={ulazniRacuni} />
+          {ulazniRacuni.data.length === 0 ? (
+            <GridLoader css={spinnerStyleGrid} size={15} />
+          ) : (
+            <RacuniTable ulazniRacuni={ulazniRacuni} />
+          )}
         </div>
       </div>
     </>

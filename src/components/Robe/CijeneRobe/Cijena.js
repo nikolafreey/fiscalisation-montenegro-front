@@ -269,6 +269,7 @@ const Cijena = ({
               setFieldValue('ukupna_cijena', event.target.value);
               console.log('setValueUkupnaCijena', valueUkupnaCijena);
             }}
+            obavezno
           />
         </div>
         <FieldArray name="cijene">

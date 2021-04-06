@@ -126,7 +126,9 @@
     &:focus {
       outline: none;
       padding: 0.92rem;
-      border: 2px solid $color-text-light;
+      @include themify($themes) {
+        border: 2px solid themed('inputFocusColor');
+      }
       border-radius: 4px;
     }
 
@@ -220,7 +222,11 @@
 
     // Box checked
     &:checked + label:before {
-      background: $color-link-dark;
+      @include themify($themes) {
+        background-color: themed('checkboxColor');
+        // color: themed('primaryBtnTextColorHover');
+      }
+      // background: $color-link-dark;
     }
 
     // Disabled state label.

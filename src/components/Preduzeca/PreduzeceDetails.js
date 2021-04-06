@@ -114,7 +114,7 @@ const PreduzeceDetails = ({ preduzece }) => {
         }
       ></div>
 
-      <hr className="mtb-20"/>
+      <hr className="mtb-20" />
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Žiro računi</h3>
         <div className="side-info__info">
@@ -124,7 +124,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </div>
         </div>
       </div>
-      <hr className="mtb-20"/>
+      <hr className="mtb-20" />
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary tab-ml-10p">Kontakt informacije</h3>
         <div className="side-info__info as-end">
@@ -266,7 +266,7 @@ const PreduzeceDetails = ({ preduzece }) => {
           </div>
         </div>
       </div>
-      <hr className="mtb-20"/>
+      <hr className="mtb-20" />
       {preduzece?.ovlascena_lica?.length > 0 && (
         <div className="side-info__wrapper">
           <h3 className="heading-tertiary">Ovlašćeno lice</h3>
@@ -357,7 +357,7 @@ const PreduzeceDetails = ({ preduzece }) => {
             )}
             <div className="col-r mb-20">
               <p>
-                <a href="tel:+67123434">{preduzece.kontakt_telefon}</a>
+                <a href="tel:+67123434">{preduzece?.kontakt_telefon}</a>
               </p>
               <div className="df ai-c jc-end">
                 {!!preduzece?.kontakt_whatsapp && (

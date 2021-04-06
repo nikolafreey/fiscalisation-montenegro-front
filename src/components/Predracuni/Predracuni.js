@@ -14,8 +14,13 @@ import {
 import PredracuniTable from './PredracuniTable';
 import { Link } from 'react-router-dom';
 import { PREDRACUNI } from '../../constants/routes';
+
 import Moment from 'react-moment';
 import 'moment/locale/me';
+
+import { css } from '@emotion/core';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const options = [
   { value: 'kreiran', label: 'Kreiran' },
@@ -133,7 +138,7 @@ const Predracuni = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Predračuni</h1>
         <Link exact to={PREDRACUNI.CREATE}>
-          <button className="btn btn__dark">
+          <button className="btn btn__primary">
             <ButtonPlusSvg />
             Novi predračun
           </button>
@@ -170,7 +175,7 @@ const Predracuni = () => {
                   selectsStart
                   startDate={startDate}
                   endDate={endDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum od:"
                 />
                 <DatePicker
@@ -180,7 +185,7 @@ const Predracuni = () => {
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
-                  className="select mob-w-100 mob-mt-10"
+                  className="date-select mob-w-100 mob-mt-10"
                   placeholderText="Datum do:"
                 />
               </div>
@@ -189,8 +194,10 @@ const Predracuni = () => {
               <div className="box">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
-                  {predracuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
-                    '€'}
+                  {predracuni?.ukupna_cijena
+                    ? predracuni?.ukupna_cijena?.toFixed(2).replace('.', ',') +
+                      '€'
+                    : '0,00€'}
                 </h3>
               </div>
 
@@ -241,7 +248,11 @@ const Predracuni = () => {
               ) : null}
             </div>
           </div>
-          <PredracuniTable predracuni={predracuni} />
+          {predracuni.data.length === 0 ? (
+            <GridLoader css={spinnerStyleGrid} size={15} />
+          ) : (
+            <PredracuniTable predracuni={predracuni} />
+          )}
         </div>
       </div>
     </>

@@ -51,3 +51,24 @@ ORDER: BAse + Typography > general layout + grid > page layout > components
 @mixin home_icon() {
   background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="home"><path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M10.7071 0.292908C10.3166 -0.0976158 9.68343 -0.0976158 9.29291 0.292908L2.29692 7.2889L2.28934 7.29648L0.292908 9.29291C-0.0976158 9.68343 -0.0976158 10.3166 0.292908 10.7071C0.683433 11.0976 1.3166 11.0976 1.70712 10.7071L2.00002 10.4142V18C2.00002 18.5304 2.21073 19.0392 2.5858 19.4142C2.96088 19.7893 3.46958 20 4.00002 20H7.00002H13H16C16.5304 20 17.0392 19.7893 17.4142 19.4142C17.7893 19.0392 18 18.5304 18 18V10.4142L18.2929 10.7071C18.6834 11.0976 19.3166 11.0976 19.7071 10.7071C20.0976 10.3166 20.0976 9.68343 19.7071 9.29291L17.7106 7.29642L17.7032 7.28895L10.7071 0.292908ZM4.00002 9.00002V8.50002L10 2.50002L16 8.50002V9.00002V10.5V13.6762V18H14.4277H13V16.0738V14C13 13.4696 12.7893 12.9609 12.4142 12.5858C12.0392 12.2107 11.5304 12 11 12H9.00002C8.46958 12 7.96087 12.2107 7.5858 12.5858C7.21073 12.9609 7.00002 13.4696 7.00002 14V16.0738V18H5.57232H4.00002V13.6762V10.5V10V9.00002ZM11 14V18H9.00002V14H11Z" fill="black"/></g></svg>');
 }
+
+/*
+ * Implementation of themes
+ */
+ @mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

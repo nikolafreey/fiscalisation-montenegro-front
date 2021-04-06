@@ -75,10 +75,10 @@ export const USLUGE = {
 };
 export const MODULI = {
   INDEX: '/moduli',
-  
 };
-
-
+export const PODESAVANJA = {
+  INDEX: '/podesavanja',
+};
 
 export const ERRORS = {
   NOT_FOUND: '/not_found',

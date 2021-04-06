@@ -6,7 +6,7 @@
   border-collapse: collapse;
 
   .img-round {
-    @include respond(phone) {
+    @include respond(big-phone) {
       display: none;
     }
   }
@@ -15,12 +15,15 @@ tbody {
   tr {
     cursor: pointer;
 
-    @include respond(phone){
+    @include respond(big-phone){
       border-bottom: 1px solid $color-content-lines;
     }
   }
   .active {
-    background: $color-content-light;
+    @include themify($themes) {
+      background: themed('tableRowBgActiveColor');
+    }
+   // background: $color-content-light;
   }
 }
 th {
@@ -59,14 +62,14 @@ th {
 td {
   padding: 2rem 1.5rem;
 
-  @include respond(phone) {
+  @include respond(big-phone) {
     display: block;
     padding: .5rem 1.5rem;
   }
 }
 th {
   padding: 1.5rem;
-  @include respond(phone) {
+  @include respond(big-phone) {
     display: none;
   }
 }
@@ -75,7 +78,7 @@ th:first-child {
   @include respond(tab-land) {
     width: 40%;
   }
-  @include respond(phone) {
+  @include respond(big-phone) {
     display: block;
     width: 100%;
   }
@@ -92,7 +95,7 @@ td,
 th {
   border-bottom: 1px solid $color-content-lines;
   text-align: left;
-  @include respond(phone){
+  @include respond(big-phone){
     border-bottom: none;
   }
 }
@@ -101,14 +104,14 @@ td:last-child {
   padding-bottom: 2rem;
 }
 td:first-child {
-  @include respond(phone){
+  @include respond(big-phone){
     padding-top: 2rem;
   }
 }
 .inner-td-wrapper {
   display: flex;
   align-items: center;
-  @include respond(phone){
+  @include respond(big-phone){
     width: 85%;
   }
 }
@@ -120,10 +123,14 @@ td:first-child {
     i{
       position: absolute;
       margin-top: .25rem;
+      margin-left: .25rem;
+      @include respond(tab-land){
+        margin-top: .5rem;
+      }
     }
   }
 
-  @include respond(phone) {
+  @include respond(big-phone) {
     margin-left: unset;
   }
 }
