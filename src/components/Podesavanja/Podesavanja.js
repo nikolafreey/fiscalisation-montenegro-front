@@ -8,6 +8,7 @@ import { podesavanjaService } from '../../services/PodesavanjaService';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router';
 
 toast.configure();
 
@@ -23,6 +24,7 @@ const toastSettings = {
 
 const Podesavanja = () => {
   const user = useSelector(userSelector());
+  const history = useHistory();
 
   const [korisniciVisible, setKorisniciVisible] = useState(false);
   const [isEditable, setIsEditable] = useState(true);
@@ -44,22 +46,67 @@ const Podesavanja = () => {
   const [kodPj, setKodPj] = useState();
   const [kodOp, setKodOp] = useState();
 
+  const [podesavanjeUcitano, setPodesavanjeUcitano] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    podesavanjaService
+      .showPodesavanja()
+      .then((data) =>
+        setPodesavanjeUcitano(
+          data.data.find(
+            (podesavanje) => podesavanje.preduzece_id === user?.preduzeca[0]?.id
+          )
+        )
+      );
+
+    if (podesavanjeUcitano) {
+      podesavanjaService
+        .updatePreduzece({
+          id: podesavanjeUcitano?.id,
+          redni_broj: redniBrojRacuna,
+          izgled_racuna: 'default',
+          slanje_kupcu: slanjeRacunaKupcu,
+          preduzece_id: user?.preduzeca[0]?.id,
+          pecat: digitalniPecatFile,
+          sertifikat: digitalniPotpisFile,
+          pecat_sifra: sifraDigitalniPecat,
+          sertifikat_sifra: sifraDigitalniPotpis,
+          enu_kod: enu,
+          software_kod: softwareKod,
+          kod_operatera: kodOp,
+          jezik: 'ME',
+          mod: 'Svijetli',
+          boja: 'default',
+        })
+        .then((data) => console.log('response data:', data))
+        .catch((error) => {
+          console.error('error', error);
+          toast.error(
+            'Greška prilikom unosa podešavanja: ' + error,
+            toastSettings
+          );
+        });
+    }
+
     podesavanjaService
       .storePreduzece({
-        puno_ime: imePrezime,
-        email,
-        uloga: tipKorisnika,
-        slanjeKupcu: slanjeRacunaKupcu,
+        id: podesavanjeUcitano.id,
+        redni_broj: redniBrojRacuna,
+        izgled_racuna: 'default',
+        slanje_kupcu: slanjeRacunaKupcu,
         preduzece_id: user?.preduzeca[0]?.id,
         pecat: digitalniPecatFile,
         sertifikat: digitalniPotpisFile,
-        pecatSifra: sifraDigitalniPecat,
-        sertifikatSifra: sifraDigitalniPotpis,
+        pecat_sifra: sifraDigitalniPecat,
+        sertifikat_sifra: sifraDigitalniPotpis,
         enu_kod: enu,
         software_kod: softwareKod,
         kod_operatera: kodOp,
+        jezik: 'ME',
+        mod: 'Svijetli',
+        boja: 'default',
       })
       .then((data) => console.log('response data:', data))
       .catch((error) => {
@@ -85,7 +132,7 @@ const Podesavanja = () => {
   const handleKorisnik = (e) => {
     e.preventDefault();
     podesavanjaService
-      .storePreduzece({
+      .storePreduzeceKorisnik({
         puno_ime: imePrezime,
         email,
         uloga: tipKorisnika,
@@ -308,7 +355,10 @@ const Podesavanja = () => {
                           type="checkbox"
                           name="whatsApp"
                           id="whatsAppCI"
-                          onChange={(e) => setSlanjeRacunaKupcu(e.target.value)}
+                          onChange={(e) => {
+                            setSlanjeRacunaKupcu(e.target.checked);
+                          }}
+                          disabled={isEditable}
                         />
                         <label class="form__checkbox-label" for="whatsAppCI">
                           Pošalji račun kupcu odmah pri kreiranju
@@ -661,17 +711,17 @@ const Podesavanja = () => {
                               {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
                             </p>
                           </div>
-                          <button
+                          {/* <button
                             type="button"
                             class="btn btn__link danger mob-ml-10"
                             onClick={() => handleUkloniKorisnika(user)}
                           >
                             Ukloni
-                          </button>
+                          </button> */}
                         </div>
                       ))}
                       <div class="df ai-c">
-                        <button
+                        {/* <button
                           type="button"
                           class="btn btn__link df"
                           onClick={() => setKorisniciVisible(true)}
@@ -693,7 +743,7 @@ const Podesavanja = () => {
                           <span class="btn btn__link success">
                             Kreiraj novog korisnika
                           </span>
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                     {korisniciVisible && (
@@ -765,7 +815,7 @@ const Podesavanja = () => {
                             type="button"
                             onClick={() => setKorisniciVisible(false)}
                           >
-                            Ukloni
+                            Obustavi
                           </button>
                         </div>
                       </div>
@@ -817,8 +867,8 @@ const Podesavanja = () => {
                     </div>
                   </div>
                 </div>
-                <hr />
-                <div class="container">
+                {/* <hr /> */}
+                {/* <div class="container">
                   <div class="row">
                     <div class="col-md-4">
                       <h2 class="heading-secondary">Boje</h2>
@@ -898,13 +948,22 @@ const Podesavanja = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div class="form__footer">
-                <button class="btn btn__dark btn__md" onClick={handleSubmit}>
+                <button
+                  class="btn btn__dark btn__md"
+                  onClick={handleSubmit}
+                  disabled={isEditable}
+                >
                   Sačuvaj
                 </button>
-                <button class="btn btn__link ml-m">Nazad</button>
+                <button
+                  class="btn btn__link ml-m"
+                  onClick={() => history.goBack()}
+                >
+                  Nazad
+                </button>
               </div>
             </form>
           </div>
