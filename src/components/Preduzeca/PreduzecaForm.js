@@ -116,7 +116,7 @@ const PreduzecaForm = () => {
         lokacija_lat: 'Beograd',
         lokacija_long: 'Beograd',
         status: 'Aktivan',
-        privatnost: '',
+        privatnost: 'Javan',
         verifikovan: false,
         kategorija_id: '',
         ziro_racuni: [],
