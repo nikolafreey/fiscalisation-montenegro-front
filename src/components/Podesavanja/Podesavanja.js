@@ -27,7 +27,6 @@ const Podesavanja = () => {
   const history = useHistory();
 
   const [korisniciVisible, setKorisniciVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(true);
 
   const [digitalniPecatFile, setDigitalniPecatFile] = useState();
   const [digitalniPotpisFile, setDigitalniPotpisFile] = useState();
@@ -192,17 +191,9 @@ const Podesavanja = () => {
           <div class="content">
             <button
               class="btn btn__dark content__btn"
-              onClick={() => {
-                if (!isEditable) {
-                  toast.info('Mod za pregled podešavanjana.', toastSettings);
-                } else {
-                  toast.info(
-                    'Mod za izmjene podešavanja aktivan.',
-                    toastSettings
-                  );
-                }
-                setIsEditable(!isEditable);
-              }}
+              onClick={history.push(
+                `/preduzeca/edit/${user?.preduzeca[0]?.id}`
+              )}
             >
               <svg
                 width="24"
@@ -342,7 +333,6 @@ const Podesavanja = () => {
                         name="redni_broj_racuna"
                         onChange={(e) => setRedniBrojRacuna(e.target.value)}
                         value={redniBrojRacuna}
-                        disabled={isEditable}
                       />
                     </div>
                     <div class="form__group mob-w-100 mb-30">
@@ -358,7 +348,6 @@ const Podesavanja = () => {
                           onChange={(e) => {
                             setSlanjeRacunaKupcu(e.target.checked);
                           }}
-                          disabled={isEditable}
                         />
                         <label class="form__checkbox-label" for="whatsAppCI">
                           Pošalji račun kupcu odmah pri kreiranju
@@ -460,7 +449,6 @@ const Podesavanja = () => {
                           name="enu"
                           onChange={(e) => setEnu(e.target.value)}
                           value={enu}
-                          disabled={isEditable}
                         />
                       </div>
                       <div class="form__group w-48 mob-w-100">
@@ -498,7 +486,6 @@ const Podesavanja = () => {
                           id="software_kod"
                           onChange={(e) => setSoftwareKod(e.target.value)}
                           value={softwareKod}
-                          disabled={isEditable}
                         />
                       </div>
                     </div>
@@ -538,7 +525,6 @@ const Podesavanja = () => {
                           id="kodpj"
                           onChange={(e) => setKodPj(e.target.value)}
                           value={kodPj}
-                          disabled={isEditable}
                         />
                       </div>
                       <div class="form__group w-48 mob-w-100">
@@ -576,7 +562,6 @@ const Podesavanja = () => {
                           id="kodop"
                           onChange={(e) => setKodOp(e.target.value)}
                           value={kodOp}
-                          disabled={isEditable}
                         />
                       </div>
                     </div>
@@ -631,7 +616,6 @@ const Podesavanja = () => {
                               onChange={(e) =>
                                 setDigitalniPotpisFile(e.target.files[0])
                               }
-                              disabled={isEditable}
                             />
                           </span>
                         </div>
@@ -648,7 +632,6 @@ const Podesavanja = () => {
                               setSifraDigitalniPotpis(e.target.value)
                             }
                             value={sifraDigitalniPotpis}
-                            disabled={isEditable}
                           />
                         </div>
                       </div>
@@ -665,7 +648,6 @@ const Podesavanja = () => {
                               onChange={(e) =>
                                 setDigitalniPecatFile(e.target.files[0])
                               }
-                              disabled={isEditable}
                             />
                           </span>
                         </div>
@@ -682,7 +664,6 @@ const Podesavanja = () => {
                               setSifraDigitalniPecat(e.target.value)
                             }
                             value={sifraDigitalniPecat}
-                            disabled={isEditable}
                           />
                         </div>
                       </div>
@@ -759,7 +740,6 @@ const Podesavanja = () => {
                             name="user_name"
                             onChange={(e) => setImePrezime(e.target.value)}
                             value={imePrezime}
-                            disabled={isEditable}
                           />
                         </div>
                         <div class="form__group mob-w-100">
@@ -773,7 +753,6 @@ const Podesavanja = () => {
                             name="user_email"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
-                            disabled={isEditable}
                           />
                         </div>
                         <div class="form__group mob-w-100">
@@ -789,7 +768,6 @@ const Podesavanja = () => {
                               setTipKorisnika(option.target.value);
                             }}
                             value={tipKorisnika}
-                            disabled={isEditable}
                           >
                             <option value="">Knjigovođa</option>
                             <option value="default" defaultChecked>
@@ -951,11 +929,7 @@ const Podesavanja = () => {
                 </div> */}
               </div>
               <div class="form__footer">
-                <button
-                  class="btn btn__dark btn__md"
-                  onClick={handleSubmit}
-                  disabled={isEditable}
-                >
+                <button class="btn btn__dark btn__md" onClick={handleSubmit}>
                   Sačuvaj
                 </button>
                 <button
