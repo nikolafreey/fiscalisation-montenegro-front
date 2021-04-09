@@ -266,7 +266,7 @@ const Racuni = () => {
             </div>
           </div>
           <div>
-            {racuni.data.length === 0 ? (
+            {racuni && racuni.data && racuni.data.length === 0 ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : (
               <RacuniTable racuni={racuni} />
