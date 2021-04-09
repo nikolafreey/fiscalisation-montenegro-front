@@ -51,10 +51,10 @@ export function* bezgotovinskiRacunStore({ payload }) {
 export function* racuniGet({ payload }) {
   try {
     const { data } = yield call(racuniService.getRacuni, payload);
-
+    console.log('data', data);
     yield put(setRacuni(data));
   } catch (error) {
-    yield put(setGlobalError(error.message));
+    yield put(setGlobalError(error));
   }
 }
 
