@@ -195,6 +195,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   name="status"
                   checked={values && values.status === 'Nije plaćen'}
                   onChange={(event) => setFieldValue('status', 'Nije plaćen')}
+                  defaultChecked
                 />
                 <label for="notPaid" className="form__radio-label">
                   <span className="form__radio-button"></span>

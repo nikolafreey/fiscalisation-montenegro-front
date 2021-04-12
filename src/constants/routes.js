@@ -73,9 +73,25 @@ export const USLUGE = {
   CREATE: '/usluge/create',
   SHOW: '/usluge/:id',
 };
+
+export const GRUPE = {
+  INDEX: '/grupe',
+  EDIT: '/grupe/edit/:id',
+  CREATE: '/grupe/create',
+  SHOW: '/grupe/:id',
+};
+
+export const PROIZVODJACI = {
+  INDEX: '/proizvodjaci',
+  EDIT: '/proizvodjaci/edit/:id',
+  CREATE: '/proizvodjaci/create',
+  SHOW: '/proizvodjaci/:id',
+};
+
 export const MODULI = {
   INDEX: '/moduli',
 };
+
 export const PODESAVANJA = {
   INDEX: '/podesavanja',
 };

@@ -239,9 +239,6 @@ const RobeForm = () => {
                           />
                         </div>
                         <div className="df jc-sb mob-fd-column mb-0">
-                          <Link className="link" to={PREDUZECA.CREATE}>
-                            +
-                          </Link>
                           <div className="form__group w-48 mob-w-100 mb-0">
                             <DropDown
                               name="proizvodjac_robe_id"
@@ -364,6 +361,7 @@ const RobeForm = () => {
                               value="Aktivan"
                               id="Aktivan"
                               name="status"
+                              defaultChecked
                               // checked={values.status}
                             />
                             <label
