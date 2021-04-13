@@ -32,18 +32,28 @@ const DropDown = ({
   const handleProizvodjac = () => {
     const nazivProizvodjaca = prompt('Unesite naziv proizvodjaca: ');
     setNazivProizvodjaca(nazivProizvodjaca);
-    const res = proizvodjacService.storeProizvodjac({
-      naziv: nazivProizvodjaca,
-    });
-    console.log('res', res);
+
+    proizvodjacService
+      .storeProizvodjac({
+        naziv: nazivProizvodjaca,
+      })
+      .then((data) => {
+        console.log('data', data);
+        setSelectedLabel({ value: data.data.id, label: data.data.naziv });
+        selectRef.current.loadOptions(
+          proizvodjacService.getProizvodjaciDropdown
+        );
+      });
   };
 
   const handleGrupe = () => {
     const nazivGrupe = prompt('Unesite naziv grupe: ');
     setNazivGrupe(nazivGrupe);
-    const res = grupeService.storeGrupa({ naziv: nazivGrupe });
-    selectRef.current.loadOptions(grupeService.getGrupeDropdown);
-    console.log('selectRef', selectRef);
+
+    grupeService.storeGrupa({ naziv: nazivGrupe }).then((data) => {
+      setSelectedLabel({ value: data.data.id, label: data.data.naziv });
+      selectRef.current.loadOptions(grupeService.getGrupeDropdown);
+    });
   };
 
   return (

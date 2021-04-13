@@ -1,15 +1,16 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  PROIZVODJAC: 'proizvodjaci-robe',
-  PROIZVODJACI: 'proizvodjaci-robe/{id}',
+  PROIZVODJACI: 'proizvodjaci-robe',
+  PROIZVODJAC: 'proizvodjaci-robe/{id}',
 };
 
 class ProizvodjacService extends ApiService {
   getProizvodjac = (params) =>
-    this.apiClient.get(ENDPOINTS.PREDUZECA, { params });
+    this.apiClient.get(ENDPOINTS.PROIZVODJACI, { params });
 
-  storeProizvodjac = (data) => this.apiClient.post(ENDPOINTS.PREDUZECA, data);
+  storeProizvodjac = (data) =>
+    this.apiClient.post(ENDPOINTS.PROIZVODJACI, data);
 
   getProizvodjac = (id) =>
     this.apiClient.get(ENDPOINTS.PROIZVODJAC.replace('{id}', id));
