@@ -32,9 +32,14 @@ class AuthService extends ApiService {
 
   resetPassword = (data) => this.apiClient.post(ENDPOINTS.RESET, data);
 
-  setAuthenticatedStorage = (authenticated) => {
-    if (authenticated) localStorage.setItem('isAuthenticated', true);
-    else localStorage.removeItem('isAuthenticated');
+  setAuthenticatedStorage = (authenticated, token) => {
+    if (authenticated) {
+      localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('token');
+    }
   };
 }
 

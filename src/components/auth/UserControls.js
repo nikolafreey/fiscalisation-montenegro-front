@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AUTH } from '../../constants/routes';
+import { AUTH, PODESAVANJA } from '../../constants/routes';
 import { logoutUser } from '../../store/actions/UserActions';
 import { userSelector } from '../../store/selectors/UserSelector';
 import userImage from '../../assets/img/user.jpg';
@@ -48,13 +48,13 @@ const UserControls = () => {
 */
   return (
     <div className="user-nav">
-      <div className="user-nav__icon">
+      {/* <div className="user-nav__icon">
         <img
           className="icon icon__dark lg"
           src={bellIcon}
           alt="notifications-icon"
         />
-      </div>
+      </div> */}
       {user ? (
         <div className="user-nav__profile" id="profile">
           <div className="user-nav__profile--text">
@@ -65,7 +65,7 @@ const UserControls = () => {
             style={{ backgroundImage: `url(${user.avatar})` }}
           ></div>
           <div className="drop-down" id="ddl">
-            <Link>
+            <Link to={PODESAVANJA.INDEX}>
               <PodesavanjaSvg />
               Podešavanja
             </Link>

@@ -13,7 +13,8 @@ import {
   ULAZNI_RACUNI,
   USLUGE,
   STAVKE,
-  MODULI
+  MODULI,
+  PODESAVANJA,
 } from '../constants/routes';
 import FizickaLicaRouter from './FizickaLicaRouter';
 import PartneriRouter from './PartneriRouter';
@@ -26,6 +27,7 @@ import RacuniRouter from './RacuniRouter';
 import PredracuniRouter from './PredracuniRoute';
 import UlazniRacuniRouter from './UlazniRacuniRouter';
 import ModuliRouter from './ModuliRouter';
+import PodesavanjaRouter from './PodesavanjaRouter';
 
 const SidebarRouter = () => {
   return (
@@ -57,12 +59,15 @@ const SidebarRouter = () => {
         </ProtectedRoute>
         <ProtectedRoute path={ROBE.INDEX}>
           <RobeRouter />
-        </ProtectedRoute>       
+        </ProtectedRoute>
         <ProtectedRoute path={USLUGE.INDEX}>
           <UslugeRouter />
         </ProtectedRoute>
         <ProtectedRoute path={MODULI.INDEX}>
           <ModuliRouter />
+        </ProtectedRoute>
+        <ProtectedRoute path={PODESAVANJA.INDEX}>
+          <PodesavanjaRouter />
         </ProtectedRoute>
         <Redirect to={ERRORS.NOT_FOUND} />
       </Switch>

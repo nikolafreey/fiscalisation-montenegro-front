@@ -404,7 +404,11 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciKupci && najveciKupci[0]?.ukupan_promet) || 0.0} €
+                    {(najveciKupci &&
+                      najveciKupci[0] &&
+                      Number(najveciKupci[0]?.ukupan_promet).toFixed(2)) ||
+                      0.0}{' '}
+                    €
                   </h2>
                 </div>
               </div>
@@ -427,7 +431,11 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciKupci && najveciKupci[1]?.ukupan_promet) || 0.0} €
+                    {(najveciKupci &&
+                      najveciKupci[1] &&
+                      Number(najveciKupci[1]?.ukupan_promet).toFixed(2)) ||
+                      0.0}{' '}
+                    €
                   </h2>
                 </div>
               </div>
@@ -450,7 +458,11 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciKupci && najveciKupci[2]?.ukupan_promet) || 0.0} €
+                    {(najveciKupci &&
+                      najveciKupci[2] &&
+                      Number(najveciKupci[2]?.ukupan_promet).toFixed(2)) ||
+                      0.0}{' '}
+                    €
                   </h2>
                 </div>
               </div>
@@ -478,7 +490,9 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciDuznici && najveciDuznici[0]?.ukupan_promet) ||
+                    {(najveciDuznici &&
+                      najveciDuznici[0] &&
+                      Number(najveciDuznici[0]?.ukupan_promet).toFixed(2)) ||
                       0.0}{' '}
                     €
                   </h2>
@@ -503,7 +517,9 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciDuznici && najveciDuznici[1]?.ukupan_promet) ||
+                    {(najveciDuznici &&
+                      najveciDuznici[1] &&
+                      Number(najveciDuznici[1]?.ukupan_promet).toFixed(2)) ||
                       0.0}{' '}
                     €
                   </h2>
@@ -528,7 +544,9 @@ const Pregled = () => {
                 <div className="box-dashboard__btm">
                   <p className="txt-light">total:</p>
                   <h2 className="heading-secondary df">
-                    {(najveciDuznici && najveciDuznici[3]?.ukupan_promet) ||
+                    {(najveciDuznici &&
+                      najveciDuznici[2] &&
+                      Number(najveciDuznici[3]?.ukupan_promet).toFixed(2)) ||
                       0.0}{' '}
                     €
                   </h2>

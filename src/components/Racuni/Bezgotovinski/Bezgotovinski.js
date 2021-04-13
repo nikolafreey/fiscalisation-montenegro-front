@@ -1,10 +1,11 @@
-import { FieldArray, Form, Formik } from 'formik';
-import React from 'react';
+import { useFormikContext, FieldArray, Form, Formik, Field } from 'formik';
+import React, { useState, useRef } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
 import { usePorezi } from '../../../hooks/PoreziHook';
 
+import BezgotovinskiStavkeFieldArrayNovi from './BezgotovinskiStavkeFieldArrayNovi';
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeBezgotovinskiRacun } from '../../../store/actions/RacuniActions';
@@ -15,15 +16,73 @@ import BezgotovinskiHeader from './BezgotovinskiHeader';
 
 import { RACUNI } from '../../../constants/routes';
 import { useHistory } from 'react-router-dom';
+import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
   const history = useHistory();
 
-  // const { params } = useRouteMatch();
-
   const handleSubmit = (values) => {
+    values.stavke = values.niz;
+    console.log('u celom racunu', values.stavke);
+    // const { params } = useRouteMatch();
+
+    console.log('values', values);
+    if (values.stavke.length === 0) {
+      toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+    }
+    if (!values.stavke[0]) {
+      toast.error(
+        'Račun mora imati bar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
+        toastSettings
+      );
+      return;
+    }
+    values &&
+      values.stavke.forEach((racun, index) => {
+        if (racun.kolicina == null || racun.kolicina <= 0) {
+          toast.error(
+            'Kolicina stavke računa mora biti veca od 0 računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+        if (racun.jedinica_mjere_id == null) {
+          toast.error(
+            'Jedinica mjere računa je neophodna na računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+        if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
+          toast.error(
+            'Stavka računa mora biti veca od 0 na računu ' + index,
+            toastSettings
+          );
+          return;
+        }
+      });
+    if (values.partner_id == null || values.partner_id === 0) {
+      toast.error('Kupac je neophodan', toastSettings);
+      return;
+    }
+
     const noviRacun = {
       ...values,
       vrsta_racuna: 'bezgotovinski',
@@ -37,7 +96,7 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
-
+    console.log('u celom racunu', values.vrsta_racuna);
     dispatch(storeBezgotovinskiRacun(noviRacun));
     history.push(`/racuni`);
   };
@@ -53,18 +112,26 @@ const Bezgotovinski = () => {
   const today = new Date();
   const seven_days = new Date();
   seven_days.setDate(seven_days.getDate() + 7);
+  const initialValues = {
+    stavke: [],
+    korektivni_racun: '0',
+    datum_izdavanja: today,
+    datum_za_placanje: seven_days,
+    pdv_obveznik: 1,
+    status: 'Nije plaćen',
+    nacin_placanja: 1,
+    niz: [],
+    popustObjekat: {},
+    // a:[],
+  };
 
   return (
     <Formik
-      initialValues={{
-        stavke: [],
-        korektivni_racun: '0',
-        datum_izdavanja: today,
-        datum_za_placanje: seven_days,
-        pdv_obveznik: 1,
-      }}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
+      //innerRef={formikRef}
       enableReinitialize
+      // validationSchema={BezgotovinskiSchema}
       validateOnChange={false}
       validateOnBlur={false}
     >

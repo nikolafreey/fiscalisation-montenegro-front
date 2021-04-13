@@ -16,11 +16,32 @@ import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 
-const RacuniTableRow = ({ item }) => {
+const RacuniTableRow = ({ item, racuni }) => {
   const dispatch = useDispatch();
   const [_item, setItem] = useState(item);
+  const [_racuni, setRacuni] = useState(item);
 
   const { preduzece } = useSelector(racunSelector());
+
+  let fizickaLicaPartneri;
+  let preduzecaPartneri;
+  if (racuni.partneri) {
+    fizickaLicaPartneri = racuni.partneri
+      .map(
+        (tmp) =>
+          tmp.fizicko_lice && {
+            ime: tmp.fizicko_lice.ime + ' ' + tmp.fizicko_lice.prezime,
+            id: tmp.id,
+          }
+      )
+      .filter((tmp) => tmp != null);
+    preduzecaPartneri = racuni?.partneri
+      ?.map(
+        (tmp) =>
+          !tmp.fizicko_lice && { ime: tmp.preduzece.kratki_naziv, id: tmp.id }
+      )
+      .filter((tmp) => tmp != null);
+  }
 
   const history = useHistory();
   const bojaStatus = {
@@ -30,18 +51,18 @@ const RacuniTableRow = ({ item }) => {
     privremen: { klasa: 'tag tag__neutral', naziv: 'Privremen' },
   };
 
-  useEffect(() => {
-    // OBRISATI POSLE PREZENTACIJE
-    if (item.status === 'KREIRAN' && !item.partner) {
-      dispatch(getRacun(item.id));
-      if (preduzece) {
-        setItem({
-          ...item,
-          partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } },
-        });
-      }
-    }
-  }, [dispatch, item, preduzece]);
+  // useEffect(() => {
+  //   // OBRISATI POSLE PREZENTACIJE
+  //   if (item.status === 'KREIRAN' && !item.partner) {
+  //     dispatch(getRacun(item.id));
+  //     if (preduzece) {
+  //       setItem({
+  //         ...item,
+  //         partner: { preduzece: { kratki_naziv: preduzece.kratki_naziv } },
+  //       });
+  //     }
+  //   }
+  // }, [dispatch, item, preduzece]);
 
   const currencyFormat = (num) => {
     // return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -90,11 +111,24 @@ const RacuniTableRow = ({ item }) => {
         {vrstaRacuna(_item.vrsta_racuna)}
       </td>
       <td className="cl">{_item.broj_racuna}</td>
-      <td className="cd fw-500">
-        {_item.partner?.preduzece?.kratki_naziv ||
-          `${_item.partner?.fizicko_lice?.ime}
+      {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {preduzecaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+        </td>
+      )}
+      {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
+        <td className="cd fw-500">
+          {fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+        </td>
+      )}
+      {!preduzecaPartneri && !fizickaLicaPartneri && (
+        <td className="cd fw-500">
+          {_item.partner?.preduzece?.kratki_naziv ||
+            `${_item.partner?.fizicko_lice?.ime}
+
            ${_item.partner?.fizicko_lice?.prezime}`}
-      </td>
+        </td>
+      )}
       <td className="cl dshow-cell">
         {currencyFormat(_item.ukupna_cijena_bez_pdv) + '€'}
       </td>

@@ -1,14 +1,38 @@
 import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { racuniService } from '../../services/RacuniService';
-import { resetNoviRacun, setAtributiGrupe, setRacun, setRacuni, setStavkeRobe, setStavkeUsluge } from '../actions/RacuniActions';
+import {
+  resetNoviRacun,
+  setAtributiGrupe,
+  setRacun,
+  setRacuni,
+  setStavkeRobe,
+  setStavkeUsluge,
+} from '../actions/RacuniActions';
 import { noviRacunSelector } from '../selectors/RacuniSelector';
 import { emptyPaginated } from '../reducers/RacuniReducer';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { robeService } from '../../services/RobeService';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 export function* racunStore() {
   try {
     const noviRacun = yield select(noviRacunSelector());
     yield call(racuniService.storeRacun, noviRacun);
+    toast.success('Uspješno dodat gotovinski račun', toastSettings);
     yield put(resetNoviRacun());
   } catch (error) {
     yield put(setGlobalError(error.message));
@@ -18,6 +42,7 @@ export function* racunStore() {
 export function* bezgotovinskiRacunStore({ payload }) {
   try {
     yield call(racuniService.storeBezgotovinskiRacun, payload);
+    toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
@@ -26,10 +51,10 @@ export function* bezgotovinskiRacunStore({ payload }) {
 export function* racuniGet({ payload }) {
   try {
     const { data } = yield call(racuniService.getRacuni, payload);
-   
+    console.log('data', data);
     yield put(setRacuni(data));
   } catch (error) {
-    yield put(setGlobalError(error.message));
+    yield put(setGlobalError(error));
   }
 }
 
@@ -62,13 +87,17 @@ export function* racunDelete({ payload }) {
 export function* stavkeGet({ payload }) {
   try {
     if (payload?.grupa_id) {
-      yield put(setStavkeRobe(emptyPaginated))
+      yield put(setStavkeRobe(emptyPaginated));
     } else {
       const robeResponse = yield call(racuniService.getRobe, payload);
+      console.log('setStavkeRobe robeResponse', robeResponse.data);
+      const samoRobeResponse = yield call(robeService.getRobe, payload);
+      console.log('setStavkeRobe samoRobeResponse', samoRobeResponse.data);
+
       yield put(setStavkeRobe(robeResponse.data));
     }
     if (payload?.atribut_id || payload?.tip_atributa_id) {
-      yield put(setStavkeUsluge(emptyPaginated))
+      yield put(setStavkeUsluge(emptyPaginated));
     } else {
       const uslugeResponse = yield call(racuniService.getUsluge, payload);
       yield put(setStavkeUsluge(uslugeResponse.data));
@@ -86,4 +115,3 @@ export function* atributiGrupeGet({ payload }) {
     yield put(setGlobalError(error.message));
   }
 }
-

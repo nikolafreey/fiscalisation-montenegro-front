@@ -1,4 +1,3 @@
-
 import { push } from 'connected-react-router';
 import { call, put, select } from 'redux-saga/effects';
 import { AUTH, HOME, RACUNI } from '../../constants/routes';
@@ -10,7 +9,6 @@ import { requestedRouteSelector } from '../selectors/RouteSelector';
 
 export function* userGet() {
   try {
-    
     const { data } = yield call(authService.getUser);
     yield put(setUser(data));
   } catch (error) {
@@ -23,19 +21,19 @@ export function* userLogin({ payload }) {
   try {
     yield put(setLoginError({}));
     yield call(authService.getCsrfCookie);
-    yield call(authService.login, payload);
-    yield call(authService.setAuthenticatedStorage, true);
+    const { data } = yield call(authService.login, payload);
+    console.log('data', data);
+    yield call(authService.setAuthenticatedStorage, true, data.data.token);
     yield put(getUser());
 
     const requestedRoute = yield select(requestedRouteSelector());
     yield put(push(requestedRoute || RACUNI.INDEX));
     yield put(setRequestedRoute(null));
-
   } catch (error) {
     if (error.response.status === 422) {
       yield put(setLoginError(error.response.data));
     } else {
-    yield put(setGlobalError(error.message));
+      yield put(setGlobalError(error.message));
     }
   }
 }
@@ -68,4 +66,3 @@ export function* userResetPassword({ payload }) {
     yield put(setGlobalError(error.message));
   }
 }
-

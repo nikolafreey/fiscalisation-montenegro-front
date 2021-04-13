@@ -5,7 +5,16 @@ import { BASE_URL } from '../config';
 class HttpService {
   constructor(options = {}) {
     this.client = axios.create(options);
-    this.client.interceptors.response.use(this.handleSuccessResponse, this.handleErrorResponse);
+    this.client.interceptors.request.use((config) => {
+      const token = localStorage.getItem('token');
+      config.headers.Authorization = 'Bearer ' + token;
+      return config;
+    });
+
+    this.client.interceptors.response.use(
+      this.handleSuccessResponse,
+      this.handleErrorResponse
+    );
     this.unauthorizedCallback = () => {};
   }
 
@@ -13,17 +22,17 @@ class HttpService {
     return response;
   }
 
-  handleErrorResponse = error => {
+  handleErrorResponse = (error) => {
     try {
       const { status } = error.response;
 
       switch (status) {
-      case 401:
-        this.unauthorizedCallback();
+        case 401:
+          this.unauthorizedCallback();
 
-        break;
-      default:
-        break;
+          break;
+        default:
+          break;
       }
 
       return Promise.reject(error);
@@ -31,19 +40,16 @@ class HttpService {
       return Promise.reject(error);
     }
   };
-  
+
   setUnauthorizedCallback(callback) {
     this.unauthorizedCallback = callback;
   }
 }
 
-
 const options = {
   baseURL: BASE_URL,
   withCredentials: true,
-}
-
-
+};
 
 const httpService = new HttpService(options);
 

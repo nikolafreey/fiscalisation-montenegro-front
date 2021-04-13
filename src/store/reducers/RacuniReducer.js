@@ -18,7 +18,7 @@ export const emptyPaginated = {
   last_page: 1,
   total: 0,
   data: [],
-}
+};
 
 const initialState = {
   racuni: { ...emptyPaginated },
@@ -29,7 +29,7 @@ const initialState = {
   },
   stavke: {
     robe: { ...emptyPaginated },
-    usluge: { ...emptyPaginated }
+    usluge: { ...emptyPaginated },
   },
   atributiGrupe: [],
   odabraniAtributGrupa: null,
@@ -56,8 +56,10 @@ const racuniReducer = (state = initialState, action) =>
         if (!draft.noviRacun.robe[id].kolicina) {
           draft.noviRacun.robe[id] = action.payload.roba;
         }
-        draft.noviRacun.robe[id] =
-          {...draft.noviRacun.robe[id], kolicina: action.payload.kolicina};
+        draft.noviRacun.robe[id] = {
+          ...draft.noviRacun.robe[id],
+          kolicina: action.payload.kolicina,
+        };
         if (action.payload.kolicina === 0) {
           delete draft.noviRacun.robe[id];
         }
@@ -69,8 +71,10 @@ const racuniReducer = (state = initialState, action) =>
         if (!draft.noviRacun.usluge[id].kolicina) {
           draft.noviRacun.usluge[id] = action.payload.usluga;
         }
-        draft.noviRacun.usluge[id] =
-          {...draft.noviRacun.usluge[id], kolicina: action.payload.kolicina}
+        draft.noviRacun.usluge[id] = {
+          ...draft.noviRacun.usluge[id],
+          kolicina: action.payload.kolicina,
+        };
         if (action.payload.kolicina === 0) {
           delete draft.noviRacun.usluge[id];
         }

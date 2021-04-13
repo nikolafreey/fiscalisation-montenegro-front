@@ -17,7 +17,7 @@ import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
-import { PREDUZECA } from '../../constants/routes';
+import { PARTNERI, PREDUZECA } from '../../constants/routes';
 import RadioButton from '../shared/forms/RadioButton';
 
 const FizickaLicaForm = () => {
@@ -56,7 +56,7 @@ const FizickaLicaForm = () => {
         ib: '',
         adresa: '',
         grad: '',
-        drzava: '',
+        drzava: 'Crna Gora',
         telefon: '',
         telefon_viber: false,
         telefon_whatsapp: false,
@@ -65,7 +65,7 @@ const FizickaLicaForm = () => {
         email: '',
         zanimanje: '',
         radno_mjesto: '',
-        drzavljanstvo: '',
+        drzavljanstvo: 'Crnogorsko',
         nacionalnost: '',
         cv_link: '',
         avatar: '',
@@ -74,14 +74,14 @@ const FizickaLicaForm = () => {
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
-      // validationSchema={FizickaLicaSchema}
+      validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
       {({ values, dirty, isSubmitting }) => (
         <div className="screen-content">
-          <Link to={PREDUZECA.INDEX} className="back-link df">
+          <Link to={PARTNERI.INDEX} className="back-link df">
             <LinkSvg />
-            <p>Povratak na Preduzeća</p>
+            <p>Povratak na Partnere</p>
           </Link>
 
           <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
@@ -106,7 +106,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ime"
-                            obavezno={true}
+                            obavezno
                             className="form__input"
                             label={$t('fizickalica.ime')}
                           />
@@ -114,7 +114,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="prezime"
-                            obavezno={true}
+                            obavezno
                             className="form__input"
                             label={$t('fizickalica.prezime')}
                           />
@@ -131,7 +131,7 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="jmbg"
-                            obavezno={true}
+                            obavezno
                             className="form__input"
                             label={$t('fizickalica.jmbg')}
                           />
@@ -139,7 +139,6 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="ib"
-                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.ib')}
                           />
@@ -157,6 +156,7 @@ const FizickaLicaForm = () => {
                           <InputField
                             name="grad"
                             className="form__input"
+                            obavezno
                             label={$t('fizickalica.grad')}
                           />
                         </div>
@@ -164,7 +164,9 @@ const FizickaLicaForm = () => {
                           <InputField
                             name="drzava"
                             className="form__input"
+                            placeholder="CG"
                             label={$t('fizickalica.drzava')}
+                            obavezno
                           />
                         </div>
                       </div>
@@ -182,6 +184,7 @@ const FizickaLicaForm = () => {
                             className="form__input"
                             name="drzavljanstvo"
                             label={$t('fizickalica.drzavljanstvo')}
+                            obavezno
                           />
                         </div>
                       </div>
@@ -191,7 +194,10 @@ const FizickaLicaForm = () => {
                           <DropDown
                             name="preduzece_id"
                             // className="form__input"
-                            label={$t('fizickalica.preduzece_id')}
+                            label={
+                              $t('fizickalica.preduzece_id') +
+                              ' - Nije Obavezno'
+                            }
                             loadOptions={preduzecaService.getPreduzecaDropdown}
                           />
                         </div>
@@ -205,7 +211,7 @@ const FizickaLicaForm = () => {
                       </div>
                       <div className="form__group">
                         <label className="form__label" htmlFor="">
-                          Opis
+                          Opis - Nije Obavezno
                         </label>
                         <textarea
                           name=""
@@ -223,7 +229,6 @@ const FizickaLicaForm = () => {
                           type="file"
                           name="logo"
                           id="logo"
-                          required="required"
                           multiple="multiple"
                         />
                         <div className="file-dummy">
@@ -277,7 +282,6 @@ const FizickaLicaForm = () => {
                         <div className="form__group w-48 mob-w-100">
                           <InputField
                             name="telefon"
-                            obavezno={true}
                             className="form__input"
                             label={$t('fizickalica.telefon')}
                           />
@@ -396,13 +400,8 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button
-                    onClick={() => console.log('isSubmitting', isSubmitting)}
-                    disabled={isSubmitting}
-                    className="btn btn__primary btn__md"
-                    type="submit"
-                  >
-                    {isSubmitting ? 'Molimo sačekajte...' : 'Sačuvaj'}
+                  <button className="btn btn__primary btn__md" type="submit">
+                    Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>
 

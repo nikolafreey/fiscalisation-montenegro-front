@@ -10,6 +10,7 @@ import {
   USLUGE,
   STAVKE,
   MODULI,
+  PODESAVANJA,
 } from '../../../constants/routes';
 import SidebarLink from './SidebarLink';
 import { ReactComponent as heroHome } from '../../../assets/icon/hero-home.svg';
@@ -39,8 +40,8 @@ const Sidebar = () => {
       <div className="sidebar">
         <ul className="items">
           <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
-          <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
-          <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} />
+          {/* <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
+          <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} /> */}
         </ul>
         <ul className="items">
           <h3 className="heading-quaternary">Računi</h3>
@@ -72,9 +73,9 @@ const Sidebar = () => {
             label="Partneri"
             to={PARTNERI.INDEX}
           />
-          <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} />
+          {/* <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} /> */}
 
-          <SidebarLink ImageSource={heroDokumenta} label="Dokumenta" to={'#'} />
+          {/* <SidebarLink ImageSource={heroDokumenta} label="Dokumenta" to={'#'} /> */}
           <SidebarLink
             ImageSource={heroPreduzeca}
             label="Preduzeca"
@@ -104,9 +105,9 @@ const Sidebar = () => {
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
-            to={'#'}
+            to={PODESAVANJA.INDEX}
           />
-          <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} />
+          {/* <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} /> */}
         </ul>
       </div>
     </div>

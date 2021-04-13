@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
 import { Link, useRouteMatch, useHistory, Prompt } from 'react-router-dom';
+import { UslugeSchema } from '../../validation/usluga';
 
 import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import {
@@ -63,6 +64,14 @@ const UslugeForm = () => {
         updateUsluga({
           id: params.id,
           ...values,
+          cijena_bez_pdv: getPriceNoVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
+          grupa_id: isNumber(values?.grupa_id)
+            ? values?.grupa_id
+            : tempLen?.slice(-1)[0].value + 1,
           status: values.status == 'Aktivan' ? true : false,
         })
       );
@@ -79,6 +88,11 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
+          ukupna_cijena: getPriceVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
           status: values.status == 'Aktivan' ? true : false,
         })
       );
@@ -152,7 +166,7 @@ const UslugeForm = () => {
         ...usluga,
       }}
       onSubmit={handleSubmit}
-      //  validationSchema={FizickaLicaSchema}
+      validationSchema={UslugeSchema}
       enableReinitialize
     >
       {({ values, dirty, isSubmitting }) => (
@@ -186,7 +200,7 @@ const UslugeForm = () => {
                             <p className="mb-10">Cijena usluge:</p>
                             <p className="mb-10">Bez PDV-a:</p>
                             <p className="mb-10">
-                              PDV
+                              PDV{' '}
                               {isNaN(getStopaPerId(values.porez_id))
                                 ? ''
                                 : (
@@ -194,7 +208,7 @@ const UslugeForm = () => {
                                   ).toFixed(2)}
                               %:
                             </p>
-                            <p className="mb-10">Ukupna cijena</p>
+                            <p className="mb-10">Ukupna cijena </p>
                           </div>
                           <div className="col-r">
                             <p className="mb-10">
@@ -253,6 +267,7 @@ const UslugeForm = () => {
                       <div className="form__group w-100">
                         <InputField
                           name="naziv"
+                          type="text"
                           className="form__input"
                           label={$t('usluge.naziv')}
                           obavezno
@@ -340,6 +355,7 @@ const UslugeForm = () => {
                           className="form__input"
                           name="ukupna_cijena"
                           label={$t('usluge.ukupna_cijena')}
+                          obavezno
                         />
                         <InputField
                           type="hidden"
@@ -393,7 +409,8 @@ const UslugeForm = () => {
                             id="Aktivan"
                             value="Aktivan"
                             name="status"
-                            checked={values.status}
+                            defaultChecked
+                            // checked={values.status}
                           />
                           <label
                             htmlFor="Aktivan"

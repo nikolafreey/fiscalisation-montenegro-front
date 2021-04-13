@@ -45,10 +45,26 @@ const PredracuniTable = ({ predracuni }) => {
             </tr>
           </thead>
           <tbody>
-            <List
-              data={predracuni.data || []}
-              renderItem={PredracuniTableRow}
-            />
+            {/* {predracuni && (
+              <List
+                data={
+                  predracuni.data.filter(
+                    (predracun) => predracun.tip_racuna === 'predracun'
+                  ) || []
+                }
+                renderItem={PredracuniTableRow}
+              />
+            )} */}
+            {predracuni &&
+              predracuni.data
+                .filter((predracun) => predracun.tip_racuna === 'predracun')
+                .map((item) => (
+                  <PredracuniTableRow
+                    key={item.id}
+                    item={item}
+                    predracuni={predracuni}
+                  />
+                ))}
           </tbody>
         </table>
       </div>

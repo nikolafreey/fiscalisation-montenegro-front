@@ -13,6 +13,23 @@ import NoviRacunKusur from './NoviRacunKusur';
 import NoviRacunPrintTemplate from './NoviRacunPrintTemplate';
 import { NACIN_PLACANJA_GOTOVINSKI } from '../../../constants/racuni';
 import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { select } from 'redux-saga/effects';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const NoviRacunPreview = () => {
   const componentRef = useRef();
@@ -29,9 +46,22 @@ const NoviRacunPreview = () => {
     //   size: 70mm 180mm;
     // }`,
   });
-
+  const history = useHistory();
   const handleSacuvaj = () => {
+    console.log('noviRacun.robe.length', noviRacun.robe);
+    console.log('noviRacun.usluge.length', noviRacun.usluge);
+    if (
+      // (noviRacun.robe.length === 0 || noviRacun.robe.length == undefined) &&
+      // (noviRacun.usluge.length === 0 || noviRacun.usluge.length == undefined)
+      noviRacun.robe.length === 0 &&
+      noviRacun.usluge.length === 0
+    ) {
+      toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+      return;
+    }
+
     dispatch(storeRacun());
+    history.push(`/racuni`);
   };
 
   const usluge = Object.keys(noviRacun.usluge).map(
@@ -48,20 +78,23 @@ const NoviRacunPreview = () => {
   function vratiUkupanPdv() {
     var pdvUkupno = 0;
     for (const p in porezi) {
-      pdvUkupno += Number(porezi[p].pdvIznos);
+      pdvUkupno +=Math.round(Number(porezi[p].pdvIznos)*100)/100;
+     
     }
     return pdvUkupno;
   }
 
   function vratiUkupnoPlacanje() {
-    var upupnoPlacanje = 0;
+    var ukupnoPlacanje = 0;
     for (const p in porezi) {
-      upupnoPlacanje += Number(porezi[p].ukupno);
+      ukupnoPlacanje += Number(porezi[p].ukupno);
     }
-    return upupnoPlacanje;
+    return ukupnoPlacanje;
   }
   const ukPdv = vratiUkupanPdv();
   const ukPlati = vratiUkupnoPlacanje();
+  
+  console.log('noviRacun',noviRacun)
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
@@ -110,7 +143,7 @@ const NoviRacunPreview = () => {
             <>
               <div className="side-info__info--inner-wrapper mb-0">
                 <div className="col-l w-break">
-                  <p>Ukupno za PDV {porezi[porezId].naziv}</p>
+                  <p>Ukupno za PDV {porezi[porezId].naziv} </p>
                 </div>
                 <div className="col-r w-break-unset">
                   <p className="txt-right">
@@ -180,7 +213,10 @@ const NoviRacunPreview = () => {
             defaultValue={NACIN_PLACANJA_GOTOVINSKI[0]}
           />
         </div>
-        <button className="btn btn__primary mb-10 w-100" onClick={handleSacuvaj}>
+        <button
+          className="btn btn__primary mb-10 w-100"
+          onClick={handleSacuvaj}
+        >
           Fiskalizuj i štampaj
         </button>
         <button className="btn btn__transparent w-100" onClick={handleSacuvaj}>

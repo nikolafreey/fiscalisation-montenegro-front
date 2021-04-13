@@ -8,7 +8,7 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { getRobe } from '../../store/actions/RobeActions';
-import { getStavke } from '../../store/actions/RacuniActions';
+import { getStavke, ukloniRobu } from '../../store/actions/RacuniActions';
 
 const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
   const dispatch = useDispatch();
@@ -28,7 +28,6 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
   const handleObrisiRoba = (id) => {
     dispatch(deleteRoba(id));
     dispatch(getStavke());
-    setTimeout(dispatch(getStavke()), 1000);
   };
 
   return (

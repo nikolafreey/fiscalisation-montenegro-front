@@ -1,10 +1,12 @@
 import React from 'react';
+import { formatirajCijenu, formatirajCijenuBezE } from './../../../helpers/racuni';
 
 const BezgotovinskiTableRow = ({ item }) => {
   const currencyFormat = (num) => {
     if (num) return num.toString().replace('.', ',');
   };
-
+ console.log('item=',item)
+ 
   const calcIznos = ({ jedinicna_cijena_bez_pdv, kolicina }) => {
     return (jedinicna_cijena_bez_pdv * kolicina).toFixed(2).replace('.', ',');
   };
@@ -13,28 +15,30 @@ const BezgotovinskiTableRow = ({ item }) => {
       <td className="cd fw-500">{item && item.naziv ? item.naziv : ''}</td>
       <td className="cl">
         {item && item.jedinicna_cijena_bez_pdv
-          ? currencyFormat(item.jedinicna_cijena_bez_pdv) + ' €'
+          ? formatirajCijenu(item.jedinicna_cijena_bez_pdv) 
           : ''}
       </td>
       <td className="cl">
-        {item && item.kolicina ? currencyFormat(item.kolicina) + ' kom' : ''}
+        {item && item.kolicina ?formatirajCijenuBezE(Number(item.kolicina))+' ' + item.jedinica_naziv : ''}
       </td>
+      {/* <td className="cl">{item && item.pdv_iznos ?formatirajCijenu(item.pdv_iznos*item.kolicina ): ''}</td> */}
       <td className="cl">
-        {item && item.popust_iznos
-          ? item.popust_iznos + ' EUR'
-          : item && item.popust_procenat
+        {item && item.popust_procenat && Number(item.popust_procenat)>0
           ? item.popust_procenat +
             '% (- ' +
             (
-              (item.popust_procenat / 100) *
-              item.jedinicna_cijena_bez_pdv
-            ).toFixed(2) +
-            ')'
+              
+           formatirajCijenu((item.cijena_sa_pdv-item.cijena_sa_pdv_popust)*item.kolicina)
+             
+            ) +
+            ')' 
+          : item && item.popust_iznos && Number(item.popust_iznos)>0
+          ?'-'+ formatirajCijenu(item.popust_iznos*item.kolicina) 
           : ' '}
       </td>
-      <td className="cl">{item && item.pdv_iznos ? item.pdv_iznos : ''}</td>
+     
       <td>
-        <p className="cd fw-500">{item ? calcIznos(item) + ' EUR' : ''}</p>
+        <p className="cd fw-500">{item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''}</p>
       </td>
     </tr>
   );
