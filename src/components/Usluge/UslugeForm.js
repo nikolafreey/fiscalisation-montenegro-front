@@ -29,6 +29,8 @@ import RadioButton from '../shared/forms/RadioButton';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
 import { STAVKE, USLUGE } from '../../constants/routes';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -157,6 +159,14 @@ const UslugeForm = () => {
       storeGrupa({ naziv: inputValue, popust_procenti: 0, popust_iznos: 0 })
     );
   };
+
+  if (
+    params.id &&
+    Object.keys(usluga).length === 0 &&
+    usluga.constructor === Object
+  ) {
+    return <GridLoader css={spinnerStyleGrid} size={20} />;
+  }
 
   return (
     <Formik

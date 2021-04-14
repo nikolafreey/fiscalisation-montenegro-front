@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +35,8 @@ import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 import { STAVKE, PREDUZECA } from '../../constants/routes';
 import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
 import { RobeSchema } from '../../validation/robe';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -48,7 +50,9 @@ const RobeForm = () => {
 
   const globalError = useSelector(globalErrorSelector());
   const roba = useSelector(robaSelector());
-  console.log('roba:', roba);
+
+  const kategorijaRef = useRef();
+  const atributiRef = useRef();
 
   const {
     getStopaPerId,
@@ -140,6 +144,17 @@ const RobeForm = () => {
     setSearch(event.target.value);
     setFiltered(filterKat);
   };
+
+  console.log('roba', roba);
+
+  if (
+    params.id &&
+    Object.keys(roba).length === 0 &&
+    roba.constructor === Object &&
+    kategorije.length === 0
+  ) {
+    return <GridLoader css={spinnerStyleGrid} size={20} />;
+  }
 
   return (
     <Formik
@@ -246,7 +261,13 @@ const RobeForm = () => {
                               loadOptions={
                                 proizvodjacService.getProizvodjaciDropdown
                               }
-                              placeholder={roba?.proizvodjac_robe?.naziv}
+                              defaultValue={
+                                Object.keys(roba).length !== 0 &&
+                                roba.constructor === Object && {
+                                  label: roba?.proizvodjac_robe?.naziv,
+                                  value: roba?.proizvodjac_robe?.naziv,
+                                }
+                              }
                             />
                           </div>
                           <div className="form__group w-48 mob-w-100 mb-0">
@@ -293,6 +314,7 @@ const RobeForm = () => {
                           </div>
                           <ul className="item-list">
                             <ChooseKategorija
+                              ref={kategorijaRef}
                               kategorije={filtered || kategorije}
                               editKategorije={roba}
                             />
@@ -312,7 +334,7 @@ const RobeForm = () => {
                   <hr />
                   <div className="container">
                     <div className="row">
-                      <ChooseAtribut />
+                      <ChooseAtribut ref={atributiRef} />
                     </div>
                   </div>
                   <hr />
