@@ -8,6 +8,21 @@ import { grupeService } from '../../../services/GrupeService';
 import { proizvodjacService } from '../../../services/ProizvodjacService';
 import Label from './Label';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const DropDown = ({
   onChangeExtra = null,
   label,
@@ -38,11 +53,14 @@ const DropDown = ({
         naziv: nazivProizvodjaca,
       })
       .then((data) => {
-        console.log('data', data);
         setSelectedLabel({ value: data.data.id, label: data.data.naziv });
         selectRef.current.loadOptions(
           proizvodjacService.getProizvodjaciDropdown
         );
+      })
+      .catch((err) => {
+        console.log('err', err);
+        toast.error('Desila se greška prilikom unosa: ' + err, toastSettings);
       });
   };
 
