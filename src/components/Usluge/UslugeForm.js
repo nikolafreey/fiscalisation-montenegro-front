@@ -72,6 +72,11 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
+          ukupna_cijena: getPriceVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
           status: values.status == 'Aktivan' ? true : false,
         })
       );
@@ -88,11 +93,6 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
-          ukupna_cijena: getPriceVat(
-            values.pdv_ukljucen,
-            values.porez_id,
-            values.ukupna_cijena
-          ),
           status: values.status == 'Aktivan' ? true : false,
         })
       );

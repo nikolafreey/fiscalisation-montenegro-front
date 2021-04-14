@@ -1,22 +1,23 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  PODESAVANJA: 'podesavanja',
-  SHOW_PODESAVANJE: 'podesavanja/{id}',
-  DODAJ_KORISNIKA: 'podesavanja/dodajKorisnika',
+  INDEX: 'podesavanja',
+  SHOW: 'podesavanja/{id}',
+  CREATE: 'podesavanja/dodajKorisnika',
   USER: 'users/{id}',
 };
 
 class PodesavanjaService extends ApiService {
-  showPodesavanja = () => this.apiClient.get(ENDPOINTS.PODESAVANJA);
-  storePreduzece = (data) => this.apiClient.post(ENDPOINTS.PODESAVANJA, data);
+  showPodesavanja = () => this.apiClient.get(ENDPOINTS.INDEX);
+
+  storePreduzece = (data) => this.apiClient.post(ENDPOINTS.INDEX, data);
+
   updatePreduzece = (data) =>
-    this.apiClient.post(
-      ENDPOINTS.SHOW_PODESAVANJE.replace('{id}', data.id),
-      data
-    );
+    this.apiClient.post(ENDPOINTS.SHOW.replace('{id}', data.id), data);
+
   storePreduzeceKorisnik = (data) =>
-    this.apiClient.post(ENDPOINTS.DODAJ_KORISNIKA, data);
+    this.apiClient.post(ENDPOINTS.CREATE, data);
+
   deleteKorisnika = (id) =>
     this.apiClient.delete(ENDPOINTS.USER.replace('{id}', id));
 }
