@@ -94,6 +94,169 @@
       background-color: #d1d5db;
       margin-bottom: 0;
     }
+    .content {
+      position: relative;
+      &__btn {
+        position: absolute;
+        right: 1rem;
+        top: 2rem;
+        cursor: pointer;
+        z-index: 100;
+        &:focus{
+          outline: none;
+        }
+      }
+      &__logo {
+        width: 50%;
+        img {
+          position: relative;
+          display: block;
+          max-height: 3rem;
+          margin-bottom: 1rem;
+        }
+      }
+      .img {
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        margin: 2rem 0;
+        border-radius: 4px;
+      }
+      &__color {
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        position: relative;
+        margin-right: 3rem;
+        margin-bottom: 3rem;
+        cursor: pointer;
+
+        &--light-blue {
+          background-color: #0ea5e9;
+        }
+        &--blue {
+          background-color: #2563eb;
+        }
+        &--indigo {
+          background-color: #4f46e5;
+        }
+        &--violet {
+          background-color: #7c3aed;
+        }
+        &--purple {
+          background-color: #9333ea;
+        }
+        &--fuchsia {
+          background-color: #c026d3;
+        }
+        &--pink {
+          background-color: #db2777;
+        }
+        &--rose {
+          background-color: #e11d48;
+        }
+        &--cyan {
+          background-color: #0891b2;
+        }
+        &--teal {
+          background-color: #0d9488;
+        }
+        &--emerald {
+          background-color: #059669;
+        }
+        &--green {
+          background-color: #16a34a;
+        }
+        &--lime {
+          background-color: #65a30d;
+        }
+        &--yellow {
+          background-color: #ca8a04;
+        }
+        &--amber {
+          background-color: #d97706;
+        }
+        &--orange {
+          background-color: #ea580c;
+        }
+        &--orange {
+          background-color: #ea580c;
+        }
+        &--cool-gray {
+          background-color: #6b7280;
+        }
+        &--red {
+          background-color: #dc2626;
+        }
+      }
+      &__grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: flex-start;
+        .active-color {
+          position: relative;
+          width: 40px;
+          height: 40px;
+          &:before {
+            content: "";
+            position: absolute;
+            background-image: url("../../assets/icon/ch-mark-white.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 18px;
+            height: 14px;
+            top: 12px;
+            left: 12px;
+          }
+        }
+      }
+      &__box-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%
+      } 
+      &__box {
+        color: $color-link-dark;
+        position: relative;
+        width: 22.5%;
+        //height: 18rem;
+        padding: 2rem .3rem;
+        background: $color-white;
+        border-radius: 4px;
+        border: 1px solid $border-input-lines;
+        cursor: pointer;
+        @include respond(tab-port){
+          width: 48%;
+          margin-bottom: 2rem;
+        }
+        svg {
+          stroke: $color-link-dark;
+        }
+
+        img{
+          width: 100%;
+
+        }
+        &.active-invoice-layout{
+          border: 1px solid $color-link-dark;
+          color: $color-link-dark;
+          &::after{
+            content: "";
+            position: absolute;
+            right: 1rem;
+            bottom: .1rem;
+            width: 14px;
+            height: 18px;
+            background-image: url("../../assets/icon/checkmark.svg");
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
 
     // .search__icon {
     //   width: 20px;

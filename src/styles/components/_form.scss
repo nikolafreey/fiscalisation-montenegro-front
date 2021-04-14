@@ -396,4 +396,47 @@
     border-radius: 4px;
     border: 1px solid $border-input-lines;
   }
+  &__file {
+    position: relative;
+    //color: transparent;
+    input[type] {
+      &::-webkit-file-upload-button {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+      }
+
+      &::after {
+        content: "izaberite";
+        display: inline-block;
+        outline: none;
+        color: $color-text-dark;
+        padding: 0.2rem 0.6rem;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        position: absolute;
+        width: 6rem;
+        height: 2rem;
+        top: -0.25rem;
+        right: 1rem;
+        font-size: 12px;
+        background-color: #c4c4c4;
+        border-radius: 4px;
+        cursor: pointer;
+
+        @include respond(big-desktop) {
+          padding: 0.4rem 0.9rem;
+        }
+        @include respond(tab-land) {
+          padding: 0.2rem 0.6rem;
+          top: 0.25rem;
+          width: 6.5rem;
+        }
+      }
+      &:valid {
+        //position: absolute;
+        left: 1rem;
+      }
+    }
+  }
 }

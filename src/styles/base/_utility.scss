@@ -81,6 +81,13 @@
     width: 100% !important;
   }
 }
+.half-wd-full-tabp {
+  width: 48% !important;
+
+  @include respond(tab-port) {
+    width: 100% !important;
+  }
+}
 .tab-p-w-100 {
   @include respond(tab-port) {
     width: 100% !important;
@@ -343,6 +350,11 @@
 }
 .mob-fd-column {
   @include respond(phone) {
+    flex-direction: column;
+  }
+}
+.tabp-fd-column {
+  @include respond(tab-port) {
     flex-direction: column;
   }
 }

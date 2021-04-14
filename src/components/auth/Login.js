@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import InputField from '../shared/forms/InputField';
 import { loginUser } from '../../store/actions/UserActions';
 import { loginErrorSelector } from '../../store/selectors/ErrorSelector';
-import { ReactComponent as LogoRacuniSvg } from '../../assets/icon/company-logo/logoRacuni.svg';
+import { ReactComponent as LogoSvg } from '../../assets/icon/company-logo/postFiscal.svg';
 import { Link } from 'react-router-dom';
 import { AUTH } from '../../constants/routes';
 import Checkbox from '../shared/forms/Checkbox';
@@ -28,7 +28,7 @@ const Login = () => {
           <div className="row justify-content-center">
             <div className="col-xl-4 col-md-6 col-12">
               <div className="login__logo">
-                <LogoRacuniSvg />
+                <LogoSvg />
               </div>
               <div className="main-content__box">
                 <Form className="login__form">

@@ -28,11 +28,14 @@ import { ReactComponent as heroRazgovori } from '../../../assets/icon/hero-razgo
 import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori.svg';
 import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
 import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
+import {ReactComponent as Logo} from '../../../assets/icon/company-logo/postFiscal.svg';
 
 const Sidebar = () => {
   return (
     <div className="col-md-1 col-xl-3" id="sidebar">
-      <div className="logo dshow">računi</div>
+      <div className="logo dshow">
+        <Logo />
+      </div>
       <div className="menu-icon">
         <span className="line line-1"></span>
         <span className="line line-2"></span>

@@ -27,6 +27,9 @@
   &__light {
     stroke: $color-content-light;
   }
+  &__light-fill {
+    fill: $color-content-light;
+  }
   &__dark {
     stroke: $color-text-dark !important;
   }

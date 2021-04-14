@@ -4,6 +4,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    button {
+      position: relative;
+      &:hover {
+        .drop-down {
+          top: 3.7rem;
+          right: 0;
+          display: block;
+          svg {
+            stroke: $color-text-light;
+          }
+        }
+      }
+    }
   }
 
   .content {

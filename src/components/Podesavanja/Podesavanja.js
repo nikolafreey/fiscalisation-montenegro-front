@@ -185,15 +185,14 @@ const Podesavanja = () => {
       <div className="title">
         <h1 className="heading-primary">Podešavanja</h1>
       </div>
-      <hr />
       <div className="screen-content">
         <div className="main-content__box">
           <div className="content">
             <button
-              className="btn btn__dark content__btn"
-              onClick={history.push(
-                `/preduzeca/edit/${user?.preduzeca[0]?.id}`
-              )}
+              className="btn btn__primary-fill content__btn"
+              onClick={() => {
+                history.push(`/preduzeca/edit/${user?.preduzeca[0]?.id}`);
+              }}
             >
               <svg
                 width="24"
@@ -201,10 +200,11 @@ const Podesavanja = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon__light lg"
+                className="icon lg"
               >
                 <g id="pencil">
                   <path
+                    className="icon__light-fill"
                     id="Subtract"
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -239,16 +239,20 @@ const Podesavanja = () => {
                         user?.preduzeca[0]?.opis}
                     </p>
                     <div className="mb-20">
-                      <p className="txt-light">{user?.preduzeca[0]?.djelatnost}</p>
-                      <p className="txt-light">{user?.preduzeca[0]?.adadresa}</p>
+                      <p className="txt-light">
+                        {user?.preduzeca[0]?.djelatnost}
+                      </p>
+                      <p className="txt-light">
+                        {user?.preduzeca[0]?.adadresa}
+                      </p>
                       <p className="txt-light">
                         {user?.preduzeca[0]?.grad +
                           ', ' +
                           user?.preduzeca[0]?.drzava}
                       </p>
                     </div>
-                    <div className="df">
-                      <div className="side-info__wrapper w-50 mr-15">
+                    <div className="df tabp-fd-column">
+                      <div className="side-info__wrapper half-wd-full-tabp mr-15">
                         <div className="side-info__info--inner-wrapper">
                           <div className="col-l">
                             <p className="txt-light txt-up">pib</p>
@@ -284,7 +288,7 @@ const Podesavanja = () => {
                           </div>
                         </div>
                       </div>
-                      {user?.preduzeca[0]?.ziro_racuni?.length === 0 && (
+                      {/* {user?.preduzeca[0]?.ziro_racuni?.length === 0 && (
                         <div className="side-info__wrapper w-50">
                           <div className="side-info__info--inner-wrapper">
                             <div className="col-l">
@@ -297,12 +301,15 @@ const Podesavanja = () => {
                             </div>
                           </div>
                         </div>
-                      )}
-                      <div className="side-info__wrapper w-50">
+                      )} */}
+                      <div className="side-info__wrapper half-wd-full-tabp">
+                        {/*ovo je vraper u njemu ide ovaj uslov iznad sto je zakomentarisan */}
                         {user?.preduzeca[0]?.ziro_racuni?.map((racun) => (
                           <div className="side-info__info--inner-wrapper">
                             <div className="col-l">
-                              <p className="txt-light txt-up">{() => getBank()}</p>
+                              <p className="txt-light txt-up">
+                                {() => getBank()}
+                              </p>
                             </div>
                             <div className="col-r">
                               <p className="fw-500">{racun.broj_racuna}</p>
@@ -323,7 +330,7 @@ const Podesavanja = () => {
                   </div>
                   <div className="col-md-8 col-xl-8">
                     <div className="form__group w-48 mob-w-100">
-                      <label className="form__label" for="no">
+                      <label className="form__label" htmlFor="no">
                         Redni broj računa počinje od
                       </label>
                       <input
@@ -336,7 +343,7 @@ const Podesavanja = () => {
                       />
                     </div>
                     <div className="form__group mob-w-100 mb-30">
-                      <label className="form__label" for="">
+                      <label className="form__label" htmlFor="">
                         Slanje računa kupcu
                       </label>
                       <div className="form__checkbox-group">
@@ -349,7 +356,10 @@ const Podesavanja = () => {
                             setSlanjeRacunaKupcu(e.target.checked);
                           }}
                         />
-                        <label className="form__checkbox-label" for="whatsAppCI">
+                        <label
+                          className="form__checkbox-label"
+                          htmlFor="whatsAppCI"
+                        >
                           Pošalji račun kupcu odmah pri kreiranju
                         </label>
                       </div>
@@ -367,11 +377,11 @@ const Podesavanja = () => {
                     </div>
                     <p>
                       Jedinistveni izgled računa prilagođen vizuelnom identitetu
-                      vašeg preduzeća dostupan je u dodatnom
+                      vašeg preduzeća dostupan je u dodatnom{' '}
                       <a
                         href="http://"
                         target="_blank"
-                        className="btn btn__link"
+                        className="link"
                         rel="noopener noreferrer"
                       >
                         modulu
@@ -393,7 +403,7 @@ const Podesavanja = () => {
                       href="http://"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn__link mob-mb-20"
+                      className="btn btn__link b-mob-mb-20"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -425,7 +435,9 @@ const Podesavanja = () => {
                             rel="noopener noreferrer"
                             className="btn btn__link mb-7"
                           >
-                            <span className="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">
+                              Portal
+                            </span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -462,7 +474,9 @@ const Podesavanja = () => {
                             rel="noopener noreferrer"
                             className="btn btn__link mb-7"
                           >
-                            <span className="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">
+                              Portal
+                            </span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -501,7 +515,9 @@ const Podesavanja = () => {
                             rel="noopener noreferrer"
                             className="btn btn__link mb-7"
                           >
-                            <span className="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">
+                              Portal
+                            </span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -538,7 +554,9 @@ const Podesavanja = () => {
                             rel="noopener noreferrer"
                             className="btn btn__link mb-7"
                           >
-                            <span className="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">
+                              Portal
+                            </span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -567,369 +585,378 @@ const Podesavanja = () => {
                     </div>
                   </div>
                 </div>
-                <hr />
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-4 col-xl-4">
-                      <h2 className="heading-secondary">Certifikati</h2>
-                      <p className="mb-10 txt-light">
-                        Elektronski certifikati za digitalni potpis (za
-                        bezgotovinsko izdavanje računa) i digitalni pečat (za
-                        gotovinsko izdavanje računa)
-                      </p>
-                      <a
-                        href="https://postacg.me/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn__link mob-mb-20"
+              </div>
+              <hr />
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 col-xl-4">
+                    <h2 className="heading-secondary">Certifikati</h2>
+                    <p className="mb-10 txt-light">
+                      Elektronski certifikati za digitalni potpis (za
+                      bezgotovinsko izdavanje računa) i digitalni pečat (za
+                      gotovinsko izdavanje računa)
+                    </p>
+                    <a
+                      href="https://postacg.me/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn__link mob-mb-20"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        className="icon icon__stroke-link sm mr-xs"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                      <span className="btn btn__link success">
+                        Pošta Crne Gore
+                      </span>
+                    </a>
+                  </div>
+                  <div className="col-md-8 col-xl-8">
+                    <div className="df jc-sb mob-fd-column">
+                      <div className="form__group w-48 mob-w-100">
+                        <label className="form__label" for="d-signature">
+                          Digitalni potpis
+                        </label>
+                        <span className="form__file">
+                          <input
+                            type="file"
+                            className="form__input"
+                            id="d-signature"
+                            onChange={(e) =>
+                              setDigitalniPotpisFile(e.target.files[0])
+                            }
+                          />
+                        </span>
+                      </div>
+                      <div className="form__group w-48 mob-w-100">
+                        <label
+                          className="form__label"
+                          for="sifraDigitalniPotpis"
+                        >
+                          Šifra za digitalni potpis
+                        </label>
+                        <input
+                          type="text"
+                          className="form__input"
+                          name="sifraDigitalniPotpis"
+                          id="sifraDigitalniPotpis"
+                          onChange={(e) =>
+                            setSifraDigitalniPotpis(e.target.value)
+                          }
+                          value={sifraDigitalniPotpis}
+                        />
+                      </div>
+                    </div>
+                    <div className="df jc-sb mob-fd-column">
+                      <div className="form__group w-48 mob-w-100">
+                        <label className="form__label" for="d-stamp">
+                          Digitalni pečat
+                        </label>
+                        <span className="form__file">
+                          <input
+                            type="file"
+                            className="form__input"
+                            id="d-stamp"
+                            onChange={(e) =>
+                              setDigitalniPecatFile(e.target.files[0])
+                            }
+                          />
+                        </span>
+                      </div>
+                      <div className="form__group w-48 mob-w-100">
+                        <label
+                          className="form__label"
+                          for="sifraDigitalniPecat"
+                        >
+                          Šifra za digitalni pečat
+                        </label>
+                        <input
+                          type="text"
+                          className="form__input"
+                          name="sifraDigitalniPecat"
+                          id="sifraDigitalniPecat"
+                          onChange={(e) =>
+                            setSifraDigitalniPecat(e.target.value)
+                          }
+                          value={sifraDigitalniPecat}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 col-xl-4">
+                    <h2 className="heading-secondary">Korisnici</h2>
+                    <p className="mb-10 txt-light">
+                      Možete dodati nove korisnike aplikacije u okviru vašeg
+                      preduzeća i tako im omogućiti upravljanje
+                    </p>
+                  </div>
+                  <div className="col-md-4 col-xl-4">
+                    <p className="mb-10">Korisnici aplikacije:</p>
+                    {user?.preduzeca[0]?.users.map((korisnik, index) => (
+                      <div className="df jc-sb mb-10">
+                        <div>
+                          <p className="fw-500">
+                            {korisnik.ime + ' ' + korisnik.prezime}
+                          </p>
+                          <p className="txt-light">
+                            {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn__link danger mob-ml-10"
+                          onClick={() => handleUkloniKorisnika(user)}
+                        >
+                          Ukloni
+                        </button>
+                      </div>
+                    ))}
+                    <div className="df ai-c">
+                      <button
+                        type="button"
+                        className="btn btn__link df"
+                        onClick={() => setKorisniciVisible(true)}
                       >
                         <svg
+                          className="icon icon__stroke-link sm"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="icon icon__stroke-link sm mr-xs"
                         >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          />
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          ></path>
                         </svg>
                         <span className="btn btn__link success">
-                          Pošta Crne Gore
+                          Kreiraj novog korisnika
                         </span>
-                      </a>
-                    </div>
-                    <div className="col-md-8 col-xl-8">
-                      <div className="df jc-sb mob-fd-column">
-                        <div className="form__group w-48 mob-w-100">
-                          <label className="form__label" for="d-signature">
-                            Digitalni potpis
-                          </label>
-                          <span className="form__file">
-                            <input
-                              type="file"
-                              className="form__input"
-                              id="d-signature"
-                              onChange={(e) =>
-                                setDigitalniPotpisFile(e.target.files[0])
-                              }
-                            />
-                          </span>
-                        </div>
-                        <div className="form__group w-48 mob-w-100">
-                          <label className="form__label" for="sifraDigitalniPotpis">
-                            Šifra za digitalni potpis
-                          </label>
-                          <input
-                            type="text"
-                            className="form__input"
-                            name="sifraDigitalniPotpis"
-                            id="sifraDigitalniPotpis"
-                            onChange={(e) =>
-                              setSifraDigitalniPotpis(e.target.value)
-                            }
-                            value={sifraDigitalniPotpis}
-                          />
-                        </div>
-                      </div>
-                      <div className="df jc-sb mob-fd-column">
-                        <div className="form__group w-48 mob-w-100">
-                          <label className="form__label" for="d-stamp">
-                            Digitalni pečat
-                          </label>
-                          <span className="form__file">
-                            <input
-                              type="file"
-                              className="form__input"
-                              id="d-stamp"
-                              onChange={(e) =>
-                                setDigitalniPecatFile(e.target.files[0])
-                              }
-                            />
-                          </span>
-                        </div>
-                        <div className="form__group w-48 mob-w-100">
-                          <label className="form__label" for="sifraDigitalniPecat">
-                            Šifra za digitalni pečat
-                          </label>
-                          <input
-                            type="text"
-                            className="form__input"
-                            name="sifraDigitalniPecat"
-                            id="sifraDigitalniPecat"
-                            onChange={(e) =>
-                              setSifraDigitalniPecat(e.target.value)
-                            }
-                            value={sifraDigitalniPecat}
-                          />
-                        </div>
-                      </div>
+                      </button>
                     </div>
                   </div>
-                </div>
-                <hr />
-                <div className="container">
-                  <div className="row">
+                  {korisniciVisible && (
                     <div className="col-md-4 col-xl-4">
-                      <h2 className="heading-secondary">Korisnici</h2>
-                      <p className="mb-10 txt-light">
-                        Možete dodati nove korisnike aplikacije u okviru vašeg
-                        preduzeća i tako im omogućiti upravljanje
-                      </p>
-                    </div>
-                    <div className="col-md-4 col-xl-4">
-                      <p className="mb-10">Korisnici aplikacije:</p>
-                      {user?.preduzeca[0]?.users.map((korisnik, index) => (
-                        <div className="df jc-sb mb-10">
-                          <div>
-                            <p className="fw-500">
-                              {korisnik.ime + ' ' + korisnik.prezime}
-                            </p>
-                            <p className="txt-light">
-                              {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
-                            </p>
-                          </div>
-                          {/* <button
-                            type="button"
-                            className="btn btn__link danger mob-ml-10"
-                            onClick={() => handleUkloniKorisnika(user)}
-                          >
-                            Ukloni
-                          </button> */}
-                        </div>
-                      ))}
-                      <div className="df ai-c">
-                        {/* <button
-                          type="button"
-                          className="btn btn__link df"
-                          onClick={() => setKorisniciVisible(true)}
+                      <div className="form__group mob-w-100">
+                        <label className="form__label" for="user-name">
+                          Ime i prezime
+                        </label>
+                        <input
+                          type="text"
+                          className="form__input"
+                          id="user_name"
+                          name="user_name"
+                          onChange={(e) => setImePrezime(e.target.value)}
+                          value={imePrezime}
+                        />
+                      </div>
+                      <div className="form__group mob-w-100">
+                        <label className="form__label" for="user-email">
+                          Email korisnika
+                        </label>
+                        <input
+                          type="text"
+                          className="form__input"
+                          id="user_email"
+                          name="user_email"
+                          onChange={(e) => setEmail(e.target.value)}
+                          value={email}
+                        />
+                      </div>
+                      <div className="form__group mob-w-100">
+                        <label className="form__label" for="user-type">
+                          Tip korisnika
+                        </label>
+                        <select
+                          name="user_type"
+                          id="user_type"
+                          className="form__input"
+                          onChange={(option) => {
+                            console.log('option', option.target.value);
+                            setTipKorisnika(option.target.value);
+                          }}
+                          value={tipKorisnika}
                         >
-                          <svg
-                            className="icon icon__stroke-link sm"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                            ></path>
-                          </svg>
-                          <span className="btn btn__link success">
-                            Kreiraj novog korisnika
-                          </span>
-                        </button> */}
+                          <option value="">Knjigovođa</option>
+                          <option value="default" defaultChecked>
+                            Default
+                          </option>
+                          <option value="gost">Gost</option>
+                          <option value="kasir">Kasir</option>
+                          <option value="knjigovodja">Knjigovodja</option>
+                          <option value="superAdmin">SuperAdmin</option>
+                          <option value="vlasnik">Vlasnik</option>
+                          <option value="zaposleni">Zaposleni</option>
+                        </select>
+                      </div>
+                      <div className="df ai-c jc-sb">
+                        <button
+                          className="btn btn__dark"
+                          onClick={handleKorisnik}
+                        >
+                          Sačuvaj
+                        </button>
+                        <button
+                          className="btn btn__link danger mb-0"
+                          type="button"
+                          onClick={() => setKorisniciVisible(false)}
+                        >
+                          Obustavi
+                        </button>
                       </div>
                     </div>
-                    {korisniciVisible && (
-                      <div className="col-md-4 col-xl-4">
-                        <div className="form__group mob-w-100">
-                          <label className="form__label" for="user-name">
-                            Ime i prezime
-                          </label>
-                          <input
-                            type="text"
-                            className="form__input"
-                            id="user_name"
-                            name="user_name"
-                            onChange={(e) => setImePrezime(e.target.value)}
-                            value={imePrezime}
-                          />
-                        </div>
-                        <div className="form__group mob-w-100">
-                          <label className="form__label" for="user-email">
-                            Email korisnika
-                          </label>
-                          <input
-                            type="text"
-                            className="form__input"
-                            id="user_email"
-                            name="user_email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                          />
-                        </div>
-                        <div className="form__group mob-w-100">
-                          <label className="form__label" for="user-type">
-                            Tip korisnika
-                          </label>
-                          <select
-                            name="user_type"
-                            id="user_type"
-                            className="form__input"
-                            onChange={(option) => {
-                              console.log('option', option.target.value);
-                              setTipKorisnika(option.target.value);
-                            }}
-                            value={tipKorisnika}
-                          >
-                            <option value="">Knjigovođa</option>
-                            <option value="default" defaultChecked>
-                              Default
-                            </option>
-                            <option value="gost">Gost</option>
-                            <option value="kasir">Kasir</option>
-                            <option value="knjigovodja">Knjigovodja</option>
-                            <option value="superAdmin">SuperAdmin</option>
-                            <option value="vlasnik">Vlasnik</option>
-                            <option value="zaposleni">Zaposleni</option>
-                          </select>
-                        </div>
-                        <div className="df ai-c jc-sb">
-                          <button
-                            className="btn btn__dark"
-                            onClick={handleKorisnik}
-                          >
-                            Sačuvaj
-                          </button>
-                          <button
-                            className="btn btn__link danger mb-0"
-                            type="button"
-                            onClick={() => setKorisniciVisible(false)}
-                          >
-                            Obustavi
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  )}
                 </div>
-                <hr />
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-4">
-                      <h2 className="heading-secondary">Jezik</h2>
-                      <p className="mob-mb-20 txt-light">
-                        Izaberite jezik aplikacije
-                      </p>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="form__label">Jezik aplikacije</div>
-                      <div className="form__group">
-                        <div className="form__radio-group">
-                          <input
-                            type="radio"
-                            className="form__radio-input"
-                            id="mne"
-                            name="language"
-                            checked
-                          />
-                          <label
-                            for="mne"
-                            className="form__radio-label radio-default"
-                          >
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Crnogorski</span>
-                          </label>
-                        </div>
-                        <div className="form__radio-group">
-                          <input
-                            type="radio"
-                            className="form__radio-input"
-                            id="eng"
-                            name="language"
-                            disabled
-                          />
-                          <label for="eng" className="form__radio-label">
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">English (soon)</span>
-                          </label>
-                        </div>
+              </div>
+              <hr />
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4">
+                    <h2 className="heading-secondary">Jezik</h2>
+                    <p className="mob-mb-20 txt-light">
+                      Izaberite jezik aplikacije
+                    </p>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="form__label">Jezik aplikacije</div>
+                    <div className="form__group">
+                      <div className="form__radio-group">
+                        <input
+                          type="radio"
+                          className="form__radio-input"
+                          id="mne"
+                          name="language"
+                          checked
+                        />
+                        <label
+                          for="mne"
+                          className="form__radio-label radio-default"
+                        >
+                          <span className="form__radio-button"></span>
+                          <span className="mob-ml-10">Crnogorski</span>
+                        </label>
+                      </div>
+                      <div className="form__radio-group">
+                        <input
+                          type="radio"
+                          className="form__radio-input"
+                          id="eng"
+                          name="language"
+                          disabled
+                        />
+                        <label for="eng" className="form__radio-label">
+                          <span className="form__radio-button"></span>
+                          <span className="mob-ml-10">English (soon)</span>
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* <hr /> */}
-                {/* <div className="container">
-                  <div className="row">
-                    <div className="col-md-4">
-                      <h2 className="heading-secondary">Boje</h2>
-                      <p className="mob-mb-20 txt-light">
-                        Podesite boje aplikacije u skladu sa bojama Vašeg
-                        preduzeća
-                      </p>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="content__grid">
-                        <div className="content__color">
-                          <div className="content__color content__color--light-blue"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--blue active-color"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--indigo"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--violet"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--purple"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--fuchsia"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--pink"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--rose"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--cyan"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--teal"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--emerald"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--green"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--lime"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--yellow"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--amber"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--orange"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--cool-gray"></div>
-                        </div>
-                        <div className="content__color">
-                          <div className="content__color content__color--red"></div>
-                        </div>
+              </div>
+              <hr />
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4">
+                    <h2 className="heading-secondary">Boje</h2>
+                    <p className="mob-mb-20 txt-light">
+                      Podesite boje aplikacije u skladu sa bojama Vašeg
+                      preduzeća
+                    </p>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="content__grid">
+                      <div className="content__color">
+                        <div className="content__color content__color--light-blue"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--blue active-color"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--indigo"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--violet"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--purple"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--fuchsia"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--pink"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--rose"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--cyan"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--teal"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--emerald"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--green"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--lime"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--yellow"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--amber"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--orange"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--cool-gray"></div>
+                      </div>
+                      <div className="content__color">
+                        <div className="content__color content__color--red"></div>
+                      </div>
 
-                        <div className="img-round img-round__color img-round__color--pink"></div>
-                        <div className="img-round img-round__color img-round__color--cyan"></div>
-                        <div className="img-round img-round__color img-round__color--teal"></div>
-                        <div className="img-round img-round__color img-round__color--emerald"></div>
-                        <div className="img-round img-round__color img-round__color--green"></div>
-                        <div className="img-round img-round__color img-round__color--lime"></div>
-                        <div className="img-round img-round__color img-round__color--yellow"></div>
-                        <div className="img-round img-round__color img-round__color--amber"></div>
-                        <div className="img-round img-round__color img-round__color--orange"></div>
-                        <div className="img-round img-round__color img-round__color--cool-gray"></div>
-                        <div className="img-round img-round__color img-round__color--red"></div>
-                      </div>
+                      <div className="img-round img-round__color img-round__color--pink"></div>
+                      <div className="img-round img-round__color img-round__color--cyan"></div>
+                      <div className="img-round img-round__color img-round__color--teal"></div>
+                      <div className="img-round img-round__color img-round__color--emerald"></div>
+                      <div className="img-round img-round__color img-round__color--green"></div>
+                      <div className="img-round img-round__color img-round__color--lime"></div>
+                      <div className="img-round img-round__color img-round__color--yellow"></div>
+                      <div className="img-round img-round__color img-round__color--amber"></div>
+                      <div className="img-round img-round__color img-round__color--orange"></div>
+                      <div className="img-round img-round__color img-round__color--cool-gray"></div>
+                      <div className="img-round img-round__color img-round__color--red"></div>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
               <div className="form__footer">
-                <button className="btn btn__dark btn__md" onClick={handleSubmit}>
+                <button
+                  className="btn btn__primary btn__md"
+                  onClick={handleSubmit}
+                >
                   Sačuvaj
                 </button>
                 <button

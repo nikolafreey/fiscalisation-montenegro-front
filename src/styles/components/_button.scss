@@ -1,10 +1,10 @@
 .btn {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-items: center;
   font-size: $font-size-default;
   font-weight: 500;
-  padding: 1rem 1.2rem;
+  padding: .8rem 1.2rem;
   border: none;
   border-radius: 4px;
   //width: 100%;
@@ -36,7 +36,8 @@
       outline: none;
     }
   }
-  &__primary {
+  &__primary,
+  &__primary-fill {
     @include themify($themes) {
       background-color: themed('primaryBtnBgColor');
       color: themed('primaryBtnTextColor');
@@ -44,16 +45,11 @@
     display: flex;
     justify-content: center;
     transition: all 0.1s ease-in-out;
-    svg {
-      @include themify($themes) {
-        stroke: themed('iconColorLight');
-      }
-      transition: stroke 0.1s ease-in-out;
-    }
+
     &:hover {
       @include themify($themes) {
         background-color: themed('primaryBtnBgColorHover');
-        // color: themed('primaryBtnTextColorHover');
+        color: themed('primaryBtnTextColorHover');
       }
 
       // svg {
@@ -64,6 +60,36 @@
     }
     &:focus {
       outline: none;
+    }
+    &__primary {
+      svg {
+        @include themify($themes) {
+          stroke: themed('iconColorLight');
+        }
+        transition: stroke 0.1s ease-in-out;
+      }
+      &:hover {
+        svg {
+          @include themify($themes) {
+            stroke: themed('iconColorLightHover');
+          }
+        }
+      }
+    }
+    &__primary-fill {
+      svg {
+        @include themify($themes) {
+          fill: themed('iconColorLight');
+        }
+        transition: stroke 0.1s ease-in-out;
+      }
+      &:hover {
+        svg {
+          @include themify($themes) {
+            fill: themed('iconColorLightHover');
+          }
+        }
+      }
     }
   }
 

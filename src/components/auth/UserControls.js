@@ -8,6 +8,7 @@ import userImage from '../../assets/img/user.jpg';
 import userIcon from '../../assets/icon/user.svg';
 import loginIcon from '../../assets/icon/login.svg';
 import bellIcon from '../../assets/icon/bell.svg';
+import {ReactComponent as DefaultAvatar} from '../../assets/icon/user-default-avatar.svg';
 
 import { ReactComponent as PodesavanjaSvg } from '../../assets/icon/hero-podesavanja-dropdown.svg';
 import { ReactComponent as LogoutSvg } from '../../assets/icon/logout.svg';
@@ -63,7 +64,9 @@ const UserControls = () => {
           <div
             className="img-round lg"
             style={{ backgroundImage: `url(${user.avatar})` }}
-          ></div>
+          >
+          <DefaultAvatar /> {/* Ako nema bgImage url-a onda ovaj default avatar*/}
+          </div>
           <div className="drop-down" id="ddl">
             <Link to={PODESAVANJA.INDEX}>
               <PodesavanjaSvg />
