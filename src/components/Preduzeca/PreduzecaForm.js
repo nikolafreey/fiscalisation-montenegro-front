@@ -159,7 +159,11 @@ const PreduzecaForm = () => {
             <LinkPreduzecaSvg />
             <p>Povratak na Partnere</p>
           </Link>
-          <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
+          ) : (
+            <h1 className="heading-primary">Izmjena preduzeća</h1>
+          )}
           <div className="main-content__box">
             <div className="content">
               <Form className="form">

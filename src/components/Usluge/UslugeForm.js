@@ -200,7 +200,11 @@ const UslugeForm = () => {
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
-          <h1 className="heading-primary">Dodavanje nove usluge</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Izmjena usluge</h1>
+          ) : (
+            <h1 className="heading-primary">Dodavanje nove usluge</h1>
+          )}
 
           <div className="main-content__box">
             <div className="content">

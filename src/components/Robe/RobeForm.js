@@ -196,7 +196,11 @@ const RobeForm = () => {
             </Link>
           </div>
 
-          <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Izmjena robe/artikla</h1>
+          ) : (
+            <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
+          )}
 
           <div className="screen-content">
             <div className="main-content__box">

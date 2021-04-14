@@ -100,7 +100,11 @@ const FizickaLicaForm = () => {
             <p>Povratak na Partnere</p>
           </Link>
 
-          <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
+          ) : (
+            <h1 className="heading-primary">Izmjena fizičkog lica</h1>
+          )}
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
