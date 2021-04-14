@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-background-light;
+  background-color: $color-background-lighter;
   height: 100vh;
   @include respond(phone) {
     padding: 2rem 0;

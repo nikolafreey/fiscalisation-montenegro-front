@@ -26,7 +26,7 @@ html {
 body {
   box-sizing: border-box;
   min-height: 100vh;
-  background-color: $color-background-light;
+  background-color: $color-background-lighter;
   @include respond(tab-port){
     padding:0;
   }

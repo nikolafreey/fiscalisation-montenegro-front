@@ -4,7 +4,7 @@ body {
   font-size: $font-size-default;
   line-height: 1.7;
   color: $color-text-dark;
-  background-color: $color-background-light;
+  background-color: $color-background-lighter;
 
   @include respond(tab-land) {
     font-size: $font-size-default-tab;

@@ -1,14 +1,14 @@
 .form {
   position: relative;
-  
+
   .form-control {
     margin-bottom: 1.5rem;
   }
-  
+
   hr {
     margin: 2.5rem 0 !important;
   }
-  
+
   &__group {
     position: relative;
     @include respond(phone) {
@@ -179,7 +179,7 @@
   &__date-picker {
     position: relative;
     padding: 12px;
-    
+
     &:focus {
       outline: none;
       padding: 11px;
@@ -387,6 +387,7 @@
     padding: 2rem 1.5rem;
     margin-top: 2rem;
     background-color: $color-content-light;
+    border-radius: 0 0 4px 4px;
   }
 
   &__map {
