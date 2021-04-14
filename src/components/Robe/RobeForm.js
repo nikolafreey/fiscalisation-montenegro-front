@@ -38,6 +38,21 @@ import { RobeSchema } from '../../validation/robe';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const RobeForm = () => {
   const dispatch = useDispatch();
   const { params } = useRouteMatch();
@@ -173,7 +188,7 @@ const RobeForm = () => {
       validationSchema={RobeSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="back-link df">
@@ -418,7 +433,14 @@ const RobeForm = () => {
                     <button
                       className="btn btn__primary btn__md"
                       type="submit"
-                      // disabled={isSubmitting}
+                      onClick={() => {
+                        if (!isValid && dirty) {
+                          toast.error(
+                            'Molimo Vas provjerite ispravnost unosa!',
+                            toastSettings
+                          );
+                        }
+                      }}
                     >
                       Sačuvaj
                     </button>

@@ -32,6 +32,21 @@ import { STAVKE, USLUGE } from '../../constants/routes';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const UslugeForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -179,7 +194,7 @@ const UslugeForm = () => {
       validationSchema={UslugeSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <div className="screen-content">
           <Link to={STAVKE.INDEX} className="back-link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
@@ -453,7 +468,18 @@ const UslugeForm = () => {
                 </div>
 
                 <div className="form__footer">
-                  <button className="btn btn__primary btn__md" type="submit">
+                  <button
+                    className="btn btn__primary btn__md"
+                    type="submit"
+                    onClick={() => {
+                      if (!isValid && dirty) {
+                        toast.error(
+                          'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                    }}
+                  >
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">
