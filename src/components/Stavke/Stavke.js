@@ -133,7 +133,7 @@ const Stavke = () => {
       </div>
       <div className="main-content__box">
         <div className="content" style={{ width: '100%' }}>
-          <div className="main-content__search-wrapper df">
+          <div className="main-content__search-wrapper df mob-fd-column">
             <div className="df jc-sb w-100 mob-fd-column">
               <form className="search df ai-c mob-w-100">
                 <button className="search__button" type="submit"></button>
@@ -146,7 +146,7 @@ const Stavke = () => {
                 />
               </form>
               <select
-                className="btn btn__primary btn__lg ml-xl"
+                className="select mob-mt-10"
                 value={filter}
                 onChange={(event) => setFilter(event.target.value)}
               >

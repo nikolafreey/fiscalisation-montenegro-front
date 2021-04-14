@@ -120,7 +120,7 @@ const BezgotovinskiPreview = () => {
         {!editMode && (
           <div className="df w-50 jc-end">
             <button
-              className="btn btn__transparent  mr-m"
+              className="btn btn__secondary  mr-m"
               onClick={handlePrint}
             >
               <svg
@@ -518,7 +518,7 @@ const BezgotovinskiPreview = () => {
                   <div className="form__footer">
                     <button
                       onClick={() => handleSubmit(values)}
-                      className="btn btn__transparent btn__xl ml-m"
+                      className="btn btn__secondary btn__xl ml-m"
                     >
                       Sačuvaj izmjene
                     </button>

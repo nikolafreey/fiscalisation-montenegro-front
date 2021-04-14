@@ -33,9 +33,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -53,9 +53,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -73,9 +73,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -93,9 +93,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -113,9 +113,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -133,9 +133,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -153,9 +153,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -173,9 +173,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -193,9 +193,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -213,9 +213,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -233,9 +233,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -253,9 +253,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -273,9 +273,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -294,9 +294,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -314,9 +314,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -334,9 +334,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -354,9 +354,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -375,9 +375,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -410,9 +410,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -430,9 +430,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -450,9 +450,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -470,9 +470,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -490,9 +490,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -510,9 +510,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -530,9 +530,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -550,9 +550,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -570,9 +570,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -590,9 +590,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -611,9 +611,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -632,9 +632,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -652,9 +652,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -683,9 +683,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -703,9 +703,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -723,9 +723,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -744,9 +744,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -765,9 +765,9 @@ const Moduli = () => {
                         <path
                           d="M1.33325 5.66669L3.99992 8.33335L10.6666 1.66669"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>

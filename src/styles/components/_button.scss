@@ -67,14 +67,24 @@
     }
   }
 
-  &__transparent {
+  &__secondary {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: transparent;
-    color: $color-text-dark;
-    border: 1px solid $color-background-dark;
-    //transition: all 0.1s ease-in-out;
+    @include themify($themes) {
+      border: 1px solid themed('secondaryBtnBorderColor');
+      color: themed('secondaryBtnTextColor');
+    }
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      @include themify($themes) {
+        background-color: themed('secondaryBtnBgColorHover');
+      }
+    }
+    &:focus {
+      outline: none;
+    }
   }
 
   &__link {

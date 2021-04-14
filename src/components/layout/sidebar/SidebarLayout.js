@@ -11,8 +11,8 @@ const SidebarLayout = () => {
       <div className="col-md-11 col-xl-9 col-xs-12" id="main-content">
         <Navbar />
         <SidebarRouter />
-      </div>
       <Footer />
+      </div>
     </div>
   );
 };

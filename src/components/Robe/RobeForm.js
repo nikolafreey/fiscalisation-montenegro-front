@@ -368,8 +368,8 @@ const RobeForm = () => {
                               htmlFor="Aktivan"
                               className="form__radio-label"
                             >
-                              <span class="form__radio-button"></span>
-                              <span class="mob-ml-20">Aktivan</span>
+                              <span className="form__radio-button"></span>
+                              <span className="mob-ml-20">Aktivan</span>
                             </label>
                           </div>
                           <div className="form__radio-group">
@@ -384,8 +384,8 @@ const RobeForm = () => {
                               htmlFor="Neaktivan"
                               className="form__radio-label"
                             >
-                              <span class="form__radio-button"></span>
-                              <span class="mob-ml-20">Neaktivan</span>
+                              <span className="form__radio-button"></span>
+                              <span className="mob-ml-20">Neaktivan</span>
                             </label>
                           </div>
                         </div>

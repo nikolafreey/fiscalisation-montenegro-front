@@ -67,12 +67,13 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
         {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
       </Label> */}
       {showModal && !depozitError && !depozitLoaded ? (
-        <div class="modal" id="modal">
-          <div class="modal__content">
-            <div class="modal__header">
-              <h2 class="heading-secondary m-0">Dodaj Depozit</h2>
+        <div className="modal" id="modal">
+          <div className="modal__content">
+            <div className="modal__header">
+            <span className="modal__close">&times;</span>
+              <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
             </div>
-            <div class="modal__body">
+            <div className="modal__body">
               <form onSubmit={handleSubmit}>
                 <input
                   type="number"
@@ -81,13 +82,13 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
                     setDepozit(e.target.value);
                   }}
                 />
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" className="btn btn-primary">
                   Sačuvaj Depozit
                 </button>
               </form>
             </div>
-            {/* <div class="modal__footer">
-              <button onSubmit={handleSubmit} class="btn btn-primary">
+            {/* <div className="modal__footer">
+              <button onSubmit={handleSubmit} className="btn btn-primary">
                 Primarno
               </button>
             </div> */}

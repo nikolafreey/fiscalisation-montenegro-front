@@ -104,7 +104,7 @@ const UlazniRacuniTableRow = ({ item, ulazniRacuni }) => {
             <div className="drop-down">
               <a
                 onClick={handleIzmjeni}
-                className={`${item.ikof && item.jikr ? 'disabled' : ''}`}
+                className={`${item.ikof && item.jikr} ? 'disabled' : ''}`}
               >
                 <Izmjeni />
                 Izmjeni

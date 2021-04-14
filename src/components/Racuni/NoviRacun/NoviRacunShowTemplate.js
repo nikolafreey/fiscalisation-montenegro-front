@@ -94,7 +94,7 @@ const NoviRacunShowTemplate = () => {
 
       <div className="title jc-sb">
         <div className="df jc-end" style={{ width: '100%' }}>
-          <button className="btn btn__transparent  mr-m" onClick={handlePrint}>
+          <button className="btn btn__secondary  mr-m" onClick={handlePrint}>
             <svg
               className="icon icon__dark lg mr-xs"
               xmlns="http://www.w3.org/2000/svg"

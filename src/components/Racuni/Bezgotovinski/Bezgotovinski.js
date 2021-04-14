@@ -198,7 +198,7 @@ const Bezgotovinski = () => {
                   </button>
                   <button
                     onClick={() => handleSubmit(values)}
-                    className="btn btn__transparent ml-m"
+                    className="btn btn__secondary ml-m"
                   >
                     Sačuvaj kao privremeni
                   </button>

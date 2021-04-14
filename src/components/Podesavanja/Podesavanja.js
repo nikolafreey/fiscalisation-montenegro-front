@@ -187,10 +187,10 @@ const Podesavanja = () => {
       </div>
       <hr />
       <div className="screen-content">
-        <div class="main-content__box">
-          <div class="content">
+        <div className="main-content__box">
+          <div className="content">
             <button
-              class="btn btn__dark content__btn"
+              className="btn btn__dark content__btn"
               onClick={history.push(
                 `/preduzeca/edit/${user?.preduzeca[0]?.id}`
               )}
@@ -201,7 +201,7 @@ const Podesavanja = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon__light lg"
+                className="icon icon__light lg"
               >
                 <g id="pencil">
                   <path
@@ -215,15 +215,15 @@ const Podesavanja = () => {
               </svg>
               Izmijeni
             </button>
-            <form class="form" action="">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-4 mt-25">
-                    <h2 class="heading-secondary">Preduzeće</h2>
-                    <p class="txt-light">Informacije o preduzeću</p>
+            <form className="form" action="">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 mt-25">
+                    <h2 className="heading-secondary">Preduzeće</h2>
+                    <p className="txt-light">Informacije o preduzeću</p>
                   </div>
-                  <div class="col-md-8 mt-25">
-                    <div class="content__logo">
+                  <div className="col-md-8 mt-25">
+                    <div className="content__logo">
                       <img
                         src={
                           user?.preduzeca[0].length !== 0
@@ -233,79 +233,79 @@ const Podesavanja = () => {
                         alt="logo"
                       />
                     </div>
-                    <p class="w-50">
+                    <p className="w-50">
                       {user?.preduzeca[0]?.kratki_naziv +
                         ' - ' +
                         user?.preduzeca[0]?.opis}
                     </p>
-                    <div class="mb-20">
-                      <p class="txt-light">{user?.preduzeca[0]?.djelatnost}</p>
-                      <p class="txt-light">{user?.preduzeca[0]?.adadresa}</p>
-                      <p class="txt-light">
+                    <div className="mb-20">
+                      <p className="txt-light">{user?.preduzeca[0]?.djelatnost}</p>
+                      <p className="txt-light">{user?.preduzeca[0]?.adadresa}</p>
+                      <p className="txt-light">
                         {user?.preduzeca[0]?.grad +
                           ', ' +
                           user?.preduzeca[0]?.drzava}
                       </p>
                     </div>
-                    <div class="df">
-                      <div class="side-info__wrapper w-50 mr-15">
-                        <div class="side-info__info--inner-wrapper">
-                          <div class="col-l">
-                            <p class="txt-light txt-up">pib</p>
+                    <div className="df">
+                      <div className="side-info__wrapper w-50 mr-15">
+                        <div className="side-info__info--inner-wrapper">
+                          <div className="col-l">
+                            <p className="txt-light txt-up">pib</p>
                           </div>
-                          <div class="col-r">
-                            <p class="fw-500">{user?.preduzeca[0]?.pib}</p>
-                          </div>
-                        </div>
-                        <div class="side-info__info--inner-wrapper">
-                          <div class="col-l">
-                            <p class="txt-light txt-up">pdv</p>
-                          </div>
-                          <div class="col-r">
-                            <p class="fw-500">{user?.preduzeca[0]?.pdv}</p>
+                          <div className="col-r">
+                            <p className="fw-500">{user?.preduzeca[0]?.pib}</p>
                           </div>
                         </div>
-                        <div class="side-info__info--inner-wrapper">
-                          <div class="col-l">
-                            <p class="txt-light txt-up">IBAN</p>
+                        <div className="side-info__info--inner-wrapper">
+                          <div className="col-l">
+                            <p className="txt-light txt-up">pdv</p>
                           </div>
-                          <div class="col-r">
-                            <p class="fw-500">{user?.preduzeca[0]?.iban}</p>
+                          <div className="col-r">
+                            <p className="fw-500">{user?.preduzeca[0]?.pdv}</p>
                           </div>
                         </div>
-                        <div class="side-info__info--inner-wrapper">
-                          <div class="col-l">
-                            <p class="txt-light txt-up">BIC/SWIFT</p>
+                        <div className="side-info__info--inner-wrapper">
+                          <div className="col-l">
+                            <p className="txt-light txt-up">IBAN</p>
                           </div>
-                          <div class="col-r">
-                            <p class="fw-500">
+                          <div className="col-r">
+                            <p className="fw-500">{user?.preduzeca[0]?.iban}</p>
+                          </div>
+                        </div>
+                        <div className="side-info__info--inner-wrapper">
+                          <div className="col-l">
+                            <p className="txt-light txt-up">BIC/SWIFT</p>
+                          </div>
+                          <div className="col-r">
+                            <p className="fw-500">
                               {user?.preduzeca[0]?.bic_swift}
                             </p>
                           </div>
                         </div>
                       </div>
                       {user?.preduzeca[0]?.ziro_racuni?.length === 0 && (
-                        <div class="side-info__wrapper w-50">
-                          <div class="side-info__info--inner-wrapper">
-                            <div class="col-l">
-                              <p class="txt-light txt-up">
+                        <div className="side-info__wrapper w-50">
+                          <div className="side-info__info--inner-wrapper">
+                            <div className="col-l">
+                              <p className="txt-light txt-up">
                                 Preduzeće nema dodat nijedan račun!
                               </p>
                             </div>
-                            <div class="col-r">
-                              <p class="fw-500"></p>
+                            <div className="col-r">
+                              <p className="fw-500"></p>
                             </div>
                           </div>
                         </div>
                       )}
-                      <div class="side-info__wrapper w-50">
+                      <div className="side-info__wrapper w-50">
                         {user?.preduzeca[0]?.ziro_racuni?.map((racun) => (
-                          <div class="side-info__info--inner-wrapper">
-                            <div class="col-l">
-                              <p class="txt-light txt-up">{() => getBank()}</p>
+                          <div className="side-info__info--inner-wrapper">
+                            <div className="col-l">
+                              <p className="txt-light txt-up">{() => getBank()}</p>
                             </div>
-                            <div class="col-r">
-                              <p class="fw-500">{racun.broj_racuna}</p>
+                            <div className="col-r">
+                              <p className="fw-500">{racun.broj_racuna}</p>
                             </div>
                           </div>
                         ))}
@@ -315,33 +315,33 @@ const Podesavanja = () => {
                 </div>
               </div>
               <hr />
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-4 col-xl-4">
-                    <h2 class="heading-secondary">Računi</h2>
-                    <p class="mob-mb-20 txt-light">Podešavanja računa</p>
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 col-xl-4">
+                    <h2 className="heading-secondary">Računi</h2>
+                    <p className="mob-mb-20 txt-light">Podešavanja računa</p>
                   </div>
-                  <div class="col-md-8 col-xl-8">
-                    <div class="form__group w-48 mob-w-100">
-                      <label class="form__label" for="no">
+                  <div className="col-md-8 col-xl-8">
+                    <div className="form__group w-48 mob-w-100">
+                      <label className="form__label" for="no">
                         Redni broj računa počinje od
                       </label>
                       <input
                         type="text"
-                        class="form__input"
+                        className="form__input"
                         id="redni_broj_racuna"
                         name="redni_broj_racuna"
                         onChange={(e) => setRedniBrojRacuna(e.target.value)}
                         value={redniBrojRacuna}
                       />
                     </div>
-                    <div class="form__group mob-w-100 mb-30">
-                      <label class="form__label" for="">
+                    <div className="form__group mob-w-100 mb-30">
+                      <label className="form__label" for="">
                         Slanje računa kupcu
                       </label>
-                      <div class="form__checkbox-group">
+                      <div className="form__checkbox-group">
                         <input
-                          class="form__checkbox"
+                          className="form__checkbox"
                           type="checkbox"
                           name="whatsApp"
                           id="whatsAppCI"
@@ -349,18 +349,18 @@ const Podesavanja = () => {
                             setSlanjeRacunaKupcu(e.target.checked);
                           }}
                         />
-                        <label class="form__checkbox-label" for="whatsAppCI">
+                        <label className="form__checkbox-label" for="whatsAppCI">
                           Pošalji račun kupcu odmah pri kreiranju
                         </label>
                       </div>
                     </div>
-                    <div class="mb-10">
-                      <p class="mb-20">
+                    <div className="mb-10">
+                      <p className="mb-20">
                         Izgled računa
-                        <span class="tag tag__neutral ml-m">Start</span>
+                        <span className="tag tag__neutral ml-m">Start</span>
                       </p>
-                      <div class="content__box-wrapper">
-                        <div class="content__box active-invoice-layout">
+                      <div className="content__box-wrapper">
+                        <div className="content__box active-invoice-layout">
                           <img src={invoicePicture} alt="racun_tip_1" />
                         </div>
                       </div>
@@ -371,7 +371,7 @@ const Podesavanja = () => {
                       <a
                         href="http://"
                         target="_blank"
-                        class="btn btn__link"
+                        className="btn btn__link"
                         rel="noopener noreferrer"
                       >
                         modulu
@@ -381,11 +381,11 @@ const Podesavanja = () => {
                 </div>
               </div>
               <hr />
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-4 col-xl-4">
-                    <h2 class="heading-secondary">SEP portal kodovi</h2>
-                    <p class="mb-10 txt-light">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 col-xl-4">
+                    <h2 className="heading-secondary">SEP portal kodovi</h2>
+                    <p className="mb-10 txt-light">
                       Kodovi potrebni za funkcionisanje aplikacije koji se
                       dobijaju sa SEP portala Uprave prihoda
                     </p>
@@ -393,50 +393,50 @@ const Podesavanja = () => {
                       href="http://"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="btn btn__link mob-mb-20"
+                      className="btn btn__link mob-mb-20"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        class="icon icon__stroke-link sm mr-xs"
+                        className="icon icon__stroke-link sm mr-xs"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                         />
                       </svg>
-                      <span class="btn btn__link success">SEP portal</span>
+                      <span className="btn btn__link success">SEP portal</span>
                     </a>
                   </div>
-                  <div class="col-md-8 col-xl-8">
-                    <div class="df jc-sb mob-fd-column">
-                      <div class="form__group w-48 mob-w-100">
-                        <div class="df jc-sb">
-                          <label class="form__label" for="enu">
+                  <div className="col-md-8 col-xl-8">
+                    <div className="df jc-sb mob-fd-column">
+                      <div className="form__group w-48 mob-w-100">
+                        <div className="df jc-sb">
+                          <label className="form__label" for="enu">
                             ENU kod
                           </label>
                           <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn__link mb-7"
+                            className="btn btn__link mb-7"
                           >
-                            <span class="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">Portal</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
-                              class="icon icon__stroke-link sm ml-s"
+                              className="icon icon__stroke-link sm ml-s"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
@@ -444,36 +444,36 @@ const Podesavanja = () => {
                         </div>
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           id="enu"
                           name="enu"
                           onChange={(e) => setEnu(e.target.value)}
                           value={enu}
                         />
                       </div>
-                      <div class="form__group w-48 mob-w-100">
-                        <div class="df jc-sb">
-                          <label class="form__label" for="software">
+                      <div className="form__group w-48 mob-w-100">
+                        <div className="df jc-sb">
+                          <label className="form__label" for="software">
                             Sofware kod
                           </label>
                           <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn__link mb-7"
+                            className="btn btn__link mb-7"
                           >
-                            <span class="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">Portal</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
-                              class="icon icon__stroke-link sm ml-s"
+                              className="icon icon__stroke-link sm ml-s"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
@@ -481,7 +481,7 @@ const Podesavanja = () => {
                         </div>
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           name="software_kod"
                           id="software_kod"
                           onChange={(e) => setSoftwareKod(e.target.value)}
@@ -489,30 +489,30 @@ const Podesavanja = () => {
                         />
                       </div>
                     </div>
-                    <div class="df jc-sb mob-fd-column">
-                      <div class="form__group w-48 mob-w-100">
-                        <div class="df jc-sb">
-                          <label class="form__label" for="kodpj">
+                    <div className="df jc-sb mob-fd-column">
+                      <div className="form__group w-48 mob-w-100">
+                        <div className="df jc-sb">
+                          <label className="form__label" for="kodpj">
                             Kod PJ
                           </label>
                           <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn__link mb-7"
+                            className="btn btn__link mb-7"
                           >
-                            <span class="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">Portal</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
-                              class="icon icon__stroke-link sm ml-s"
+                              className="icon icon__stroke-link sm ml-s"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
@@ -520,36 +520,36 @@ const Podesavanja = () => {
                         </div>
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           name="kodpj"
                           id="kodpj"
                           onChange={(e) => setKodPj(e.target.value)}
                           value={kodPj}
                         />
                       </div>
-                      <div class="form__group w-48 mob-w-100">
-                        <div class="df jc-sb">
-                          <label class="form__label" for="kodop">
+                      <div className="form__group w-48 mob-w-100">
+                        <div className="df jc-sb">
+                          <label className="form__label" for="kodop">
                             Kod operatera
                           </label>
                           <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn__link mb-7"
+                            className="btn btn__link mb-7"
                           >
-                            <span class="btn btn__link success">Portal</span>
+                            <span className="btn btn__link success">Portal</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
-                              class="icon icon__stroke-link sm ml-s"
+                              className="icon icon__stroke-link sm ml-s"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
@@ -557,7 +557,7 @@ const Podesavanja = () => {
                         </div>
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           name="kodop"
                           id="kodop"
                           onChange={(e) => setKodOp(e.target.value)}
@@ -568,11 +568,11 @@ const Podesavanja = () => {
                   </div>
                 </div>
                 <hr />
-                <div class="container">
+                <div className="container">
                   <div className="row">
-                    <div class="col-md-4 col-xl-4">
-                      <h2 class="heading-secondary">Certifikati</h2>
-                      <p class="mb-10 txt-light">
+                    <div className="col-md-4 col-xl-4">
+                      <h2 className="heading-secondary">Certifikati</h2>
+                      <p className="mb-10 txt-light">
                         Elektronski certifikati za digitalni potpis (za
                         bezgotovinsko izdavanje računa) i digitalni pečat (za
                         gotovinsko izdavanje računa)
@@ -581,37 +581,37 @@ const Podesavanja = () => {
                         href="https://postacg.me/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="btn btn__link mob-mb-20"
+                        className="btn btn__link mob-mb-20"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          class="icon icon__stroke-link sm mr-xs"
+                          className="icon icon__stroke-link sm mr-xs"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                           />
                         </svg>
-                        <span class="btn btn__link success">
+                        <span className="btn btn__link success">
                           Pošta Crne Gore
                         </span>
                       </a>
                     </div>
-                    <div class="col-md-8 col-xl-8">
-                      <div class="df jc-sb mob-fd-column">
-                        <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="d-signature">
+                    <div className="col-md-8 col-xl-8">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
+                          <label className="form__label" for="d-signature">
                             Digitalni potpis
                           </label>
-                          <span class="form__file">
+                          <span className="form__file">
                             <input
                               type="file"
-                              class="form__input"
+                              className="form__input"
                               id="d-signature"
                               onChange={(e) =>
                                 setDigitalniPotpisFile(e.target.files[0])
@@ -619,13 +619,13 @@ const Podesavanja = () => {
                             />
                           </span>
                         </div>
-                        <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="sifraDigitalniPotpis">
+                        <div className="form__group w-48 mob-w-100">
+                          <label className="form__label" for="sifraDigitalniPotpis">
                             Šifra za digitalni potpis
                           </label>
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="sifraDigitalniPotpis"
                             id="sifraDigitalniPotpis"
                             onChange={(e) =>
@@ -635,15 +635,15 @@ const Podesavanja = () => {
                           />
                         </div>
                       </div>
-                      <div class="df jc-sb mob-fd-column">
-                        <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="d-stamp">
+                      <div className="df jc-sb mob-fd-column">
+                        <div className="form__group w-48 mob-w-100">
+                          <label className="form__label" for="d-stamp">
                             Digitalni pečat
                           </label>
-                          <span class="form__file">
+                          <span className="form__file">
                             <input
                               type="file"
-                              class="form__input"
+                              className="form__input"
                               id="d-stamp"
                               onChange={(e) =>
                                 setDigitalniPecatFile(e.target.files[0])
@@ -651,13 +651,13 @@ const Podesavanja = () => {
                             />
                           </span>
                         </div>
-                        <div class="form__group w-48 mob-w-100">
-                          <label class="form__label" for="sifraDigitalniPecat">
+                        <div className="form__group w-48 mob-w-100">
+                          <label className="form__label" for="sifraDigitalniPecat">
                             Šifra za digitalni pečat
                           </label>
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="sifraDigitalniPecat"
                             id="sifraDigitalniPecat"
                             onChange={(e) =>
@@ -671,98 +671,98 @@ const Podesavanja = () => {
                   </div>
                 </div>
                 <hr />
-                <div class="container">
+                <div className="container">
                   <div className="row">
-                    <div class="col-md-4 col-xl-4">
-                      <h2 class="heading-secondary">Korisnici</h2>
-                      <p class="mb-10 txt-light">
+                    <div className="col-md-4 col-xl-4">
+                      <h2 className="heading-secondary">Korisnici</h2>
+                      <p className="mb-10 txt-light">
                         Možete dodati nove korisnike aplikacije u okviru vašeg
                         preduzeća i tako im omogućiti upravljanje
                       </p>
                     </div>
-                    <div class="col-md-4 col-xl-4">
-                      <p class="mb-10">Korisnici aplikacije:</p>
+                    <div className="col-md-4 col-xl-4">
+                      <p className="mb-10">Korisnici aplikacije:</p>
                       {user?.preduzeca[0]?.users.map((korisnik, index) => (
-                        <div class="df jc-sb mb-10">
+                        <div className="df jc-sb mb-10">
                           <div>
-                            <p class="fw-500">
+                            <p className="fw-500">
                               {korisnik.ime + ' ' + korisnik.prezime}
                             </p>
-                            <p class="txt-light">
+                            <p className="txt-light">
                               {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
                             </p>
                           </div>
                           {/* <button
                             type="button"
-                            class="btn btn__link danger mob-ml-10"
+                            className="btn btn__link danger mob-ml-10"
                             onClick={() => handleUkloniKorisnika(user)}
                           >
                             Ukloni
                           </button> */}
                         </div>
                       ))}
-                      <div class="df ai-c">
+                      <div className="df ai-c">
                         {/* <button
                           type="button"
-                          class="btn btn__link df"
+                          className="btn btn__link df"
                           onClick={() => setKorisniciVisible(true)}
                         >
                           <svg
-                            class="icon icon__stroke-link sm"
+                            className="icon icon__stroke-link sm"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                           >
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                             ></path>
                           </svg>
-                          <span class="btn btn__link success">
+                          <span className="btn btn__link success">
                             Kreiraj novog korisnika
                           </span>
                         </button> */}
                       </div>
                     </div>
                     {korisniciVisible && (
-                      <div class="col-md-4 col-xl-4">
-                        <div class="form__group mob-w-100">
-                          <label class="form__label" for="user-name">
+                      <div className="col-md-4 col-xl-4">
+                        <div className="form__group mob-w-100">
+                          <label className="form__label" for="user-name">
                             Ime i prezime
                           </label>
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             id="user_name"
                             name="user_name"
                             onChange={(e) => setImePrezime(e.target.value)}
                             value={imePrezime}
                           />
                         </div>
-                        <div class="form__group mob-w-100">
-                          <label class="form__label" for="user-email">
+                        <div className="form__group mob-w-100">
+                          <label className="form__label" for="user-email">
                             Email korisnika
                           </label>
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             id="user_email"
                             name="user_email"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
                           />
                         </div>
-                        <div class="form__group mob-w-100">
-                          <label class="form__label" for="user-type">
+                        <div className="form__group mob-w-100">
+                          <label className="form__label" for="user-type">
                             Tip korisnika
                           </label>
                           <select
                             name="user_type"
                             id="user_type"
-                            class="form__input"
+                            className="form__input"
                             onChange={(option) => {
                               console.log('option', option.target.value);
                               setTipKorisnika(option.target.value);
@@ -781,15 +781,15 @@ const Podesavanja = () => {
                             <option value="zaposleni">Zaposleni</option>
                           </select>
                         </div>
-                        <div class="df ai-c jc-sb">
+                        <div className="df ai-c jc-sb">
                           <button
-                            class="btn btn__dark"
+                            className="btn btn__dark"
                             onClick={handleKorisnik}
                           >
                             Sačuvaj
                           </button>
                           <button
-                            class="btn btn__link danger mb-0"
+                            className="btn btn__link danger mb-0"
                             type="button"
                             onClick={() => setKorisniciVisible(false)}
                           >
@@ -801,44 +801,44 @@ const Podesavanja = () => {
                   </div>
                 </div>
                 <hr />
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h2 class="heading-secondary">Jezik</h2>
-                      <p class="mob-mb-20 txt-light">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h2 className="heading-secondary">Jezik</h2>
+                      <p className="mob-mb-20 txt-light">
                         Izaberite jezik aplikacije
                       </p>
                     </div>
-                    <div class="col-md-8">
-                      <div class="form__label">Jezik aplikacije</div>
-                      <div class="form__group">
-                        <div class="form__radio-group">
+                    <div className="col-md-8">
+                      <div className="form__label">Jezik aplikacije</div>
+                      <div className="form__group">
+                        <div className="form__radio-group">
                           <input
                             type="radio"
-                            class="form__radio-input"
+                            className="form__radio-input"
                             id="mne"
                             name="language"
                             checked
                           />
                           <label
                             for="mne"
-                            class="form__radio-label radio-default"
+                            className="form__radio-label radio-default"
                           >
-                            <span class="form__radio-button"></span>
-                            <span class="mob-ml-10">Crnogorski</span>
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Crnogorski</span>
                           </label>
                         </div>
-                        <div class="form__radio-group">
+                        <div className="form__radio-group">
                           <input
                             type="radio"
-                            class="form__radio-input"
+                            className="form__radio-input"
                             id="eng"
                             name="language"
                             disabled
                           />
-                          <label for="eng" class="form__radio-label">
-                            <span class="form__radio-button"></span>
-                            <span class="mob-ml-10">English (soon)</span>
+                          <label for="eng" className="form__radio-label">
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">English (soon)</span>
                           </label>
                         </div>
                       </div>
@@ -846,94 +846,94 @@ const Podesavanja = () => {
                   </div>
                 </div>
                 {/* <hr /> */}
-                {/* <div class="container">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h2 class="heading-secondary">Boje</h2>
-                      <p class="mob-mb-20 txt-light">
+                {/* <div className="container">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h2 className="heading-secondary">Boje</h2>
+                      <p className="mob-mb-20 txt-light">
                         Podesite boje aplikacije u skladu sa bojama Vašeg
                         preduzeća
                       </p>
                     </div>
-                    <div class="col-md-8">
-                      <div class="content__grid">
-                        <div class="content__color">
-                          <div class="content__color content__color--light-blue"></div>
+                    <div className="col-md-8">
+                      <div className="content__grid">
+                        <div className="content__color">
+                          <div className="content__color content__color--light-blue"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--blue active-color"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--blue active-color"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--indigo"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--indigo"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--violet"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--violet"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--purple"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--purple"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--fuchsia"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--fuchsia"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--pink"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--pink"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--rose"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--rose"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--cyan"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--cyan"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--teal"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--teal"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--emerald"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--emerald"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--green"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--green"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--lime"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--lime"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--yellow"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--yellow"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--amber"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--amber"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--orange"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--orange"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--cool-gray"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--cool-gray"></div>
                         </div>
-                        <div class="content__color">
-                          <div class="content__color content__color--red"></div>
+                        <div className="content__color">
+                          <div className="content__color content__color--red"></div>
                         </div>
 
-                        <div class="img-round img-round__color img-round__color--pink"></div>
-                        <div class="img-round img-round__color img-round__color--cyan"></div>
-                        <div class="img-round img-round__color img-round__color--teal"></div>
-                        <div class="img-round img-round__color img-round__color--emerald"></div>
-                        <div class="img-round img-round__color img-round__color--green"></div>
-                        <div class="img-round img-round__color img-round__color--lime"></div>
-                        <div class="img-round img-round__color img-round__color--yellow"></div>
-                        <div class="img-round img-round__color img-round__color--amber"></div>
-                        <div class="img-round img-round__color img-round__color--orange"></div>
-                        <div class="img-round img-round__color img-round__color--cool-gray"></div>
-                        <div class="img-round img-round__color img-round__color--red"></div>
+                        <div className="img-round img-round__color img-round__color--pink"></div>
+                        <div className="img-round img-round__color img-round__color--cyan"></div>
+                        <div className="img-round img-round__color img-round__color--teal"></div>
+                        <div className="img-round img-round__color img-round__color--emerald"></div>
+                        <div className="img-round img-round__color img-round__color--green"></div>
+                        <div className="img-round img-round__color img-round__color--lime"></div>
+                        <div className="img-round img-round__color img-round__color--yellow"></div>
+                        <div className="img-round img-round__color img-round__color--amber"></div>
+                        <div className="img-round img-round__color img-round__color--orange"></div>
+                        <div className="img-round img-round__color img-round__color--cool-gray"></div>
+                        <div className="img-round img-round__color img-round__color--red"></div>
                       </div>
                     </div>
                   </div>
                 </div> */}
               </div>
-              <div class="form__footer">
-                <button class="btn btn__dark btn__md" onClick={handleSubmit}>
+              <div className="form__footer">
+                <button className="btn btn__dark btn__md" onClick={handleSubmit}>
                   Sačuvaj
                 </button>
                 <button
-                  class="btn btn__link ml-m"
+                  className="btn btn__link ml-m"
                   onClick={() => history.goBack()}
                 >
                   Nazad

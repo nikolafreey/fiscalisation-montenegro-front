@@ -72,3 +72,10 @@ ORDER: BAse + Typography > general layout + grid > page layout > components
 @function themed($key) {
   @return map-get($theme-map, $key);
 }
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

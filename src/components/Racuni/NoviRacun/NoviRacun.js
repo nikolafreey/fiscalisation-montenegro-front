@@ -72,7 +72,7 @@ const NoviRacun = () => {
   return (
     <>
       <h1 className="heading-primary">Kreiranje novog gotovinskog računa</h1>
-      <div class="screen-content-info">
+      <div className="screen-content-info">
         <div className="main-content__box">
           <div className="content">
             <div className="main-content__search-wrapper">

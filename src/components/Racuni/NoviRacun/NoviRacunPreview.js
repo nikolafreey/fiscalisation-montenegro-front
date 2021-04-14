@@ -219,7 +219,7 @@ const NoviRacunPreview = () => {
         >
           Fiskalizuj i štampaj
         </button>
-        <button className="btn btn__transparent w-100" onClick={handleSacuvaj}>
+        <button className="btn btn__secondary w-100" onClick={handleSacuvaj}>
           Sačuvaj
         </button>
       </>

@@ -142,13 +142,13 @@ const Racuni = () => {
           <Modal showModal={showModal} />
           {!depozitLoaded && (
             <button
-              className="btn btn__primary mob-mb-20"
+              className="btn btn__secondary mob-mb-20"
               onClick={() => setShowModal(true)}
             >
               Registracija Depozita
             </button>
           )}
-          <button className="btn btn__primary mob-mb-20">
+          <button className="btn btn__primary mob-mb-20 ml-m">
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">

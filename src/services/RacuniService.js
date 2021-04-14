@@ -1,5 +1,6 @@
 import ApiService from './ApiService';
 import axios from 'axios';
+import { BASE_URL } from '../config/index';
 
 const config = {
   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -20,7 +21,7 @@ const ENDPOINTS = {
 
 class RacuniService extends ApiService {
   getRacuni = (params) =>
-    axios.get('http://localhost:8000/api/' + ENDPOINTS.RACUNI, {
+    axios.get(BASE_URL + '/' + ENDPOINTS.RACUNI, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
   // this.apiClient.get(ENDPOINTS.RACUNI, { params }, config);
