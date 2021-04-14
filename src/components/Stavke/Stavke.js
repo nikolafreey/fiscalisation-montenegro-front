@@ -167,9 +167,7 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robe.data.length === 0 &&
-              usluge.data.length === 0 &&
-              filter?.length === 0 ? (
+              {robe.data.length === 0 && usluge.data.length === 0 ? (
                 <PropagateLoader css={spinnerStyleGrid} size={15} />
               ) : (
                 <>
@@ -200,9 +198,7 @@ const Stavke = () => {
             </div>
           </div>
           <div>
-            {robe.data.length === 0 &&
-            usluge.data.length === 0 &&
-            filter?.length === 0 ? (
+            {robe.data.length === 0 && usluge.data.length === 0 ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />

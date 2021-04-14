@@ -314,8 +314,12 @@ const UslugeForm = () => {
                             loadOptions={
                               jediniceMjereService.getJediniceMjereDropdown
                             }
-                            placeholder={
-                              usluga && usluga?.jedinica_mjere?.naziv
+                            defaultValue={
+                              Object.keys(usluga).length !== 0 &&
+                              usluga.constructor === Object && {
+                                label: usluga?.jedinica_mjere?.naziv,
+                                value: usluga?.jedinica_mjere?.id,
+                              }
                             }
                           />
                         </div>
@@ -331,7 +335,14 @@ const UslugeForm = () => {
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
-                            placeholder={usluga?.grupa?.naziv}
+                            // placeholder={usluga?.grupa?.naziv}
+                            defaultValue={
+                              Object.keys(usluga).length !== 0 &&
+                              usluga.constructor === Object && {
+                                value: usluga?.grupa?.id,
+                                label: usluga?.grupa?.naziv,
+                              }
+                            }
                             // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
