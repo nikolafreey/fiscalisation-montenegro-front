@@ -14,7 +14,7 @@ import DropDown from '../shared/forms/DropDown';
 import { ReactComponent as LinkPreduzecaSvg } from '../../assets/icon/link.svg';
 import { ReactComponent as IconFillSvg } from '../../assets/icon/icon_fill.svg';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch, Prompt } from 'react-router-dom';
+import { Link, useRouteMatch, Prompt, useHistory } from 'react-router-dom';
 import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import { kategorijeService } from '../../services/KategorijeService';
@@ -25,11 +25,30 @@ import RadioButton from '../shared/forms/RadioButton';
 import { djelatnostiService } from '../../services/DjelatnostiService';
 import MapContainer from '../shared/forms/MapContainer';
 import { PARTNERI, PREDUZECA } from '../../constants/routes';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const PreduzecaForm = () => {
   const dispatch = useDispatch();
 
   const { params } = useRouteMatch();
+
+  const history = useHistory();
 
   const informacijeKontakt = [
     { key: 'Aktivan', value: 'Aktivan' },
@@ -42,6 +61,7 @@ const PreduzecaForm = () => {
   ];
 
   const preduzece = useSelector(preduzeceSelector());
+  console.log('preduzece', preduzece);
 
   useEffect(() => {
     if (params.id) dispatch(getPreduzece(params.id));
@@ -71,6 +91,14 @@ const PreduzecaForm = () => {
       }
     );
   };
+
+  if (
+    params.id &&
+    Object.keys(preduzece).length === 0 &&
+    preduzece.constructor === Object
+  ) {
+    return <GridLoader css={spinnerStyleGrid} size={20} />;
+  }
 
   return (
     <Formik
@@ -118,7 +146,6 @@ const PreduzecaForm = () => {
         status: 'Aktivan',
         privatnost: 'Javan',
         verifikovan: false,
-        kategorija_id: '',
         ziro_racuni: [],
         ...preduzece,
       }}
@@ -126,13 +153,17 @@ const PreduzecaForm = () => {
       validationSchema={PreduzecaSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <div className="screen-content">
           <Link to={PARTNERI.INDEX} className="back-link df">
             <LinkPreduzecaSvg />
             <p>Povratak na Partnere</p>
           </Link>
-          <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
+          ) : (
+            <h1 className="heading-primary">Izmjena preduzeća</h1>
+          )}
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
@@ -223,6 +254,7 @@ const PreduzecaForm = () => {
                             placeholder=""
                             type="text"
                             className="form__input"
+                            obavezno
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
@@ -232,6 +264,7 @@ const PreduzecaForm = () => {
                             placeholder="CG"
                             type="text"
                             className="form__input"
+                            obavezno
                           />
                         </div>
                       </div>
@@ -243,6 +276,13 @@ const PreduzecaForm = () => {
                             loadOptions={
                               djelatnostiService.getDjelatnostiDropdown
                             }
+                            defaultValue={
+                              Object.keys(preduzece).length !== 0 &&
+                              preduzece.constructor === Object && {
+                                value: preduzece?.djelatnosti[0]?.id,
+                                label: preduzece?.djelatnosti[0]?.naziv,
+                              }
+                            }
                             //className="form__input"
                           />
                         </div>
@@ -252,6 +292,13 @@ const PreduzecaForm = () => {
                             label={$t('preduzeca.kategorija')}
                             loadOptions={
                               kategorijeService.getKategorijeDropdown
+                            }
+                            defaultValue={
+                              Object.keys(preduzece).length !== 0 &&
+                              preduzece.constructor === Object && {
+                                value: preduzece?.kategorija?.id,
+                                label: preduzece?.kategorija?.naziv,
+                              }
                             }
                             //className="form__input"
                           />
@@ -658,7 +705,7 @@ const PreduzecaForm = () => {
                   </div>
                 </div>
                 <hr />
-                <div className="container">
+                {/* <div className="container">
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Lokacija na mapi</h2>
@@ -674,8 +721,8 @@ const PreduzecaForm = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <hr />
+                </div> */}
+                {/* <hr /> */}
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-4">
@@ -686,15 +733,49 @@ const PreduzecaForm = () => {
                       </p>
                     </div>
                     <div className="col-lg-4 col-md-6 col-6">
-                      <div className="form__group">
+                      <label className="form__label">Status</label>
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
                         <div className="form__radio-group">
-                          <div className="form__radio-group">
-                            <RadioButton
-                              name="privatnost"
-                              label="Privatnost"
-                              options={informacijePrivatnost}
-                            />
-                          </div>
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Aktivan"
+                            value="Aktivan"
+                            name="status"
+                            defaultChecked
+                            // checked={values.status}
+                          />
+                          <label
+                            htmlFor="Aktivan"
+                            className="form__radio-label"
+                          >
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Aktivan</span>
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Neaktivan"
+                            value="Neaktivan"
+                            name="status"
+                            disabled
+                            // checked={usluga && radioChecked}
+                          />
+                          <label
+                            htmlFor="Neaktivan"
+                            className="form__radio-label"
+                          >
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Neaktivan</span>
+                          </label>
                         </div>
                       </div>
                       <div className="df mtb-25">
@@ -714,13 +795,48 @@ const PreduzecaForm = () => {
                       </div>
                     </div>
                     <div className="col-lg-4 col-md-6 col-6">
-                      <div className="form__group">
+                      <label className="form__label">
+                        Javno prikazani podaci
+                      </label>
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
                         <div className="form__radio-group">
-                          <RadioButton
-                            name="status"
-                            label="Status"
-                            options={informacijeKontakt}
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Javno"
+                            value="javno"
+                            name="privatnost"
+                            defaultChecked
+                            // checked={values.status}
                           />
+                          <label htmlFor="Javno" className="form__radio-label">
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Javno</span>
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Privatno"
+                            value="privatno"
+                            name="privatnost"
+                            disabled
+                            // checked={usluga && radioChecked}
+                          />
+                          <label
+                            htmlFor="Privatno"
+                            className="form__radio-label"
+                          >
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Privatno</span>
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -737,13 +853,26 @@ const PreduzecaForm = () => {
                   placeholder=""
                 /> */}
                 <div className="form__footer">
-                  <button className="btn btn__primary" type="submit">
+                  <button
+                    className="btn btn__primary"
+                    onClick={() => {
+                      if (!isValid && dirty) {
+                        toast.error(
+                          'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                    }}
+                    type="submit"
+                  >
                     Sačuvaj
                   </button>
                   <button
                     type="button"
                     className="btn btn__link ml-m"
-                    onClick={() => dispatch(deletePreduzece(params.id))}
+                    onClick={() => {
+                      history.goBack();
+                    }}
                   >
                     Nazad
                   </button>

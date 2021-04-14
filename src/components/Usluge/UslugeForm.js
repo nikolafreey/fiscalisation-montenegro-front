@@ -29,6 +29,23 @@ import RadioButton from '../shared/forms/RadioButton';
 import { storeGrupa } from '../../store/actions/GrupeActions';
 import { isNumber } from 'lodash';
 import { STAVKE, USLUGE } from '../../constants/routes';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const UslugeForm = () => {
   const dispatch = useDispatch();
@@ -158,6 +175,14 @@ const UslugeForm = () => {
     );
   };
 
+  if (
+    params.id &&
+    Object.keys(usluga).length === 0 &&
+    usluga.constructor === Object
+  ) {
+    return <GridLoader css={spinnerStyleGrid} size={20} />;
+  }
+
   return (
     <Formik
       initialValues={{
@@ -169,13 +194,17 @@ const UslugeForm = () => {
       validationSchema={UslugeSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <div className="screen-content">
           <Link to={STAVKE.INDEX} className="back-link df">
             <LinkSvg /> <p>Povratak na Stavke</p>
           </Link>
 
-          <h1 className="heading-primary">Dodavanje nove usluge</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Izmjena usluge</h1>
+          ) : (
+            <h1 className="heading-primary">Dodavanje nove usluge</h1>
+          )}
 
           <div className="main-content__box">
             <div className="content">
@@ -289,8 +318,12 @@ const UslugeForm = () => {
                             loadOptions={
                               jediniceMjereService.getJediniceMjereDropdown
                             }
-                            placeholder={
-                              usluga && usluga?.jedinica_mjere?.naziv
+                            defaultValue={
+                              Object.keys(usluga).length !== 0 &&
+                              usluga.constructor === Object && {
+                                label: usluga?.jedinica_mjere?.naziv,
+                                value: usluga?.jedinica_mjere?.id,
+                              }
                             }
                           />
                         </div>
@@ -306,7 +339,14 @@ const UslugeForm = () => {
                             name="grupa_id"
                             label={$t('usluge.grupa')}
                             loadOptions={grupeService.getGrupeDropdown}
-                            placeholder={usluga?.grupa?.naziv}
+                            // placeholder={usluga?.grupa?.naziv}
+                            defaultValue={
+                              Object.keys(usluga).length !== 0 &&
+                              usluga.constructor === Object && {
+                                value: usluga?.grupa?.id,
+                                label: usluga?.grupa?.naziv,
+                              }
+                            }
                             // onCreateOption={handleCreate}
                           />
                           {/* <CreatableSelect
@@ -443,7 +483,18 @@ const UslugeForm = () => {
                 </div>
 
                 <div className="form__footer">
-                  <button className="btn btn__primary btn__md" type="submit">
+                  <button
+                    className="btn btn__primary btn__md"
+                    type="submit"
+                    onClick={() => {
+                      if (!isValid && dirty) {
+                        toast.error(
+                          'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                    }}
+                  >
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">

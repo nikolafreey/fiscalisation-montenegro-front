@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +35,23 @@ import { setKategorijeRobe } from '../../store/actions/KategorijeRobeActions';
 import { STAVKE, PREDUZECA } from '../../constants/routes';
 import { globalErrorSelector } from '../../store/selectors/ErrorSelector';
 import { RobeSchema } from '../../validation/robe';
+import GridLoader from 'react-spinners/GridLoader';
+import { spinnerStyleGrid } from '../../constants/spinner';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const RobeForm = () => {
   const dispatch = useDispatch();
@@ -48,7 +65,9 @@ const RobeForm = () => {
 
   const globalError = useSelector(globalErrorSelector());
   const roba = useSelector(robaSelector());
-  console.log('roba:', roba);
+
+  const kategorijaRef = useRef();
+  const atributiRef = useRef();
 
   const {
     getStopaPerId,
@@ -141,6 +160,17 @@ const RobeForm = () => {
     setFiltered(filterKat);
   };
 
+  console.log('roba', roba);
+
+  if (
+    params.id &&
+    Object.keys(roba).length === 0 &&
+    roba.constructor === Object &&
+    kategorije.length === 0
+  ) {
+    return <GridLoader css={spinnerStyleGrid} size={20} />;
+  }
+
   return (
     <Formik
       initialValues={{
@@ -158,7 +188,7 @@ const RobeForm = () => {
       validationSchema={RobeSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <>
           <div className="screen-content">
             <Link to={STAVKE.INDEX} className="back-link df">
@@ -166,7 +196,11 @@ const RobeForm = () => {
             </Link>
           </div>
 
-          <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Izmjena robe/artikla</h1>
+          ) : (
+            <h1 className="heading-primary">Dodavanje nove robe/artikla</h1>
+          )}
 
           <div className="screen-content">
             <div className="main-content__box">
@@ -246,7 +280,13 @@ const RobeForm = () => {
                               loadOptions={
                                 proizvodjacService.getProizvodjaciDropdown
                               }
-                              placeholder={roba?.proizvodjac_robe?.naziv}
+                              defaultValue={
+                                Object.keys(roba).length !== 0 &&
+                                roba.constructor === Object && {
+                                  label: roba?.proizvodjac_robe?.naziv,
+                                  value: roba?.proizvodjac_robe?.naziv,
+                                }
+                              }
                             />
                           </div>
                           <div className="form__group w-48 mob-w-100 mb-0">
@@ -293,6 +333,7 @@ const RobeForm = () => {
                           </div>
                           <ul className="item-list">
                             <ChooseKategorija
+                              ref={kategorijaRef}
                               kategorije={filtered || kategorije}
                               editKategorije={roba}
                             />
@@ -312,7 +353,7 @@ const RobeForm = () => {
                   <hr />
                   <div className="container">
                     <div className="row">
-                      <ChooseAtribut />
+                      <ChooseAtribut ref={atributiRef} />
                     </div>
                   </div>
                   <hr />
@@ -396,7 +437,14 @@ const RobeForm = () => {
                     <button
                       className="btn btn__primary btn__md"
                       type="submit"
-                      // disabled={isSubmitting}
+                      onClick={() => {
+                        if (!isValid && dirty) {
+                          toast.error(
+                            'Molimo Vas provjerite ispravnost unosa!',
+                            toastSettings
+                          );
+                        }
+                      }}
                     >
                       Sačuvaj
                     </button>

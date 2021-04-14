@@ -19,6 +19,20 @@ import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
 import { PARTNERI, PREDUZECA } from '../../constants/routes';
 import RadioButton from '../shared/forms/RadioButton';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
@@ -26,6 +40,8 @@ const FizickaLicaForm = () => {
   const { params } = useRouteMatch();
 
   const fizickoLice = useSelector(fizickoLiceSelector());
+  console.log('fizicko_lice', fizickoLice);
+
   const statusOptions = [
     { key: 'Aktivan', value: 'Aktivan' },
     { key: 'Neaktivan', value: 'Neaktivan' },
@@ -77,14 +93,18 @@ const FizickaLicaForm = () => {
       validationSchema={FizickaLicaSchema}
       enableReinitialize
     >
-      {({ values, dirty, isSubmitting }) => (
+      {({ values, dirty, isSubmitting, isValid }) => (
         <div className="screen-content">
           <Link to={PARTNERI.INDEX} className="back-link df">
             <LinkSvg />
             <p>Povratak na Partnere</p>
           </Link>
 
-          <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
+          {params.id ? (
+            <h1 className="heading-primary">Dodavanje novog fizičkog lica</h1>
+          ) : (
+            <h1 className="heading-primary">Izmjena fizičkog lica</h1>
+          )}
           <div className="main-content__box">
             <div className="content">
               <Form className="form">
@@ -199,6 +219,13 @@ const FizickaLicaForm = () => {
                               ' - Nije Obavezno'
                             }
                             loadOptions={preduzecaService.getPreduzecaDropdown}
+                            defaultValue={
+                              Object.keys(fizickoLice).length !== 0 &&
+                              fizickoLice.constructor === Object && {
+                                value: fizickoLice?.preduzeca?.id,
+                                label: fizickoLice?.preduzeca?.naziv,
+                              }
+                            }
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
@@ -372,6 +399,7 @@ const FizickaLicaForm = () => {
                             id="active"
                             value="Aktivan"
                             name="status"
+                            defaultChecked
                           />
                           <label htmlFor="active" className="form__radio-label">
                             <span className="form__radio-button"></span>
@@ -400,7 +428,18 @@ const FizickaLicaForm = () => {
                   </div>
                 </div>
                 <div className="form__footer">
-                  <button className="btn btn__primary btn__md" type="submit">
+                  <button
+                    className="btn btn__primary btn__md"
+                    type="submit"
+                    onClick={() => {
+                      if (!isValid && dirty) {
+                        toast.error(
+                          'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                    }}
+                  >
                     Sačuvaj
                   </button>
                   <button className="btn btn__link ml-m">Nazad</button>
