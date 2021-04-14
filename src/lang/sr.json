@@ -127,7 +127,7 @@
     "grad": "Grad u kom se nalazi preduzeće nedostaje",
     "drzava": "Drzava u kojoj se nalazi preduzeće nedostaje",
     "djelatnost": "Djelatnost preduzeća nedostaje",
-    "kategorija_id": "Kategorija preduzeća nedostaje",
+    "kategorija": "Kategorija preduzeća nedostaje",  
     "pozitivan": "Kolicina stavke mora biti pozitivan broj."
   },
   "common": {
