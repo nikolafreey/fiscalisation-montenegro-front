@@ -14,6 +14,7 @@ import { ReactComponent as CloudPlusIcon } from '../../assets/icon/cloud-plus.sv
 import {
   deleteRoba,
   getRoba,
+  setRoba,
   storeRoba,
   updateRoba,
 } from '../../store/actions/RobeActions';
@@ -81,7 +82,7 @@ const RobeForm = () => {
     if (params.id) dispatch(getRoba(params.id));
   }, [dispatch, params]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, initialValues) => {
     if (params.id) {
       dispatch(
         updateRoba({
@@ -135,8 +136,10 @@ const RobeForm = () => {
         })
       );
       console.log('handleSubmit', values);
+      dispatch(setRoba(initialValues));
       history.goBack();
     }
+
     if (globalError.message) history.push(STAVKE.INDEX);
   };
 
@@ -296,8 +299,13 @@ const RobeForm = () => {
                               loadOptions={
                                 jediniceMjereService.getJediniceMjereDropdown
                               }
-                              defaultValue={{ value: 0, label: 'kom' }}
-                              placeholder={roba?.jedinica_mjere?.naziv}
+                              defaultValue={
+                                {
+                                  value: roba?.jedinica_mjere?.id,
+                                  label: roba?.jedinica_mjere?.naziv,
+                                } || { value: 0, label: 'kom' }
+                              }
+                              // placeholder={roba?.jedinica_mjere?.naziv}
                             />
                           </div>
                         </div>
@@ -438,9 +446,21 @@ const RobeForm = () => {
                       className="btn btn__primary btn__md"
                       type="submit"
                       onClick={() => {
-                        if (!isValid && dirty) {
+                        if (values?.cijene_roba.length === 0) {
+                          toast.error(
+                            'Roba mora imati makar jednu cijenu!',
+                            toastSettings
+                          );
+                        }
+                        if (!isValid) {
                           toast.error(
                             'Molimo Vas provjerite ispravnost unosa!',
+                            toastSettings
+                          );
+                        }
+                        if (!dirty && !params.id) {
+                          toast.error(
+                            'Molimo Vas provjerite nepopunjena polja!',
                             toastSettings
                           );
                         }

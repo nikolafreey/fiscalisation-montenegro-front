@@ -16,6 +16,7 @@ import {
 import {
   getPorezi,
   getUsluga,
+  setUsluga,
   storeUsluga,
   updateUsluga,
 } from '../../store/actions/UslugeActions';
@@ -73,7 +74,7 @@ const UslugeForm = () => {
     .getGrupeDropdown()
     .then((data) => (tempLen = data.length));
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, initialValues) => {
     if (params.id) {
       // dispatch(updateUsluga({ id: params.id, ...values }));
       // history.push(STAVKE.INDEX);
@@ -110,12 +111,13 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
-          status: values.status == 'Aktivan' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
       history.push(STAVKE.INDEX);
     }
     console.log('values', values);
+    dispatch(setUsluga(initialValues));
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },
@@ -487,9 +489,15 @@ const UslugeForm = () => {
                     className="btn btn__primary btn__md"
                     type="submit"
                     onClick={() => {
-                      if (!isValid && dirty) {
+                      if (!isValid) {
                         toast.error(
                           'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                      if (!dirty && !params.id) {
+                        toast.error(
+                          'Molimo Vas provjerite nepopunjena polja!',
                           toastSettings
                         );
                       }

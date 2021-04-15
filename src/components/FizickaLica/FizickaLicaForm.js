@@ -7,6 +7,7 @@ import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getFizickoLice,
+  setFizickoLice,
   storeFizickoLice,
   updateFizickoLice,
 } from '../../store/actions/FizickaLicaActions';
@@ -50,7 +51,7 @@ const FizickaLicaForm = () => {
     if (params.id) dispatch(getFizickoLice(params.id));
   }, [dispatch, params]);
 
-  const handleSubmit = (values, isSubmitting) => {
+  const handleSubmit = (values, initialValues) => {
     if (params.id) dispatch(updateFizickoLice({ id: params.id, ...values }));
     else
       dispatch(
@@ -59,8 +60,7 @@ const FizickaLicaForm = () => {
           status: values.status === 'Aktivan' ? true : false,
         })
       );
-    isSubmitting.setSubmitting(false);
-    console.log('isSubmitting handleSubmit', isSubmitting.isSubmitting);
+    dispatch(setFizickoLice(initialValues));
   };
 
   return (
@@ -432,9 +432,15 @@ const FizickaLicaForm = () => {
                     className="btn btn__primary btn__md"
                     type="submit"
                     onClick={() => {
-                      if (!isValid && dirty) {
+                      if (!isValid) {
                         toast.error(
                           'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                      if (!dirty && !params.id) {
+                        toast.error(
+                          'Molimo Vas provjerite nepopunjena polja!',
                           toastSettings
                         );
                       }

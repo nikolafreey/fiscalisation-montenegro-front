@@ -7,6 +7,7 @@ import Geocode from 'react-geocode';
 import {
   deletePreduzece,
   getPreduzece,
+  setPreduzece,
   storePreduzece,
   updatePreduzece,
 } from '../../store/actions/PreduzecaActions';
@@ -68,7 +69,7 @@ const PreduzecaForm = () => {
     Geocode.setApiKey('');
   }, [dispatch, params]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, initialValues) => {
     if (params.id) dispatch(updatePreduzece({ id: params.id, ...values }));
     else
       dispatch(
@@ -77,6 +78,7 @@ const PreduzecaForm = () => {
           status: values.status === 'true' ? true : false,
         })
       );
+    dispatch(setPreduzece(initialValues));
   };
 
   const handleBlur = (e) => {
@@ -856,9 +858,15 @@ const PreduzecaForm = () => {
                   <button
                     className="btn btn__primary"
                     onClick={() => {
-                      if (!isValid && dirty) {
+                      if (!isValid) {
                         toast.error(
                           'Molimo Vas provjerite ispravnost unosa!',
+                          toastSettings
+                        );
+                      }
+                      if (!dirty && !params.id) {
+                        toast.error(
+                          'Molimo Vas provjerite nepopunjena polja!',
                           toastSettings
                         );
                       }
