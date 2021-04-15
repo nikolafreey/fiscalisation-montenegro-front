@@ -31,7 +31,7 @@ a {
 .heading-primary {
   color: $color-text-dark;
   font-size: $font-size-primary;
-  font-weight: 600;
+  font-weight: 500;
   backface-visibility: hidden;
   margin: 3rem 0;
   @include respond(phone) {
@@ -41,13 +41,13 @@ a {
 .heading-secondary {
   color: $color-text-dark;
   font-size: $font-size-secondary;
-  font-weight: 600;
+  font-weight: 500;
   backface-visibility: hidden;
   margin-bottom: 2.5rem;
 }
 .heading-tertiary {
   color: $color-text-dark;
-  font-weight: 600;
+  font-weight: 500;
   font-size: $font-size-tertiary;
   //text-transform: uppercase;
 }
