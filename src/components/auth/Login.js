@@ -32,7 +32,7 @@ const Login = () => {
               </div>
               <div className="main-content__box">
                 <Form className="login__form">
-                  <h2 className="heading-secundary mb-12">Dobrodošli!</h2>
+                  <h2 className="heading-secondary mb-12">Dobrodošli!</h2>
                   <div className="form-group">
                     <InputField
                       name="email"
