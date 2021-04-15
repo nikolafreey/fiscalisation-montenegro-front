@@ -16,6 +16,7 @@ const CreateKategorija = () => {
       })
     );
     setFieldVisible(false);
+    setNaziv();
   };
 
   const handleChange = (event) => {

@@ -21,6 +21,7 @@ const CreatePodKategorija = () => {
       })
     );
     setFieldVisible(false);
+    setNaziv();
   };
 
   const handleChange = (event) => {
