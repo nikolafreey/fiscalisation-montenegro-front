@@ -38,14 +38,19 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
             {(usluga && usluga?.naziv) ||
               (roba && roba.roba && roba?.roba?.naziv)}
           </p>
-          <h3 className="heading-quaternary">
-            {(usluga && usluga?.opis?.split('.')[0]) ||
-              (roba && roba.roba && roba?.roba?.proizvodjac_robe?.naziv) +
+          {Object.keys(usluga).length === 0 ? (
+            <h3 className="heading-quaternary">
+              {(roba && roba.roba && roba?.roba?.proizvodjac_robe?.naziv) +
                 ', ' +
                 (roba && roba.roba && roba?.atribut_robe?.tip_atributa?.naziv) +
                 ', ' +
                 (roba && roba.roba && roba?.atribut_robe?.naziv)}
-          </h3>
+            </h3>
+          ) : (
+            <h3 className="heading-quaternary">
+              {usluga && usluga?.opis?.split('.')[0]}
+            </h3>
+          )}
         </td>
         <td className="cl">
           {(usluga && usluga?.jedinica_mjere?.naziv) ||

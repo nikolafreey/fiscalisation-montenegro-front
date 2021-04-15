@@ -189,6 +189,7 @@ const UslugeForm = () => {
     <Formik
       initialValues={{
         status: 'Aktivan',
+        opis: '',
         porez_id: 4,
         ...usluga,
       }}
