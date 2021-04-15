@@ -8,6 +8,7 @@ import { podesavanjaService } from '../../services/PodesavanjaService';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 import { useHistory } from 'react-router';
+import { SEP_PORTAL } from '../../config';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -423,7 +424,7 @@ const Podesavanja = () => {
                       dobijaju sa SEP portala Uprave prihoda
                     </p>
                     <a
-                      href="http://"
+                      href={SEP_PORTAL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn__link b-mob-mb-20"
@@ -452,7 +453,7 @@ const Podesavanja = () => {
                           <label className="form__label" for="enu">
                             ENU kod
                           </label>
-                          <a
+                          {/* <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -475,7 +476,7 @@ const Podesavanja = () => {
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
-                          </a>
+                          </a> */}
                         </div>
                         {user && user.preduzeca[0].enu_kod ? (
                           <input
@@ -502,7 +503,7 @@ const Podesavanja = () => {
                           <label className="form__label" for="software">
                             Sofware kod
                           </label>
-                          <a
+                          {/* <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -525,7 +526,7 @@ const Podesavanja = () => {
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
-                          </a>
+                          </a> */}
                         </div>
                         {user && user.preduzeca[0].software_kod ? (
                           <input
@@ -554,9 +555,9 @@ const Podesavanja = () => {
                       <div className="form__group w-48 mob-w-100">
                         <div className="df jc-sb">
                           <label className="form__label" for="kodpj">
-                            Kod PJ
+                            Kod Poslovne jedinice
                           </label>
-                          <a
+                          {/* <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -579,7 +580,7 @@ const Podesavanja = () => {
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
-                          </a>
+                          </a> */}
                         </div>
                         {user && user.preduzeca[0].kod_pj ? (
                           <input
@@ -606,7 +607,7 @@ const Podesavanja = () => {
                           <label className="form__label" for="kodop">
                             Kod operatera
                           </label>
-                          <a
+                          {/* <a
                             href="http://"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -629,7 +630,7 @@ const Podesavanja = () => {
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                               />
                             </svg>
-                          </a>
+                          </a> */}
                         </div>
                         {user && user.preduzeca[0].kod_operatera ? (
                           <input
