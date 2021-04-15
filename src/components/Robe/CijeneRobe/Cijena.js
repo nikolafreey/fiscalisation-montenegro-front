@@ -75,7 +75,6 @@ const Cijena = ({
       params.id &&
       roba.cijene_roba[0]?.ukupna_cijena_sa_pdv
   );
-
   console.log('roba', roba);
 
   return (
@@ -207,7 +206,7 @@ const Cijena = ({
                 setValueCijenaBezPdv(event.target.value);
                 setFieldValue('nabavna_cijena_bez_pdv', event.target.value);
               }}
-              placeholder={
+              defaultValue={
                 checkIfObjectEmpty(roba) &&
                 roba.cijene_roba[0]?.nabavna_cijena_bez_pdv
               }
@@ -220,7 +219,7 @@ const Cijena = ({
               className="form__input"
               label={$t('cijene.nabavna_sa_pdv')}
               value={valueCijenaSaPdv}
-              placeholder={
+              defaultValue={
                 checkIfObjectEmpty(roba) &&
                 roba.cijene_roba[0]?.nabavna_cijena_sa_pdv
               }
@@ -238,11 +237,16 @@ const Cijena = ({
               name="porez_id"
               label={$t('cijene.porezi')}
               loadOptions={poreziService.getPoreziDropdown}
-              defaultValue={{ label: '21%', value: 4 }}
-              placeholder={
-                //Provjera da li je objekat prazan
-                checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.porez.naziv
+              defaultValue={
+                (checkIfObjectEmpty(roba) && {
+                  value: roba?.cijene_roba[0]?.porez.id,
+                  label: roba?.cijene_roba[0]?.porez.naziv,
+                }) || { label: '21%', value: 4 }
               }
+              // placeholder={
+              //   //Provjera da li je objekat prazan
+              //   checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.porez.naziv
+              // }
             />
           </div>
           <div className="form__group w-48">
@@ -261,8 +265,8 @@ const Cijena = ({
             className="form__input w-100"
             label={$t('cijene.cijena')}
             value={valueUkupnaCijena}
-            placeholder={
-              checkIfObjectEmpty(roba) && roba.cijene_roba[0]?.ukupna_cijena
+            defaultValue={
+              checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.ukupna_cijena
             }
             onChange={(event) => {
               setValueUkupnaCijena(event.target.value);
