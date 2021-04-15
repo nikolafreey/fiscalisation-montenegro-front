@@ -20,11 +20,7 @@ const ENDPOINTS = {
 };
 
 class RacuniService extends ApiService {
-  getRacuni = (params) =>
-    axios.get(BASE_URL + '/' + ENDPOINTS.RACUNI, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-    });
-  // this.apiClient.get(ENDPOINTS.RACUNI, { params }, config);
+  getRacuni = (params) => this.apiClient.get(ENDPOINTS.RACUNI, { params });
 
   getRacuniStatus = (params) =>
     this.apiClient.get(ENDPOINTS.STATUS, { params });
