@@ -8,7 +8,10 @@ import { usePorezi } from '../../../hooks/PoreziHook';
 import BezgotovinskiStavkeFieldArrayNovi from './BezgotovinskiStavkeFieldArrayNovi';
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeBezgotovinskiRacun } from '../../../store/actions/RacuniActions';
+import {
+  setRacun,
+  storeBezgotovinskiRacun,
+} from '../../../store/actions/RacuniActions';
 import BezgotovinskiPorezi from './BezgotovinskiPorezi';
 import BezgotovinskiUkupno from './BezgotovinskiUkupno';
 import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
@@ -191,13 +194,19 @@ const Bezgotovinski = () => {
                 <BezgotovinskiStatusPodsjetnici />
                 <div className="form__footer">
                   <button
-                    onClick={() => handleSubmit(values)}
+                    onClick={() => {
+                      dispatch(setRacun({}));
+                      handleSubmit(values);
+                    }}
                     className="btn btn__primary"
                   >
                     Fiskalizuj i Pošalji
                   </button>
                   <button
-                    onClick={() => handleSubmit(values)}
+                    onClick={() => {
+                      dispatch(setRacun({}));
+                      handleSubmit(values);
+                    }}
                     className="btn btn__secondary ml-m"
                   >
                     Sačuvaj kao privremeni

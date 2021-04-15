@@ -6,7 +6,7 @@ import {
   izracunajUkupnuCijenuStavkiBezPdv,
   izracunajPojedinacnePoreze,
 } from '../../../helpers/racuni';
-import { storeRacun } from '../../../store/actions/RacuniActions';
+import { storeRacun, setRacun } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 import NoviRacunKusur from './NoviRacunKusur';
@@ -61,6 +61,7 @@ const NoviRacunPreview = () => {
     }
 
     dispatch(storeRacun());
+    dispatch(setRacun({}));
     history.push(`/racuni`);
   };
 
@@ -78,8 +79,7 @@ const NoviRacunPreview = () => {
   function vratiUkupanPdv() {
     var pdvUkupno = 0;
     for (const p in porezi) {
-      pdvUkupno +=Math.round(Number(porezi[p].pdvIznos)*100)/100;
-     
+      pdvUkupno += Math.round(Number(porezi[p].pdvIznos) * 100) / 100;
     }
     return pdvUkupno;
   }
@@ -93,8 +93,8 @@ const NoviRacunPreview = () => {
   }
   const ukPdv = vratiUkupanPdv();
   const ukPlati = vratiUkupnoPlacanje();
-  
-  console.log('noviRacun',noviRacun)
+
+  console.log('noviRacun', noviRacun);
   const uslugeStavka = Object.keys(noviRacun.usluge).map((uslugaId) => (
     <NoviRacunPreviewStavka
       key={'usluga_' + uslugaId}
