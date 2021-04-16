@@ -13,7 +13,7 @@ class PodesavanjaService extends ApiService {
   storePreduzece = (data) => this.apiClient.post(ENDPOINTS.INDEX, data);
 
   updatePreduzece = (data) =>
-    this.apiClient.post(ENDPOINTS.SHOW.replace('{id}', data.id), data);
+    this.apiClient.put(ENDPOINTS.SHOW.replace('{id}', data.id), data);
 
   storePreduzeceKorisnik = (data) =>
     this.apiClient.post(ENDPOINTS.CREATE, data);

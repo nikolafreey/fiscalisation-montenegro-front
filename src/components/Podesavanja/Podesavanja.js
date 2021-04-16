@@ -74,8 +74,8 @@ const Podesavanja = () => {
           preduzece_id: user?.preduzeca[0]?.id,
           pecat: digitalniPecatFile,
           sertifikat: digitalniPotpisFile,
-          pecat_sifra: sifraDigitalniPecat,
-          sertifikat_sifra: sifraDigitalniPotpis,
+          pecatSifra: sifraDigitalniPecat,
+          sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
           software_kod: softwareKod,
@@ -95,15 +95,15 @@ const Podesavanja = () => {
     } else {
       podesavanjaService
         .updatePreduzece({
-          id: podesavanjeUcitano?.preduzece_id,
+          id: podesavanjeUcitano[0]?.id,
           redni_broj: redniBrojRacuna,
           izgled_racuna: 'default',
           slanje_kupcu: slanjeRacunaKupcu,
           preduzece_id: user?.preduzeca[0]?.id,
           pecat: digitalniPecatFile,
           sertifikat: digitalniPotpisFile,
-          pecat_sifra: sifraDigitalniPecat,
-          sertifikat_sifra: sifraDigitalniPotpis,
+          pecatSifra: sifraDigitalniPecat,
+          sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
           tamni_mod: 'Svijetli',
@@ -216,8 +216,8 @@ const Podesavanja = () => {
                   <path
                     className="icon__light-fill"
                     id="Subtract"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M12.0128 4.59862L11.7071 4.29293C11.5196 4.1054 11.2652 4.00004 11 4.00004H6C5.20435 4.00004 4.44129 4.31611 3.87868 4.87872C3.31607 5.44133 3 6.20439 3 7.00004V18C3 18.7957 3.31607 19.5588 3.87868 20.1214C4.44129 20.684 5.20435 21 6 21H17C17.7957 21 18.5587 20.684 19.1213 20.1214C19.6839 19.5588 20 18.7957 20 18V13C20 12.7348 19.8946 12.4805 19.7071 12.2929L19.3931 11.9789L17.9789 13.3931L18 13.4143V18C18 18.2653 17.8946 18.5196 17.7071 18.7071C17.5196 18.8947 17.2652 19 17 19H6C5.73478 19 5.48043 18.8947 5.29289 18.7071C5.10536 18.5196 5 18.2653 5 18V7.00004C5 6.73482 5.10536 6.48047 5.29289 6.29293C5.48043 6.1054 5.73478 6.00004 6 6.00004H10.5858L10.5986 6.01283L12.0128 4.59862ZM21.1156 7.12664L21.1359 7.10669L21.1558 7.08682C21.4204 6.81979 21.6325 6.50527 21.781 6.15954C21.9382 5.79353 22.021 5.39987 22.0245 5.00153C22.0279 4.60319 21.952 4.20815 21.8012 3.83947C21.6503 3.47078 21.4276 3.13582 21.1459 2.85414C20.8642 2.57247 20.5293 2.34971 20.1606 2.19886C19.7919 2.04802 19.3968 1.97212 18.9985 1.97558C18.6002 1.97904 18.2065 2.0618 17.8405 2.21902C17.4774 2.37499 17.1488 2.60114 16.8734 2.88445L13.586 6.17183L13.5775 6.16337L12.1633 7.57758L12.1718 7.58604L8.29289 11.4649C8.10536 11.6525 8 11.9068 8 12.172V15C8 15.5523 8.44772 16 9 16H11.828C12.0932 16 12.3476 15.8947 12.5351 15.7071L16.414 11.8283L16.4142 11.8284L17.8284 10.4142L17.8282 10.414L21.1156 7.12664ZM19.0159 3.9755C19.1487 3.97435 19.2803 3.99965 19.4032 4.04993C19.5261 4.10021 19.6378 4.17446 19.7317 4.26836C19.8256 4.36225 19.8998 4.4739 19.9501 4.5968C20.0004 4.7197 20.0257 4.85138 20.0245 4.98415C20.0234 5.11693 19.9958 5.24815 19.9434 5.37016C19.891 5.49216 19.8148 5.6025 19.7193 5.69475L19.7069 5.70693L16.414 8.99983L16.4058 8.99164L14.9916 10.4059L14.9998 10.414L11.4138 14H10V12.5863L10.6089 11.9774L10.6086 11.9772L17.682 4.9038L17.6822 4.90402L18.2931 4.29315L18.3053 4.28075C18.3975 4.18524 18.5079 4.10906 18.6299 4.05665C18.7519 4.00424 18.8831 3.97666 19.0159 3.9755Z"
                     fill="black"
                   />
@@ -347,18 +347,16 @@ const Podesavanja = () => {
                       podesavanjeUcitano[0]?.redni_broj ? (
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           id="redni_broj_racuna"
                           name="redni_broj_racuna"
                           onChange={(e) => setRedniBrojRacuna(e.target.value)}
-                          value={
-                            redniBrojRacuna || podesavanjeUcitano[0].redni_broj
-                          }
+                          value={podesavanjeUcitano[0].redni_broj}
                         />
                       ) : (
                         <input
                           type="text"
-                          class="form__input"
+                          className="form__input"
                           id="redni_broj_racuna"
                           name="redni_broj_racuna"
                           onChange={(e) => setRedniBrojRacuna(e.target.value)}
@@ -450,7 +448,7 @@ const Podesavanja = () => {
                     <div className="df jc-sb mob-fd-column">
                       <div className="form__group w-48 mob-w-100">
                         <div className="df jc-sb">
-                          <label className="form__label" for="enu">
+                          <label className="form__label" htmlFor="enu">
                             ENU kod
                           </label>
                           {/* <a
@@ -481,16 +479,16 @@ const Podesavanja = () => {
                         {user && user.preduzeca[0].enu_kod ? (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             id="enu"
                             name="enu"
                             onChange={(e) => setEnu(e.target.value)}
-                            value={enu || user.preduzeca[0].enu_kod}
+                            value={user.preduzeca[0].enu_kod}
                           />
                         ) : (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             id="enu"
                             name="enu"
                             onChange={(e) => setEnu(e.target.value)}
@@ -500,7 +498,7 @@ const Podesavanja = () => {
                       </div>
                       <div className="form__group w-48 mob-w-100">
                         <div className="df jc-sb">
-                          <label className="form__label" for="software">
+                          <label className="form__label" htmlFor="software">
                             Sofware kod
                           </label>
                           {/* <a
@@ -531,18 +529,16 @@ const Podesavanja = () => {
                         {user && user.preduzeca[0].software_kod ? (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="software_kod"
                             id="software_kod"
                             onChange={(e) => setSoftwareKod(e.target.value)}
-                            value={
-                              softwareKod || user.preduzeca[0].software_kod
-                            }
+                            value={user.preduzeca[0].software_kod}
                           />
                         ) : (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="software_kod"
                             id="software_kod"
                             onChange={(e) => setSoftwareKod(e.target.value)}
@@ -554,7 +550,7 @@ const Podesavanja = () => {
                     <div className="df jc-sb mob-fd-column">
                       <div className="form__group w-48 mob-w-100">
                         <div className="df jc-sb">
-                          <label className="form__label" for="kodpj">
+                          <label className="form__label" htmlFor="kodpj">
                             Kod Poslovne jedinice
                           </label>
                           {/* <a
@@ -585,16 +581,16 @@ const Podesavanja = () => {
                         {user && user.preduzeca[0].kod_pj ? (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="kodpj"
                             id="kodpj"
                             onChange={(e) => setKodPj(e.target.value)}
-                            value={kodPj || user.preduzeca[0].kod_pj}
+                            value={user.preduzeca[0].kod_pj}
                           />
                         ) : (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="kodpj"
                             id="kodpj"
                             onChange={(e) => setKodPj(e.target.value)}
@@ -604,7 +600,7 @@ const Podesavanja = () => {
                       </div>
                       <div className="form__group w-48 mob-w-100">
                         <div className="df jc-sb">
-                          <label className="form__label" for="kodop">
+                          <label className="form__label" htmlFor="kodop">
                             Kod operatera
                           </label>
                           {/* <a
@@ -635,16 +631,16 @@ const Podesavanja = () => {
                         {user && user.preduzeca[0].kod_operatera ? (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="kodop"
                             id="kodop"
                             onChange={(e) => setKodOp(e.target.value)}
-                            value={kodOp || user.preduzeca[0].kod_operatera}
+                            value={user.preduzeca[0].kod_operatera}
                           />
                         ) : (
                           <input
                             type="text"
-                            class="form__input"
+                            className="form__input"
                             name="kodop"
                             id="kodop"
                             onChange={(e) => setKodOp(e.target.value)}
@@ -694,7 +690,7 @@ const Podesavanja = () => {
                   <div className="col-md-8 col-xl-8">
                     <div className="df jc-sb mob-fd-column">
                       <div className="form__group w-48 mob-w-100">
-                        <label className="form__label" for="d-signature">
+                        <label className="form__label" htmlFor="d-signature">
                           Digitalni potpis
                         </label>
                         <span className="form__file">
@@ -711,41 +707,38 @@ const Podesavanja = () => {
                       <div className="form__group w-48 mob-w-100">
                         <label
                           className="form__label"
-                          for="sifraDigitalniPotpis"
+                          htmlFor="sifraDigitalniPotpis"
                         >
                           Šifra za digitalni potpis
                         </label>
                         {user && user.preduzeca[0].sertifikatSifra ? (
-                            <input
-                              type="text"
-                              className="form__input"
-                              name="sifraDigitalniPotpis"
-                              id="sifraDigitalniPotpis"
-                              onChange={(e) =>
-                                setSifraDigitalniPotpis(e.target.value)
-                              }
-                              value={
-                                sifraDigitalniPotpis ||
-                                user.preduzeca[0].sertifikatSifra
-                              }
-                            />
-                          ) : (
-                            <input
-                              type="text"
-                              className="form__input"
-                              name="sifraDigitalniPotpis"
-                              id="sifraDigitalniPotpis"
-                              onChange={(e) =>
-                                setSifraDigitalniPotpis(e.target.value)
-                              }
-                              value={sifraDigitalniPotpis}
-                            />
-                          )}
+                          <input
+                            type="text"
+                            className="form__input"
+                            name="sifraDigitalniPotpis"
+                            id="sifraDigitalniPotpis"
+                            onChange={(e) =>
+                              setSifraDigitalniPotpis(e.target.value)
+                            }
+                            value={user.preduzeca[0].sertifikatSifra}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            className="form__input"
+                            name="sifraDigitalniPotpis"
+                            id="sifraDigitalniPotpis"
+                            onChange={(e) =>
+                              setSifraDigitalniPotpis(e.target.value)
+                            }
+                            value={sifraDigitalniPotpis}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="df jc-sb mob-fd-column">
                       <div className="form__group w-48 mob-w-100">
-                        <label className="form__label" for="d-stamp">
+                        <label className="form__label" htmlFor="d-stamp">
                           Digitalni pečat
                         </label>
                         <span className="form__file">
@@ -762,36 +755,33 @@ const Podesavanja = () => {
                       <div className="form__group w-48 mob-w-100">
                         <label
                           className="form__label"
-                          for="sifraDigitalniPecat"
+                          htmlFor="sifraDigitalniPecat"
                         >
                           Šifra za digitalni pečat
                         </label>
                         {user && user.preduzeca[0].pecatSifra ? (
-                            <input
-                              type="text"
-                              class="form__input"
-                              name="sifraDigitalniPecat"
-                              id="sifraDigitalniPecat"
-                              onChange={(e) =>
-                                setSifraDigitalniPecat(e.target.value)
-                              }
-                              value={
-                                sifraDigitalniPecat ||
-                                user.preduzeca[0].pecatSifra
-                              }
-                            />
-                          ) : (
-                            <input
-                              type="text"
-                              class="form__input"
-                              name="sifraDigitalniPecat"
-                              id="sifraDigitalniPecat"
-                              onChange={(e) =>
-                                setSifraDigitalniPecat(e.target.value)
-                              }
-                              value={sifraDigitalniPecat}
-                            />
-                          )}
+                          <input
+                            type="text"
+                            className="form__input"
+                            name="sifraDigitalniPecat"
+                            id="sifraDigitalniPecat"
+                            onChange={(e) =>
+                              setSifraDigitalniPecat(e.target.value)
+                            }
+                            value={user.preduzeca[0].pecatSifra}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            className="form__input"
+                            name="sifraDigitalniPecat"
+                            id="sifraDigitalniPecat"
+                            onChange={(e) =>
+                              setSifraDigitalniPecat(e.target.value)
+                            }
+                            value={sifraDigitalniPecat}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -857,7 +847,7 @@ const Podesavanja = () => {
                   {korisniciVisible && (
                     <div className="col-md-4 col-xl-4">
                       <div className="form__group mob-w-100">
-                        <label className="form__label" for="user-name">
+                        <label className="form__label" htmlFor="user-name">
                           Ime i prezime
                         </label>
                         <input
@@ -870,7 +860,7 @@ const Podesavanja = () => {
                         />
                       </div>
                       <div className="form__group mob-w-100">
-                        <label className="form__label" for="user-email">
+                        <label className="form__label" htmlFor="user-email">
                           Email korisnika
                         </label>
                         <input
@@ -883,7 +873,7 @@ const Podesavanja = () => {
                         />
                       </div>
                       <div className="form__group mob-w-100">
-                        <label className="form__label" for="user-type">
+                        <label className="form__label" htmlFor="user-type">
                           Tip korisnika
                         </label>
                         <select
@@ -945,10 +935,10 @@ const Podesavanja = () => {
                           className="form__radio-input"
                           id="mne"
                           name="language"
-                          checked
+                          defaultChecked
                         />
                         <label
-                          for="mne"
+                          htmlFor="mne"
                           className="form__radio-label radio-default"
                         >
                           <span className="form__radio-button"></span>
@@ -963,7 +953,7 @@ const Podesavanja = () => {
                           name="language"
                           disabled
                         />
-                        <label for="eng" className="form__radio-label">
+                        <label htmlFor="eng" className="form__radio-label">
                           <span className="form__radio-button"></span>
                           <span className="mob-ml-10">English (soon)</span>
                         </label>
