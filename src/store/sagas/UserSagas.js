@@ -30,8 +30,8 @@ export function* userLogin({ payload }) {
     yield put(push(requestedRoute || RACUNI.INDEX));
     yield put(setRequestedRoute(null));
   } catch (error) {
-    if (error.response.status === 422) {
-      yield put(setLoginError(error.response.data));
+    if (error?.response?.status === 422) {
+      yield put(setLoginError(error?.response?.data));
     } else {
       yield put(setGlobalError(error.message));
     }

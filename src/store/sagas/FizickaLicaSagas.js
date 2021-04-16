@@ -21,7 +21,10 @@ const toastSettings = {
 export function* fizickoLiceStore({ payload }) {
   try {
     yield call(fizickaLicaService.storeFizickoLice, payload);
-    toast.success('Uspješno dodato fizičko lice:' + payload, toastSettings);
+    toast.success(
+      'Uspješno dodato fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
+      toastSettings
+    );
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
@@ -49,7 +52,13 @@ export function* fizickoLiceUpdate({ payload }) {
   try {
     const { data } = yield call(fizickaLicaService.updateFizickoLice, payload);
     put(setFizickoLice(data));
-    toast.info('Uspješno ažurirano fizičko lice:' + payload, toastSettings);
+    toast.info(
+      'Uspješno ažurirano fizičko lice: ' +
+        payload?.ime +
+        ' ' +
+        payload?.prezime,
+      toastSettings
+    );
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
@@ -58,7 +67,7 @@ export function* fizickoLiceUpdate({ payload }) {
 export function* fizickoLiceDelete({ payload }) {
   try {
     yield call(fizickaLicaService.deleteFizickoLice, payload);
-    toast.success('Uspješno obrisano fizičko lice:' + payload, toastSettings);
+    toast.success('Uspješno obrisano fizičko lice: ' + payload, toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

@@ -21,7 +21,7 @@ const toastSettings = {
 export function* predracunStore({ payload }) {
   try {
     yield call(predracuniService.storePredracun, payload);
-    toast.success('Uspješno dodat predračun: ' + payload.naziv, toastSettings);
+    toast.success('Uspješno dodat predračun', toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
@@ -49,7 +49,7 @@ export function* predracunUpdate({ payload }) {
   try {
     const { data } = yield call(predracuniService.updatePredracun, payload);
     put(setPredracun(data));
-    toast.info('Uspješno ažuriran predračun:' + payload.naziv, toastSettings);
+    toast.info('Uspješno ažuriran predračun', toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

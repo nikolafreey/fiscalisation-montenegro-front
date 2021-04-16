@@ -29,7 +29,7 @@ export function* partnerStore({ payload }) {
       const preduzeca = yield select(preduzecaSelector());
       yield put(getPreduzeca({ page: preduzeca.current_page }));
     }
-    toast.success('Uspješno dodat partner', toastSettings);
+    toast.success('Uspješno dodat partner: ' + payload?.naziv, toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

@@ -21,7 +21,7 @@ const toastSettings = {
 export function* preduzeceStore({ payload }) {
   try {
     yield call(preduzecaService.storePreduzece, payload);
-    toast.success('Uspješno dodato preduzeće', toastSettings);
+    toast.success('Uspješno dodato preduzeće: ' + payload.naziv, toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
