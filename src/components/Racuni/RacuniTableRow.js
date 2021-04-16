@@ -113,12 +113,14 @@ const RacuniTableRow = ({ item, racuni }) => {
       <td className="cl">{_item.broj_racuna}</td>
       {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (
         <td className="cd fw-500">
-          {preduzecaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+          {preduzecaPartneri &&
+            preduzecaPartneri.find((fl) => fl.id === _item.partner_id).ime}
         </td>
       )}
       {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
         <td className="cd fw-500">
-          {fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id).ime}
+          {fizickaLicaPartneri &&
+            fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id).ime}
         </td>
       )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
