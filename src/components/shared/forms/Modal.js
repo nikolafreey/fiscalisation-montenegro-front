@@ -30,6 +30,7 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
   const [depozit, setDepozit] = useState(0);
   const [depozitLoaded, setDepozitLoaded] = useState();
   const [depozitError, setDepozitError] = useState();
+  let [toastCounter, setToastCounter] = useState(false);
 
   useEffect(() => {
     depozitWithdrawService.getDepozitToday().then((data) => {
@@ -37,10 +38,14 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
       if (data.data.length !== 0) {
         setDepozitLoaded(data?.data[0]?.iznos_depozit);
         setDepozit(data?.data[0]?.iznos_depozit);
+      }
+      if (data.data.length !== 0 && localStorage.getItem('toastCounter') <= 1) {
         toast.info('Depozit za današnji dan je već dodat.', toastSettings);
+        setToastCounter(true);
+        localStorage.setItem('toastCounter', true);
       }
     });
-  }, []);
+  }, [toastCounter]);
 
   const handleSubmit = (e) => {
     console.log('depozit: ', depozit);
@@ -70,7 +75,7 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
         <div className="modal" id="modal">
           <div className="modal__content">
             <div className="modal__header">
-            <span className="modal__close">&times;</span>
+              <span className="modal__close">&times;</span>
               <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
             </div>
             <div className="modal__body">
