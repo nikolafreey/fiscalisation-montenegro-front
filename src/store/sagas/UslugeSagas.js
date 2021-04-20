@@ -23,7 +23,12 @@ const toastSettings = {
 
 export function* uslugaStore({ payload }) {
   try {
-    yield call(uslugeService.storeUsluga, payload);
+    const res = yield call(uslugeService.storeUsluga, payload);
+    console.log('uslugaStore', res);
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
     toast.success('Uspješno dodata usluga: ' + payload.naziv, toastSettings);
   } catch (error) {
     yield put(setGlobalError(error.message));
