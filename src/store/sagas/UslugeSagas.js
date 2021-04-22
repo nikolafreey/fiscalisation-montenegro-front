@@ -85,7 +85,7 @@ export function* uslugaGet({ payload }) {
   const res = yield call(uslugeService.getUsluga, payload);
   yield put(setUsluga(res.data));
 
-  if (res.status !== 201) {
+  if (res.status !== 200) {
     toast.error(
       'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings
@@ -109,7 +109,7 @@ export function* uslugaUpdate({ payload }) {
   put(setUsluga(res.data));
   toast.info('Uspješno ažurirana usluga: ' + payload.naziv, toastSettings);
 
-  if (res.status !== 201) {
+  if (res.status !== 200) {
     toast.error(
       'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings
@@ -145,7 +145,14 @@ export function* uslugaDelete({ payload }) {
       obrisanaUsluga.data.find((u) => u.id === payload).naziv,
     toastSettings
   );
-  yield put(setGlobalError(res.message));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
+  }
 }
 
 // export function* poreziGet({ payload }) {
@@ -161,7 +168,7 @@ export function* poreziGet({ payload }) {
   const res = yield call(poreziService.getPorezi, payload);
   yield put(setPorezi(res.data));
 
-  if (res.status !== 201) {
+  if (res.status !== 200) {
     toast.error(
       'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings
