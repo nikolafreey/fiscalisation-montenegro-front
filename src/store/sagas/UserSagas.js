@@ -44,6 +44,7 @@ export function* userLogout() {
     yield put(setUser(null));
     yield put(push(AUTH.LOGIN));
     yield call(authService.logout);
+    localStorage.clear();
   } catch (error) {
     yield put(setGlobalError(error.message));
   }
