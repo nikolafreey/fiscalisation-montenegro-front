@@ -202,7 +202,7 @@ const Bezgotovinski = () => {
                   >
                     Fiskalizuj i Pošalji
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => {
                       dispatch(setRacun({}));
                       handleSubmit(values);
@@ -210,7 +210,7 @@ const Bezgotovinski = () => {
                     className="btn btn__secondary ml-m"
                   >
                     Sačuvaj kao privremeni
-                  </button>
+                  </button> */}
                   <button className="btn btn__link ml-m">Obustavi</button>
                 </div>
               </div>
