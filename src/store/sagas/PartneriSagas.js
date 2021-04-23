@@ -21,59 +21,136 @@ const toastSettings = {
   progress: undefined,
 };
 
+// export function* partnerStore({ payload }) {
+//   try {
+//     yield call(partneriService.storePartner, payload);
+
+//     if (payload.preduzece_id) {
+//       const preduzeca = yield select(preduzecaSelector());
+//       yield put(getPreduzeca({ page: preduzeca.current_page }));
+//     }
+//     toast.success('Uspješno dodat partner: ' + payload?.naziv, toastSettings);
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
 export function* partnerStore({ payload }) {
-  try {
-    yield call(partneriService.storePartner, payload);
+  const res = yield call(partneriService.storePartner, payload);
 
-    if (payload.preduzece_id) {
-      const preduzeca = yield select(preduzecaSelector());
-      yield put(getPreduzeca({ page: preduzeca.current_page }));
-    }
-    toast.success('Uspješno dodat partner: ' + payload?.naziv, toastSettings);
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+  if (payload.preduzece_id) {
+    const preduzeca = yield select(preduzecaSelector());
+    yield put(getPreduzeca({ page: preduzeca.current_page }));
   }
-}
+  toast.success('Uspješno dodat partner: ' + payload?.naziv, toastSettings);
 
-export function* partneriGet({ payload }) {
-  try {
-    const { data } = yield call(partneriService.getPartneri, payload);
-    yield put(setPartneri(data));
-  } catch (error) {
-    yield put(setGlobalError(error.message));
-  }
-}
-
-export function* partnerGet({ payload }) {
-  try {
-    const { data } = yield call(partneriService.getPartner, payload);
-
-    yield put(setPartner(data));
-  } catch (error) {
-    yield put(setGlobalError(error.message));
-  }
-}
-
-export function* partnerUpdate({ payload }) {
-  try {
-    const { data } = yield call(partneriService.updatePartner, payload);
-    put(setPartner(data));
-    toast.info('Uspješno ažuriran partner: ' + payload.naziv, toastSettings);
-  } catch (error) {
-    yield put(setGlobalError(error.message));
-  }
-}
-
-export function* partnerDelete({ payload }) {
-  try {
-    const obrisaniPartner = yield select(partneriSelector);
-    yield call(partneriService.deletePartner, payload);
-    toast.success(
-      'Uspješno obrisan partner' +
-        obrisaniPartner.data.find((r) => r.id === payload).naziv,
+  if (res.status !== 201) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings
     );
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+    yield put(setGlobalError(res.message));
+  }
+}
+
+// export function* partneriGet({ payload }) {
+//   try {
+//     const { data } = yield call(partneriService.getPartneri, payload);
+//     yield put(setPartneri(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
+export function* partneriGet({ payload }) {
+  const res = yield call(partneriService.getPartneri, payload);
+  yield put(setPartneri(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
+  }
+}
+
+// export function* partnerGet({ payload }) {
+//   try {
+//     const { data } = yield call(partneriService.getPartner, payload);
+
+//     yield put(setPartner(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
+export function* partnerGet({ payload }) {
+  const res = yield call(partneriService.getPartner, payload);
+
+  yield put(setPartner(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
+  }
+}
+
+// export function* partnerUpdate({ payload }) {
+//   try {
+//     const { data } = yield call(partneriService.updatePartner, payload);
+//     put(setPartner(data));
+//     toast.info('Uspješno ažuriran partner: ' + payload.naziv, toastSettings);
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
+export function* partnerUpdate({ payload }) {
+  const res = yield call(partneriService.updatePartner, payload);
+  put(setPartner(res.data));
+  toast.info('Uspješno ažuriran partner: ' + payload.naziv, toastSettings);
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
+  }
+}
+
+// export function* partnerDelete({ payload }) {
+//   try {
+//     const obrisaniPartner = yield select(partneriSelector);
+//     yield call(partneriService.deletePartner, payload);
+//     toast.success(
+//       'Uspješno obrisan partner' +
+//         obrisaniPartner.data.find((r) => r.id === payload).naziv,
+//       toastSettings
+//     );
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
+export function* partnerDelete({ payload }) {
+  const obrisaniPartner = yield select(partneriSelector);
+  const res = yield call(partneriService.deletePartner, payload);
+  toast.success(
+    'Uspješno obrisan partner' +
+      obrisaniPartner.data.find((r) => r.id === payload).naziv,
+    toastSettings
+  );
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
