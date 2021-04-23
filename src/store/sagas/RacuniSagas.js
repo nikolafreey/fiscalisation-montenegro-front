@@ -15,6 +15,7 @@ import { emptyPaginated } from '../reducers/RacuniReducer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { robeService } from '../../services/RobeService';
+import { rest } from 'lodash-es';
 
 toast.configure();
 
@@ -28,51 +29,119 @@ const toastSettings = {
   progress: undefined,
 };
 
+// export function* racunStore() {
+//   try {
+//     const noviRacun = yield select(noviRacunSelector());
+//     yield call(racuniService.storeRacun, noviRacun);
+//     toast.success('Uspješno dodat gotovinski račun', toastSettings);
+//     yield put(resetNoviRacun());
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
 export function* racunStore() {
-  try {
-    const noviRacun = yield select(noviRacunSelector());
-    yield call(racuniService.storeRacun, noviRacun);
-    toast.success('Uspješno dodat gotovinski račun', toastSettings);
+  const noviRacun = yield select(noviRacunSelector());
+  const res = yield call(racuniService.storeRacun, noviRacun);
+  toast.success('Uspješno dodat gotovinski račun', toastSettings);
+
+  if (res.status !== 201) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
     yield put(resetNoviRacun());
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+    yield put(setGlobalError(res.message));
   }
 }
+
+// export function* bezgotovinskiRacunStore({ payload }) {
+//   try {
+//     yield call(racuniService.storeBezgotovinskiRacun, payload);
+//     toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
 
 export function* bezgotovinskiRacunStore({ payload }) {
-  try {
-    yield call(racuniService.storeBezgotovinskiRacun, payload);
-    toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+  const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
+  toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+
+  if (res.status !== 201) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
+
+// export function* racuniGet({ payload }) {
+//   try {
+//     const { data } = yield call(racuniService.getRacuni, payload);
+//     console.log('data', data);
+//     yield put(setRacuni(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error));
+//   }
+// }
 
 export function* racuniGet({ payload }) {
-  try {
-    const { data } = yield call(racuniService.getRacuni, payload);
-    console.log('data', data);
-    yield put(setRacuni(data));
-  } catch (error) {
-    yield put(setGlobalError(error));
+  const res = yield call(racuniService.getRacuni, payload);
+  console.log('data', res.data);
+  yield put(setRacuni(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
+
+// export function* racunGet({ payload }) {
+//   try {
+//     const { data } = yield call(racuniService.getRacun, payload);
+//     yield put(setRacun(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
 
 export function* racunGet({ payload }) {
-  try {
-    const { data } = yield call(racuniService.getRacun, payload);
-    yield put(setRacun(data));
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+  const res = yield call(racuniService.getRacun, payload);
+  yield put(setRacun(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
 
+// export function* racunUpdate({ payload }) {
+//   try {
+//     const { data } = yield call(racuniService.updateRacun, payload);
+//     put(setRacun(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
 export function* racunUpdate({ payload }) {
-  try {
-    const { data } = yield call(racuniService.updateRacun, payload);
-    put(setRacun(data));
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+  const res = yield call(racuniService.updateRacun, payload);
+  put(setRacun(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
 
@@ -107,11 +176,24 @@ export function* stavkeGet({ payload }) {
   }
 }
 
+// export function* atributiGrupeGet({ payload }) {
+//   try {
+//     const { data } = yield call(racuniService.getAtributiGrupe, payload);
+//     yield put(setAtributiGrupe(data));
+//   } catch (error) {
+//     yield put(setGlobalError(error.message));
+//   }
+// }
+
 export function* atributiGrupeGet({ payload }) {
-  try {
-    const { data } = yield call(racuniService.getAtributiGrupe, payload);
-    yield put(setAtributiGrupe(data));
-  } catch (error) {
-    yield put(setGlobalError(error.message));
+  const res = yield call(racuniService.getAtributiGrupe, payload);
+  yield put(setAtributiGrupe(res.data));
+
+  if (res.status !== 200) {
+    toast.error(
+      'Greska: ' + res.status + 'Poruka: ' + res.message,
+      toastSettings
+    );
+    yield put(setGlobalError(res.message));
   }
 }
