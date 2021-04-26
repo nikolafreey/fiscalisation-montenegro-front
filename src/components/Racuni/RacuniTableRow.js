@@ -70,6 +70,7 @@ const RacuniTableRow = ({ item, racuni }) => {
   };
 
   const handleClick = () => {
+    // TODO: item.vrsta_racuna.toLowerCase() === 'gotovinski'
     if (
       item.vrsta_racuna === 'GOTOVINSKI' ||
       item.vrsta_racuna === 'gotovinski'
@@ -94,9 +95,9 @@ const RacuniTableRow = ({ item, racuni }) => {
   };
   const vrstaRacuna = (racun) => {
     let value;
-    if (racun === 'gotovinski') {
+    if (racun === 'gotovinski' || racun === 'GOTOVINSKI') {
       value = racun.substring(0, 3) + '.';
-    } else if (racun === 'bezgotovinski') {
+    } else if (racun === 'bezgotovinski' || racun === 'BEZGOTOVINSKI') {
       value = racun.substring(0, 6) + '.';
     } else {
       value = racun;
@@ -107,8 +108,10 @@ const RacuniTableRow = ({ item, racuni }) => {
   return (
     <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
-        {_item.ikof && <Success />}
-        {vrstaRacuna(_item.vrsta_racuna)}
+        <div className="inner-td-wrapper lowercase">
+          {_item.ikof && <Success />}
+          {vrstaRacuna(_item.vrsta_racuna)}
+        </div>
       </td>
       <td className="cl">{_item.broj_racuna}</td>
       {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (

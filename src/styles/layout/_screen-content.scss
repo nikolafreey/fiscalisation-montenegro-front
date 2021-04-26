@@ -15,6 +15,10 @@
           svg {
             stroke: $color-text-light;
           }
+          @include respond(big-phone) {
+            width: 100%;
+            top: 4.1rem;
+          }
         }
       }
     }

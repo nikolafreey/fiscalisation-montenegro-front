@@ -10,9 +10,9 @@
   tbody {
     display: flex;
     flex-wrap: wrap;
-    @include respond(phone){
-      justify-content: space-between;
-    }
+    // @include respond(phone){
+    //   justify-content: space-between;
+    // }
     tr {
       position: relative;
       display: flex;
@@ -27,6 +27,7 @@
       padding: 1.2rem;
       overflow: hidden;
       cursor: pointer;
+      transition: all .2s ease-in-out;
 
       @include respond(tab-land) {
         width: 20rem;
@@ -41,7 +42,7 @@
       @include respond(phone) {
         width: 16rem;
         height: 16rem;
-        margin-right: unset;
+        // margin-right: unset;
       }
 
       .stepper {
@@ -59,6 +60,13 @@
       border: 2px solid $color-background-dark;
       width: 15.9rem;
       height: 15.9rem;
+      td:nth-child(3) {
+        bottom: 4.5rem;
+      }
+      .heading-quaternary{
+        overflow-y: auto;
+        max-height: 4rem;
+      }
       @include respond(tab-land) {
         width: 19.9rem;
         height: 19.9rem;
@@ -119,6 +127,10 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0;
+    .heading-quaternary{
+      overflow-y: auto;
+      max-height: 6rem;
+    }
 
     p {
       width: 100%;
@@ -157,7 +169,7 @@
   }
   td:nth-child(3) {
     position: absolute;
-    bottom: 4.5rem;
+    bottom: 1rem;
   }
   td,
   th {

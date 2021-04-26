@@ -148,7 +148,7 @@ const Racuni = () => {
               Registracija Depozita
             </button>
           )}
-          <button className="btn btn__primary mob-mb-20 ml-m">
+          <button className="btn btn__primary mob-mb-20 ml-m mob-ml-0">
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">

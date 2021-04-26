@@ -20,7 +20,7 @@ const RacuniTable = ({ racuni }) => {
         <table className="table">
           <thead>
             <tr>
-              <th className="w-5">
+              <th className="w-5 b-mob-w-100">
                 <span className="heading-quaternary"> </span>
               </th>
               <th>
@@ -42,7 +42,7 @@ const RacuniTable = ({ racuni }) => {
                 <span className="heading-quaternary">Status</span>
               </th>
 
-              <th className="w-15">
+              <th className="date-width">
                 <span className="heading-quaternary">Datum</span>
               </th>
               <th className="w-5">

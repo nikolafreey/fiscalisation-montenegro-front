@@ -12,9 +12,9 @@ body {
 }
 p {
   font-size: $font-size-default;
-  @include respond(tab-land) {
-    font-size: $font-size-default-tab;
-  }
+  // @include respond(tab-land) {
+  //   font-size: $font-size-default-tab;
+  // }
 }
 a {
   @include themify($themes) {

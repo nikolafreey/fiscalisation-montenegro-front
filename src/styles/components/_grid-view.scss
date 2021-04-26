@@ -5,7 +5,7 @@
 
   @include respond(phone) {
     width: 24%;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   .btn {
@@ -15,9 +15,6 @@
 
     &:focus{
       outline: none;
-    }
-    @include respond(phone) {
-      margin-left: 0;
     }
 
     svg {

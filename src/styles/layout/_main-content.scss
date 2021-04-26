@@ -324,5 +324,12 @@
 #main-content {
   // position: absolute;
   left: 0rem;
+  padding-right: 0;
   transition: left 0.2s linear;
+  @include respond(big-desktop){
+    padding-right: 15px;
+  }
+  @include respond(big-phone){
+    padding-right: 15px;
+  }
 }

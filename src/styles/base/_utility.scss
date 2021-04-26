@@ -44,14 +44,14 @@
 .h-70 {
   height: 70%;
 }
-.h-10r{
+.h-10r {
   height: 10rem;
 }
 .w-100 {
   width: 100%;
 }
 .w-100-imp {
-  width: 100%!important;
+  width: 100% !important;
 }
 .w-62 {
   width: 62% !important;
@@ -240,19 +240,24 @@
 .ml-xl {
   margin-left: 6rem;
 }
-.tabp-w-100{
-  @include respond(tab-port){
+.mob-ml-0 {
+  @include respond(big-phone) {
+    margin-left: 0;
+  }
+}
+.tabp-w-100 {
+  @include respond(tab-port) {
     width: 100%;
   }
 }
-.tabp-w-49{
-  @include respond(tab-port){
-    width: 49%!important;
+.tabp-w-49 {
+  @include respond(tab-port) {
+    width: 49% !important;
   }
 }
-.tabp-flex-wrap{
-  @include respond(tab-port){
-   flex-wrap: wrap;
+.tabp-flex-wrap {
+  @include respond(tab-port) {
+    flex-wrap: wrap;
   }
 }
 .tabp-mtb-20 {
@@ -283,9 +288,9 @@
 .mr-s {
   margin-right: 0.5rem;
 }
-.mr-15-tabp-0{
+.mr-15-tabp-0 {
   margin-right: 1.5rem;
-  @include respond(tab-port){
+  @include respond(tab-port) {
     margin-right: 0;
   }
 }
@@ -359,12 +364,17 @@
   }
 }
 .mob-ai-start {
-  @include respond(phone){
-    align-items: flex-start!important;
+  @include respond(phone) {
+    align-items: flex-start !important;
   }
 }
 .mob-w-100 {
   @include respond(phone) {
+    width: 100% !important;
+  }
+}
+.b-mob-w-100 {
+  @include respond(big-phone) {
     width: 100% !important;
   }
 }
@@ -418,7 +428,7 @@
   }
 }
 .mob-txt-left {
-  @include respond(phone) {
+  @include respond(big-phone) {
     text-align: left;
   }
 }
@@ -437,51 +447,64 @@
   display: inline-block;
   position: relative;
   box-shadow: 0px 4px 6px rgba($color-black, 0.2);
-  @include respond(phone){
-   font-size: 16px;
+  @include respond(phone) {
+    font-size: 16px;
   }
-  &__header{
+  &__header {
     background-color: $color-background-input;
     border-bottom: 1px solid $color-content-lines;
     border-top-left-radius: 4px;
     padding-top: 8px;
     position: relative;
   }
-  &__current-month{
+  &__current-month {
     font-size: 18px;
   }
-  &__day{
+  &__day {
     width: 3rem;
     line-height: 3rem;
-    &--today, &--keyboard-selected{
+    &--today,
+    &--keyboard-selected {
       background: $color-hover;
-      &:hover{
+      &:hover {
         background: $color-hover;
       }
     }
-    &--in-range{
+    &--in-range {
       background-color: $color-hover;
     }
-    &--in-selecting-range{
+    &--in-selecting-range {
       background-color: rgba($color-hover, 0.5);
-      &:hover{
+      &:hover {
         background-color: $color-hover;
       }
     }
   }
-  &__day-name{
+  &__day-name {
     width: 3rem;
   }
-  &__triangle::before{
-    border-bottom-color: $color-background-input!important;
+  &__triangle::before {
+    border-bottom-color: $color-background-input !important;
   }
 }
-.w-break{
+.w-break {
   word-break: break-all;
 }
 .w-break-unset {
-  word-break: unset!important;
+  word-break: unset !important;
 }
-.flex-nowrap{
+.flex-nowrap {
   flex-wrap: nowrap;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.date-width {
+  width: 15% !important;
+  @include respond(tab-land) {
+    width: 20% !important;
+  }
+  @include respond(tab-port) {
+    width: 25% !important;
+  }
 }

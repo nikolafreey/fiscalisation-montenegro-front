@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-end;
 
-  @include respond(phone) {
+  @include respond(big-phone) {
     justify-content: unset;
     width: 10rem;
     border-radius: 4px;
