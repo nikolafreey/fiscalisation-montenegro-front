@@ -56,7 +56,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
 
       <td className="mob-absolute-topright">
         <div className="df jc-end ai-c">
-          <button type="button" className="btn btn__light btn__xs">
+          <button type="button" className="btn btn__light-dd btn__xs">
             <Dots className="icon lg" />
             <div className="drop-down" id="ddl">
               <Link

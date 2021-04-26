@@ -86,7 +86,7 @@ const StavkeTableRow = ({ usluga = {}, roba = {} }) => {
         </td>
         <td>
           <div className="df jc-end ai-c">
-            <button className="btn btn__light btn__xs">
+            <button className="btn btn__light-dd btn__xs">
               <IconLg />
               <div className="drop-down">
                 <a onClick={handleIzmjeni}>

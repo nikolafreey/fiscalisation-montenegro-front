@@ -20,13 +20,14 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
       }
      
     >
+      {/* TODO: ako postoji logotip ako ne onda default ili bez img i klasa td-title margin-left:0 ili bez te klase*/}
       <td>
         <div className="inner-td-wrapper">
-          <img
+          {/* <img
             src={item.logotip}
             className="img-round sm"
             alt={item.kratki_naziv}
-          />
+          /> */}
           <div className="td-title">
             <p>
               {item.kratki_naziv}

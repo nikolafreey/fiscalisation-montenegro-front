@@ -5,23 +5,19 @@
     justify-content: space-between;
     align-items: center;
 
-    button {
-      position: relative;
-      &:hover {
-        .drop-down {
-          top: 3.7rem;
-          right: 0;
-          display: block;
-          svg {
-            stroke: $color-text-light;
-          }
-          @include respond(big-phone) {
-            width: 100%;
-            top: 4.1rem;
-          }
-        }
-      }
-    }
+    // button {
+    //   position: relative;
+    //   &:hover {
+    //     .drop-down {
+    //       top: 3.7rem;
+    //       right: 0;
+    //       display: block;
+    //       svg {
+    //         stroke: $color-text-light;
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   .content {
