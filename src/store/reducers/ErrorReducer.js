@@ -48,6 +48,7 @@ const errorReducer = (state = initialState, action) =>
         break;
       case LOGIN_ERROR_SET:
         draft.loginError = action.payload;
+        console.log('action.payload loginErrorSet; ', action.payload);
         if (
           Object.keys(action.payload).length !== 0 &&
           action.payload.constructor === Object

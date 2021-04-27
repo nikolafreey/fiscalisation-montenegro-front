@@ -9,7 +9,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
   const dispatch = useDispatch();
 
   const handleAddPartner = () => {
-    dispatch(storePartner({ preduzece_id: item.id }));
+    dispatch(storePartner({ preduzece_tabela_id: item.id }));
   };
 
   return (
@@ -18,7 +18,6 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
       className={
         'mob-relative-block ' + (selectedId === item.id ? 'active' : '')
       }
-     
     >
       {/* TODO: ako postoji logotip ako ne onda default ili bez img i klasa td-title margin-left:0 ili bez te klase*/}
       <td>
@@ -26,7 +25,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
           <img
             src={item.logotip}
             className="img-round sm"
-            alt=''
+            alt=""
             //alt={item.kratki_naziv}
           />
           <div className="td-title">

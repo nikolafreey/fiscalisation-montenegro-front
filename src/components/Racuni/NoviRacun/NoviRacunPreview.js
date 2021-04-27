@@ -6,7 +6,11 @@ import {
   izracunajUkupnuCijenuStavkiBezPdv,
   izracunajPojedinacnePoreze,
 } from '../../../helpers/racuni';
-import { storeRacun, setRacun } from '../../../store/actions/RacuniActions';
+import {
+  storeRacun,
+  setRacun,
+  resetNoviRacun,
+} from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
 import NoviRacunKusur from './NoviRacunKusur';
@@ -38,6 +42,7 @@ const NoviRacunPreview = () => {
 
   const [value, setValue] = useState(1);
   const [selectedLabel, setSelectedLabel] = useState('');
+  const [nacinPlacanja, setNacinPlacanja] = useState('BANKNOTE');
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -60,8 +65,9 @@ const NoviRacunPreview = () => {
       return;
     }
 
-    dispatch(storeRacun());
+    dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
     dispatch(setRacun({}));
+    // dispatch(resetNoviRacun());
     history.push(`/racuni`);
   };
 
@@ -208,6 +214,7 @@ const NoviRacunPreview = () => {
             onChange={(option) => {
               setValue(option.value);
               setSelectedLabel(option);
+              setNacinPlacanja(option.value);
             }}
             value={selectedLabel ? selectedLabel : NACIN_PLACANJA_GOTOVINSKI[0]}
             defaultValue={NACIN_PLACANJA_GOTOVINSKI[0]}

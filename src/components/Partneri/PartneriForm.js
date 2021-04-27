@@ -95,7 +95,7 @@ const PartneriForm = () => {
           loadOptions={fizickaLicaService.getFizickaLicaDropdown}
         />
         <DropDown
-          name="preduzece_id"
+          name="preduzece_tabela_id"
           label={$t('partneri.preduzece_id')}
           loadOptions={preduzecaService.getPreduzecaDropdown}
         />

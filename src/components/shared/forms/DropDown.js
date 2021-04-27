@@ -32,11 +32,12 @@ const DropDown = ({
   ...props
 }) => {
   const [selectedLabel, setSelectedLabel] = useState(null);
+  const [isInitialValid, setIsInitialValid] = useState(false);
 
   const [field, meta, helpers] = useField(props);
 
   const { error } = meta;
-  const { setValue } = helpers;
+  const { setValue, setError } = helpers;
 
   const [blurred, setBlurred] = useState(false);
 
@@ -54,13 +55,17 @@ const DropDown = ({
       })
       .then((data) => {
         setSelectedLabel({ value: data.data.id, label: data.data.naziv });
+        setIsInitialValid(true);
         selectRef.current.loadOptions(
           proizvodjacService.getProizvodjaciDropdown
         );
       })
       .catch((err) => {
-        console.log('err', err);
-        toast.error('Desila se greška prilikom unosa: ' + err, toastSettings);
+        toast.error(
+          'Desila se greška prilikom unosa proizvođača: Proizvođač već postoji!' +
+            err,
+          toastSettings
+        );
       });
   };
 
@@ -68,10 +73,34 @@ const DropDown = ({
     const nazivGrupe = prompt('Unesite naziv grupe: ');
     setNazivGrupe(nazivGrupe);
 
-    grupeService.storeGrupa({ naziv: nazivGrupe }).then((data) => {
-      setSelectedLabel({ value: data.data.id, label: data.data.naziv });
-      selectRef.current.loadOptions(grupeService.getGrupeDropdown);
-    });
+    grupeService
+      .storeGrupa({ naziv: nazivGrupe })
+      .then((data) => {
+        setSelectedLabel({ value: data.data.id, label: data.data.naziv });
+        setValue(data.data.id);
+        selectRef.current.loadOptions(grupeService.getGrupeDropdown);
+        setIsInitialValid(true);
+        setError(null);
+      })
+      .catch((err) => {
+        // console.log('errBefore', err.response.data.errors);
+        // var errormessage = '';
+        // Object.keys(err.response.data.errors).forEach(function (key) {
+        //   errormessage += err[key] + '<br />';
+        // });
+        // console.log('err', errormessage);
+
+        // toast.error(
+        //   'Desila se greška prilikom unosa grupe: ' + errormessage,
+        //   toastSettings
+        // );
+
+        toast.error(
+          'Desila se greška prilikom unosa grupe: ' + err.response &&
+            err.response.data.errors.naziv[0],
+          toastSettings
+        );
+      });
   };
   const selectStyle = {
     control: (styles) => ({
@@ -79,7 +108,7 @@ const DropDown = ({
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
       height: '45px',
-      minHeight:'unset'
+      minHeight: 'unset',
     }),
   };
 
@@ -123,6 +152,8 @@ const DropDown = ({
         loadOptions={loadOptions}
         isSearchable
         onBlur={() => setBlurred(true)}
+        isInitialValid={isInitialValid}
+        isValid={isInitialValid}
         {...props}
       />
       {blurred && meta.error ? <div className="error">{meta.error}</div> : null}

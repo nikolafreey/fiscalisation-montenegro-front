@@ -20,13 +20,14 @@ import {
   UPDATE_RACUN,
 } from '../actionTypes/RacuniActionTypes';
 
-export const storeRacun = () => ({
+export const storeRacun = (payload) => ({
   type: STORE_RACUN,
+  payload,
 });
 
 export const storeBezgotovinskiRacun = (payload) => ({
   type: STORE_BEZGOTOVINSKI_RACUN,
-  payload
+  payload,
 });
 
 export const getRacuni = (payload) => ({
@@ -60,7 +61,7 @@ export const deleteRacun = (payload) => ({
 });
 
 export const resetNoviRacun = () => ({
-  type: RESET_NOVI_RACUN
+  type: RESET_NOVI_RACUN,
 });
 
 export const setKolicinaRobe = (roba, kolicina) => ({
@@ -72,7 +73,6 @@ export const setKolicinaUsluge = (usluga, kolicina) => ({
   type: SET_KOLICINA_USLUGE,
   payload: { usluga, kolicina },
 });
-
 
 export const ukloniRobu = (roba) => ({
   type: UKLONI_ROBU,
@@ -99,7 +99,6 @@ export const setStavkeUsluge = (payload) => ({
   payload,
 });
 
-
 export const getAtributiGrupe = (payload) => ({
   type: GET_ATRIBUTI_GRUPE,
   payload,
@@ -114,4 +113,3 @@ export const setOdabraniAtributGrupa = (payload) => ({
   type: SET_ODABRANI_ATRIBUT_GRUPA,
   payload,
 });
-
