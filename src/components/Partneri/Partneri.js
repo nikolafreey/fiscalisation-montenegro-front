@@ -56,7 +56,7 @@ const Partneri = () => {
     <>
       <div className="title jc-sb">
         <h1 className="heading-primary">Partneri</h1>
-        <button className="btn btn__primary">
+        <button className="btn btn__primary btn-dd">
           <PlusLightSvg />
           <p>Novi partner</p>
           <div className="drop-down" id="ddl">

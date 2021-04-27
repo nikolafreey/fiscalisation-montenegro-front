@@ -91,7 +91,7 @@ const UlazniRacuniTableRow = ({ item, ulazniRacuni }) => {
         </span> */}
         {<span className="tag tag__success">{item.status}</span>}
       </td>
-      <td className="cd fw-500">
+      <td className="cl fw-500 nowrap">
         {/* {new Date(item.created_at).toLocaleDateString('cnr')} */}
         <Moment locale="me" format="DD. MMM YYYY.">
           {item.created_at}

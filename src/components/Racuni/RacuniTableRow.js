@@ -71,6 +71,8 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   const handleClick = () => {
     // TODO: item.vrsta_racuna.toLowerCase() === 'gotovinski'
+    const vrstaRacuna = item.vrsta_racuna.toLowerCase();
+    console.log(vrstaRacuna);
     if (
       item.vrsta_racuna === 'GOTOVINSKI' ||
       item.vrsta_racuna === 'gotovinski'

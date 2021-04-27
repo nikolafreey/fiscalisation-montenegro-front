@@ -109,6 +109,16 @@ const Racuni = () => {
     handleSearch(searchParams);
   };
 
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      minHeight:'unset'
+    }),
+  };
+
   const [showModal, setShowModal] = useState(false);
   const [depozitLoaded, setDepozitLoaded] = useState(false);
 
@@ -183,6 +193,7 @@ const Racuni = () => {
               <Select
                 options={options}
                 onChange={handleStatusChange}
+                styles={selectStyle}
                 value={{ label: status }}
                 className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
                 placeholder={`Type to search`}

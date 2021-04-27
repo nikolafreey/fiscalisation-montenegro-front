@@ -73,6 +73,15 @@ const DropDown = ({
       selectRef.current.loadOptions(grupeService.getGrupeDropdown);
     });
   };
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      minHeight:'unset'
+    }),
+  };
 
   return (
     <div>
@@ -108,6 +117,7 @@ const DropDown = ({
           if (onChangeExtra) onChangeExtra(option);
         }}
         value={selectedLabel !== null ? selectedLabel : defaultValue}
+        styles={selectStyle}
         cacheOptions
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}

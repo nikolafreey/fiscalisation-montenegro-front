@@ -32,11 +32,18 @@ const PreduzeceDetails = ({ preduzece }) => {
       }
     });
   };
+  let sideInfoLogoWrapper;
+  if(preduzece?.logotip){
+    sideInfoLogoWrapper = <div className="side-info__logo-wrapper">
+    <img src={preduzece?.logotip} alt={preduzece?.kratki_naziv} />
+  </div>;
+  }
   return (
     <div className="side-info">
-      <div className="side-info__logo-wrapper">
+      {/* <div className="side-info__logo-wrapper">
         <img src={preduzece?.logotip} alt={preduzece?.kratki_naziv} />
-      </div>
+      </div> */}
+      {sideInfoLogoWrapper}
       <div className="side-info__wrapper">
         <h2 className="side-info__title">
           <span>{preduzece?.kratki_naziv}</span>

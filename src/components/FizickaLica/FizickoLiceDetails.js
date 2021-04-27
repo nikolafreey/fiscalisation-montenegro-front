@@ -2,15 +2,28 @@ import React from 'react';
 // import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 
 const FizickoLiceDetails = ({ fizickoLice = {} }) => {
+
+  let avatar;
+  console.log(fizickoLice.avatar);
+  if(fizickoLice.avatar){
+    avatar = <div className="side-info__logo-wrapper">
+    <img
+      src={fizickoLice.avatar}
+      alt=""
+      className="side-info__logo img-round xl"
+    />
+  </div>;
+  }
   return (
     <div className="side-info">
-      <div className="side-info__logo-wrapper">
+      {/* <div className="side-info__logo-wrapper">
         <img
           src={fizickoLice.avatar}
           alt=""
           className="side-info__logo img-round xl"
         />
-      </div>
+      </div> */}
+      {avatar}
       <div className="side-info__wrapper">
         <h2 className="side-info__title">
           {fizickoLice.ime + ' ' + fizickoLice.prezime}

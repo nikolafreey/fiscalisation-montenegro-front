@@ -23,7 +23,8 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           <img
             // src={partner.preduzece?.logotip} // TODO:mora logotip path logfo.png ili logo 
             className="img-round sm"
-            alt={partner.preduzece?.kratki_naziv}
+            alt=''
+            // alt={partner.preduzece?.kratki_naziv}
           />
           <div className="td-title">
             <p>

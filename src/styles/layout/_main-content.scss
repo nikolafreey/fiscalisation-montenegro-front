@@ -272,16 +272,19 @@
     .react-datepicker-wrapper {
       width: 60%;
       @include respond(tab-port) {
+        margin-top: 1.5rem;
+      }
+      @include respond(big-phone) {
         margin-top: 1rem;
       }
       @include respond(phone) {
         width: 100%;
-        // margin-right: 1rem;
+        margin-top: 0;
       }
     }
     .react-datepicker-wrapper:first-of-type {
       margin-right: 1.5rem;
-      @include respond(phone) {
+      @include respond(big-phone) {
         margin-right: 1rem;
       }
     }
@@ -293,6 +296,7 @@
         background-color: $color-background-input;
         width: 100%;
         padding: 1rem 4rem;
+        height: 45px;
       }
     }
     .select,
@@ -306,13 +310,14 @@
       border: 1px solid $border-input-lines;
       width: 100%;
       box-sizing: border-box;
+      height: 45px;
 
       &:focus {
         outline: none;
       }
     }
     .select {
-      margin-left: 2rem;
+      margin-left: 1.5rem;
       width: 25%;
       @include respond(phone){
         margin-left: 0;

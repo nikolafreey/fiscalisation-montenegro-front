@@ -160,6 +160,7 @@
   }
   &__input {
     padding: 12px;
+    height: 45px;
     &:focus {
       outline: none;
       padding: 11px;
@@ -169,6 +170,7 @@
   }
   &__select {
     padding: 11px;
+    height: 45px;
     &:focus {
       outline: none;
       padding: 10px;

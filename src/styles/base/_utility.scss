@@ -7,6 +7,9 @@
 .txt-right {
   text-align: right;
 }
+.txt-left {
+  text-align: left!important;
+}
 .txt-center {
   text-align: center;
 }
@@ -241,7 +244,7 @@
   margin-left: 6rem;
 }
 .mob-ml-0 {
-  @include respond(big-phone) {
+  @include respond(phone) {
     margin-left: 0;
   }
 }
@@ -318,7 +321,7 @@
 .jc-center {
   justify-content: center !important;
 }
-.mob-mb-20 {
+.tab-mb-20 {
   @include respond(tab-port) {
     margin-bottom: 2rem;
   }
@@ -399,6 +402,12 @@
 .m-none {
   display: block;
   @include respond(phone) {
+    display: none !important;
+  }
+}
+.bm-none {
+  display: block;
+  @include respond(big-phone) {
     display: none !important;
   }
 }
@@ -507,4 +516,26 @@
   @include respond(tab-port) {
     width: 25% !important;
   }
+}
+.no-outline {
+  :focus{
+    outline: none!important;
+  }
+}
+.visible{
+  opacity: 1!important;
+  visibility: visible!important;
+}
+.error-text{
+  border: 1px solid red;
+  border-radius: 4px;
+}
+.error {
+  color: red;
+}
+.h-auto{
+  height: auto!important;
+}
+.nowrap{
+  white-space: nowrap;
 }

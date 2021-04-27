@@ -3,7 +3,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  @include respond(big-phone){
+    margin-top: 1rem;
+  }
 }
 .box,
 .box-dashboard,
@@ -22,9 +25,16 @@
   width: 24%;
   height: 7rem;
   padding: 0.8rem;
+  margin-right: 1.5rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in-out;
   @include respond(phone) {
     width: 49%;
     margin-bottom: 1rem;
+  }
+  &::last-child{
+    margin-right: 0;
   }
 
   h2 {

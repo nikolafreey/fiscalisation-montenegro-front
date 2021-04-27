@@ -129,7 +129,8 @@ const Predracuni = () => {
       ...styles,
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
-      padding: '.15rem',
+      height: '45px',
+      minHeight:'unset'
     }),
   };
   return (
@@ -164,7 +165,7 @@ const Predracuni = () => {
                 options={options}
                 onChange={handleStatusChange}
                 value={{ label: status }}
-                className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
+                className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49 no-outline"
                 styles={selectStyle}
                 placeholder="Status..."
               />
@@ -191,7 +192,7 @@ const Predracuni = () => {
               </div>
             </div>
             <div className="box-wrapper">
-              <div className="box">
+              <div className="box visible">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
                   {predracuni?.ukupna_cijena

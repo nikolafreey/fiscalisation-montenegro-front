@@ -77,10 +77,7 @@ th {
   }
 }
 th:first-child {
-  width: 35%;
-  @include respond(tab-land) {
-    width: 40%;
-  }
+  
   @include respond(big-phone) {
     display: block;
     width: 100%;

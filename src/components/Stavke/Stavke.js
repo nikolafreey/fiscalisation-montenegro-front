@@ -115,7 +115,7 @@ const Stavke = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Stavke</h1>
         <div className="df w-50 jc-end">
-          <button className="btn btn__primary">
+          <button className="btn btn__primary btn-dd">
             <ButtonPlusSvg />
             Nova stavka
             <div className="drop-down" id="ddl">

@@ -120,7 +120,15 @@ const UlazniRacuni = () => {
     setEndDate(date);
     handleSearch(searchParams);
   };
-
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      minHeight:'unset'
+    }),
+  };
   // const onChange = (dates) => {
   //   const [start, end] = dates;
   //   setStartDate(start);
@@ -159,6 +167,7 @@ const UlazniRacuni = () => {
                 onChange={handleStatusChange}
                 value={{ label: status }}
                 className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
+                styles={selectStyle}
               />
               <div className="df jc-sb tabp-w-100">
                 <DatePicker
@@ -183,7 +192,7 @@ const UlazniRacuni = () => {
               </div>
             </div>
             <div className="box-wrapper">
-              <div className="box">
+              <div className="box visible">
                 <p className="txt-light">Ukupan Iznos</p>
                 <h3 className="heading-tertiary">
                   {ulazniRacuni?.ukupna_cijena

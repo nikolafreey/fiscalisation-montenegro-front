@@ -19,7 +19,7 @@ const PredracuniTable = ({ predracuni }) => {
           <thead>
             <tr>
               <th className="w-auto">
-                <span className="heading-quaternary">Broj</span>
+                <span className="heading-quaternary bm-none">Broj</span>
               </th>
               <th>
                 <span className="heading-quaternary">Preduzeće/Lice</span>

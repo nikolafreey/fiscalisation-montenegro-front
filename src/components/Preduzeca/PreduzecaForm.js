@@ -312,7 +312,7 @@ const PreduzecaForm = () => {
                         label={$t('preduzeca.opis') + ' - Nije Obavezno'}
                         cols="30"
                         rows="5"
-                        className="form__input"
+                        className="form__input h-auto"
                       />
                       <div className="form__group form__area mb-0">
                         <InputField

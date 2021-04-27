@@ -14,15 +14,17 @@
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       .drop-down {
-        top: 3.7rem;
+        top: 4.28rem;
         right: 0;
         display: block;
         svg {
           stroke: $color-text-light;
         }
         @include respond(big-phone) {
+          width: 23rem;
+        }
+        @include respond(phone) {
           width: 100%;
-          top: 4.1rem;
         }
       }
     }
