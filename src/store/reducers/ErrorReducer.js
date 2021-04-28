@@ -30,8 +30,8 @@ const errorReducer = (state = initialState, action) =>
     switch (action.type) {
       case GLOBAL_ERROR_SET:
         draft.globalError = action.payload;
-        console.log('action.payload', action.payload);
-        console.log('draft.globalError.length', draft.globalError.length);
+        // console.log('action.payload', action.payload);
+        // console.log('draft.globalError.length', draft.globalError.length);
         if (
           Object.keys(action.payload).length !== 0 &&
           action.payload.constructor === Object

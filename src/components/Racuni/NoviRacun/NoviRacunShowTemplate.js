@@ -14,12 +14,18 @@ import {
   formatirajCijenu,
   formatirajCijenuBezE,
 } from './../../../helpers/racuni';
+import { userSelector } from '../../../store/selectors/UserSelector';
+import QRCode from 'react-qr-code';
 
 const NoviRacunShowTemplate = () => {
   const componentRef = useRef();
   const dispatch = useDispatch();
   const { params } = useRouteMatch();
+
   const racun = useSelector(racunSelector());
+  const user = useSelector(userSelector());
+
+  console.log('user', user);
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
@@ -28,13 +34,13 @@ const NoviRacunShowTemplate = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-  
+
   var ukupnoSaPdvIpopusta = 0;
-  
+
   var ukupniPorezi = 0;
   var porezi = [];
   var poreziUkupno = [];
-  for (let index = 0; index < 5; index++) { 
+  for (let index = 0; index < 5; index++) {
     porezi[index] = 0;
     poreziUkupno[index] = 0;
   }
@@ -46,20 +52,21 @@ const NoviRacunShowTemplate = () => {
       indeksi.push(stavka.porez_id);
       ukupnoSaPdvIpopusta +=
         Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina);
-      porezi[stavka.porez_id] += Number(stavka.pdv_iznos)*Number(stavka.kolicina);
+      porezi[stavka.porez_id] +=
+        Number(stavka.pdv_iznos) * Number(stavka.kolicina);
       poreziUkupno[stavka.porez_id] +=
         Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina);
-     // ukupniPorezi += Number(stavka.pdv_iznos)*Number(stavka.kolicina);   
+      // ukupniPorezi += Number(stavka.pdv_iznos)*Number(stavka.kolicina);
     }
   }
-  for (let index = 0; index < 5; index++) { 
-    ukupniPorezi+=Math.round(porezi[index]*100)/100;
+  for (let index = 0; index < 5; index++) {
+    ukupniPorezi += Math.round(porezi[index] * 100) / 100;
   }
   function vratiUkupnoPlacanje() {
     let ukupnoPlacanje = 0;
     for (let p in racun.stavke) {
       ukupnoPlacanje += Number(
-      racun.stavke[p].cijena_sa_pdv_popust * racun.stavke[p].kolicina
+        racun.stavke[p].cijena_sa_pdv_popust * racun.stavke[p].kolicina
       );
     }
     return ukupnoPlacanje;
@@ -138,8 +145,8 @@ const NoviRacunShowTemplate = () => {
               <div className="fiscal-bill__header--info">
                 <p>
                   {' '}
-                  {racun.preduzece && racun.preduzece.puni_naziv
-                    ? racun.preduzece.puni_naziv
+                  {racun.preduzece && racun.preduzece.kratki_naziv
+                    ? racun.preduzece.kratki_naziv
                     : ''}
                 </p>
                 <p>
@@ -167,7 +174,7 @@ const NoviRacunShowTemplate = () => {
               </div>
               <span>
                 Operater:{' '}
-                {racun && racun.kod_operatera ? racun.kod_operatera : '-'}
+                {user && user.kod_operatera ? user.kod_operatera : '-'}
               </span>
             </div>
 
@@ -187,7 +194,7 @@ const NoviRacunShowTemplate = () => {
                               </div>
                               <div className="col-r w-break-unset">
                                 <div className="spn-mr-10 df">
-                                  {Number(stavka.popust_procenat)>0 ||
+                                  {Number(stavka.popust_procenat) > 0 ||
                                   Number(stavka.popust_iznos) > 0
                                     ? (
                                         Number(stavka.cijena_sa_pdv_popust) *
@@ -204,26 +211,26 @@ const NoviRacunShowTemplate = () => {
                                 </div>
                               </div>
                             </div>
-                            {(Number(stavka.popust_procenat)>0 ||
-                                  Number(stavka.popust_iznos) > 0)&&
-                            
+                            {(Number(stavka.popust_procenat) > 0 ||
+                              Number(stavka.popust_iznos) > 0) && (
                               <div className="side-info__info--inner-wrapper mb-0">
-                              <div className="col-l w-break">
-                                <p className="ml-15 txt-dark">
-                                  Kol <span>x</span> Cijena
-                                </p>
+                                <div className="col-l w-break">
+                                  <p className="ml-15 txt-dark">
+                                    Kol <span>x</span> Cijena
+                                  </p>
+                                </div>
+                                <div className="col-r w-break-unset mr-m">
+                                  {Number(stavka.kolicina)
+                                    .toFixed(2)
+                                    .replace('.', ',')}{' '}
+                                  x{' '}
+                                  {Number(stavka.cijena_sa_pdv)
+                                    .toFixed(2)
+                                    .replace('.', ',')}
+                                </div>
                               </div>
-                              <div className="col-r w-break-unset mr-m">
-                                {Number(stavka.kolicina).toFixed(2)
-                                  .replace('.', ',')} x{' '}
-                                {Number(stavka.cijena_sa_pdv)
-                                  .toFixed(2)
-                                  .replace('.', ',')}
-                              </div>
-                            </div>
-                            
-                            }
-                            
+                            )}
+
                             {(stavka.popust_iznos > 0 ||
                               stavka.popust_procenat > 0) && (
                               <>
@@ -331,7 +338,9 @@ const NoviRacunShowTemplate = () => {
               <table cellspacing="0" cellpadding="0">
                 <tr>
                   <td className="left">Ukupan PDV</td>
-                  <td className="right">{racun && Number(ukupniPorezi).toFixed(2).replace('.', ',')}</td>
+                  <td className="right">
+                    {racun && Number(ukupniPorezi).toFixed(2).replace('.', ',')}
+                  </td>
                 </tr>
                 <tr>
                   <td className="left">
@@ -345,10 +354,18 @@ const NoviRacunShowTemplate = () => {
             </div>
 
             <div className="fiscal-bill__footer">
-              <p>Br. računa: {racun && racun.broj_racuna}</p>
-              <p>IKOF: {racun && racun.iko ? racun.iko : '-'}</p>
+              <p>Br. računa: {racun && racun.redni_broj}</p>
+              <p>IKOF: {racun && racun.ikof ? racun.ikof : '-'}</p>
               <p>JIKR: {racun && racun.jikr ? racun.jikr : '-'}</p>
               <div className="fiscal-bill__footer--qr-code"></div>
+            </div>
+            <div className="col-md-4">
+              {/* ------------------ QR CODE ------------------ */}
+              {racun && racun.jikr && racun.ikof ? (
+                <QRCode value={racun && racun.qr_url} size="128" />
+              ) : null}
+
+              {/*------------------ QR CODE ------------------*/}
             </div>
           </div>
         </div>

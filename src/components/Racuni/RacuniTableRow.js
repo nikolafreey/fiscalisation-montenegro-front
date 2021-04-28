@@ -25,6 +25,7 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   let fizickaLicaPartneri;
   let preduzecaPartneri;
+  console.log('racuni.partneri', racuni.partneri);
   if (racuni.partneri) {
     fizickaLicaPartneri = racuni.partneri
       .map(
@@ -111,11 +112,11 @@ const RacuniTableRow = ({ item, racuni }) => {
     <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
         <div className="inner-td-wrapper lowercase">
-          {_item.ikof && <Success />}
+          {_item.jikr && <Success />}
           {vrstaRacuna(_item.vrsta_racuna)}
         </div>
       </td>
-      <td className="cl">{_item.broj_racuna}</td>
+      <td className="cl">{_item.redni_broj}</td>
       {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (
         <td className="cd fw-500">
           {preduzecaPartneri &&
@@ -130,10 +131,10 @@ const RacuniTableRow = ({ item, racuni }) => {
       )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
         <td className="cd fw-500">
-          {_item.partner?.preduzece?.kratki_naziv ||
-            `${_item.partner?.fizicko_lice?.ime}
+          {`${_item.partner?.fizicko_lice?.ime}
 
-           ${_item.partner?.fizicko_lice?.prezime}`}
+           ${_item.partner?.fizicko_lice?.prezime}` ||
+            _item.partner?.preduzece?.kratki_naziv}
         </td>
       )}
       <td className="cl dshow-cell">

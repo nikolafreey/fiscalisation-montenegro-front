@@ -57,6 +57,7 @@ class RacuniService extends ApiService {
     return this.apiClient.post(ENDPOINTS.RACUNI, {
       stavke,
       vrsta_racuna: 'gotovinski',
+      nacin_placanja: noviRacun.nacin_placanja,
     });
   };
 

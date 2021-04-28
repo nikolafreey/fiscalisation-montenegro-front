@@ -66,7 +66,7 @@ const NoviRacunPreview = () => {
     }
 
     dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
-    dispatch(setRacun({}));
+    // dispatch(setRacun({}));
     // dispatch(resetNoviRacun());
     history.push(`/racuni`);
   };

@@ -23,10 +23,10 @@ import { spinnerStyleGrid } from '../../constants/spinner';
 import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const options = [
-  { value: 'placen', label: 'Plaćen' },
-  { value: 'nenaplativ', label: 'Nenaplativ' },
-  { value: 'ceka se', label: 'Čeka Se' },
-  { value: 'privremeni', label: 'Privremeni' },
+  { value: 'Plaćen', label: 'Plaćen' },
+  { value: 'Nenaplativ', label: 'Nenaplativ' },
+  { value: 'Nije Plaćen', label: 'Nije Plaćen' },
+  { value: 'Privremeni', label: 'Privremeni' },
 ];
 
 const searchParams = {};
@@ -115,7 +115,7 @@ const Racuni = () => {
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
       height: '45px',
-      minHeight:'unset'
+      minHeight: 'unset',
     }),
   };
 

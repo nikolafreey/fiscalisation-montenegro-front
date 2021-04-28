@@ -15,28 +15,26 @@ class NoviRacunPrintTemplate extends React.Component {
       broj_racuna,
       popust_ukupno,
       ukupna_cijena_bez_pdv_popust,
-      ukupna_cijena_sa_pdv_popust, 
+      ukupna_cijena_sa_pdv_popust,
       porezi,
-      
     } = this.props.racun;
-    
+
     function vratiUkupnoPlacanje() {
       var ukupnoPlacanje = 0;
-      var ukupniPorezi=[];
+      var ukupniPorezi = [];
       for (const p in stavke) {
-        
-        ukupniPorezi[p] +=porezi[p];
-       ukupnoPlacanje += Number(stavke[p].cijena_sa_pdv_popust);
-       console.log('cik',stavke[p].pdv_iznos_ukupno,porezi)
+        ukupniPorezi[p] += porezi[p];
+        ukupnoPlacanje += Number(stavke[p].cijena_sa_pdv_popust);
+        console.log('cik', stavke[p].pdv_iznos_ukupno, porezi);
       }
       return ukupnoPlacanje;
     }
-  //  const ukPlati=stavke.map((stavka)=>{
-  //     ukPlati +=stavka.cijena_sa_pdv_popust;
-  //   })
-   
+    //  const ukPlati=stavke.map((stavka)=>{
+    //     ukPlati +=stavka.cijena_sa_pdv_popust;
+    //   })
+
     const ukPlati = vratiUkupnoPlacanje();
-    console.log('u printu',stavke,kod_operatera);
+    console.log('u printu', stavke, kod_operatera);
     return (
       <>
         <div className="fiscal-bill-wrapper">
@@ -71,12 +69,10 @@ class NoviRacunPrintTemplate extends React.Component {
                         <tr>
                           <td className="left">{stavka.naziv}</td>
                           <td className="right">{stavka.cijena_sa_pdv}</td>
-                          
                         </tr>
                       );
                     })
                   : null}
-                  
               </table>
               <table cellspacing="0" cellpadding="0">
                 {stavke?.length > 0
@@ -93,7 +89,7 @@ class NoviRacunPrintTemplate extends React.Component {
                               </div>
                               <div className="col-r w-break-unset">
                                 <div className="spn-mr-10 df">
-                                  {Number(stavka.popust_procenat)>0 ||
+                                  {Number(stavka.popust_procenat) > 0 ||
                                   Number(stavka.popust_iznos) > 0
                                     ? (
                                         Number(stavka.cijena_sa_pdv_popust) *
@@ -110,26 +106,26 @@ class NoviRacunPrintTemplate extends React.Component {
                                 </div>
                               </div>
                             </div>
-                            {(Number(stavka.popust_procenat)>0 ||
-                                  Number(stavka.popust_iznos) > 0)&&
-                            
+                            {(Number(stavka.popust_procenat) > 0 ||
+                              Number(stavka.popust_iznos) > 0) && (
                               <div className="side-info__info--inner-wrapper mb-0">
-                              <div className="col-l w-break">
-                                <p className="ml-15 txt-dark">
-                                  Kol <span>x</span> Cijena
-                                </p>
+                                <div className="col-l w-break">
+                                  <p className="ml-15 txt-dark">
+                                    Kol <span>x</span> Cijena
+                                  </p>
+                                </div>
+                                <div className="col-r w-break-unset mr-m">
+                                  {Number(stavka.kolicina)
+                                    .toFixed(2)
+                                    .replace('.', ',')}{' '}
+                                  x{' '}
+                                  {Number(stavka.cijena_sa_pdv)
+                                    .toFixed(2)
+                                    .replace('.', ',')}
+                                </div>
                               </div>
-                              <div className="col-r w-break-unset mr-m">
-                                {Number(stavka.kolicina).toFixed(2)
-                                  .replace('.', ',')} x{' '}
-                                {Number(stavka.cijena_sa_pdv)
-                                  .toFixed(2)
-                                  .replace('.', ',')}
-                              </div>
-                            </div>
-                            
-                            }
-                            
+                            )}
+
                             {(stavka.popust_iznos > 0 ||
                               stavka.popust_procenat > 0) && (
                               <>
@@ -183,36 +179,31 @@ class NoviRacunPrintTemplate extends React.Component {
                 {/* kraj */}
               </table>
               <table cellspacing="0" cellpadding="0">
-              
-              {Object.keys(porezi).map((porezId) => {
-                  const porez = porezi[porezId];
+                {porezi &&
+                  Object.keys(porezi).map((porezId) => {
+                    const porez = porezi[porezId];
 
-                   
                     return (
                       <div>
                         <tr>
                           <td className="w-33">
-                           {'PDV '} {porez.naziv}
+                            {'PDV '} {porez.naziv}
                           </td>
                           <td className="w-33">
                             {formatirajCijenu(stavke[porezId].pdv_iznos_ukupno)}
                           </td>
                         </tr>
-                      
                       </div>
                     );
-                  
-                })}
+                  })}
               </table>
-              
-           
-           
-              
-              
+
               <table cellspacing="0" cellpadding="0">
-              <tr>
+                <tr>
                   <td className="left">Ukupno PDV </td>
-                  <td className="right">{formatirajCijenu(ukupan_iznos_pdv)}</td>
+                  <td className="right">
+                    {formatirajCijenu(ukupan_iznos_pdv)}
+                  </td>
                 </tr>
                 <tr>
                   <td className="left">
