@@ -167,7 +167,10 @@ const Stavke = () => {
               >
                 Sve
               </div>
-              {robe.data.length === 0 && usluge.data.length === 0 ? (
+              {robe.data.length === 0 &&
+              usluge.data.length === 0 &&
+              !robe.path &&
+              !usluge.path ? (
                 <PropagateLoader css={spinnerStyleGrid} size={15} />
               ) : (
                 <>
@@ -198,8 +201,13 @@ const Stavke = () => {
             </div>
           </div>
           <div>
-            {robe.data.length === 0 && usluge.data.length === 0 ? (
+            {robe.data.length === 0 &&
+            usluge.data.length === 0 &&
+            !robe.path &&
+            !usluge.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : robe.data.length === 0 && usluge.data.length === 0 ? (
+              <h2>{'Nema stavki u listi'}</h2>
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />
             )}

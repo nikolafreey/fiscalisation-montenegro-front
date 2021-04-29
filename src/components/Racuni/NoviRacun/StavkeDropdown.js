@@ -25,6 +25,10 @@ const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
     ...usluge.data.map((usluga) => ({ value: usluga, label: usluga.naziv })),
   ];
 
+  console.log('robe', robe);
+  console.log('usluge', usluge);
+  console.log('options', options);
+
   function onInputChange(searchValue) {
     searchDebounced(() =>
       dispatch(getStavke({ search: searchValue || undefined }))

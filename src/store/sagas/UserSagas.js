@@ -1,6 +1,6 @@
 import { push } from 'connected-react-router';
 import { call, put, select } from 'redux-saga/effects';
-import { AUTH, HOME, RACUNI } from '../../constants/routes';
+import { AUTH, HOME, RACUNI, PREGLED } from '../../constants/routes';
 import { authService } from '../../services/AuthService';
 import { setGlobalError, setLoginError } from '../actions/ErrorActions';
 import { setRequestedRoute } from '../actions/RouteActions';
@@ -27,7 +27,7 @@ export function* userLogin({ payload }) {
     yield put(getUser());
 
     const requestedRoute = yield select(requestedRouteSelector());
-    yield put(push(requestedRoute || RACUNI.INDEX));
+    yield put(push(requestedRoute || PREGLED.INDEX));
     yield put(setRequestedRoute(null));
   } catch (error) {
     if (error?.response?.status === 422) {

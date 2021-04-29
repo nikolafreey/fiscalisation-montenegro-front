@@ -44,12 +44,17 @@ export const PARTNERI = {
   CREATE: '/partneri/create',
   SHOW: '/partneri/:id',
 };
+
 export const PREDUZECA = {
   INDEX: '/preduzeca',
   PARTNERI: '/preduzeca/partneri',
   EDIT: '/preduzeca/edit/:id',
   CREATE: '/preduzeca/create',
   SHOW: '/preduzeca/:id',
+};
+
+export const PREGLED = {
+  INDEX: '/pregled',
 };
 
 export const STAVKE = {

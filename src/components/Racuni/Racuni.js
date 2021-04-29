@@ -36,6 +36,7 @@ const searchDebounced = debounce((callback) => callback(), 500);
 const Racuni = () => {
   const dispatch = useDispatch();
   const racuni = useSelector(racuniSelector());
+  console.log('racuni', racuni);
 
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
@@ -277,8 +278,13 @@ const Racuni = () => {
             </div>
           </div>
           <div>
-            {racuni && racuni.data && racuni.data.length === 0 ? (
+            {racuni &&
+            racuni.data &&
+            racuni.data.length === 0 &&
+            !racuni.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : racuni && racuni.data && racuni.data.length === 0 ? (
+              <h2 className="df jc-sb tabp-w-100">{'Nemate računa u listi'}</h2>
             ) : (
               <RacuniTable racuni={racuni} />
             )}

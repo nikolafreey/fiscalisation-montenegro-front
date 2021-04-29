@@ -33,6 +33,7 @@ const errorReducer = (state = initialState, action) =>
         // console.log('action.payload', action.payload);
         // console.log('draft.globalError.length', draft.globalError.length);
         if (
+          action.payload &&
           Object.keys(action.payload).length !== 0 &&
           action.payload.constructor === Object
         ) {
@@ -42,7 +43,7 @@ const errorReducer = (state = initialState, action) =>
             toastSettings
           );
         }
-        if (draft.globalError.length !== 0) {
+        if (draft.globalError && draft.globalError.length !== 0) {
           toast.error('Greška: ' + action.payload, toastSettings);
         }
         break;

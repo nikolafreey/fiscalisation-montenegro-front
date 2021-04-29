@@ -42,12 +42,14 @@ const toastSettings = {
 
 export function* racunStore({ payload }) {
   let noviRacun = yield select(noviRacunSelector());
+  console.log('payload', payload);
   let noviRacunTemp = {
     ...noviRacun,
     nacin_placanja: payload.nacin_placanja //
       ? payload.nacin_placanja
       : 'BANKNOTE',
   };
+  console.log('noviRacun', noviRacunTemp);
   const res = yield call(racuniService.storeRacun, noviRacunTemp);
   toast.success('Uspješno dodat gotovinski račun', toastSettings);
 
