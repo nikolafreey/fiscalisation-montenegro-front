@@ -12,7 +12,6 @@ import PreduzecaTableRow from './PreduzecaTableRow';
 
 const PreduzecaTable = ({ preduzeca }) => {
   const dispatch = useDispatch();
-
   const selectedPreduzece = useSelector(preduzeceSelector());
 
   return (
@@ -43,7 +42,6 @@ const PreduzecaTable = ({ preduzeca }) => {
               selectedId={selectedPreduzece?.id}
               key={selectedPreduzece?.id}
             />
-           
           </tbody>
         </table>
       </div>

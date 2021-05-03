@@ -18,6 +18,7 @@ import NoviRacunFilteri from '../Racuni/NoviRacun/NoviRacunFilteri';
 import GridLoader from 'react-spinners/GridLoader';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
+import { setUsluga } from '../../store/actions/UslugeActions';
 
 let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
@@ -115,7 +116,10 @@ const Stavke = () => {
       <div className="title jc-sb">
         <h1 className="heading-primary">Stavke</h1>
         <div className="df w-50 jc-end">
-          <button className="btn btn__primary btn-dd">
+          <button
+            onClick={() => dispatch(setUsluga({}))}
+            className="btn btn__primary btn-dd"
+          >
             <ButtonPlusSvg />
             Nova stavka
             <div className="drop-down" id="ddl">

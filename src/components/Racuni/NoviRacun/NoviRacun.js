@@ -23,6 +23,7 @@ import {
   spinnerStyleGrid,
   spinnerStyleFilter,
 } from '../../../constants/spinner';
+import { setUsluga } from '../../../store/actions/UslugeActions';
 
 const filteri = {};
 
@@ -107,7 +108,10 @@ const NoviRacun = () => {
   </Link>*/}
 
               <Link exact to={USLUGE.CREATE}>
-                <button className="btn btn__primary mb-25">
+                <button
+                  onClick={() => dispatch(setUsluga({}))}
+                  className="btn btn__primary mb-25"
+                >
                   <Plus className="icon icon__light lg" />
                   Nova Stavka
                 </button>

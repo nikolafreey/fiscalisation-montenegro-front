@@ -37,11 +37,9 @@ const toastSettings = {
 
 export function* uslugaStore({ payload }) {
   const res = yield call(uslugeService.storeUsluga, payload);
-  console.log('uslugaStore', res);
   toast.success('Uspješno dodata usluga: ' + payload.naziv, toastSettings);
 
   if (res.status !== 201) {
-    console.log('uslugaStoreError', res);
     toast.error(
       'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings

@@ -40,7 +40,7 @@ const RacuniForm = () => {
       dispatch(
         storeRacun({
           ...values,
-          status: values.status === 'true' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
   };

@@ -54,7 +54,7 @@ export const PREDUZECA = {
 };
 
 export const PREGLED = {
-  INDEX: '/pregled',
+  INDEX: '/',
 };
 
 export const STAVKE = {

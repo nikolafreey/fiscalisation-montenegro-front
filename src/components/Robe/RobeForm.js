@@ -88,7 +88,7 @@ const RobeForm = () => {
         updateRoba({
           ...values,
           id: params.id,
-          status: values.status === 'Aktivan' ? true : false,
+          status: values.status === 1 ? true : false,
           cijena_bez_pdv: getPriceNoVat(
             values.pdv_ukljucen,
             values.porez_id,
@@ -106,6 +106,7 @@ const RobeForm = () => {
         })
       );
       if (globalError.message) history.push(STAVKE.INDEX);
+      dispatch(setRoba(initialValues));
     } else {
       console.log('ukupna_cijena', values);
       dispatch(
@@ -135,9 +136,8 @@ const RobeForm = () => {
               : Number(values.ukupna_cijena),
         })
       );
-      console.log('handleSubmit', values);
+      history.push(STAVKE.INDEX);
       dispatch(setRoba(initialValues));
-      history.goBack();
     }
 
     if (globalError.message) history.push(STAVKE.INDEX);
@@ -177,7 +177,7 @@ const RobeForm = () => {
   return (
     <Formik
       initialValues={{
-        status: true,
+        status: 'Aktivan',
         kategorije: {},
         atributi: [],
         cijene: [],

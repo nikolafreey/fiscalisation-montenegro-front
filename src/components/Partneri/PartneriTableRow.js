@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
 
 const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
+  console.log('partner', partner);
   return (
     <tr
       onClick={() => onItemClick(partner)}
@@ -21,38 +22,40 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
             style={{ backgroundImage: `url(${partner.preduzece?.logotip})` }}
           ></div> */}
           <img
-            // src={partner.preduzece?.logotip} // TODO:mora logotip path logfo.png ili logo 
+            // src={partner.preduzece?.logotip} // TODO:mora logotip path logfo.png ili logo
             className="img-round sm"
-            alt=''
+            alt=""
             // alt={partner.preduzece?.kratki_naziv}
           />
           <div className="td-title">
             <p>
               <span>
-                {partner.preduzece
-                  ? partner.preduzece.kratki_naziv
-                  : partner.fizicko_lice?.ime}
+                {partner.preduzece_partner
+                  ? partner.preduzece_partner?.kratki_naziv
+                  : partner.fizicko_lice?.ime ||
+                    partner.kontakt_ime + ' ' + partner.kontakt_prezime}
               </span>
               <i>
                 <Badge className="icon icon__fill-color-badge sm" />
               </i>
             </p>
 
-            {partner.preduzece && (
-              <h4 className="heading-quaternary">{partner.preduzece.grad}</h4>
+            {partner.preduzece_partner_id && (
+              <h4 className="heading-quaternary">
+                {partner.preduzece_partner?.grad}
+              </h4>
             )}
           </div>
         </div>
       </td>
-
       <td className="cl">
-        {partner.preduzece ? partner.preduzece.pib : partner.fizicko_lice?.jmbg}
+        {partner.preduzece_partner?.pib || partner.fizicko_lice?.jmbg}
       </td>
 
       <td className="cd fw-500">
         {partner.kontakt_telefon ||
           partner.fizicko_lice?.telefon ||
-          partner.preduzece?.telefon}
+          partner.preduzece_partner?.telefon}
       </td>
 
       <td className="mob-absolute-topright">
@@ -62,14 +65,17 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
             <div className="drop-down" id="ddl">
               <Link
                 disabled
-                to={
-                  partner.preduzece
-                    ? PREDUZECA.EDIT.replace(':id', `${partner.preduzece.id}`)
-                    : FIZICKA_LICA.EDIT.replace(
-                        ':id',
-                        `${partner.fizicko_lice.id}`
-                      )
-                }
+                // to={
+                //   partner.preduzece_partner
+                //     ? PREDUZECA.EDIT.replace(
+                //         ':id',
+                //         `${partner?.preduzece_partner?.id}`
+                //       )
+                //     : FIZICKA_LICA.EDIT.replace(
+                //         ':id',
+                //         `${partner.fizicko_lice.id}`
+                //       )
+                // }
               >
                 <Edit className="icon icon__dark md" />
                 Izmijeni

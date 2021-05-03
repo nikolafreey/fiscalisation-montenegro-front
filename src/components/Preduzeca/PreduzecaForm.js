@@ -70,12 +70,19 @@ const PreduzecaForm = () => {
   }, [dispatch, params]);
 
   const handleSubmit = (values, initialValues) => {
-    if (params.id) dispatch(updatePreduzece({ id: params.id, ...values }));
+    if (params.id)
+      dispatch(
+        updatePreduzece({
+          id: params.id,
+          ...values,
+          status: values.status === 1 ? true : false,
+        })
+      );
     else
       dispatch(
         storePreduzece({
           ...values,
-          status: values.status === 'true' ? true : false,
+          status: values.status === 'Aktivan' ? true : false,
         })
       );
     dispatch(setPreduzece(initialValues));

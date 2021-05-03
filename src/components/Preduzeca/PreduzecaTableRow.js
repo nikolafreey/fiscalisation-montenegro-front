@@ -4,12 +4,13 @@ import { ReactComponent as PlusIcon } from '../../assets/icon/plus.svg';
 import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 import { useDispatch } from 'react-redux';
 import { storePartner } from '../../store/actions/PartneriActions';
+import { getPreduzeca } from '../../store/actions/PreduzecaActions';
 
 const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
   const dispatch = useDispatch();
-
   const handleAddPartner = () => {
     dispatch(storePartner({ preduzece_tabela_id: item.id }));
+    dispatch(getPreduzeca());
   };
 
   return (
@@ -32,7 +33,9 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
             <p>
               {item.kratki_naziv}
               <i>
-                <Badge className="icon icon__fill-color-badge ml-s sm" />
+                {item.verifikovan !== 0 && (
+                  <Badge className="icon icon__fill-color-badge ml-s sm" />
+                )}
               </i>
             </p>
             <h3 className="heading-quaternary">{item.grad}</h3>
@@ -43,12 +46,12 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
       <td className="cd fw-500">{item.telefon}</td>
       <td>
         <button
-          disabled={item.partneri?.length}
+          disabled={item.partneri}
           onClick={handleAddPartner}
           type="button"
           className={`btn btn__${item.partneri?.length ? 'light' : 'dark'}`}
         >
-          {item.partneri?.length ? (
+          {item.partneri ? (
             <CheckIcon className="icon icon__dark sm" />
           ) : (
             <PlusIcon className="icon icon__light sm" />

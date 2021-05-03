@@ -95,10 +95,11 @@ const UslugeForm = () => {
             values.porez_id,
             values.ukupna_cijena
           ),
-          status: values.status == 'Aktivan' ? true : false,
+          status: values.status === 1 ? true : false,
         })
       );
       history.push(STAVKE.INDEX);
+      dispatch(setUsluga(initialValues));
     } else {
       dispatch(
         storeUsluga({
@@ -115,9 +116,8 @@ const UslugeForm = () => {
         })
       );
       history.push(STAVKE.INDEX);
+      dispatch(setUsluga(initialValues));
     }
-    console.log('values', values);
-    dispatch(setUsluga(initialValues));
   };
   const options = [
     { value: 0, label: 'Cijena bez PDV' },

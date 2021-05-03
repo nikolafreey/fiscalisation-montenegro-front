@@ -60,7 +60,7 @@ const Partneri = () => {
           <PlusLightSvg />
           <p>Novi partner</p>
           <div className="drop-down" id="ddl">
-            <Link to={PREDUZECA.CREATE}>
+            <Link to={PREDUZECA.INDEX}>
               <PreduzeceSvg />
               <p>Preduzeće</p>
             </Link>
