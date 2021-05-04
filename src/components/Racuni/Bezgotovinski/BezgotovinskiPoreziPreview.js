@@ -14,7 +14,7 @@ const BezgotovinskiPoreziPreview = (props) => {
 console.log('porezi u html',props)
   return (
     <>
-    
+
       <div className="main-content__box" style={{display: 'flex', justifyContent: 'flex-end'}}>
         <div className="content">
           <div className="table-wrapper">
@@ -38,7 +38,7 @@ console.log('porezi u html',props)
 
                   return (
                     <tr>
-                      <td className="w-33">{porezId === '1'?'Oslobogen PDV-a':porezId ==='2'?'0%':porezId ==='3'?'7%':'21%'}</td>
+                      <td className="w-33">{porezId === '1'?'Oslobođen PDV-a':porezId ==='2'?'0%':porezId ==='3'?'7%':'21%'}</td>
                       <td className="w-33">{formatirajCijenu(porez.pdvUkupnoUkupno)}</td>
                       <td className="txt-right w-33">
                         {formatirajCijenu(porez.pdvIznosUkupno)}{' '}
