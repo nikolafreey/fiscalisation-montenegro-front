@@ -174,7 +174,8 @@ const NoviRacunShowTemplate = () => {
               </div>
               <span>
                 Operater:{' '}
-                {user && user.kod_operatera ? user.kod_operatera : '-'}
+                {user && user.ime ? user.ime + ' ' + user.prezime : '-'}
+                {user && user.kod_operatera ? ' (' + user.kod_operatera + ')' : '-'}
               </span>
             </div>
 
@@ -354,9 +355,10 @@ const NoviRacunShowTemplate = () => {
             </div>
 
             <div className="fiscal-bill__footer">
-              <p>Br. računa: {racun && racun.redni_broj}</p>
+              <p>Br. računa: {racun && racun.broj_racuna}</p>
               <p>IKOF: {racun && racun.ikof ? racun.ikof : '-'}</p>
               <p>JIKR: {racun && racun.jikr ? racun.jikr : '-'}</p>
+              <p>Datum: {racun && racun.datum_izdavanja ? racun.datum_izdavanja : '-'}</p>
               <div className="fiscal-bill__footer--qr-code"></div>
             </div>
             <div className="col-md-4">
