@@ -13,7 +13,7 @@ import { ReactComponent as PlusLightSvg } from '../../assets/icon/plusLight.svg'
 import { ReactComponent as PreduzeceSvg } from '../../assets/icon/hero-preduzecaDropdown.svg';
 import { ReactComponent as UserSvg } from '../../assets/icon/user.svg';
 import { Link } from 'react-router-dom';
-import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
+import { FIZICKA_LICA, PARTNERI, PREDUZECA } from '../../constants/routes';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
@@ -30,7 +30,7 @@ const Partneri = () => {
   const partner = useSelector(partnerSelector());
 
   const [filter, setFilter] = useState(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(null);
 
   useEffect(() => {
     if (filter === 'sve') filters.filter = null;
@@ -49,6 +49,7 @@ const Partneri = () => {
   }, [partneri, dispatch]);
 
   const getFiltered = () => {
+    console.log('filters', filters);
     dispatch(getPartneri(filters));
   };
 
@@ -102,13 +103,25 @@ const Partneri = () => {
               <PartneriTable partneri={partneri} />
             )}
           </div>
-          {partner.preduzece && (
-            <PreduzeceDetails preduzece={partner.preduzece} />
+          {partner.preduzece_partner && !partner.fizicko_lice && (
+            <PreduzeceDetails preduzece={partner.preduzece_partner} />
           )}
-          {partner.fizicko_lice && (
+          {partner.fizicko_lice && partner.preduzece_partner && (
             <FizickoLiceDetails fizickoLice={partner.fizicko_lice} />
           )}
         </div>
+      </div>
+      <div className="df jc-center ai-c fd-column">
+        <hr className="w-60 " />
+        <p className="mb-25 p-margin">
+          ili kreirajte novo preduzeće ako nije u listi
+        </p>
+        <Link exact to={PREDUZECA.CREATE}>
+          <button className="btn btn__primary mb-25">
+            <PlusLightSvg className="icon icon__light lg" />
+            Novo Preduzeće
+          </button>
+        </Link>
       </div>
 
       {/* <h1 className="heading-primary">Partneri</h1>

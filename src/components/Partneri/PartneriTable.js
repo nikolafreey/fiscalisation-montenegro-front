@@ -29,7 +29,7 @@ const PartneriTable = ({ partneri }) => {
                 <span className="heading-quaternary">Telefon</span>
               </th>
               <th>
-                <span className="heading-quaternary">Izmijeni/Obriši</span>
+                <span className="heading-quaternary">Obriši</span>
               </th>
             </tr>
           </thead>

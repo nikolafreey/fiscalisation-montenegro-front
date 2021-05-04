@@ -138,13 +138,15 @@ export function* partnerUpdate({ payload }) {
 // }
 
 export function* partnerDelete({ payload }) {
+  console.log('partnerDelete: ', payload);
   const obrisaniPartner = yield select(partneriSelector);
   const res = yield call(partneriService.deletePartner, payload);
-  toast.success(
-    'Uspješno obrisan partner' +
-      obrisaniPartner.data.find((r) => r.id === payload).naziv,
-    toastSettings
-  );
+  // toast.success(
+  //   'Uspješno obrisan partner' +
+  //     obrisaniPartner.data.find((r) => r.id === payload).naziv,
+  //   toastSettings
+  // );
+  toast.success('Uspješno obrisan partner', toastSettings);
 
   if (res.status !== 200) {
     toast.error(

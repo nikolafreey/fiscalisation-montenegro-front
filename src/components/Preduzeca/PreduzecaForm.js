@@ -48,6 +48,7 @@ const PreduzecaForm = () => {
   const dispatch = useDispatch();
 
   const { params } = useRouteMatch();
+  console.log('params', params);
 
   const history = useHistory();
 
@@ -168,7 +169,7 @@ const PreduzecaForm = () => {
             <LinkPreduzecaSvg />
             <p>Povratak na Partnere</p>
           </Link>
-          {params.id ? (
+          {!params.id ? (
             <h1 className="heading-primary">Dodavanje novog preduzeća</h1>
           ) : (
             <h1 className="heading-primary">Izmjena preduzeća</h1>

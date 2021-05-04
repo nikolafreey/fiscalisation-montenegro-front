@@ -52,25 +52,25 @@ export const PDV_OBVEZNIK = [
 ];
 
 export const NACIN_PLACANJA_BEZGOTOVINSKI = [
-  { value: 1, label: 'Businesscard' },
-  { value: 2, label: 'SVOUCHER - Jednokratni Vaučer' },
-  { value: 3, label: 'COMPANY - Poklon Kartice, Prepaid Kartice itd.' },
+  { value: 'BUSINESSCARD', label: 'BUSINESSCARD' },
+  { value: 'SVOUCHER', label: 'SVOUCHER - Jednokratni Vaučer' },
+  { value: 'COMPANY', label: 'COMPANY - Poklon Kartice, Prepaid Kartice itd.' },
   {
-    value: 4,
+    value: 'ORDER',
     label: 'ORDER - Račun još nije plaćen, biće plaćen zbirnim računom',
   },
-  { value: 5, label: 'ADVANCE - Plaćanje Avansom' },
-  { value: 6, label: 'ACCOUNT - Transakcioni Račun, Virman' },
-  { value: 7, label: 'FACTORING - Faktoring' },
-  { value: 8, label: 'OTHER - Ostala Plaćanja' },
+  { value: 'ADVANCE', label: 'ADVANCE - Plaćanje Avansom' },
+  { value: 'ACCOUNT', label: 'ACCOUNT - Transakcioni Račun, Virman' },
+  { value: 'FACTORING', label: 'FACTORING - Faktoring' },
+  { value: 'OTHER', label: 'OTHER - Ostala Plaćanja' },
 ];
 
 export const NACIN_PLACANJA_GOTOVINSKI = [
-  { value: 1, label: 'BANKNOTE - Novčanice i Kovanice' },
-  { value: 1, label: 'CARD' },
+  { value: 'BANKNOTE', label: 'BANKNOTE - Novčanice i Kovanice' },
+  { value: 'CARD', label: 'CARD' },
   {
-    value: 1,
+    value: 'ORDER',
     label: 'ORDER - račun još nije plaćen biće plaćen zbirnim/sumarnim računom',
   },
-  { value: 1, label: 'OTHER-CASH - ostala gotovinska plaćanja' },
+  { value: 'OTHER-CASH', label: 'OTHER-CASH - ostala gotovinska plaćanja' },
 ];

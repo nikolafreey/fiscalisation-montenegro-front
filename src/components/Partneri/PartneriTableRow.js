@@ -5,9 +5,22 @@ import { ReactComponent as Delete } from '../../assets/icon/delete.svg';
 import { ReactComponent as Dots } from '../../assets/icon/dots.svg';
 import { Link } from 'react-router-dom';
 import { FIZICKA_LICA, PREDUZECA } from '../../constants/routes';
+import { useDispatch } from 'react-redux';
+import {
+  deletePartner,
+  getPartneri,
+} from '../../store/actions/PartneriActions';
 
 const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = (id) => {
+    dispatch(deletePartner(id));
+    dispatch(getPartneri());
+  };
+
   console.log('partner', partner);
+
   return (
     <tr
       onClick={() => onItemClick(partner)}
@@ -35,9 +48,12 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
                   : partner.fizicko_lice?.ime ||
                     partner.kontakt_ime + ' ' + partner.kontakt_prezime}
               </span>
-              <i>
-                <Badge className="icon icon__fill-color-badge sm" />
-              </i>
+              {partner?.preduzece_partner?.verifikovan !== 0 &&
+                partner.preduzece_partner && (
+                  <i>
+                    <Badge className="icon icon__fill-color-badge sm" />
+                  </i>
+                )}
             </p>
 
             {partner.preduzece_partner_id && (
@@ -63,7 +79,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           <button type="button" className="btn btn__light-dd btn__xs">
             <Dots className="icon lg" />
             <div className="drop-down" id="ddl">
-              <Link
+              {/* <Link
                 disabled
                 // to={
                 //   partner.preduzece_partner
@@ -79,11 +95,11 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
               >
                 <Edit className="icon icon__dark md" />
                 Izmijeni
-              </Link>
-              <Link>
+              </Link> */}
+              <a onClick={() => handleDelete(partner.id)}>
                 <Delete className="icon icon__dark md" />
                 Obriši
-              </Link>
+              </a>
             </div>
           </button>
         </div>

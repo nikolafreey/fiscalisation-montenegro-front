@@ -122,7 +122,7 @@ const Bezgotovinski = () => {
     datum_za_placanje: seven_days,
     pdv_obveznik: 1,
     status: 'Nije plaćen',
-    nacin_placanja: 1,
+    nacin_placanja: 'NONCASH',
     niz: [],
     popustObjekat: {},
     // a:[],

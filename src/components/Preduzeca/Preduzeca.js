@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { PREDUZECA } from '../../constants/routes';
 import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
+import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
 
 import {
   getPreduzeca,
@@ -45,7 +46,6 @@ const Preduzeca = () => {
       ) : (
         <h1 className="heading-primary">Preduzeća</h1>
       )}
-
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__search-wrapper">
