@@ -302,7 +302,7 @@ const NoviRacunShowTemplate = () => {
                         <tr>
                           <td className="w-33">
                             {porezId === '1'
-                              ? 'Oslobođen PDV-a'
+                              ? 'Ukupno za Oslobođen PDV-a'
                               : porezId === '2'
                               ? 'Ukupno za PDV 0%'
                               : porezId === '3'
