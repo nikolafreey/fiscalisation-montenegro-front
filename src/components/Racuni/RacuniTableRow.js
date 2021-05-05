@@ -25,6 +25,7 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   let fizickaLicaPartneri;
   let preduzecaPartneri;
+  console.log('racuni', racuni);
   console.log('racuni.partneri', racuni.partneri);
   if (racuni.partneri) {
     fizickaLicaPartneri = racuni.partneri
@@ -39,18 +40,43 @@ const RacuniTableRow = ({ item, racuni }) => {
     preduzecaPartneri = racuni?.partneri
       ?.map(
         (tmp) =>
-          !tmp.fizicko_lice && { ime: tmp.preduzece.kratki_naziv, id: tmp.id }
+          !tmp.fizicko_lice && {
+            ime: tmp.preduzece_partner.kratki_naziv,
+            id: tmp.id,
+          }
       )
       .filter((tmp) => tmp != null);
   }
 
   const history = useHistory();
-  const bojaStatus = {
-    placen: { klasa: 'tag tag__success', naziv: 'Plaćen' },
-    neNaplativ: { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },
-    cekaSe: { klasa: 'tag tag__warning', naziv: 'Čeka se' },
-    privremen: { klasa: 'tag tag__neutral', naziv: 'Privremen' },
-  };
+  const bojaStatus = [
+    { klasa: 'tag tag__success', naziv: 'Plaćen' },
+    { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },
+    { klasa: 'tag tag__warning', naziv: 'Nije Plaćen' },
+    { klasa: 'tag tag__neutral', naziv: 'Privremeni' },
+  ];
+
+  let bojaKlasa = '';
+  let itemStatus = '';
+  switch (_item.status) {
+    case 'nijeplacen':
+      itemStatus = 'Nije Plaćen';
+      bojaKlasa = 'tag tag__warning';
+      break;
+    case 'placen':
+      itemStatus = 'Plaćen';
+      bojaKlasa = 'tag tag__success';
+      break;
+    case 'nenaplativ':
+      itemStatus = 'Nenaplativ';
+      bojaKlasa = 'tag tag__danger';
+      break;
+    case 'privremeni':
+      itemStatus = 'Privremeni';
+      bojaKlasa = 'tag tag__neutral';
+      break;
+    default:
+  }
 
   // useEffect(() => {
   //   // OBRISATI POSLE PREZENTACIJE
@@ -117,24 +143,29 @@ const RacuniTableRow = ({ item, racuni }) => {
         </div>
       </td>
       <td className="cl">{_item.redni_broj}</td>
-      {preduzecaPartneri && preduzecaPartneri?.length !== 0 && (
-        <td className="cd fw-500">
-          {preduzecaPartneri &&
-            preduzecaPartneri.find((fl) => fl.id === _item.partner_id).ime}
-        </td>
-      )}
-      {fizickaLicaPartneri && fizickaLicaPartneri?.length !== 0 && (
-        <td className="cd fw-500">
-          {fizickaLicaPartneri &&
-            fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id).ime}
-        </td>
-      )}
+      {preduzecaPartneri &&
+        preduzecaPartneri[0] &&
+        preduzecaPartneri?.length !== 0 && (
+          <td className="cd fw-500">
+            {preduzecaPartneri &&
+              preduzecaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+          </td>
+        )}
+      {fizickaLicaPartneri &&
+        fizickaLicaPartneri[0] &&
+        fizickaLicaPartneri?.length !== 0 && (
+          <td className="cd fw-500">
+            {fizickaLicaPartneri &&
+              fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+          </td>
+        )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
         <td className="cd fw-500">
-          {`${_item.partner?.fizicko_lice?.ime}
-
-           ${_item.partner?.fizicko_lice?.prezime}` ||
-            _item.partner?.preduzece?.kratki_naziv}
+          {_item.partner.fizicko_lice
+            ? _item.partner?.fizicko_lice?.ime +
+              ' ' +
+              _item.partner?.fizicko_lice?.prezime
+            : _item.partner?.preduzece_partner?.kratki_naziv}
         </td>
       )}
       <td className="cl dshow-cell">
@@ -150,12 +181,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         {/* <span className={bojaStatus[item.status].klasa}>
           {bojaStatus[item.status].naziv}
         </span> */}
-        {
-          <span className="tag tag__success">
-            {_item.status}{' '}
-            {item.status === 'KREIRAN' && !item.partner ? '-Gr' : ''}
-          </span>
-        }
+        {<span className={bojaKlasa}>{itemStatus}</span>}
       </td>
 
       <td className="cl">

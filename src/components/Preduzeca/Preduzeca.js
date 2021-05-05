@@ -4,6 +4,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { PREDUZECA } from '../../constants/routes';
 import { ReactComponent as Plus } from '../../assets/icon/plus.svg';
 import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.svg';
+import { ReactComponent as PlusLightSvg } from '../../assets/icon/plusLight.svg';
 
 import {
   getPreduzeca,

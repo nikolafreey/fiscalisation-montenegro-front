@@ -13,8 +13,9 @@ import ChooseView from '../../shared/lists/ChooseView';
 import NoviRacunFilteri from './NoviRacunFilteri';
 import { debounce } from 'lodash';
 import { Link } from 'react-router-dom';
-import { USLUGE } from '../../../constants/routes';
+import { RACUNI, USLUGE } from '../../../constants/routes';
 import { ReactComponent as Plus } from '../../../assets/icon/plus.svg';
+import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
 
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
@@ -72,6 +73,9 @@ const NoviRacun = () => {
 
   return (
     <>
+      <Link to={RACUNI.INDEX} className="back-link df">
+        <LinkSvg /> <p>Povratak na Račune</p>
+      </Link>
       <h1 className="heading-primary">Kreiranje novog gotovinskog računa</h1>
       <div className="screen-content-info">
         <div className="main-content__box">

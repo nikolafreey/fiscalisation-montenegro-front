@@ -287,6 +287,7 @@ const PreduzecaForm = () => {
                               djelatnostiService.getDjelatnostiDropdown
                             }
                             defaultValue={
+                              preduzece &&
                               Object.keys(preduzece).length !== 0 &&
                               preduzece.constructor === Object && {
                                 value: preduzece?.djelatnosti[0]?.id,

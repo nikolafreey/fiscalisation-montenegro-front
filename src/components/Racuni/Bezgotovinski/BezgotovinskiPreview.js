@@ -40,7 +40,9 @@ const BezgotovinskiPreview = () => {
     ikof,
     jikr,
     broj_racuna,
+    redni_broj,
     id,
+    qr_url,
     status,
     preduzece,
     opis,
@@ -94,13 +96,44 @@ const BezgotovinskiPreview = () => {
     if (Object.hasOwnProperty.call(stavke, i)) {
       const stavka = stavke[i];
       ukupnoBezPdvIpopusta +=
-       Math.round(Number(stavka.jedinicna_cijena_bez_pdv) * Number(stavka.kolicina)*100)/100;
-      ukupnoBezPdv += Math.round(Number(stavka.cijena_sa_pdv) * Number(stavka.kolicina)*100)/100;
+        Math.round(
+          Number(stavka.jedinicna_cijena_bez_pdv) *
+            Number(stavka.kolicina) *
+            100
+        ) / 100;
+      ukupnoBezPdv +=
+        Math.round(
+          Number(stavka.cijena_sa_pdv) * Number(stavka.kolicina) * 100
+        ) / 100;
       ukupnoSaPdvIpopusta +=
-      Math.round(Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina)*100)/100;
-      ukupniPdv += Math.round(Number(stavka.pdv_iznos)*100)/100;
-      ukupniPopust += Math.round(Number(stavka.popust_iznos)*100)/100;
+        Math.round(
+          Number(stavka.cijena_sa_pdv_popust) * Number(stavka.kolicina) * 100
+        ) / 100;
+      ukupniPdv += Math.round(Number(stavka.pdv_iznos) * 100) / 100;
+      ukupniPopust += Math.round(Number(stavka.popust_iznos) * 100) / 100;
     }
+  }
+
+  let bojaKlasa = '';
+  let itemStatus = '';
+  switch (status) {
+    case 'nijeplacen':
+      itemStatus = 'Nije Plaćen';
+      bojaKlasa = 'tag tag__warning';
+      break;
+    case 'placen':
+      itemStatus = 'Plaćen';
+      bojaKlasa = 'tag tag__success';
+      break;
+    case 'nenaplativ':
+      itemStatus = 'Nenaplativ';
+      bojaKlasa = 'tag tag__danger';
+      break;
+    case 'privremeni':
+      itemStatus = 'Privremeni';
+      bojaKlasa = 'tag tag__neutral';
+      break;
+    default:
   }
 
   console.log('ukupan_iznos_pdv', values, ukupan_iznos_pdv);
@@ -119,10 +152,7 @@ const BezgotovinskiPreview = () => {
 
         {!editMode && (
           <div className="df w-50 jc-end">
-            <button
-              className="btn btn__secondary  mr-m"
-              onClick={handlePrint}
-            >
+            <button className="btn btn__secondary  mr-m" onClick={handlePrint}>
               <svg
                 className="icon icon__dark lg mr-xs"
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +169,7 @@ const BezgotovinskiPreview = () => {
               </svg>
               Štampaj
             </button>
-            <button className="btn btn__primary">
+            {/* <button className="btn btn__primary">
               <svg
                 className="icon icon__light lg mr-xs"
                 viewBox="0 0 24 24"
@@ -152,7 +182,7 @@ const BezgotovinskiPreview = () => {
                 />
               </svg>
               <p>Dodaj preglednika</p>
-            </button>
+            </button> */}
           </div>
         )}
       </div>
@@ -161,6 +191,14 @@ const BezgotovinskiPreview = () => {
           <BezgotovinskiShowTemplate
             ref={componentRef}
             ikof={ikof}
+            qr_url={qr_url}
+            bojaKlasa={bojaKlasa}
+            itemStatus
+            redni_broj
+            popust_ukupno
+            ukupnoBezPdvIpopusta
+            ukupniPdv
+            ukupnoSaPdvIpopusta
             jikr={jikr}
             broj_racuna={broj_racuna}
             status={status}
@@ -187,22 +225,26 @@ const BezgotovinskiPreview = () => {
           <div className="invoice" style={{ width: '100%' }}>
             <div className="invoice__header">
               <div className="status">
-                {status && <div className="tag tag__warning">{status}</div>}
+                {<span className={bojaKlasa}>{itemStatus}</span>}
               </div>
               <div className="invoice__header--logo">
-                <img
-                  src={
-                    preduzece && preduzece.logotip ? preduzece.logotip : noLogo
-                  }
-                  alt="logo"
-                  style={{ widt: 200, height: 100 }}
-                />
+                {preduzece && preduzece.logotip && (
+                  <img
+                    src={
+                      preduzece && preduzece.logotip
+                        ? preduzece.logotip
+                        : noLogo
+                    }
+                    alt="logo"
+                    style={{ widt: 200, height: 100 }}
+                  />
+                )}
               </div>
               <div className="row">
                 <div className="col-md-4">
                   <p className="txt-light">
-                    {preduzece && preduzece.puni_naziv
-                      ? preduzece.puni_naziv
+                    {preduzece && preduzece.kratki_naziv
+                      ? preduzece.kratki_naziv
                       : ''}
                   </p>
                   <p className="txt-light">
@@ -274,7 +316,7 @@ const BezgotovinskiPreview = () => {
               <div className="mtb-50">
                 <div className="row">
                   <div className="col-md-6">
-                    <h2 className="heading-secondary">Račun {broj_racuna}</h2>
+                    <h2 className="heading-secondary">Račun {redni_broj}</h2>
                     <p>
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
@@ -288,41 +330,61 @@ const BezgotovinskiPreview = () => {
                   <div className="col-md-6">
                     <div className="invoice__header--box">
                       <h2 className="heading-secondary">
-                        {partner && partner.kontakt_ime
-                          ? partner.kontakt_ime
-                          : ''}{' '}
-                        &nbsp;
-                        {partner && partner.kontakt_prezime
-                          ? partner.kontakt_prezime
-                          : ''}
+                        {partner && partner.preduzece_partner
+                          ? partner?.preduzece_partner?.kratki_naziv
+                          : partner?.fizicko_lice?.ime +
+                            ' ' +
+                            partner?.fizicko_lice?.prezime}
                       </h2>
                       <div className="df jc-sb">
                         <div className="df fd-column">
                           <p className="txt-light">
-                            {partner && partner.pib ? 'PIB' : ''}
+                            {partner && partner?.preduzece_partner?.pib
+                              ? 'PIB: '
+                              : ''}
                           </p>
                           <p className="txt-light">
-                            {partner && partner.pib ? 'PDV' : ''}
+                            {partner && partner?.preduzece_partner?.pdv
+                              ? 'PDV: '
+                              : ''}
                           </p>
                           <p className="txt-light">
-                            {partner && partner.pib ? 'IBAN' : ''}
+                            {partner &&
+                            partner?.preduzece_partner?.adresa &&
+                            partner?.preduzece_partner?.grad
+                              ? 'Adresa: '
+                              : ''}
                           </p>
                           <p className="txt-light">
-                            {partner && partner.pib ? 'BIC/SWIFT' : ''}
+                            {partner && partner?.preduzece_partner?.drzava
+                              ? 'Država: '
+                              : ''}
                           </p>
                         </div>
                         <div className="df fd-column">
                           <p className="txt-right">
-                            {partner && partner.pib ? partner.pib : ''}
+                            {partner && partner?.preduzece_partner?.pib
+                              ? partner?.preduzece_partner?.pib
+                              : ''}
                           </p>
                           <p className="txt-right">
-                            {partner && partner.pib ? partner.pib : ''}
+                            {partner && partner?.preduzece_partner?.pdv
+                              ? partner?.preduzece_partner?.pdv
+                              : ''}
                           </p>
                           <p className="txt-right">
-                            {partner && partner.pib ? partner.pib : ''}
+                            {partner &&
+                            partner?.preduzece_partner?.adresa &&
+                            partner?.preduzece_partner?.grad
+                              ? partner?.preduzece_partner?.adresa +
+                                ', ' +
+                                partner?.preduzece_partner?.grad
+                              : ''}
                           </p>
                           <p className="txt-right">
-                            {partner && partner.pib ? partner.pib : ''}
+                            {partner && partner?.preduzece_partner?.drzava
+                              ? partner?.preduzece_partner?.drzava
+                              : ''}
                           </p>
                         </div>
                       </div>
@@ -350,11 +412,13 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">PDV</span>
                     </th> */}
                     <th>
-                    {Number(popust_ukupno)>0 && <span className="heading-quaternary">Popust</span>}  
+                      {Number(popust_ukupno) > 0 && (
+                        <span className="heading-quaternary">Popust</span>
+                      )}
                     </th>
                     <th>
                       <span className="heading-quaternary">
-                        Ukupan  bez pdv{' '}
+                        Ukupan bez pdv{' '}
                       </span>
                     </th>
                   </tr>
@@ -384,9 +448,9 @@ const BezgotovinskiPreview = () => {
                         {ukupnoBezPdv && 'Ukupno bez popusta:'}
                       </p> */}
                       <p className="fw-500">
-                        {Number(popust_ukupno)>0>0 && 'Ukupan popust:'}
+                        {Number(popust_ukupno) > 0 > 0 && 'Ukupan popust:'}
                       </p>
-                      <p className="fw-500">{ukupniPdv>0 && 'Ukupan PDV:'}</p>
+                      <p className="fw-500">{ukupniPdv > 0 && 'Ukupan PDV:'}</p>
                       <p className="fw-500">
                         {ukupnoSaPdvIpopusta && 'Ukupno sa popustom:'}
                       </p>
@@ -409,12 +473,14 @@ const BezgotovinskiPreview = () => {
                        
                       </p> */}
                       <p className="fw-500 txt-right">
-                        {Number(popust_ukupno)>0? (
+                        {Number(popust_ukupno) > 0 ? (
                           <span className="txt-up txt-light">-</span>
                         ) : (
                           ''
                         )}
-                        {Number(popust_ukupno)>0 ? formatirajCijenu(popust_ukupno) : ''}
+                        {Number(popust_ukupno) > 0
+                          ? formatirajCijenu(popust_ukupno)
+                          : ''}
                         {/* {' '}
                         {ukupniPopust ? (
                           <span className="txt-up txt-light">Eur</span>
@@ -423,7 +489,7 @@ const BezgotovinskiPreview = () => {
                         )} */}
                       </p>
                       <p className="fw-500 txt-right">
-                        {ukupan_iznos_pdv>0
+                        {ukupan_iznos_pdv > 0
                           ? formatirajCijenu(ukupan_iznos_pdv)
                           : ''}
                         {/* {' '}
@@ -460,7 +526,7 @@ const BezgotovinskiPreview = () => {
                     <div className="col-md-4">
                       {/* ------------------ QR CODE ------------------ */}
                       {jikr && ikof ? (
-                        <QRCode value="Set url here" size="64" />
+                        <QRCode value={qr_url} size="128" />
                       ) : null}
 
                       {/*------------------ QR CODE ------------------*/}

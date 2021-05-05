@@ -1,6 +1,8 @@
 import { routerActions } from 'connected-react-router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
+import { PREDUZECA } from '../../constants/routes';
 import {
   getPreduzeca,
   setPreduzece,
@@ -9,6 +11,7 @@ import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
 import List from '../shared/lists/List';
 import PaginationControls from '../shared/lists/PaginationControls';
 import PreduzecaTableRow from './PreduzecaTableRow';
+import { ReactComponent as PlusLightSvg } from '../../assets/icon/plusLight.svg';
 
 const PreduzecaTable = ({ preduzeca }) => {
   const dispatch = useDispatch();
@@ -49,6 +52,23 @@ const PreduzecaTable = ({ preduzeca }) => {
         paginatedData={preduzeca}
         onPageChange={(page) => dispatch(getPreduzeca({ page }))}
       />
+      <div className="df jc-center ai-c fd-column">
+        <hr className="w-60 " />
+        <p className="mb-25 p-margin">
+          ili kreirajte novo preduzeće ako nije u listi
+        </p>
+        <Link exact to={PREDUZECA.CREATE}>
+          <button
+            onClick={() => {
+              dispatch(setPreduzece({}));
+            }}
+            className="btn btn__primary mb-25"
+          >
+            <PlusLightSvg className="icon icon__light lg" />
+            Novo Preduzeće
+          </button>
+        </Link>
+      </div>
     </>
   );
 };

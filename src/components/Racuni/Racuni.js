@@ -23,10 +23,11 @@ import { spinnerStyleGrid } from '../../constants/spinner';
 import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 const options = [
-  { value: 'Plaćen', label: 'Plaćen' },
-  { value: 'Nenaplativ', label: 'Nenaplativ' },
-  { value: 'Nije Plaćen', label: 'Nije Plaćen' },
-  { value: 'Privremeni', label: 'Privremeni' },
+  { value: null, label: 'Prikaži Sve' },
+  { value: 'placen', label: 'Plaćen' },
+  { value: 'nenaplativ', label: 'Nenaplativ' },
+  { value: 'nijeplacen', label: 'Nije Plaćen' },
+  // { value: 'privremeni', label: 'Privremeni' },
 ];
 
 const searchParams = {};
@@ -195,11 +196,10 @@ const Racuni = () => {
                 options={options}
                 onChange={handleStatusChange}
                 styles={selectStyle}
-                value={{ label: status }}
+                value={status ? { label: status } : options[0]}
+                defaultValue={options[0]}
                 className="mob-w-100 w-20 mob-mt-10 mr-15-tabp-0 tabp-w-49"
-                placeholder={`Type to search`}
               />
-
               {/* <div className="select w-25 df"> */}
               <div className="df jc-sb tabp-w-100">
                 <DatePicker

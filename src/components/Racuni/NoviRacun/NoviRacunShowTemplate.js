@@ -175,7 +175,9 @@ const NoviRacunShowTemplate = () => {
               <span>
                 Operater:{' '}
                 {user && user.ime ? user.ime + ' ' + user.prezime : '-'}
-                {user && user.kod_operatera ? ' (' + user.kod_operatera + ')' : '-'}
+                {user && user.kod_operatera
+                  ? ' (' + user.kod_operatera + ')'
+                  : '-'}
               </span>
             </div>
 
@@ -191,6 +193,15 @@ const NoviRacunShowTemplate = () => {
                             <div className="side-info__info--inner-wrapper mb-0">
                               <div className="col-l w-break">
                                 <p className="txt-dark">{stavka.naziv}</p>
+                                <p className="txt-dark">
+                                  {stavka.kolicina == 1
+                                    ? ''
+                                    : stavka.kolicina +
+                                      ' x ' +
+                                      Number(stavka.cijena_sa_pdv)
+                                        .toFixed(2)
+                                        .replace('.', ',')}
+                                </p>
                                 <p className="txt-light">{stavka.opis}</p>
                               </div>
                               <div className="col-r w-break-unset">
@@ -358,7 +369,10 @@ const NoviRacunShowTemplate = () => {
               <p>Br. računa: {racun && racun.broj_racuna}</p>
               <p>IKOF: {racun && racun.ikof ? racun.ikof : '-'}</p>
               <p>JIKR: {racun && racun.jikr ? racun.jikr : '-'}</p>
-              <p>Datum: {racun && racun.datum_izdavanja ? racun.datum_izdavanja : '-'}</p>
+              <p>
+                Datum:{' '}
+                {racun && racun.datum_izdavanja ? racun.datum_izdavanja : '-'}
+              </p>
               <div className="fiscal-bill__footer--qr-code"></div>
             </div>
             <div className="col-md-4">

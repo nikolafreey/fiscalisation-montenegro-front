@@ -186,7 +186,6 @@ const FizickaLicaForm = () => {
                             className="form__input"
                             placeholder="CG"
                             label={$t('fizickalica.drzava')}
-                            obavezno
                           />
                         </div>
                       </div>
@@ -204,7 +203,6 @@ const FizickaLicaForm = () => {
                             className="form__input"
                             name="drzavljanstvo"
                             label={$t('fizickalica.drzavljanstvo')}
-                            obavezno
                           />
                         </div>
                       </div>

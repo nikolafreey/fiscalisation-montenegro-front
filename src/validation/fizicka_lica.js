@@ -21,10 +21,10 @@ export const FizickaLicaSchema = Yup.object().shape({
     .min(3, $t('validacija.unosDugacak'))
     .max(255, $t('validacija.unosDugacak'))
     .required($t('fizickaLicaValidation.drzava')),
-  nacionalnost: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
-    .max(100, $t('validacija.unosDugacak'))
-    .required($t('fizickaLicaValidation.nacionalnost')),
+  // nacionalnost: Yup.string()
+  //   .min(3, $t('validacija.unosKratak'))
+  //   .max(100, $t('validacija.unosDugacak'))
+  //   .required($t('fizickaLicaValidation.nacionalnost')),
   drzavljanstvo: Yup.string()
     .min(3, $t('validacija.unosKratak'))
     .max(50, $t('validacija.unosDugacak'))

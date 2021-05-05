@@ -28,7 +28,7 @@ import { ReactComponent as heroRazgovori } from '../../../assets/icon/hero-razgo
 import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori.svg';
 import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
 import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
-import {ReactComponent as Logo} from '../../../assets/icon/company-logo/postFiscal.svg';
+import { ReactComponent as Logo } from '../../../assets/icon/company-logo/postFiscal.svg';
 
 const Sidebar = () => {
   return (
@@ -53,16 +53,16 @@ const Sidebar = () => {
             label="Računi"
             to={RACUNI.INDEX}
           />
-          <SidebarLink
+          {/* <SidebarLink
             ImageSource={heroPredracuni}
             label="Predračuni"
             to={PREDRACUNI.INDEX}
-          />
-          <SidebarLink
+          /> */}
+          {/* <SidebarLink
             ImageSource={heroUlazniRacuni}
             label="Prijem računa"
             to={ULAZNI_RACUNI.INDEX}
-          />
+          /> */}
           <SidebarLink
             ImageSource={heroStavke}
             label="Stavke"
@@ -84,11 +84,11 @@ const Sidebar = () => {
             label="Preduzeca"
             to={PREDUZECA.INDEX}
           />
-          <SidebarLink
+          {/* <SidebarLink
             ImageSource={heroIzvjestaji}
             label="Izvještaji"
             to={'#'}
-          />
+          /> */}
 
           {/* <SidebarLink
             ImageSource={heroHome}

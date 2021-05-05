@@ -111,19 +111,6 @@ const Partneri = () => {
           )}
         </div>
       </div>
-      <div className="df jc-center ai-c fd-column">
-        <hr className="w-60 " />
-        <p className="mb-25 p-margin">
-          ili kreirajte novo preduzeće ako nije u listi
-        </p>
-        <Link exact to={PREDUZECA.CREATE}>
-          <button className="btn btn__primary mb-25">
-            <PlusLightSvg className="icon icon__light lg" />
-            Novo Preduzeće
-          </button>
-        </Link>
-      </div>
-
       {/* <h1 className="heading-primary">Partneri</h1>
       <div className="main-content__box">
         <div className="content">
