@@ -61,7 +61,7 @@ export function* uslugeGet({ payload }) {
   const res = yield call(uslugeService.getUsluge, payload);
   yield put(setUsluge(res.data));
 
-  if (res.status !== 201) {
+  if (res.status !== 200) {
     toast.error(
       'Greska: ' + res.status + 'Poruka: ' + res.message,
       toastSettings
