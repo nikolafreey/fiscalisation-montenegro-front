@@ -76,7 +76,10 @@ const Partneri = () => {
         <div className="main-content__box">
           <div className="content">
             <div className="main-content__search-wrapper df mob-fd-column flex-nowrap">
-              <form className="search df ai-c mob-w-100">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="search df ai-c mob-w-100"
+              >
                 <button className="search__button"></button>
                 <input
                   type="text"
@@ -97,8 +100,13 @@ const Partneri = () => {
                 <option value={'preduzece'}>Preduzeća</option>
               </select>
             </div>
-            {partneri.data.length === 0 ? (
+            {partneri &&
+            partneri.data &&
+            partneri.data.length === 0 &&
+            !partneri.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
+            ) : partneri && partneri.data && partneri.data.length === 0 ? (
+              <h2 className="df jc-sb tabp-w-100">{'Nemate računa u listi'}</h2>
             ) : (
               <PartneriTable partneri={partneri} />
             )}

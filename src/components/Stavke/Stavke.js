@@ -139,8 +139,11 @@ const Stavke = () => {
         <div className="content" style={{ width: '100%' }}>
           <div className="main-content__search-wrapper df mob-fd-column">
             <div className="df jc-sb w-100 mob-fd-column">
-              <form className="search df ai-c mob-w-100">
-                <button className="search__button" type="submit"></button>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="search df ai-c mob-w-100"
+              >
+                <button className="search__button" type="button"></button>
                 <input
                   name="search"
                   placeholder="Pretraži Usluge i Robe"

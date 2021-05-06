@@ -81,8 +81,11 @@ const NoviRacun = () => {
         <div className="main-content__box">
           <div className="content">
             <div className="main-content__search-wrapper">
-              <form className="search df ai-c mob-w-100">
-                <button className="search__button" type="submit"></button>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="search df ai-c mob-w-100"
+              >
+                <button className="search__button" type="button"></button>
                 <input
                   name="search"
                   placeholder="Naziv Usluge/Robe"

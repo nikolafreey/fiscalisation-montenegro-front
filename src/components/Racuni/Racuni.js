@@ -181,8 +181,13 @@ const Racuni = () => {
           <div className="main-content__search-wrapper df">
             <div className="df jc-sb w-100 tabp-flex-wrap mob-fd-column">
               {/* <div className="search df ai-c w-53"> */}
-              <form className="search df ai-c w-45 mob-w-100 mr-15-tabp-0 tabp-w-49">
-                <button className="search__button" type="submit"></button>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+                className="search df ai-c w-45 mob-w-100 mr-15-tabp-0 tabp-w-49"
+              >
+                <button className="search__button" type="button"></button>
                 <input
                   name="search"
                   placeholder="Pretraži Račune"
