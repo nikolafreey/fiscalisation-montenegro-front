@@ -7,6 +7,7 @@ import { getUser } from './store/actions/UserActions';
 import './main.scss';
 
 import i18n from 'i18n-js';
+import ScrollToTop from './routes/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <AppLayout>
+      <ScrollToTop />
       <AppRouter />
     </AppLayout>
   );
