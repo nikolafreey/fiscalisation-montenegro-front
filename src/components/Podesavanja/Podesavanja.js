@@ -529,6 +529,7 @@ const Podesavanja = () => {
                         {user && user.preduzeca[0].software_kod ? (
                           <input
                             type="text"
+                            disabled
                             className="form__input"
                             name="software_kod"
                             id="software_kod"
@@ -538,6 +539,7 @@ const Podesavanja = () => {
                         ) : (
                           <input
                             type="text"
+                            disabled
                             className="form__input"
                             name="software_kod"
                             id="software_kod"
@@ -711,7 +713,17 @@ const Podesavanja = () => {
                         >
                           Šifra za digitalni potpis
                         </label>
-                        {user && user.preduzeca[0].sertifikatSifra ? (
+                        <input
+                          type="text"
+                          className="form__input"
+                          name="sifraDigitalniPotpis"
+                          id="sifraDigitalniPotpis"
+                          onChange={(e) =>
+                            setSifraDigitalniPotpis(e.target.value)
+                          }
+                          value={sifraDigitalniPotpis}
+                        />
+                        {/* {user && user.preduzeca[0].sertifikatSifra ? (
                           <input
                             type="text"
                             className="form__input"
@@ -733,7 +745,7 @@ const Podesavanja = () => {
                             }
                             value={sifraDigitalniPotpis}
                           />
-                        )}
+                        )} */}
                       </div>
                     </div>
                     <div className="df jc-sb mob-fd-column">
@@ -759,7 +771,17 @@ const Podesavanja = () => {
                         >
                           Šifra za digitalni pečat
                         </label>
-                        {user && user.preduzeca[0].pecatSifra ? (
+                        <input
+                          type="text"
+                          className="form__input"
+                          name="sifraDigitalniPecat"
+                          id="sifraDigitalniPecat"
+                          onChange={(e) =>
+                            setSifraDigitalniPecat(e.target.value)
+                          }
+                          value={sifraDigitalniPecat}
+                        />
+                        {/* {user && user.preduzeca[0].pecatSifra ? (
                           <input
                             type="text"
                             className="form__input"
@@ -781,7 +803,7 @@ const Podesavanja = () => {
                             }
                             value={sifraDigitalniPecat}
                           />
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>
