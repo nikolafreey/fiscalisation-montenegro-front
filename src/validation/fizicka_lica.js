@@ -11,7 +11,7 @@ export const FizickaLicaSchema = Yup.object().shape({
     .max(50, $t('validacija.unosDugacak'))
     .required($t('fizickaLicaValidation.prezime')),
   jmbg: Yup.string()
-    .length(13, $t('validacija.duzina'))
+    .length(13, $t('validacija.duzina', 13))
     .required($t('fizickaLicaValidation.jmbg')),
   grad: Yup.string()
     .min(3, $t('validacija.unosDugacak'))

@@ -11,7 +11,7 @@
     "unosKratak": "Polje mora imati najmanje 3 karaktera",
     "obavezno": "Polje je obavezno",
     "unosDugacak": "Polje može imati najviše 50 karaktera",
-    "duzina": "{polje} mora imati tačno {broj} karaktera",
+    "duzina": "Polje mora imati tačan broj karaktera",
     "url": "Unesite validan link",
     "email": "Unesite validan e-mail"
   },

@@ -323,7 +323,8 @@ const PreduzecaForm = () => {
                         rows="5"
                         className="form__input h-auto"
                       />
-                      <div className="form__group form__area mb-0">
+                      {/* TODO:VRATITI LOGOTIP UPLOAD */}
+                      {/* <div className="form__group form__area mb-0">
                         <InputField
                           name="logotip"
                           label={$t('preduzeca.logotip')}
@@ -341,7 +342,7 @@ const PreduzecaForm = () => {
                             Uspješno ste selektovali fajl!
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

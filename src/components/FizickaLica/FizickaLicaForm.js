@@ -86,7 +86,7 @@ const FizickaLicaForm = () => {
         cv_link: '',
         avatar: '',
         preduzece_id: '',
-        ziro_racuni: [{ broj_racuna: '' }],
+        ziro_racuni: [],
         ...fizickoLice,
       }}
       onSubmit={handleSubmit}
@@ -246,7 +246,8 @@ const FizickaLicaForm = () => {
                           className="form__input h-10r"
                         ></textarea>
                       </div>
-                      <div className="form__group form__area">
+                      {/* TODO: DODATI UCITAVANJE AVATARA */}
+                      {/* <div className="form__group form__area">
                         <label className="form__label" htmlFor="logo">
                           Fotografija
                         </label>
@@ -266,15 +267,15 @@ const FizickaLicaForm = () => {
                             ili kliknite da dodate
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
                 <hr />
-
-                <div className="container">
+                {/* TODO:SREDITI ZIRO RACUNE BACKEND PROBLEM */}
+                {/* <div className="container">
                   <div className="row">
-                    <div className="col-lg-4">
+                    {/* <div className="col-lg-4">
                       <h2 className="heading-secondary">Tekući računi</h2>
                       <p className="mob-mb-20 txt-light">
                         Consequat eget volutpat enim libero nulla neque
@@ -289,10 +290,10 @@ const FizickaLicaForm = () => {
                           )}
                         </FieldArray>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <hr />
+                    </div> */}
+                {/* </div>
+                </div> */}
+                {/* <hr /> */}
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-4">
