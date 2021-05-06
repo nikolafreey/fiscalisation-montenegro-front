@@ -106,7 +106,9 @@ const Partneri = () => {
             !partneri.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : partneri && partneri.data && partneri.data.length === 0 ? (
-              <h2 className="df jc-sb tabp-w-100">{'Nemate računa u listi'}</h2>
+              <h2 className="df jc-sb tabp-w-100">
+                {'Nemate partnera u listi'}
+              </h2>
             ) : (
               <PartneriTable partneri={partneri} />
             )}
