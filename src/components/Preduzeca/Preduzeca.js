@@ -52,8 +52,12 @@ const Preduzeca = () => {
           <div className="main-content__search-wrapper">
             <SearchForm handleSubmit={handleSearch} />
           </div>
-          {preduzeca.data.length === 0 ? (
+          {preduzeca.data.length === 0 && !preduzeca.path ? (
             <GridLoader css={spinnerStyleGrid} size={15} />
+          ) : preduzeca.data.length === 0 ? (
+            <h2 className="df jc-sb tabp-w-100">
+              {'Nemate preduzeća u listi'}
+            </h2>
           ) : (
             <PreduzecaTable preduzeca={preduzeca} />
           )}
