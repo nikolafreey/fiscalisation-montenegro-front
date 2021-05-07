@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useReactToPrint } from 'react-to-print';
 import {
@@ -22,6 +22,8 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { select } from 'redux-saga/effects';
+import { depozitWithdrawService } from '../../../services/DepozitWithdrawService';
+import { RACUNI } from '../../../constants/routes';
 
 toast.configure();
 
@@ -51,7 +53,20 @@ const NoviRacunPreview = () => {
     //   size: 70mm 180mm;
     // }`,
   });
+
   const history = useHistory();
+
+  const [depozitLoaded, setDepozitLoaded] = useState(false);
+
+  useEffect(() => {
+    depozitWithdrawService.getDepozitToday().then((data) => {
+      console.log('getDepozitToday', data);
+      if (data.data.length !== 0) {
+        setDepozitLoaded(true);
+      }
+    });
+  }, []);
+
   const handleSacuvaj = () => {
     console.log('noviRacun.robe.length', noviRacun.robe);
     console.log('noviRacun.usluge.length', noviRacun.usluge);
@@ -65,10 +80,20 @@ const NoviRacunPreview = () => {
       return;
     }
 
+    console.log('depozitLoaded', depozitLoaded);
+    if (!depozitLoaded) {
+      toast.error(
+        'Depozit za današnji dan mora biti dodat prije nego što izdate gotovinski račun!',
+        toastSettings
+      );
+      history.push(RACUNI.INDEX);
+      return;
+    }
+
     dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
     // dispatch(setRacun({}));
     // dispatch(resetNoviRacun());
-    history.push(`/racuni`);
+    history.push(RACUNI.INDEX);
   };
 
   const usluge = Object.keys(noviRacun.usluge).map(
