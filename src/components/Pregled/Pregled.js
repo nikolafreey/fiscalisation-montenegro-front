@@ -136,7 +136,7 @@ const Pregled = () => {
                           racuniDanas?.ukupno_izlazni_racuni_danas +
                           Number(depozit[0]?.iznos_depozit)
                         ).toFixed(2)
-                    )
+                    ) || !depozit
                       ? '0.00'
                       : (
                           racuniDanas?.ukupno_izlazni_racuni_danas +
@@ -164,7 +164,7 @@ const Pregled = () => {
                   <h2 className="heading-secondary df">
                     {isNaN(
                       depozit && Number(depozit[0]?.iznos_depozit).toFixed(2)
-                    )
+                    ) || !depozit
                       ? '0.00'
                       : Number(depozit[0]?.iznos_depozit).toFixed(2)}{' '}
                     €
