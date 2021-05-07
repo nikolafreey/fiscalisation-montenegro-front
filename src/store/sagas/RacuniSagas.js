@@ -31,6 +31,7 @@ const toastSettings = {
 
 export function* racunStore({ payload }) {
   try {
+    localStorage.setItem('previousUrl', window.location.pathname);
     let noviRacun = yield select(noviRacunSelector());
     let noviRacunTemp = {
       ...noviRacun,
@@ -73,11 +74,15 @@ export function* racunStore({ payload }) {
 
 export function* bezgotovinskiRacunStore({ payload }) {
   try {
-    const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
-    console.log('res', res);
+    localStorage.setItem('previousUrl', window.location.pathname);
+    yield call(racuniService.storeBezgotovinskiRacun, payload);
     toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
   } catch (error) {
-    yield put(setGlobalError(error.message));
+    if (error.response.data.error.length > 50) {
+      yield put(setGlobalError('Greška: Fiskalizacija nije uspješna!'));
+      return;
+    }
+    yield put(setGlobalError(error.response.data.error));
   }
 }
 

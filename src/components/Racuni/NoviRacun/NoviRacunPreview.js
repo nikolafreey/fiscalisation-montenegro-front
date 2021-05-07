@@ -24,6 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { select } from 'redux-saga/effects';
 import { depozitWithdrawService } from '../../../services/DepozitWithdrawService';
 import { RACUNI } from '../../../constants/routes';
+import { racuniService } from '../../../services/RacuniService';
 
 toast.configure();
 
@@ -41,6 +42,8 @@ const NoviRacunPreview = () => {
   const componentRef = useRef();
   const noviRacun = useSelector(noviRacunSelector());
   const dispatch = useDispatch();
+
+  let previousUrl = localStorage.getItem('previousUrl');
 
   const [value, setValue] = useState(1);
   const [selectedLabel, setSelectedLabel] = useState('');
@@ -89,8 +92,19 @@ const NoviRacunPreview = () => {
       history.push(RACUNI.INDEX);
       return;
     }
-
     dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
+    let racunId;
+    setTimeout(() => {
+      racuniService.getRacuni().then((data) => {
+        console.log('data', data);
+        racunId = data.data.data[0].id;
+        setTimeout(() => {
+          if (previousUrl === '/racuni/create' && racunId) {
+            history.push('/racuni/show/' + racunId);
+          }
+        }, 500);
+      }, 1500);
+    });
     // dispatch(setRacun({}));
     // dispatch(resetNoviRacun());
     history.push(RACUNI.INDEX);

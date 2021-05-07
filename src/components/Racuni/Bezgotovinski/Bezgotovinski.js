@@ -24,6 +24,7 @@ import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { racunSelector } from '../../../store/selectors/RacuniSelector';
+import { racuniService } from '../../../services/RacuniService';
 
 toast.configure();
 
@@ -41,6 +42,7 @@ const Bezgotovinski = () => {
   const dispatch = useDispatch();
   // const racuni = useSelector(racuniSelector());
   const history = useHistory();
+  let previousUrl = localStorage.getItem('previousUrl');
 
   const handleSubmit = (values) => {
     values.stavke = values.niz;
@@ -100,8 +102,19 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
-    console.log('u celom racunu', values.vrsta_racuna);
     dispatch(storeBezgotovinskiRacun(noviRacun));
+    let racunId;
+    setTimeout(() => {
+      racuniService.getRacuni().then((data) => {
+        console.log('data', data);
+        racunId = data.data.data[0].id;
+        setTimeout(() => {
+          if (previousUrl === '/racuni/bezgotovinski/create' && racunId) {
+            history.push('/racuni/bezgotovinski/show/' + racunId);
+          }
+        }, 500);
+      }, 1500);
+    });
     history.push(`/racuni`);
   };
 
