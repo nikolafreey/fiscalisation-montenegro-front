@@ -71,27 +71,28 @@ export function* racunStore({ payload }) {
 //   }
 // }
 
-// export function* bezgotovinskiRacunStore({ payload }) {
-//   try {
-//     yield call(racuniService.storeBezgotovinskiRacun, payload);
-//     toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
-//   }
-// }
-
 export function* bezgotovinskiRacunStore({ payload }) {
-  const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
-  toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
-
-  if (res.status !== 201) {
-    // toast.error(
-    //   'Greska: ' + res.status + 'Poruka: ' + res.message,
-    //   toastSettings
-    // );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
+    console.log('res', res);
+    toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* bezgotovinskiRacunStore({ payload }) {
+//   const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
+//   toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+
+//   if (res.status !== 201) {
+//     // toast.error(
+//     //   'Greska: ' + res.status + 'Poruka: ' + res.message,
+//     //   toastSettings
+//     // );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 // export function* racuniGet({ payload }) {
 //   try {

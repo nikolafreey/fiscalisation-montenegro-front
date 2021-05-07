@@ -109,13 +109,13 @@ const UlazniRacuniTableRow = ({ item, ulazniRacuni }) => {
                 <Izmjeni />
                 Izmjeni
               </a>
-              <a
+              {/* <a
                 onClick={handleObrisi}
                 className={`${item.ikof && item.jikr ? 'disabled' : ''}`}
               >
                 <Obrisi />
                 Obriši
-              </a>
+              </a> */}
             </div>
           </button>
         </div>

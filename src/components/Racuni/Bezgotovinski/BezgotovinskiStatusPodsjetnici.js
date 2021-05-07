@@ -161,10 +161,10 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   type="radio"
                   className="form__radio-input"
                   id="paid"
-                  value="Plaćen"
+                  value="placen"
                   name="status"
-                  checked={values && values.status === 'Plaćen'}
-                  onChange={(event) => setFieldValue('status', 'Plaćen')}
+                  checked={values && values.status === 'placen'}
+                  onChange={(event) => setFieldValue('status', 'placen')}
                 />
                 <label for="paid" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -191,10 +191,10 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   type="radio"
                   className="form__radio-input"
                   id="notPaid"
-                  value="Nije plaćen"
+                  value="nijeplacen"
                   name="status"
-                  checked={values && values.status === 'Nije plaćen'}
-                  onChange={(event) => setFieldValue('status', 'Nije plaćen')}
+                  checked={values && values.status === 'nijeplacen'}
+                  onChange={(event) => setFieldValue('status', 'nijeplacen')}
                   defaultChecked
                 />
                 <label for="notPaid" className="form__radio-label">
@@ -207,10 +207,10 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   type="radio"
                   className="form__radio-input"
                   id="uncollectible"
-                  value="Nenaplativ"
+                  value="nenaplativ"
                   name="status"
-                  checked={values && values.status === 'Nenaplativ'}
-                  onChange={(event) => setFieldValue('status', 'Nenaplativ')}
+                  checked={values && values.status === 'nenaplativ'}
+                  onChange={(event) => setFieldValue('status', 'nenaplativ')}
                 />
                 <label for="uncollectible" className="form__radio-label">
                   <span className="form__radio-button"></span>
@@ -222,10 +222,10 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   type="radio"
                   className="form__radio-input"
                   id="temporary"
-                  value="Privremeni"
+                  value="privremeni"
                   name="status"
-                  checked={values && values.status === 'Privremeni'}
-                  onChange={(event) => setFieldValue('status', 'Privremeni')}
+                  checked={values && values.status === 'privremeni'}
+                  onChange={(event) => setFieldValue('status', 'privremeni')}
                 />
                 <label for="temporary" className="form__radio-label">
                   <span className="form__radio-button"></span>

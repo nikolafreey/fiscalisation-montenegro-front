@@ -11,7 +11,7 @@ import { racuniSelector } from '../../store/selectors/RacuniSelector';
 import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { RACUNI } from '../../constants/routes';
 
 import Moment from 'react-moment';
@@ -49,6 +49,8 @@ const Racuni = () => {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  let match = useRouteMatch();
 
   useEffect(() => {
     dispatch(getRacuni());
