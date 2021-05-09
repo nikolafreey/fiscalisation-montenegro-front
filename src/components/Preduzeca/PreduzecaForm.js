@@ -77,6 +77,7 @@ const PreduzecaForm = () => {
           id: params.id,
           ...values,
           status: values.status === 1 ? true : false,
+          privatnost: values.privatnost === 1 ? true : false,
         })
       );
     else
@@ -84,6 +85,7 @@ const PreduzecaForm = () => {
         storePreduzece({
           ...values,
           status: values.status === 'Aktivan' ? true : false,
+          privatnost: values.privatnost === 'Javan' ? true : false,
         })
       );
     dispatch(setPreduzece(initialValues));
@@ -114,43 +116,22 @@ const PreduzecaForm = () => {
     <Formik
       initialValues={{
         kratki_naziv: '',
-        puni_naziv: '',
         oblik_preduzeca: 'D.O.O',
         adresa: '',
         grad: '',
-        drzava: 'CG',
-        telefon: '',
+        drzava: 'Crna Gora',
         telefon_viber: false,
         telefon_whatsapp: false,
         telefon_facetime: false,
-        fax: '',
-        email: '',
-        website: '',
         pib: '',
         pdv: '',
         djelatnost: '',
-        iban: '',
-        bic_swift: '',
-        kontakt_ime: '',
-        kontakt_prezime: '',
-        kontakt_telefon: '',
         kontakt_viber: false,
         kontakt_whatsapp: false,
         kontakt_facetime: false,
-        kontakt_email: '',
-        ovlasceno_lice_kontakt_ime: '',
-        ovlasceno_lice_kontakt_prezime: '',
-        ovlasceno_lice_kontakt_telefon: '',
         ovlasceno_lice_kontakt_viber: false,
         ovlasceno_lice_kontakt_whatsapp: false,
         ovlasceno_lice_kontakt_facetime: false,
-        ovlasceno_lice_kontakt_email: '',
-        twitter_username: '',
-        instagram_username: '',
-        facebook_username: '',
-        skype_username: '',
-        logotip: '',
-        opis: '',
         lokacija_lat: 'Beograd',
         lokacija_long: 'Beograd',
         status: 'Aktivan',
@@ -290,8 +271,8 @@ const PreduzecaForm = () => {
                               preduzece &&
                               Object.keys(preduzece).length !== 0 &&
                               preduzece.constructor === Object && {
-                                value: preduzece?.djelatnosti[0]?.id,
-                                label: preduzece?.djelatnosti[0]?.naziv,
+                                value: preduzece?.djelatnost?.id,
+                                label: preduzece?.djelatnost?.naziv,
                               }
                             }
                             //className="form__input"

@@ -9,6 +9,7 @@ import BezgotovinskiStavkeFieldArrayNovi from './BezgotovinskiStavkeFieldArrayNo
 import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  getRacuni,
   setRacun,
   storeBezgotovinskiRacun,
 } from '../../../store/actions/RacuniActions';
@@ -62,13 +63,13 @@ const Bezgotovinski = () => {
     }
     values &&
       values.stavke.forEach((racun, index) => {
-        if (racun.kolicina == null || racun.kolicina <= 0) {
-          toast.error(
-            'Kolicina stavke računa mora biti veca od 0 računu ' + index,
-            toastSettings
-          );
-          return;
-        }
+        // if (racun.kolicina == null || racun.kolicina <= 0) {
+        //   toast.error(
+        //     'Kolicina stavke računa mora biti veca od 0 računu ' + index,
+        //     toastSettings
+        //   );
+        //   return;
+        // }
         if (racun.jedinica_mjere_id == null) {
           toast.error(
             'Jedinica mjere računa je neophodna na računu ' + index,
@@ -115,7 +116,8 @@ const Bezgotovinski = () => {
         }, 500);
       }, 1500);
     });
-    history.push(`/racuni`);
+    dispatch(getRacuni());
+    history.push(RACUNI.INDEX);
   };
 
   // const {

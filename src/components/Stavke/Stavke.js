@@ -19,6 +19,7 @@ import GridLoader from 'react-spinners/GridLoader';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { spinnerStyleGrid, spinnerStyleFilter } from '../../constants/spinner';
 import { setUsluga } from '../../store/actions/UslugeActions';
+import { setRoba } from '../../store/actions/RobeActions';
 
 let filteri = {};
 const searchDebounced = debounce((callback) => callback(), 500);
@@ -117,7 +118,10 @@ const Stavke = () => {
         <h1 className="heading-primary">Stavke</h1>
         <div className="df w-50 jc-end">
           <button
-            onClick={() => dispatch(setUsluga({}))}
+            onClick={() => {
+              dispatch(setRoba({}));
+              dispatch(setUsluga({}));
+            }}
             className="btn btn__primary btn-dd"
           >
             <ButtonPlusSvg />

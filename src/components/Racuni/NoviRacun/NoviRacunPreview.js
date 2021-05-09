@@ -10,6 +10,7 @@ import {
   storeRacun,
   setRacun,
   resetNoviRacun,
+  getRacuni,
 } from '../../../store/actions/RacuniActions';
 import { noviRacunSelector } from '../../../store/selectors/RacuniSelector';
 import NoviRacunPreviewStavka from './NoviRacunPreviewStavka';
@@ -107,6 +108,7 @@ const NoviRacunPreview = () => {
     });
     // dispatch(setRacun({}));
     // dispatch(resetNoviRacun());
+    dispatch(getRacuni());
     history.push(RACUNI.INDEX);
   };
 

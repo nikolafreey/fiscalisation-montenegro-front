@@ -64,6 +64,8 @@ const Podesavanja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('digitalniPecatFile', digitalniPecatFile);
+    console.log('digitalniPotpisFile', digitalniPotpisFile);
 
     if (podesavanjeUcitano.length === 0) {
       podesavanjaService

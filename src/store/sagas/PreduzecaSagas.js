@@ -29,7 +29,10 @@ const toastSettings = {
 
 export function* preduzeceStore({ payload }) {
   const res = yield call(preduzecaService.storePreduzece, payload);
-  toast.success('Uspješno dodato preduzeće: ' + payload.naziv, toastSettings);
+  toast.success(
+    'Uspješno dodato preduzeće: ' + payload.kratki_naziv,
+    toastSettings
+  );
 
   if (res.status !== 201) {
     toast.error(
