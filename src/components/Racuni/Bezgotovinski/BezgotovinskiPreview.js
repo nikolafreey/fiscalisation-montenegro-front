@@ -145,31 +145,30 @@ const BezgotovinskiPreview = () => {
         <Link to={RACUNI.INDEX} className="back-link df">
           <LinkSvg /> <p>Povratak na Račune</p>
         </Link>
-      </div>
 
-      <div className="title">
-        <h1 className="heading-primary">Račun {broj_racuna}</h1>
+        <div className="title">
+          <h1 className="heading-primary">Račun {broj_racuna}</h1>
 
-        {!editMode && (
-          <div className="df w-50 jc-end">
-            <button className="btn btn__secondary  mr-m" onClick={handlePrint}>
-              <svg
-                className="icon icon__dark lg mr-xs"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                />
-              </svg>
-              Štampaj
-            </button>
-            {/* <button className="btn btn__primary">
+          {!editMode && (
+            <div className="df jc-end">
+              <button className="btn btn__secondary" onClick={handlePrint}>
+                <svg
+                  className="icon icon__dark lg mr-xs"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                  />
+                </svg>
+                Štampaj
+              </button>
+              {/* <button className="btn btn__primary">
               <svg
                 className="icon icon__light lg mr-xs"
                 viewBox="0 0 24 24"
@@ -183,8 +182,9 @@ const BezgotovinskiPreview = () => {
               </svg>
               <p>Dodaj preglednika</p>
             </button> */}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
       <div className="main-content__box">
         <div style={{ display: 'none' }}>
@@ -316,7 +316,7 @@ const BezgotovinskiPreview = () => {
               <div className="mtb-50">
                 <div className="row">
                   <div className="col-md-6">
-                    <h2 className="heading-secondary">Račun {redni_broj}</h2>
+                    <h2 className="heading-secondary">Račun: {redni_broj}</h2>
                     <p>
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
@@ -417,7 +417,7 @@ const BezgotovinskiPreview = () => {
                       )}
                     </th>
                     <th>
-                      <span className="heading-quaternary">
+                      <span className="heading-quaternary nowrap">
                         Ukupan bez pdv{' '}
                       </span>
                     </th>
@@ -433,29 +433,33 @@ const BezgotovinskiPreview = () => {
             </div>
             <div className="invoice__footer">
               <div className="row mb-30">
-                <div className="col-md-8">
-                <BezgotovinskiPoreziPreview stavke={stavke} />
+                <div className="col-md-8 col-sm-7">
+                  <div className="table-wrapper">
+                    <table className="table">
+                      <BezgotovinskiPoreziPreview stavke={stavke} />
+                    </table>
+                  </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-sm-5">
                   <div className="df jc-sb">
                     <div className="df fd-column">
                       <p className="fw-500">
-                        {ukupnoBezPdvIpopusta && 'Ukupno bez PDV-a i popusta:'}
+                        {ukupnoBezPdvIpopusta && 'Bez PDV-a i popusta:'}
                       </p>
 
                       {/* <p className="fw-500">
                         {ukupnoBezPdv && 'Ukupno bez popusta:'}
                       </p> */}
                       <p className="fw-500">
-                        {Number(popust_ukupno) > 0 > 0 && 'Ukupan popust:'}
+                        {Number(popust_ukupno) > 0 > 0 && 'Popust:'}
                       </p>
-                      <p className="fw-500">{ukupniPdv > 0 && 'Ukupan PDV:'}</p>
+                      <p className="fw-500">{ukupniPdv > 0 && 'PDV:'}</p>
                       <p className="fw-500">
-                        {ukupnoSaPdvIpopusta && 'Ukupno sa popustom:'}
+                        {ukupnoSaPdvIpopusta && 'Total:'}
                       </p>
                     </div>
                     <div className="df fd-column">
-                      <p className="fw-500 txt-right">
+                      <p className="fw-500 txt-right nowrap">
                         {ukupna_cijena_bez_pdv_popust
                           ? formatirajCijenu(ukupna_cijena_bez_pdv_popust)
                           : ''}
@@ -522,14 +526,14 @@ const BezgotovinskiPreview = () => {
                     </>
                   )}
                   <div className="row">
-                    <div className="col-md-3">
+                   
                       {/* ------------------ QR CODE ------------------ */}
-                      {jikr && ikof ? (
-                        <QRCode value={qr_url} size="128" />
-                      ) : null}
+                      {jikr && ikof ? <div className="col-md-3">
+                        <QRCode value={qr_url} size="128" />  </div>
+                      : null}
 
                       {/*------------------ QR CODE ------------------*/}
-                    </div>
+                   
                     <div className="col-md-9">
                       <div className="df">
                         <div className="df fd-column mr-m">

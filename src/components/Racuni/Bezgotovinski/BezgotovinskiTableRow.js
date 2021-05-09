@@ -12,7 +12,7 @@ const BezgotovinskiTableRow = ({ item }) => {
   };
   return (
     <tr>
-      <td className="cd fw-500">{item && item.naziv ? item.naziv : ''}</td>
+      <td className="cl"><p className="cd fw-500">{item && item.naziv ? item.naziv : ''}</p></td>
       <td className="cl">
         {item && item.jedinicna_cijena_bez_pdv
           ? formatirajCijenu(item.jedinicna_cijena_bez_pdv) 
@@ -26,10 +26,7 @@ const BezgotovinskiTableRow = ({ item }) => {
         {item && item.popust_procenat && Number(item.popust_procenat)>0
           ? item.popust_procenat +
             '% (- ' +
-            (
-              
-           formatirajCijenu((item.cijena_sa_pdv-item.cijena_sa_pdv_popust)*item.kolicina)
-             
+            (formatirajCijenu((item.cijena_sa_pdv-item.cijena_sa_pdv_popust)*item.kolicina) 
             ) +
             ')' 
           : item && item.popust_iznos && Number(item.popust_iznos)>0
@@ -37,8 +34,8 @@ const BezgotovinskiTableRow = ({ item }) => {
           : ' '}
       </td>
      
-      <td>
-        <p className="cd fw-500">{item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''}</p>
+      <td className="cl">
+        <p className="cd fw-500 nowrap">{item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''}</p>
       </td>
     </tr>
   );
