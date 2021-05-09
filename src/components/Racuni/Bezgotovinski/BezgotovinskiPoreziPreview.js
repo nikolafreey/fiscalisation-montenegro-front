@@ -15,20 +15,20 @@ console.log('porezi u html',props)
   return (
     <>
 
-      <div className="main-content__box" style={{display: 'flex', justifyContent: 'flex-end'}}>
-        <div className="content">
+      {/* <div className="main-content__box" style={{display: 'flex', justifyContent: 'flex-end'}}>
+        <div className="content"> */}
           <div className="table-wrapper">
             <table className="table">
               <thead>
                 <tr>
                   <th className="w-33">
-                    <span className="heading-quaternary">PDV stopa </span>
+                    <span className="heading-quaternary mb-0">PDV stopa </span>
                   </th>
                   <th className="w-33">
-                    <span className="heading-quaternary">Osnovica za PDV</span>
+                    <span className="heading-quaternary mb-0">Osnovica za PDV</span>
                   </th>
                   <th className="w-33">
-                    <span className="heading-quaternary">iznos poreza</span>
+                    <span className="heading-quaternary mb-0">iznos poreza</span>
                   </th>
                 </tr>
               </thead>
@@ -50,8 +50,8 @@ console.log('porezi u html',props)
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </>
   );
 };

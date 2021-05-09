@@ -431,12 +431,11 @@ const BezgotovinskiPreview = () => {
                 </tbody>
               </table>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <BezgotovinskiPoreziPreview stavke={stavke} />
-            </div>
             <div className="invoice__footer">
-              <div className="row">
-                <div className="offset-md-8"></div>
+              <div className="row mb-30">
+                <div className="col-md-8">
+                <BezgotovinskiPoreziPreview stavke={stavke} />
+                </div>
                 <div className="col-md-4">
                   <div className="df jc-sb">
                     <div className="df fd-column">
@@ -515,7 +514,7 @@ const BezgotovinskiPreview = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-8">
                   {opis && (
                     <>
                       <p className="fw-500">Napomena:</p>
@@ -523,7 +522,7 @@ const BezgotovinskiPreview = () => {
                     </>
                   )}
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       {/* ------------------ QR CODE ------------------ */}
                       {jikr && ikof ? (
                         <QRCode value={qr_url} size="128" />
@@ -531,15 +530,15 @@ const BezgotovinskiPreview = () => {
 
                       {/*------------------ QR CODE ------------------*/}
                     </div>
-                    <div className="col-md-8">
-                      <div className="df jc-sb">
-                        <div className="df fd-column">
+                    <div className="col-md-9">
+                      <div className="df">
+                        <div className="df fd-column mr-m">
                           <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
                           <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
                         </div>
                         <div className="df fd-column">
-                          <p className="txt-right">{jikr ? jikr : ''}</p>
-                          <p className="txt-right">{ikof ? ikof : ''}</p>
+                          <p>{jikr ? jikr : ''}</p>
+                          <p>{ikof ? ikof : ''}</p>
                         </div>
                       </div>
                     </div>
