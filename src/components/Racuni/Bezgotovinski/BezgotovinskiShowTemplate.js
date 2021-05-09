@@ -12,6 +12,7 @@ class BezgotovinskiShowTemplate extends React.Component {
     const ikof = this.props.ikof;
     const jikr = this.props.jikr;
     const broj_racuna = this.props.broj_racuna;
+    const redni_broj = this.props.redni_broj;
     const status = this.props.status;
     const preduzece = this.props.preduzece;
     const opis = this.props.opis;
@@ -46,7 +47,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                         : noLogo
                     }
                     alt="logo"
-                    style={{ widt: 200, height: 100 }}
+                    // style={{ widt: 200, height: 100 }}
                   />
                 </div>
                 <div className="wrapper-100">
@@ -87,23 +88,23 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="txt-light">
                         {preduzece && preduzece.bic_swift ? 'BIC/SWIFT' : ''}
                       </p>
+                    </div>
 
-                      <div className="invoice-template__box-values">
-                        <p className="txt-right">
-                          {preduzece && preduzece.pib ? preduzece.pib : ''}
-                        </p>
-                        <p className="txt-right">
-                          {preduzece && preduzece.pdv ? preduzece.pdv : ''}
-                        </p>
-                        <p className="txt-right">
-                          {preduzece && preduzece.iban ? preduzece.iban : ''}
-                        </p>
-                        <p className="txt-right">
-                          {preduzece && preduzece.bic_swift
-                            ? preduzece.bic_swift
-                            : ''}
-                        </p>
-                      </div>
+                    <div className="invoice-template__box-values">
+                      <p className="txt-right">
+                        {preduzece && preduzece.pib ? preduzece.pib : ''}
+                      </p>
+                      <p className="txt-right">
+                        {preduzece && preduzece.pdv ? preduzece.pdv : ''}
+                      </p>
+                      <p className="txt-right">
+                        {preduzece && preduzece.iban ? preduzece.iban : ''}
+                      </p>
+                      <p className="txt-right">
+                        {preduzece && preduzece.bic_swift
+                          ? preduzece.bic_swift
+                          : ''}
+                      </p>
                     </div>
                   </div>
                   <div className="article-33">
@@ -120,180 +121,174 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                 </div>
 
-                <div className="mtb-50">
-                  <div className="row">
-                    <div style={{ width: '50%' }} className="col-md-6">
-                      <h2 className="heading-secondary">Račun {broj_racuna}</h2>
-                      <p>
-                        {preduzece && preduzece.grad ? preduzece.grad : ''},
-                        &nbsp;
-                        {created_at && (
-                          <Moment locale="me" format="DD. MMM YYYY.">
-                            {created_at}
-                          </Moment>
-                        )}{' '}
+                <div className="wrapper-100 mt-25">
+                  <div className="wrapper-50">
+                    <h2 className="heading-secondary">Račun: {redni_broj}</h2>
+                    {preduzece && preduzece.grad ? preduzece.grad : ''},
+                    {created_at && (
+                      <p className="nowrap w-100">
+                        <Moment
+                          locale="me"
+                          format="DD. MMM YYYY."
+                          className="nowrap"
+                        >
+                          {created_at}
+                        </Moment>
+                      </p>
+                    )}{' '}
+                  </div>
+                  <div className="wrapper-50 box-border">
+                    <h2 className="heading-secondary">
+                      {partner && partner.kontakt_ime
+                        ? partner.kontakt_ime
+                        : ''}{' '}
+                      &nbsp;
+                      {partner && partner.kontakt_prezime
+                        ? partner.kontakt_prezime
+                        : ''}
+                    </h2>
+
+                    <div className="wrapper-50">
+                      <p className="txt-light">
+                        {partner && partner.pib ? 'PIB' : ''}
+                      </p>
+                      <p className="txt-light">
+                        {partner && partner.pib ? 'PDV' : ''}
+                      </p>
+                      <p className="txt-light">
+                        {partner && partner.pib ? 'IBAN' : ''}
+                      </p>
+                      <p className="txt-light">
+                        {partner && partner.pib ? 'BIC/SWIFT' : ''}
                       </p>
                     </div>
-                    <div style={{ width: '50%' }} className="col-md-6">
-                      <div className="invoice__header--box">
-                        <h2 className="heading-secondary">
-                          {partner && partner.kontakt_ime
-                            ? partner.kontakt_ime
-                            : ''}{' '}
-                          &nbsp;
-                          {partner && partner.kontakt_prezime
-                            ? partner.kontakt_prezime
-                            : ''}
-                        </h2>
-                        <div className="df jc-sb">
-                          <div className="df fd-column">
-                            <p className="txt-light">
-                              {partner && partner.pib ? 'PIB' : ''}
-                            </p>
-                            <p className="txt-light">
-                              {partner && partner.pib ? 'PDV' : ''}
-                            </p>
-                            <p className="txt-light">
-                              {partner && partner.pib ? 'IBAN' : ''}
-                            </p>
-                            <p className="txt-light">
-                              {partner && partner.pib ? 'BIC/SWIFT' : ''}
-                            </p>
-                          </div>
-                          <div className="df fd-column">
-                            <p className="txt-right">
-                              {partner && partner.pib ? partner.pib : ''}
-                            </p>
-                            <p className="txt-right">
-                              {partner && partner.pib ? partner.pib : ''}
-                            </p>
-                            <p className="txt-right">
-                              {partner && partner.pib ? partner.pib : ''}
-                            </p>
-                            <p className="txt-right">
-                              {partner && partner.pib ? partner.pib : ''}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="wrapper-50">
+                      <p className="txt-right">
+                        {partner && partner.pib ? partner.pib : ''}
+                      </p>
+                      <p className="txt-right">
+                        {partner && partner.pib ? partner.pib : ''}
+                      </p>
+                      <p className="txt-right">
+                        {partner && partner.pib ? partner.pib : ''}
+                      </p>
+                      <p className="txt-right">
+                        {partner && partner.pib ? partner.pib : ''}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="invoice-page-bottom">
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      <p className="heading-quaternary">Opis </p>
+                    </th>
+                    <th>
+                      <p className="heading-quaternary nowrap">
+                        Jedinična cijena
+                      </p>
+                    </th>
+                    <th>
+                      <p className="heading-quaternary">Kolicina</p>
+                    </th>
+                    <th>
+                      <p className="heading-quaternary">Popust</p>
+                    </th>
+                    {/* <th>
+                      <p class="heading-quaternary">PDV</p>
+                    </th> */}
+                    <th>
+                      <p className="heading-quaternary">Iznos</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <List
+                    data={stavke ? stavke : []}
+                    renderItem={BezgotovinskiTableRow}
+                  />
+                </tbody>
+              </table>
+              <div className="invoice-template__footer">
+                <div className="wrapper-100 mtb-20">
+                  <div class="table-sm-wrapper">
+                    <table>
+                      <BezgotovinskiPoreziPreview stavke={stavke} />
+                    </table>
+                  </div>
 
-              <div className="table-wrapper">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <span className="heading-quaternary">Opis </span>
-                      </th>
-                      <th>
-                        <span className="heading-quaternary">
-                          Jedinična cijena{' '}
-                        </span>
-                      </th>
-                      <th>
-                        <span className="heading-quaternary">Kolicina</span>
-                      </th>
-                      <th>
-                        <span className="heading-quaternary">Iznos</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <List
-                      data={stavke ? stavke : []}
-                      renderItem={BezgotovinskiTableRow}
-                    />
-                  </tbody>
-                </table>
-              </div>
-              <div className="table-wrapper" style={{ width: '100%' }}>
-                <BezgotovinskiPoreziPreview stavke={stavke} />
-              </div>
+                  <div class="invoice-template__footer--box">
+                    <div class="invoice-template__box-info">
+                      <p className="fw-500">Bez PDV-a:</p>
 
-              <div className="invoice__footer">
-                <div className="row">
-                  {/* <div className="offset-md-8"></div> */}
-                  <div style={{ width: '33.3333333333%' }}></div>
-                  <div style={{ width: '33.3333333333%' }}></div>
-                  <div style={{ width: '33.3333333333%' }} className="col-md-4">
-                    <div className="df jc-sb">
-                      <div className="df fd-column">
-                        <p className="fw-500">Ukupno bez PDV-a i popusta:</p>
-
-                        {/* <p className="fw-500">Ukupno bez popusta:</p> */}
-                        <p className="fw-500">Ukupan popust:</p>
-                        <p className="fw-500">Ukupan PDV:</p>
-                        <p className="fw-500">Ukupno sa popustom:</p>
-                        {/* <p className="fw-500">PDV 21%:</p>
+                      {/* <p className="fw-500">Ukupno bez popusta:</p> */}
+                      <p className="fw-500">Popust:</p>
+                      <p className="fw-500">PDV:</p>
+                      <p className="fw-500">Total:</p>
+                      {/* <p className="fw-500">PDV 21%:</p>
                     <p className="fw-500">Ukupno:</p> */}
-                      </div>
-                      <div className="df fd-column">
-                        <p className="fw-500 txt-right">
-                          {Number(ukupna_cijena_bez_pdv_popust).toFixed(2)}{' '}
-                          <span className="txt-up txt-light">Eur</span>
-                        </p>
+                    </div>
+                    <div class="invoice-template__box-values">
+                      <p className="txt-right cd fw-500">
+                        {Number(ukupna_cijena_bez_pdv_popust).toFixed(2)}{' '}
+                        <span className="txt-up txt-light">Eur</span>
+                      </p>
 
-                        {/* <p className="fw-500 txt-right">
+                      {/* <p className="fw-500 txt-right">
                       {Number(ukupnoBezPdv).toFixed(2)}{' '}
                       <span className="txt-up txt-light">Eur</span>
                     </p> */}
-                        {ukupan_iznos_pdv > 0 && (
-                          <p className="fw-500 txt-right">
-                            {'-'}
-                            {Number(ukupniPopust).toFixed(2)}{' '}
-                            <span className="txt-up txt-light">Eur</span>
-                          </p>
-                        )}
+                      {ukupan_iznos_pdv > 0 && (
+                        <p className="txt-right cd fw-500">
+                          {'-'}
+                          {Number(ukupniPopust).toFixed(2)}{' '}
+                          <span className="txt-up txt-light">Eur</span>
+                        </p>
+                      )}
 
-                        <p className="fw-500 txt-right">
-                          {Number(ukupan_iznos_pdv).toFixed(2)}{' '}
-                          <span className="txt-up txt-light">Eur</span>
-                        </p>
-                        <p className="fw-500 txt-right">
-                          {Number(ukupna_cijena_sa_pdv_popust).toFixed(2)}{' '}
-                          <span className="txt-up txt-light">Eur</span>
-                        </p>
-                      </div>
+                      <p className="txt-right cd fw-500">
+                        {Number(ukupan_iznos_pdv).toFixed(2)}{' '}
+                        <span className="txt-up txt-light">Eur</span>
+                      </p>
+                      <p className="txt-right cd fw-500">
+                        {Number(ukupna_cijena_sa_pdv_popust).toFixed(2)}{' '}
+                        <span className="txt-up txt-light">Eur</span>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div style={{ width: '50%' }} className="col-md-6">
+                <div className="wrapper-100">
+                  <div className="wrapper-50">
                     {opis && (
                       <>
                         <p className="fw-500">Napomena:</p>
                         <p className="txt-light mb-25">{opis}</p>
                       </>
                     )}
-                    <div className="row">
-                      <div
-                        style={{ width: '33.3333333333%' }}
-                        className="col-md-4"
-                      >
-                        {/* ------------------ QR CODE ------------------ */}
-                        {jikr && ikof ? (
-                          <QRCode value="Set url here" size="64" />
-                        ) : null}
-                        {/*------------------ QR CODE ------------------*/}
-                      </div>
-                      <div
-                        style={{ width: '66.6666666667%' }}
-                        className="col-md-8"
-                      >
-                        <div className="df jc-sb">
-                          <div className="df fd-column">
-                            <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
-                            <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
-                          </div>
-                          <div className="df fd-column">
-                            <p className="txt-right">{jikr ? jikr : ''}</p>
-                            <p className="txt-right">{ikof ? ikof : ''}</p>
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                </div>
+                <div className="wrapper-100">
+                  {jikr && ikof ? (
+                    <div className="invoice-template__qr">
+                      {/* ------------------ QR CODE ------------------ */}
+
+                      <QRCode value="Set url here" size="100" />
+                    </div>
+                  ) : null}
+                  {/*------------------ QR CODE ------------------*/}
+
+                  <div className="wrapper-50">
+                    <div class="invoice-template__footer--info">
+                      <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
+                      <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
+                    </div>
+                    <div class="invoice-template__footer--values">
+                      <p className="txt-right">{jikr ? jikr : ''}</p>
+                      <p className="txt-right">{ikof ? ikof : ''}</p>
                     </div>
                   </div>
                 </div>
