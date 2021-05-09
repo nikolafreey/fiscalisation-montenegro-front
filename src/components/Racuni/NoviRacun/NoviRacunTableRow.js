@@ -37,7 +37,9 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
       <td>
         <p>{usluga?.naziv || roba.roba.naziv}</p>
         <h3 className="heading-quaternary">
-          {usluga?.opis || roba?.roba?.opis}
+          {usluga?.opis?.length > 50
+            ? usluga?.opis.substring(1, 50)
+            : usluga?.opis || roba?.roba?.opis}
         </h3>
       </td>
       <td className="cl">

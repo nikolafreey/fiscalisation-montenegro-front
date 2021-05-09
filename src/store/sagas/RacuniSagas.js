@@ -77,12 +77,14 @@ export function* bezgotovinskiRacunStore({ payload }) {
     localStorage.setItem('previousUrl', window.location.pathname);
     yield call(racuniService.storeBezgotovinskiRacun, payload);
     toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+    yield put(setRacun({}));
   } catch (error) {
     if (error.response.data.error.length > 50) {
       yield put(setGlobalError('Greška: Fiskalizacija nije uspješna!'));
       return;
     }
     yield put(setGlobalError(error.response.data.error));
+    yield put(setRacun({}));
   }
 }
 

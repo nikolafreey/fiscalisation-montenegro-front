@@ -68,9 +68,6 @@ const Modal = ({ label, obavezno = false, showModal, ...props }) => {
 
   return (
     <>
-      {/* <Label className="form__label" htmlFor={id}>
-        {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
-      </Label> */}
       {showModal && !depozitError && !depozitLoaded ? (
         <div className="modal" id="modal">
           <div className="modal__content">

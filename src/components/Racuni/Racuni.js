@@ -157,7 +157,9 @@ const Racuni = () => {
           {!depozitLoaded && (
             <button
               className="btn btn__secondary mob-mb-20"
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setShowModal(true);
+              }}
             >
               Registracija Depozita
             </button>

@@ -97,7 +97,10 @@ const NoviRacun = () => {
               <NoviRacunFilteri />
               <ChooseView view={view} setView={setView} />
             </div>
-            {robe.data.length === 0 && usluge.data.length === 0 ? (
+            {robe.data.length === 0 &&
+            usluge.data.length === 0 &&
+            !robe.path &&
+            !usluge.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : (
               <NoviRacunTable view={view} robe={robe} usluge={usluge} />
