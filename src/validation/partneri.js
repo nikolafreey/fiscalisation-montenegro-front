@@ -3,7 +3,6 @@ import $t from '../lang';
 
 export const PartneriSchema = Yup.object().shape({
   kontakt_ime: Yup.string()
-    .min(3, $t('validacija.unosKratak'))
     .max(50, $t('validacija.unosDugacak'))
     .required($t('validacija.obavezno')),
   /*prezime: Yup.string()
