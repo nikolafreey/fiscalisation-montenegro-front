@@ -12,6 +12,7 @@ import { SEP_PORTAL } from '../../config';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Polygon } from 'google-maps-react';
 
 toast.configure();
 
@@ -41,15 +42,16 @@ const Podesavanja = () => {
   const [email, setEmail] = useState();
   const [tipKorisnika, setTipKorisnika] = useState('default');
   const [slanjeRacunaKupcu, setSlanjeRacunaKupcu] = useState(false);
+  const [podesavanjeUcitano, setPodesavanjeUcitano] = useState();
 
   const godina = new Date().getFullYear();
-  const [redniBrojRacuna, setRedniBrojRacuna] = useState(1);
+  const [redniBrojRacuna, setRedniBrojRacuna] = useState(
+    podesavanjeUcitano && podesavanjeUcitano[0]?.redni_broj
+  );
   const [softwareKod, setSoftwareKod] = useState();
   const [enu, setEnu] = useState();
   const [kodPj, setKodPj] = useState();
   const [kodOp, setKodOp] = useState();
-
-  const [podesavanjeUcitano, setPodesavanjeUcitano] = useState();
 
   useEffect(() => {
     podesavanjaService.showPodesavanja().then((data) => {
@@ -72,7 +74,7 @@ const Podesavanja = () => {
       podesavanjaService
         .storePreduzece({
           preduzece_id: user?.preduzeca[0]?.id,
-          redni_broj: redniBrojRacuna,
+          redni_broj: redniBrojRacuna ? +redniBrojRacuna : 1,
           slanje_kupcu: slanjeRacunaKupcu,
           izgled_racuna: 0,
           pecat: digitalniPecatFile,
@@ -102,7 +104,7 @@ const Podesavanja = () => {
       formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
       formData.append('grad', user?.preduzeca[0]?.grad);
       formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
-      formData.append('oblik_preduzeca', 'D.O.O');
+      formData.append('oblik_preduzeca', user?.preduzeca[0]?.oblik_preduzeca);
       formData.append('pdv', user?.preduzeca[0]?.pdv);
       formData.append('pib', user?.preduzeca[0]?.pib);
       formData.append('digitalniPecatFile', digitalniPecatFile);
@@ -123,7 +125,9 @@ const Podesavanja = () => {
         .updatePreduzece({
           id: podesavanjeUcitano[0]?.id,
           preduzece_id: user?.preduzeca[0]?.id,
-          redni_broj: redniBrojRacuna,
+          redni_broj: redniBrojRacuna
+            ? +redniBrojRacuna
+            : podesavanjeUcitano && podesavanjeUcitano[0]?.redni_broj,
           slanje_kupcu: slanjeRacunaKupcu,
           izgled_racuna: 0,
           pecat: digitalniPecatFile,
@@ -286,13 +290,12 @@ const Podesavanja = () => {
                     <p className="txt-light">Informacije o preduzeću</p>
                   </div>
                   <div className="col-md-8 mt-25">
-                    {user?.preduzeca[0].length !== 0 && user?.preduzeca[0]?.logotip &&
-                    <div className="content__logo">
-                      <img
-                        src={user?.preduzeca[0]?.logotip}
-                        alt="logo"
-                      />
-                    </div>}
+                    {user?.preduzeca[0].length !== 0 &&
+                      user?.preduzeca[0]?.logotip && (
+                        <div className="content__logo">
+                          <img src={user?.preduzeca[0]?.logotip} alt="logo" />
+                        </div>
+                      )}
                     <p className="w-50">
                       {user?.preduzeca[0]?.kratki_naziv +
                         ' - ' +
@@ -400,8 +403,13 @@ const Podesavanja = () => {
                           className="form__input"
                           id="redni_broj_racuna"
                           name="redni_broj_racuna"
-                          onChange={(e) => setRedniBrojRacuna(e.target.value)}
-                          value={podesavanjeUcitano[0].redni_broj}
+                          onChange={(e) => {
+                            console.log('e.target.value', e.target.value);
+                            setRedniBrojRacuna(e.target.value);
+                          }}
+                          value={
+                            redniBrojRacuna || podesavanjeUcitano[0].redni_broj
+                          }
                         />
                       ) : (
                         <input
@@ -533,7 +541,7 @@ const Podesavanja = () => {
                             id="enu"
                             name="enu"
                             onChange={(e) => setEnu(e.target.value)}
-                            value={user.preduzeca[0].enu_kod}
+                            value={enu || user.preduzeca[0].enu_kod}
                           />
                         ) : (
                           <input
@@ -637,7 +645,7 @@ const Podesavanja = () => {
                             name="kodpj"
                             id="kodpj"
                             onChange={(e) => setKodPj(e.target.value)}
-                            value={user.preduzeca[0].kod_pj}
+                            value={kodPj || user.preduzeca[0].kod_pj}
                           />
                         ) : (
                           <input
@@ -687,7 +695,7 @@ const Podesavanja = () => {
                             name="kodop"
                             id="kodop"
                             onChange={(e) => setKodOp(e.target.value)}
-                            value={user.preduzeca[0].kod_operatera}
+                            value={kodOp || user.preduzeca[0].kod_operatera}
                           />
                         ) : (
                           <input
@@ -868,7 +876,10 @@ const Podesavanja = () => {
                       style={{ marginTop: -25, marginBottom: 20 }}
                       className="status"
                     >
-                      <div style={{ display: "inline-block" }} className="tag tag__warning">
+                      <div
+                        style={{ display: 'inline-block' }}
+                        className="tag tag__warning"
+                      >
                         Dostupno od 1. juna
                       </div>
                     </div>
@@ -1049,7 +1060,9 @@ const Podesavanja = () => {
                         />
                         <label htmlFor="eng" className="form__radio-label">
                           <span className="form__radio-button"></span>
-                          <span className="mob-ml-10">Pусский (запланировано)</span>
+                          <span className="mob-ml-10">
+                            Pусский (запланировано)
+                          </span>
                         </label>
                       </div>
                     </div>
@@ -1060,7 +1073,9 @@ const Podesavanja = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-md-4">
-                    <h2 className="heading-secondary">Boje <span class="tag tag__neutral ml-m">Start</span></h2>
+                    <h2 className="heading-secondary">
+                      Boje <span class="tag tag__neutral ml-m">Start</span>
+                    </h2>
                     <p className="mob-mb-20 txt-light">
                       Podesite boje aplikacije u skladu sa bojama Vašeg
                       preduzeća

@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../store/selectors/UserSelector';
 
 const Moduli = () => {
+  let user = useSelector(userSelector());
+
   return (
     <>
       <div className="title">
@@ -15,7 +19,9 @@ const Moduli = () => {
           </div>
           <div className="row">
             <div className="col-md-4">
-              <div className="box-modules active">
+              <div
+                className={`box-modules ${user?.paket === 1 ? 'active' : ''}`}
+              >
                 <h3 className="heading-tertiary fw-500">Osnovni Modul</h3>
                 <p className="txt-light fw-400">Mjesečno 10,00 EUR + PDV</p>
                 <span className="mark"></span>
@@ -388,7 +394,9 @@ const Moduli = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <div className="box-modules">
+              <div
+                className={`box-modules ${user?.paket === 2 ? 'active' : ''}`}
+              >
                 <h3 className="heading-tertiary fw-500 df">
                   Start
                   <span className="tag tag__success">Preporučujemo</span>
@@ -664,7 +672,9 @@ const Moduli = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <div className="box-modules">
+              <div
+                className={`box-modules ${user?.paket === 3 ? 'active' : ''}`}
+              >
                 <h3 className="heading-tertiary fw-500">Pro</h3>
                 <p className="txt-light fw-400">Mjesečno 50,00 EUR + PDV</p>
                 <span className="mark"></span>
@@ -779,151 +789,198 @@ const Moduli = () => {
           </div>
         </div>
         <div className="box-modules-wrapper">
-              <div className="title">
-                <h2 className="heading-secondary fw-500">
-                  Moduli
-                  <p className="txt-light">
-                    U narednom periodu biće dostupni razni moduli za unapređenje
-                    poslovanja
-                  </p>
-                </h2>
-                {/* <button className="btn btn__primary">Naruči module</button> */}
-              </div>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Skladište / Magacin</h3>
-                    <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Modul za kompletno upravljanje magacinom i zalihama</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Servis</h3>
-                    <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Modul za poslovanje servisa, kreiranje naloga, praćenje statusa i sl.</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Proizvodnja</h3>
-                    <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Modul za kompletno upravljanje procesom proizvodnje</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Veleprodaja</h3>
-                    <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Modul za poslovanje veleprodaje, izdavanje otpremnica, rabati i sl.</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Business to Business B2B</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Poslovanje i razmjena podataka između kupaca i dobavljača</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Arhiva</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Čuvanje i kategorisanje dokumentacije sa pretragom</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Nalozi</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Kreiranje i evidencija raznih vrsta naloga, putnih, radnih i sl.</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">HR + Obračun zarada</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Evidencija zaposlenih i obračun zarada sa kreiranjem poreskih prijava</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Osnovna sredstva</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Evidencija o osnovnim sredstvima preduzeća</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="box-modules"> {/* active */}
-                    <h3 className="heading-tertiary fw-500">Veći prostor za dokumenta</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Zakup većeg smještajnog kapaciteta za smještanje dokumentacije</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules"> {/* active */}
-                    <h3 className="heading-tertiary fw-500">Veći broj poslatih računa</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Veći broj poslatih automatizovanih računa na mjesečnom nivou</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Napredno izvještavanje</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Izvještaji za napredni pregled procesa i stanja u preduzeću</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Zatvaranje godine</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Završni račun, bilans stanja i uspjeha i sl.</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="box-modules">
-                    <h3 className="heading-tertiary fw-500">Custom izgled računa</h3>
-                     <p className="txt-light">Cijena će biti objavljena</p>
-                    <span className="mark"></span>
-                    <hr/>
-                    <p className="fw-400">Podešavanje izgleda računa u skladu sa vizuelnim identitetom preduzeća</p>
-                  </div>
-                </div>
+          <div className="title">
+            <h2 className="heading-secondary fw-500">
+              Moduli
+              <p className="txt-light">
+                U narednom periodu biće dostupni razni moduli za unapređenje
+                poslovanja
+              </p>
+            </h2>
+            {/* <button className="btn btn__primary">Naruči module</button> */}
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Skladište / Magacin</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Modul za kompletno upravljanje magacinom i zalihama
+                </p>
               </div>
             </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Servis</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Modul za poslovanje servisa, kreiranje naloga, praćenje
+                  statusa i sl.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Proizvodnja</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Modul za kompletno upravljanje procesom proizvodnje
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Veleprodaja</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Modul za poslovanje veleprodaje, izdavanje otpremnica, rabati
+                  i sl.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">
+                  Business to Business B2B
+                </h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Poslovanje i razmjena podataka između kupaca i dobavljača
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Arhiva</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Čuvanje i kategorisanje dokumentacije sa pretragom
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Nalozi</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Kreiranje i evidencija raznih vrsta naloga, putnih, radnih i
+                  sl.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">HR + Obračun zarada</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Evidencija zaposlenih i obračun zarada sa kreiranjem poreskih
+                  prijava
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Osnovna sredstva</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Evidencija o osnovnim sredstvima preduzeća
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="box-modules">
+                {' '}
+                {/* active */}
+                <h3 className="heading-tertiary fw-500">
+                  Veći prostor za dokumenta
+                </h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Zakup većeg smještajnog kapaciteta za smještanje dokumentacije
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                {' '}
+                {/* active */}
+                <h3 className="heading-tertiary fw-500">
+                  Veći broj poslatih računa
+                </h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Veći broj poslatih automatizovanih računa na mjesečnom nivou
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">
+                  Napredno izvještavanje
+                </h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Izvještaji za napredni pregled procesa i stanja u preduzeću
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">Zatvaranje godine</h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Završni račun, bilans stanja i uspjeha i sl.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="box-modules">
+                <h3 className="heading-tertiary fw-500">
+                  Custom izgled računa
+                </h3>
+                <p className="txt-light">Cijena će biti objavljena</p>
+                <span className="mark"></span>
+                <hr />
+                <p className="fw-400">
+                  Podešavanje izgleda računa u skladu sa vizuelnim identitetom
+                  preduzeća
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
