@@ -9,7 +9,7 @@ export const PreduzecaSchema = Yup.object().shape({
     .max(255, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.oblik_preduzeca')),
   pib: Yup.string()
-    .max(13, $t('validacija.unosDugacak'))
+    .length(13, $t('validacija.duzina', 13))
     .required($t('preduzecaValidation.pib')),
   pdv: Yup.string()
     .max(13, $t('validacija.unosDugacak'))
