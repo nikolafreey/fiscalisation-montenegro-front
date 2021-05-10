@@ -8,9 +8,7 @@ export const FizickaLicaSchema = Yup.object().shape({
   prezime: Yup.string()
     .max(50, $t('validacija.unosDugacak'))
     .required($t('fizickaLicaValidation.prezime')),
-  jmbg: Yup.string()
-    .length(13, $t('validacija.duzina', 13))
-    .required($t('fizickaLicaValidation.jmbg')),
+  jmbg: Yup.string().required($t('fizickaLicaValidation.jmbg')),
   grad: Yup.string()
     .max(255, $t('validacija.unosDugacak'))
     .required($t('fizickaLicaValidation.grad')),
