@@ -10,7 +10,7 @@
   "validacija": {
     "unosKratak": "Polje mora imati najmanje 3 karaktera",
     "obavezno": "Polje je obavezno",
-    "unosDugacak": "Polje može imati najviše 50 karaktera",
+    "unosDugacak": "Polje je predugačko!",
     "duzina": "Polje mora imati tačan broj karaktera",
     "url": "Unesite validan link",
     "email": "Unesite validan e-mail"

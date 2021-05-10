@@ -9,7 +9,7 @@ export const PreduzecaSchema = Yup.object().shape({
     .max(255, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.oblik_preduzeca')),
   pib: Yup.string()
-    .length(13, $t('validacija.duzina', 13))
+    .max(13, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.pib')),
   pdv: Yup.string()
     .max(13, $t('validacija.unosDugacak'))
@@ -24,5 +24,5 @@ export const PreduzecaSchema = Yup.object().shape({
     .max(255, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.drzava')),
   kategorija_id: Yup.number().required($t('preduzecaValidation.kategorija')),
-  djelatnost: Yup.number().required($t('preduzecaValidation.djelatnost')),
+  djelatnost_id: Yup.number().required($t('preduzecaValidation.djelatnost')),
 });

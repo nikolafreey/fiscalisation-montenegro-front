@@ -125,10 +125,14 @@ const PreduzecaForm = () => {
         telefon_facetime: false,
         pib: '',
         pdv: '',
-        djelatnost: '',
+        djelatnost_id: 1,
         kontakt_viber: false,
         kontakt_whatsapp: false,
         kontakt_facetime: false,
+        twitter_username: null,
+        instagram_username: null,
+        facebook_username: null,
+        skype_username: null,
         ovlasceno_lice_kontakt_viber: false,
         ovlasceno_lice_kontakt_whatsapp: false,
         ovlasceno_lice_kontakt_facetime: false,
@@ -262,7 +266,7 @@ const PreduzecaForm = () => {
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
                           <DropDown
-                            name="djelatnost"
+                            name="djelatnost_id"
                             label={$t('preduzeca.djelatnost')}
                             loadOptions={
                               djelatnostiService.getDjelatnostiDropdown
