@@ -26,6 +26,8 @@ const NoviRacunShowTemplate = () => {
   const user = useSelector(userSelector());
 
   console.log('user', user);
+  console.log('racun', racun);
+  console.log('componentRef', componentRef);
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
@@ -133,7 +135,11 @@ const NoviRacunShowTemplate = () => {
         }}
       >
         <div style={{ display: 'none' }}>
-          <NoviRacunPrintTemplate ref={componentRef} racun={racun} />
+          <NoviRacunPrintTemplate
+            ref={componentRef}
+            racun={racun}
+            user={user}
+          />
         </div>
 
         <div className="fiscal-bill-wrapper">

@@ -17,7 +17,16 @@ class NoviRacunPrintTemplate extends React.Component {
       ukupna_cijena_bez_pdv_popust,
       ukupna_cijena_sa_pdv_popust,
       porezi,
+      user_id,
+      user,
     } = this.props.racun;
+
+    let operaterIme = preduzece?.users.find((pred) => pred.id === user_id).ime;
+    let operaterPrezime = preduzece?.users.find((pred) => pred.id === user_id)
+      .prezime;
+
+    console.log('operaterIme', operaterIme);
+    console.log('operaterPrezime', operaterPrezime);
 
     function vratiUkupnoPlacanje() {
       var ukupnoPlacanje = 0;
@@ -58,7 +67,18 @@ class NoviRacunPrintTemplate extends React.Component {
                 </p>
                 <p>PIB: {preduzece && preduzece.pib ? preduzece.pib : ''}</p>
               </div>
-              <span>Operater: {kod_operatera ? kod_operatera : '-'}</span>
+              {/* <span>
+                Operater: {kod_operatera ? kod_operatera : user?.kod_operatera}
+              </span> */}
+              <span>
+                Operater:{' '}
+                {preduzece && preduzece.users.length > 0
+                  ? operaterIme + ' ' + operaterPrezime
+                  : '-'}
+                {preduzece && preduzece.kod_operatera
+                  ? ' (' + preduzece.kod_operatera + ')'
+                  : '-'}
+              </span>
             </div>
 
             <div className="fiscal-bill__body">
