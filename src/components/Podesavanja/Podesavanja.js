@@ -70,10 +70,10 @@ const Podesavanja = () => {
     if (podesavanjeUcitano.length === 0) {
       podesavanjaService
         .storePreduzece({
-          redni_broj: redniBrojRacuna,
-          izgled_racuna: 'default',
-          slanje_kupcu: slanjeRacunaKupcu,
           preduzece_id: user?.preduzeca[0]?.id,
+          redni_broj: redniBrojRacuna,
+          slanje_kupcu: slanjeRacunaKupcu,
+          izgled_racuna: 0,
           pecat: digitalniPecatFile,
           sertifikat: digitalniPotpisFile,
           pecatSifra: sifraDigitalniPecat,
@@ -81,16 +81,16 @@ const Podesavanja = () => {
           kod_pj: kodPj,
           enu_kod: enu,
           software_kod: softwareKod,
-          tamni_mod: 'Svijetli',
           kod_operatera: kodOp,
-          jezik: 'ME',
+          tamni_mod: 'svijetli',
+          jezik: 'me',
           boja: 'default',
         })
         .then((data) => console.log('response data:', data))
         .catch((error) => {
           console.error('error', error);
           toast.error(
-            'Greška prilikom unosa podešavanja: ' + error,
+            'Greška prilikom čuvanja podešavanja: ' + error,
             toastSettings
           );
         });
@@ -98,27 +98,27 @@ const Podesavanja = () => {
       podesavanjaService
         .updatePreduzece({
           id: podesavanjeUcitano[0]?.id,
-          redni_broj: redniBrojRacuna,
-          izgled_racuna: 'default',
-          slanje_kupcu: slanjeRacunaKupcu,
           preduzece_id: user?.preduzeca[0]?.id,
+          redni_broj: redniBrojRacuna,
+          slanje_kupcu: slanjeRacunaKupcu,
+          izgled_racuna: 0,
           pecat: digitalniPecatFile,
           sertifikat: digitalniPotpisFile,
           pecatSifra: sifraDigitalniPecat,
           sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
-          tamni_mod: 'Svijetli',
           software_kod: softwareKod,
           kod_operatera: kodOp,
-          jezik: 'ME',
+          tamni_mod: 'svijetli',
+          jezik: 'me',
           boja: 'default',
         })
         .then((data) => console.log('response data:', data))
         .catch((error) => {
           console.error('error', error);
           toast.error(
-            'Greška prilikom unosa podešavanja: ' + error,
+            'Greška prilikom čuvanja podešavanja: ' + error,
             toastSettings
           );
         });
@@ -129,8 +129,8 @@ const Podesavanja = () => {
     podesavanjaService
       .deleteKorisnika(user.id)
       .then((data) =>
-        toast.error(
-          'Obrisan korisnik pod nazivom: ' + user?.ime + ' ' + user?.prezime,
+        toast.success(
+          'Obrisan korisnik: ' + user?.ime + ' ' + user?.prezime,
           toastSettings
         )
       );
@@ -149,7 +149,7 @@ const Podesavanja = () => {
       .catch((error) => {
         console.error('error', error);
         toast.error(
-          'Greška prilikom unosa podešavanja: ' + error,
+          'Greška prilikom čuvanja podešavanja: ' + error,
           toastSettings
         );
       });
@@ -235,16 +235,13 @@ const Podesavanja = () => {
                     <p className="txt-light">Informacije o preduzeću</p>
                   </div>
                   <div className="col-md-8 mt-25">
+                    {user?.preduzeca[0].length !== 0 && user?.preduzeca[0]?.logotip &&
                     <div className="content__logo">
                       <img
-                        src={
-                          user?.preduzeca[0].length !== 0
-                            ? user?.preduzeca[0]?.logotip
-                            : noLogo
-                        }
+                        src={user?.preduzeca[0]?.logotip}
                         alt="logo"
                       />
-                    </div>
+                    </div>}
                     <p className="w-50">
                       {user?.preduzeca[0]?.kratki_naziv +
                         ' - ' +
@@ -816,6 +813,14 @@ const Podesavanja = () => {
                 <div className="row">
                   <div className="col-md-4 col-xl-4">
                     <h2 className="heading-secondary">Korisnici</h2>
+                    <div
+                      style={{ marginTop: -25, marginBottom: 20 }}
+                      className="status"
+                    >
+                      <div style={{ display: "inline-block" }} className="tag tag__warning">
+                        Dostupno od 1. juna
+                      </div>
+                    </div>
                     <p className="mb-10 txt-light">
                       Možete dodati nove korisnike aplikacije u okviru vašeg
                       preduzeća i tako im omogućiti upravljanje
@@ -833,16 +838,17 @@ const Podesavanja = () => {
                             {index !== 0 ? 'Suvlasnik' : 'Vlasnik'}
                           </p>
                         </div>
-                        <button
+                        {/* TODO: omoguciti kreiranje i brisanje korisnika iz preduzeca */}
+                        {/* <button
                           type="button"
                           className="btn btn__link danger mob-ml-10"
                           onClick={() => handleUkloniKorisnika(user)}
                         >
                           Ukloni
-                        </button>
+                        </button> */}
                       </div>
                     ))}
-                    <div className="df ai-c">
+                    {/* <div className="df ai-c">
                       <button
                         type="button"
                         className="btn btn__link df"
@@ -866,7 +872,7 @@ const Podesavanja = () => {
                           Kreiraj novog korisnika
                         </span>
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                   {korisniciVisible && (
                     <div className="col-md-4 col-xl-4">
@@ -982,6 +988,19 @@ const Podesavanja = () => {
                           <span className="mob-ml-10">English (soon)</span>
                         </label>
                       </div>
+                      <div className="form__radio-group">
+                        <input
+                          type="radio"
+                          className="form__radio-input"
+                          id="eng"
+                          name="language"
+                          disabled
+                        />
+                        <label htmlFor="eng" className="form__radio-label">
+                          <span className="form__radio-button"></span>
+                          <span className="mob-ml-10">Pусский (запланировано)</span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -990,7 +1009,7 @@ const Podesavanja = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-md-4">
-                    <h2 className="heading-secondary">Boje</h2>
+                    <h2 className="heading-secondary">Boje <span class="tag tag__neutral ml-m">Start</span></h2>
                     <p className="mob-mb-20 txt-light">
                       Podesite boje aplikacije u skladu sa bojama Vašeg
                       preduzeća
