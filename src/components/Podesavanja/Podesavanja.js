@@ -28,6 +28,7 @@ const toastSettings = {
 const Podesavanja = () => {
   const user = useSelector(userSelector());
   const history = useHistory();
+  console.log('user', user);
 
   const [korisniciVisible, setKorisniciVisible] = useState(false);
 
@@ -94,6 +95,29 @@ const Podesavanja = () => {
             toastSettings
           );
         });
+      // Upload Fajlova
+      let formData = new FormData();
+      formData.append('kratki_naziv', user?.preduzeca[0]?.kratki_naziv);
+      formData.append('adresa', user?.preduzeca[0]?.adresa);
+      formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
+      formData.append('grad', user?.preduzeca[0]?.grad);
+      formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('oblik_preduzeca', 'D.O.O');
+      formData.append('pdv', user?.preduzeca[0]?.pdv);
+      formData.append('pib', user?.preduzeca[0]?.pib);
+      formData.append('digitalniPecatFile', digitalniPecatFile);
+      formData.append('digitalniPotpisFile', digitalniPotpisFile);
+
+      podesavanjaService
+        .uploadFiles(formData, user.preduzeca[0]?.id)
+        .then((data) => console.log('response data file upload:', data))
+        .catch((error) => {
+          console.error('error', error);
+          toast.error(
+            'Greška prilikom dodavanja sertifikata: ' + error,
+            toastSettings
+          );
+        });
     } else {
       podesavanjaService
         .updatePreduzece({
@@ -119,6 +143,33 @@ const Podesavanja = () => {
           console.error('error', error);
           toast.error(
             'Greška prilikom unosa podešavanja: ' + error,
+            toastSettings
+          );
+        });
+
+      // Upload Fajlova
+      let formData = new FormData();
+      formData.append(
+        'kratki_naziv',
+        user?.preduzeca[0]?.kratki_naziv.toString()
+      );
+      formData.append('adresa', user?.preduzeca[0]?.adresa);
+      formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
+      formData.append('grad', user?.preduzeca[0]?.grad);
+      formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('oblik_preduzeca', 'D.O.O');
+      formData.append('pdv', user?.preduzeca[0]?.pdv);
+      formData.append('pib', user?.preduzeca[0]?.pib);
+      formData.append('digitalniPecatFile', digitalniPecatFile);
+      formData.append('digitalniPotpisFile', digitalniPotpisFile);
+
+      podesavanjaService
+        .uploadFiles(formData, user.preduzeca[0]?.id)
+        .then((data) => console.log('response data file upload:', data))
+        .catch((error) => {
+          console.error('error', error);
+          toast.error(
+            'Greška prilikom dodavanja sertifikata: ' + error,
             toastSettings
           );
         });
