@@ -37,12 +37,12 @@ class NoviRacunPrintTemplate extends React.Component {
     console.log('u printu', stavke, kod_operatera);
     return (
       <>
-        <div className="fiscal-bill-wrapper">
-          <div className="fiscal-bill">
+        <div className="fiscal-bill">
+          <div className="fiscal-page">
             <div className="fiscal-bill__header">
-              <div className="fiscal-bill__header--logo">
-                {/* <img src="https://picsum.photos/seed/picsum/200/100" alt="logo" /> */}
-              </div>
+              {/* <div className="fiscal-bill__header--logo">
+                <img src="https://picsum.photos/seed/picsum/200/100" alt="logo" />
+              </div> */}
               <div className="fiscal-bill__header--info">
                 <p>
                   {' '}
@@ -80,99 +80,93 @@ class NoviRacunPrintTemplate extends React.Component {
                       const stavka = stavke[stavkaId];
 
                       return (
-                        <div className="side-info__wrapper">
-                          <div className="side-info__info as-end mb-10">
-                            <div className="side-info__info--inner-wrapper mb-0">
-                              <div className="col-l w-break">
-                                <p className="txt-dark">{stavka.naziv}</p>
-                                <p className="txt-light">{stavka.opis}</p>
-                              </div>
-                              <div className="col-r w-break-unset">
-                                <div className="spn-mr-10 df">
-                                  {Number(stavka.popust_procenat) > 0 ||
-                                  Number(stavka.popust_iznos) > 0
-                                    ? (
-                                        Number(stavka.cijena_sa_pdv_popust) *
-                                        Number(stavka.kolicina)
-                                      )
-                                        .toFixed(2)
-                                        .replace('.', ',')
-                                    : (
-                                        Number(stavka.cijena_sa_pdv) *
-                                        Number(stavka.kolicina)
-                                      )
-                                        .toFixed(2)
-                                        .replace('.', ',')}
-                                </div>
-                              </div>
-                            </div>
-                            {(Number(stavka.popust_procenat) > 0 ||
-                              Number(stavka.popust_iznos) > 0) && (
-                              <div className="side-info__info--inner-wrapper mb-0">
-                                <div className="col-l w-break">
-                                  <p className="ml-15 txt-dark">
-                                    Kol <span>x</span> Cijena
-                                  </p>
-                                </div>
-                                <div className="col-r w-break-unset mr-m">
-                                  {Number(stavka.kolicina)
+                        <>
+                          <tr>
+                            <td className="left">
+                              <p className="txt-dark">{stavka.naziv}</p>
+                              <p className="txt-light">{stavka.opis}</p>
+                            </td>
+                            <td className="right">
+                              {Number(stavka.popust_procenat) > 0 ||
+                              Number(stavka.popust_iznos) > 0
+                                ? (
+                                    Number(stavka.cijena_sa_pdv_popust) *
+                                    Number(stavka.kolicina)
+                                  )
                                     .toFixed(2)
-                                    .replace('.', ',')}{' '}
-                                  x{' '}
-                                  {Number(stavka.cijena_sa_pdv)
+                                    .replace('.', ',')
+                                : (
+                                    Number(stavka.cijena_sa_pdv) *
+                                    Number(stavka.kolicina)
+                                  )
                                     .toFixed(2)
                                     .replace('.', ',')}
-                                </div>
-                              </div>
-                            )}
+                            </td>
+                          </tr>
+                          {(Number(stavka.popust_procenat) > 0 ||
+                            Number(stavka.popust_iznos) > 0) && (
+                            <tr>
+                              <td className="left">
+                                <p className="ml-15 txt-dark">
+                                  Kol <span>x</span> Cijena
+                                </p>
+                              </td>
+                              <td className="left">
+                                {Number(stavka.kolicina)
+                                  .toFixed(2)
+                                  .replace('.', ',')}{' '}
+                                x{' '}
+                                {Number(stavka.cijena_sa_pdv)
+                                  .toFixed(2)
+                                  .replace('.', ',')}
+                              </td>
+                            </tr>
+                          )}
 
-                            {(stavka.popust_iznos > 0 ||
-                              stavka.popust_procenat > 0) && (
-                              <>
-                                <div className="side-info__info--inner-wrapper mb-0">
-                                  <div className="col-l w-break">
-                                    <p className="ml-15 txt-dark">
-                                      Popust{' '}
-                                      {Number(stavka.popust_procenat) > 0
-                                        ? Number(stavka.popust_procenat) + '%'
-                                        : 'u iznosu'}
-                                    </p>
-                                  </div>
-                                  <div className="col-r w-break-unset">
-                                    <span className="mr-m">
-                                      {'-'}
-                                      {(
-                                        (Number(stavka.cijena_sa_pdv) -
-                                          Number(stavka.cijena_sa_pdv_popust)) *
-                                        Number(stavka.kolicina)
-                                      )
-                                        .toFixed(2)
-                                        .replace('.', ',')}
-                                    </span>
-                                  </div>
-                                </div>
+                          {(stavka.popust_iznos > 0 ||
+                            stavka.popust_procenat > 0) && (
+                            <>
+                              <tr>
+                                <td className="left">
+                                  <p className="ml-15 txt-dark">
+                                    Popust{' '}
+                                    {Number(stavka.popust_procenat) > 0
+                                      ? Number(stavka.popust_procenat) + '%'
+                                      : 'u iznosu'}
+                                  </p>
+                                </td>
+                                <td className="right">
+                                  <span className="mr-m">
+                                    {'-'}
+                                    {(
+                                      (Number(stavka.cijena_sa_pdv) -
+                                        Number(stavka.cijena_sa_pdv_popust)) *
+                                      Number(stavka.kolicina)
+                                    )
+                                      .toFixed(2)
+                                      .replace('.', ',')}
+                                  </span>
+                                </td>
+                              </tr>
 
-                                <div className="side-info__info--inner-wrapper mb-0">
-                                  <div className="col-l w-break">
-                                    <p className="ml-15 txt-dark">
-                                      Cijena sa popustom{' '}
-                                    </p>
-                                  </div>
-                                  <div className="col-r w-break-unset">
-                                    <span className="mr-m">
-                                      {(
-                                        Number(stavka.cijena_sa_pdv_popust) *
-                                        Number(stavka.kolicina)
-                                      )
-                                        .toFixed(2)
-                                        .replace('.', ',')}
-                                    </span>
-                                  </div>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
+                              <tr>
+                                <td className="left">
+                                  <p className="ml-15 txt-dark">
+                                    Cijena sa popustom{' '}
+                                  </p>
+                                </td>
+                                <td className="right">
+                                  {(
+                                    Number(stavka.cijena_sa_pdv_popust) *
+                                    Number(stavka.kolicina)
+                                  )
+                                    .toFixed(2)
+                                    .replace('.', ',')}
+                                </td>
+                              </tr>
+                            </>
+                          )}
+                        </>
                       );
                     })
                   : null}
@@ -184,16 +178,16 @@ class NoviRacunPrintTemplate extends React.Component {
                     const porez = porezi[porezId];
 
                     return (
-                      <div>
+                      <>
                         <tr>
-                          <td className="w-33">
+                          <td className="left">
                             {'PDV '} {porez.naziv}
                           </td>
-                          <td className="w-33">
+                          <td className="right">
                             {formatirajCijenu(stavke[porezId].pdv_iznos_ukupno)}
                           </td>
                         </tr>
-                      </div>
+                      </>
                     );
                   })}
               </table>
