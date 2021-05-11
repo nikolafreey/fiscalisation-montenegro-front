@@ -72,7 +72,7 @@ const NoviRacunPreviewStavka = ({ roba, usluga }) => {
                     .toFixed(2)
                     .replace('.', ',') + '€'}
 
-              <span className="btn btn__link danger df" onClick={handleRemove}>
+              <span className="btn btn__link danger df ai-start" onClick={handleRemove}>
                 <DeleteIcon />
               </span>
             </div>

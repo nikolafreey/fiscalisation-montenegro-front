@@ -34,12 +34,12 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
             className="img-round sm"
             style={{ backgroundImage: `url(${partner.preduzece?.logotip})` }}
           ></div> */}
-          <img
+          {/* <img
             // src={partner.preduzece?.logotip} // TODO:mora logotip path logfo.png ili logo
             className="img-round sm"
             alt=""
             // alt={partner.preduzece?.kratki_naziv}
-          />
+          /> */}
           <div className="td-title">
             <p>
               <span>

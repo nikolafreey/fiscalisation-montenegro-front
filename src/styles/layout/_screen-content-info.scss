@@ -22,6 +22,25 @@
       flex-wrap: wrap;
     }
   }
+  .back-link {
+    margin-top: 4rem;
+
+    svg {
+      margin-right: 2rem;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out; /** Chrome & Safari **/
+      -moz-transition: all 0.3s ease-in-out; /** Firefox **/
+      -o-transition: all 0.3s ease-in-out; /** Opera **/
+    }
+    &:hover {
+      svg {
+        transform: translate(-0.5rem, 0);
+        -webkit-transform: translate(-0.5rem, 0); /** Chrome & Safari **/
+        -o-transform: translate(-0.5rem, 0); /** Opera **/
+        -moz-transform: translate(-0.5rem, 0); /** Firefox **/
+      }
+    }
+  }
   .content {
     width: 70%;
     @include respond(tab-land) {

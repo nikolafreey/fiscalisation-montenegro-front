@@ -181,7 +181,7 @@ const NoviRacunShowTemplate = () => {
               </div>
 
               <div className="fiscal-bill__body">
-                <table cellspacing="0" cellpadding="0">
+                <table className="table-fiscal" cellspacing="0" cellpadding="0">
                   {racun && racun?.stavke?.length > 0
                     ? Object.keys(racun.stavke).map((stavkaId) => {
                         const stavka = racun.stavke[stavkaId];
@@ -295,7 +295,7 @@ const NoviRacunShowTemplate = () => {
                   return (<p>tttt</p>);
                 })}
               </table> */}
-                <table>
+                <table className="table-fiscal">
                   {Object.keys(porezi).map((porezId) => {
                     const porez = porezi[porezId];
 
@@ -338,10 +338,10 @@ const NoviRacunShowTemplate = () => {
                   })}
                 </table>
 
-                <table cellspacing="0" cellpadding="0">
+                <table className="table-fiscal" cellspacing="0" cellpadding="0">
                   <div className="side-info__wrapper"></div>
                 </table>
-                <table cellspacing="0" cellpadding="0">
+                <table className="table-fiscal" cellspacing="0" cellpadding="0">
                   <tr>
                     <td className="left">Ukupan PDV</td>
                     <td className="right nowrap">

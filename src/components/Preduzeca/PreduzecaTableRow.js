@@ -23,12 +23,12 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
       {/* TODO: ako postoji logotip ako ne onda default ili bez img i klasa td-title margin-left:0 ili bez te klase*/}
       <td>
         <div className="inner-td-wrapper">
-          <img
+          {/* <img
             src={item.logotip}
             className="img-round sm"
             alt=""
             //alt={item.kratki_naziv}
-          />
+          /> */}
           <div className="td-title">
             <p>
               {item.kratki_naziv}
@@ -54,7 +54,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
           {item.partneri ? (
             <CheckIcon className="icon icon__dark sm" />
           ) : (
-            <PlusIcon className="icon icon__light sm" />
+            <PlusIcon className="icon icon__dark sm" />
           )}
           Partner
         </button>
