@@ -25,11 +25,17 @@
     }
   }
   .active {
-    background-color: $color-background-dark !important;
+    @include themify($themes) {
+      background-color: themed(gridViewActiveBgColor) !important;
+    }
     svg {
-      stroke: $color-background-light !important;
+      @include themify($themes) {
+        stroke: themed(gridViewActiveColor) !important;
+      }
       path {
-        stroke: $color-background-light !important;
+        @include themify($themes) {
+          stroke: themed(gridViewActiveColor) !important;
+        }
       }
     }
   }

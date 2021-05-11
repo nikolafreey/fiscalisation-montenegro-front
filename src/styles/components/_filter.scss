@@ -25,7 +25,9 @@
     cursor: pointer;
   }
   .active {
-    background-color: $color-background-dark !important;
-    color: $color-background-light;
+    @include themify($themes) {
+      background-color: themed(filterActiveBgColor) !important;
+      color: themed(filterActiveColor);
+    }
   }
 }

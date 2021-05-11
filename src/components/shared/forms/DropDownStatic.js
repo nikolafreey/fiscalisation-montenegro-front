@@ -10,6 +10,15 @@ const DropDownStatic = ({ onChangeExtra, label, options, ...props }) => {
 
   const { error } = meta;
   const { setValue } = helpers;
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      minHeight: 'unset',
+    }),
+  };
   return (
     <div>
       <Label htmlFor={props.id || props.name} className="form__label">{label}</Label>
@@ -23,6 +32,7 @@ const DropDownStatic = ({ onChangeExtra, label, options, ...props }) => {
           if (onChangeExtra) onChangeExtra(option);
         }}
         value={selectedLabel ? selectedLabel : props.defaultValue }
+        styles={selectStyle}
         isSearchable
       />
 
