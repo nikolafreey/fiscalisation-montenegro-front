@@ -150,32 +150,36 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     }
     stavka = {
       ...stavka,
-      cijena_sa_pdv_popust: Number(cijena_sa_popustom).toFixed(4),
+      cijena_sa_pdv_popust: Number(cijena_sa_popustom),
+      // cijena_sa_pdv_popust: Number(cijena_sa_popustom).toFixed(4),
     };
-   
+
     if (Number(values?.stavke[indStavke]?.cijena_bez_pdv_popust) === 0) {
-    
+
     }
-    
+
     if (stavka?.porez?.stopa > 0) {
       stavka = {
         ...stavka,
         cijena_bez_pdv_popust: (
           Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
-        ).toFixed(4),
+        ),
+        // cijena_bez_pdv_popust: (
+        //   Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
+        // ).toFixed(4),
       };
 
      if (!stavka?.kolicina) {
       stavka={...stavka,kolicina:1}
      }
-   
+
     //  stavka={...stavka,tip_popusta:getPopustStavke(stavka).tip_popusta,popust:getPopustStavke(stavka).iznos}
-    
+
     //  values.niz[values.stavke.length-1].popust=values.stavke[values.stavke.length-1].popust;
     //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
      values.niz[values.stavke.length-1]=stavka
-     
-    
+
+
      console.log('popu==',values)
       return (
         Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
@@ -220,14 +224,15 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     // console.log('getIznosPdv(stavka)',getIznosPdv(stavka))
     stavka = {
       ...stavka,
-      iznos_pdv_popust: Number(getIznosPdv(stavka).toFixed(2)),
+      iznos_pdv_popust: Number(getIznosPdv(stavka)),
+      // iznos_pdv_popust: Number(getIznosPdv(stavka).toFixed(2)),
     };
     return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
     //stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
-    
+
     return (
       getCijenaStavkeBezPdv(stavka) *
       (stavka && stavka.kolicina ? stavka.kolicina : 1)
