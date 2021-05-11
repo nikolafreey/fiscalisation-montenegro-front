@@ -82,7 +82,7 @@ class NoviRacunPrintTemplate extends React.Component {
             </div>
 
             <div className="fiscal-bill__body">
-              <table cellspacing="0" cellpadding="0">
+              <div className="table-fiscal" cellspacing="0" cellpadding="0">
                 {stavke?.length > 0
                   ? stavke?.map((stavka) => {
                       return (
@@ -93,8 +93,8 @@ class NoviRacunPrintTemplate extends React.Component {
                       );
                     })
                   : null}
-              </table>
-              <table cellspacing="0" cellpadding="0">
+              </div>
+              <div className="table-fiscal" cellspacing="0" cellpadding="0">
                 {stavke?.length > 0
                   ? Object.keys(stavke).map((stavkaId) => {
                       const stavka = stavke[stavkaId];
@@ -191,8 +191,8 @@ class NoviRacunPrintTemplate extends React.Component {
                     })
                   : null}
                 {/* kraj */}
-              </table>
-              <table cellspacing="0" cellpadding="0">
+              </div>
+              <div className="table-fiscal" cellspacing="0" cellpadding="0">
                 {porezi &&
                   Object.keys(porezi).map((porezId) => {
                     const porez = porezi[porezId];
@@ -210,9 +210,9 @@ class NoviRacunPrintTemplate extends React.Component {
                       </>
                     );
                   })}
-              </table>
+              </div>
 
-              <table cellspacing="0" cellpadding="0">
+              <div className="table-fiscal" cellspacing="0" cellpadding="0">
                 <tr>
                   <td className="left">Ukupno PDV </td>
                   <td className="right">
@@ -227,7 +227,7 @@ class NoviRacunPrintTemplate extends React.Component {
                     <h2>{formatirajCijenu(ukupna_cijena_sa_pdv_popust)}</h2>
                   </td>
                 </tr>
-              </table>
+              </div>
             </div>
             <div className="fiscal-bill__footer">
               <p>Br. računa: {broj_racuna}</p>

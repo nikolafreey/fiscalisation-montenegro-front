@@ -69,7 +69,7 @@
 .fiscal-bill {
   position: relative;
   font-family: "Inconsolata", monospace !important;
-  font-size: 16pt;
+  font-size: 15pt;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -92,7 +92,7 @@
     }
   }
   &__body {
-    table {
+    .table-fiscal {
       // border: none;
       width: 100%!important;
       h2 {
@@ -140,7 +140,7 @@
   }
 
   p {
-    font-size: 16pt;
+    font-size: 15pt;
     line-height: 20pt;
   }
 }
@@ -157,45 +157,45 @@
 }
 
 
-@media print and (min-width: 2in) and (max-width: 4in) {
-  html,
-  body {
-    max-width: 4in!important;
-    width: 2in!important;
-    margin: 0mm!important;
-    height: 100%;
-  }
-}
-@media print and (min-width: 4.1in) and (max-width: 6in) {
-  /* index card styling */
-}
+// @media print and (min-width: 2in) and (max-width: 4in) {
+//   html,
+//   body {
+//     max-width: 4in!important;
+//     width: 2in!important;
+//     margin: 0mm!important;
+//     height: 100%;
+//   }
+// }
+// @media print and (min-width: 4.1in) and (max-width: 6in) {
+//   /* index card styling */
+// }
 
-@media print and (min-width: 7in) and (min-height: 13in) {
-  /* legal-size styling */
-}
-@media print and (min-width:210mm) and (min-height: 105mm) {
-  html,
-  body {
-    width: 210mm!important;
-    margin: 0mm!important;
-    height: 105mm!important;
-    .fiscal-page {
-      margin: 0 !important;
-      padding: 3mm !important;
-      border: initial !important;
-      border-radius: initial !important;
-      width: 210mm !important;
-      min-height: initial;
-      box-shadow: initial;
-      background: #fff !important;
-      page-break-after: always !important;
-    }
-  }
-}
+// @media print and (min-width: 7in) and (min-height: 13in) {
+//   /* legal-size styling */
+// }
+// @media print and (min-width:210mm) and (min-height: 105mm) {
+//   html,
+//   body {
+//     width: 210mm!important;
+//     margin: 0mm!important;
+//     height: 105mm!important;
+//     .fiscal-page {
+//       margin: 0 !important;
+//       padding: 3mm !important;
+//       border: initial !important;
+//       border-radius: initial !important;
+//       width: 210mm !important;
+//       min-height: initial;
+//       box-shadow: initial;
+//       background: #fff !important;
+//       page-break-after: always !important;
+//     }
+//   }
+// }
 @media print {
   html,
   body {
-    // max-width: 210mm;
+   max-width: 210mm;
     width: 100%!important;
     // min-height: 297mm;
     height: 100%;
@@ -220,6 +220,7 @@
     //   }
     // }
     .fiscal-page {
+      font-family: "Inconsolata", monospace !important;
       margin: 0 !important;
       padding: 3mm !important;
       border: initial !important;
@@ -231,7 +232,7 @@
       page-break-after: always !important;
     }
 
-    table {
+    .table-fiscal {
       display: table !important;
       table-layout: fixed !important;
       page-break-inside: auto !important;
@@ -249,9 +250,9 @@
         page-break-inside: avoid;
         page-break-after: auto;
         border: solid!important;
-        // border-style: none !important;
+        border-style: none !important;
         // width: 100%;
-        // border-width: 0!important;
+       border-width: 0!important;
         border-top: 1pt solid #fff!important;
       }
       td {

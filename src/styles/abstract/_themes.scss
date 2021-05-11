@@ -35,6 +35,15 @@ $themes: (
     inputFocusColor:$blue-600,
     tableRowBgActiveColor:$blue-50,
     backgroundShadowColor:$blue-900,
+    filterActiveBgColor: $blue-600,
+    filterActiveColor: $blue-50,
+    gridViewActiveBgColor: $blue-600,
+    gridViewActiveColor: $blue-50,
+    stepperBtnBgColor: $blue-600,
+    stepperBtnColor: $blue-50,
+    stepperBtnHoverBgColor: $blue-500,
+    stepperBtnHoverColor: $blue-100,
+   
   ),
   blueGray: (
     primaryBtnBgColor: $blueGray-600,

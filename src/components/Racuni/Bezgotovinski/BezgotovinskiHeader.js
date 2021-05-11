@@ -55,7 +55,7 @@ const BezgotovinskiHeader = () => {
               <ReactDatePicker
                 selected={values.datum_za_placanje}
                 onChange={(date) => setFieldValue('datum_za_placanje', date)}
-                className="form__input w-100 mt-12 mob-mt-20"
+                className="form__input w-100"
                 placeholderText="Rok za plaćanje"
                 dateFormat="dd/MM/yyyy"
               />
