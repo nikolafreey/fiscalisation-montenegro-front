@@ -1,4 +1,4 @@
-import { useFormikContext,Field } from 'formik';
+import { useFormikContext, Field } from 'formik';
 import React, { useEffect, useState, useRef } from 'react';
 import StavkeDropdown from '../NoviRacun/StavkeDropdown';
 import { ReactComponent as RemoveIcon } from '../../../assets/icon/remove.svg';
@@ -34,38 +34,40 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }, [dispatch]);
 
   const { values, setFieldValue } = useFormikContext();
-  React.useEffect((index,stavka) => {
-    // Submit the form imperatively as an effect as soon as form values.token are 6 digits long
-    if (values.stavke.length >0 ) {
-      setFieldValue(
-        `stavke.${index}.cijena_sa_pdv_popust`,
-        getUkupnaCijenaSaPdv(stavka)
-      );
-    }
-  }, [values, setFieldValue]);
-  
+  React.useEffect(
+    (index, stavka) => {
+      // Submit the form imperatively as an effect as soon as form values.token are 6 digits long
+      if (values.stavke.length > 0) {
+        setFieldValue(
+          `stavke.${index}.cijena_sa_pdv_popust`,
+          getUkupnaCijenaSaPdv(stavka)
+        );
+      }
+    },
+    [values, setFieldValue]
+  );
+
   //console.log('bg values pre', values);
   const usluga2 = useSelector(uslugaSelector());
   const roba2 = useSelector(robaSelector());
-  
+
   const [porezi, setPorezi] = useState([]);
   useEffect(() => {
     dispatch(getStavke());
     (async () => setPorezi((await poreziService.getPorezi()).data))();
   }, [dispatch]);
 
-  var usluga=Object.assign({},usluga2);
-  var roba=Object.assign({},roba2);
-  usluga.kolicina=1;
-  const removeNiz=(ind)=>{
-    if (ind>=0) {
+  var usluga = Object.assign({}, usluga2);
+  var roba = Object.assign({}, roba2);
+  usluga.kolicina = 1;
+  const removeNiz = (ind) => {
+    if (ind >= 0) {
       values.niz.splice(ind);
     }
-    };
+  };
   const ucbpdv = useRef();
-  
+
   function getPopustStavke(stavka) {
-    
     if (
       Number(stavka?.grupa?.popust_procenti) > 0 ||
       Number(stavka?.atribut_robe?.popust_procenti) > 0
@@ -103,32 +105,30 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     if (stavka.tip_popusta === 'procenat')
       return cijena - (Number(stavka.popust || 0) * cijena) / 100;
   }
- 
 
- 
   function izracunajPocetnuCijenuSaPopustom(stavka, cijena) {
- 
-    stavka={...stavka,kolicina:1}
-  
+    stavka = { ...stavka, kolicina: 1 };
+
     let popustStart = getPopustStavke(stavka);
-    
+
     if (!popustStart?.tip_popusta) return cijena;
-    if (popustStart.tip_popusta === 'iznos'){
-      stavka={...stavka,popust_iznos:popustStart.iznos}
+    if (popustStart.tip_popusta === 'iznos') {
+      stavka = { ...stavka, popust_iznos: popustStart.iznos };
       // stavka.tip_popusta=popustStart.tip_popusta;
       // stavka.popust=popustStart.iznos;
-      values.niz[values.stavke.length-1]=stavka;
-      console.log('popustStart',popustStart,stavka)
+      values.niz[values.stavke.length - 1] = stavka;
+      console.log('popustStart', popustStart, stavka);
       return Number(cijena) - Number(popustStart.iznos);
     }
-      
-    if (popustStart.tip_popusta === 'procenat'){
-      stavka.tip_popusta=popustStart.tip_popusta;
-      stavka.popust=popustStart.iznos;
-      values.niz[values.stavke.length-1]=stavka;
-      console.log('popustStart',popustStart,stavka)
+
+    if (popustStart.tip_popusta === 'procenat') {
+      stavka.tip_popusta = popustStart.tip_popusta;
+      stavka.popust = popustStart.iznos;
+      values.niz[values.stavke.length - 1] = stavka;
+      console.log('popustStart', popustStart, stavka);
       return cijena - (Number(popustStart.iznos || 0) * cijena) / 100;
-    }}
+    }
+  }
 
   function getCijenaStavkeBezPdv(stavka, index) {
     let cijena_sa_popustom;
@@ -152,11 +152,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       ...stavka,
       cijena_sa_pdv_popust: Number(cijena_sa_popustom).toFixed(4),
     };
-   
+
     if (Number(values?.stavke[indStavke]?.cijena_bez_pdv_popust) === 0) {
-    
     }
-    
+
     if (stavka?.porez?.stopa > 0) {
       stavka = {
         ...stavka,
@@ -165,27 +164,25 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
         ).toFixed(4),
       };
 
-     if (!stavka?.kolicina) {
-      stavka={...stavka,kolicina:1}
-     }
-   
-    //  stavka={...stavka,tip_popusta:getPopustStavke(stavka).tip_popusta,popust:getPopustStavke(stavka).iznos}
-    
-    //  values.niz[values.stavke.length-1].popust=values.stavke[values.stavke.length-1].popust;
-    //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
-     values.niz[values.stavke.length-1]=stavka
-     
-    
-     console.log('popu==',values)
+      if (!stavka?.kolicina) {
+        stavka = { ...stavka, kolicina: 1 };
+      }
+
+      //  stavka={...stavka,tip_popusta:getPopustStavke(stavka).tip_popusta,popust:getPopustStavke(stavka).iznos}
+
+      //  values.niz[values.stavke.length-1].popust=values.stavke[values.stavke.length-1].popust;
+      //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
+      values.niz[values.stavke.length - 1] = stavka;
+
+      console.log('popu==', values);
       return (
         Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
       );
     } else {
       stavka = { ...stavka, cijena_bez_pdv_popust: Number(cijena_sa_popustom) };
-      values.niz[values.stavke.length-1]=stavka
+      values.niz[values.stavke.length - 1] = stavka;
       return Number(cijena_sa_popustom);
     }
-   
   }
   function getPorezForId(porezId) {
     return porezi?.find((porez) => porez.id === porezId) || {};
@@ -227,7 +224,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
-    
     return (
       getCijenaStavkeBezPdv(stavka) *
       (stavka && stavka.kolicina ? stavka.kolicina : 1)
@@ -235,7 +231,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaSaPdv(stavka) {
-      
     return (
       getUkupnaCijenaStavke(stavka) *
       (stavka && stavka.kolicina ? stavka.kolicina : 1)
@@ -247,19 +242,22 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function handleChoosePopust(option, stavka, index) {
-    console.log('popust=====',option, stavka, index,stavka.popust)
+    console.log('popust=====', option, stavka, index, stavka.popust);
     if (option.value === 'procenat') {
       setFieldValue(
         `values.${index}.popust`,
-        stavka.popust? stavka.popust: stavka.roba
+        stavka.popust
+          ? stavka.popust
+          : stavka.roba
           ? stavka.roba?.cijene_roba[0]?.popust_procenti
           : stavka.grupa.popust_procenti
-       
       );
     } else if (option.value === 'iznos') {
       setFieldValue(
         `values.${index}.popust`,
-        stavka.popust? stavka.popust:stavka.roba
+        stavka.popust
+          ? stavka.popust
+          : stavka.roba
           ? stavka.roba?.cijene_roba[0]?.popust_iznos
           : stavka.grupa.popust_iznos
       );
@@ -267,15 +265,15 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
     }
   }
-//values.stavke=values.niz;
-// if (values.stavke.length !==values.a.length) {
-//   values.a.push({cena:values.stavke.length})
-// }
+  //values.stavke=values.niz;
+  // if (values.stavke.length !==values.a.length) {
+  //   values.a.push({cena:values.stavke.length})
+  // }
 
-//values.a.push({cena:values.stavke.length})
-console.log('val=a=', values.a,values);
-  console.log('val=kraj', values,values.stavke.length,values.niz.length);
-  
+  //values.a.push({cena:values.stavke.length})
+  console.log('val=a=', values.a, values);
+  console.log('val=kraj', values, values.stavke.length, values.niz.length);
+
   return (
     <>
       {values.stavke.map((stavka, index) => (
@@ -285,7 +283,10 @@ console.log('val=a=', values.a,values);
               <div className="df jc-sb ai-c w-100">
                 <h2 className="heading-secondary">{index + 1}</h2>
                 <p
-                  onClick={() => {remove(index);removeNiz(index);}}
+                  onClick={() => {
+                    remove(index);
+                    removeNiz(index);
+                  }}
                   className="btn btn__link danger"
                 >
                   Ukloni stavku
@@ -310,8 +311,7 @@ console.log('val=a=', values.a,values);
                   <div className="form-group">
                     <input
                       type="text"
-                      
-                       value={formatirajCijenu(getCijenaStavkeBezPdv(stavka))}
+                      value={formatirajCijenu(getCijenaStavkeBezPdv(stavka))}
                       // value={
                       //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                       //       stavka?.ukupna_cijena
@@ -442,8 +442,8 @@ console.log('val=a=', values.a,values);
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
                           value={
-                            (stavka?.roba?.cijene_roba[0]?.ukupna_cijena )||
-                            (stavka?.ukupna_cijena)
+                            stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                            stavka?.ukupna_cijena
                           }
                           className="form__input mb-12"
                           placeholder="Sa PDV"
@@ -495,7 +495,6 @@ console.log('val=a=', values.a,values);
                           name="popust"
                           type="number"
                           className="form__input mb-12"
-                         
                           value={
                             stavka?.popust
                               ? stavka?.popust
@@ -541,12 +540,11 @@ console.log('val=a=', values.a,values);
                         <div className="form__box">
                           <p className="txt-light">Ukupna cijena sa PDV-om</p>
                           <h2 className="heading-secondary">
-                        
                             {formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}
                           </h2>
                         </div>
                       </div>
-                    </div>                  
+                    </div>
                   </div>
                 </div>
               </div>

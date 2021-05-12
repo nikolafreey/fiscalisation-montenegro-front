@@ -35,7 +35,7 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
   return (
     <tr onClick={handleClick} className={stavka.kolicina ? 'active' : ''}>
       <td>
-        <p>{usluga?.naziv || roba.roba.naziv}</p>
+        <p>{usluga?.naziv || roba?.roba?.naziv}</p>
         <h3 className="heading-quaternary">
           {usluga?.opis?.length > 50
             ? usluga?.opis.substring(1, 50)
@@ -43,12 +43,12 @@ const NoviRacunTableRow = ({ usluga = {}, roba = {} }) => {
         </h3>
       </td>
       <td className="cl">
-        {usluga?.jedinica_mjere?.naziv || roba.roba.jedinica_mjere?.naziv}
+        {usluga?.jedinica_mjere?.naziv || roba?.roba?.jedinica_mjere?.naziv}
       </td>
       <td className="cd fw-500 txt-right mob-txt-left">
         <p>
           {usluga?.ukupna_cijena ||
-            Number(roba.roba.cijene_roba[0]?.ukupna_cijena)
+            Number(roba?.roba?.cijene_roba[0]?.ukupna_cijena)
               ?.toFixed(2)
               .replace('.', ',') + '€'}
         </p>

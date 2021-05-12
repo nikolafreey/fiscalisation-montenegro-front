@@ -1,4 +1,5 @@
 import { ErrorMessage, useField } from 'formik';
+import { placeholder } from 'i18n-js';
 import { debounce } from 'lodash';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +15,12 @@ import Label from '../../shared/forms/Label';
 
 const searchDebounced = debounce((callback) => callback(), 500);
 
-const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
+const StavkeDropdown = ({
+  label,
+  defaultValue,
+  onChangeExtra = null,
+  ...props
+}) => {
   const dispatch = useDispatch();
 
   const robe = useSelector(stavkeRobeSelector()) || { data: [] };
@@ -62,7 +68,10 @@ const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
         onChange={onStavkaChange}
         onInputChange={onInputChange}
         value={{
-          label: field.value?.roba?.naziv || field.value?.naziv,
+          label:
+            field.value?.roba?.naziv ||
+            field.value?.naziv ||
+            'Unesite ime stavke. . .',
           value: field.value,
         }}
       />
