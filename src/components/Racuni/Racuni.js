@@ -244,7 +244,7 @@ const Racuni = () => {
               </div>
 
               {searchVisible && (
-                <div className="box">
+                <div className={searchVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
                   <span onClick={resetSearch} className="box__close">
@@ -254,7 +254,7 @@ const Racuni = () => {
               )}
 
               {statusVisible && (
-                <div className="box">
+                <div className={statusVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
                   <span onClick={resetStatus} className="box__close">
@@ -264,7 +264,11 @@ const Racuni = () => {
               )}
 
               {dateStartVisible || dateEndVisible ? (
-                <div className="box">
+                <div
+                  className={
+                    dateStartVisible || dateEndVisible ? 'box visible' : 'box'
+                  }
+                >
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
                     {startDate && (
