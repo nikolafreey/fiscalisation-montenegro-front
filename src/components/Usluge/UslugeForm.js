@@ -223,8 +223,7 @@ const UslugeForm = () => {
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
                           <p className="txt-light">
-                            Consequat eget volutpat enim libero nulla neque
-                            ultrices. Sed tristique nullam erat in interdum.
+                            Informacije o
                           </p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">

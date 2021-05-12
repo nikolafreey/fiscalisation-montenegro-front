@@ -103,8 +103,8 @@ const ChooseAtribut = () => {
           Atributi <span className="span-light"></span>
         </h2>
         <p className="txt-light">
-          Consequat eget volutpat enim libero nulla neque ultrices. Sed
-          tristique nullam erat in interdum.
+          {/* Consequat eget volutpat enim libero nulla neque ultrices. Sed
+          tristique nullam erat in interdum. */}
         </p>
         <div className="mt-30">
           <p className="txt-light">Izabrani atributi:</p>

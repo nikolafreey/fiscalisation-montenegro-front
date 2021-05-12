@@ -87,8 +87,7 @@ const FizickaLicaForm = () => {
                 <div className="col-lg-4 mt-25">
                   <h2 className="heading-secondary">Informacije</h2>
                   <p className="txt-light">
-                    Consequat eget volutpat enim libero nulla neque ultrices.
-                    Sed tristique nullam erat in interdum.
+                    Unesite informacije o fizičkom licu kao što su Ime, Prezime, JMBG, Grad itd.
                   </p>
                 </div>
                 <div className="col-lg-8 mt-25">
@@ -247,8 +246,7 @@ const FizickaLicaForm = () => {
                     {/* <div className="col-lg-4">
                       <h2 className="heading-secondary">Tekući računi</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Podaci o žiro računima fizičkog lica
                       </p>
                     </div>
                     <div className="col-lg-8 col-md-7">
@@ -268,8 +266,7 @@ const FizickaLicaForm = () => {
                 <div className="col-lg-4">
                   <h2 className="heading-secondary">Kontakt informacije</h2>
                   <p className="mob-mb-20 txt-light">
-                    Consequat eget volutpat enim libero nulla neque ultrices.
-                    Sed tristique nullam erat in interdum.
+                    Osnovne kontakt informacije fizičkog lica
                   </p>
                 </div>
                 <div className="col-lg-8">
@@ -341,8 +338,8 @@ const FizickaLicaForm = () => {
                 <div className="col-lg-4">
                   <h2 className="heading-secondary">Status</h2>
                   <p className="mob-mb-20 txt-light">
-                    Consequat eget volutpat enim libero nulla neque ultrices.
-                    Sed tristique nullam erat in interdum.
+                    {/* Consequat eget volutpat enim libero nulla neque ultrices.
+                    Sed tristique nullam erat in interdum. */}
                   </p>
                 </div>
                 <div className="col-md-4">

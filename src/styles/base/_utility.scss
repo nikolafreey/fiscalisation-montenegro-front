@@ -8,7 +8,7 @@
   text-align: right;
 }
 .txt-left {
-  text-align: left!important;
+  text-align: left !important;
 }
 .txt-center {
   text-align: center;
@@ -121,7 +121,7 @@
   width: 35% !important;
 }
 .w-33 {
-  width: 33%!important;
+  width: 33% !important;
 }
 .w-30 {
   width: 30% !important;
@@ -291,6 +291,11 @@
     margin-bottom: 2rem;
   }
 }
+.mob-mb-0 {
+  @include respond(phone) {
+    margin-bottom: 0!important;
+  }
+}
 .mr-s {
   margin-right: 0.5rem;
 }
@@ -370,6 +375,11 @@
 .tabp-fd-column {
   @include respond(tab-port) {
     flex-direction: column;
+  }
+}
+.tabp-none {
+  @include respond(tab-port) {
+    display: none;
   }
 }
 .mob-ai-start {
@@ -524,24 +534,24 @@
   }
 }
 .no-outline {
-  :focus{
-    outline: none!important;
+  :focus {
+    outline: none !important;
   }
 }
-.visible{
-  opacity: 1!important;
-  visibility: visible!important;
+.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
-.error-text{
+.error-text {
   border: 1px solid red;
   border-radius: 4px;
 }
 .error {
   color: red;
 }
-.h-auto{
-  height: auto!important;
+.h-auto {
+  height: auto !important;
 }
-.nowrap{
+.nowrap {
   white-space: nowrap;
 }

@@ -171,8 +171,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4 mt-25">
                       <h2 className="heading-secondary">Informacije</h2>
                       <p className="txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Unesite osnovne informacije o preduzeću
                       </p>
                     </div>
                     <div className="col-lg-8 mt-25">
@@ -337,8 +336,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Žiro računi</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Podaci o žiro računima preduzeća
                       </p>
                     </div>
                     <div className="col-md-8">
@@ -362,8 +360,7 @@ const PreduzecaForm = () => {
                         Plaćanje iz inostranstva
                       </h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Informacije koje su bitne za plaćanje iz inostranstva
                       </p>
                     </div>
                     <div className="col-md-7 col-lg-8">
@@ -394,8 +391,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Kontakt informacije preduzeća. Svi korisnici PostFiskal aplikacije mogu da vide informacije ovog preduzeća koje unesete
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -480,8 +476,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Ovlašćeno lice</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Informacije o ovlašćenom licu unutar preduzeća
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -566,8 +561,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Osoba za kontakt</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Informacije o osobi za kontakt unutar preduzeća
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -653,8 +647,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Društvene mreže</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Informacije o nalozima na društvnim mrežama da ostali korisnici mogu da prate vaše preduzeće
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -707,8 +700,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Lokacija na mapi</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Tačna lokacija na mapi
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -725,8 +717,7 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p className="mob-mb-20 txt-light">
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        Promijenite status preduzeća i podatke o tome da li je u sistemu PDV-a
                       </p>
                     </div>
                     <div className="col-lg-4 col-md-6 col-6">
