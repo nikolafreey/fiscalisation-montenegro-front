@@ -1074,7 +1074,7 @@ const Podesavanja = () => {
                 <div className="row">
                   <div className="col-md-4">
                     <h2 className="heading-secondary">
-                      Boje <span class="tag tag__neutral ml-m">Start</span>
+                      Boje <span className="tag tag__neutral ml-m">Start</span>
                     </h2>
                     <p className="mob-mb-20 txt-light">
                       Podesite boje aplikacije u skladu sa bojama Vašeg
