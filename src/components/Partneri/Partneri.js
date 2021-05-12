@@ -19,7 +19,7 @@ import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const filters = {};
 

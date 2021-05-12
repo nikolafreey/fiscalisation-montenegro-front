@@ -36,7 +36,7 @@ const searchParams = {};
 // let visibleDateStart = true;
 // let visibleDateEnd = true;
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const UlazniRacuni = () => {
   const dispatch = useDispatch();

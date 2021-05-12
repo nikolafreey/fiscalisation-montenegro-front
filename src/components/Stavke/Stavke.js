@@ -22,7 +22,7 @@ import { setUsluga } from '../../store/actions/UslugeActions';
 import { setRoba } from '../../store/actions/RobeActions';
 
 let filteri = {};
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const Stavke = () => {
   const dispatch = useDispatch();
