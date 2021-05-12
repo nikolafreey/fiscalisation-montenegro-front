@@ -29,7 +29,7 @@ const options = [
 
 const searchParams = {};
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 const Predracuni = () => {
   const dispatch = useDispatch();
 

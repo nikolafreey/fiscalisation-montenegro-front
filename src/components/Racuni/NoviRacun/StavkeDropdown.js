@@ -12,7 +12,7 @@ import {
 } from '../../../store/selectors/RacuniSelector';
 import Label from '../../shared/forms/Label';
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const StavkeDropdown = ({ label, onChangeExtra = null, ...props }) => {
   const dispatch = useDispatch();

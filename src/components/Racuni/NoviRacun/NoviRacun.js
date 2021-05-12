@@ -28,7 +28,7 @@ import { setUsluga } from '../../../store/actions/UslugeActions';
 
 const filteri = {};
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const NoviRacun = () => {
   const dispatch = useDispatch();

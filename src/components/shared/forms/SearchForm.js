@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { getPreduzeca } from '../../../store/actions/PreduzecaActions';
 
-const searchDebounced = debounce((callback) => callback(), 500);
+const searchDebounced = debounce((callback) => callback(), 200);
 
 const SearchForm = ({ handleSubmit }) => {
   const dispatch = useDispatch();
