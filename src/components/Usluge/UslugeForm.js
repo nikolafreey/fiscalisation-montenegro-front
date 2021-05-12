@@ -418,8 +418,8 @@ const UslugeForm = () => {
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p>
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        {/* Consequat eget volutpat enim libero nulla neque
+                        ultrices. Sed tristique nullam erat in interdum. */}
                       </p>
                     </div>
                     <div className="col-md-4">
