@@ -160,9 +160,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     if (stavka?.porez?.stopa > 0) {
       stavka = {
         ...stavka,
-        cijena_bez_pdv_popust: (
-          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
-        ),
+        cijena_bez_pdv_popust:
+          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa)),
         // cijena_bez_pdv_popust: (
         //   Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
         // ).toFixed(4),
@@ -270,7 +269,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
     }
   }
-
   //values.stavke=values.niz;
   // if (values.stavke.length !==values.a.length) {
   //   values.a.push({cena:values.stavke.length})
@@ -301,18 +299,119 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   </span>
                 </p>
               </div>
-              <div className="section-box">
-                <div className="section-box__left">
-                  <div className="section-box__left--top">
-                    <div className="form-group mb-0">
-                      <StavkeDropdown
-                        name={`stavke.${index}`}
-                        className="form__input"
-                        onChangeExtra={(option) => {
-                          setFieldValue(`stavke.${index}`, option);
-                        }}
-                      />
-                    </div>
+              <div className="row" style={{ marginBottom: 11 }}>
+                <div className="col-xl-4 pr-0">
+                  <div className="form-group">
+                    <StavkeDropdown
+                      name={`stavke.${index}`}
+                      className="form__input"
+                      onChangeExtra={(option) => {
+                        setFieldValue(`stavke.${index}`, option);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      value={formatirajCijenu(getCijenaStavkeBezPdv(stavka))}
+                      // value={
+                      //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                      //       stavka?.ukupna_cijena
+                      //     }
+                      className="form__input"
+                      placeholder="Bez PDV"
+                      disabled
+                      readOnly
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
+                    <DropDown
+                      name={`stavke.${index}.jedinica_mjere_id`}
+                      // placeholder={
+                      //   Object.keys(usluga).length !== 0
+                      //     ? usluga?.jedinica_mjere?.naziv
+                      //     : roba?.jedinica_mjere?.naziv
+                      // }
+                      defaultValue={
+                        Object.keys(usluga).length !== 0
+                          ? {
+                              value: usluga?.jedinica_mjere?.id,
+                              label: usluga?.jedinica_mjere?.naziv,
+                            }
+                          : {
+                              value: roba?.jedinica_mjere?.id,
+                              label: roba?.jedinica_mjere?.naziv,
+                            }
+                      }
+                      onChangeExtra={(option) => {
+                        setFieldValue(
+                          `stavke.${index}.jedinica_mjere_id`,
+                          option
+                        );
+                      }}
+                      loadOptions={
+                        jediniceMjereService.getJediniceMjereDropdown
+                      }
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-2 pr-0">
+                  <div className="form-group">
+                    <DropDown
+                      name={`stavke.${index}.porez_id`}
+                      loadOptions={poreziService.getPoreziDropdown}
+                      // placeholder={
+                      //   Object.keys(usluga).length === 0 &&
+                      //   Object.keys(roba).length === 0
+                      //     ? ''
+                      //     : Object.keys(usluga).length !== 0
+                      //     ? usluga?.porez?.naziv
+                      //     : roba?.cijene_roba[0]?.porez?.naziv
+                      // }
+                      defaultValue={
+                        Object.keys(usluga).length === 0 &&
+                        Object.keys(roba).length === 0
+                          ? {}
+                          : Object.keys(usluga).length !== 0
+                          ? {
+                              value: usluga?.porez?.id,
+                              label: usluga?.porez?.naziv,
+                            }
+                          : {
+                              value: roba?.cijene_roba[0]?.porez?.id,
+                              label: roba?.cijene_roba[0]?.porez?.naziv,
+                            }
+                      }
+                      onChangeExtra={(option) => {
+                        setFieldValue(
+                          `stavke.${index}.porez`,
+                          getPorezForId(option.value)
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-2">
+                  <div className="form-group">
+                    <DropDownStatic
+                      name={`stavke.${index}.tip_popusta`}
+                      options={TIPOVI_POPUSTA}
+                      //defaultValue={{ value: Number(getPopustStavke(stavka).iznos), label: getPopustStavke(stavka).tip_popusta }}
+                      defaultValue={{
+                        value: getPopustStavke(stavka).tip_popusta,
+                        label:
+                          getPopustStavke(stavka).tip_popusta === 'procenat'
+                            ? 'Procenat %'
+                            : 'Iznos',
+                      }}
+                      onChangeExtra={(option) =>
+                        handleChoosePopust(option, stavka, index)
+                      }
+                    />
                   </div>
                   <div className="section-box__left--bottom">
                     <div className="form-group mt-15">
@@ -502,7 +601,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name="popust"
                           type="number"
-                          className="form__input mb-15"
+                          className="form__input mb-12"
                           value={
                             stavka?.popust
                               ? stavka?.popust
@@ -547,9 +646,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       <div className="form__box">
                         <div>
                           <p className="txt-light">Ukupna cijena sa PDV-om</p>
-                        </div>
-                        <div className="heading-secondary mb-0">
-                          {formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}
+                          <h2 className="heading-secondary">
+                            {formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}
+                          </h2>
                         </div>
                       </div>
                     </div>
