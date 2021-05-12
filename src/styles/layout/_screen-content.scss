@@ -46,7 +46,8 @@
     @include themify($themes) {
       color: themed('linkColor');
     }
-    transition: 0.2s;
+    cursor: pointer;
+    transition: 0.15s;
     &:hover {
       @include themify($themes) {
         color: themed('linkColorHover');

@@ -234,8 +234,8 @@ const Racuni = () => {
               {/* </div> */}
             </div>
             <div className="box-wrapper">
-              <div className="box">
-                <p className="txt-light">Ukupan Iznos</p>
+              <div className="box visible">
+                <p className="txt-light">Ukupan Iznos na prikazanim</p>
                 <h3 className="heading-tertiary">
                   {racuni?.ukupna_cijena !== undefined
                     ? racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'

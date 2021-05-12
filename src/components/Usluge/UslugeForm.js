@@ -141,9 +141,11 @@ const UslugeForm = () => {
     if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return Math.round(10000 * ukupna_cijena) / 10000;
+      // return Math.round(10000 * ukupna_cijena) / 10000;
+      return ukupna_cijena;
     } else {
-      return Math.round(10000 * (ukupna_cijena / (Number(stopa) + 1))) / 10000;
+      // return Math.round(10000 * (ukupna_cijena / (Number(stopa) + 1))) / 10000;
+      return ukupna_cijena / (Number(stopa) + 1);
     }
   };
 
@@ -161,12 +163,10 @@ const UslugeForm = () => {
     if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
-      return Math.round(10000 * (ukupna_cijena * Number(stopa))) / 10000;
+      return ukupna_cijena * Number(stopa);
     } else {
       return (
-        Math.round(
-          10000 * (ukupna_cijena - ukupna_cijena / (Number(stopa) + 1))
-        ) / 10000
+        ukupna_cijena - ukupna_cijena / (Number(stopa) + 1)
       );
     }
   };
@@ -223,8 +223,7 @@ const UslugeForm = () => {
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
                           <p className="txt-light">
-                            Consequat eget volutpat enim libero nulla neque
-                            ultrices. Sed tristique nullam erat in interdum.
+                            Informacije o
                           </p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">
@@ -419,8 +418,8 @@ const UslugeForm = () => {
                     <div className="col-md-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p>
-                        Consequat eget volutpat enim libero nulla neque
-                        ultrices. Sed tristique nullam erat in interdum.
+                        {/* Consequat eget volutpat enim libero nulla neque
+                        ultrices. Sed tristique nullam erat in interdum. */}
                       </p>
                     </div>
                     <div className="col-md-4">

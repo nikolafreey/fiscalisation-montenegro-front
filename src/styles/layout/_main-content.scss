@@ -9,6 +9,9 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     margin-bottom: 3rem;
+    @include respond(tab-land) {
+      margin-bottom: 2rem;
+    }
     .heading-secondary {
       @include respond(phone) {
         margin-bottom: 0.5rem;
@@ -36,7 +39,7 @@
         }
       }
       .form__box {
-        height: 9rem;
+        //height: 9rem;
 
         // @include respond(phone) {
         //   height: 9rem;
@@ -81,7 +84,11 @@
         }
       }
       .form__box {
-        height: 9rem;
+        display: flex;
+        height: 103px;
+        @include respond(big-phone){
+          height: 86px;
+        }
       }
     }
     &--footer {

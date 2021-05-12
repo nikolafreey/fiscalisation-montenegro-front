@@ -58,11 +58,21 @@ const StavkeDropdown = ({
 
   const { error } = meta;
   const { setValue } = helpers;
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      minHeight: 'unset',
+    }),
+  };
   return (
     <div>
       <Label htmlFor={props.id || props.name}>{label}</Label>
 
       <Select
+        styles={selectStyle}
         options={options}
         name={field.name}
         onChange={onStavkaChange}

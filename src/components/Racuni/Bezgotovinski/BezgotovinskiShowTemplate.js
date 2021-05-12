@@ -199,7 +199,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="heading-quaternary">Popust</p>
                     </th>
                     {/* <th>
-                      <p class="heading-quaternary">PDV</p>
+                      <p className="heading-quaternary">PDV</p>
                     </th> */}
                     <th>
                       <p className="heading-quaternary">Iznos</p>
@@ -215,14 +215,14 @@ class BezgotovinskiShowTemplate extends React.Component {
               </table>
               <div className="invoice-template__footer">
                 <div className="wrapper-100 mtb-20">
-                  <div class="table-sm-wrapper">
+                  <div className="table-sm-wrapper">
                     <table>
                       <BezgotovinskiPoreziPreview stavke={stavke} />
                     </table>
                   </div>
 
-                  <div class="invoice-template__footer--box">
-                    <div class="invoice-template__box-info">
+                  <div className="invoice-template__footer--box">
+                    <div className="invoice-template__box-info">
                       <p className="fw-500">Bez PDV-a:</p>
 
                       {/* <p className="fw-500">Ukupno bez popusta:</p> */}
@@ -232,7 +232,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       {/* <p className="fw-500">PDV 21%:</p>
                     <p className="fw-500">Ukupno:</p> */}
                     </div>
-                    <div class="invoice-template__box-values">
+                    <div className="invoice-template__box-values">
                       <p className="txt-right cd fw-500">
                         {Number(ukupna_cijena_bez_pdv_popust).toFixed(2)}{' '}
                         <span className="txt-up txt-light">Eur</span>
@@ -282,11 +282,11 @@ class BezgotovinskiShowTemplate extends React.Component {
                   {/*------------------ QR CODE ------------------*/}
 
                   <div className="wrapper-50">
-                    <div class="invoice-template__footer--info">
+                    <div className="invoice-template__footer--info">
                       <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
                       <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
                     </div>
-                    <div class="invoice-template__footer--values">
+                    <div className="invoice-template__footer--values">
                       <p className="txt-right">{jikr ? jikr : ''}</p>
                       <p className="txt-right">{ikof ? ikof : ''}</p>
                     </div>

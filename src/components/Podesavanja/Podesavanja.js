@@ -8,11 +8,11 @@ import { podesavanjaService } from '../../services/PodesavanjaService';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 import { useHistory } from 'react-router';
-import { SEP_PORTAL } from '../../config';
+import { SEP_PORTAL, SW_KOD } from '../../config';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Polygon } from 'google-maps-react';
+// import { Polygon } from 'google-maps-react';
 import { Link } from 'react-router-dom';
 import { MODULI } from '../../constants/routes';
 
@@ -50,7 +50,7 @@ const Podesavanja = () => {
   const [redniBrojRacuna, setRedniBrojRacuna] = useState(
     podesavanjeUcitano && podesavanjeUcitano[0]?.redni_broj
   );
-  const [softwareKod, setSoftwareKod] = useState();
+  const [softwareKod, setSoftwareKod] = useState(SW_KOD);
   const [enu, setEnu] = useState();
   const [kodPj, setKodPj] = useState();
   const [kodOp, setKodOp] = useState();
@@ -85,7 +85,7 @@ const Podesavanja = () => {
           sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
-          software_kod: softwareKod,
+          software_kod: SW_KOD,
           kod_operatera: kodOp,
           tamni_mod: 'svijetli',
           jezik: 'me',
@@ -142,7 +142,7 @@ const Podesavanja = () => {
           sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
-          software_kod: softwareKod,
+          software_kod: SW_KOD,
           kod_operatera: kodOp,
           tamni_mod: 'svijetli',
           jezik: 'me',
@@ -604,7 +604,7 @@ const Podesavanja = () => {
                             name="software_kod"
                             id="software_kod"
                             onChange={(e) => setSoftwareKod(e.target.value)}
-                            value={softwareKod}
+                            value={SW_KOD}
                           />
                         )}
                       </div>
@@ -1076,7 +1076,7 @@ const Podesavanja = () => {
                 <div className="row">
                   <div className="col-md-4">
                     <h2 className="heading-secondary">
-                      Boje <span class="tag tag__neutral ml-m">Start</span>
+                      Boje <span className="tag tag__neutral ml-m">Start</span>
                     </h2>
                     <p className="mob-mb-20 txt-light">
                       Podesite boje aplikacije u skladu sa bojama Vašeg
