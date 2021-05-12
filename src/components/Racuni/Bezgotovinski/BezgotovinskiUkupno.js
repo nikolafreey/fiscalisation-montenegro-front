@@ -90,16 +90,18 @@ const BezgotovinskiUkupno = () => {
       <div className="main-content__box">
         <div className="content">
           <div className="main-content__box--inner-wrapper">
-            <div className="row">
-              <div className="col-xl-4">
-                <div className="form-group h-100">
-                  <label className="form__label">Napomena</label>
+            <div className="section-box">
+              <div className="section-box__left">
+                <div className="form-group">
+                  <label className="form__label" htmlFor="">
+                    Napomena
+                  </label>
                   <textarea
                     name="opis"
                     id=""
                     cols="30"
                     rows="6"
-                    className="form__input h-83"
+                    className="form__textarea df"
                     value={values.opis}
                     onChange={(event) =>
                       setFieldValue('opis', event.target.value)
@@ -107,18 +109,18 @@ const BezgotovinskiUkupno = () => {
                   ></textarea>
                 </div>
               </div>
-              <div className="col-xl-8">
-                <div className="row" style={{ marginTop: 12 }}>
-                  {/* {!popustVisible && (
+              <div className="section-box__right">
+                {/* <div className="section-box__right--top-wrap">
+                  {!popustVisible && (
                     <div
                       onClick={() => setPopustVisible(!popustVisible)}
                       className="main-content__box--footer col-xl-10"
                     >
                       <span className="link">+ Dodaj popust</span>
                     </div>
-                  )} */}
-                  <div className="col-xl-4">
-                    <div className="form-group">
+                  )}
+                  <div className="w-32">
+                    <div className="form-group mb-15">
                       {popustVisible && (
                         <>
                           <label className="form__label">Tip popusta</label>
@@ -129,15 +131,9 @@ const BezgotovinskiUkupno = () => {
                           />
                         </>
                       )}
-                      <div className="form__box" style={{ marginTop: 12 }}>
-                        <p className="txt-light">Ukupan iznos PDV-a</p>
-                        <h2 className="heading-secondary">
-                          {formatirajCijenu(cijene.ukupnoPdv)}
-                        </h2>
-                      </div>
                     </div>
                   </div>
-                  <div className="col-xl-4">
+                  <div className="w-32">
                     <div className="form-group">
                       {popustVisible && (
                         <>
@@ -163,7 +159,7 @@ const BezgotovinskiUkupno = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-xl-4">
+                  <div className="w-32">
                     <div className="form-group">
                       {popustVisible && (
                         <>
@@ -179,11 +175,38 @@ const BezgotovinskiUkupno = () => {
                           />
                         </>
                       )}
-                      <div className="form__box" style={{ marginTop: 12 }}>
-                        <p className="txt-light">Ukupna cijena sa PDV-om</p>
-                        <h2 className="heading-secondary">
-                          {formatirajCijenu(cijene.ukupnaCijena)}
-                        </h2>
+                     
+                    </div>
+                  </div>
+                </div> */}
+                <div className="section-box__right--full-h">
+                  <div class="price">
+                    <div class="form__group h-100">
+                      <div class="form__box h-100">
+                        <div>
+                          <p class="txt-light">Ukupan iznos PDV-a</p>
+                        </div>
+                        <div class="heading-secondary mb-0">{formatirajCijenu(cijene.ukupnoPdv)}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <div class="form__group h-100">
+                      <div class="form__box h-100">
+                        <div>
+                          <p class="txt-light">Ukupna cijena bez PDV-a</p>
+                        </div>
+                        <div class="heading-secondary mb-0"> {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <div class="form__group h-100">
+                      <div class="form__box h-100">
+                        <div>
+                          <p class="txt-light">Ukupna cijena sa PDV-om</p>
+                        </div>
+                        <div class="heading-secondary mb-0">  {formatirajCijenu(cijene.ukupnaCijena)}</div>
                       </div>
                     </div>
                   </div>
