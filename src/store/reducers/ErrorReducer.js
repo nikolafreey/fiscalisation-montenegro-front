@@ -30,18 +30,38 @@ const errorReducer = (state = initialState, action) =>
     switch (action.type) {
       case GLOBAL_ERROR_SET:
         draft.globalError = action.payload;
-        // console.log('action.payload', action.payload);
+        console.log('action.payload', action.payload);
         // console.log('draft.globalError.length', draft.globalError.length);
         if (
-          action.payload &&
-          Object.keys(action.payload).length !== 0 &&
-          action.payload.constructor === Object
+          action.payload
+          // Object.keys(action.payload).length !== 0 &&
+          // action.payload.constructor === Object
         ) {
-          let objKey = Object.keys(action.payload);
-          toast.error(
-            'Greška: ' + action.payload?.errors[objKey[0]],
-            toastSettings
-          );
+          var errors = action.payload.response.data.errors;
+          var errormessage = '';
+
+          if (errors) {
+            Object.keys(errors).forEach(function (key) {
+              errormessage += errors[key] + '<br />';
+            });
+          }
+
+          errormessage = action.payload.response.data.error;
+
+          if ((errormessage = 'Nedostaje Bearer token')) {
+            toast.error(
+              'Greška prilikom logovanja, pogrešni kredencijali!',
+              toastSettings
+            );
+            return;
+          }
+          toast.error('Greška: ' + errormessage, toastSettings);
+
+          // let objKey = Object.keys(action.payload);
+          // toast.error(
+          //   'Greška: ' + action.payload?.errors[objKey[0]],
+          //   toastSettings
+          // );
         }
         if (draft.globalError && draft.globalError.length !== 0) {
           toast.error('Greška: ' + action.payload, toastSettings);

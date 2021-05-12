@@ -95,17 +95,17 @@ const NoviRacunPreview = () => {
     }
     dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
     let racunId;
-    setTimeout(() => {
-      racuniService.getRacuni().then((data) => {
-        console.log('data', data);
-        racunId = data.data.data[0].id;
-        setTimeout(() => {
-          if (previousUrl === '/racuni/create' && racunId) {
-            history.push('/racuni/show/' + racunId);
-          }
-        }, 500);
-      }, 1500);
-    });
+    // setTimeout(() => {
+    //   racuniService.getRacuni().then((data) => {
+    //     console.log('data', data);
+    //     racunId = data.data.data[0].id;
+    //     setTimeout(() => {
+    //       if (previousUrl === '/racuni/create' && racunId) {
+    //         history.push('/racuni/show/' + racunId);
+    //       }
+    //     }, 500);
+    //   }, 1500);
+    // });
     // dispatch(setRacun({}));
     // dispatch(resetNoviRacun());
     dispatch(getRacuni());
