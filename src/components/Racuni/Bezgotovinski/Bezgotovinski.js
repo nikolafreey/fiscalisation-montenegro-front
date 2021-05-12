@@ -172,19 +172,19 @@ const Bezgotovinski = () => {
             <div className="main-content__box" style={{ display: 'block' }}>
               <div className="main-content__box--header">
                 <div className="row">
-                  <div className="col-xl-4">
+                  <div className="col-xl-4 col-md-4 col-12">
                     <h4 className="heading-quaternary">Naziv usluge / robe</h4>
                   </div>
-                  <div className="col-xl-2">
+                  <div className="col-xl-2 col-md-2 tabp-none">
                     <h4 className="heading-quaternary">jedinična cijena</h4>
                   </div>
-                  <div className="col-xl-2">
+                  <div className="col-xl-2 col-md-2 tabp-none">
                     <h4 className="heading-quaternary">JM / Količina</h4>
                   </div>
-                  <div className="col-xl-2">
+                  <div className="col-xl-2 col-md-2 tabp-none">
                     <h4 className="heading-quaternary">PDV stopa</h4>
                   </div>
-                  <div className="col-xl-2">
+                  <div className="col-xl-2 col-md-2 tabp-none">
                     <h4 className="heading-quaternary txt-right">
                       Tip Popusta/iznos
                     </h4>

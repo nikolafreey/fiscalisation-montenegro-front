@@ -13,18 +13,19 @@
     }
     &__left {
       flex: 0 0 33%;
+      height: 100%;
       //border: 1px solid red;
       @include respond(tab-port) {
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
       }
-      @include respond(phone) {
-        margin-bottom: 0;
-      }
+      // @include respond(phone) {
+      //   margin-bottom: 0;
+      // }
       &--top {
-        height: 18%;
+        height: 20%;
       }
       &--bottom {
-        height: 82%;
+        height: 80%;
       }
     }
     &__right {
@@ -44,11 +45,18 @@
         }
         .el {
           width: 23.5%;
-          @include respond(tab-port) {
-            margin-bottom: 1.2rem;
+          @include respond(tab-port){
+            width: 24%;
+            height: 45px;
+            margin-bottom: 1.5rem;
+          }
+          // @include respond(big-phone){
+          //   width: 23%;
+          // }
+          @include respond(big-phone) {
+            width: 48.75%;
           }
           @include respond(phone) {
-            margin-bottom: 0;
             width: 48.5%;
           }
         }
@@ -67,8 +75,12 @@
         justify-content: space-between;
         .price {
           width: 32%;
-          @include respond(phone) {
+          @include respond(tab-port){
+            width: 32.4%;
+          }
+          @include respond(big-phone) {
             width: 100%;
+            margin-bottom: 1.5rem;
           }
         }
         .half {
