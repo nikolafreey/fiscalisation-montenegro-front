@@ -86,8 +86,9 @@
       .form__box {
         display: flex;
         height: 103px;
+        
         @include respond(big-phone){
-          height: 86px;
+          height: auto;
         }
       }
     }

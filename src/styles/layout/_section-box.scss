@@ -1,95 +1,115 @@
 .section-box {
-    display: flex;
-    flex-wrap: wrap;
-    //border: 1px solid black;
-    width: 100%;
-    justify-content: space-between;
-    //height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  //border: 1px solid black;
+  width: 100%;
+  justify-content: space-between;
+  //height: 10rem;
+  @include respond(tab-port) {
+    flex-direction: column;
+  }
+  &__half {
+    flex: 0 0 49%;
+  }
+  &__left {
+    flex: 0 0 33%;
+    height: 100%;
+    //border: 1px solid red;
     @include respond(tab-port) {
-      flex-direction: column;
+      margin-bottom: 1.5rem;
     }
-    &__half {
-      flex: 0 0 49%;
+    // @include respond(phone) {
+    //   margin-bottom: 0;
+    // }
+    &--top {
+      height: 20%;
     }
-    &__left {
-      flex: 0 0 33%;
+    &--bottom {
+      height: 80%;
+    }
+  }
+  &__right {
+    flex: 0 0 65.7%;
+    //border: 1px solid red;
+    &--top-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      height: 50%;
+      //border: 1px solid violet;
+      justify-content: space-between;
+      .w-32 {
+        width: 32%;
+        @include respond(phone) {
+          width: 100%;
+        }
+      }
+      .el {
+        width: 23.5%;
+        @include respond(tab-port) {
+          width: 24%;
+          height: 45px;
+          margin-bottom: 1.5rem;
+        }
+        // @include respond(big-phone){
+        //   width: 23%;
+        // }
+        @include respond(big-phone) {
+          width: 48.75%;
+        }
+        @include respond(phone) {
+          width: 48.5%;
+        }
+      }
+      .half {
+        width: 49%;
+        @include respond(big-phone) {
+          width: 48.75%;
+        }
+        @include respond(phone) {
+          width: 48.5%;
+        }
+      }
+    }
+    &--bottom-wrap,
+    &--full-h {
+      display: flex;
+      flex-wrap: wrap;
+      //border: 1px solid violet;
+      justify-content: space-between;
+      .price {
+        width: 32%;
+        @include respond(tab-port) {
+          width: 32.4%;
+        }
+        @include respond(big-phone) {
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+      }
+      .half {
+        width: 49%;
+        @include respond(big-phone) {
+          width: 48.75%;
+        }
+        @include respond(phone) {
+          width: 48.5%;
+        }
+      }
+    }
+    &--bottop-wrap {
+      height: 50%;
+    }
+    &--full-h {
       height: 100%;
-      //border: 1px solid red;
+      padding-top: 22px;
+
       @include respond(tab-port) {
-        margin-bottom: 1.5rem;
+        height: 103px;
+        padding-top: 0;
       }
-      // @include respond(phone) {
-      //   margin-bottom: 0;
-      // }
-      &--top {
-        height: 20%;
-      }
-      &--bottom {
-        height: 80%;
-      }
-    }
-    &__right {
-      flex: 0 0 65.7%;
-      //border: 1px solid red;
-      &--top-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        height: 50%;
-        //border: 1px solid violet;
-        justify-content: space-between;
-        .w-32 {
-          width: 32%;
-          @include respond(phone) {
-            width: 100%;
-          }
-        }
-        .el {
-          width: 23.5%;
-          @include respond(tab-port){
-            width: 24%;
-            height: 45px;
-            margin-bottom: 1.5rem;
-          }
-          // @include respond(big-phone){
-          //   width: 23%;
-          // }
-          @include respond(big-phone) {
-            width: 48.75%;
-          }
-          @include respond(phone) {
-            width: 48.5%;
-          }
-        }
-        .half {
-          width: 49%;
-          @include respond(phone) {
-            width: 48.5%;
-          }
-        }
-      }
-      &--bottom-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        height: 50%;
-        //border: 1px solid violet;
-        justify-content: space-between;
-        .price {
-          width: 32%;
-          @include respond(tab-port){
-            width: 32.4%;
-          }
-          @include respond(big-phone) {
-            width: 100%;
-            margin-bottom: 1.5rem;
-          }
-        }
-        .half {
-          width: 49%;
-          @include respond(phone) {
-            width: 48.5%;
-          }
-        }
+      @include respond(big-phone) {
+        height: auto;
       }
     }
   }
-  
+}
