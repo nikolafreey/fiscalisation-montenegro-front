@@ -7,6 +7,26 @@ import { setRequestedRoute } from '../actions/RouteActions';
 import { getUser, setUser } from '../actions/UserActions';
 import { requestedRouteSelector } from '../selectors/RouteSelector';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const initialState = {
+  globalError: null,
+  loginError: {},
+};
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 export function* userGet() {
   try {
     const { data } = yield call(authService.getUser);
@@ -22,7 +42,10 @@ export function* userLogin({ payload }) {
     yield put(setLoginError({}));
     yield call(authService.getCsrfCookie);
     const { data } = yield call(authService.login, payload);
-    console.log('data', data);
+    if (data === 'Neuspješna prijava!') {
+      toast.error('Greška Prilikom Logovanja: ' + data, toastSettings);
+      return;
+    }
     yield call(authService.setAuthenticatedStorage, true, data.data.token);
     yield put(getUser());
 
@@ -40,13 +63,13 @@ export function* userLogin({ payload }) {
 
 export function* userLogout() {
   try {
+    yield call(authService.logout);
     yield call(authService.setAuthenticatedStorage, false);
     yield put(setUser(null));
     yield put(push(AUTH.LOGIN));
-    yield call(authService.logout);
-    // localStorage.clear();
   } catch (error) {
-    yield put(setGlobalError(error.message));
+    console.log('error', error);
+    yield put(setGlobalError(error));
   }
 }
 

@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { robeService } from '../../services/RobeService';
 import { rest } from 'lodash-es';
+import { push } from 'connected-react-router';
 
 toast.configure();
 
@@ -40,8 +41,8 @@ export function* racunStore({ payload }) {
         : 'BANKNOTE',
     };
     const res = yield call(racuniService.storeRacun, noviRacunTemp);
-    console.log('res', res);
     toast.success('Uspješno dodat gotovinski račun', toastSettings);
+    yield put(push('/racuni/show/' + payload.id));
     yield put(resetNoviRacun());
   } catch (error) {
     console.log('error', error);
@@ -76,6 +77,7 @@ export function* bezgotovinskiRacunStore({ payload }) {
   try {
     localStorage.setItem('previousUrl', window.location.pathname);
     yield call(racuniService.storeBezgotovinskiRacun, payload);
+    yield put(push('/racuni/bezgotovinski/show/' + payload.id));
     toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
     yield put(setRacun({}));
   } catch (error) {

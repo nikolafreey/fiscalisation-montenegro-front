@@ -13,6 +13,8 @@ import { SEP_PORTAL } from '../../config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Polygon } from 'google-maps-react';
+import { Link } from 'react-router-dom';
+import { MODULI } from '../../constants/routes';
 
 toast.configure();
 
@@ -89,7 +91,9 @@ const Podesavanja = () => {
           jezik: 'me',
           boja: 'default',
         })
-        .then((data) => console.log('response data:', data))
+        .then((data) => {
+          toast.success('Uspješno sačuvana podešavanja!', toastSettings);
+        })
         .catch((error) => {
           console.error('error', error);
           toast.error(
@@ -112,7 +116,9 @@ const Podesavanja = () => {
 
       podesavanjaService
         .uploadFiles(formData, user.preduzeca[0]?.id)
-        .then((data) => console.log('response data file upload:', data))
+        .then((data) => {
+          toast.success('Uspješno sačuvana podešavanja!', toastSettings);
+        })
         .catch((error) => {
           console.error('error', error);
           toast.error(
@@ -142,7 +148,9 @@ const Podesavanja = () => {
           jezik: 'me',
           boja: 'default',
         })
-        .then((data) => console.log('response data:', data))
+        .then((data) =>
+          toast.success('Uspješno izmjenjena podešavanja!', toastSettings)
+        )
         .catch((error) => {
           console.error('error', error);
           toast.error(
@@ -169,9 +177,10 @@ const Podesavanja = () => {
 
       podesavanjaService
         .uploadFiles(formData, user.preduzeca[0]?.id)
-        .then((data) => console.log('response data file upload:', data))
+        .then((data) =>
+          toast.success('Uspješno izmjenjena podešavanja!', toastSettings)
+        )
         .catch((error) => {
-          console.error('error', error);
           toast.error(
             'Greška prilikom dodavanja sertifikata: ' + error,
             toastSettings
@@ -458,14 +467,7 @@ const Podesavanja = () => {
                     <p>
                       Jedinistveni izgled računa prilagođen vizuelnom identitetu
                       vašeg preduzeća dostupan je u dodatnom{' '}
-                      <a
-                        href="http://"
-                        target="_blank"
-                        className="link"
-                        rel="noopener noreferrer"
-                      >
-                        modulu
-                      </a>
+                      <Link to={MODULI.INDEX}>modulu</Link>
                     </p>
                   </div>
                 </div>
