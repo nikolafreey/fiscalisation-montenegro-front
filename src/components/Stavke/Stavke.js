@@ -129,12 +129,12 @@ const Stavke = () => {
             <div className="drop-down" id="ddl">
               <Link to={STAVKE.CREATE_USLUGE}>
                 {/* <PreduzeceSvg /> */}
-                Nova usluga
+                Nova stavka
               </Link>
-              <Link to={STAVKE.CREATE_ROBE}>
-                {/* <UserSvg /> */}
+              {/*<Link to={STAVKE.CREATE_ROBE}>
+                 <UserSvg />
                 Nova roba
-              </Link>
+              </Link>*/}
             </div>
           </button>
         </div>

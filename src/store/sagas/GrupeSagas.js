@@ -19,75 +19,111 @@ const toastSettings = {
   progress: undefined,
 };
 
-export function* grupaStore({ payload }) {
-  const res = yield call(grupeService.storeGrupa, payload);
-  yield put(grupeService.getGrupe);
+// export function* grupaStore({ payload }) {
+//   const res = yield call(grupeService.storeGrupa, payload);
+//   yield put(grupeService.getGrupe);
 
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
+
+export function* grupaStore({ payload }) {
+  try {
+    const res = yield call(grupeService.storeGrupa, payload);
+    yield put(grupeService.getGrupe);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* grupeGet({ payload }) {
+  try {
+    const { data } = yield call(grupeService.getGrupe, payload);
+    yield put(setGrupe(data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
 // export function* grupeGet({ payload }) {
-//   try {
-//     const { data } = yield call(grupeService.getGrupe, payload);
-//     yield put(setGrupe(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+//   const res = yield call(grupeService.getGrupe, payload);
+//   yield put(setGrupe(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
-export function* grupeGet({ payload }) {
-  const res = yield call(grupeService.getGrupe, payload);
-  yield put(setGrupe(res.data));
+// export function* grupaGet({ payload }) {
+//   const res = yield call(grupeService.getGrupa, payload);
+//   yield put(setGrupa(res.data));
 
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
-  }
-}
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* grupaGet({ payload }) {
-  const res = yield call(grupeService.getGrupa, payload);
-  yield put(setGrupa(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(grupeService.getGrupa, payload);
+    yield put(setGrupa(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
 export function* grupaUpdate({ payload }) {
-  const res = yield call(grupeService.updateGrupa, payload);
-  put(setGrupa(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(grupeService.getGrupa, payload);
+    yield put(setGrupa(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* grupaUpdate({ payload }) {
+//   const res = yield call(grupeService.getGrupa, payload);
+//   yield put(setGrupa(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* grupaDelete({ payload }) {
-  const res = yield call(grupeService.deleteGrupa, payload);
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(grupeService.deleteGrupa, payload);
+    toast.success('Uspješno obrisana grupa: ' + payload, toastSettings);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* grupaDelete({ payload }) {
+//   const res = yield call(grupeService.deleteGrupa, payload);
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
