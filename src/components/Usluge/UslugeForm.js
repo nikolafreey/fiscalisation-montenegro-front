@@ -220,7 +220,7 @@ const UslugeForm = () => {
                       <div className="df fd-column h-100">
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
-                          <p className="txt-light">Informacije o</p>
+                          <p className="txt-light">Informacije koje sadrže sve pojedinosti usluge</p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">
                           <div className="col-l txt-light">
