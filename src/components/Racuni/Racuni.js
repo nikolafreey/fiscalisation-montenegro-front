@@ -222,7 +222,11 @@ const Racuni = () => {
                 />
                 <DatePicker
                   selected={endDate}
-                  onChange={(date) => handleEndDateChange(date)}
+                  onChange={(date) => {
+                    var result = new Date(date);
+                    result.setDate(result.getDate() + 1);
+                    handleEndDateChange(result);
+                  }}
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}
