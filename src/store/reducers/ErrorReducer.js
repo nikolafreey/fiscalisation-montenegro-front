@@ -37,7 +37,9 @@ const errorReducer = (state = initialState, action) =>
           // Object.keys(action.payload).length !== 0 &&
           // action.payload.constructor === Object
         ) {
-          var errors = action.payload.response.data.errors;
+          var errors = action.payload?.response
+            ? action.payload.response?.data?.errors
+            : '';
           var errormessage = '';
 
           if (errors) {
@@ -46,16 +48,20 @@ const errorReducer = (state = initialState, action) =>
             });
           }
 
-          errormessage = action.payload.response.data.error;
+          errormessage = action.payload?.response
+            ? action.payload.response?.data?.error
+            : '';
 
-          if ((errormessage = 'Nedostaje Bearer token')) {
-            toast.error(
-              'Greška prilikom logovanja, pogrešni kredencijali!',
-              toastSettings
-            );
-            return;
+          // if ((errormessage = 'Nedostaje Bearer token')) {
+          //   toast.error(
+          //     'Greška prilikom logovanja, pogrešni kredencijali!',
+          //     toastSettings
+          //   );
+          //   return;
+          // }
+          if (errormessage !== '' && errormessage !== ' ') {
+            toast.error('Greška: ' + errormessage, toastSettings);
           }
-          toast.error('Greška: ' + errormessage, toastSettings);
 
           // let objKey = Object.keys(action.payload);
           // toast.error(
