@@ -22,91 +22,91 @@ const toastSettings = {
   progress: undefined,
 };
 
-// export function* ulazniRacunStore({ payload }) {
-//   try {
-//     yield call(ulazniRacuniService.storeUlazniRacun, payload);
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
-//   }
-// }
-
 export function* ulazniRacunStore({ payload }) {
-  const res = yield call(ulazniRacuniService.storeUlazniRacun, payload);
-
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(ulazniRacuniService.storeUlazniRacun, payload);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* ulazniRacuniGet({ payload }) {
-//   try {
-//     const { data } = yield call(ulazniRacuniService.getUlazniRacuni, payload);
-//     yield put(setUlazniRacuni(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* ulazniRacunStore({ payload }) {
+//   const res = yield call(ulazniRacuniService.storeUlazniRacun, payload);
+
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* ulazniRacuniGet({ payload }) {
-  const res = yield call(ulazniRacuniService.getUlazniRacuni, payload);
-  yield put(setUlazniRacuni(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(ulazniRacuniService.getUlazniRacuni, payload);
+    yield put(setUlazniRacuni(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* ulazniRacunGet({ payload }) {
-//   try {
-//     const { data } = yield call(ulazniRacuniService.getUlazniRacun, payload);
-//     yield put(setRacun(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* ulazniRacuniGet({ payload }) {
+//   const res = yield call(ulazniRacuniService.getUlazniRacuni, payload);
+//   yield put(setUlazniRacuni(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* ulazniRacunGet({ payload }) {
-  const res = yield call(ulazniRacuniService.getUlazniRacun, payload);
-  yield put(setRacun(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(ulazniRacuniService.getUlazniRacun, payload);
+    yield put(setRacun(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* ulazniRacunUpdate({ payload }) {
-//   try {
-//     const { data } = yield call(ulazniRacuniService.updateUlazniRacun, payload);
-//     put(setUlazniRacun(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* ulazniRacunGet({ payload }) {
+//   const res = yield call(ulazniRacuniService.getUlazniRacun, payload);
+//   yield put(setRacun(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* ulazniRacunUpdate({ payload }) {
-  const res = yield call(ulazniRacuniService.updateUlazniRacun, payload);
-  put(setUlazniRacun(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(ulazniRacuniService.updateUlazniRacun, payload);
+    put(setUlazniRacun(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* ulazniRacunUpdate({ payload }) {
+//   const res = yield call(ulazniRacuniService.updateUlazniRacun, payload);
+//   put(setUlazniRacun(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* ulazniRacunDelete({ payload }) {
   try {

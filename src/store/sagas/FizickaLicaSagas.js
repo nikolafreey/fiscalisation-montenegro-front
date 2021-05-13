@@ -18,83 +18,129 @@ const toastSettings = {
   progress: undefined,
 };
 
-export function* fizickoLiceStore({ payload }) {
-  const res = yield call(fizickaLicaService.storeFizickoLice, payload);
-  toast.success(
-    'Uspješno dodato fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
-    toastSettings
-  );
+// export function* fizickoLiceStore({ payload }) {
+//   const res = yield call(fizickaLicaService.storeFizickoLice, payload);
+//   toast.success(
+//     'Uspješno dodato fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
+//     toastSettings
+//   );
 
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
+
+export function* fizickoLiceStore({ payload }) {
+  try {
+    const res = yield call(fizickaLicaService.storeFizickoLice, payload);
+    toast.success(
+      'Uspješno dodato fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
       toastSettings
     );
-    yield put(setGlobalError(res.message));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-export function* fizickaLicaGet({ payload }) {
-  const res = yield call(fizickaLicaService.getFizickaLica, payload);
-  yield put(setFizickaLica(res.data));
+// export function* fizickaLicaGet({ payload }) {
+//   const res = yield call(fizickaLicaService.getFizickaLica, payload);
+//   yield put(setFizickaLica(res.data));
 
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
+
+export function* fizickaLicaGet({ payload }) {
+  try {
+    const { data } = yield call(fizickaLicaService.getFizickoLice, payload);
+    yield put(setFizickoLice(data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
+  }
+}
+
+export function* fizickoLiceGet({ payload }) {
+  try {
+    const { data } = yield call(fizickaLicaService.getFizickoLice, payload);
+    yield put(setFizickoLice(data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
 // export function* fizickoLiceGet({ payload }) {
-//   try {
-//     const { data } = yield call(fizickaLicaService.getFizickoLice, payload);
-//     yield put(setFizickoLice(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+//   const res = yield call(fizickaLicaService.getFizickoLice, payload);
+//   yield put(setFizickoLice(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
-export function* fizickoLiceGet({ payload }) {
-  const res = yield call(fizickaLicaService.getFizickoLice, payload);
-  yield put(setFizickoLice(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
-  }
-}
-
 export function* fizickoLiceUpdate({ payload }) {
-  const res = yield call(fizickaLicaService.updateFizickoLice, payload);
-  put(setFizickoLice(res.data));
-  toast.info(
-    'Uspješno ažurirano fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
-    toastSettings
-  );
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
+  try {
+    const res = yield call(fizickaLicaService.updateFizickoLice, payload);
+    put(setFizickoLice(res.data));
+    toast.info(
+      'Uspješno ažurirano fizičko lice: ' +
+        payload?.ime +
+        ' ' +
+        payload?.prezime,
       toastSettings
     );
-    yield put(setGlobalError(res.message));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* fizickoLiceUpdate({ payload }) {
+//   const res = yield call(fizickaLicaService.updateFizickoLice, payload);
+//   put(setFizickoLice(res.data));
+//   toast.info(
+//     'Uspješno ažurirano fizičko lice: ' + payload?.ime + ' ' + payload?.prezime,
+//     toastSettings
+//   );
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* fizickoLiceDelete({ payload }) {
-  const res = yield call(fizickaLicaService.deleteFizickoLice, payload);
-  toast.success('Uspješno obrisano fizičko lice: ' + payload, toastSettings);
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(fizickaLicaService.deleteFizickoLice, payload);
+    toast.success('Uspješno obrisano fizičko lice: ' + payload, toastSettings);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* fizickoLiceDelete({ payload }) {
+//   const res = yield call(fizickaLicaService.deleteFizickoLice, payload);
+//   toast.success('Uspješno obrisano fizičko lice: ' + payload, toastSettings);
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }

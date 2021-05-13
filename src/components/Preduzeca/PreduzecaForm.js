@@ -726,6 +726,14 @@ const PreduzecaForm = () => {
                         sistemu PDV-a
                       </p>
                     </div>
+                    <div className="df mtb-25 col-lg-6">
+                      {preduzece?.verifikovan === 0 ? (
+                        <>
+                          <IconFillSvg />
+                          <span>Verifikovano preduzeće</span>
+                        </>
+                      ) : null}
+                    </div>
                     <div className="col-lg-4 col-md-6 col-6">
                       <label className="form__label">Status</label>
                       <div
@@ -771,21 +779,6 @@ const PreduzecaForm = () => {
                             <span className="mob-ml-10">Neaktivan</span>
                           </label>
                         </div>
-                      </div>
-                      <div className="df mtb-25">
-                        {/* <InputField
-                          name="verifikovan"
-                          label={$t('preduzeca.verifikovan')}
-                          placeholder=""
-                          type="radio"
-                          className="form__radio-input"
-                        /> */}
-                        {values.verifikovan ? (
-                          <>
-                            <IconFillSvg />
-                            <span>Verifikovano preduzeće</span>
-                          </>
-                        ) : null}
                       </div>
                     </div>
                     <div className="col-lg-4 col-md-6 col-6">
