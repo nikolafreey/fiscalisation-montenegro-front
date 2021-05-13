@@ -165,9 +165,7 @@ const UslugeForm = () => {
     if (pdv_ukljucen === 0) {
       return ukupna_cijena * Number(stopa);
     } else {
-      return (
-        ukupna_cijena - ukupna_cijena / (Number(stopa) + 1)
-      );
+      return ukupna_cijena - ukupna_cijena / (Number(stopa) + 1);
     }
   };
 
@@ -222,9 +220,7 @@ const UslugeForm = () => {
                       <div className="df fd-column h-100">
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
-                          <p className="txt-light">
-                            Informacije o
-                          </p>
+                          <p className="txt-light">Informacije o</p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">
                           <div className="col-l txt-light">
@@ -251,10 +247,12 @@ const UslugeForm = () => {
                                 )
                               )
                                 ? '0,00€'
-                                : getPriceNoVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
+                                : Number(
+                                    getPriceNoVat(
+                                      values.pdv_ukljucen,
+                                      values.porez_id,
+                                      values.ukupna_cijena
+                                    )
                                   ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
@@ -266,10 +264,12 @@ const UslugeForm = () => {
                                 )
                               )
                                 ? '0,00€'
-                                : getVat(
-                                    values.pdv_ukljucen,
-                                    values.porez_id,
-                                    values.ukupna_cijena
+                                : Number(
+                                    getVat(
+                                      values.pdv_ukljucen,
+                                      values.porez_id,
+                                      values.ukupna_cijena
+                                    )
                                   ).toFixed(2) + '€'}
                             </p>
                             <p className="mb-10">
