@@ -18,117 +18,120 @@ const toastSettings = {
   progress: undefined,
 };
 
-// export function* preduzeceStore({ payload }) {
-//   try {
-//     yield call(preduzecaService.storePreduzece, payload);
-//     toast.success('Uspješno dodato preduzeće: ' + payload.naziv, toastSettings);
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
-//   }
-// }
-
 export function* preduzeceStore({ payload }) {
-  const res = yield call(preduzecaService.storePreduzece, payload);
-  toast.success(
-    'Uspješno dodato preduzeće: ' + payload.kratki_naziv,
-    toastSettings
-  );
-
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
+  try {
+    const res = yield call(preduzecaService.storePreduzece, payload);
+    toast.success(
+      'Uspješno dodato preduzeće: ' + payload.kratki_naziv,
       toastSettings
     );
-    yield put(setGlobalError(res.message));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* preduzecaGet({ payload }) {
-//   try {
-//     const { data } = yield call(preduzecaService.getPreduzeca, payload);
-//     yield put(setPreduzeca(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* preduzeceStore({ payload }) {
+//   const res = yield call(preduzecaService.storePreduzece, payload);
+//   toast.success(
+//     'Uspješno dodato preduzeće: ' + payload.kratki_naziv,
+//     toastSettings
+//   );
+
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* preduzecaGet({ payload }) {
-  const res = yield call(preduzecaService.getPreduzeca, payload);
-  yield put(setPreduzeca(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(preduzecaService.getPreduzeca, payload);
+    yield put(setPreduzeca(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* preduzeceGet({ payload }) {
-//   try {
-//     const { data } = yield call(preduzecaService.getPreduzece, payload);
-//     yield put(setPreduzece(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* preduzecaGet({ payload }) {
+//   const res = yield call(preduzecaService.getPreduzeca, payload);
+//   yield put(setPreduzeca(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* preduzeceGet({ payload }) {
-  const res = yield call(preduzecaService.getPreduzece, payload);
-  yield put(setPreduzece(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(preduzecaService.getPreduzece, payload);
+    yield put(setPreduzece(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* preduzeceUpdate({ payload }) {
-//   try {
-//     const { data } = yield call(preduzecaService.updatePreduzece, payload);
-//     yield put(setPreduzece(data));
-//     toast.info('Uspješno ažurirano preduzeće: ' + payload.naziv, toastSettings);
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* preduzeceGet({ payload }) {
+//   const res = yield call(preduzecaService.getPreduzece, payload);
+//   yield put(setPreduzece(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* preduzeceUpdate({ payload }) {
-  const res = yield call(preduzecaService.updatePreduzece, payload);
-  yield put(setPreduzece(res.data));
-  toast.info('Uspješno ažurirano preduzeće: ' + payload.naziv, toastSettings);
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(preduzecaService.updatePreduzece, payload);
+    yield put(setPreduzece(res.data));
+    toast.info('Uspješno ažurirano preduzeće: ' + payload.naziv, toastSettings);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* preduzeceDelete({ payload }) {
-//   try {
-//     yield call(preduzecaService.deletePreduzece, payload);
-//     toast.success('Uspješno obrisano preduzeće id: ' + payload, toastSettings);
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* preduzeceUpdate({ payload }) {
+//   const res = yield call(preduzecaService.updatePreduzece, payload);
+//   yield put(setPreduzece(res.data));
+//   toast.info('Uspješno ažurirano preduzeće: ' + payload.naziv, toastSettings);
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* preduzeceDelete({ payload }) {
-  const res = yield call(preduzecaService.deletePreduzece, payload);
-  toast.success('Uspješno obrisano preduzeće id: ' + payload, toastSettings);
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(preduzecaService.deletePreduzece, payload);
+    toast.success('Uspješno obrisano preduzeće id: ' + payload, toastSettings);
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* preduzeceDelete({ payload }) {
+//   const res = yield call(preduzecaService.deletePreduzece, payload);
+//   toast.success('Uspješno obrisano preduzeće id: ' + payload, toastSettings);
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }

@@ -24,61 +24,104 @@ const toastSettings = {
   progress: undefined,
 };
 
-export function* atributStore({ payload }) {
-  const tipAtributa = yield call(atributiService.storeAtribut, payload);
-  yield put(getTipoviAtributa());
-  const tipAtributaState = yield select(tipAtributaSelector());
-  yield put(
-    setTipAtributa({
-      ...tipAtributaState,
-      atributi: [...tipAtributaState.atributi, tipAtributa.data],
-    })
-  );
+// export function* atributStore({ payload }) {
+//   const tipAtributa = yield call(atributiService.storeAtribut, payload);
+//   yield put(getTipoviAtributa());
+//   const tipAtributaState = yield select(tipAtributaSelector());
+//   yield put(
+//     setTipAtributa({
+//       ...tipAtributaState,
+//       atributi: [...tipAtributaState.atributi, tipAtributa.data],
+//     })
+//   );
 
-  if (tipAtributa.status !== 201) {
-    toast.error(
-      'Greska: ' + tipAtributa.status + 'Poruka: ' + tipAtributa.message,
-      toastSettings
+//   if (tipAtributa.status !== 201) {
+//     toast.error(
+//       'Greska: ' + tipAtributa.status + 'Poruka: ' + tipAtributa.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(tipAtributa.message));
+//   }
+// }
+
+export function* atributStore({ payload }) {
+  try {
+    const tipAtributa = yield call(atributiService.storeAtribut, payload);
+    yield put(getTipoviAtributa());
+    const tipAtributaState = yield select(tipAtributaSelector());
+    yield put(
+      setTipAtributa({
+        ...tipAtributaState,
+        atributi: [...tipAtributaState.atributi, tipAtributa.data],
+      })
     );
-    yield put(setGlobalError(tipAtributa.message));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* atributiGet({ payload }) {
+//   const res = yield call(atributiService.storeTipAtributa, payload);
+//     yield put(getTipoviAtributa());
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* atributiGet({ payload }) {
-  const res = yield call(atributiService.getAtributi, payload);
-  yield put(setAtributi(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(atributiService.storeTipAtributa, payload);
+    yield put(getTipoviAtributa());
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* tipAtributaStore({ payload }) {
+//   const res = yield call(atributiService.storeTipAtributa, payload);
+//   yield put(getTipoviAtributa());
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
 
 export function* tipAtributaStore({ payload }) {
-  const res = yield call(atributiService.storeTipAtributa, payload);
-  yield put(getTipoviAtributa());
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(atributiService.storeTipAtributa, payload);
+    yield put(getTipoviAtributa());
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-export function* tipoviAtributaGet({ payload }) {
-  const res = yield call(atributiService.getTipoviAtributa, payload);
-  yield put(setTipoviAtributa(res.data));
+// export function* tipoviAtributaGet({ payload }) {
+//   const res = yield call(atributiService.getTipoviAtributa, payload);
+//   yield put(setTipoviAtributa(res.data));
 
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
+
+export function* tipoviAtributaGet({ payload }) {
+  try {
+    const res = yield call(atributiService.getTipoviAtributa, payload);
+    yield put(setTipoviAtributa(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }

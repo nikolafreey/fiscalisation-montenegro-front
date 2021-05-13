@@ -23,90 +23,93 @@ const toastSettings = {
   progress: undefined,
 };
 
-// export function* kategorijaRobeStore({ payload }) {
-//   try {
-//     yield call(kategorijeRobeService.storeKategorijaRobe, payload);
-//     yield put(getKategorijeRobe());
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
-//   }
-// }
-
 export function* kategorijaRobeStore({ payload }) {
-  const res = yield call(kategorijeRobeService.storeKategorijaRobe, payload);
-  yield put(getKategorijeRobe());
-
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(kategorijeRobeService.storeKategorijaRobe, payload);
+    yield put(getKategorijeRobe());
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* kategorijeRobeGet({ payload }) {
-//   try {
-//     const { data } = yield call(kategorijeRobeService.getKategorijeRobe, payload);
-//     yield put(setKategorijeRobe(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* kategorijaRobeStore({ payload }) {
+//   const res = yield call(kategorijeRobeService.storeKategorijaRobe, payload);
+//   yield put(getKategorijeRobe());
+
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* kategorijeRobeGet({ payload }) {
-  const res = yield call(kategorijeRobeService.getKategorijeRobe, payload);
-  yield put(setKategorijeRobe(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(kategorijeRobeService.getKategorijeRobe, payload);
+    yield put(setKategorijeRobe(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* podkategorijaRobeStore({ payload }) {
-//   try {
-//     yield call(kategorijeRobeService.storePodkategorijaRobe, payload);
-//     yield put(getKategorijeRobe());
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* kategorijeRobeGet({ payload }) {
+//   const res = yield call(kategorijeRobeService.getKategorijeRobe, payload);
+//   yield put(setKategorijeRobe(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* podkategorijaRobeStore({ payload }) {
-  const res = yield call(kategorijeRobeService.storePodkategorijaRobe, payload);
-  yield put(getKategorijeRobe());
-
-  if (res.status !== 201) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
+  try {
+    const res = yield call(
+      kategorijeRobeService.storePodkategorijaRobe,
+      payload
     );
-    yield put(setGlobalError(res.message));
+    yield put(getKategorijeRobe());
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
 
-// export function* podkategorijeRobeGet({ payload }) {
-//   try {
-//     const { data } = yield call(kategorijeRobeService.getPodkategorijeRobe, payload);
-//     yield put(setPodkategorijeRobe(data));
-//   } catch (error) {
-//     yield put(setGlobalError(error.message));
+// export function* podkategorijaRobeStore({ payload }) {
+//   const res = yield call(kategorijeRobeService.storePodkategorijaRobe, payload);
+//   yield put(getKategorijeRobe());
+
+//   if (res.status !== 201) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
 //   }
 // }
 
 export function* podkategorijeRobeGet({ payload }) {
-  const res = yield call(kategorijeRobeService.getPodkategorijeRobe, payload);
-  yield put(setPodkategorijeRobe(res.data));
-
-  if (res.status !== 200) {
-    toast.error(
-      'Greska: ' + res.status + 'Poruka: ' + res.message,
-      toastSettings
-    );
-    yield put(setGlobalError(res.message));
+  try {
+    const res = yield call(kategorijeRobeService.getPodkategorijeRobe, payload);
+    yield put(setPodkategorijeRobe(res.data));
+  } catch (error) {
+    yield put(setGlobalError(error.message));
   }
 }
+
+// export function* podkategorijeRobeGet({ payload }) {
+//   const res = yield call(kategorijeRobeService.getPodkategorijeRobe, payload);
+//   yield put(setPodkategorijeRobe(res.data));
+
+//   if (res.status !== 200) {
+//     toast.error(
+//       'Greska: ' + res.status + 'Poruka: ' + res.message,
+//       toastSettings
+//     );
+//     yield put(setGlobalError(res.message));
+//   }
+// }
