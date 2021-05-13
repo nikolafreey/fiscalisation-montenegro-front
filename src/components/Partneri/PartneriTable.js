@@ -35,13 +35,13 @@ const PartneriTable = ({ partneri }) => {
           </thead>
           <tbody>
             <List
-              data={partneri.data}
+              data={partneri?.data}
               renderItem={PartneriTableRow}
               onItemClick={(item) => {
                 dispatch(setPartner({}));
                 dispatch(setPartner(item));
               }}
-              selectedId={selectedPartner.id}
+              selectedId={selectedPartner?.id}
               key={partneri.preduzece?.id}
             />
           </tbody>

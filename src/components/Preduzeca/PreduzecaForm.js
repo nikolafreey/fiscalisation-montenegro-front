@@ -143,6 +143,7 @@ const PreduzecaForm = () => {
         privatnost: 'Javan',
         verifikovan: false,
         ziro_racuni: [],
+        pdv_obveznik: true,
         ...preduzece,
       }}
       onSubmit={handleSubmit}
@@ -392,7 +393,9 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
                       <p className="mob-mb-20 txt-light">
-                        Kontakt informacije preduzeća. Svi korisnici PostFiskal aplikacije mogu da vide informacije ovog preduzeća koje unesete
+                        Kontakt informacije preduzeća. Svi korisnici PostFiskal
+                        aplikacije mogu da vide informacije ovog preduzeća koje
+                        unesete
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -648,7 +651,8 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Društvene mreže</h2>
                       <p className="mob-mb-20 txt-light">
-                        Informacije o nalozima na društvnim mrežama da ostali korisnici mogu da prate vaše preduzeće
+                        Informacije o nalozima na društvnim mrežama da ostali
+                        korisnici mogu da prate vaše preduzeće
                       </p>
                     </div>
                     <div className="col-lg-8">
@@ -718,7 +722,8 @@ const PreduzecaForm = () => {
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Status</h2>
                       <p className="mob-mb-20 txt-light">
-                        Promijenite status preduzeća i podatke o tome da li je u sistemu PDV-a
+                        Promijenite status preduzeća i podatke o tome da li je u
+                        sistemu PDV-a
                       </p>
                     </div>
                     <div className="col-lg-4 col-md-6 col-6">
@@ -825,6 +830,44 @@ const PreduzecaForm = () => {
                           >
                             <span className="form__radio-button"></span>
                             <span className="mob-ml-10">Privatno</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-6">
+                      <label className="form__label">U Sistemu PDV-a?</label>
+                      <div
+                        className="form__group"
+                        onChange={(event) => {
+                          console.log('event.target.value', event.target.value);
+                          values.status = event.target.value;
+                        }}
+                      >
+                        <div className="form__radio-group">
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Da"
+                            value={true}
+                            name="pdv_obveznik"
+                            defaultChecked
+                          />
+                          <label htmlFor="Da" className="form__radio-label">
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Da</span>
+                          </label>
+                        </div>
+                        <div className="form__radio-group">
+                          <input
+                            className="form__radio-input"
+                            type="radio"
+                            id="Ne"
+                            value={false}
+                            name="pdv_obveznik"
+                          />
+                          <label htmlFor="Ne" className="form__radio-label">
+                            <span className="form__radio-button"></span>
+                            <span className="mob-ml-10">Ne</span>
                           </label>
                         </div>
                       </div>

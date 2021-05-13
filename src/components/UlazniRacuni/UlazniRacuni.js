@@ -126,7 +126,7 @@ const UlazniRacuni = () => {
       backgroundColor: '#F3F4F6',
       borderRadius: 4,
       height: '45px',
-      minHeight:'unset'
+      minHeight: 'unset',
     }),
   };
   // const onChange = (dates) => {
@@ -181,7 +181,11 @@ const UlazniRacuni = () => {
                 />
                 <DatePicker
                   selected={endDate}
-                  onChange={(date) => handleEndDateChange(date)}
+                  onChange={(date) => {
+                    var result = new Date(date);
+                    result.setDate(result.getDate() + 1);
+                    handleEndDateChange(result);
+                  }}
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}
@@ -204,7 +208,7 @@ const UlazniRacuni = () => {
               </div>
 
               {searchVisible && (
-                <div className="box">
+                <div className={searchVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
                   <span onClick={resetSearch} className="box__close">
@@ -214,7 +218,7 @@ const UlazniRacuni = () => {
               )}
 
               {statusVisible && (
-                <div className="box">
+                <div className={statusVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
                   <span onClick={resetStatus} className="box__close">
@@ -224,7 +228,11 @@ const UlazniRacuni = () => {
               )}
 
               {dateStartVisible || dateEndVisible ? (
-                <div className="box">
+                <div
+                  className={
+                    dateStartVisible || dateEndVisible ? 'box visible' : 'box'
+                  }
+                >
                   <p className="txt-light">Datum</p>
                   <h3 className="heading-tertiary">
                     {/* {(startDate

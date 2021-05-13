@@ -113,11 +113,11 @@ const Partneri = () => {
               <PartneriTable partneri={partneri} />
             )}
           </div>
-          {partner.preduzece_partner && !partner.fizicko_lice && (
-            <PreduzeceDetails preduzece={partner.preduzece_partner} />
+          {partner?.preduzece_partner && !partner?.fizicko_lice && (
+            <PreduzeceDetails preduzece={partner?.preduzece_partner} />
           )}
-          {partner.fizicko_lice && !partner.preduzece_partner && (
-            <FizickoLiceDetails fizickoLice={partner.fizicko_lice} />
+          {partner?.fizicko_lice && !partner?.preduzece_partner && (
+            <FizickoLiceDetails fizickoLice={partner?.fizicko_lice} />
           )}
         </div>
       </div>
