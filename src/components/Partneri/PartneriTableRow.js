@@ -79,23 +79,25 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           <button type="button" className="btn btn__light-dd btn__xs">
             <Dots className="icon lg" />
             <div className="drop-down" id="ddl">
-              {/* <Link
-                disabled
-                // to={
-                //   partner.preduzece_partner
-                //     ? PREDUZECA.EDIT.replace(
-                //         ':id',
-                //         `${partner?.preduzece_partner?.id}`
-                //       )
-                //     : FIZICKA_LICA.EDIT.replace(
-                //         ':id',
-                //         `${partner.fizicko_lice.id}`
-                //       )
-                // }
-              >
-                <Edit className="icon icon__dark md" />
-                Izmijeni
-              </Link> */}
+              {partner?.preduzece_partner?.verifikovan === 0 ||
+              partner.fizicko_lice_id ? (
+                <Link
+                  to={
+                    partner.preduzece_partner
+                      ? PREDUZECA.EDIT.replace(
+                          ':id',
+                          `${partner?.preduzece_partner?.id}`
+                        )
+                      : FIZICKA_LICA.EDIT.replace(
+                          ':id',
+                          `${partner?.fizicko_lice?.id}`
+                        )
+                  }
+                >
+                  <Edit className="icon icon__dark md" />
+                  Izmijeni
+                </Link>
+              ) : null}
               <a onClick={() => handleDelete(partner.id)}>
                 <Delete className="icon icon__dark md" />
                 Obriši
