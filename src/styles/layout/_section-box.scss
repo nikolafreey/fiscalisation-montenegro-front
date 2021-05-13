@@ -45,20 +45,37 @@
       }
       .el {
         width: 23.5%;
+        margin-bottom: 1.5rem;
+
+        .form__group {
+          margin-bottom: 1.5rem !important;
+        }
+        .form__group:not(:last-child) {
+          margin-bottom: 1.5rem !important;
+        }
+
         @include respond(tab-port) {
           width: 24%;
-          height: 45px;
-          margin-bottom: 1.5rem;
+          //height: 45px;
+          //margin-bottom: 1.5rem;
         }
         // @include respond(big-phone){
         //   width: 23%;
         // }
         @include respond(big-phone) {
-          width: 48.75%;
+          display: flex;
+          justify-content: space-between;
+          width: 100% !important;
+          margin-bottom: 0;
+          .form__group {
+            margin-bottom: 0 !important;
+            width: 48.5%;
+          }
         }
-        @include respond(phone) {
-          width: 48.5%;
-        }
+        // @include respond(phone) {
+        //   width: 48.5%;
+        // }
+        
       }
       .half {
         width: 49%;

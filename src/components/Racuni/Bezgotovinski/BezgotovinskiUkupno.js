@@ -181,32 +181,34 @@ const BezgotovinskiUkupno = () => {
                 </div> */}
                 <div className="section-box__right--full-h">
                   <div class="price">
-                    <div class="form__group h-100">
-                      <div class="form__box h-100">
-                        <div>
-                          <p class="txt-light">Ukupan iznos PDV-a</p>
-                        </div>
-                        <div class="heading-secondary mb-0">{formatirajCijenu(cijene.ukupnoPdv)}</div>
+                    <div class="form__box h-100">
+                      <div>
+                        <p class="txt-light">Ukupan iznos PDV-a</p>
+                      </div>
+                      <div class="heading-secondary mb-0">
+                        {formatirajCijenu(cijene.ukupnoPdv)}
                       </div>
                     </div>
                   </div>
                   <div class="price">
-                    <div class="form__group h-100">
-                      <div class="form__box h-100">
-                        <div>
-                          <p class="txt-light">Ukupna cijena bez PDV-a</p>
-                        </div>
-                        <div class="heading-secondary mb-0"> {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}</div>
+                    <div class="form__box h-100">
+                      <div>
+                        <p class="txt-light">Ukupna cijena bez PDV-a</p>
+                      </div>
+                      <div class="heading-secondary mb-0">
+                        {' '}
+                        {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}
                       </div>
                     </div>
                   </div>
                   <div class="price">
-                    <div class="form__group h-100">
-                      <div class="form__box h-100">
-                        <div>
-                          <p class="txt-light">Ukupna cijena sa PDV-om</p>
-                        </div>
-                        <div class="heading-secondary mb-0">  {formatirajCijenu(cijene.ukupnaCijena)}</div>
+                    <div class="form__box h-100">
+                      <div>
+                        <p class="txt-light">Ukupna cijena sa PDV-om</p>
+                      </div>
+                      <div class="heading-secondary mb-0">
+                        {' '}
+                        {formatirajCijenu(cijene.ukupnaCijena)}
                       </div>
                     </div>
                   </div>

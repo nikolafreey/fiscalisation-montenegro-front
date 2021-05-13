@@ -282,7 +282,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     <>
       {values.stavke.map((stavka, index) => (
         <>
-         <div className="main-content__box--body mb-20">
+          <div className="main-content__box--body mb-20">
             <div className="container">
               <div className="df jc-sb ai-c w-100">
                 <h2 className="heading-secondary">{index + 1}</h2>
@@ -335,7 +335,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                 <div className="section-box__right">
                   <div className="section-box__right--top-wrap">
                     <div className="el">
-                      <div className="form__group mb-15">
+                      <div className="form__group">
+                        <label htmlFor="" className="form__label bm-show">Bez PDV</label>
                         <input
                           type="text"
                           value={formatirajCijenu(
@@ -351,9 +352,32 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           readOnly
                         />
                       </div>
+                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Sa PDV</label>
+                        <input
+                          name="ukupna_cijena"
+                          type="number"
+                          // value={formatirajCijenu(
+                          //   getUkupnaCijenaStavke(stavka)
+                          // )}
+                          value={
+                            stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                            stavka?.ukupna_cijena
+                          }
+                          className="form__input"
+                          placeholder="Sa PDV"
+                          onChange={(event) =>
+                            setFieldValue(
+                              `stavke.${index}.ukupna_cijena`,
+                              event.target.valueAsNumber
+                            )
+                          }
+                        />
+                      </div>
                     </div>
                     <div className="el">
                       <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Jedinica mjere</label>
                         <DropDown
                           name={`stavke.${index}.jedinica_mjere_id`}
                           // placeholder={
@@ -383,9 +407,28 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           }
                         />
                       </div>
+                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Količina</label>
+                        <input
+                          name="kolicina"
+                          type="number"
+                          className="form__input"
+                          value={
+                            stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
+                          }
+                          defaultValue={1}
+                          onChange={(event) =>
+                            setFieldValue(
+                              `stavke.${index}.kolicina`,
+                              event.target.valueAsNumber
+                            )
+                          }
+                        />
+                      </div>
                     </div>
                     <div className="el">
-                      <div className="form__group  mb-15">
+                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Stopa PDV-a</label>
                         <DropDown
                           name={`stavke.${index}.porez_id`}
                           loadOptions={poreziService.getPoreziDropdown}
@@ -419,9 +462,23 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           }}
                         />
                       </div>
+                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">PDV</label>
+                        <input
+                          type="text"
+                          className="form__input"
+                          value={formatirajCijenu(
+                            getUkupanIznosPdv(stavka)
+                            // getPorezStopaForId(stavka?.porez_id) *
+                            //   getCijenaStavkeBezPdv(stavka)
+                          )}
+                          readOnly
+                        />
+                      </div>
                     </div>
                     <div className="el">
-                      <div className="form__group mb-15">
+                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Tip popusta</label>
                         <DropDownStatic
                           name={`stavke.${index}.tip_popusta`}
                           options={TIPOVI_POPUSTA}
@@ -438,69 +495,12 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           }
                         />
                       </div>
-                    </div>
-                    <div className="el">
-                      <div className="form__group mb-15">
-                        <input
-                          name="ukupna_cijena"
-                          type="number"
-                          // value={formatirajCijenu(
-                          //   getUkupnaCijenaStavke(stavka)
-                          // )}
-                          value={
-                            stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                            stavka?.ukupna_cijena
-                          }
-                          className="form__input"
-                          placeholder="Sa PDV"
-                          onChange={(event) =>
-                            setFieldValue(
-                              `stavke.${index}.ukupna_cijena`,
-                              event.target.valueAsNumber
-                            )
-                          }
-                        />
-                      </div>
-                    </div>
-                    <div className="el">
-                      <div className="form__group mb-15">
-                        <input
-                          name="kolicina"
-                          type="number"
-                          className="form__input mb-15"
-                          value={
-                            stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
-                          }
-                          defaultValue={1}
-                          onChange={(event) =>
-                            setFieldValue(
-                              `stavke.${index}.kolicina`,
-                              event.target.valueAsNumber
-                            )
-                          }
-                        />
-                      </div>
-                    </div>
-                    <div className="el">
                       <div className="form__group">
-                        <input
-                          type="text"
-                          className="form__input mb-15"
-                          value={formatirajCijenu(
-                            getUkupanIznosPdv(stavka)
-                            // getPorezStopaForId(stavka?.porez_id) *
-                            //   getCijenaStavkeBezPdv(stavka)
-                          )}
-                          readOnly
-                        />
-                      </div>
-                    </div>
-                    <div className="el">
-                      <div className="form__group">
+                      <label htmlFor="" className="form__label bm-show">Popust</label>
                         <input
                           name="popust"
                           type="number"
-                          className="form__input mb-15"
+                          className="form__input"
                           value={
                             stavka?.popust
                               ? stavka?.popust

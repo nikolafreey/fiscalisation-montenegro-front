@@ -32,14 +32,13 @@ const BezgotovinskiStatusPodsjetnici = () => {
           <div className="col-md-4">
             <h2 className="heading-secondary">Podsjetnici za plaćanje</h2>
             <div
-              style={{ marginTop: -25, marginBottom: 20 }}
               className="status"
             >
-              <div style={{ width: 160 }} className="tag tag__warning">
+              <span className="tag tag__warning">
                 Dostupno od 1. juna
-              </div>
+              </span>
             </div>
-            <p className="txt-light">
+            <p className="txt-light b-mob-mb-20">
               Možete izabrati da se podsjetnici za plaćanje šalju kupcu ukoliko
               račun nije označen kao plaćen.
             </p>
@@ -78,15 +77,12 @@ const BezgotovinskiStatusPodsjetnici = () => {
             <h2 className="heading-secondary">
               Automatizovano slanje periodičnih računa
             </h2>
-            <div
-              style={{ marginTop: -25, marginBottom: 20 }}
-              className="status"
-            >
-              <div style={{ width: 160 }} className="tag tag__warning">
+            <div className="status">
+              <span className="tag tag__warning">
                 Dostupno od 1. juna
-              </div>
+              </span>
             </div>
-            <p className="txt-light">
+            <p className="txt-light b-mob-mb-20">
               Možete izabrati da se novi račun sa gore navedenim stavkama šalje
               kupcu svakog dana, nedjelje, mjeseca ili godine za usluge koje se
               ponavljaju tako da ne morate ručno kreirati svaki put novi račun
