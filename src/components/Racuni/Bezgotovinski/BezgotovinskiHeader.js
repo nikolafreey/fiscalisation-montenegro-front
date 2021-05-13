@@ -85,7 +85,7 @@ const BezgotovinskiHeader = () => {
                 <div className="half">
                   <div className="form__group">
                     <label className="form__label">
-                      Da li je u sistemu PDV-a
+                      U sistemu PDV-a?
                     </label>
                     <DropDownStatic
                       name="pdv_obveznik"

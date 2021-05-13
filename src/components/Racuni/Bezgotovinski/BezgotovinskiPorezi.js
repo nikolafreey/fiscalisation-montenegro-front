@@ -21,7 +21,7 @@ const BezgotovinskiPorezi = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th className="w-33">
+                  <th>
                     <span className="heading-quaternary">PDV stopa</span>
                   </th>
                   <th className="w-33">
@@ -40,7 +40,7 @@ const BezgotovinskiPorezi = () => {
                     <tr>
                       <td className="w-33">{porez.naziv}</td>
                       <td className="w-33">{formatirajCijenu(porez.ukupno)}</td>
-                      <td className="txt-right w-33">
+                      <td className="txt-right mob-txt-left w-33">
                         {formatirajCijenu(porez.pdvIznos)}{' '}
                         <span className="txt-light"></span>
                       </td>

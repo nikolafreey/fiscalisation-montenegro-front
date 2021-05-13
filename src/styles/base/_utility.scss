@@ -286,6 +286,11 @@
     margin-left: 2rem;
   }
 }
+.b-mob-mb-20 {
+  @include respond(big-phone) {
+    margin-bottom: 2rem;
+  }
+}
 .mob-mb-20 {
   @include respond(phone) {
     margin-bottom: 2rem;
@@ -427,6 +432,12 @@
     display: none !important;
   }
 }
+.bm-show {
+  display: none!important;
+  @include respond(big-phone) {
+    display: block !important;
+  }
+}
 .tab-ml-10p {
   margin-left: 0;
   @include respond(tab-land) {
@@ -454,7 +465,7 @@
 }
 .mob-txt-left {
   @include respond(big-phone) {
-    text-align: left;
+    text-align: left!important;
   }
 }
 .bg-light {
