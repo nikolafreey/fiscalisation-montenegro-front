@@ -45,7 +45,7 @@ const Sidebar = () => {
         <Logo />
       </div>
       <div
-        className={menuIsOpen ? 'menu-icon active' : 'menu-icon'}
+        className={menuIsOpen ? 'menu-icon active' : 'menu-icon '}
         onClick={menuToggler}
       >
         <span className="line line-1"></span>
