@@ -337,20 +337,16 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Žiro računi</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Podaci o žiro računima preduzeća
                       </p>
                     </div>
                     <div className="col-md-8">
-                      <div className="form__group">
-                        <FieldArray name="ziro_racuni">
-                          {(arrayHelpers) => (
-                            <ZiroRacuniFieldArray {...arrayHelpers} />
-                          )}
-                        </FieldArray>
-
-                        {/* <div className="df ai-c"></div> */}
-                      </div>
+                      <FieldArray name="ziro_racuni">
+                        {(arrayHelpers) => (
+                          <ZiroRacuniFieldArray {...arrayHelpers} />
+                        )}
+                      </FieldArray>
                     </div>
                   </div>
                 </div>
@@ -361,7 +357,7 @@ const PreduzecaForm = () => {
                       <h2 className="heading-secondary">
                         Plaćanje iz inostranstva
                       </h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Informacije koje su bitne za plaćanje iz inostranstva
                       </p>
                     </div>
@@ -392,7 +388,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Kontakt informacije</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Kontakt informacije preduzeća. Svi korisnici PostFiskal
                         aplikacije mogu da vide informacije ovog preduzeća koje
                         unesete
@@ -479,7 +475,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Ovlašćeno lice</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Informacije o ovlašćenom licu unutar preduzeća
                       </p>
                     </div>
@@ -564,7 +560,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Osoba za kontakt</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Informacije o osobi za kontakt unutar preduzeća
                       </p>
                     </div>
@@ -650,7 +646,7 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Društvene mreže</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Informacije o nalozima na društvnim mrežama da ostali
                         korisnici mogu da prate vaše preduzeće
                       </p>
@@ -721,147 +717,167 @@ const PreduzecaForm = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <h2 className="heading-secondary">Status</h2>
-                      <p className="mob-mb-20 txt-light">
+                      <p className="tabp-mb-20 txt-light">
                         Promijenite status preduzeća i podatke o tome da li je u
                         sistemu PDV-a
                       </p>
                     </div>
-                    <div className="df mtb-25 col-lg-6">
-                      {preduzece?.verifikovan === 1 ? (
-                        <>
-                          <IconFillSvg />
-                          <span>Verifikovano preduzeće</span>
-                        </>
-                      ) : null}
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-6">
-                      <label className="form__label">Status</label>
-                      <div
-                        className="form__group"
-                        onChange={(event) => {
-                          console.log('event.target.value', event.target.value);
-                          values.status = event.target.value;
-                        }}
-                      >
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Aktivan"
-                            value="Aktivan"
-                            name="status"
-                            defaultChecked
-                            // checked={values.status}
-                          />
-                          <label
-                            htmlFor="Aktivan"
-                            className="form__radio-label"
+                    <div className="col-lg-8">
+                      <div className="row">
+                        <div className="col-lg-4 col-md-4 col-12">
+                          <label className="form__label">Status</label>
+                          <div
+                            className="form__group"
+                            onChange={(event) => {
+                              console.log(
+                                'event.target.value',
+                                event.target.value
+                              );
+                              values.status = event.target.value;
+                            }}
                           >
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Aktivan</span>
-                          </label>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Aktivan"
+                                value="Aktivan"
+                                name="status"
+                                defaultChecked
+                                // checked={values.status}
+                              />
+                              <label
+                                htmlFor="Aktivan"
+                                className="form__radio-label"
+                              >
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Aktivan</span>
+                              </label>
+                            </div>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Neaktivan"
+                                value="Neaktivan"
+                                name="status"
+                                disabled
+                                // checked={usluga && radioChecked}
+                              />
+                              <label
+                                htmlFor="Neaktivan"
+                                className="form__radio-label"
+                              >
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Neaktivan</span>
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Neaktivan"
-                            value="Neaktivan"
-                            name="status"
-                            disabled
-                            // checked={usluga && radioChecked}
-                          />
-                          <label
-                            htmlFor="Neaktivan"
-                            className="form__radio-label"
+                        <div className="col-lg-4 col-md-4 col-12">
+                          <label className="form__label">
+                            Javno prikazani podaci
+                          </label>
+                          <div
+                            className="form__group"
+                            onChange={(event) => {
+                              console.log(
+                                'event.target.value',
+                                event.target.value
+                              );
+                              values.status = event.target.value;
+                            }}
                           >
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Neaktivan</span>
-                          </label>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Javno"
+                                value="javno"
+                                name="privatnost"
+                                defaultChecked
+                                // checked={values.status}
+                              />
+                              <label
+                                htmlFor="Javno"
+                                className="form__radio-label"
+                              >
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Javno</span>
+                              </label>
+                            </div>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Privatno"
+                                value="privatno"
+                                name="privatnost"
+                                disabled
+                                // checked={usluga && radioChecked}
+                              />
+                              <label
+                                htmlFor="Privatno"
+                                className="form__radio-label"
+                              >
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Privatno</span>
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-6">
-                      <label className="form__label">
-                        Javno prikazani podaci
-                      </label>
-                      <div
-                        className="form__group"
-                        onChange={(event) => {
-                          console.log('event.target.value', event.target.value);
-                          values.status = event.target.value;
-                        }}
-                      >
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Javno"
-                            value="javno"
-                            name="privatnost"
-                            defaultChecked
-                            // checked={values.status}
-                          />
-                          <label htmlFor="Javno" className="form__radio-label">
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Javno</span>
+                        <div className="col-lg-4 col-md-4 col-12">
+                          <label className="form__label">
+                            U Sistemu PDV-a?
                           </label>
-                        </div>
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Privatno"
-                            value="privatno"
-                            name="privatnost"
-                            disabled
-                            // checked={usluga && radioChecked}
-                          />
-                          <label
-                            htmlFor="Privatno"
-                            className="form__radio-label"
+                          <div
+                            className="form__group"
+                            onChange={(event) => {
+                              console.log(
+                                'event.target.value',
+                                event.target.value
+                              );
+                              values.status = event.target.value;
+                            }}
                           >
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Privatno</span>
-                          </label>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Da"
+                                value={true}
+                                name="pdv_obveznik"
+                                defaultChecked
+                              />
+                              <label htmlFor="Da" className="form__radio-label">
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Da</span>
+                              </label>
+                            </div>
+                            <div className="form__radio-group">
+                              <input
+                                className="form__radio-input"
+                                type="radio"
+                                id="Ne"
+                                value={false}
+                                name="pdv_obveznik"
+                              />
+                              <label htmlFor="Ne" className="form__radio-label">
+                                <span className="form__radio-button"></span>
+                                <span className="mob-ml-10">Ne</span>
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-6">
-                      <label className="form__label">U Sistemu PDV-a?</label>
-                      <div
-                        className="form__group"
-                        onChange={(event) => {
-                          console.log('event.target.value', event.target.value);
-                          values.status = event.target.value;
-                        }}
-                      >
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Da"
-                            value={true}
-                            name="pdv_obveznik"
-                            defaultChecked
-                          />
-                          <label htmlFor="Da" className="form__radio-label">
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Da</span>
-                          </label>
-                        </div>
-                        <div className="form__radio-group">
-                          <input
-                            className="form__radio-input"
-                            type="radio"
-                            id="Ne"
-                            value={false}
-                            name="pdv_obveznik"
-                          />
-                          <label htmlFor="Ne" className="form__radio-label">
-                            <span className="form__radio-button"></span>
-                            <span className="mob-ml-10">Ne</span>
-                          </label>
+                        <div className="col-md-12">
+                        <div className="df mtb-25">
+                            {preduzece?.verifikovan === 0 ? (
+                              <>
+                                <IconFillSvg />
+                                <span>Verifikovano preduzeće</span>
+                              </>
+                            ) : null}
+                          </div>
                         </div>
                       </div>
                     </div>

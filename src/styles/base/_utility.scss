@@ -286,6 +286,11 @@
     margin-left: 2rem;
   }
 }
+.tabp-mb-20 {
+  @include respond(tab-port) {
+    margin-bottom: 2rem;
+  }
+}
 .b-mob-mb-20 {
   @include respond(big-phone) {
     margin-bottom: 2rem;

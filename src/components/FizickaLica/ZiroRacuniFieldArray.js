@@ -28,7 +28,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
     }
   };
   return (
-    <div>
+    <div className="form__group">
       <label className="form__label" for="lista-racuna">
         Lista računa
       </label>
@@ -51,7 +51,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
           </button>
         </div>
       ))}
-      <div className="pr df ai-c">
+      <div className="df ai-c">
         <button
           type="button"
           className="btn btn__link df"
