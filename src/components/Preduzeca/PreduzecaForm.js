@@ -89,7 +89,7 @@ const PreduzecaForm = () => {
         })
       );
     dispatch(setPreduzece(initialValues));
-    history.back();
+    history.goBack();
   };
 
   const handleBlur = (e) => {

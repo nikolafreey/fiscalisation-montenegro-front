@@ -32,8 +32,8 @@ const RacuniTableRow = ({ item, racuni }) => {
       .map(
         (tmp) =>
           tmp.fizicko_lice && {
-            ime: tmp.fizicko_lice.ime + ' ' + tmp.fizicko_lice.prezime,
-            id: tmp.id,
+            ime: tmp?.fizicko_lice?.ime + ' ' + tmp?.fizicko_lice?.prezime,
+            id: tmp?.id,
           }
       )
       .filter((tmp) => tmp != null);
@@ -41,8 +41,8 @@ const RacuniTableRow = ({ item, racuni }) => {
       ?.map(
         (tmp) =>
           !tmp.fizicko_lice && {
-            ime: tmp.preduzece_partner.kratki_naziv,
-            id: tmp.id,
+            ime: tmp?.preduzece_partner?.kratki_naziv,
+            id: tmp?.id,
           }
       )
       .filter((tmp) => tmp != null);

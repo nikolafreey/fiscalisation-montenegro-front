@@ -53,13 +53,15 @@ const FizickaLicaForm = () => {
 
   const handleSubmit = (values, initialValues) => {
     if (params.id) dispatch(updateFizickoLice({ id: params.id, ...values }));
-    else
+    else {
+      console.log('handleSubmit Fizicko Lice Store');
       dispatch(
         storeFizickoLice({
           ...values,
           status: values.status === 'Aktivan' ? true : false,
         })
       );
+    }
     // dispatch(setFizickoLice(initialValues));
   };
 
@@ -87,7 +89,8 @@ const FizickaLicaForm = () => {
                 <div className="col-lg-4 mt-25">
                   <h2 className="heading-secondary">Informacije</h2>
                   <p className="txt-light">
-                    Unesite informacije o fizičkom licu kao što su Ime, Prezime, JMBG, Grad itd.
+                    Unesite informacije o fizičkom licu kao što su Ime, Prezime,
+                    JMBG, Grad itd.
                   </p>
                 </div>
                 <div className="col-lg-8 mt-25">
@@ -393,7 +396,6 @@ const FizickaLicaForm = () => {
               <button
                 className="btn btn__primary btn__md"
                 type="submit"
-                disabled={!isValid || isSubmitting}
                 onClick={() => {
                   if (!isValid) {
                     toast.error(

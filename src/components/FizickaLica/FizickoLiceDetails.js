@@ -37,10 +37,10 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
             {fizickoLice.grad}, {fizickoLice.drzava}
           </li>
         </ul>
-        <p className="lh-sm">
+        {/* <p className="lh-sm">
           Elementum malesuada tristique vitae ut. Nunc parturient natoque nulla
           molestie sed cursus. Risus congue quisque morbi nibh mauris vel.
-        </p>
+        </p> */}
       </div>
       <div className="side-info__wrapper">
         <div className="side-info__info as-end">
@@ -102,7 +102,8 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
       <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Tekući računi</h3>
-        <div className="side-info__info">
+        TODO: ispisati podatke o tekucim racunima
+        {/* <div className="side-info__info">
           <div className="side-info__info--inner-wrapper">
             <div className="col-l">
               <p className="txt-up">ckb</p>
@@ -127,7 +128,7 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
               <p>535-11234-32</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <hr className="mtb-20"/>
       <div className="side-info__wrapper">
@@ -166,6 +167,7 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
             </p>
           </div>
         </div>
+        {fizickoLice.cv_link && (
         <div className="side-info__info--inner-wrapper">
           <div className="col-l">
             <p>CV</p>
@@ -182,6 +184,8 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
             </p>
           </div>
         </div>
+        )}
+
       </div>
     </div>
   );
