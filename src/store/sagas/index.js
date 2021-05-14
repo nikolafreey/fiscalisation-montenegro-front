@@ -206,12 +206,6 @@ export default function* rootSaga() {
     takeLatest(UPDATE_PREDRACUN, predracunUpdate),
     takeLatest(DELETE_PREDRACUN, predracunDelete),
 
-    takeLatest(STORE_FIZICKO_LICE, fizickoLiceStore),
-    takeLatest(GET_FIZICKA_LICA, fizickaLicaGet),
-    takeLatest(GET_FIZICKO_LICE, fizickoLiceGet),
-    takeLatest(UPDATE_FIZICKO_LICE, fizickoLiceUpdate),
-    takeLatest(DELETE_FIZICKO_LICE, fizickoLiceDelete),
-
     takeLatest(STORE_ROBE, robaStore),
     takeLatest(GET_ROBA, robaGet),
     takeLatest(GET_ROBE, robeGet),
