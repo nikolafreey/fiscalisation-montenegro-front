@@ -10,7 +10,8 @@ const InputField = ({ label, obavezno = false, ...props }) => {
   return (
     <>
       <Label className="form__label" htmlFor={id}>
-        {`${label} ${obavezno ? '' : ' - Nije Obavezno'}`}
+        {label}
+        <span className="txt-light">{obavezno ? '' : ' - Nije Obavezno'}</span>
       </Label>
 
       {/* {meta.touched && meta.error ? (
@@ -21,9 +22,9 @@ const InputField = ({ label, obavezno = false, ...props }) => {
         <input {...field} {...props} />
       )} */}
 
-      {/* <div className={meta.touched && meta.error ? 'error-text' : ''}> */}
+      <div className={meta.touched && meta.error ? 'error-text' : ''}>
         <input {...field} {...props} />
-      {/* </div> */}
+      </div>
 
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>

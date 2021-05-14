@@ -114,23 +114,25 @@ const DropDown = ({
 
   return (
     <div>
+      <div className="df jc-sb">
       <Label htmlFor={props.id || props.name} className="form__label">
         {label}
       </Label>
       {props.name === 'proizvodjac_robe_id' && (
-        <button
+        <span
           className="link"
           to={PROIZVODJACI.CREATE}
           onClick={handleProizvodjac}
         >
           + Novi
-        </button>
+        </span>
       )}
       {props.name === 'grupa_id' && (
-        <button className="link" to={GRUPE.CREATE} onClick={handleGrupe}>
+        <span className="link" to={GRUPE.CREATE} onClick={handleGrupe}>
           + Nova
-        </button>
+        </span>
       )}
+      </div>
       <AsyncSelect
         ref={selectRef}
         name={field.name}

@@ -237,38 +237,38 @@ const Racuni = () => {
               </div>
               {/* </div> */}
             </div>
-            <div className="box-wrapper">
-              <div className="box visible">
+            <ul className="box-wrapper">
+              <li className="box visible ml-0">
                 <p className="txt-light">Ukupan Iznos na prikazanim</p>
                 <h3 className="heading-tertiary">
                   {racuni?.ukupna_cijena !== undefined
                     ? racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'
                     : '0,00€'}
                 </h3>
-              </div>
+              </li>
 
               {searchVisible && (
-                <div className={searchVisible ? 'box visible' : 'box'}>
+                <li className={searchVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Pretraga</p>
                   <h3 className="heading-tertiary">{search}</h3>
                   <span onClick={resetSearch} className="box__close">
                     <BoxCloseSvg />
                   </span>
-                </div>
+                </li>
               )}
 
               {statusVisible && (
-                <div className={statusVisible ? 'box visible' : 'box'}>
+                <li className={statusVisible ? 'box visible' : 'box'}>
                   <p className="txt-light">Status</p>
                   <h3 className="heading-tertiary">{status}</h3>
                   <span onClick={resetStatus} className="box__close">
                     <BoxCloseSvg />
                   </span>
-                </div>
+                </li>
               )}
 
               {dateStartVisible || dateEndVisible ? (
-                <div
+                <li
                   className={
                     dateStartVisible || dateEndVisible ? 'box visible' : 'box'
                   }
@@ -290,9 +290,9 @@ const Racuni = () => {
                   <span onClick={resetDatePicker} className="box__close">
                     <BoxCloseSvg />
                   </span>
-                </div>
+                </li>
               ) : null}
-            </div>
+            </ul>
           </div>
           <div>
             {racuni &&
