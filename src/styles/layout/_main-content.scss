@@ -263,6 +263,11 @@
           }
         }
       }
+      .msg-center{
+        display: flex;
+        justify-content: center;
+        margin: 10rem 0;
+      }
     }
 
     // .search__icon {
@@ -337,13 +342,29 @@
       flex-wrap: nowrap;
       flex-grow: 1;
       list-style: none;
+      @include respond(big-phone){
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
       .box {
         display: block;
         flex-grow: 1;
+        height: auto;
+
+        @include respond(big-phone){
+          width: 49%;
+          margin-bottom: 1rem;
+          flex-grow: 0;
+          
+        }
       }
 
       li {
         margin-right: 1rem !important;
+        @include respond(big-phone){
+          margin-right: 0 !important;
+          
+        }
       }
       li:last-child {
         margin-right: 0!important;
@@ -353,6 +374,7 @@
       }
     }
   }
+  
 }
 #main-content {
   // position: absolute;
