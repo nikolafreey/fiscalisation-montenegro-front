@@ -301,7 +301,7 @@ const Racuni = () => {
             !racuni.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : racuni && racuni.data && racuni.data.length === 0 ? (
-              <div className="msg-center"><p> {'Nemate računa u listi'}</p></div>
+              <div className="msg-center"><p> {'Nema sadržaja u listi'}</p></div>
             ) : (
               <RacuniTable racuni={racuni} />
             )}

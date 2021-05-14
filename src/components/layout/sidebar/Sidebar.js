@@ -29,14 +29,25 @@ import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori
 import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
 import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
 import { ReactComponent as Logo } from '../../../assets/icon/company-logo/postFiscal.svg';
+import { useState } from 'react';
 
 const Sidebar = () => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const menuToggler = () => setMenuIsOpen(!menuIsOpen);
+
   return (
-    <div className="col-md-1 col-xl-3" id="sidebar">
+    <div
+      className={menuIsOpen ? 'col-xl-3 col-md-3' : 'col-md-1 col-xl-3'}
+      id="sidebar"
+    >
       <div className="logo dshow">
         <Logo />
       </div>
-      <div className="menu-icon">
+      <div
+        className={menuIsOpen ? 'menu-icon active' : 'menu-icon'}
+        onClick={menuToggler}
+      >
         <span className="line line-1"></span>
         <span className="line line-2"></span>
       </div>
