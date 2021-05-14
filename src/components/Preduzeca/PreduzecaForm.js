@@ -871,7 +871,7 @@ const PreduzecaForm = () => {
                         </div>
                         <div className="col-md-12">
                         <div className="df mtb-25">
-                            {preduzece?.verifikovan === 0 ? (
+                            {preduzece?.verifikovan === 1 ? (
                               <>
                                 <IconFillSvg />
                                 <span>Verifikovano preduzeće</span>
