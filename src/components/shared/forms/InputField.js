@@ -21,9 +21,9 @@ const InputField = ({ label, obavezno = false, ...props }) => {
         <input {...field} {...props} />
       )} */}
 
-      {/* <div className={meta.touched && meta.error ? 'error-text' : ''}> */}
+      <div className={meta.touched && meta.error ? 'error-text' : ''}>
         <input {...field} {...props} />
-      {/* </div> */}
+      </div>
 
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
