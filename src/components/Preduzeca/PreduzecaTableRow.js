@@ -2,16 +2,21 @@ import React from 'react';
 import { ReactComponent as Badge } from '../../assets/icon/badge.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icon/plus.svg';
 import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
-import { useDispatch } from 'react-redux';
-import { storePartner } from '../../store/actions/PartneriActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPartneri, storePartner } from '../../store/actions/PartneriActions';
 import { getPreduzeca } from '../../store/actions/PreduzecaActions';
+import { userSelector } from '../../store/selectors/UserSelector';
+import { partneriSelector } from '../../store/selectors/PartneriSelector';
 
-const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
+const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
   const dispatch = useDispatch();
   const handleAddPartner = () => {
     dispatch(storePartner({ preduzece_tabela_id: item.id }));
     dispatch(getPreduzeca());
   };
+  const user = useSelector(userSelector());
+  console.log('partneri', partneri);
+  console.log('item', item);
 
   return (
     <tr
@@ -46,12 +51,16 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId }) => {
       <td className="cd fw-500">{item.telefon}</td>
       <td>
         <button
-          disabled={item.partneri}
+          disabled={
+            partneri &&
+            partneri.data.some((tmp) => tmp?.preduzece_tabela_id === item?.id)
+          }
           onClick={handleAddPartner}
           type="button"
           className={`btn btn__${item.partneri?.length ? 'light' : 'dark'}`}
         >
-          {item.partneri ? (
+          {partneri &&
+          partneri.data.some((tmp) => tmp?.preduzece_tabela_id === item?.id) ? (
             <CheckIcon className="icon icon__dark sm" />
           ) : (
             <PlusIcon className="icon icon__dark sm" />
