@@ -41,8 +41,12 @@ export function* racunStore({ payload }) {
         : 'BANKNOTE',
     };
     const res = yield call(racuniService.storeRacun, noviRacunTemp);
-    toast.success('Uspješno dodat gotovinski račun', toastSettings);
-    yield put(push('/racuni/show/' + payload.id));
+    console.log('res', res);
+    toast.success(
+      'Uspješno dodat gotovinski račun sa ID-jem: ' + res.data.id,
+      toastSettings
+    );
+    yield put(push('/racuni/show/' + res.data.id));
     yield put(resetNoviRacun());
   } catch (error) {
     yield put(resetNoviRacun());
@@ -74,9 +78,12 @@ export function* racunStore({ payload }) {
 export function* bezgotovinskiRacunStore({ payload }) {
   try {
     localStorage.setItem('previousUrl', window.location.pathname);
-    yield call(racuniService.storeBezgotovinskiRacun, payload);
-    yield put(push('/racuni/bezgotovinski/show/' + payload.id));
-    toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
+    const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
+    yield put(push('/racuni/bezgotovinski/show/' + res.data.id));
+    toast.success(
+      'Uspješno dodat bezgotovinski račun sa ID-jem: ' + res.data.id,
+      toastSettings
+    );
     yield put(setRacun({}));
   } catch (error) {
     if (error.response.data.error.length > 50) {
