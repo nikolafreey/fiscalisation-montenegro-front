@@ -17,6 +17,7 @@ class NoviRacunPrintTemplate extends React.Component {
       ukupna_cijena_bez_pdv_popust,
       ukupna_cijena_sa_pdv_popust,
       porezi,
+      datum_izdavanja,
       user_id,
       user,
     } = this.props.racun;
@@ -55,8 +56,8 @@ class NoviRacunPrintTemplate extends React.Component {
               <div className="fiscal-bill__header--info">
                 <p>
                   {' '}
-                  {preduzece && preduzece.puni_naziv
-                    ? preduzece.puni_naziv
+                  {preduzece && preduzece.kratki_naziv
+                    ? preduzece.kratki_naziv
                     : ''}
                 </p>
                 <p> {preduzece && preduzece.adresa ? preduzece.adresa : ''}</p>
@@ -233,6 +234,7 @@ class NoviRacunPrintTemplate extends React.Component {
               <p>Br. računa: {broj_racuna}</p>
               <p>IKOF: {ikof ? ikof : '-'}</p>
               <p>JIKR: {jikr ? jikr : '-'}</p>
+              <p>Datum: {datum_izdavanja ? datum_izdavanja : '-'}</p>
               <div className="fiscal-bill__footer--qr-code"></div>
             </div>
           </div>
