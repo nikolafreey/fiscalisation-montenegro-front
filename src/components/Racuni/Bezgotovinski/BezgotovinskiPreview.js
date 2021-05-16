@@ -418,7 +418,7 @@ const BezgotovinskiPreview = () => {
                     </th>
                     <th>
                       <span className="heading-quaternary nowrap">
-                        Ukupan bez pdv{' '}
+                        Ukupno bez PDV-a{' '}
                       </span>
                     </th>
                   </tr>
@@ -475,7 +475,7 @@ const BezgotovinskiPreview = () => {
                           : ''}
                        
                       </p> */}
-                      <p className="fw-500 txt-right">
+                      {/* <p className="fw-500 txt-right">
                         {Number(popust_ukupno) > 0 ? (
                           <span className="txt-up txt-light">-</span>
                         ) : (
@@ -484,13 +484,14 @@ const BezgotovinskiPreview = () => {
                         {Number(popust_ukupno) > 0
                           ? formatirajCijenu(popust_ukupno)
                           : ''}
-                        {/* {' '}
-                        {ukupniPopust ? (
+                      </p> */}
+                      {ukupniPopust > 0 && (
+                        <p className="txt-right cd fw-500">
+                          {'-'}
+                          {Number(ukupniPopust).toFixed(2)}{' '}
                           <span className="txt-up txt-light">Eur</span>
-                        ) : (
-                          ''
-                        )} */}
-                      </p>
+                        </p>
+                      )}
                       <p className="fw-500 txt-right">
                         {ukupan_iznos_pdv > 0
                           ? formatirajCijenu(ukupan_iznos_pdv)
@@ -526,14 +527,15 @@ const BezgotovinskiPreview = () => {
                     </>
                   )}
                   <div className="row">
-                   
-                      {/* ------------------ QR CODE ------------------ */}
-                      {jikr && ikof ? <div className="col-md-3">
-                        <QRCode value={qr_url} size="128" />  </div>
-                      : null}
+                    {/* ------------------ QR CODE ------------------ */}
+                    {jikr && ikof ? (
+                      <div className="col-md-3">
+                        <QRCode value={qr_url} size="128" />{' '}
+                      </div>
+                    ) : null}
 
-                      {/*------------------ QR CODE ------------------*/}
-                   
+                    {/*------------------ QR CODE ------------------*/}
+
                     <div className="col-md-9">
                       <div className="df">
                         <div className="df fd-column mr-m">

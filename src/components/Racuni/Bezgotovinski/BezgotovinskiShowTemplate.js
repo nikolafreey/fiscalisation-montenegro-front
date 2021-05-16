@@ -29,7 +29,31 @@ class BezgotovinskiShowTemplate extends React.Component {
     const ukupna_cijena_sa_pdv_popust = this.props.ukupna_cijena_sa_pdv_popust;
     const sve_stavke = this.props.stavke;
 
+    let bojaKlasa = '';
+    let itemStatus = '';
+    switch (status) {
+      case 'nijeplacen':
+        itemStatus = 'Nije Plaćen';
+        bojaKlasa = 'tag tag__warning';
+        break;
+      case 'placen':
+        itemStatus = 'Plaćen';
+        bojaKlasa = 'tag tag__success';
+        break;
+      case 'nenaplativ':
+        itemStatus = 'Nenaplativ';
+        bojaKlasa = 'tag tag__danger';
+        break;
+      case 'privremeni':
+        itemStatus = 'Privremeni';
+        bojaKlasa = 'tag tag__neutral';
+        break;
+      default:
+    }
+
     console.log('props', sve_stavke);
+    console.log('partner', partner);
+
     return (
       <>
         <div className="invoice-template">
@@ -37,7 +61,7 @@ class BezgotovinskiShowTemplate extends React.Component {
             <div className="invoice-page-top">
               <div className="invoice-template__header">
                 <div className="status">
-                  {status && <div className="tag tag__warning">{status}</div>}
+                  {<span className={bojaKlasa}>{itemStatus}</span>}
                 </div>
                 <div className="invoice-template__logo">
                   <img
@@ -139,42 +163,63 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                   <div className="wrapper-50 box-border">
                     <h2 className="heading-secondary">
-                      {partner && partner.kontakt_ime
-                        ? partner.kontakt_ime
-                        : ''}{' '}
-                      &nbsp;
-                      {partner && partner.kontakt_prezime
-                        ? partner.kontakt_prezime
-                        : ''}
+                      {partner && partner.preduzece_partner
+                        ? partner?.preduzece_partner?.kratki_naziv
+                        : partner?.fizicko_lice?.ime +
+                          ' ' +
+                          partner?.fizicko_lice?.prezime}
                     </h2>
-
-                    <div className="wrapper-50">
-                      <p className="txt-light">
-                        {partner && partner.pib ? 'PIB' : ''}
-                      </p>
-                      <p className="txt-light">
-                        {partner && partner.pib ? 'PDV' : ''}
-                      </p>
-                      <p className="txt-light">
-                        {partner && partner.pib ? 'IBAN' : ''}
-                      </p>
-                      <p className="txt-light">
-                        {partner && partner.pib ? 'BIC/SWIFT' : ''}
-                      </p>
-                    </div>
-                    <div className="wrapper-50">
-                      <p className="txt-right">
-                        {partner && partner.pib ? partner.pib : ''}
-                      </p>
-                      <p className="txt-right">
-                        {partner && partner.pib ? partner.pib : ''}
-                      </p>
-                      <p className="txt-right">
-                        {partner && partner.pib ? partner.pib : ''}
-                      </p>
-                      <p className="txt-right">
-                        {partner && partner.pib ? partner.pib : ''}
-                      </p>
+                    <div className="df jc-sb">
+                      <div className="df fd-column">
+                        <p className="txt-light">
+                          {partner && partner?.preduzece_partner?.pib
+                            ? 'PIB: '
+                            : ''}
+                        </p>
+                        <p className="txt-light">
+                          {partner && partner?.preduzece_partner?.pdv
+                            ? 'PDV: '
+                            : ''}
+                        </p>
+                        <p className="txt-light">
+                          {partner &&
+                          partner?.preduzece_partner?.adresa &&
+                          partner?.preduzece_partner?.grad
+                            ? 'Adresa: '
+                            : ''}
+                        </p>
+                        <p className="txt-light">
+                          {partner && partner?.preduzece_partner?.drzava
+                            ? 'Država: '
+                            : ''}
+                        </p>
+                      </div>
+                      <div className="df fd-column">
+                        <p className="txt-right">
+                          {partner && partner?.preduzece_partner?.pib
+                            ? partner?.preduzece_partner?.pib
+                            : ''}
+                        </p>
+                        <p className="txt-right">
+                          {partner && partner?.preduzece_partner?.pdv
+                            ? partner?.preduzece_partner?.pdv
+                            : ''}
+                        </p>
+                        <p className="txt-right">
+                          {partner &&
+                          partner?.preduzece_partner?.adresa &&
+                          partner?.preduzece_partner?.grad
+                            ? partner?.preduzece_partner?.adresa +
+                              ', ' +
+                              partner?.preduzece_partner?.grad
+                            : ''}
+                        </p>
+                        <p className="txt-right">
+                          {partner && partner?.preduzece_partner?.drzava
+                            ? partner?.preduzece_partner?.drzava
+                            : ''}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -196,13 +241,15 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="heading-quaternary">Kolicina</p>
                     </th>
                     <th>
-                      <p className="heading-quaternary">Popust</p>
+                      {ukupniPopust > 0 && (
+                        <p className="heading-quaternary">Popust</p>
+                      )}
                     </th>
                     {/* <th>
                       <p className="heading-quaternary">PDV</p>
                     </th> */}
                     <th>
-                      <p className="heading-quaternary">Iznos</p>
+                      <p className="heading-quaternary">Ukupno bez PDV-a</p>
                     </th>
                   </tr>
                 </thead>
@@ -226,7 +273,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="fw-500">Bez PDV-a:</p>
 
                       {/* <p className="fw-500">Ukupno bez popusta:</p> */}
-                      <p className="fw-500">Popust:</p>
+                      {ukupniPopust > 0 && <p className="fw-500">Popust:</p>}
                       <p className="fw-500">PDV:</p>
                       <p className="fw-500">Total:</p>
                       {/* <p className="fw-500">PDV 21%:</p>
@@ -242,7 +289,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       {Number(ukupnoBezPdv).toFixed(2)}{' '}
                       <span className="txt-up txt-light">Eur</span>
                     </p> */}
-                      {ukupan_iznos_pdv > 0 && (
+                      {ukupniPopust > 0 && (
                         <p className="txt-right cd fw-500">
                           {'-'}
                           {Number(ukupniPopust).toFixed(2)}{' '}
