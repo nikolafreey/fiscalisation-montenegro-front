@@ -154,7 +154,7 @@ const Racuni = () => {
             </button>
           </Link> */}
           <Modal showModal={showModal} />
-          {!depozitLoaded && (
+          {!depozitLoaded ? (
             <button
               className="btn btn__secondary mob-mb-20"
               onClick={() => {
@@ -162,6 +162,10 @@ const Racuni = () => {
               }}
             >
               Registracija Depozita
+            </button>
+          ) : (
+            <button className="btn btn__secondary mob-mb-20">
+              Podizanje Depozita
             </button>
           )}
           <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0">
