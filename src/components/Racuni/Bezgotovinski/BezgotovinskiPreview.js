@@ -198,7 +198,7 @@ const BezgotovinskiPreview = () => {
             qr_url={qr_url}
             bojaKlasa={bojaKlasa}
             itemStatus
-            redni_broj
+            redni_broj={redni_broj}
             popust_ukupno
             ukupnoBezPdvIpopusta
             ukupniPdv
@@ -344,6 +344,11 @@ const BezgotovinskiPreview = () => {
                       <div className="df jc-sb">
                         <div className="df fd-column">
                           <p className="txt-light">
+                            {partner && partner.preduzece_partner
+                            ? ''
+                            : 'JMBG: '}
+                          </p>
+                          <p className="txt-light">
                             {partner && partner?.preduzece_partner?.pib
                               ? 'PIB: '
                               : ''}
@@ -367,6 +372,11 @@ const BezgotovinskiPreview = () => {
                           </p>
                         </div>
                         <div className="df fd-column">
+                          <p className="txt-right">
+                            {partner && partner.preduzece_partner
+                            ? ''
+                            : partner?.fizicko_lice?.jmbg}
+                          </p>
                           <p className="txt-right">
                             {partner && partner?.preduzece_partner?.pib
                               ? partner?.preduzece_partner?.pib
@@ -478,7 +488,7 @@ const BezgotovinskiPreview = () => {
                         {ukupna_cijena_bez_pdv_popust
                           ? formatirajCijenu(ukupna_cijena_sa_pdv)
                           : ''}
-                       
+
                       </p> */}
                       {/* <p className="fw-500 txt-right">
                         {Number(popust_ukupno) > 0 ? (
