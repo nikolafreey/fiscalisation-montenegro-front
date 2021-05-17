@@ -40,8 +40,9 @@ const Pregled = () => {
     depozitWithdrawService
       .getDepozitToday()
       .then((resp) => setDepozit(resp.data))
-      .catch((err) =>
-        toast.error('Greška prilikom učitavanja depozita!', toastSettings)
+      .catch(
+        (err) => console.log('err', err)
+        // toast.error('Greška prilikom učitavanja depozita!', toastSettings)
       );
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
     racuniService.getRacuniDanas().then((resp) => setRacuniDanas(resp.data));
