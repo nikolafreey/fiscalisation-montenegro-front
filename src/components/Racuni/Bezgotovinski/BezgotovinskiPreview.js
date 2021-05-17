@@ -13,6 +13,7 @@ import { RACUNI } from '../../../constants/routes';
 import BezgotovinskiShowTemplate from './BezgotovinskiShowTemplate';
 import BezgotovinskiTableRow from './BezgotovinskiTableRow';
 import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
+import Select from 'react-select';
 
 import { FieldArray, Form, Formik } from 'formik';
 
@@ -29,6 +30,22 @@ import { values } from 'lodash-es';
 import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
 import { formatirajCijenu } from './../../../helpers/racuni';
 import { userSelector } from '../../../store/selectors/UserSelector';
+import { racuniService } from '../../../services/RacuniService';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const BezgotovinskiPreview = () => {
   const { params } = useRouteMatch();
@@ -67,7 +84,7 @@ const BezgotovinskiPreview = () => {
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
-  }, [params]);
+  }, [params, dispatch]);
 
   const findWord = (word, str) => {
     return word.includes(str);
@@ -143,6 +160,27 @@ const BezgotovinskiPreview = () => {
   console.log('ukupan_iznos_pdv', values, ukupan_iznos_pdv);
   console.log('testRef values=jedinice_id!!', popust_ukupno);
 
+  const [valueStatus, setValueStatus] = useState();
+
+  const options = [
+    // { value: null, label: 'Prikaži Sve' },
+    { value: 'placen', label: 'Plaćen' },
+    { value: 'nenaplativ', label: 'Nenaplativ' },
+    { value: 'nijeplacen', label: 'Nije Plaćen' },
+    // { value: 'privremeni', label: 'Privremeni' },
+  ];
+
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      width: '150px',
+      minHeight: 'unset',
+    }),
+  };
+
   return (
     <>
       <div className="screen-content">
@@ -155,6 +193,23 @@ const BezgotovinskiPreview = () => {
 
           {!editMode && (
             <div className="df jc-end">
+              <Select
+                options={options}
+                name="status"
+                onChange={(option) => {
+                  toast.success(
+                    'Uspješno je izmjenjen status za račun sa ID-jem: ' + id,
+                    toastSettings
+                  );
+                  setValueStatus(option);
+                  racuniService
+                    .updateStatus({ status: option.value, id, ikof, jikr })
+                    .then((data) => console.log('data', data))
+                    .catch((err) => console.log('err', err));
+                }}
+                value={valueStatus ? valueStatus : options[2]}
+                styles={selectStyle}
+              />
               <button className="btn btn__secondary" onClick={handlePrint}>
                 <svg
                   className="icon icon__dark lg mr-xs"
@@ -345,8 +400,8 @@ const BezgotovinskiPreview = () => {
                         <div className="df fd-column">
                           <p className="txt-light">
                             {partner && partner.preduzece_partner
-                            ? ''
-                            : 'JMBG: '}
+                              ? ''
+                              : 'JMBG: '}
                           </p>
                           <p className="txt-light">
                             {partner && partner?.preduzece_partner?.pib
@@ -374,8 +429,8 @@ const BezgotovinskiPreview = () => {
                         <div className="df fd-column">
                           <p className="txt-right">
                             {partner && partner.preduzece_partner
-                            ? ''
-                            : partner?.fizicko_lice?.jmbg}
+                              ? ''
+                              : partner?.fizicko_lice?.jmbg}
                           </p>
                           <p className="txt-right">
                             {partner && partner?.preduzece_partner?.pib

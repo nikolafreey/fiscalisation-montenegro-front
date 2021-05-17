@@ -17,6 +17,7 @@ const ENDPOINTS = {
   USLUGE: 'usluge',
   RACUNI_DANAS: 'racuni-danas',
   ATRIBUTI_GRUPE: 'atributi-grupe',
+  UPDATE_STATUS: 'update-status/{id}',
 };
 
 class RacuniService extends ApiService {
@@ -95,6 +96,14 @@ class RacuniService extends ApiService {
       value: racun.id,
       label: racun.ime,
     }));
+  };
+
+  updateStatus = (params) => {
+    console.log('params', params);
+    return this.apiClient.post(
+      ENDPOINTS.UPDATE_STATUS.replace('{id}', params.id),
+      params
+    );
   };
 
   getAtributiGrupe = (params) => {

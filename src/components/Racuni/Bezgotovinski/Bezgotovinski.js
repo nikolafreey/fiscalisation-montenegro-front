@@ -21,11 +21,11 @@ import BezgotovinskiHeader from './BezgotovinskiHeader';
 import { RACUNI } from '../../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
+import { racunSelector } from '../../../store/selectors/RacuniSelector';
+import { racuniService } from '../../../services/RacuniService';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { racunSelector } from '../../../store/selectors/RacuniSelector';
-import { racuniService } from '../../../services/RacuniService';
 
 toast.configure();
 
