@@ -22,6 +22,21 @@ import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const options = [
   { value: null, label: 'Prikaži Sve' },
   { value: 'placen', label: 'Plaćen' },
@@ -126,13 +141,22 @@ const Racuni = () => {
   const [showModal, setShowModal] = useState(false);
   const [depozitLoaded, setDepozitLoaded] = useState(false);
 
+  const handleDepositLoaded = (props) => {
+    setDepozitLoaded(props);
+  };
+
   useEffect(() => {
-    depozitWithdrawService.getDepozitToday().then((data) => {
-      console.log('getDepozitToday', data);
-      if (data.data.length !== 0) {
-        setDepozitLoaded(true);
-      }
-    });
+    depozitWithdrawService
+      .getDepozitToday()
+      .then((data) => {
+        console.log('getDepozitToday', data);
+        if (data.data.length !== 0) {
+          setDepozitLoaded(true);
+        }
+      })
+      .catch((err) =>
+        toast.error('Greška kod učitavanja depozita!', toastSettings)
+      );
   }, []);
 
   return (
@@ -153,7 +177,10 @@ const Racuni = () => {
               Novi bezgotovinski račun
             </button>
           </Link> */}
-          <Modal showModal={showModal} />
+          <Modal
+            showModal={showModal}
+            handleDepositLoaded={handleDepositLoaded}
+          />
           {!depozitLoaded ? (
             <button
               className="btn btn__secondary mob-mb-20"
