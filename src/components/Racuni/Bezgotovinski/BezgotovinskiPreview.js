@@ -344,6 +344,11 @@ const BezgotovinskiPreview = () => {
                       <div className="df jc-sb">
                         <div className="df fd-column">
                           <p className="txt-light">
+                            {partner && partner.preduzece_partner
+                            ? ''
+                            : 'JMBG: '}
+                          </p>
+                          <p className="txt-light">
                             {partner && partner?.preduzece_partner?.pib
                               ? 'PIB: '
                               : ''}
@@ -367,6 +372,11 @@ const BezgotovinskiPreview = () => {
                           </p>
                         </div>
                         <div className="df fd-column">
+                          <p className="txt-right">
+                            {partner && partner.preduzece_partner
+                            ? ''
+                            : partner?.fizicko_lice?.jmbg}
+                          </p>
                           <p className="txt-right">
                             {partner && partner?.preduzece_partner?.pib
                               ? partner?.preduzece_partner?.pib
