@@ -11,6 +11,7 @@ class BezgotovinskiShowTemplate extends React.Component {
   render() {
     const ikof = this.props.ikof;
     const jikr = this.props.jikr;
+    const qr_url = this.props.qr_url;
     const broj_racuna = this.props.broj_racuna;
     const redni_broj = this.props.redni_broj;
     const status = this.props.status;
@@ -61,10 +62,10 @@ class BezgotovinskiShowTemplate extends React.Component {
           <div className="invoice-page">
             <div className="invoice-page-top">
               <div className="invoice-template__header">
-                <div className="status">
+                <div className="status" style={{ display: 'none' }}>
                   {<span className={bojaKlasa}>{itemStatus}</span>}
                 </div>
-                <div className="invoice-template__logo">
+                <div className="invoice-template__logo" style={{ display: 'none' }}>
                   <img
                     src={
                       preduzece && preduzece.logotip
@@ -132,7 +133,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       </p>
                     </div>
                   </div>
-                  <div className="article-33">
+                  <div className="article-33" style={{ display: 'none' }}>
                     <div className="invoice-template__box-info">
                       <p className="txt-light">CKB</p>
                       <p className="txt-light">NLB</p>
@@ -320,14 +321,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                 </div>
                 <div className="wrapper-100">
-                  {jikr && ikof ? (
-                    <div className="invoice-template__qr">
-                      {/* ------------------ QR CODE ------------------ */}
+                    {/* ------------------ QR CODE ------------------ */}
+                    {jikr && ikof ? (
+                        <div className="col-md-3">
+                          <QRCode value={qr_url} size="128" />{' '}
+                        </div>
+                      ) : null}
 
-                      <QRCode value="Set url here" size="100" />
-                    </div>
-                  ) : null}
-                  {/*------------------ QR CODE ------------------*/}
+                      {/*------------------ QR CODE ------------------*/}
 
                   <div className="wrapper-50">
                     <div className="invoice-template__footer--info">
