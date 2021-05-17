@@ -354,9 +354,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       </div>
                       <div className="form__group">
                       <label htmlFor="" className="form__label bm-show">Sa PDV</label>
+                        {/* TODO: izgaseno edit Cijena dok se ne rijesi slanje izmijenjene cijene */}
                         <input
                           name="ukupna_cijena"
                           type="number"
+                          readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
