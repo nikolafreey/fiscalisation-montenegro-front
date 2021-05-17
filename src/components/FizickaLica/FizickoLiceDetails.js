@@ -102,7 +102,7 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
       <hr className="mtb-20"/>
       <div className="side-info__wrapper">
         <h3 className="heading-tertiary">Tekući računi</h3>
-        TODO: ispisati podatke o tekucim racunima
+        {/* TODO: ispisati podatke o tekucim racunima */}
         {/* <div className="side-info__info">
           <div className="side-info__info--inner-wrapper">
             <div className="col-l">
