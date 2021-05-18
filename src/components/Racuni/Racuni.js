@@ -24,6 +24,7 @@ import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalWithdraw from '../shared/forms/ModalWithdraw';
 
 toast.configure();
 
@@ -139,10 +140,35 @@ const Racuni = () => {
   };
 
   const [showModal, setShowModal] = useState(false);
+  const [showModalWithdraw, setShowModalWithdraw] = useState(false);
   const [depozitLoaded, setDepozitLoaded] = useState(false);
+  // const [withdrawLoaded, setWithdrawLoaded] = useState(false);
+  const [withdrawError, setWithdrawError] = useState(false);
+  const [withdraw, setWithdraw] = useState(0);
 
   const handleDepositLoaded = (props) => {
     setDepozitLoaded(props);
+  };
+
+  const hideModal = (props) => {
+    setShowModalWithdraw(props);
+  };
+
+  const handlePodizanjeDepozita = () => {
+    depozitWithdrawService
+      .storeDepozitWithdraw({
+        iznos_withdraw: +withdraw,
+      })
+      .then((data) => {
+        // setWithdrawLoaded(data);
+      })
+      .catch((error) => {
+        toast.error(
+          'Greška kod podizanja depozita: ' + error.response.data.message,
+          toastSettings
+        );
+        setWithdrawError(error);
+      });
   };
 
   useEffect(() => {
@@ -181,6 +207,7 @@ const Racuni = () => {
             showModal={showModal}
             handleDepositLoaded={handleDepositLoaded}
           />
+          <ModalWithdraw hideModal={hideModal} showModal={showModalWithdraw} />
           {!depozitLoaded ? (
             <button
               className="btn btn__secondary mob-mb-20"
@@ -191,7 +218,12 @@ const Racuni = () => {
               Registracija Depozita
             </button>
           ) : (
-            <button className="btn btn__secondary mob-mb-20">
+            <button
+              onClick={() => {
+                setShowModalWithdraw(true);
+              }}
+              className="btn btn__secondary mob-mb-20"
+            >
               Podizanje Depozita
             </button>
           )}
