@@ -101,6 +101,7 @@ const UslugeForm = () => {
       history.push(STAVKE.INDEX);
       dispatch(setUsluga(initialValues));
     } else {
+      console.log('values', values);
       dispatch(
         storeUsluga({
           ...values,
@@ -112,6 +113,11 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
+          ukupna_cijena: getPriceVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
           status: values.status === 'Aktivan' ? true : false,
         })
       );
@@ -220,7 +226,9 @@ const UslugeForm = () => {
                       <div className="df fd-column h-100">
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
-                          <p className="txt-light">Informacije koje sadrže sve pojedinosti usluge</p>
+                          <p className="txt-light">
+                            Informacije koje sadrže sve pojedinosti usluge
+                          </p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">
                           <div className="col-l txt-light">
