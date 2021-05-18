@@ -5,7 +5,7 @@ import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPartneri, storePartner } from '../../store/actions/PartneriActions';
 import { getPreduzeca } from '../../store/actions/PreduzecaActions';
-import { userSelector } from '../../store/selectors/UserSelector';
+// import { userSelector } from '../../store/selectors/UserSelector';
 import { partneriSelector } from '../../store/selectors/PartneriSelector';
 
 const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
@@ -14,7 +14,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
     dispatch(storePartner({ preduzece_tabela_id: item.id }));
     dispatch(getPreduzeca());
   };
-  const user = useSelector(userSelector());
+  // const user = useSelector(userSelector());
   console.log('partneri', partneri);
   console.log('item', item);
 
