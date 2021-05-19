@@ -276,11 +276,10 @@ const PreduzecaForm = () => {
                               preduzece &&
                               Object.keys(preduzece).length !== 0 &&
                               preduzece.constructor === Object && {
-                                value: preduzece?.djelatnost?.id,
-                                label: preduzece?.djelatnost?.naziv,
+                                value: preduzece?.djelatnosti[0]?.id,
+                                label: preduzece?.djelatnosti[0]?.naziv,
                               }
                             }
-                            //className="form__input"
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
@@ -297,7 +296,6 @@ const PreduzecaForm = () => {
                                 label: preduzece?.kategorija?.naziv,
                               }
                             }
-                            //className="form__input"
                           />
                         </div>
                       </div>
@@ -870,7 +868,7 @@ const PreduzecaForm = () => {
                           </div>
                         </div>
                         <div className="col-md-12">
-                        <div className="df mtb-25">
+                          <div className="df mtb-25">
                             {preduzece?.verifikovan === 1 ? (
                               <>
                                 <IconFillSvg />

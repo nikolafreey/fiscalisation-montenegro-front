@@ -31,10 +31,13 @@ import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska
 import { ReactComponent as Logo } from '../../../assets/icon/company-logo/postFiscal.svg';
 import { useState } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ handleMenuIsOpen }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  const menuToggler = () => setMenuIsOpen(!menuIsOpen);
+  const menuToggler = () => {
+    setMenuIsOpen(!menuIsOpen);
+    handleMenuIsOpen(!menuIsOpen);
+  };
 
   return (
     <div
