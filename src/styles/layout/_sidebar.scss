@@ -15,7 +15,10 @@
   min-height: 100vh;
   transition: width 0.25s linear;
 
-  &.active-mob {
+  &.active {
+    @include respond(tab-land) {
+      width: 28rem;
+    }
     @include respond(big-phone) {
       visibility: visible;
       opacity: 1;
@@ -40,6 +43,7 @@
       font-size: 8px;
     }
   }
+
   @include respond(big-phone) {
     display: none;
     visibility: hidden;
@@ -144,10 +148,9 @@
     @include respond(tab-land) {
       border-radius: 4px;
       background-color: $color-hover;
-      padding: 1rem 2.5rem;
+      padding: 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
       max-height: 5rem;
     }
 
@@ -163,7 +166,9 @@
       @include respond(tab-land) {
         visibility: hidden;
         opacity: 0;
-        width: 0;
+        margin-left: 5rem;
+        height: 3rem;
+        font-size: 18px;
       }
       @include respond(phone) {
         visibility: visible;
@@ -171,7 +176,17 @@
         font-size: 24px;
         margin-left: 2rem;
       }
+
+      &.active {
+        @include respond(tab-land) {
+          visibility: visible;
+          opacity: 1;
+          margin-left: 5rem;
+          height: 3rem;
+        }
+      }
     }
+
 
     .sidebar-icon {
       display: flex;

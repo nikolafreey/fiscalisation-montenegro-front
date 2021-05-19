@@ -38,7 +38,7 @@ const SidebarLayout = () => {
       <Sidebar handleMenuIsOpen={handleMenuIsOpen} />
       <div
         className={
-          !menuOpen ? 'col-md-11 col-xl-9 col-xs-12' : 'col-xl-9 col-xs-12'
+          !menuOpen ? 'col-md-11 col-xl-9 col-xs-12 right-wrapper' : 'col-xl-9 col-xs-12 right-wrapper push'
         }
         id="main-content"
       >

@@ -54,9 +54,9 @@ const Sidebar = ({ handleMenuIsOpen }) => {
         <span className="line line-1"></span>
         <span className="line line-2"></span>
       </div>
-      <div className="sidebar">
+      <div className={menuIsOpen ? 'sidebar active' : 'sidebar'}>
         <ul className="items">
-          <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
+          <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} menuIsOpen={menuIsOpen}/>
           {/* <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
           <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} /> */}
         </ul>
@@ -66,6 +66,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             ImageSource={heroRacuni}
             label="Računi"
             to={RACUNI.INDEX}
+            menuIsOpen={menuIsOpen}
           />
           {/* <SidebarLink
             ImageSource={heroPredracuni}
@@ -81,6 +82,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             ImageSource={heroStavke}
             label="Stavke"
             to={STAVKE.INDEX}
+            menuIsOpen={menuIsOpen}
           />
         </ul>
         <ul className="items">
@@ -89,6 +91,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             ImageSource={heroPartneri}
             label="Partneri"
             to={PARTNERI.INDEX}
+            menuIsOpen={menuIsOpen}
           />
           {/* <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} /> */}
 
@@ -97,6 +100,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             ImageSource={heroPreduzeca}
             label="Preduzeca"
             to={PREDUZECA.INDEX}
+            menuIsOpen={menuIsOpen}
           />
           {/* <SidebarLink
             ImageSource={heroIzvjestaji}
@@ -118,11 +122,13 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             ImageSource={heroModuli}
             label="Moduli"
             to={MODULI.INDEX}
+            menuIsOpen={menuIsOpen}
           />
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
             to={PODESAVANJA.INDEX}
+            menuIsOpen={menuIsOpen}
           />
           {/* <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} /> */}
         </ul>
