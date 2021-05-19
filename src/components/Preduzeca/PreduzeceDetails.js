@@ -41,7 +41,23 @@ const PreduzeceDetails = ({ preduzece }) => {
     );
   }
   return (
-    <div className="side-info">
+    <div className="side-info show">
+      <div className="side-info__close tshow">
+        <svg
+          className="icon icon__dark lg"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </div>
       {/* <div className="side-info__logo-wrapper">
         <img src={preduzece?.logotip} alt={preduzece?.kratki_naziv} />
       </div> */}
@@ -174,109 +190,110 @@ const PreduzeceDetails = ({ preduzece }) => {
             </div>
           </div>
         </div>
+        <div className="side-info__info as-end">
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.fax ? 'Fax' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a href={`tel:${preduzece?.fax}`}>{preduzece?.fax}</a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.email ? 'Email' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a href={`mailto:${preduzece?.email}`}>{preduzece?.email}</a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.website ? 'Websajt' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a
+                  href={preduzece?.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {preduzece?.website}
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.twitter_username ? 'Twitter' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a
+                  href={`http://www.twiter.com/${preduzece?.twitter_username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {preduzece?.twitter_username}
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.instagram_username ? 'Instagram' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a
+                  href={`http://www.instagram.com/${preduzece?.instagram_username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {preduzece?.instagram_username}
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.facebook_username ? 'Facebook' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a
+                  href={`http://www.facebook.com/${preduzece?.facebook_username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {preduzece?.facebook_username}
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="side-info__info--inner-wrapper">
+            <div className="col-l">
+              <p>{preduzece?.skype_username ? 'Skype' : null}</p>
+            </div>
+            <div className="col-r">
+              <p>
+                <a
+                  href={`skype:${preduzece?.skype_username}?call`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {preduzece?.skype_username}
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="side-info__info as-end">
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.fax ? 'Fax' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a href={`tel:${preduzece?.fax}`}>{preduzece?.fax}</a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.email ? 'Email' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a href={`mailto:${preduzece?.email}`}>{preduzece?.email}</a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.website ? 'Websajt' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a
-                href={preduzece?.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {preduzece?.website}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.twitter_username ? 'Twitter' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a
-                href={`http://www.twiter.com/${preduzece?.twitter_username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {preduzece?.twitter_username}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.instagram_username ? 'Instagram' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a
-                href={`http://www.instagram.com/${preduzece?.instagram_username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {preduzece?.instagram_username}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.facebook_username ? 'Facebook' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a
-                href={`http://www.facebook.com/${preduzece?.facebook_username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {preduzece?.facebook_username}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="side-info__info--inner-wrapper">
-          <div className="col-l">
-            <p>{preduzece?.skype_username ? 'Skype' : null}</p>
-          </div>
-          <div className="col-r">
-            <p>
-              <a
-                href={`skype:${preduzece?.skype_username}?call`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {preduzece?.skype_username}
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+
       <hr className="mtb-20" />
       {preduzece?.ovlascena_lica?.length > 0 && (
         <div className="side-info__wrapper">

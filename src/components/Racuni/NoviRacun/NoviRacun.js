@@ -126,6 +126,7 @@ const NoviRacun = () => {
                   Nova Stavka
                 </button>
               </Link>
+              <div className="floating-btn">račun</div>
             </div>
           </div>
           <NoviRacunPreview />

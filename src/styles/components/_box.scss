@@ -4,7 +4,7 @@
   justify-content: space-between;
   width: 100%;
   margin-top: 1.5rem;
-  @include respond(big-phone){
+  @include respond(big-phone) {
     margin-top: 1rem;
   }
 }
@@ -28,12 +28,12 @@
   margin-right: 1.5rem;
   visibility: hidden;
   opacity: 0;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   @include respond(phone) {
     width: 49%;
     margin-bottom: 1rem;
   }
-  &::last-child{
+  &::last-child {
     margin-right: 0;
   }
 
@@ -151,7 +151,7 @@
     margin-bottom: 1rem;
     h2 {
       margin-bottom: 0;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         width: 75%;
       }
       p {
@@ -167,11 +167,24 @@
   margin-bottom: 2rem;
   cursor: pointer;
 
+  @include respond(tab-port) {
+    padding: 1rem;
+  }
+  @include respond(big-phone) {
+    padding: 1.5rem 2rem;
+  }
+
   h3 {
     span {
       margin-left: 1rem;
       font-size: 12px;
       font-weight: 600;
+    }
+    @include respond(tab-port) {
+      width: 90%;
+    }
+    @include respond(big-phone) {
+      width: 100%;
     }
   }
   .mark {
@@ -182,17 +195,26 @@
     height: 18px;
     width: 18px;
     border-radius: 50%;
+
+    @include respond(tab-port) {
+      top: 1rem;
+      right: 1rem;
+    }
+    @include respond(big-phone) {
+      top: 1.5rem;
+      right: 2rem;
+    }
   }
 
   &.active {
     border: 1px solid $color-link-dark;
-    box-shadow: 0px 4px 6px rgba( $color-link-dark, 0.2);
+    box-shadow: 0px 4px 6px rgba($color-link-dark, 0.2);
     .mark {
       background-color: $color-link-dark;
       border: 1px solid $color-link-dark;
       &:before {
-        content: "";
-        background-image: url("../../assets/icon/ch-mark-white.svg");
+        content: '';
+        background-image: url('../../assets/icon/ch-mark-white.svg');
         background-repeat: no-repeat;
         position: absolute;
         top: 1.5px;

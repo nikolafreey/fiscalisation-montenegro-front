@@ -66,7 +66,9 @@
     border-radius: 4px;
   }
   &__input {
-    background-color: $color-content-light;
+    @include themify($themes) {
+      background-color: themed(stepperInputBgColor) !important;
+    }
     width: 4rem;
     border: none;
     text-align: center;
