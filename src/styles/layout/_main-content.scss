@@ -398,4 +398,8 @@
     position: relative;
     left: 30rem;
   }
+  @include respond(big-phone){
+    position: relative;
+    left: 0;
+  }
 }
