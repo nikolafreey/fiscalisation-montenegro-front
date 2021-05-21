@@ -74,7 +74,7 @@ const NoviRacunPreview = () => {
       .catch((err) =>
         toast.error('Greška kod učitavanja depozita!', toastSettings)
       );
-  }, []);
+  }, [depozitLoaded]);
 
   const handleSacuvaj = () => {
     console.log('noviRacun.robe.length', noviRacun.robe);
