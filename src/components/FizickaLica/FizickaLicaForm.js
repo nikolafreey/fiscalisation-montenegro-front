@@ -244,26 +244,26 @@ const FizickaLicaForm = () => {
             </div>
             <hr />
             {/* TODO:SREDITI ZIRO RACUNE BACKEND PROBLEM */}
-            {/* <div className="container">
-                  <div className="row">
-                    {/* <div className="col-lg-4">
-                      <h2 className="heading-secondary">Tekući računi</h2>
-                      <p className="mob-mb-20 txt-light">
-                        Podaci o žiro računima fizičkog lica
-                      </p>
-                    </div>
-                    <div className="col-lg-8 col-md-7">
-                      <div className="form__group">
-                        <FieldArray name="ziro_racuni">
-                          {(arrayHelpers) => (
-                            <ZiroRacuniFieldArray {...arrayHelpers} />
-                          )}
-                        </FieldArray>
-                      </div>
-                    </div> */}
-            {/* </div>
-                </div> */}
-            {/* <hr /> */}
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-4">
+                  <h2 className="heading-secondary">Tekući računi</h2>
+                  <p className="mob-mb-20 txt-light">
+                    Podaci o žiro računima fizičkog lica
+                  </p>
+                </div>
+                <div className="col-lg-8 col-md-7">
+                  <div className="form__group">
+                    <FieldArray name="ziro_racuni">
+                      {(arrayHelpers) => (
+                        <ZiroRacuniFieldArray {...arrayHelpers} />
+                      )}
+                    </FieldArray>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
             <div className="container">
               <div className="row">
                 <div className="col-lg-4">
