@@ -269,7 +269,7 @@ const BezgotovinskiPreview = () => {
             ukupnoBezPdvIpopusta={ukupnoBezPdvIpopusta}
             ukupniPdv={ukupniPdv}
             ukupnoBezPdv={ukupnoBezPdv}
-            ukupniPopust={ukupniPopust}
+            ukupniPopust={ukupna_cijena_sa_pdv - ukupna_cijena_sa_pdv_popust}
             ukupnoSaPdvIpopusta={ukupnoSaPdvIpopusta}
             popust_ukupno={popust_ukupno}
             ukupna_cijena_bez_pdv={ukupna_cijena_bez_pdv}
@@ -555,10 +555,12 @@ const BezgotovinskiPreview = () => {
                           ? formatirajCijenu(popust_ukupno)
                           : ''}
                       </p> */}
-                      {ukupniPopust > 0 && (
+                      {ukupna_cijena_sa_pdv !== ukupna_cijena_sa_pdv_popust && (
                         <p className="txt-right cd fw-500">
                           {'-'}
-                          {Number(ukupniPopust).toFixed(2)}{' '}
+                          {Number(
+                            ukupna_cijena_sa_pdv - ukupna_cijena_sa_pdv_popust
+                          ).toFixed(2)}{' '}
                           <span className="txt-up txt-light">Eur</span>
                         </p>
                       )}

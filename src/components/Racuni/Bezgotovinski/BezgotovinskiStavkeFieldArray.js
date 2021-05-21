@@ -22,6 +22,21 @@ import { getRobe } from '../../../store/actions/RobeActions';
 import { getUsluge } from '../../../store/actions/UslugeActions';
 import { push } from 'connected-react-router';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   const dispatch = useDispatch();
 
@@ -246,27 +261,35 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function handleChoosePopust(option, stavka, index) {
-    console.log('popust=====', option, stavka, index, stavka.popust);
-    if (option.value === 'procenat') {
-      setFieldValue(
-        `values.${index}.popust`,
-        stavka.popust
-          ? stavka.popust
-          : stavka.roba
-          ? stavka.roba?.cijene_roba[0]?.popust_procenti
-          : stavka.grupa.popust_procenti
-      );
-    } else if (option.value === 'iznos') {
-      setFieldValue(
-        `values.${index}.popust`,
-        stavka.popust
-          ? stavka.popust
-          : stavka.roba
-          ? stavka.roba?.cijene_roba[0]?.popust_iznos
-          : stavka.grupa.popust_iznos
-      );
+    if (stavka) {
+      console.log('popust=====', option, stavka, index, stavka?.popust);
+      if (option.value === 'procenat') {
+        setFieldValue(
+          `values.${index}.popust`,
+          stavka.popust
+            ? stavka.popust
+            : stavka.roba
+            ? stavka.roba?.cijene_roba[0]?.popust_procenti
+            : stavka.grupa.popust_procenti
+        );
+      } else if (option.value === 'iznos') {
+        setFieldValue(
+          `values.${index}.popust`,
+          stavka.popust
+            ? stavka.popust
+            : stavka.roba
+            ? stavka.roba?.cijene_roba[0]?.popust_iznos
+            : stavka.grupa.popust_iznos
+        );
+      } else {
+        setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
+      }
     } else {
-      setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
+      toast.error(
+        'Morate prvo odabrati stavku prije odabira popusta!',
+        toastSettings
+      );
+      return;
     }
   }
   //values.stavke=values.niz;
@@ -336,7 +359,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   <div className="section-box__right--top-wrap">
                     <div className="el">
                       <div className="form__group">
-                        <label htmlFor="" className="form__label bm-show">Bez PDV</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Bez PDV
+                        </label>
                         <input
                           type="text"
                           value={formatirajCijenu(
@@ -348,17 +373,19 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           //     }
                           className="form__input"
                           placeholder="Bez PDV"
-                          disabled
-                          readOnly
+                          // disabled
+                          // readOnly
                         />
                       </div>
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Sa PDV</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Sa PDV
+                        </label>
                         {/* TODO: izgaseno edit Cijena dok se ne rijesi slanje izmijenjene cijene */}
                         <input
                           name="ukupna_cijena"
                           type="number"
-                          readOnly
+                          // readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
@@ -379,7 +406,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     </div>
                     <div className="el">
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Jedinica mjere</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Jedinica mjere
+                        </label>
                         <DropDown
                           name={`stavke.${index}.jedinica_mjere_id`}
                           // placeholder={
@@ -410,7 +439,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         />
                       </div>
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Količina</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Količina
+                        </label>
                         <input
                           name="kolicina"
                           type="number"
@@ -430,7 +461,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                     </div>
                     <div className="el">
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Stopa PDV-a</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Stopa PDV-a
+                        </label>
                         <DropDown
                           name={`stavke.${index}.porez_id`}
                           loadOptions={poreziService.getPoreziDropdown}
@@ -465,7 +498,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         />
                       </div>
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">PDV</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          PDV
+                        </label>
                         <input
                           type="text"
                           className="form__input"
@@ -474,17 +509,18 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             // getPorezStopaForId(stavka?.porez_id) *
                             //   getCijenaStavkeBezPdv(stavka)
                           )}
-                          readOnly
+                          // readOnly
                         />
                       </div>
                     </div>
                     <div className="el">
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Tip popusta</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Tip popusta
+                        </label>
                         <DropDownStatic
                           name={`stavke.${index}.tip_popusta`}
                           options={TIPOVI_POPUSTA}
-                          //defaultValue={{ value: Number(getPopustStavke(stavka).iznos), label: getPopustStavke(stavka).tip_popusta }}
                           defaultValue={{
                             value: getPopustStavke(stavka).tip_popusta,
                             label:
@@ -498,7 +534,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         />
                       </div>
                       <div className="form__group">
-                      <label htmlFor="" className="form__label bm-show">Popust</label>
+                        <label htmlFor="" className="form__label bm-show">
+                          Popust
+                        </label>
                         <input
                           name="popust"
                           type="number"
