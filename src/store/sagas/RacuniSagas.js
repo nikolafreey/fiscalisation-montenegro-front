@@ -12,11 +12,12 @@ import {
 import { noviRacunSelector } from '../selectors/RacuniSelector';
 import { emptyPaginated } from '../reducers/RacuniReducer';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { robeService } from '../../services/RobeService';
 import { rest } from 'lodash-es';
 import { push } from 'connected-react-router';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 

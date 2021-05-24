@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as Success } from '../../assets/icon/success.svg';
 import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
-import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
+// import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
+import { ReactComponent as Fiskalizuj } from '../../assets/icon/checkmark.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   storeRacun,
@@ -15,6 +16,22 @@ import { racunSelector } from '../../store/selectors/RacuniSelector';
 import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
+import { racuniService } from '../../services/RacuniService';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const RacuniTableRow = ({ item, racuni }) => {
   const dispatch = useDispatch();
@@ -112,6 +129,27 @@ const RacuniTableRow = ({ item, racuni }) => {
     }
   };
 
+  const handleFiskalizuj = (e) => {
+    e.stopPropagation();
+    racuniService
+      .fiskalizujRacun(item.id)
+      .then((data) => {
+        toast.success(
+          `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
+          toastSettings
+        );
+      })
+      .catch((err) => {
+        let message = err?.response?.data?.error
+          ? err.response.data.error
+          : err.message;
+        toast.error(
+          'Fiskalizacija računa nije uspješna! Poruka: ' + message,
+          toastSettings
+        );
+      });
+  };
+
   const handleIzmjeni = (e) => {
     e.stopPropagation();
     history.push(`/racuni/bezgotovinski/edit/${item.id}`);
@@ -202,13 +240,13 @@ const RacuniTableRow = ({ item, racuni }) => {
                 <Izmjeni />
                 Izmjeni
               </Link>
-              {/* <Link
-                onClick={handleObrisi}
+              <Link
+                onClick={handleFiskalizuj}
                 className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
               >
-                <Obrisi />
-                Obriši
-              </Link> */}
+                <Success />
+                Fiskalizuj
+              </Link>
             </div>
           </button>
         </div>
