@@ -102,8 +102,8 @@ export function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
   } else {
     porezi[usluga?.porez?.id].pdvIznos += Number(
       kolicina *
-        ((Number(cijena) / (1 + Number(usluga.porez.stopa))) *
-          usluga.porez.stopa)
+        ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
+          usluga?.porez?.stopa)
     );
     porezi[usluga.porez.id].ukupno += Number(kolicina * Number(cijena));
   }
