@@ -240,13 +240,15 @@ const RacuniTableRow = ({ item, racuni }) => {
                 <Izmjeni />
                 Izmjeni
               </Link>
-              <Link
-                onClick={handleFiskalizuj}
-                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
-              >
-                <Success />
-                Fiskalizuj
-              </Link>
+              {!_item.ikof && !_item.jikr && (
+                <Link
+                  onClick={handleFiskalizuj}
+                  className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+                >
+                  <Success />
+                  Fiskalizuj
+                </Link>
+              )}
             </div>
           </button>
         </div>
