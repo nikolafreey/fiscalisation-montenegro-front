@@ -104,7 +104,7 @@ const Bezgotovinski = () => {
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
     dispatch(storeBezgotovinskiRacun(noviRacun));
-    let racunId;
+    // let racunId;
     // setTimeout(() => {
     //   racuniService.getRacuni().then((data) => {
     //     console.log('data', data);

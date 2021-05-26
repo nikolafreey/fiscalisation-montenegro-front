@@ -144,14 +144,15 @@ const UslugeForm = () => {
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    console.log('ukupna_cijena', ukupna_cijena);
     if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
       // return Math.round(10000 * ukupna_cijena) / 10000;
-      return ukupna_cijena;
+      return Number(ukupna_cijena);
     } else {
       // return Math.round(10000 * (ukupna_cijena / (Number(stopa) + 1))) / 10000;
-      return ukupna_cijena / (Number(stopa) + 1);
+      return Number(ukupna_cijena / (Number(stopa) + 1));
     }
   };
 
@@ -161,7 +162,7 @@ const UslugeForm = () => {
     if (pdv_ukljucen === 0) {
       return +ukupna_cijena + +ukupna_cijena * +stopa;
     } else {
-      return ukupna_cijena;
+      return +ukupna_cijena;
     }
   };
 
