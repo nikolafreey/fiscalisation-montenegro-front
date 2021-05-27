@@ -90,19 +90,19 @@ const BezgotovinskiPreview = () => {
         const prvaTri = a.substring(0, 3);
 
         if (prvaTri.includes('550')) {
-          return <p>{'Podgorička' + a}</p>;
+          return <p>{'Podgorička: ' + a}</p>;
         } else if (prvaTri.includes('535')) {
-          return <p>{'Prva' + a}</p>;
+          return <p>{'Prva: ' + a}</p>;
         } else if (prvaTri.includes('555')) {
-          return <p>{'Addiko' + a}</p>;
+          return <p>{'Addiko: ' + a}</p>;
         } else if (prvaTri.includes('510')) {
-          return <p>{'CKB ' + a}</p>;
+          return <p>{'CKB: ' + a}</p>;
         } else if (prvaTri.includes('530')) {
-          return <p>{'Montenegro AD' + a}</p>;
+          return <p>{'Montenegro AD: ' + a}</p>;
         } else if (prvaTri.includes('540')) {
-          return <p>{'ERSTE' + a}</p>;
+          return <p>{'ERSTE: ' + a}</p>;
         } else if (prvaTri.includes('520')) {
-          return <p>{'Hipotekarna' + a}</p>;
+          return <p>{'Hipotekarna: ' + a}</p>;
         }
         return <p>{a}</p>;
       }
@@ -120,19 +120,19 @@ const BezgotovinskiPreview = () => {
         const prvaTri = b.substring(0, 3);
 
         if (prvaTri.includes('550')) {
-          return <p>{'Podgorička' + b}</p>;
+          return <p>{'Podgorička: ' + b}</p>;
         } else if (prvaTri.includes('535')) {
-          return <p>{'Prva' + b}</p>;
+          return <p>{'Prva: ' + b}</p>;
         } else if (prvaTri.includes('555')) {
-          return <p>{'Addiko' + b}</p>;
+          return <p>{'Addiko: ' + b}</p>;
         } else if (prvaTri.includes('510')) {
-          return <p>{'CKB ' + b}</p>;
+          return <p>{'CKB: ' + b}</p>;
         } else if (prvaTri.includes('530')) {
-          return <p>{'Montenegro AD' + b}</p>;
+          return <p>{'Montenegro AD: ' + b}</p>;
         } else if (prvaTri.includes('540')) {
-          return <p>{'ERSTE' + b}</p>;
+          return <p>{'ERSTE: ' + b}</p>;
         } else if (prvaTri.includes('520')) {
-          return <p>{'Hipotekarna' + b}</p>;
+          return <p>{'Hipotekarna: ' + b}</p>;
         }
         return <p>{b}</p>;
       }
@@ -421,9 +421,7 @@ const BezgotovinskiPreview = () => {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div className="df jc-sb">
-                    <div className="col-r">{ziroRacuni()}</div>
-                  </div>
+                  <p className="txt-right">{ziroRacuni()}</p>
                 </div>
               </div>
 
