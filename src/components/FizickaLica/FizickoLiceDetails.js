@@ -132,7 +132,6 @@ const FizickoLiceDetails = ({ fizickoLice = {} }) => {
         <h3 className="heading-tertiary">Tekući računi</h3>
         <div className="side-info__info">
           <div className="side-info__info--inner-wrapper">
-            {/* <div className="col-l">{c}</div> */}
             <div className="col-r">{ziroRacuni()}</div>
           </div>
         </div>
