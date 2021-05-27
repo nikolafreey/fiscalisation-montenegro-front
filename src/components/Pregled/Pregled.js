@@ -61,13 +61,6 @@ const Pregled = () => {
 
   const userPreduzece = useSelector(userSelector());
 
-  console.log('Racuni Danas: ', racuniDanas);
-  console.log('ulazni Racuni Danas: ', ulazniRacuniDanas);
-  console.log('racuni PDV: ', racuniPdv);
-  console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
-  console.log('najveciKupci: ', najveciKupci);
-  console.log('najveciDuznici: ', najveciDuznici);
-
   let dateNow = new Date();
   dateNow.setDate(1);
   dateNow.setMonth(dateNow.getMonth() - 1);

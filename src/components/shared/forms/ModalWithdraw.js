@@ -73,6 +73,7 @@ const ModalWithdraw = ({
         iznos_withdraw: +withdraw,
       })
       .then((data) => {
+        console.log('storeDepozitWithdraw', withdraw);
         setWithdrawLoaded(data);
       })
       .catch((error) => {
