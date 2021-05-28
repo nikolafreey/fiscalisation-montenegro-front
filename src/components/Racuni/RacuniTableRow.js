@@ -240,7 +240,7 @@ const RacuniTableRow = ({ item, racuni }) => {
                 <Izmjeni />
                 Izmjeni
               </Link>
-              {!_item.ikof && !_item.jikr && (
+              {!_item.qr_url && (
                 <Link
                   onClick={handleFiskalizuj}
                   className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
