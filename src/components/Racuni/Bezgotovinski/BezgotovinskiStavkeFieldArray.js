@@ -132,7 +132,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       // stavka.tip_popusta=popustStart.tip_popusta;
       // stavka.popust=popustStart.iznos;
       values.niz[values.stavke.length - 1] = stavka;
-      console.log('popustStart', popustStart, stavka);
       return Number(cijena) - Number(popustStart.iznos);
     }
 
@@ -176,6 +175,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       stavka = {
         ...stavka,
         cijena_bez_pdv_popust:
+          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa)),
+        cijena_bez_pdv:
           Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa)),
         // cijena_bez_pdv_popust: (
         //   Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))

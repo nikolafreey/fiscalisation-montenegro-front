@@ -104,18 +104,6 @@ const Bezgotovinski = () => {
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
     dispatch(storeBezgotovinskiRacun(noviRacun));
-    let racunId;
-    // setTimeout(() => {
-    //   racuniService.getRacuni().then((data) => {
-    //     console.log('data', data);
-    //     racunId = data.data.data[0].id;
-    //     setTimeout(() => {
-    //       if (previousUrl === '/racuni/bezgotovinski/create' && racunId) {
-    //         history.push('/racuni/bezgotovinski/show/' + racunId);
-    //       }
-    //     }, 500);
-    //   }, 1500);
-    // });
     dispatch(getRacuni());
     history.push(RACUNI.INDEX);
   };

@@ -82,6 +82,63 @@ const BezgotovinskiPreview = () => {
 
   const history = useHistory();
 
+  let a = '';
+  const ziroRacuni = () => {
+    return preduzece?.ziro_racuni?.map((racun) => {
+      a = racun.broj_racuna;
+      if (a) {
+        const prvaTri = a.substring(0, 3);
+
+        if (prvaTri.includes('550')) {
+          return <p>{'Podgorička: ' + a}</p>;
+        } else if (prvaTri.includes('535')) {
+          return <p>{'Prva: ' + a}</p>;
+        } else if (prvaTri.includes('555')) {
+          return <p>{'Addiko: ' + a}</p>;
+        } else if (prvaTri.includes('510')) {
+          return <p>{'CKB: ' + a}</p>;
+        } else if (prvaTri.includes('530')) {
+          return <p>{'Montenegro AD: ' + a}</p>;
+        } else if (prvaTri.includes('540')) {
+          return <p>{'ERSTE: ' + a}</p>;
+        } else if (prvaTri.includes('520')) {
+          return <p>{'Hipotekarna: ' + a}</p>;
+        }
+        return <p>{a}</p>;
+      }
+    });
+  };
+
+  let b = '';
+  const ziroRacuniPartner = () => {
+    let partnerTip = partner?.fizicko_lice_id
+      ? partner?.fizicko_lice
+      : partner?.preduzece_partner;
+    return partnerTip?.ziro_racuni?.map((racun) => {
+      b = racun.broj_racuna;
+      if (b) {
+        const prvaTri = b.substring(0, 3);
+
+        if (prvaTri.includes('550')) {
+          return <p>{'Podgorička: ' + b}</p>;
+        } else if (prvaTri.includes('535')) {
+          return <p>{'Prva: ' + b}</p>;
+        } else if (prvaTri.includes('555')) {
+          return <p>{'Addiko: ' + b}</p>;
+        } else if (prvaTri.includes('510')) {
+          return <p>{'CKB: ' + b}</p>;
+        } else if (prvaTri.includes('530')) {
+          return <p>{'Montenegro AD: ' + b}</p>;
+        } else if (prvaTri.includes('540')) {
+          return <p>{'ERSTE: ' + b}</p>;
+        } else if (prvaTri.includes('520')) {
+          return <p>{'Hipotekarna: ' + b}</p>;
+        }
+        return <p>{b}</p>;
+      }
+    });
+  };
+
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
   }, [params, dispatch]);
@@ -288,7 +345,7 @@ const BezgotovinskiPreview = () => {
                 {<span className={bojaKlasa}>{itemStatus}</span>}
               </div>
               <div className="invoice__header--logo">
-                {preduzece && preduzece.logotip && (
+                {preduzece && preduzece.logotip ? (
                   <img
                     src={
                       preduzece && preduzece.logotip
@@ -296,7 +353,13 @@ const BezgotovinskiPreview = () => {
                         : noLogo
                     }
                     alt="logo"
-                    style={{ widt: 200, height: 100 }}
+                    style={{ width: 200, height: 100 }}
+                  />
+                ) : (
+                  <img
+                    src={noLogo}
+                    alt="Logo"
+                    style={{ width: 200, height: 100 }}
                   />
                 )}
               </div>
@@ -358,18 +421,7 @@ const BezgotovinskiPreview = () => {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div className="df jc-sb" style={{ display: 'none' }}>
-                    <div className="df fd-column">
-                      <p className="txt-light">CKB</p>
-                      <p className="txt-light">NLB</p>
-                      <p className="txt-light">Prva Banka CG</p>
-                    </div>
-                    <div className="df fd-column">
-                      <p className="txt-right">540-1214134-1312</p>
-                      <p className="txt-right">520-121334-14</p>
-                      <p className="txt-right">535-11234-32</p>
-                    </div>
-                  </div>
+                  <p className="txt-right">{ziroRacuni()}</p>
                 </div>
               </div>
 
@@ -462,6 +514,9 @@ const BezgotovinskiPreview = () => {
                               ? partner?.preduzece_partner?.drzava
                               : ''}
                           </p>
+                        </div>
+                        <div className="df fd-column">
+                          <p className="txt-right">{ziroRacuniPartner()}</p>
                         </div>
                       </div>
                     </div>

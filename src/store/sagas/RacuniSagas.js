@@ -2,6 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { racuniService } from '../../services/RacuniService';
 import {
+  getRacuni,
   resetNoviRacun,
   setAtributiGrupe,
   setRacun,
@@ -51,6 +52,7 @@ export function* racunStore({ payload }) {
     yield put(resetNoviRacun());
   } catch (error) {
     yield put(resetNoviRacun());
+    yield put(getRacuni());
     yield put(setGlobalError(error.message));
   }
 }

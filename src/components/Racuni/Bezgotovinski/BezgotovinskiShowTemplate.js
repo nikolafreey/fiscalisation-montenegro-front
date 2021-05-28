@@ -31,6 +31,63 @@ class BezgotovinskiShowTemplate extends React.Component {
     const sve_stavke = this.props.stavke;
     const user = this.props.user;
 
+    let a = '';
+    const ziroRacuni = () => {
+      return preduzece?.ziro_racuni?.map((racun) => {
+        a = racun.broj_racuna;
+        if (a) {
+          const prvaTri = a.substring(0, 3);
+
+          if (prvaTri.includes('550')) {
+            return <p>{'Podgorička: ' + a}</p>;
+          } else if (prvaTri.includes('535')) {
+            return <p>{'Prva: ' + a}</p>;
+          } else if (prvaTri.includes('555')) {
+            return <p>{'Addiko: ' + a}</p>;
+          } else if (prvaTri.includes('510')) {
+            return <p>{'CKB: ' + a}</p>;
+          } else if (prvaTri.includes('530')) {
+            return <p>{'Montenegro AD' + a}</p>;
+          } else if (prvaTri.includes('540')) {
+            return <p>{'ERSTE: ' + a}</p>;
+          } else if (prvaTri.includes('520')) {
+            return <p>{'Hipotekarna: ' + a}</p>;
+          }
+          return <p className="txt-light">{a}</p>;
+        }
+      });
+    };
+
+    let b = '';
+    const ziroRacuniPartner = () => {
+      let partnerTip = partner?.fizicko_lice_id
+        ? partner?.fizicko_lice
+        : partner?.preduzece_partner;
+      return partnerTip?.ziro_racuni?.map((racun) => {
+        b = racun.broj_racuna;
+        if (b) {
+          const prvaTri = b.substring(0, 3);
+
+          if (prvaTri.includes('550')) {
+            return <p>{'Podgorička: ' + b}</p>;
+          } else if (prvaTri.includes('535')) {
+            return <p>{'Prva: ' + b}</p>;
+          } else if (prvaTri.includes('555')) {
+            return <p>{'Addiko: ' + b}</p>;
+          } else if (prvaTri.includes('510')) {
+            return <p>{'CKB: ' + b}</p>;
+          } else if (prvaTri.includes('530')) {
+            return <p>{'Montenegro AD: ' + b}</p>;
+          } else if (prvaTri.includes('540')) {
+            return <p>{'ERSTE: ' + b}</p>;
+          } else if (prvaTri.includes('520')) {
+            return <p>{'Hipotekarna: ' + b}</p>;
+          }
+          return <p>{b}</p>;
+        }
+      });
+    };
+
     let bojaKlasa = '';
     let itemStatus = '';
     switch (status) {
@@ -53,9 +110,6 @@ class BezgotovinskiShowTemplate extends React.Component {
       default:
     }
 
-    console.log('props', sve_stavke);
-    console.log('partner', partner);
-
     return (
       <>
         <div className="invoice-template">
@@ -65,16 +119,24 @@ class BezgotovinskiShowTemplate extends React.Component {
                 <div className="status" style={{ display: 'none' }}>
                   {<span className={bojaKlasa}>{itemStatus}</span>}
                 </div>
-                <div className="invoice-template__logo" style={{ display: 'none' }}>
-                  <img
-                    src={
-                      preduzece && preduzece.logotip
-                        ? preduzece.logotip
-                        : noLogo
-                    }
-                    alt="logo"
-                    // style={{ widt: 200, height: 100 }}
-                  />
+                <div className="invoice__header--logo">
+                  {preduzece && preduzece.logotip ? (
+                    <img
+                      src={
+                        preduzece && preduzece.logotip
+                          ? preduzece.logotip
+                          : noLogo
+                      }
+                      alt="logo"
+                      style={{ width: 200, height: 100 }}
+                    />
+                  ) : (
+                    <img
+                      src={noLogo}
+                      alt="Logo"
+                      style={{ width: 200, height: 100 }}
+                    />
+                  )}
                 </div>
                 <div className="wrapper-100">
                   <div className="article-33">
@@ -133,17 +195,8 @@ class BezgotovinskiShowTemplate extends React.Component {
                       </p>
                     </div>
                   </div>
-                  <div className="article-33" style={{ display: 'none' }}>
-                    <div className="invoice-template__box-info">
-                      <p className="txt-light">CKB</p>
-                      <p className="txt-light">NLB</p>
-                      <p className="txt-light">Prva Banka CG</p>
-                    </div>
-                    <div className="invoice-template__box-values">
-                      <p className="txt-right">540-1214134-1312</p>
-                      <p className="txt-right">520-121334-14</p>
-                      <p className="txt-right">535-11234-32</p>
-                    </div>
+                  <div className="article-33">
+                    <div className="text-right">{ziroRacuni()}</div>
                   </div>
                 </div>
 
@@ -178,10 +231,8 @@ class BezgotovinskiShowTemplate extends React.Component {
                     <div className="df jc-sb">
                       <div className="df fd-column">
                         <p className="txt-light">
-                            {partner && partner.preduzece_partner
-                            ? ''
-                            : 'JMBG: '}
-                          </p>
+                          {partner && partner.preduzece_partner ? '' : 'JMBG: '}
+                        </p>
                         <p className="txt-light">
                           {partner && partner?.preduzece_partner?.pib
                             ? 'PIB: '
@@ -206,11 +257,11 @@ class BezgotovinskiShowTemplate extends React.Component {
                         </p>
                       </div>
                       <div className="df fd-column">
-                          <p className="txt-right">
-                            {partner && partner.preduzece_partner
+                        <p className="txt-right">
+                          {partner && partner.preduzece_partner
                             ? ''
                             : partner?.fizicko_lice?.jmbg}
-                          </p>
+                        </p>
                         <p className="txt-right">
                           {partner && partner?.preduzece_partner?.pib
                             ? partner?.preduzece_partner?.pib
@@ -235,6 +286,9 @@ class BezgotovinskiShowTemplate extends React.Component {
                             ? partner?.preduzece_partner?.drzava
                             : ''}
                         </p>
+                      </div>
+                      <div className="df fd-column">
+                        <p className="txt-right">{ziroRacuniPartner()}</p>
                       </div>
                     </div>
                   </div>
@@ -335,14 +389,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                 </div>
                 <div className="wrapper-100">
-                    {/* ------------------ QR CODE ------------------ */}
-                    {jikr && ikof ? (
-                        <div className="col-md-3">
-                          <QRCode value={qr_url} size="128" />{' '}
-                        </div>
-                      ) : null}
+                  {/* ------------------ QR CODE ------------------ */}
+                  {jikr && ikof ? (
+                    <div className="col-md-3">
+                      <QRCode value={qr_url} size="128" />{' '}
+                    </div>
+                  ) : null}
 
-                      {/*------------------ QR CODE ------------------*/}
+                  {/*------------------ QR CODE ------------------*/}
 
                   <div className="wrapper-50">
                     <div className="invoice-template__footer--info">

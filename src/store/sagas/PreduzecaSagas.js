@@ -5,6 +5,8 @@ import { setPreduzeca, setPreduzece } from '../actions/PreduzecaActions';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { authService } from '../../services/AuthService';
+import { setUser } from '../actions/UserActions';
 
 toast.configure();
 
@@ -92,9 +94,19 @@ export function* preduzeceGet({ payload }) {
 
 export function* preduzeceUpdate({ payload }) {
   try {
+    console.log('payload preduzece', payload);
     const res = yield call(preduzecaService.updatePreduzece, payload);
     yield put(setPreduzece(res.data));
-    toast.info('Uspješno ažurirano preduzeće: ' + payload.naziv, toastSettings);
+
+    //Dodavanje u user state zbog podesavanja
+    const { data } = yield call(authService.getUser);
+    console.log('user data', data);
+    yield put(setUser(data));
+
+    toast.info(
+      'Uspješno ažurirano preduzeće: ' + payload.kratki_naziv,
+      toastSettings
+    );
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

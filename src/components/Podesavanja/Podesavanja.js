@@ -234,24 +234,23 @@ const Podesavanja = () => {
       const prvaTri = broj_racuna.substring(0, 3);
 
       if (prvaTri.includes('550')) {
-        return 'Podgorička';
+        return 'Podgorička: ';
       } else if (prvaTri.includes('535')) {
-        return 'Prva';
+        return 'Prva: ';
       } else if (prvaTri.includes('555')) {
-        return 'Addiko';
+        return 'Addiko: ';
       } else if (prvaTri.includes('510')) {
-        return 'CKB';
+        return 'CKB: ';
       } else if (prvaTri.includes('530')) {
-        return 'Montenegro AD';
+        return 'Montenegro AD: ';
       } else if (prvaTri.includes('540')) {
-        return 'ERSTE';
+        return 'ERSTE: ';
       } else if (prvaTri.includes('520')) {
-        return 'Hipotekarna';
+        return 'Hipotekarna: ';
       }
     }
   };
 
-  console.log('user', user);
   if (!user) {
     return <GridLoader css={spinnerStyleGrid} size={20} />;
   }
@@ -380,7 +379,7 @@ const Podesavanja = () => {
                           <div className="side-info__info--inner-wrapper">
                             <div className="col-l">
                               <p className="txt-light txt-up">
-                                {() => getBank()}
+                                {getBank(racun.broj_racuna)}
                               </p>
                             </div>
                             <div className="col-r">

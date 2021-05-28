@@ -13,13 +13,14 @@ import {
 } from '../../store/actions/FizickaLicaActions';
 import DropDown from '../shared/forms/DropDown';
 import InputField from '../shared/forms/InputField';
-import { Link, useRouteMatch, Prompt } from 'react-router-dom';
+import { Link, useRouteMatch, Prompt, useHistory } from 'react-router-dom';
 import { fizickoLiceSelector } from '../../store/selectors/FizickaLicaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import ZiroRacuniFieldArray from './ZiroRacuniFieldArray';
 import Checkbox from '../shared/forms/Checkbox';
 import { PARTNERI, PREDUZECA } from '../../constants/routes';
 import RadioButton from '../shared/forms/RadioButton';
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,7 +38,7 @@ const toastSettings = {
 
 const FizickaLicaForm = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const { params } = useRouteMatch();
 
   const fizickoLice = useSelector(fizickoLiceSelector());
@@ -62,7 +63,8 @@ const FizickaLicaForm = () => {
         })
       );
     }
-    // dispatch(setFizickoLice(initialValues));
+    dispatch(setFizickoLice(initialValues));
+    history.push(PARTNERI.INDEX);
   };
 
   const renderForm = ({ values, dirty, isSubmitting, isValid }) => (
