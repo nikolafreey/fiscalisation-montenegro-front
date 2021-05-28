@@ -39,19 +39,26 @@ class BezgotovinskiShowTemplate extends React.Component {
           const prvaTri = a.substring(0, 3);
 
           if (prvaTri.includes('550')) {
-            return <p>{'Podgorička: ' + a}</p>;
+            // return <p>{'Podgorička: ' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('535')) {
-            return <p>{'Prva: ' + a}</p>;
+            // return <p>{'Prva: ' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('555')) {
-            return <p>{'Addiko: ' + a}</p>;
+            // return <p>{'Addiko: ' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('510')) {
-            return <p>{'CKB: ' + a}</p>;
+            // return <p>{'CKB: ' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('530')) {
-            return <p>{'Montenegro AD' + a}</p>;
+            // return <p>{'Montenegro AD' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('540')) {
-            return <p>{'ERSTE: ' + a}</p>;
+            // return <p>{'ERSTE: ' + a}</p>;
+            return <p>{a}</p>;
           } else if (prvaTri.includes('520')) {
-            return <p>{'Hipotekarna: ' + a}</p>;
+            // return <p>{'Hipotekarna: ' + a}</p>;
+            return <p>{a}</p>;
           }
           return <p className="txt-light">{a}</p>;
         }
@@ -130,13 +137,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       alt="logo"
                       style={{ width: 200, height: 100 }}
                     />
-                  ) : (
-                    <img
-                      src={noLogo}
-                      alt="Logo"
-                      style={{ width: 200, height: 100 }}
-                    />
-                  )}
+                  ) : ''}
                 </div>
                 <div className="wrapper-100">
                   <div className="article-33">
