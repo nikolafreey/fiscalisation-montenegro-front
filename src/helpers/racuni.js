@@ -105,7 +105,7 @@ export function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
         ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
           usluga?.porez?.stopa)
     );
-    porezi[usluga.porez.id].ukupno += Number(kolicina * Number(cijena));
+    porezi[usluga?.porez?.id].ukupno += Number(kolicina * Number(cijena));
   }
 }
 
