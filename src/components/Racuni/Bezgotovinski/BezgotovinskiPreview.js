@@ -516,9 +516,10 @@ const BezgotovinskiPreview = () => {
                               : ''}
                           </p>
                         </div>
-                        <div className="df fd-column">
+                        {/* TODO: ubaciti prikaz ziro racuna partnera ili ne prikazivati ako  ih nema */}
+                        {/* <div className="df fd-column">
                           <p className="txt-right">{ziroRacuniPartner()}</p>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
