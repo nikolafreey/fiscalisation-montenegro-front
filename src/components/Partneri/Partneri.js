@@ -18,6 +18,8 @@ import { FIZICKA_LICA, PARTNERI, PREDUZECA } from '../../constants/routes';
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
+import { setPreduzece } from '../../store/actions/PreduzecaActions';
+import { setFizickoLice } from '../../store/actions/FizickaLicaActions';
 
 const searchDebounced = debounce((callback) => callback(), 200);
 
@@ -61,11 +63,17 @@ const Partneri = () => {
           <PlusLightSvg />
           <p>Novi partner</p>
           <div className="drop-down" id="ddl">
-            <Link to={PREDUZECA.INDEX}>
+            <Link
+              onClick={() => dispatch(setPreduzece({}))}
+              to={PREDUZECA.INDEX}
+            >
               <PreduzeceSvg />
               <p>Preduzeće</p>
             </Link>
-            <Link to={FIZICKA_LICA.CREATE}>
+            <Link
+              onClick={() => dispatch(setFizickoLice({}))}
+              to={FIZICKA_LICA.CREATE}
+            >
               <UserSvg />
               <p>Fizičko lice</p>
             </Link>
