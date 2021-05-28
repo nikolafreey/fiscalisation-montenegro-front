@@ -200,7 +200,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
         <td className="cd fw-500">
-          {_item?.partner?.fizicko_lice
+          {_item?.partner?.fizicko_lice_id
             ? _item?.partner?.fizicko_lice?.ime +
               ' ' +
               _item?.partner?.fizicko_lice?.prezime
