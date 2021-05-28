@@ -12,17 +12,20 @@ const BezgotovinskiTableRow = ({ item }) => {
   };
   return (
     <tr>
-      <td className="cl"><p className="cd fw-500">{item && item.naziv ? item.naziv : ''}</p></td>
       <td className="cl">
+        <p className="cd fw-500">{item && item.naziv ? item.naziv : ''}</p>
+        {item && item.opis ? item.opis : ''}
+      </td>
+      <td className="cl white-space-pre">
         {item && item.jedinicna_cijena_bez_pdv
           ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
           : ''}
       </td>
-      <td className="cl">
+      <td className="cl white-space-pre">
         {item && item.kolicina ?formatirajCijenuBezE(Number(item.kolicina))+' ' + item.jedinica_naziv : ''}
       </td>
       {/* <td className="cl">{item && item.pdv_iznos ?formatirajCijenu(item.pdv_iznos*item.kolicina ): ''}</td> */}
-      <td className="cl">
+      <td className="cl white-space-pre">
         {item && item.popust_procenat && Number(item.popust_procenat)>0
           ? formatirajCijenuBezE(item.popust_procenat) +
             '% (- ' +

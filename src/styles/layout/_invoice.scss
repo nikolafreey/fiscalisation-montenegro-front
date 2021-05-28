@@ -27,6 +27,14 @@
       }
     }
   }
+
+  .white-space-pre-line {
+    white-space: pre-line;
+  }
+  .white-space-pre {
+    white-space: pre;
+  }
+
   &__qr {
     width: 100%;
     height: auto;
@@ -41,8 +49,13 @@
   th {
     padding: 1.2rem 3rem;
   }
+  tr {
+    cursor: text;
+  }
   td {
     padding: 1rem 3rem;
+    vertical-align: top;
+    white-space: pre-line;
   }
 }
 
