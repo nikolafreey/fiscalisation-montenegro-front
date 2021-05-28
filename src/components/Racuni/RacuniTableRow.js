@@ -176,17 +176,17 @@ const RacuniTableRow = ({ item, racuni }) => {
     <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
         <div className="inner-td-wrapper lowercase">
-          {_item.jikr && <Success />}
-          {vrstaRacuna(_item.vrsta_racuna)}
+          {_item?.qr_url && <Success />}
+          {vrstaRacuna(_item?.vrsta_racuna)}
         </div>
       </td>
-      <td className="cl">{_item.redni_broj}</td>
+      <td className="cl">{_item?.redni_broj}</td>
       {preduzecaPartneri &&
         preduzecaPartneri[0] &&
         preduzecaPartneri?.length !== 0 && (
           <td className="cd fw-500">
             {preduzecaPartneri &&
-              preduzecaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+              preduzecaPartneri.find((fl) => fl.id === _item?.partner_id)?.ime}
           </td>
         )}
       {fizickaLicaPartneri &&
@@ -194,26 +194,27 @@ const RacuniTableRow = ({ item, racuni }) => {
         fizickaLicaPartneri?.length !== 0 && (
           <td className="cd fw-500">
             {fizickaLicaPartneri &&
-              fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+              fizickaLicaPartneri.find((fl) => fl.id === _item?.partner_id)
+                ?.ime}
           </td>
         )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
         <td className="cd fw-500">
-          {_item.partner.fizicko_lice
-            ? _item.partner?.fizicko_lice?.ime +
+          {_item?.partner?.fizicko_lice
+            ? _item?.partner?.fizicko_lice?.ime +
               ' ' +
-              _item.partner?.fizicko_lice?.prezime
-            : _item.partner?.preduzece_partner?.kratki_naziv}
+              _item?.partner?.fizicko_lice?.prezime
+            : _item?.partner?.preduzece_partner?.kratki_naziv}
         </td>
       )}
       <td className="cl dshow-cell">
-        {currencyFormat(_item.ukupna_cijena_bez_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_bez_pdv) + '€'}
       </td>
       <td className="cl dshow-cell">
-        {currencyFormat(_item.ukupan_iznos_pdv) + '€'}
+        {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
       </td>
       <td className="cd fw-500">
-        {currencyFormat(_item.ukupna_cijena_sa_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_sa_pdv) + '€'}
       </td>
       <td className="cd">
         {/* <span className={bojaStatus[item.status].klasa}>
@@ -225,7 +226,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       <td className="cl">
         {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
         <Moment locale="me" format="DD. MMM YYYY.">
-          {_item.created_at}
+          {_item?.created_at}
         </Moment>
       </td>
       <td className="mob-absolute-topright">
@@ -235,15 +236,15 @@ const RacuniTableRow = ({ item, racuni }) => {
             <div className="drop-down">
               <Link
                 onClick={handleIzmjeni}
-                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+                className={`${_item?.qr_url ? 'disabled' : ''}`}
               >
                 <Izmjeni />
                 Izmjeni
               </Link>
-              {!_item.qr_url && (
+              {!_item?.qr_url && (
                 <Link
                   onClick={handleFiskalizuj}
-                  className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+                  className={`${_item?.qr_url ? 'disabled' : ''}`}
                 >
                   <Success />
                   Fiskalizuj
