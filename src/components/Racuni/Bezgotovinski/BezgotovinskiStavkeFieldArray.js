@@ -62,7 +62,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     [values, setFieldValue]
   );
 
-  //console.log('bg values pre', values);
   const usluga2 = useSelector(uslugaSelector());
   const roba2 = useSelector(robaSelector());
 
@@ -81,6 +80,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     }
   };
   const ucbpdv = useRef();
+
+  console.log('usluga', usluga);
 
   function getPopustStavke(stavka) {
     if (
@@ -139,7 +140,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       stavka.tip_popusta = popustStart.tip_popusta;
       stavka.popust = popustStart.iznos;
       values.niz[values.stavke.length - 1] = stavka;
-      console.log('popustStart', popustStart, stavka);
       return cijena - (Number(popustStart.iznos || 0) * cijena) / 100;
     }
   }
@@ -193,7 +193,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
       values.niz[values.stavke.length - 1] = stavka;
 
-      console.log('popu==', values);
       return (
         Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
       );
@@ -233,7 +232,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     }
   }
   function getUkupnaCijenaStavke(stavka) {
-    // console.log('getIznosPdv(stavka)',getIznosPdv(stavka))
     stavka = {
       ...stavka,
       iznos_pdv_popust: Number(getIznosPdv(stavka)),
@@ -261,9 +259,14 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     return getUkupnaCijenaSaPdv(stavka) - getUkupnaCijenaBezPdv(stavka);
   }
 
+  const onChangeExtra = (option, index) => {
+    setFieldValue(`stavke.${index}.jedinica_mjere_id`, option.jedinica_mjere);
+    setFieldValue(`stavke.${index}.porez`, getPorezForId(option.porez));
+    setFieldValue(`stavke.${index}`, option);
+  };
+
   function handleChoosePopust(option, stavka, index) {
     if (stavka) {
-      console.log('popust=====', option, stavka, index, stavka?.popust);
       if (option.value === 'procenat') {
         setFieldValue(
           `values.${index}.popust`,
@@ -293,21 +296,22 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       return;
     }
   }
+
   //values.stavke=values.niz;
   // if (values.stavke.length !==values.a.length) {
   //   values.a.push({cena:values.stavke.length})
   // }
 
   //values.a.push({cena:values.stavke.length})
-  console.log('val=a=', values.a, values);
-  console.log('val=kraj', values, values.stavke.length, values.niz.length);
+  // console.log('val=a=', values.a, values);
+  // console.log('val=kraj', values, values.stavke.length, values.niz.length);
 
   return (
     <>
       {values.stavke.map((stavka, index) => (
-        <>
-          <div className="main-content__box--body mb-20">
-            <div className="container">
+        <React.Fragment key={index}>
+          <div key={index} className="main-content__box--body mb-20">
+            <div key={index} className="container">
               <div className="df jc-sb ai-c w-100">
                 <h2 className="heading-secondary">{index + 1}</h2>
                 <p
@@ -323,16 +327,16 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   </span>
                 </p>
               </div>
-              <div className="section-box">
+              <div key={index} className="section-box">
                 <div className="section-box__left">
                   <div className="section-box__left--top">
-                    <div className="form-group mb-0">
+                    <div key={index} className="form-group mb-0">
                       <StavkeDropdown
+                        key={index}
+                        id={index}
                         name={`stavke.${index}`}
                         className="form__input"
-                        onChangeExtra={(option) => {
-                          setFieldValue(`stavke.${index}`, option);
-                        }}
+                        onChangeExtra={(option) => onChangeExtra(option, index)}
                       />
                     </div>
                   </div>
@@ -406,27 +410,30 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       </div>
                     </div>
                     <div className="el">
-                      <div className="form__group">
+                      <div key={index} className="form__group">
                         <label htmlFor="" className="form__label bm-show">
                           Jedinica mjere
                         </label>
                         <DropDown
+                          key={index}
                           name={`stavke.${index}.jedinica_mjere_id`}
-                          // placeholder={
+                          id={index}
+                          // defaultValue={
                           //   Object.keys(usluga).length !== 0
-                          //     ? usluga?.jedinica_mjere?.naziv
-                          //     : roba?.jedinica_mjere?.naziv
+                          //     ? {
+                          //         value: usluga?.jedinica_mjere?.id,
+                          //         label: usluga?.jedinica_mjere?.naziv,
+                          //       }
+                          //     : {
+                          //         value: roba?.jedinica_mjere?.id,
+                          //         label: roba?.jedinica_mjere?.naziv,
+                          //       }
                           // }
                           defaultValue={
-                            Object.keys(usluga).length !== 0
-                              ? {
-                                  value: usluga?.jedinica_mjere?.id,
-                                  label: usluga?.jedinica_mjere?.naziv,
-                                }
-                              : {
-                                  value: roba?.jedinica_mjere?.id,
-                                  label: roba?.jedinica_mjere?.naziv,
-                                }
+                            stavka && {
+                              value: stavka?.jedinica_mjere?.id,
+                              label: stavka?.jedinica_mjere?.naziv,
+                            }
                           }
                           onChangeExtra={(option) => {
                             setFieldValue(
@@ -461,34 +468,34 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       </div>
                     </div>
                     <div className="el">
-                      <div className="form__group">
+                      <div key={index} className="form__group">
                         <label htmlFor="" className="form__label bm-show">
                           Stopa PDV-a
                         </label>
                         <DropDown
+                          key={index}
+                          id={index}
                           name={`stavke.${index}.porez_id`}
                           loadOptions={poreziService.getPoreziDropdown}
-                          // placeholder={
+                          // defaultValue={
                           //   Object.keys(usluga).length === 0 &&
                           //   Object.keys(roba).length === 0
-                          //     ? ''
+                          //     ? {}
                           //     : Object.keys(usluga).length !== 0
-                          //     ? usluga?.porez?.naziv
-                          //     : roba?.cijene_roba[0]?.porez?.naziv
+                          //     ? {
+                          //         value: usluga?.porez?.id,
+                          //         label: usluga?.porez?.naziv,
+                          //       }
+                          //     : {
+                          //         value: roba?.cijene_roba[0]?.porez?.id,
+                          //         label: roba?.cijene_roba[0]?.porez?.naziv,
+                          //       }
                           // }
                           defaultValue={
-                            Object.keys(usluga).length === 0 &&
-                            Object.keys(roba).length === 0
-                              ? {}
-                              : Object.keys(usluga).length !== 0
-                              ? {
-                                  value: usluga?.porez?.id,
-                                  label: usluga?.porez?.naziv,
-                                }
-                              : {
-                                  value: roba?.cijene_roba[0]?.porez?.id,
-                                  label: roba?.cijene_roba[0]?.porez?.naziv,
-                                }
+                            stavka && {
+                              value: stavka?.porez?.id,
+                              label: stavka?.porez?.naziv,
+                            }
                           }
                           onChangeExtra={(option) => {
                             setFieldValue(
@@ -598,7 +605,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
             </div>
           </div>
           <hr className="hr-main" />
-        </>
+        </React.Fragment>
       ))}
       <div
         onClick={() => insert(values.stavke.length)}
