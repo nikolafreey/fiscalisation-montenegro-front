@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import InputField from './InputField';
 import Label from './Label';
 import { useField } from 'formik';
@@ -74,7 +75,7 @@ const Modal = ({
       });
   };
 
-  return (
+  return ReactDOM.createPortal(
     <>
       {showModal && !depozitError && !depozitLoaded ? (
         <div className="modal" id="modal">
@@ -114,7 +115,8 @@ const Modal = ({
           disabled
         />
       )}
-    </>
+    </>,
+    document.querySelector('#modal')
   );
 };
 
