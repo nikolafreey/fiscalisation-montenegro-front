@@ -274,9 +274,9 @@ const BezgotovinskiPreview = () => {
                 value={valueStatus ? valueStatus : options[2]}
                 styles={selectStyle}
               />
-              <button className="btn btn__secondary" onClick={handlePrint}>
+              <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0" onClick={handlePrint}>
                 <svg
-                  className="icon icon__dark lg mr-xs"
+                  className="icon icon__light lg mr-xs"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
