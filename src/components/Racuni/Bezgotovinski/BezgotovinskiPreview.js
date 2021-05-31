@@ -362,7 +362,9 @@ const BezgotovinskiPreview = () => {
                     alt="logo"
                     style={{ width: 200, height: 100 }}
                   />
-                ) : ''}
+                ) : (
+                  ''
+                )}
               </div>
               <div className="row">
                 <div className="col-md-4">
@@ -377,7 +379,11 @@ const BezgotovinskiPreview = () => {
                       : ''}
                   </p>
                   <p className="txt-light">
-                    {preduzece && preduzece.opis ? preduzece.opis : ''}
+                    {preduzece && preduzece.opis
+                      ? preduzece.opis
+                      : opis
+                      ? opis
+                      : ''}
                   </p>
                   <p className="txt-light">
                     {preduzece && preduzece.adresa ? preduzece.adresa : ''}
@@ -429,9 +435,12 @@ const BezgotovinskiPreview = () => {
               <div className="mtb-50">
                 <div className="row">
                   <div className="col-md-6">
-                    <h2 className="heading-secondary">Račun: {redni_broj}/<Moment locale="me" format="YYYY">
-                          {created_at}
-                        </Moment></h2>
+                    <h2 className="heading-secondary">
+                      Račun: {redni_broj}/
+                      <Moment locale="me" format="YYYY">
+                        {created_at}
+                      </Moment>
+                    </h2>
                     <p>
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
@@ -658,7 +667,9 @@ const BezgotovinskiPreview = () => {
                   {opis && (
                     <>
                       <p className="fw-500">Napomena:</p>
-                      <p className="txt-light mb-25 white-space-pre-line">{opis}</p>
+                      <p className="txt-light mb-25 white-space-pre-line">
+                        {opis}
+                      </p>
                     </>
                   )}
                   <div className="row">
@@ -676,7 +687,9 @@ const BezgotovinskiPreview = () => {
                         <div className="df fd-column mr-m">
                           <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
                           <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
-                          <p className="txt-light">{broj_racuna ? 'Broj' : ''}</p>
+                          <p className="txt-light">
+                            {broj_racuna ? 'Broj' : ''}
+                          </p>
                         </div>
                         <div className="df fd-column">
                           <p>{jikr ? jikr : ''}</p>
@@ -687,7 +700,7 @@ const BezgotovinskiPreview = () => {
                     </div>
                   </div>
                   <p className="txt-light">
-                    PostFiskal by Restart IT d.o.o. / {' '}
+                    PostFiskal by Restart IT d.o.o. /{' '}
                     {user?.preduzeca[0]?.software_kod
                       ? user?.preduzeca[0]?.software_kod
                       : ''}

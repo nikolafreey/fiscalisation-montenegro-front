@@ -137,7 +137,9 @@ class BezgotovinskiShowTemplate extends React.Component {
                       alt="logo"
                       style={{ width: 200, height: 100 }}
                     />
-                  ) : ''}
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <div className="wrapper-100">
                   <div className="article-33">
@@ -152,7 +154,11 @@ class BezgotovinskiShowTemplate extends React.Component {
                         : ''}
                     </p>
                     <p className="txt-light">
-                      {preduzece && preduzece.opis ? preduzece.opis : ''}
+                      {preduzece && preduzece.opis
+                        ? preduzece.opis
+                        : opis
+                        ? opis
+                        : ''}
                     </p>
                     <p className="txt-light">
                       {preduzece && preduzece.adresa ? preduzece.adresa : ''}
@@ -289,7 +295,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                         </p>
                       </div>
                       {/* TODO: ubaciti prikaz ziro racuna partnera ili ne prikazivati ako  ih nema */}
-                        {/* <div className="df fd-column">
+                      {/* <div className="df fd-column">
                           <p className="txt-right">{ziroRacuniPartner()}</p>
                         </div> */}
                     </div>
@@ -412,7 +418,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                 </div>
                 <p className="txt-light">
-                  PostFiskal by Restart IT d.o.o. / {' '}
+                  PostFiskal by Restart IT d.o.o. /{' '}
                   {user?.preduzeca[0]?.software_kod
                     ? user?.preduzeca[0]?.software_kod
                     : ''}
