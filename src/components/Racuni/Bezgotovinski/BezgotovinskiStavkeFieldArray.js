@@ -343,8 +343,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   <div className="section-box__left--bottom">
                     <div className="form-group mt-15">
                       <textarea
-                        name="opis"
-                        id=""
+                        name={`stavke.${index}.opis`}
+                        id={`stavke.${index}.opis`}
                         cols="30"
                         rows="8"
                         className="form__textarea df"
