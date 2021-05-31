@@ -388,7 +388,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         </label>
                         {/* TODO: izgaseno edit Cijena dok se ne rijesi slanje izmijenjene cijene */}
                         <input
-                          name="ukupna_cijena"
+                          name={`stavke.${index}.ukupna_cijena`}
                           type="number"
                           // readOnly
                           // value={formatirajCijenu(
@@ -451,7 +451,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Količina
                         </label>
                         <input
-                          name="kolicina"
+                          name={`stavke.${index}.kolicina`}
                           type="number"
                           className="form__input"
                           value={
@@ -546,7 +546,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Popust
                         </label>
                         <input
-                          name="popust"
+                          name={`stavke.${index}.popust`}
                           type="number"
                           className="form__input"
                           value={
