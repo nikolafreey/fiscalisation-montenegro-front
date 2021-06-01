@@ -214,7 +214,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
       </td>
       <td className="cd fw-500">
-        {currencyFormat(_item?.ukupna_cijena_sa_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_sa_pdv_popust) + '€'}
       </td>
       <td className="cd">
         {/* <span className={bojaStatus[item.status].klasa}>
