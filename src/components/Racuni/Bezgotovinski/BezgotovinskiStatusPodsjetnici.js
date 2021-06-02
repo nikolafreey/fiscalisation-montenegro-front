@@ -213,7 +213,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   Nenaplativ
                 </label>
               </div>
-              <div className="form__radio-group">
+              {/* <div className="form__radio-group">
                 <input
                   type="radio"
                   className="form__radio-input"
@@ -227,7 +227,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   <span className="form__radio-button"></span>
                   Privremeni
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-md-5">

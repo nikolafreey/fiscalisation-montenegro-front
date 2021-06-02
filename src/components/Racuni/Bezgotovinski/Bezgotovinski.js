@@ -205,7 +205,7 @@ const Bezgotovinski = () => {
                     }}
                     className="btn btn__primary"
                   >
-                    Fiskalizuj i Pošalji
+                    Sačuvaj i Fiskalizuj
                   </button>
                   {/* <button
                     onClick={() => {
@@ -222,7 +222,7 @@ const Bezgotovinski = () => {
                     }}
                     className="btn btn__link ml-m"
                   >
-                    Obustavi
+                    <Link to={RACUNI.INDEX}>Obustavi</Link>
                   </button>
                 </div>
               </div>
