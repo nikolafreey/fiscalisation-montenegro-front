@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReactComponent as CheckIcon } from '../../assets/icon/checkmark.svg';
 
-const PreduzeceDetails = ({ preduzece }) => {
+const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
   let c = '';
   let a = '';
 
@@ -31,6 +31,11 @@ const PreduzeceDetails = ({ preduzece }) => {
       }
     });
   };
+  
+  const detailsCloseHandler = () => {
+    openInfo(false);
+  }
+
 
   let sideInfoLogoWrapper;
   if (preduzece?.logotip) {
@@ -41,8 +46,8 @@ const PreduzeceDetails = ({ preduzece }) => {
     );
   }
   return (
-    <div className="side-info show">
-      <div className="side-info__close tshow">
+    <div className={infoOpen ? "side-info show": "side-info"}>
+      <div className="side-info__close tshow" onClick={detailsCloseHandler} >
         <svg
           className="icon icon__dark lg"
           xmlns="http://www.w3.org/2000/svg"

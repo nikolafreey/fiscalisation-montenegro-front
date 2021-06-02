@@ -29,7 +29,7 @@ import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori
 import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
 import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
 import { ReactComponent as Logo } from '../../../assets/icon/company-logo/postFiscal.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Sidebar = ({ handleMenuIsOpen }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -38,6 +38,25 @@ const Sidebar = ({ handleMenuIsOpen }) => {
     setMenuIsOpen(!menuIsOpen);
     handleMenuIsOpen(!menuIsOpen);
   };
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+});
+
+let handleMenuMobClose;
+  if(width <= 780){
+    handleMenuMobClose =() => {
+      setMenuIsOpen(false);
+      handleMenuIsOpen(false);
+    }
+  }
 
   return (
     <div
@@ -56,7 +75,13 @@ const Sidebar = ({ handleMenuIsOpen }) => {
       </div>
       <div className={menuIsOpen ? 'sidebar active' : 'sidebar'}>
         <ul className="items">
-          <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} menuIsOpen={menuIsOpen}/>
+          <SidebarLink
+            ImageSource={heroHome}
+            label="Pregled"
+            to={HOME}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
+          />
           {/* <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
           <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} /> */}
         </ul>
@@ -67,7 +92,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Računi"
             to={RACUNI.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink
             ImageSource={heroPredracuni}
@@ -84,7 +109,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Stavke"
             to={STAVKE.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
         </ul>
         <ul className="items">
@@ -94,7 +119,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Partneri"
             to={PARTNERI.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} /> */}
 
@@ -104,7 +129,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Preduzeca"
             to={PREDUZECA.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink
             ImageSource={heroIzvjestaji}
@@ -127,14 +152,14 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Moduli"
             to={MODULI.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
             to={PODESAVANJA.INDEX}
             menuIsOpen={menuIsOpen}
-            onClick={menuToggler}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} /> */}
         </ul>

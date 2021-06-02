@@ -18,7 +18,7 @@ $translateX: 0;
     top: 1rem;
     left: 1rem;
   }
-  @include respond(phone){
+  @include respond(big-phone){
     top: .8rem;
     z-index: 100000;
     // left: 10px;

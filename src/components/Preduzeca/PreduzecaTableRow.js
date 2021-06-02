@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPartneri, storePartner } from '../../store/actions/PartneriActions';
 import { getPreduzeca } from '../../store/actions/PreduzecaActions';
 import { partneriSelector } from '../../store/selectors/PartneriSelector';
+import { useState } from 'react/cjs/react.development';
 
 const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
     dispatch(storePartner({ preduzece_tabela_id: item.id }));
     dispatch(getPreduzeca());
   };
+
 
   return (
     <tr

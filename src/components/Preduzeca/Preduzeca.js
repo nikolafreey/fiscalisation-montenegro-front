@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { PREDUZECA } from '../../constants/routes';
@@ -30,6 +30,12 @@ const Preduzeca = () => {
   const preduzeca = useSelector(preduzecaSelector());
   const preduzece = useSelector(preduzeceSelector());
   const partneri = useSelector(partneriSelector());
+
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  const openInfo = (props) => {
+    setInfoOpen(props);
+  }
 
   useEffect(() => {
     dispatch(getPreduzeca());
@@ -65,7 +71,7 @@ const Preduzeca = () => {
               {'Nemate preduzeća u listi'}
             </h2>
           ) : (
-            <PreduzecaTable preduzeca={preduzeca} partneri={partneri} />
+            <PreduzecaTable preduzeca={preduzeca} partneri={partneri} openInfo={openInfo}/>
           )}
           {match.path === PREDUZECA.PARTNERI ? (
             <div className="df jc-center ai-c fd-column">
@@ -82,7 +88,7 @@ const Preduzeca = () => {
             </div>
           ) : null}
         </div>
-        <PreduzeceDetails preduzece={preduzece} />
+        <PreduzeceDetails preduzece={preduzece} infoOpen={infoOpen} openInfo={openInfo} />
       </div>
     </>
   );
