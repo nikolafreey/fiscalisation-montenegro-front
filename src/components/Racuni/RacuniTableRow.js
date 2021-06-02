@@ -134,12 +134,14 @@ const RacuniTableRow = ({ item, racuni }) => {
     racuniService
       .fiskalizujRacun(item.id)
       .then((data) => {
+        dispatch(getRacuni());
         toast.success(
           `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
           toastSettings
         );
       })
       .catch((err) => {
+        dispatch(getRacuni());
         let message = err?.response?.data?.error
           ? err.response.data.error
           : err.message;
