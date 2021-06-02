@@ -75,6 +75,7 @@ const Bezgotovinski = () => {
             'Jedinica mjere računa je neophodna na računu ' + index,
             toastSettings
           );
+          throw 'Jedinica mjere računa je neophodna na računu ' + index;
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
