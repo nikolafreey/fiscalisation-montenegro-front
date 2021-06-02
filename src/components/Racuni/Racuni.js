@@ -164,7 +164,7 @@ const Racuni = () => {
       })
       .catch((error) => {
         toast.error(
-          'Greška kod podizanja depozita: ' + error.response.data.message,
+          'Nije moguće prijaviti podizanje depozita: ' + error.response.data.message,
           toastSettings
         );
         setWithdrawError(error);
@@ -181,7 +181,7 @@ const Racuni = () => {
         }
       })
       .catch((err) =>
-        toast.error('Greška kod učitavanja depozita!', toastSettings)
+        toast.error('Nije moguće učitati vrijednost depozita!', toastSettings)
       );
   }, []);
 

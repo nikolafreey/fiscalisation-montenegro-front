@@ -63,7 +63,7 @@ const DropDown = React.memo(
         })
         .catch((err) => {
           toast.error(
-            'Desila se greška prilikom unosa proizvođača: Proizvođač već postoji!' +
+            'Proizvođač sa tim nazivom već postoji! Unesite drugi naziv' +
               err,
             toastSettings
           );
@@ -97,7 +97,7 @@ const DropDown = React.memo(
           // );
 
           toast.error(
-            'Desila se greška prilikom unosa grupe: ' + err.response &&
+            'Nije moguće unijeti grupu: ' + err.response &&
               err.response.data.errors.naziv[0],
             toastSettings
           );

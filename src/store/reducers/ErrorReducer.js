@@ -60,7 +60,7 @@ const errorReducer = (state = initialState, action) =>
           //   return;
           // }
           if (errormessage !== '' && errormessage !== ' ') {
-            toast.error('Greška: ' + errormessage, toastSettings);
+            toast.error('Obavještenje: ' + errormessage, toastSettings);
           }
 
           // let objKey = Object.keys(action.payload);
@@ -70,7 +70,7 @@ const errorReducer = (state = initialState, action) =>
           // );
         }
         if (draft.globalError && draft.globalError.length !== 0) {
-          toast.error('Greška: ' + action.payload, toastSettings);
+          toast.error('Obavještenje: ' + action.payload, toastSettings);
         }
         break;
       case LOGIN_ERROR_SET:
@@ -81,7 +81,7 @@ const errorReducer = (state = initialState, action) =>
           action.payload.constructor === Object
         ) {
           toast.error(
-            'Greška Prilikom Logovanja: ' + action.payload.message,
+            'Nije moguć ulazak: ' + action.payload.message,
             toastSettings
           );
         }
