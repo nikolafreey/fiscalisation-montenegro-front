@@ -29,6 +29,7 @@ const Modal = ({
   label,
   obavezno = false,
   showModal,
+  closeModal,
   handleDepositLoaded,
   ...props
 }) => {
@@ -78,10 +79,10 @@ const Modal = ({
   return ReactDOM.createPortal(
     <>
       {showModal && !depozitError && !depozitLoaded ? (
-        <div className="modal" id="modal">
+        <div className="modal open">
           <div className="modal__content">
             <div className="modal__header">
-              <span className="modal__close">&times;</span>
+              <span className="modal__close" onClick={() => closeModal(false)}>&times;</span>
               <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
             </div>
             <div className="modal__body">
@@ -90,11 +91,12 @@ const Modal = ({
                   autoFocus
                   type="number"
                   name="iznos_depozita"
+                  className='form__input w-50 mb-25'
                   onChange={(e) => {
                     setDepozit(e.target.value);
                   }}
                 />
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn__primary">
                   Sačuvaj Depozit
                 </button>
               </form>

@@ -67,6 +67,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Računi"
             to={RACUNI.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
           {/* <SidebarLink
             ImageSource={heroPredracuni}
@@ -83,6 +84,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Stavke"
             to={STAVKE.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
         </ul>
         <ul className="items">
@@ -92,6 +94,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Partneri"
             to={PARTNERI.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
           {/* <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} /> */}
 
@@ -101,6 +104,7 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Preduzeca"
             to={PREDUZECA.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
           {/* <SidebarLink
             ImageSource={heroIzvjestaji}
@@ -123,12 +127,14 @@ const Sidebar = ({ handleMenuIsOpen }) => {
             label="Moduli"
             to={MODULI.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
             to={PODESAVANJA.INDEX}
             menuIsOpen={menuIsOpen}
+            onClick={menuToggler}
           />
           {/* <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} /> */}
         </ul>

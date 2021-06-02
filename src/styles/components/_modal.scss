@@ -1,101 +1,100 @@
 .modal {
-    height: 100vh;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color-black, 0.2);
+  z-index: 10000000;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s;
+
+  &__content {
+    @include absCenter;
+
+    width: 40rem;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 10px;
+    display: table;
+    overflow: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.25);
+    transition: all 0.5s 0.2s;
+
+    @include respond(big-desktop) {
+      width: 30%;
+    }
+
+    @include respond(tab-port) {
+      width: 60%;
+      transform: translate(-50%, -50%) scale(0.35);
+    }
+    @include respond(phone) {
+      width: 90%;
+      transform: translate(-50%, -50%) scale(0.15);
+    }
+  }
+
+  &__header,
+  &__footer {
+    padding: 2rem;
+  }
+  &__body {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+  }
+  &__footer {
+    position: relative;
+    background-color: $color-content-light;
+  }
+  &__img {
+    display: block;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba($color-black, .2);
-    z-index: 10000000;
+  }
+  &__text {
+    font-size: $font-size-default;
+    margin-bottom: 4rem;
+
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 4rem;
+    -moz-column-rule: 1px solid $color-grey-light-2;
+    -webkit-column-rule: 1px solid $color-grey-light-2;
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-light-2;
+
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &.open {
     opacity: 1;
     visibility: visible;
-    transition: all .3s;
-  
-    &__content {
-      @include absCenter;
-  
-      width: 40rem;
-      background-color: $color-white;
-      box-shadow: 0 2rem 4rem rgba($color-black, .2);
-      border-radius: 10px;
-      display: table;
-      overflow: visible;
-      opacity: 1;
-      transform: translate(-50%,-50%) scale(.25);
-      transition: all .5s .2s;
-
-      @include respond(big-desktop){
-          width: 30%;
-      }
-
-      @include respond(tab-port){
-          width: 60%;
-          transform: translate(-50%,-50%) scale(.35);
-      }
-      @include respond(phone){
-          width: 90%;
-          transform: translate(-50%,-50%) scale(.15);
-      }
-    }
-
-    &__header, &__footer{
-        padding: 2rem;
-    }
-    &__body{
-        padding: 0 2rem;
-        margin-bottom: 2rem;
-    }
-    &__footer {
-        position: relative;
-        background-color: $color-content-light;
-    }
-    &__img {
-      display: block;
-      width: 100%;
-    }
-    &__text {
-      font-size: $font-size-default;
-      margin-bottom: 4rem;
-  
-      -moz-column-count: 2;
-      -moz-column-gap: 4rem;
-      -webkit-column-count: 2;
-      -webkit-column-gap: 4rem;
-      -moz-column-rule: 1px solid $color-grey-light-2 ;
-      -webkit-column-rule: 1px solid $color-grey-light-2 ;
-      column-count: 2;
-      column-gap: 4rem;
-      column-rule: 1px solid $color-grey-light-2;
-  
-      -moz-hyphens: auto;
-      -ms-hyphens: auto;
-      -webkit-hyphens: auto;
-      hyphens: auto;
-    }
-  
-    &:target {
-      opacity: 1;
-      visibility: visible;
-    }
-    &:target &__content {
-      opacity: 1;
-      transform: translate(-50%,-50%) scale(1);
-    }
-    &__close{
-      &:link,
-      &:visited {
-        color: $color-black;
-        position: absolute;
-        top: 1rem;
-        right: 2rem;
-        font-size: 3rem;
-        text-decoration: none;
-        display: inline-block;
-        transition: all .2s;
-        line-height: 1;
-      }
-      &:hover{
-        color: $color-primary;
-      }
-    }
-  
   }
+  &.open &__content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  &__close {
+    color: $color-black;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 3rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

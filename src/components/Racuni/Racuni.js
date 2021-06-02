@@ -150,6 +150,10 @@ const Racuni = () => {
     setDepozitLoaded(props);
   };
 
+  const closeModal = (props) => {
+    setShowModal(props);
+  }
+
   const hideModal = (props) => {
     setShowModalWithdraw(props);
   };
@@ -205,6 +209,7 @@ const Racuni = () => {
           </Link> */}
           <Modal
             showModal={showModal}
+            closeModal={closeModal}
             handleDepositLoaded={handleDepositLoaded}
           />
           <ModalWithdraw hideModal={hideModal} showModal={showModalWithdraw} />
