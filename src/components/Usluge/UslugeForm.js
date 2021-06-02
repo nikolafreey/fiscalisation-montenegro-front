@@ -101,6 +101,7 @@ const UslugeForm = () => {
       history.push(STAVKE.INDEX);
       dispatch(setUsluga(initialValues));
     } else {
+      console.log('values', values);
       dispatch(
         storeUsluga({
           ...values,
@@ -112,6 +113,11 @@ const UslugeForm = () => {
           grupa_id: isNumber(values?.grupa_id)
             ? values?.grupa_id
             : tempLen?.slice(-1)[0].value + 1,
+          ukupna_cijena: getPriceVat(
+            values.pdv_ukljucen,
+            values.porez_id,
+            values.ukupna_cijena
+          ),
           status: values.status === 'Aktivan' ? true : false,
         })
       );
@@ -138,14 +144,15 @@ const UslugeForm = () => {
   };
 
   const getPriceNoVat = (pdv_ukljucen, porez_id, ukupna_cijena) => {
+    console.log('ukupna_cijena', ukupna_cijena);
     if (porez_id === null || porez_id === undefined) porez_id = 4;
     const stopa = getStopaPerId(porez_id);
     if (pdv_ukljucen === 0) {
       // return Math.round(10000 * ukupna_cijena) / 10000;
-      return ukupna_cijena;
+      return Number(ukupna_cijena);
     } else {
       // return Math.round(10000 * (ukupna_cijena / (Number(stopa) + 1))) / 10000;
-      return ukupna_cijena / (Number(stopa) + 1);
+      return Number(ukupna_cijena / (Number(stopa) + 1));
     }
   };
 
@@ -155,7 +162,7 @@ const UslugeForm = () => {
     if (pdv_ukljucen === 0) {
       return +ukupna_cijena + +ukupna_cijena * +stopa;
     } else {
-      return ukupna_cijena;
+      return +ukupna_cijena;
     }
   };
 
@@ -220,7 +227,9 @@ const UslugeForm = () => {
                       <div className="df fd-column h-100">
                         <div>
                           <h2 className="heading-secondary">Informacije</h2>
-                          <p className="txt-light">Informacije koje sadrže sve pojedinosti usluge</p>
+                          <p className="txt-light">
+                            Informacije koje sadrže sve pojedinosti usluge
+                          </p>
                         </div>
                         <div className="df jc-sb h-70 ai-end mt-15">
                           <div className="col-l txt-light">

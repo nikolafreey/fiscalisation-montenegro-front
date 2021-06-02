@@ -21,11 +21,11 @@ import BezgotovinskiHeader from './BezgotovinskiHeader';
 import { RACUNI } from '../../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import { BezgotovinskiSchema } from '../../../validation/bezgotovinski_racuni';
+import { racunSelector } from '../../../store/selectors/RacuniSelector';
+import { racuniService } from '../../../services/RacuniService';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { racunSelector } from '../../../store/selectors/RacuniSelector';
-import { racuniService } from '../../../services/RacuniService';
 
 toast.configure();
 
@@ -75,6 +75,7 @@ const Bezgotovinski = () => {
             'Jedinica mjere računa je neophodna na računu ' + index,
             toastSettings
           );
+          throw 'Jedinica mjere računa je neophodna na računu ' + index;
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
@@ -104,18 +105,6 @@ const Bezgotovinski = () => {
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
     dispatch(storeBezgotovinskiRacun(noviRacun));
-    let racunId;
-    // setTimeout(() => {
-    //   racuniService.getRacuni().then((data) => {
-    //     console.log('data', data);
-    //     racunId = data.data.data[0].id;
-    //     setTimeout(() => {
-    //       if (previousUrl === '/racuni/bezgotovinski/create' && racunId) {
-    //         history.push('/racuni/bezgotovinski/show/' + racunId);
-    //       }
-    //     }, 500);
-    //   }, 1500);
-    // });
     dispatch(getRacuni());
     history.push(RACUNI.INDEX);
   };

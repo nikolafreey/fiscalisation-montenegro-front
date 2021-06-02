@@ -1,6 +1,5 @@
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import InputField from './InputField';
 import Label from './Label';
 import { useField } from 'formik';
@@ -25,28 +24,27 @@ const ENDPOINTS = {
   DEPOZIT_WITHDRAW: 'depozit-withdraws',
 };
 
-const Modal = ({
+const ModalWithdraw = ({
   label,
   obavezno = false,
   showModal,
-  handleDepositLoaded,
+  hideModal,
   ...props
 }) => {
   const id = props.id || props.name;
 
+  const [withdraw, setWithdraw] = useState(0);
   const [depozit, setDepozit] = useState(0);
-  const [depozitLoaded, setDepozitLoaded] = useState();
-  const [depozitError, setDepozitError] = useState();
+  const [withdrawLoaded, setWithdrawLoaded] = useState();
+  const [withdrawError, setWithdrawError] = useState();
   // let [toastCounter, setToastCounter] = useState(false);
 
   useEffect(() => {
     depozitWithdrawService
       .getDepozitToday()
       .then((data) => {
-        console.log('getDepozitToday', data);
         if (data.data.length !== 0) {
-          setDepozitLoaded(data?.data[0]?.iznos_depozit);
-          setDepozit(data?.data[0]?.iznos_depozit);
+          setDepozit(data?.data?.iznos_depozit);
         }
       })
       .catch((err) =>
@@ -55,34 +53,54 @@ const Modal = ({
   }, []);
 
   const handleSubmit = (e) => {
-    console.log('depozit: ', depozit);
-    console.log('event: ', e);
     e.preventDefault();
-    handleDepositLoaded(true);
+    if (!depozit) {
+      toast.error('Depozit za današnji dan mora biti učitan!', toastSettings);
+      hideModal(false);
+      return;
+    }
+    if (+withdraw > +depozit) {
+      toast.error(
+        'Iznos koji podižete ne može biti veći od iznosa depozita za današnji dan!',
+        toastSettings
+      );
+      hideModal(false);
+      return;
+    }
+
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_depozit: +depozit,
+        iznos_withdraw: +withdraw,
       })
       .then((data) => {
-        setDepozitLoaded(data);
+        console.log('storeDepozitWithdraw', withdraw);
+        setWithdrawLoaded(data);
       })
       .catch((error) => {
-        toast.error(
-          'Greška kod dodavanja depozita: ' + error.response.data.message,
-          toastSettings
-        );
-        setDepozitError(error);
+        if (error.status !== 400) {
+          toast.error(
+            'Greška kod podizanja depozita: ' + error.message,
+            toastSettings
+          );
+        } else {
+          toast.error(
+            'Greška kod podizanja depozita: ' + error.response.data,
+            toastSettings
+          );
+        }
+        hideModal(false);
+        setWithdrawError(error);
       });
   };
 
-  return ReactDOM.createPortal(
+  return (
     <>
-      {showModal && !depozitError && !depozitLoaded ? (
+      {showModal && !withdrawLoaded ? (
         <div className="modal" id="modal">
           <div className="modal__content">
             <div className="modal__header">
               <span className="modal__close">&times;</span>
-              <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
+              <h2 className="heading-secondary m-0">Podigni Depozit</h2>
             </div>
             <div className="modal__body">
               <form onSubmit={handleSubmit}>
@@ -91,11 +109,11 @@ const Modal = ({
                   type="number"
                   name="iznos_depozita"
                   onChange={(e) => {
-                    setDepozit(e.target.value);
+                    setWithdraw(e.target.value);
                   }}
                 />
                 <button type="submit" className="btn btn-primary">
-                  Sačuvaj Depozit
+                  Podigni Depozit
                 </button>
               </form>
             </div>
@@ -107,7 +125,7 @@ const Modal = ({
           </div>
         </div>
       ) : null}
-      {depozitLoaded && (
+      {withdrawLoaded && (
         <input
           type="text"
           name="iznos_depozita"
@@ -115,9 +133,8 @@ const Modal = ({
           disabled
         />
       )}
-    </>,
-    document.querySelector('#modal')
+    </>
   );
 };
 
-export default Modal;
+export default ModalWithdraw;

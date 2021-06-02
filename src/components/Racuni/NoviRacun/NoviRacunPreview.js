@@ -63,13 +63,18 @@ const NoviRacunPreview = () => {
   const [depozitLoaded, setDepozitLoaded] = useState(false);
 
   useEffect(() => {
-    depozitWithdrawService.getDepozitToday().then((data) => {
-      console.log('getDepozitToday', data);
-      if (data.data.length !== 0) {
-        setDepozitLoaded(true);
-      }
-    });
-  }, []);
+    depozitWithdrawService
+      .getDepozitToday()
+      .then((data) => {
+        console.log('getDepozitToday', data);
+        if (data.data.length !== 0) {
+          setDepozitLoaded(true);
+        }
+      })
+      .catch((err) =>
+        toast.error('Greška kod učitavanja depozita!', toastSettings)
+      );
+  }, [depozitLoaded]);
 
   const handleSacuvaj = () => {
     console.log('noviRacun.robe.length', noviRacun.robe);

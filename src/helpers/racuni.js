@@ -78,32 +78,34 @@ export function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
     kolicina = 1;
   }
   const cijena = izracunajPopustUsluge(
-    usluga.ukupna_cijena,
-    usluga.grupa.popust_procenti,
-    usluga.grupa.popust_iznos
+    usluga?.ukupna_cijena,
+    usluga?.grupa?.popust_procenti,
+    usluga?.grupa?.popust_iznos
   );
-  if (!porezi[usluga.porez.id]) {
-    porezi[usluga.porez.id] = {
+  if (!porezi[usluga?.porez?.id]) {
+    porezi[usluga?.porez?.id] = {
       ukupno: 0,
       pdvIznos: 0,
-      stopa: usluga.porez.stopa,
-      naziv: usluga.porez.naziv,
+      stopa: usluga?.porez?.stopa,
+      naziv: usluga?.porez?.naziv,
     };
   }
   if (usluga.kolicina) {
-    porezi[usluga.porez.id].pdvIznos += Number(
+    porezi[usluga?.porez?.id].pdvIznos += Number(
       usluga.kolicina *
-        ((Number(cijena) / (1 + Number(usluga.porez.stopa))) *
-          usluga.porez.stopa)
+        ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
+          usluga?.porez?.stopa)
     );
-    porezi[usluga.porez.id].ukupno += Number(usluga.kolicina * Number(cijena));
+    porezi[usluga?.porez?.id].ukupno += Number(
+      usluga?.kolicina * Number(cijena)
+    );
   } else {
-    porezi[usluga.porez.id].pdvIznos += Number(
+    porezi[usluga?.porez?.id].pdvIznos += Number(
       kolicina *
-        ((Number(cijena) / (1 + Number(usluga.porez.stopa))) *
-          usluga.porez.stopa)
+        ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
+          usluga?.porez?.stopa)
     );
-    porezi[usluga.porez.id].ukupno += Number(kolicina * Number(cijena));
+    porezi[usluga?.porez?.id].ukupno += Number(kolicina * Number(cijena));
   }
 }
 

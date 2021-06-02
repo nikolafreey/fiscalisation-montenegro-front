@@ -11,6 +11,8 @@ class DepozitWithdrawService extends ApiService {
 
   getDepozitToday = () => this.apiClient.get(ENDPOINTS.DEPOZITTODAY);
 
+  // withdrawDepozit = () => this.apiClient.get(ENDPOINTS.DEPOZITTODAY);
+
   storeDepozitWithdraw = (data) =>
     this.apiClient.post(ENDPOINTS.DEPOZITWITHDRAW, data);
 }

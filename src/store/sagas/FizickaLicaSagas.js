@@ -93,7 +93,6 @@ export function* fizickoLiceGet({ payload }) {
 export function* fizickoLiceUpdate({ payload }) {
   try {
     const res = yield call(fizickaLicaService.updateFizickoLice, payload);
-    put(setFizickoLice(res.data));
     toast.info(
       'Uspješno ažurirano fizičko lice: ' +
         payload?.ime +
@@ -101,6 +100,7 @@ export function* fizickoLiceUpdate({ payload }) {
         payload?.prezime,
       toastSettings
     );
+    yield put(setFizickoLice(res.data));
   } catch (error) {
     yield put(setGlobalError(error.message));
   }

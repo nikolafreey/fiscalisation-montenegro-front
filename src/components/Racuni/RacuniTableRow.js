@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as Success } from '../../assets/icon/success.svg';
 import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
-import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
+// import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
+import { ReactComponent as Fiskalizuj } from '../../assets/icon/checkmark.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   storeRacun,
@@ -15,6 +16,22 @@ import { racunSelector } from '../../store/selectors/RacuniSelector';
 import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/me';
+import { racuniService } from '../../services/RacuniService';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const RacuniTableRow = ({ item, racuni }) => {
   const dispatch = useDispatch();
@@ -112,6 +129,29 @@ const RacuniTableRow = ({ item, racuni }) => {
     }
   };
 
+  const handleFiskalizuj = (e) => {
+    e.stopPropagation();
+    racuniService
+      .fiskalizujRacun(item.id)
+      .then((data) => {
+        dispatch(getRacuni());
+        toast.success(
+          `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
+          toastSettings
+        );
+      })
+      .catch((err) => {
+        dispatch(getRacuni());
+        let message = err?.response?.data?.error
+          ? err.response.data.error
+          : err.message;
+        toast.error(
+          'Fiskalizacija računa nije uspješna! Poruka: ' + message,
+          toastSettings
+        );
+      });
+  };
+
   const handleIzmjeni = (e) => {
     e.stopPropagation();
     history.push(`/racuni/bezgotovinski/edit/${item.id}`);
@@ -138,17 +178,17 @@ const RacuniTableRow = ({ item, racuni }) => {
     <tr onClick={handleClick} className="mob-relative-block">
       <td className="cl">
         <div className="inner-td-wrapper lowercase">
-          {_item.jikr && <Success />}
-          {vrstaRacuna(_item.vrsta_racuna)}
+          {_item?.qr_url && <Success />}
+          {vrstaRacuna(_item?.vrsta_racuna)}
         </div>
       </td>
-      <td className="cl">{_item.redni_broj}</td>
+      <td className="cl">{_item?.redni_broj}</td>
       {preduzecaPartneri &&
         preduzecaPartneri[0] &&
         preduzecaPartneri?.length !== 0 && (
           <td className="cd fw-500">
             {preduzecaPartneri &&
-              preduzecaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+              preduzecaPartneri.find((fl) => fl.id === _item?.partner_id)?.ime}
           </td>
         )}
       {fizickaLicaPartneri &&
@@ -156,26 +196,27 @@ const RacuniTableRow = ({ item, racuni }) => {
         fizickaLicaPartneri?.length !== 0 && (
           <td className="cd fw-500">
             {fizickaLicaPartneri &&
-              fizickaLicaPartneri.find((fl) => fl.id === _item.partner_id)?.ime}
+              fizickaLicaPartneri.find((fl) => fl.id === _item?.partner_id)
+                ?.ime}
           </td>
         )}
       {!preduzecaPartneri && !fizickaLicaPartneri && (
         <td className="cd fw-500">
-          {_item.partner.fizicko_lice
-            ? _item.partner?.fizicko_lice?.ime +
+          {_item?.partner?.fizicko_lice_id
+            ? _item?.partner?.fizicko_lice?.ime +
               ' ' +
-              _item.partner?.fizicko_lice?.prezime
-            : _item.partner?.preduzece_partner?.kratki_naziv}
+              _item?.partner?.fizicko_lice?.prezime
+            : _item?.partner?.preduzece_partner?.kratki_naziv}
         </td>
       )}
       <td className="cl dshow-cell">
-        {currencyFormat(_item.ukupna_cijena_bez_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_bez_pdv) + '€'}
       </td>
       <td className="cl dshow-cell">
-        {currencyFormat(_item.ukupan_iznos_pdv) + '€'}
+        {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
       </td>
       <td className="cd fw-500">
-        {currencyFormat(_item.ukupna_cijena_sa_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_sa_pdv_popust) + '€'}
       </td>
       <td className="cd">
         {/* <span className={bojaStatus[item.status].klasa}>
@@ -187,7 +228,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       <td className="cl">
         {/* {new Date(item.created_at).toLocaleDateString('en-GB')} */}
         <Moment locale="me" format="DD. MMM YYYY.">
-          {_item.created_at}
+          {_item?.created_at}
         </Moment>
       </td>
       <td className="mob-absolute-topright">
@@ -197,18 +238,20 @@ const RacuniTableRow = ({ item, racuni }) => {
             <div className="drop-down">
               <Link
                 onClick={handleIzmjeni}
-                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
+                className={`${_item?.qr_url ? 'disabled' : ''}`}
               >
                 <Izmjeni />
                 Izmjeni
               </Link>
-              {/* <Link
-                onClick={handleObrisi}
-                className={`${_item.ikof && _item.jikr ? 'disabled' : ''}`}
-              >
-                <Obrisi />
-                Obriši
-              </Link> */}
+              {!_item?.qr_url && (
+                <Link
+                  onClick={handleFiskalizuj}
+                  className={`${_item?.qr_url ? 'disabled' : ''}`}
+                >
+                  <Success />
+                  Fiskalizuj
+                </Link>
+              )}
             </div>
           </button>
         </div>

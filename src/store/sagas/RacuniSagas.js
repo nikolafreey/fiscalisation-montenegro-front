@@ -2,6 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { setGlobalError } from '../actions/ErrorActions';
 import { racuniService } from '../../services/RacuniService';
 import {
+  getRacuni,
   resetNoviRacun,
   setAtributiGrupe,
   setRacun,
@@ -12,11 +13,12 @@ import {
 import { noviRacunSelector } from '../selectors/RacuniSelector';
 import { emptyPaginated } from '../reducers/RacuniReducer';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { robeService } from '../../services/RobeService';
 import { rest } from 'lodash-es';
 import { push } from 'connected-react-router';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
@@ -41,11 +43,16 @@ export function* racunStore({ payload }) {
         : 'BANKNOTE',
     };
     const res = yield call(racuniService.storeRacun, noviRacunTemp);
-    toast.success('Uspješno dodat gotovinski račun', toastSettings);
-    yield put(push('/racuni/show/' + payload.id));
+    toast.success(
+      'Uspješno dodat gotovinski račun sa rednim brojem: ' +
+        res.data.redni_broj,
+      toastSettings
+    );
+    yield put(push('/racuni/show/' + res.data.id));
     yield put(resetNoviRacun());
   } catch (error) {
     yield put(resetNoviRacun());
+    yield put(getRacuni());
     yield put(setGlobalError(error.message));
   }
 }
@@ -74,17 +81,20 @@ export function* racunStore({ payload }) {
 export function* bezgotovinskiRacunStore({ payload }) {
   try {
     localStorage.setItem('previousUrl', window.location.pathname);
-    yield call(racuniService.storeBezgotovinskiRacun, payload);
-    yield put(push('/racuni/bezgotovinski/show/' + payload.id));
-    toast.success('Uspješno dodat bezgotovinski račun', toastSettings);
-    yield put(setRacun({}));
+    const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
+    yield put(push('/racuni/bezgotovinski/show/' + res.data.id));
+    toast.success(
+      'Uspješno dodat bezgotovinski račun sa rednim brojem: ' +
+        res.data.redni_broj,
+      toastSettings
+    );
   } catch (error) {
     if (error.response.data.error.length > 50) {
       yield put(setGlobalError('Greška: Fiskalizacija nije uspješna!'));
       return;
     }
     yield put(setGlobalError(error.response.data.error));
-    yield put(setRacun({}));
+    yield put(getRacuni());
   }
 }
 

@@ -78,6 +78,7 @@ const PreduzecaForm = () => {
           ...values,
           status: values.status === 1 ? true : false,
           privatnost: values.privatnost === 1 ? true : false,
+          djelatnost_id: +values.djelatnost_id,
         })
       );
     else
@@ -86,6 +87,7 @@ const PreduzecaForm = () => {
           ...values,
           status: values.status === 'Aktivan' ? true : false,
           privatnost: values.privatnost === 'Javan' ? true : false,
+          djelatnost_id: +values.djelatnost_id,
         })
       );
     dispatch(setPreduzece(initialValues));
@@ -276,8 +278,12 @@ const PreduzecaForm = () => {
                               preduzece &&
                               Object.keys(preduzece).length !== 0 &&
                               preduzece.constructor === Object && {
-                                value: preduzece?.djelatnosti[0]?.id,
-                                label: preduzece?.djelatnosti[0]?.naziv,
+                                value:
+                                  preduzece.djelatnosti &&
+                                  preduzece?.djelatnosti[0]?.id,
+                                label:
+                                  preduzece.djelatnosti &&
+                                  preduzece?.djelatnosti[0]?.naziv,
                               }
                             }
                           />

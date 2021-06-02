@@ -41,7 +41,7 @@ const StavkeDropdown = ({
     );
   }
 
-  function onStavkaChange(option) {
+  const onStavkaChange = (option) => {
     setValue({ ...option.value, kolicina: 0, tip_popusta: 'procenat' });
     console.log('option', option);
     if (option?.value?.roba_id) {
@@ -52,7 +52,7 @@ const StavkeDropdown = ({
       dispatch(setRoba({}));
     }
     if (onChangeExtra) onChangeExtra(option.value);
-  }
+  };
 
   const [field, meta, helpers] = useField(props);
 

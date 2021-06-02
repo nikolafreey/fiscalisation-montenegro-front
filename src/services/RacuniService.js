@@ -17,6 +17,8 @@ const ENDPOINTS = {
   USLUGE: 'usluge',
   RACUNI_DANAS: 'racuni-danas',
   ATRIBUTI_GRUPE: 'atributi-grupe',
+  UPDATE_STATUS: 'update-status/{id}',
+  FISKALIZUJ: 'nefiskalizovani-racuni/{id}',
 };
 
 class RacuniService extends ApiService {
@@ -97,8 +99,19 @@ class RacuniService extends ApiService {
     }));
   };
 
+  updateStatus = (params) => {
+    return this.apiClient.post(
+      ENDPOINTS.UPDATE_STATUS.replace('{id}', params.id),
+      params
+    );
+  };
+
   getAtributiGrupe = (params) => {
     return this.apiClient.get(ENDPOINTS.ATRIBUTI_GRUPE, { params });
+  };
+
+  fiskalizujRacun = (id) => {
+    return this.apiClient.post(ENDPOINTS.FISKALIZUJ.replace('{id}', id), {});
   };
 }
 

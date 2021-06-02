@@ -11,6 +11,21 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const Pregled = () => {
   const [depozit, setDepozit] = useState();
   const [racuni, setRacuni] = useState();
@@ -24,7 +39,11 @@ const Pregled = () => {
   useEffect(() => {
     depozitWithdrawService
       .getDepozitToday()
-      .then((resp) => setDepozit(resp.data));
+      .then((resp) => setDepozit(resp.data))
+      .catch(
+        (err) => console.log('err', err)
+        // toast.error('Greška prilikom učitavanja depozita!', toastSettings)
+      );
     racuniService.getRacuniStatus().then((resp) => setRacuni(resp.data));
     racuniService.getRacuniDanas().then((resp) => setRacuniDanas(resp.data));
     racuniService.getRacuniPdv().then((resp) => setRacuniPdv(resp.data));
@@ -41,13 +60,6 @@ const Pregled = () => {
   }, []);
 
   const userPreduzece = useSelector(userSelector());
-
-  console.log('Racuni Danas: ', racuniDanas);
-  console.log('ulazni Racuni Danas: ', ulazniRacuniDanas);
-  console.log('racuni PDV: ', racuniPdv);
-  console.log('racuni ulazni PDV: ', ulazniRacuniPdv);
-  console.log('najveciKupci: ', najveciKupci);
-  console.log('najveciDuznici: ', najveciDuznici);
 
   let dateNow = new Date();
   dateNow.setDate(1);

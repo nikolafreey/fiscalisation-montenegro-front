@@ -6,10 +6,9 @@ const PreduzeceDetails = ({ preduzece }) => {
   let a = '';
 
   const ziroRacuni = () => {
-    // console.log('pred', preduzece);
+    console.log('pred', preduzece);
     return preduzece?.ziro_racuni?.map((racun) => {
       a = racun.broj_racuna;
-      // console.log(a);
       if (a) {
         const prvaTri = a.substring(0, 3);
 
@@ -32,6 +31,7 @@ const PreduzeceDetails = ({ preduzece }) => {
       }
     });
   };
+
   let sideInfoLogoWrapper;
   if (preduzece?.logotip) {
     sideInfoLogoWrapper = (

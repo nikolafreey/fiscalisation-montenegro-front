@@ -21,15 +21,19 @@ import PreduzeceDetails from './PreduzeceDetails';
 import { css } from '@emotion/core';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
+import { getPartneri } from '../../store/actions/PartneriActions';
+import { partneriSelector } from '../../store/selectors/PartneriSelector';
 
 const Preduzeca = () => {
   const dispatch = useDispatch();
   const match = useRouteMatch();
   const preduzeca = useSelector(preduzecaSelector());
   const preduzece = useSelector(preduzeceSelector());
+  const partneri = useSelector(partneriSelector());
 
   useEffect(() => {
     dispatch(getPreduzeca());
+    dispatch(getPartneri());
   }, [dispatch]);
 
   useEffect(() => {
@@ -39,6 +43,8 @@ const Preduzeca = () => {
   const handleSearch = (values) => {
     dispatch(getPreduzeca(values));
   };
+
+  console.log('preduzeca', preduzeca);
 
   return (
     <>
@@ -59,7 +65,7 @@ const Preduzeca = () => {
               {'Nemate preduzeća u listi'}
             </h2>
           ) : (
-            <PreduzecaTable preduzeca={preduzeca} />
+            <PreduzecaTable preduzeca={preduzeca} partneri={partneri} />
           )}
           {match.path === PREDUZECA.PARTNERI ? (
             <div className="df jc-center ai-c fd-column">

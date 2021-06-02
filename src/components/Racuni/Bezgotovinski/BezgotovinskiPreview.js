@@ -13,6 +13,7 @@ import { RACUNI } from '../../../constants/routes';
 import BezgotovinskiShowTemplate from './BezgotovinskiShowTemplate';
 import BezgotovinskiTableRow from './BezgotovinskiTableRow';
 import BezgotovinskiStatusPodsjetnici from './BezgotovinskiStatusPodsjetnici';
+import Select from 'react-select';
 
 import { FieldArray, Form, Formik } from 'formik';
 
@@ -28,6 +29,23 @@ import { useHistory } from 'react-router-dom';
 import { values } from 'lodash-es';
 import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
 import { formatirajCijenu } from './../../../helpers/racuni';
+import { userSelector } from '../../../store/selectors/UserSelector';
+import { racuniService } from '../../../services/RacuniService';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const BezgotovinskiPreview = () => {
   const { params } = useRouteMatch();
@@ -59,11 +77,78 @@ const BezgotovinskiPreview = () => {
     iznos_uplate,
     datum_izdavanja,
   } = useSelector(racunSelector());
+
+  const user = useSelector(userSelector());
+
   const history = useHistory();
+
+  let a = '';
+  const ziroRacuni = () => {
+    return preduzece?.ziro_racuni?.map((racun) => {
+      a = racun.broj_racuna;
+      if (a) {
+        const prvaTri = a.substring(0, 3);
+
+        if (prvaTri.includes('550')) {
+          // return <p>{'Podgorička: ' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('535')) {
+          // return <p>{'Prva: ' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('555')) {
+          // return <p>{'Addiko: ' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('510')) {
+          // return <p>{'CKB: ' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('530')) {
+          // return <p>{'Montenegro AD' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('540')) {
+          // return <p>{'ERSTE: ' + a}</p>;
+          return <p>{a}</p>;
+        } else if (prvaTri.includes('520')) {
+          // return <p>{'Hipotekarna: ' + a}</p>;
+          return <p>{a}</p>;
+        }
+        return <p>{a}</p>;
+      }
+    });
+  };
+
+  let b = '';
+  const ziroRacuniPartner = () => {
+    let partnerTip = partner?.fizicko_lice_id
+      ? partner?.fizicko_lice
+      : partner?.preduzece_partner;
+    return partnerTip?.ziro_racuni?.map((racun) => {
+      b = racun.broj_racuna;
+      if (b) {
+        const prvaTri = b.substring(0, 3);
+
+        if (prvaTri.includes('550')) {
+          return <p>{'Podgorička: ' + b}</p>;
+        } else if (prvaTri.includes('535')) {
+          return <p>{'Prva: ' + b}</p>;
+        } else if (prvaTri.includes('555')) {
+          return <p>{'Addiko: ' + b}</p>;
+        } else if (prvaTri.includes('510')) {
+          return <p>{'CKB: ' + b}</p>;
+        } else if (prvaTri.includes('530')) {
+          return <p>{'Montenegro AD: ' + b}</p>;
+        } else if (prvaTri.includes('540')) {
+          return <p>{'ERSTE: ' + b}</p>;
+        } else if (prvaTri.includes('520')) {
+          return <p>{'Hipotekarna: ' + b}</p>;
+        }
+        return <p>{b}</p>;
+      }
+    });
+  };
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
-  }, [params]);
+  }, [params, dispatch]);
 
   const findWord = (word, str) => {
     return word.includes(str);
@@ -139,6 +224,27 @@ const BezgotovinskiPreview = () => {
   console.log('ukupan_iznos_pdv', values, ukupan_iznos_pdv);
   console.log('testRef values=jedinice_id!!', popust_ukupno);
 
+  const [valueStatus, setValueStatus] = useState();
+
+  const options = [
+    // { value: null, label: 'Prikaži Sve' },
+    { value: 'placen', label: 'Plaćen' },
+    { value: 'nenaplativ', label: 'Nenaplativ' },
+    { value: 'nijeplacen', label: 'Nije Plaćen' },
+    // { value: 'privremeni', label: 'Privremeni' },
+  ];
+
+  const selectStyle = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      height: '45px',
+      width: '150px',
+      minHeight: 'unset',
+    }),
+  };
+
   return (
     <>
       <div className="screen-content">
@@ -151,6 +257,23 @@ const BezgotovinskiPreview = () => {
 
           {!editMode && (
             <div className="df jc-end">
+              <Select
+                options={options}
+                name="status"
+                onChange={(option) => {
+                  toast.success(
+                    'Uspješno je izmjenjen status za račun sa ID-jem: ' + id,
+                    toastSettings
+                  );
+                  setValueStatus(option);
+                  racuniService
+                    .updateStatus({ status: option.value, id, ikof, jikr })
+                    .then((data) => console.log('data', data))
+                    .catch((err) => console.log('err', err));
+                }}
+                value={valueStatus ? valueStatus : options[2]}
+                styles={selectStyle}
+              />
               <button className="btn btn__secondary" onClick={handlePrint}>
                 <svg
                   className="icon icon__dark lg mr-xs"
@@ -194,7 +317,7 @@ const BezgotovinskiPreview = () => {
             qr_url={qr_url}
             bojaKlasa={bojaKlasa}
             itemStatus
-            redni_broj
+            redni_broj={redni_broj}
             popust_ukupno
             ukupnoBezPdvIpopusta
             ukupniPdv
@@ -210,7 +333,7 @@ const BezgotovinskiPreview = () => {
             ukupnoBezPdvIpopusta={ukupnoBezPdvIpopusta}
             ukupniPdv={ukupniPdv}
             ukupnoBezPdv={ukupnoBezPdv}
-            ukupniPopust={ukupniPopust}
+            ukupniPopust={ukupna_cijena_sa_pdv - ukupna_cijena_sa_pdv_popust}
             ukupnoSaPdvIpopusta={ukupnoSaPdvIpopusta}
             popust_ukupno={popust_ukupno}
             ukupna_cijena_bez_pdv={ukupna_cijena_bez_pdv}
@@ -218,6 +341,7 @@ const BezgotovinskiPreview = () => {
             ukupna_cijena_bez_pdv_popust={ukupna_cijena_bez_pdv_popust}
             ukupna_cijena_sa_pdv_popust={ukupna_cijena_sa_pdv_popust}
             ukupan_iznos_pdv={ukupan_iznos_pdv}
+            user={user}
           />
         </div>
 
@@ -228,7 +352,7 @@ const BezgotovinskiPreview = () => {
                 {<span className={bojaKlasa}>{itemStatus}</span>}
               </div>
               <div className="invoice__header--logo">
-                {preduzece && preduzece.logotip && (
+                {preduzece && preduzece.logotip ? (
                   <img
                     src={
                       preduzece && preduzece.logotip
@@ -236,8 +360,10 @@ const BezgotovinskiPreview = () => {
                         : noLogo
                     }
                     alt="logo"
-                    style={{ widt: 200, height: 100 }}
+                    style={{ width: 200, height: 100 }}
                   />
+                ) : (
+                  ''
                 )}
               </div>
               <div className="row">
@@ -253,7 +379,11 @@ const BezgotovinskiPreview = () => {
                       : ''}
                   </p>
                   <p className="txt-light">
-                    {preduzece && preduzece.opis ? preduzece.opis : ''}
+                    {preduzece && preduzece.opis
+                      ? preduzece.opis
+                      : opis
+                      ? opis
+                      : ''}
                   </p>
                   <p className="txt-light">
                     {preduzece && preduzece.adresa ? preduzece.adresa : ''}
@@ -298,25 +428,19 @@ const BezgotovinskiPreview = () => {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div className="df jc-sb" style={{ display: 'none' }}>
-                    <div className="df fd-column">
-                      <p className="txt-light">CKB</p>
-                      <p className="txt-light">NLB</p>
-                      <p className="txt-light">Prva Banka CG</p>
-                    </div>
-                    <div className="df fd-column">
-                      <p className="txt-right">540-1214134-1312</p>
-                      <p className="txt-right">520-121334-14</p>
-                      <p className="txt-right">535-11234-32</p>
-                    </div>
-                  </div>
+                  <p className="txt-right">{ziroRacuni()}</p>
                 </div>
               </div>
 
               <div className="mtb-50">
                 <div className="row">
                   <div className="col-md-6">
-                    <h2 className="heading-secondary">Račun: {redni_broj}</h2>
+                    <h2 className="heading-secondary">
+                      Račun: {redni_broj}/
+                      <Moment locale="me" format="YYYY">
+                        {created_at}
+                      </Moment>
+                    </h2>
                     <p>
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
@@ -326,6 +450,10 @@ const BezgotovinskiPreview = () => {
                         </Moment>
                       )}{' '}
                     </p>
+                    {/* TODO: prikazati korisnika koji je kreira račun a ne trenutnog */}
+                    {/* {user?.ime && user?.prezime && (
+                      <p> Račun izdao: {user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>
+                    )} */}
                   </div>
                   <div className="col-md-6">
                     <div className="invoice__header--box">
@@ -338,6 +466,11 @@ const BezgotovinskiPreview = () => {
                       </h2>
                       <div className="df jc-sb">
                         <div className="df fd-column">
+                          <p className="txt-light">
+                            {partner && partner.preduzece_partner
+                              ? ''
+                              : 'JMBG: '}
+                          </p>
                           <p className="txt-light">
                             {partner && partner?.preduzece_partner?.pib
                               ? 'PIB: '
@@ -363,6 +496,11 @@ const BezgotovinskiPreview = () => {
                         </div>
                         <div className="df fd-column">
                           <p className="txt-right">
+                            {partner && partner.preduzece_partner
+                              ? ''
+                              : partner?.fizicko_lice?.jmbg}
+                          </p>
+                          <p className="txt-right">
                             {partner && partner?.preduzece_partner?.pib
                               ? partner?.preduzece_partner?.pib
                               : ''}
@@ -387,6 +525,10 @@ const BezgotovinskiPreview = () => {
                               : ''}
                           </p>
                         </div>
+                        {/* TODO: ubaciti prikaz ziro racuna partnera ili ne prikazivati ako  ih nema */}
+                        {/* <div className="df fd-column">
+                          <p className="txt-right">{ziroRacuniPartner()}</p>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -402,11 +544,11 @@ const BezgotovinskiPreview = () => {
                     </th>
                     <th>
                       <span className="heading-quaternary">
-                        Jedinična cijena bez pdv
+                        Jed. cijena bez pdv
                       </span>
                     </th>
                     <th>
-                      <span className="heading-quaternary">Kolicina</span>
+                      <span className="heading-quaternary">Količina</span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary">PDV</span>
@@ -418,7 +560,7 @@ const BezgotovinskiPreview = () => {
                     </th>
                     <th>
                       <span className="heading-quaternary nowrap">
-                        Ukupan bez pdv{' '}
+                        Ukupno bez PDV-a{' '}
                       </span>
                     </th>
                   </tr>
@@ -473,9 +615,9 @@ const BezgotovinskiPreview = () => {
                         {ukupna_cijena_bez_pdv_popust
                           ? formatirajCijenu(ukupna_cijena_sa_pdv)
                           : ''}
-                       
+
                       </p> */}
-                      <p className="fw-500 txt-right">
+                      {/* <p className="fw-500 txt-right">
                         {Number(popust_ukupno) > 0 ? (
                           <span className="txt-up txt-light">-</span>
                         ) : (
@@ -484,13 +626,16 @@ const BezgotovinskiPreview = () => {
                         {Number(popust_ukupno) > 0
                           ? formatirajCijenu(popust_ukupno)
                           : ''}
-                        {/* {' '}
-                        {ukupniPopust ? (
+                      </p> */}
+                      {ukupna_cijena_sa_pdv !== ukupna_cijena_sa_pdv_popust && (
+                        <p className="txt-right cd fw-500">
+                          {'-'}
+                          {Number(
+                            ukupna_cijena_sa_pdv - ukupna_cijena_sa_pdv_popust
+                          ).toFixed(2)}{' '}
                           <span className="txt-up txt-light">Eur</span>
-                        ) : (
-                          ''
-                        )} */}
-                      </p>
+                        </p>
+                      )}
                       <p className="fw-500 txt-right">
                         {ukupan_iznos_pdv > 0
                           ? formatirajCijenu(ukupan_iznos_pdv)
@@ -522,31 +667,44 @@ const BezgotovinskiPreview = () => {
                   {opis && (
                     <>
                       <p className="fw-500">Napomena:</p>
-                      <p className="txt-light mb-25">{opis}</p>
+                      <p className="txt-light mb-25 white-space-pre-line">
+                        {opis}
+                      </p>
                     </>
                   )}
                   <div className="row">
-                   
-                      {/* ------------------ QR CODE ------------------ */}
-                      {jikr && ikof ? <div className="col-md-3">
-                        <QRCode value={qr_url} size="128" />  </div>
-                      : null}
+                    {/* ------------------ QR CODE ------------------ */}
+                    {jikr && ikof ? (
+                      <div className="col-md-3">
+                        <QRCode value={qr_url} size="128" />{' '}
+                      </div>
+                    ) : null}
 
-                      {/*------------------ QR CODE ------------------*/}
-                   
+                    {/*------------------ QR CODE ------------------*/}
+
                     <div className="col-md-9">
                       <div className="df">
                         <div className="df fd-column mr-m">
                           <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
                           <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
+                          <p className="txt-light">
+                            {broj_racuna ? 'Broj' : ''}
+                          </p>
                         </div>
                         <div className="df fd-column">
                           <p>{jikr ? jikr : ''}</p>
                           <p>{ikof ? ikof : ''}</p>
+                          <p>{broj_racuna ? broj_racuna : ''}</p>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <p className="txt-light">
+                    PostFiskal by Restart IT d.o.o. /{' '}
+                    {user?.preduzeca[0]?.software_kod
+                      ? user?.preduzeca[0]?.software_kod
+                      : ''}
+                  </p>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@ import PaginationControls from '../shared/lists/PaginationControls';
 import PreduzecaTableRow from './PreduzecaTableRow';
 import { ReactComponent as PlusLightSvg } from '../../assets/icon/plusLight.svg';
 
-const PreduzecaTable = ({ preduzeca }) => {
+const PreduzecaTable = ({ preduzeca, partneri }) => {
   const dispatch = useDispatch();
   const selectedPreduzece = useSelector(preduzeceSelector());
 
@@ -44,6 +44,7 @@ const PreduzecaTable = ({ preduzeca }) => {
               onItemClick={(item) => dispatch(setPreduzece(item))}
               selectedId={selectedPreduzece?.id}
               key={selectedPreduzece?.id}
+              partneri={partneri}
             />
           </tbody>
         </table>

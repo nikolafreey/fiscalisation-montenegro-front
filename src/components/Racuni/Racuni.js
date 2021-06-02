@@ -22,6 +22,22 @@ import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 import { depozitWithdrawService } from '../../services/DepozitWithdrawService';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ModalWithdraw from '../shared/forms/ModalWithdraw';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const options = [
   { value: null, label: 'Prikaži Sve' },
   { value: 'placen', label: 'Plaćen' },
@@ -124,15 +140,49 @@ const Racuni = () => {
   };
 
   const [showModal, setShowModal] = useState(false);
+  const [showModalWithdraw, setShowModalWithdraw] = useState(false);
   const [depozitLoaded, setDepozitLoaded] = useState(false);
+  // const [withdrawLoaded, setWithdrawLoaded] = useState(false);
+  const [withdrawError, setWithdrawError] = useState(false);
+  const [withdraw, setWithdraw] = useState(0);
+
+  const handleDepositLoaded = (props) => {
+    setDepozitLoaded(props);
+  };
+
+  const hideModal = (props) => {
+    setShowModalWithdraw(props);
+  };
+
+  const handlePodizanjeDepozita = () => {
+    depozitWithdrawService
+      .storeDepozitWithdraw({
+        iznos_withdraw: +withdraw,
+      })
+      .then((data) => {
+        // setWithdrawLoaded(data);
+      })
+      .catch((error) => {
+        toast.error(
+          'Greška kod podizanja depozita: ' + error.response.data.message,
+          toastSettings
+        );
+        setWithdrawError(error);
+      });
+  };
 
   useEffect(() => {
-    depozitWithdrawService.getDepozitToday().then((data) => {
-      console.log('getDepozitToday', data);
-      if (data.data.length !== 0) {
-        setDepozitLoaded(true);
-      }
-    });
+    depozitWithdrawService
+      .getDepozitToday()
+      .then((data) => {
+        console.log('getDepozitToday', data);
+        if (data.data.length !== 0) {
+          setDepozitLoaded(true);
+        }
+      })
+      .catch((err) =>
+        toast.error('Greška kod učitavanja depozita!', toastSettings)
+      );
   }, []);
 
   return (
@@ -153,8 +203,12 @@ const Racuni = () => {
               Novi bezgotovinski račun
             </button>
           </Link> */}
-          <Modal showModal={showModal} />
-          {!depozitLoaded && (
+          <Modal
+            showModal={showModal}
+            handleDepositLoaded={handleDepositLoaded}
+          />
+          <ModalWithdraw hideModal={hideModal} showModal={showModalWithdraw} />
+          {!depozitLoaded ? (
             <button
               className="btn btn__secondary mob-mb-20"
               onClick={() => {
@@ -162,6 +216,15 @@ const Racuni = () => {
               }}
             >
               Registracija Depozita
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setShowModalWithdraw(true);
+              }}
+              className="btn btn__secondary mob-mb-20"
+            >
+              Podizanje Depozita
             </button>
           )}
           <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0">

@@ -13,14 +13,14 @@ export const TIPOVI_RACUNA = [
 
 export const TIPOVI_POPUSTA = [
   { value: 'procenat', label: 'Procenat %' },
-  { value: 'iznos', label: 'Iznos' },
+  { value: 'iznos', label: 'Iznos na jed. cijenu bez PDV' },
 ];
 
 export const KOREKTIVNI_RACUN = [
   { value: '0', label: 'Nije' },
-  { value: 'CORRECTIV', label: 'Korektivni račun' },
-  { value: 'DEBIT', label: 'Debit' },
-  { value: 'CREDIT', label: 'Credit' },
+  // { value: 'CORRECTIVE', label: 'Korektivni račun' },
+  // { value: 'DEBIT', label: 'Debit' },
+  // { value: 'CREDIT', label: 'Credit' },
 ];
 
 export const POSALJI_PODSJETNIK = [

@@ -67,7 +67,8 @@ const Login = () => {
                   {!!loginError?.errors && (
                     <div>{loginError?.errors?.email}</div>
                   )}
-                  <Link className="df ai-c" to={AUTH.FORGOT}>
+                  {/* TODO: ubaciti reset password ekran */}
+                  {/* <Link className="df ai-c" to={AUTH.FORGOT}>
                     <svg width="17" height="17" fill="none" className="mr-s">
                       <path
                         className="icon icon__fill-link"
@@ -75,7 +76,7 @@ const Login = () => {
                       />
                     </svg>
                     {$t('auth.forgotPassword')}
-                  </Link>
+                  </Link> */}
                 </Form>
               </div>
               <div className="login__footer">
@@ -194,6 +195,9 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
+                <p className="txt-center  mb-12">
+                  Tehnička podrška: <a href="tel:+38267664404">067 66 44 04</a>
+                </p>
               </div>
             </div>
           </div>

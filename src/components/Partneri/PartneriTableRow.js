@@ -19,8 +19,6 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
     dispatch(getPartneri());
   };
 
-  console.log('partner', partner);
-
   return (
     <tr
       onClick={() => onItemClick(partner)}
@@ -45,7 +43,9 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
               <span>
                 {partner.preduzece_partner
                   ? partner.preduzece_partner?.kratki_naziv
-                  : partner.fizicko_lice?.ime ||
+                  : partner.fizicko_lice?.ime +
+                      ' ' +
+                      partner.fizicko_lice?.prezime ||
                     partner.kontakt_ime + ' ' + partner.kontakt_prezime}
               </span>
               {partner?.preduzece_partner?.verifikovan !== 0 &&
