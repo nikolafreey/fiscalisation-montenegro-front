@@ -112,6 +112,7 @@ const ModalWithdraw = ({
                   onChange={(e) => {
                     setWithdraw(e.target.value);
                   }}
+                  defaultValue={depozit && depozit}
                 />
                 <button type="submit" className="btn btn-primary">
                   Podigni Depozit
