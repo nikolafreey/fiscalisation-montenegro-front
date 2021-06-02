@@ -62,7 +62,7 @@ const Modal = ({
     handleDepositLoaded(true);
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_depozit: +depozit,
+        iznos_depozit: depozit,
       })
       .then((data) => {
         setDepozitLoaded(data);
