@@ -144,7 +144,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                 <div className="wrapper-100">
                   <div className="article-33">
                     <p className="txt-light">
-                      {preduzece && preduzece.puni_naziv
+                      {preduzece && preduzece.kratki_naziv
                         ? preduzece.kratki_naziv
                         : ''}
                     </p>
