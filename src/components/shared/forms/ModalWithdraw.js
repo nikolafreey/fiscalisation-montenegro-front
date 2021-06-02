@@ -60,7 +60,7 @@ const ModalWithdraw = ({
       hideModal(false);
       return;
     }
-    if (+withdraw > +depozit) {
+    if (withdraw > +depozit) {
       toast.error(
         'Iznos koji podižete ne može biti veći od iznosa depozita za današnji dan!',
         toastSettings
