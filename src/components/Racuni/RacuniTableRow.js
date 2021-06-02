@@ -134,12 +134,14 @@ const RacuniTableRow = ({ item, racuni }) => {
     racuniService
       .fiskalizujRacun(item.id)
       .then((data) => {
+        dispatch(getRacuni());
         toast.success(
           `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
           toastSettings
         );
       })
       .catch((err) => {
+        dispatch(getRacuni());
         let message = err?.response?.data?.error
           ? err.response.data.error
           : err.message;
@@ -214,7 +216,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
       </td>
       <td className="cd fw-500">
-        {currencyFormat(_item?.ukupna_cijena_sa_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_sa_pdv_popust) + '€'}
       </td>
       <td className="cd">
         {/* <span className={bojaStatus[item.status].klasa}>

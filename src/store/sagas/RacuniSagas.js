@@ -88,14 +88,13 @@ export function* bezgotovinskiRacunStore({ payload }) {
         res.data.redni_broj,
       toastSettings
     );
-    yield put(setRacun({}));
   } catch (error) {
     if (error.response.data.error.length > 50) {
       yield put(setGlobalError('Greška: Fiskalizacija nije uspješna!'));
       return;
     }
     yield put(setGlobalError(error.response.data.error));
-    yield put(setRacun({}));
+    yield put(getRacuni());
   }
 }
 
