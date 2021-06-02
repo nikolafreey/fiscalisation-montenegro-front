@@ -881,7 +881,7 @@ const Podesavanja = () => {
                         style={{ display: 'inline-block' }}
                         className="tag tag__warning"
                       >
-                        Dostupno od 1. juna
+                        Uskoro dostupno
                       </div>
                     </div>
                     <p className="mb-10 txt-light">
