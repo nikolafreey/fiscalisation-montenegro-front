@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import InputField from './InputField';
 import Label from './Label';
 import { useField } from 'formik';
@@ -70,7 +71,7 @@ const ModalWithdraw = ({
 
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_withdraw: +withdraw,
+        iznos_withdraw: withdraw,
       })
       .then((data) => {
         console.log('storeDepozitWithdraw', withdraw);
@@ -93,7 +94,7 @@ const ModalWithdraw = ({
       });
   };
 
-  return (
+  return ReactDOM.createPortal(
     <>
       {showModal && !withdrawLoaded ? (
         <div className="modal" id="modal">
@@ -133,7 +134,8 @@ const ModalWithdraw = ({
           disabled
         />
       )}
-    </>
+    </>,
+    document.querySelector('#modal')
   );
 };
 
