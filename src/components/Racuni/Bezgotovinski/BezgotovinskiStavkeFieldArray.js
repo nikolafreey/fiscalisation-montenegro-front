@@ -116,9 +116,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     : null;
 
   function izracunajCijenuSaPopustom(stavka, cijena) {
-    // if (!stavka?.tip_popusta) return cijena;
-    console.log('stavka tip_popusta', stavka);
-    if (!stavka?.tip_popusta) stavka.tip_popusta = 'iznos';
+    if (!stavka?.tip_popusta) return cijena;
     if (stavka.tip_popusta === 'iznos')
       return cijena - Number(stavka.popust || 0);
     if (stavka.tip_popusta === 'procenat')
@@ -131,7 +129,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     let popustStart = getPopustStavke(stavka);
     console.log('popustStart', popustStart);
 
-    if (!popustStart?.tip_popusta) popustStart.tip_popusta = 'iznos';
+    if (!popustStart?.tip_popusta) return cijena;
     if (popustStart.tip_popusta === 'iznos') {
       stavka = { ...stavka, popust_iznos: popustStart.iznos };
       // stavka.tip_popusta=popustStart.tip_popusta;

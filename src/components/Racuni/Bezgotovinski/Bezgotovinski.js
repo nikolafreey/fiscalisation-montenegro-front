@@ -85,6 +85,9 @@ const Bezgotovinski = () => {
           );
           return;
         }
+        if (!racun.tip_popusta) {
+          racun.tip_popusta = 'iznos';
+        }
       });
     if (values.partner_id == null || values.partner_id === 0) {
       toast.error('Kupac je neophodan', toastSettings);
