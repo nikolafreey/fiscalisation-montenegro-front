@@ -71,7 +71,7 @@ const ModalWithdraw = ({
 
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_withdraw: withdraw,
+        iznos_withdraw: withdraw.toString(),
       })
       .then((data) => {
         console.log('storeDepozitWithdraw', withdraw);
