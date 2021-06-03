@@ -258,6 +258,7 @@ const BezgotovinskiPreview = () => {
           {!editMode && (
             <div className="df jc-end">
               <Select
+                // className='form__select'
                 options={options}
                 name="status"
                 onChange={(option) => {
@@ -274,7 +275,10 @@ const BezgotovinskiPreview = () => {
                 value={valueStatus ? valueStatus : options[2]}
                 styles={selectStyle}
               />
-              <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0" onClick={handlePrint}>
+              <button
+                className="btn btn__primary mob-mb-20 ml-m mob-ml-0"
+                onClick={handlePrint}
+              >
                 <svg
                   className="icon icon__light lg mr-xs"
                   xmlns="http://www.w3.org/2000/svg"
@@ -348,9 +352,6 @@ const BezgotovinskiPreview = () => {
         <>
           <div className="invoice" style={{ width: '100%' }}>
             <div className="invoice__header">
-              <div className="status">
-                {<span className={bojaKlasa}>{itemStatus}</span>}
-              </div>
               <div className="invoice__header--logo">
                 {preduzece && preduzece.logotip ? (
                   <img
@@ -441,7 +442,7 @@ const BezgotovinskiPreview = () => {
                         {created_at}
                       </Moment>
                     </h2>
-                    <p>
+                    <p className="mb-20">
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
                       {created_at && (
@@ -450,6 +451,9 @@ const BezgotovinskiPreview = () => {
                         </Moment>
                       )}{' '}
                     </p>
+                    <div className="status">
+                      {<span className={bojaKlasa}>{itemStatus}</span>}
+                    </div>
                     {/* TODO: prikazati korisnika koji je kreira račun a ne trenutnog */}
                     {/* {user?.ime && user?.prezime && (
                       <p> Račun izdao: {user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>

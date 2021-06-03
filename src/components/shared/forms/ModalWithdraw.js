@@ -97,15 +97,16 @@ const ModalWithdraw = ({
   return ReactDOM.createPortal(
     <>
       {showModal && !withdrawLoaded ? (
-        <div className="modal" id="modal">
+        <div className="modal open">
           <div className="modal__content">
             <div className="modal__header">
-              <span className="modal__close">&times;</span>
+              <span className="modal__close" onClick={()=>hideModal(false)}>&times;</span>
               <h2 className="heading-secondary m-0">Podigni Depozit</h2>
             </div>
-            <div className="modal__body">
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+              <div className="modal__body">
                 <input
+                  className="form__input"
                   autoFocus
                   type="number"
                   name="iznos_depozita"
@@ -114,16 +115,14 @@ const ModalWithdraw = ({
                   }}
                   defaultValue={depozit && depozit}
                 />
-                <button type="submit" className="btn btn-primary">
+              </div>
+              <div className="modal__footer">
+
+                <button type="submit" className="btn btn__primary">
                   Podigni Depozit
                 </button>
-              </form>
-            </div>
-            {/* <div className="modal__footer">
-              <button onSubmit={handleSubmit} className="btn btn-primary">
-                Primarno
-              </button>
-            </div> */}
+              </div>
+            </form>
           </div>
         </div>
       ) : null}

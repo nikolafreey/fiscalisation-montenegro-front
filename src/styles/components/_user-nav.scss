@@ -60,13 +60,13 @@
         right: 0;
         display: block;
         @include respond(big-desktop) {
-          top: 5.1rem;
+          top: 5rem;
         }
         @include respond(tab-land) {
-          top: 6.1rem;
+          top: 6rem;
         }
         @include respond(tab-port) {
-          top: 6.1rem;
+          top: 6rem;
         }
         // svg{
         //   stroke: $color-text-light;
