@@ -105,6 +105,7 @@ const Podesavanja = () => {
       formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
       formData.append('grad', user?.preduzeca[0]?.grad);
       formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('djelatnost_id', user?.preduzeca[0]?.djelatnost_id);
       formData.append('oblik_preduzeca', user?.preduzeca[0]?.oblik_preduzeca);
       formData.append('pdv', user?.preduzeca[0]?.pdv);
       formData.append('pib', user?.preduzeca[0]?.pib);
@@ -169,6 +170,7 @@ const Podesavanja = () => {
       formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
       formData.append('grad', user?.preduzeca[0]?.grad);
       formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('djelatnost_id', user?.preduzeca[0]?.djelatnost_id);
       formData.append('oblik_preduzeca', 'D.O.O');
       formData.append('pdv', user?.preduzeca[0]?.pdv);
       formData.append('pib', user?.preduzeca[0]?.pib);
