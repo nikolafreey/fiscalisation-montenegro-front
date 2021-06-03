@@ -421,6 +421,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           key={index}
                           name={`stavke.${index}.jedinica_mjere_id`}
                           id={index}
+                          isDisabled
                           // defaultValue={
                           //   Object.keys(usluga).length !== 0
                           //     ? {

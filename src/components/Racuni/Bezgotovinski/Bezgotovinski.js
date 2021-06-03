@@ -75,7 +75,6 @@ const Bezgotovinski = () => {
             'Jedinica mjere računa je neophodna na računu ' + index,
             toastSettings
           );
-          throw 'Jedinica mjere računa je neophodna na računu ' + index;
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
@@ -87,6 +86,9 @@ const Bezgotovinski = () => {
         }
         if (!racun.tip_popusta) {
           racun.tip_popusta = 'iznos';
+        }
+        if (!racun.popust) {
+          racun.popust = 0;
         }
       });
     if (values.partner_id == null || values.partner_id === 0) {
