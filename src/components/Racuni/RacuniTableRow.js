@@ -136,7 +136,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       .then((data) => {
         dispatch(getRacuni());
         toast.success(
-          `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
+          `Fiskalizacija računa broj ${item.redni_broj} je uspjela!`,
           toastSettings
         );
       })
@@ -146,7 +146,7 @@ const RacuniTableRow = ({ item, racuni }) => {
           ? err.response.data.error
           : err.message;
         toast.error(
-          'Fiskalizacija računa nije uspješna! Poruka: ' + message,
+          'Fiskalizacija računa nije moguća: ' + message,
           toastSettings
         );
       });
