@@ -745,7 +745,7 @@ const BezgotovinskiPreview = () => {
                   <div className="form__footer">
                     <button
                       onClick={() => handleSubmit(values)}
-                      className="btn btn__secondary btn__xl ml-m"
+                      className="btn btn__primary"
                     >
                       Sačuvaj izmjene
                     </button>

@@ -51,7 +51,7 @@ const Modal = ({
         }
       })
       .catch((err) =>
-        toast.error('Greška kod učitavanja depozita!', toastSettings)
+        toast.error('Iznos depozita nije moguće učitati!', toastSettings)
       );
   }, []);
 
@@ -69,7 +69,7 @@ const Modal = ({
       })
       .catch((error) => {
         toast.error(
-          'Greška kod dodavanja depozita: ' + error.response.data.message,
+          'Nije moguće dodati depoziti: ' + error.response.data.message,
           toastSettings
         );
         setDepozitError(error);

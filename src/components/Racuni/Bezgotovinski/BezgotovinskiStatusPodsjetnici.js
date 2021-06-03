@@ -35,7 +35,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
               className="status"
             >
               <span className="tag tag__warning">
-                Dostupno od 1. juna
+                Uskoro dostupno
               </span>
             </div>
             <p className="txt-light b-mob-mb-20">
@@ -79,7 +79,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
             </h2>
             <div className="status">
               <span className="tag tag__warning">
-                Dostupno od 1. juna
+                Uskoro dostupno
               </span>
             </div>
             <p className="txt-light b-mob-mb-20">
@@ -213,7 +213,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   Nenaplativ
                 </label>
               </div>
-              <div className="form__radio-group">
+              {/* <div className="form__radio-group">
                 <input
                   type="radio"
                   className="form__radio-input"
@@ -227,12 +227,12 @@ const BezgotovinskiStatusPodsjetnici = () => {
                   <span className="form__radio-button"></span>
                   Privremeni
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-md-5">
             {/* {values && values.status === "djelimicno_placen" && <>
-              <a href="">+ Dodaj novi iznos uplate</a> 
+              <a href="">+ Dodaj novi iznos uplate</a>
               <div className="form__group">
                 <div className="form__label">Iznos uplate</div>
                 <div className="df jc-sb">

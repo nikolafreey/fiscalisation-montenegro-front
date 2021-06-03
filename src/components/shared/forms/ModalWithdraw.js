@@ -49,7 +49,7 @@ const ModalWithdraw = ({
         }
       })
       .catch((err) =>
-        toast.error('Greška kod učitavanja depozita!', toastSettings)
+        toast.error('Iznos depozita ne može se učitati!', toastSettings)
       );
   }, []);
 
@@ -60,7 +60,7 @@ const ModalWithdraw = ({
       hideModal(false);
       return;
     }
-    if (+withdraw > +depozit) {
+    if (withdraw > +depozit) {
       toast.error(
         'Iznos koji podižete ne može biti veći od iznosa depozita za današnji dan!',
         toastSettings
@@ -80,12 +80,12 @@ const ModalWithdraw = ({
       .catch((error) => {
         if (error.status !== 400) {
           toast.error(
-            'Greška kod podizanja depozita: ' + error.message,
+            'Depzit nije moguće podići: ' + error.message,
             toastSettings
           );
         } else {
           toast.error(
-            'Greška kod podizanja depozita: ' + error.response.data,
+            'Depozit nije moguće podići: ' + error.response.data,
             toastSettings
           );
         }
@@ -112,6 +112,7 @@ const ModalWithdraw = ({
                   onChange={(e) => {
                     setWithdraw(e.target.value);
                   }}
+                  defaultValue={depozit && depozit}
                 />
                 <button type="submit" className="btn btn-primary">
                   Podigni Depozit

@@ -72,7 +72,7 @@ const NoviRacunPreview = () => {
         }
       })
       .catch((err) =>
-        toast.error('Greška kod učitavanja depozita!', toastSettings)
+        toast.error('Nije moguće učitati depozit!', toastSettings)
       );
   }, [depozitLoaded]);
 
