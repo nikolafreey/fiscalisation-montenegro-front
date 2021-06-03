@@ -203,7 +203,7 @@ const Bezgotovinski = () => {
                 <div className="form__footer">
                   <button
                     onClick={() => {
-                      dispatch(setRacun({}));
+                      // dispatch(setRacun({}));
                       handleSubmit(values);
                     }}
                     className="btn btn__primary"
