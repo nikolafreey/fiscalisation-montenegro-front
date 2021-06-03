@@ -75,7 +75,6 @@ const Bezgotovinski = () => {
             'Jedinica mjere računa je neophodna na računu ' + index,
             toastSettings
           );
-          throw 'Jedinica mjere računa je neophodna na računu ' + index;
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
@@ -84,6 +83,12 @@ const Bezgotovinski = () => {
             toastSettings
           );
           return;
+        }
+        if (!racun.tip_popusta) {
+          racun.tip_popusta = 'iznos';
+        }
+        if (!racun.popust) {
+          racun.popust = 0;
         }
       });
     if (values.partner_id == null || values.partner_id === 0) {
@@ -200,7 +205,7 @@ const Bezgotovinski = () => {
                 <div className="form__footer">
                   <button
                     onClick={() => {
-                      dispatch(setRacun({}));
+                      // dispatch(setRacun({}));
                       handleSubmit(values);
                     }}
                     className="btn btn__primary"

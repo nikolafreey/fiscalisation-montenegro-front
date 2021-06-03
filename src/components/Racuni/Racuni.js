@@ -157,7 +157,7 @@ const Racuni = () => {
   const handlePodizanjeDepozita = () => {
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_withdraw: +withdraw,
+        iznos_withdraw: withdraw,
       })
       .then((data) => {
         // setWithdrawLoaded(data);
