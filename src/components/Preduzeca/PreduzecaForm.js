@@ -853,6 +853,9 @@ const PreduzecaForm = () => {
                                 id="Da"
                                 value={true}
                                 name="pdv_obveznik"
+                                checked={
+                                  preduzece && preduzece.pdv_obveznik === 1
+                                }
                                 defaultChecked
                               />
                               <label htmlFor="Da" className="form__radio-label">
@@ -866,6 +869,9 @@ const PreduzecaForm = () => {
                                 type="radio"
                                 id="Ne"
                                 value={false}
+                                checked={
+                                  preduzece && preduzece.pdv_obveznik === 0
+                                }
                                 name="pdv_obveznik"
                               />
                               <label htmlFor="Ne" className="form__radio-label">
