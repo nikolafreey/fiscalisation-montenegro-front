@@ -72,9 +72,9 @@ const UserControls = () => {
               <PodesavanjaSvg />
               Podešavanja
             </Link>
-            <Link>
+            <Link onClick={() => dispatch(logoutUser())}>
               <LogoutSvg />
-              <span onClick={() => dispatch(logoutUser())}> Odjava</span>
+              Odjava
             </Link>
           </div>
         </div>
