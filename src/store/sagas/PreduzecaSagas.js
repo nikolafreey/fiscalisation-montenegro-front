@@ -28,6 +28,15 @@ export function* preduzeceStore({ payload }) {
       toastSettings
     );
   } catch (error) {
+    console.log('error', error.response);
+    if (
+      error.response.data.error.includes(
+        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
+      )
+    ) {
+      toast.error('Već postoji preduzeće sa unjetim PIB-om!', toastSettings);
+      return;
+    }
     yield put(setGlobalError(error.message));
   }
 }
