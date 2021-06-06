@@ -13,12 +13,17 @@ class PodesavanjaService extends ApiService {
 
   storePreduzece = (data) => this.apiClient.post(ENDPOINTS.INDEX, data);
 
-  uploadFiles = (data, id) =>
-    this.apiClient.put(ENDPOINTS.UPLOAD_FILES.replace('{id}', id), data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+  uploadFiles = (data, id) => {
+    return this.apiClient.post(
+      ENDPOINTS.UPLOAD_FILES.replace('{id}', id),
+      data,
+      {
+        'Content-Type':
+          'multipart/form-data; charset=utf-8; boundary=' +
+          Math.random().toString().substr(2),
+      }
+    );
+  };
 
   updatePreduzece = (data) =>
     this.apiClient.put(ENDPOINTS.SHOW.replace('{id}', data.id), data);

@@ -69,9 +69,6 @@ const Podesavanja = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('digitalniPecatFile', digitalniPecatFile);
-    console.log('digitalniPotpisFile', digitalniPotpisFile);
-
     if (podesavanjeUcitano.length === 0) {
       podesavanjaService
         .storePreduzece({
@@ -102,17 +99,25 @@ const Podesavanja = () => {
           );
         });
       // Upload Fajlova
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('kratki_naziv', user?.preduzeca[0]?.kratki_naziv);
       formData.append('adresa', user?.preduzeca[0]?.adresa);
       formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
       formData.append('grad', user?.preduzeca[0]?.grad);
       formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('djelatnost_id', user?.preduzeca[0]?.djelatnost_id);
       formData.append('oblik_preduzeca', user?.preduzeca[0]?.oblik_preduzeca);
       formData.append('pdv', user?.preduzeca[0]?.pdv);
       formData.append('pib', user?.preduzeca[0]?.pib);
-      formData.append('digitalniPecatFile', digitalniPecatFile);
-      formData.append('digitalniPotpisFile', digitalniPotpisFile);
+      formData.append('kod_pj', kodPj);
+      formData.append('enu_kod', enu);
+      formData.append('software_kod', SW_KOD);
+      formData.append('kod_operatera', kodOp);
+      formData.append('pecat', digitalniPecatFile, digitalniPecatFile.name);
+      formData.append('potpis', digitalniPotpisFile, digitalniPotpisFile.name);
+      formData.append('sertifikatSifra', sifraDigitalniPotpis);
+      formData.append('pecatSifra', sifraDigitalniPecat);
+      formData.append('_method', 'PUT');
 
       podesavanjaService
         .uploadFiles(formData, user.preduzeca[0]?.id)
@@ -136,10 +141,6 @@ const Podesavanja = () => {
             : podesavanjeUcitano && podesavanjeUcitano[0]?.redni_broj,
           slanje_kupcu: slanjeRacunaKupcu,
           izgled_racuna: 0,
-          pecat: digitalniPecatFile,
-          sertifikat: digitalniPotpisFile,
-          pecatSifra: sifraDigitalniPecat,
-          sertifikatSifra: sifraDigitalniPotpis,
           kod_pj: kodPj,
           enu_kod: enu,
           software_kod: SW_KOD,
@@ -169,16 +170,27 @@ const Podesavanja = () => {
       formData.append('drzava', user?.preduzeca[0]?.kratki_naziv);
       formData.append('grad', user?.preduzeca[0]?.grad);
       formData.append('kategorija_id', user?.preduzeca[0]?.kategorija_id);
+      formData.append('djelatnost_id', user?.preduzeca[0]?.djelatnost_id);
       formData.append('oblik_preduzeca', 'D.O.O');
       formData.append('pdv', user?.preduzeca[0]?.pdv);
       formData.append('pib', user?.preduzeca[0]?.pib);
-      formData.append('digitalniPecatFile', digitalniPecatFile);
-      formData.append('digitalniPotpisFile', digitalniPotpisFile);
+      formData.append('kod_pj', kodPj);
+      formData.append('enu_kod', enu);
+      formData.append('software_kod', SW_KOD);
+      formData.append('kod_operatera', kodOp);
+      formData.append('pecat', digitalniPecatFile);
+      formData.append('potpis', digitalniPotpisFile);
+      formData.append('sertifikatSifra', sifraDigitalniPotpis);
+      formData.append('pecatSifra', sifraDigitalniPecat);
+      formData.append('_method', 'PUT');
 
       podesavanjaService
         .uploadFiles(formData, user.preduzeca[0]?.id)
         .then((data) =>
-          toast.success('Izmjene su sačuvane!', toastSettings)
+          toast.success(
+            'Uspješno izmjenjena podešavanja sertifikata!',
+            toastSettings
+          )
         )
         .catch((error) => {
           toast.error(

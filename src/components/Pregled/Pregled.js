@@ -80,6 +80,8 @@ const Pregled = () => {
             </i>
             {userPreduzece?.preduzeca[0].kratki_naziv}
           </p>
+          {userPreduzece?.preduzeca[0].serifikat !== null &&
+            userPreduzece?.preduzeca[0].serifikat !== ''}
           <p className="right">
             <i className="icon lg mr-xs">
               <svg fill="none" viewBox="0 0 17 20">
