@@ -69,9 +69,10 @@ const Modal = ({
       })
       .catch((error) => {
         toast.error(
-          'Nije moguće dodati depoziti: ' + error.response.data.message,
+          'Nije moguće registrovati depozit: ' + error.response.data.message,
           toastSettings
         );
+        closeModal(false);
         setDepozitError(error);
       });
   };
@@ -85,7 +86,7 @@ const Modal = ({
               <span className="modal__close" onClick={() => closeModal(false)}>
                 &times;
               </span>
-              <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
+              <h2 className="heading-secondary m-0">Registracija Depozita</h2>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="modal__body">
@@ -97,11 +98,19 @@ const Modal = ({
                   onChange={(e) => {
                     setDepozit(e.target.value);
                   }}
+                  defaultValue="0.00"
                 />
               </div>
               <div className="modal__footer">
                 <button type="submit" className="btn btn__primary">
-                  Sačuvaj Depozit
+                  Registruj Depozit
+                </button>
+                <button
+                    type="button"
+                    className="btn btn__link ml-m"
+                    onClick={()=>closeModal(false)}
+                  >
+                    Obustavi
                 </button>
               </div>
             </form>

@@ -101,7 +101,7 @@ const ModalWithdraw = ({
           <div className="modal__content">
             <div className="modal__header">
               <span className="modal__close" onClick={()=>hideModal(false)}>&times;</span>
-              <h2 className="heading-secondary m-0">Podigni Depozit</h2>
+              <h2 className="heading-secondary m-0">Podizanje Depozita</h2>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="modal__body">
@@ -120,6 +120,13 @@ const ModalWithdraw = ({
 
                 <button type="submit" className="btn btn__primary">
                   Podigni Depozit
+                </button>
+                <button
+                    type="button"
+                    className="btn btn__link ml-m"
+                    onClick={()=>hideModal(false)}
+                  >
+                    Obustavi
                 </button>
               </div>
             </form>
