@@ -210,7 +210,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         </td>
       )}
       <td className="cl dshow-cell">
-        {currencyFormat(_item?.ukupna_cijena_bez_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_bez_pdv_popust) + '€'}
       </td>
       <td className="cl dshow-cell">
         {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
