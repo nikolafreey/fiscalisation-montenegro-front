@@ -119,6 +119,7 @@ const FizickaLicaForm = () => {
                       name="zanimanje"
                       label={$t('fizickalica.zanimanje')}
                       className="form__input w-100"
+                      defaultValue={fizickoLice && fizickoLice.zanimanje}
                     />
                   </div>
                   <div className="df jc-sb mob-fd-column">
@@ -135,6 +136,7 @@ const FizickaLicaForm = () => {
                         name="ib"
                         className="form__input"
                         label={$t('fizickalica.ib')}
+                        defaultValue={fizickoLice && fizickoLice.ib}
                       />
                     </div>
                   </div>
@@ -143,6 +145,7 @@ const FizickaLicaForm = () => {
                       name="adresa"
                       className="form__input w-100"
                       label={$t('fizickalica.adresa')}
+                      defaultValue={fizickoLice && fizickoLice.adresa}
                     />
                   </div>
                   <div className="df jc-sb mob-fd-column">
@@ -160,6 +163,7 @@ const FizickaLicaForm = () => {
                         className="form__input"
                         placeholder="CG"
                         label={$t('fizickalica.drzava')}
+                        defaultValue={fizickoLice && fizickoLice.drzava}
                       />
                     </div>
                   </div>
@@ -170,6 +174,7 @@ const FizickaLicaForm = () => {
                         name="nacionalnost"
                         className="form__input"
                         label={$t('fizickalica.nacionalnost')}
+                        defaultValue={fizickoLice && fizickoLice.nacionalnost}
                       />
                     </div>
                     <div className="form__group w-48 mob-w-100">
@@ -177,6 +182,7 @@ const FizickaLicaForm = () => {
                         className="form__input"
                         name="drzavljanstvo"
                         label={$t('fizickalica.drzavljanstvo')}
+                        defaultValue={fizickoLice && fizickoLice.drzavljanstvo}
                       />
                     </div>
                   </div>
@@ -204,6 +210,7 @@ const FizickaLicaForm = () => {
                         name="radno_mjesto"
                         className="form__input"
                         label={$t('fizickalica.radno_mjesto')}
+                        defaultValue={fizickoLice && fizickoLice.radno_mjesto}
                       />
                     </div>
                   </div>
@@ -212,11 +219,12 @@ const FizickaLicaForm = () => {
                       Opis - Nije Obavezno
                     </label>
                     <textarea
-                      name=""
-                      id=""
+                      name="opis"
+                      id="opis"
                       cols="30"
                       rows="5"
                       className="form__input h-10r"
+                      defaultValue={fizickoLice && fizickoLice.opis}
                     ></textarea>
                   </div>
                   {/* TODO: DODATI UCITAVANJE AVATARA */}
@@ -281,6 +289,7 @@ const FizickaLicaForm = () => {
                         name="telefon"
                         className="form__input"
                         label={$t('fizickalica.telefon')}
+                        defaultValue={fizickoLice && fizickoLice.telefon}
                       />
                       <div className="form__checkbox-groups-wrapper">
                         <div className="form__checkbox-group">
@@ -323,6 +332,7 @@ const FizickaLicaForm = () => {
                         className="form__input mob-w-100"
                         name="email"
                         label={$t('fizickalica.email')}
+                        defaultValue={fizickoLice && fizickoLice.email}
                       />
                     </div>
 
@@ -331,6 +341,7 @@ const FizickaLicaForm = () => {
                         className="form__input mob-w-100"
                         name="cv_link"
                         label={$t('fizickalica.cv_link')}
+                        defaultValue={fizickoLice && fizickoLice.cv_link}
                       />
                     </div>
                   </div>

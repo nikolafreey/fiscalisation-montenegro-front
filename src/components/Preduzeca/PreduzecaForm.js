@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,10 @@ import { ReactComponent as LinkPreduzecaSvg } from '../../assets/icon/link.svg';
 import { ReactComponent as IconFillSvg } from '../../assets/icon/icon_fill.svg';
 import InputField from '../shared/forms/InputField';
 import { Link, useRouteMatch, Prompt, useHistory } from 'react-router-dom';
-import { preduzeceSelector } from '../../store/selectors/PreduzecaSelector';
+import {
+  preduzecaSelector,
+  preduzeceSelector,
+} from '../../store/selectors/PreduzecaSelector';
 import { preduzecaService } from '../../services/PreduzecaService';
 import { kategorijeService } from '../../services/KategorijeService';
 import ZiroRacuniFieldArray from '../FizickaLica/ZiroRacuniFieldArray';
@@ -70,28 +73,32 @@ const PreduzecaForm = () => {
     Geocode.setApiKey('');
   }, [dispatch, params]);
 
+  const [pdvObveznikChecked, setPdvObveznikChecked] = useState(true);
+
   const handleSubmit = (values, initialValues) => {
-    if (params.id)
+    if (params.id) {
       dispatch(
         updatePreduzece({
           id: params.id,
           ...values,
           status: values.status === 1 ? true : false,
           privatnost: values.privatnost === 1 ? true : false,
+          pdv_obveznik: values.pdv_obveznik === 'false' ? false : true,
           djelatnost_id: +values.djelatnost_id,
         })
       );
-    else
+      dispatch(setPreduzece(initialValues));
+      history.goBack();
+    } else
       dispatch(
         storePreduzece({
           ...values,
           status: values.status === 'Aktivan' ? true : false,
           privatnost: values.privatnost === 'Javan' ? true : false,
+          pdv_obveznik: values.pdv_obveznik === 'false' ? false : true,
           djelatnost_id: +values.djelatnost_id,
         })
       );
-    dispatch(setPreduzece(initialValues));
-    history.goBack();
   };
 
   const handleBlur = (e) => {
@@ -215,7 +222,6 @@ const PreduzecaForm = () => {
                           name="pdv"
                           label={$t('preduzeca.pdv')}
                           placeholder=""
-                          obavezno
                           type="text"
                           className="form__input w-100"
                         />
@@ -838,10 +844,11 @@ const PreduzecaForm = () => {
                             className="form__group"
                             onChange={(event) => {
                               console.log(
-                                'event.target.value',
-                                event.target.value
+                                'setPdvObveznikChecked',
+                                pdvObveznikChecked
                               );
-                              values.status = event.target.value;
+                              values.pdv_obveznik = event.target.value;
+                              setPdvObveznikChecked(event.target.value);
                             }}
                           >
                             <div className="form__radio-group">
@@ -851,6 +858,11 @@ const PreduzecaForm = () => {
                                 id="Da"
                                 value={true}
                                 name="pdv_obveznik"
+                                checked={
+                                  preduzece?.pdv_obveznik === 1 ||
+                                  pdvObveznikChecked === true ||
+                                  pdvObveznikChecked === 'true'
+                                }
                                 defaultChecked
                               />
                               <label htmlFor="Da" className="form__radio-label">
@@ -864,6 +876,11 @@ const PreduzecaForm = () => {
                                 type="radio"
                                 id="Ne"
                                 value={false}
+                                checked={
+                                  preduzece?.pdv_obveznik === 0 ||
+                                  pdvObveznikChecked === false ||
+                                  pdvObveznikChecked === 'false'
+                                }
                                 name="pdv_obveznik"
                               />
                               <label htmlFor="Ne" className="form__radio-label">

@@ -127,7 +127,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     stavka = { ...stavka, kolicina: 1 };
 
     let popustStart = getPopustStavke(stavka);
-    console.log('popustStart', popustStart);
 
     if (!popustStart?.tip_popusta) return cijena;
     if (popustStart.tip_popusta === 'iznos') {
@@ -147,9 +146,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getCijenaStavkeBezPdv(stavka, index) {
-    console.log('getCijenaStavkeBezPdv', stavka);
     let cijena_sa_popustom;
     let indStavke = values.stavke.length;
+    const pocetnaStavka = stavka;
+
     if (stavka?.tip_popusta) {
       cijena_sa_popustom = izracunajCijenuSaPopustom(
         stavka,
@@ -179,8 +179,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
         ...stavka,
         cijena_bez_pdv_popust:
           Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa)),
-        cijena_bez_pdv:
-          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa)),
+        cijena_bez_pdv: Number(pocetnaStavka.cijena_bez_pdv),
         // cijena_bez_pdv_popust: (
         //   Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
         // ).toFixed(4),

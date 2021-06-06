@@ -176,17 +176,23 @@ const Racuni = () => {
   };
 
   useEffect(() => {
+    //Race Condition and Preventing Memory Leaks
+    let isActive = true;
+
     depozitWithdrawService
       .getDepozitToday()
       .then((data) => {
         console.log('getDepozitToday', data);
-        if (data.data.length !== 0) {
+        if (isActive && data.data.length !== 0) {
           setDepozitLoaded(true);
         }
       })
       .catch((err) =>
         toast.error('Nije moguće učitati vrijednost depozita!', toastSettings)
       );
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   return (
