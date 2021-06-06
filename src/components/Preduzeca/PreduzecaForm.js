@@ -215,7 +215,6 @@ const PreduzecaForm = () => {
                           name="pdv"
                           label={$t('preduzeca.pdv')}
                           placeholder=""
-                          obavezno
                           type="text"
                           className="form__input w-100"
                         />
