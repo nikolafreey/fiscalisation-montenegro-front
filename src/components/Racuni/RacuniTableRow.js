@@ -156,6 +156,10 @@ const RacuniTableRow = ({ item, racuni }) => {
     e.stopPropagation();
     history.push(`/racuni/bezgotovinski/edit/${item.id}`);
   };
+  const handlePogledajA4 = (e) => {
+    e.stopPropagation();
+    history.push(`/racuni/bezgotovinski/show/${item.id}`);
+  };
 
   const handleObrisi = (e) => {
     e.stopPropagation();
@@ -236,13 +240,19 @@ const RacuniTableRow = ({ item, racuni }) => {
           <button className="btn btn__light-dd btn__xs">
             <IconLg />
             <div className="drop-down">
+              {_item.vrsta_racuna == 'gotovinski' && (
+                <Link onClick={handlePogledajA4}
+                >Pogledaj na A4</Link>
+              )}
+
               <Link
                 onClick={handleIzmjeni}
                 className={`${_item?.qr_url ? 'disabled' : ''}`}
               >
                 <Izmjeni />
-                Izmjeni
+                Izmijeni
               </Link>
+
               {!_item?.qr_url && (
                 <Link
                   onClick={handleFiskalizuj}
