@@ -1,4 +1,4 @@
-import { FieldArray, Form, Formik } from 'formik';
+import { FieldArray, Form, Formik, useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { PreduzecaSchema } from '../../validation/preduzeca';
 import $t from '../../lang';
@@ -83,22 +83,22 @@ const PreduzecaForm = () => {
           ...values,
           status: values.status === 1 ? true : false,
           privatnost: values.privatnost === 1 ? true : false,
-          pdv_obveznik: values.pdv_obveznik === 'false' ? false : true,
+          pdv_obveznik: pdvObveznikChecked,
           djelatnost_id: +values.djelatnost_id,
         })
       );
-      dispatch(setPreduzece(initialValues));
-      history.goBack();
     } else
       dispatch(
         storePreduzece({
           ...values,
           status: values.status === 'Aktivan' ? true : false,
           privatnost: values.privatnost === 'Javan' ? true : false,
-          pdv_obveznik: values.pdv_obveznik === 'false' ? false : true,
+          pdv_obveznik: pdvObveznikChecked,
           djelatnost_id: +values.djelatnost_id,
         })
       );
+    dispatch(setPreduzece(initialValues));
+    history.goBack();
   };
 
   const handleBlur = (e) => {
@@ -152,7 +152,7 @@ const PreduzecaForm = () => {
         privatnost: 'Javan',
         verifikovan: false,
         ziro_racuni: [],
-        pdv_obveznik: true,
+        pdv_obveznik: 1,
         ...preduzece,
       }}
       onSubmit={handleSubmit}
@@ -847,8 +847,8 @@ const PreduzecaForm = () => {
                                 'setPdvObveznikChecked',
                                 pdvObveznikChecked
                               );
-                              values.pdv_obveznik = event.target.value;
-                              setPdvObveznikChecked(event.target.value);
+                              values.pdv_obveznik = +event.target.value;
+                              setPdvObveznikChecked(+event.target.value);
                             }}
                           >
                             <div className="form__radio-group">
@@ -856,14 +856,11 @@ const PreduzecaForm = () => {
                                 className="form__radio-input"
                                 type="radio"
                                 id="Da"
-                                value={true}
+                                value={1}
                                 name="pdv_obveznik"
-                                checked={
-                                  preduzece?.pdv_obveznik === 1 ||
-                                  pdvObveznikChecked === true ||
-                                  pdvObveznikChecked === 'true'
+                                defaultChecked={
+                                  values?.pdv_obveznik === 1 ? true : false
                                 }
-                                defaultChecked
                               />
                               <label htmlFor="Da" className="form__radio-label">
                                 <span className="form__radio-button"></span>
@@ -875,13 +872,11 @@ const PreduzecaForm = () => {
                                 className="form__radio-input"
                                 type="radio"
                                 id="Ne"
-                                value={false}
-                                checked={
-                                  preduzece?.pdv_obveznik === 0 ||
-                                  pdvObveznikChecked === false ||
-                                  pdvObveznikChecked === 'false'
-                                }
+                                value={0}
                                 name="pdv_obveznik"
+                                defaultChecked={
+                                  values.pdv_obveznik === 0 ? true : false
+                                }
                               />
                               <label htmlFor="Ne" className="form__radio-label">
                                 <span className="form__radio-button"></span>
