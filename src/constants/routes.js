@@ -2,6 +2,7 @@ export const HOME = '/';
 
 export const AUTH = {
   LOGIN: '/login',
+  LOGOUT: '/logout',
   FORGOT: '/password/forgot',
   FORGOT_SUCCESS: '/password/forgot/success',
   RESET: '/password/reset/:token',
