@@ -62,7 +62,7 @@ const Modal = ({
     handleDepositLoaded(true);
     depozitWithdrawService
       .storeDepozitWithdraw({
-        iznos_depozit: depozit,
+        iznos_depozit: depozit.toString(),
       })
       .then((data) => {
         toast.success(
@@ -110,11 +110,11 @@ const Modal = ({
                   Registruj Depozit
                 </button>
                 <button
-                    type="button"
-                    className="btn btn__link ml-m"
-                    onClick={()=>closeModal(false)}
-                  >
-                    Obustavi
+                  type="button"
+                  className="btn btn__link ml-m"
+                  onClick={() => closeModal(false)}
+                >
+                  Obustavi
                 </button>
               </div>
             </form>

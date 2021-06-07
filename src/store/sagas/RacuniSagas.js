@@ -51,7 +51,7 @@ export function* racunStore({ payload }) {
     yield put(push('/racuni/show/' + res.data.id));
     yield put(resetNoviRacun());
   } catch (error) {
-    yield put(resetNoviRacun());
+    // yield put(resetNoviRacun());
     yield put(getRacuni());
     yield put(setGlobalError(error.message));
   }
@@ -84,13 +84,14 @@ export function* bezgotovinskiRacunStore({ payload }) {
     const res = yield call(racuniService.storeBezgotovinskiRacun, payload);
     yield put(push('/racuni/bezgotovinski/show/' + res.data.id));
     toast.success(
-      'Bezgotovinski račun je sačuvan i fiskalizovan: ' +
-        res.data.redni_broj,
+      'Bezgotovinski račun je sačuvan i fiskalizovan: ' + res.data.redni_broj,
       toastSettings
     );
   } catch (error) {
     if (error.response.data.error.length > 50) {
-      yield put(setGlobalError('Račun je sačuvan ali Fiskalizacija nije moguća!'));
+      yield put(
+        setGlobalError('Račun je sačuvan ali Fiskalizacija nije moguća!')
+      );
       return;
     }
     yield put(setGlobalError(error.response.data.error));

@@ -10,6 +10,21 @@ import { partneriService } from '../../../services/PartneriService';
 import DropDown from '../../shared/forms/DropDown';
 import DropDownStatic from '../../shared/forms/DropDownStatic';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
+const toastSettings = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const BezgotovinskiHeader = () => {
   const { values, setFieldValue } = useFormikContext();
 
@@ -34,6 +49,14 @@ const BezgotovinskiHeader = () => {
                       name="partner_id"
                       loadOptions={partneriService.getPartneriDropdown}
                       isSearchable
+                      onBlur={() => {
+                        if (
+                          values.partner_id == null ||
+                          values.partner_id === 0
+                        ) {
+                          toast.error('Kupac je neophodan', toastSettings);
+                        }
+                      }}
                     />
                   </div>
                 </div>
@@ -84,9 +107,7 @@ const BezgotovinskiHeader = () => {
               <div className="section-box__right--bottom-wrap">
                 <div className="half">
                   <div className="form__group">
-                    <label className="form__label">
-                      U sistemu PDV-a?
-                    </label>
+                    <label className="form__label">U sistemu PDV-a?</label>
                     <DropDownStatic
                       name="pdv_obveznik"
                       options={PDV_OBVEZNIK}

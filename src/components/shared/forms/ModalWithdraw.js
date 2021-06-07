@@ -34,8 +34,8 @@ const ModalWithdraw = ({
 }) => {
   const id = props.id || props.name;
 
-  const [withdraw, setWithdraw] = useState(0);
   const [depozit, setDepozit] = useState(0);
+  const [withdraw, setWithdraw] = useState(depozit || 0);
   const [withdrawLoaded, setWithdrawLoaded] = useState();
   const [withdrawError, setWithdrawError] = useState();
   // let [toastCounter, setToastCounter] = useState(false);
@@ -46,6 +46,7 @@ const ModalWithdraw = ({
       .then((data) => {
         if (data.data.length !== 0) {
           setDepozit(data?.data?.iznos_depozit);
+          setWithdraw(data?.data?.iznos_depozit);
         }
       })
       .catch((err) =>
@@ -84,7 +85,7 @@ const ModalWithdraw = ({
       .catch((error) => {
         if (error.status !== 400) {
           toast.error(
-            'Depzit nije moguće podići: ' + error.message,
+            'Depozit nije moguće podići: ' + error.response.data,
             toastSettings
           );
         } else {
@@ -104,7 +105,9 @@ const ModalWithdraw = ({
         <div className="modal open">
           <div className="modal__content">
             <div className="modal__header">
-              <span className="modal__close" onClick={()=>hideModal(false)}>&times;</span>
+              <span className="modal__close" onClick={() => hideModal(false)}>
+                &times;
+              </span>
               <h2 className="heading-secondary m-0">Podizanje Depozita</h2>
             </div>
             <form onSubmit={handleSubmit}>
@@ -114,23 +117,23 @@ const ModalWithdraw = ({
                   autoFocus
                   type="number"
                   name="iznos_depozita"
+                  value={+withdraw || +depozit || 0}
                   onChange={(e) => {
                     setWithdraw(e.target.value);
                   }}
-                  defaultValue={depozit && depozit}
+                  defaultValue={depozit && +depozit}
                 />
               </div>
               <div className="modal__footer">
-
                 <button type="submit" className="btn btn__primary">
                   Podigni Depozit
                 </button>
                 <button
-                    type="button"
-                    className="btn btn__link ml-m"
-                    onClick={()=>hideModal(false)}
-                  >
-                    Obustavi
+                  type="button"
+                  className="btn btn__link ml-m"
+                  onClick={() => hideModal(false)}
+                >
+                  Obustavi
                 </button>
               </div>
             </form>
