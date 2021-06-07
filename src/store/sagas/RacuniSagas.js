@@ -52,7 +52,7 @@ export function* racunStore({ payload }) {
     yield put(resetNoviRacun());
   } catch (error) {
     // yield put(resetNoviRacun());
-    // yield put(getRacuni());
+    yield put(getRacuni());
     yield put(setGlobalError(error.message));
   }
 }
