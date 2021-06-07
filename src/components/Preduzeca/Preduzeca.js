@@ -67,9 +67,7 @@ const Preduzeca = () => {
           {preduzeca.data.length === 0 && !preduzeca.path ? (
             <GridLoader css={spinnerStyleGrid} size={15} />
           ) : preduzeca.data.length === 0 ? (
-            <h2 className="df jc-sb tabp-w-100">
-              {'Nemate preduzeća u listi'}
-            </h2>
+            <div className="msg-center"><p> {'Nema preduzeća u listi'}</p></div>
           ) : (
             <PreduzecaTable preduzeca={preduzeca} partneri={partneri} openInfo={openInfo}/>
           )}
