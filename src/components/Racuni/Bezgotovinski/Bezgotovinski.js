@@ -47,20 +47,31 @@ const Bezgotovinski = () => {
 
   const handleSubmit = (values) => {
     values.stavke = values.niz;
-    console.log('u celom racunu', values.stavke);
     // const { params } = useRouteMatch();
 
     console.log('values', values);
-    if (values.stavke.length === 0) {
-      toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+
+    try {
+      if (values.stavke.length === 0) {
+        toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+        throw new Error('Račun mora imati bar jednu stavku!');
+      }
+      if (!values.stavke[0]) {
+        toast.error(
+          'Račun mora imati bar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
+          toastSettings
+        );
+        return;
+      }
+
+      if (values.partner_id == null || values.partner_id === 0) {
+        toast.error('Kupac je neophodan', toastSettings);
+        throw new Error('Kupac je neophodan');
+      }
+    } catch (error) {
+      console.log('error');
     }
-    if (!values.stavke[0]) {
-      toast.error(
-        'Račun mora imati bar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
-        toastSettings
-      );
-      return;
-    }
+
     values &&
       values.stavke.forEach((racun, index) => {
         // if (racun.kolicina == null || racun.kolicina <= 0) {
@@ -91,10 +102,6 @@ const Bezgotovinski = () => {
           racun.popust = 0;
         }
       });
-    if (values.partner_id == null || values.partner_id === 0) {
-      toast.error('Kupac je neophodan', toastSettings);
-      return;
-    }
 
     const noviRacun = {
       ...values,
@@ -146,7 +153,7 @@ const Bezgotovinski = () => {
       enableReinitialize
       // validationSchema={BezgotovinskiSchema}
       validateOnChange={false}
-      validateOnBlur={false}
+      validateOnBlur={true}
     >
       {({ values }) => (
         <Form>
