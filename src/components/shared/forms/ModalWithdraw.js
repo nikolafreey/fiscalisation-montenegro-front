@@ -51,7 +51,7 @@ const ModalWithdraw = ({
       .catch((err) =>
         toast.error('Iznos depozita ne može se učitati!', toastSettings)
       );
-  }, []);
+  }, [showModal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,6 +75,10 @@ const ModalWithdraw = ({
       })
       .then((data) => {
         console.log('storeDepozitWithdraw', withdraw);
+        toast.success(
+          'Uspješno podignut depozit u iznosu: ' + data.data.iznos_withdraw,
+          toastSettings
+        );
         setWithdrawLoaded(data);
       })
       .catch((error) => {

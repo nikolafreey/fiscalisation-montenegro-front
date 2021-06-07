@@ -193,7 +193,7 @@ const Racuni = () => {
     return () => {
       isActive = false;
     };
-  }, []);
+  }, [showModalWithdraw, showModal]);
 
   return (
     <>
