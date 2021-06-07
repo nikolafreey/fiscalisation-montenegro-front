@@ -30,7 +30,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <h2 className="heading-secondary">Podsjetnici za plaćanje</h2>
+            <h2 className="heading-secondary mb-0">Podsjetnici za plaćanje</h2>
             <div
               className="status"
             >
@@ -74,7 +74,7 @@ const BezgotovinskiStatusPodsjetnici = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <h2 className="heading-secondary">
+            <h2 className="heading-secondary mb-0">
               Automatizovano slanje periodičnih računa
             </h2>
             <div className="status">

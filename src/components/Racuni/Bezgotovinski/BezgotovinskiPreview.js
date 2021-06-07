@@ -26,7 +26,7 @@ import {
 import { racunSelector } from '../../../store/selectors/RacuniSelector';
 import { useRouteMatch, useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { values } from 'lodash-es';
+import { create, values } from 'lodash-es';
 import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
 import { formatirajCijenu } from './../../../helpers/racuni';
 import { userSelector } from '../../../store/selectors/UserSelector';
@@ -59,6 +59,8 @@ const BezgotovinskiPreview = () => {
     jikr,
     broj_racuna,
     redni_broj,
+    vrsta_racuna,
+    nacin_placanja,
     id,
     qr_url,
     status,
@@ -76,6 +78,7 @@ const BezgotovinskiPreview = () => {
     status_placanja,
     iznos_uplate,
     datum_izdavanja,
+    datum_za_placanje
   } = useSelector(racunSelector());
 
   const user = useSelector(userSelector());
@@ -204,19 +207,19 @@ const BezgotovinskiPreview = () => {
   switch (status) {
     case 'nijeplacen':
       itemStatus = 'Nije Plaćen';
-      bojaKlasa = 'tag tag__warning';
+      bojaKlasa = 'tag tag__warning ml-m vm';
       break;
     case 'placen':
       itemStatus = 'Plaćen';
-      bojaKlasa = 'tag tag__success';
+      bojaKlasa = 'tag tag__success ml-m vm';
       break;
     case 'nenaplativ':
       itemStatus = 'Nenaplativ';
-      bojaKlasa = 'tag tag__danger';
+      bojaKlasa = 'tag tag__danger ml-m vm';
       break;
     case 'privremeni':
       itemStatus = 'Privremeni';
-      bojaKlasa = 'tag tag__neutral';
+      bojaKlasa = 'tag tag__neutral ml-m vm';
       break;
     default:
   }
@@ -253,7 +256,12 @@ const BezgotovinskiPreview = () => {
         </Link>
 
         <div className="title">
-          <h1 className="heading-primary">Račun {broj_racuna}</h1>
+          <h1 className="heading-primary">
+            Račun: {redni_broj}/
+            <Moment locale="me" format="YYYY">
+              {datum_izdavanja}
+            </Moment>
+          </h1>
 
           {!editMode && (
             <div className="df jc-end">
@@ -328,8 +336,12 @@ const BezgotovinskiPreview = () => {
             ukupnoSaPdvIpopusta
             jikr={jikr}
             broj_racuna={broj_racuna}
+            vrsta_racuna={vrsta_racuna}
+            nacin_placanja={nacin_placanja}
             status={status}
             preduzece={preduzece}
+            datum_izdavanja={datum_izdavanja}
+            datum_za_placanje={datum_za_placanje}
             opis={opis}
             partner={partner}
             created_at={created_at}
@@ -433,33 +445,65 @@ const BezgotovinskiPreview = () => {
                 </div>
               </div>
 
-              <div className="mtb-50">
+              <div className="mt-50">
                 <div className="row">
-                  <div className="col-md-6">
+                  <div className="col-md-7">
                     <h2 className="heading-secondary">
                       Račun: {redni_broj}/
                       <Moment locale="me" format="YYYY">
-                        {created_at}
+                        {datum_izdavanja}
                       </Moment>
+                      <span className={bojaKlasa}>{itemStatus}</span>
                     </h2>
                     <p className="mb-20">
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
-                      {created_at && (
+                      {datum_izdavanja && (
                         <Moment locale="me" format="DD. MMM YYYY.">
-                          {created_at}
+                          {datum_izdavanja}
                         </Moment>
+                      )}{' / Rok za plaćanje: '}
+                      {datum_za_placanje && (
+                        <Moment locale="me" format="DD. MMM YYYY.">
+                        {datum_za_placanje}
+                      </Moment>
                       )}{' '}
                     </p>
-                    <div className="status">
-                      {<span className={bojaKlasa}>{itemStatus}</span>}
+
+                    <div className="row">
+                      {/* ------------------ QR CODE ------------------ */}
+                      {jikr && ikof ? (
+                        <div className="col-md-3">
+                          <QRCode value={qr_url} size="128" />{' '}
+                        </div>
+                      ) : null}
+
+                      {/*------------------ QR CODE ------------------*/}
+
+                      <div className="col-md-9">
+                        <div className="df">
+                          <div className="df fd-column mr-m">
+                            <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
+                            <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
+                            <p className="txt-light">
+                              {broj_racuna ? 'Broj' : ''}
+                            </p>
+                            <p className="txt-light">{created_at ? 'Datum' : ''}</p>
+                            <p className="txt-light">{nacin_placanja ? 'Vrsta' : ''}</p>
+                          </div>
+                          <div className="df fd-column">
+                            <p>{jikr ? jikr : ''}</p>
+                            <p>{ikof ? ikof : ''}</p>
+                            <p>{broj_racuna ? broj_racuna : ''}</p>
+                            <p>{created_at ? created_at : ''}</p>
+                            <p>{nacin_placanja ? vrsta_racuna + ' / ' + nacin_placanja : ''}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    {/* TODO: prikazati korisnika koji je kreira račun a ne trenutnog */}
-                    {/* {user?.ime && user?.prezime && (
-                      <p> Račun izdao: {user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>
-                    )} */}
+
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-5">
                     <div className="invoice__header--box">
                       <h2 className="heading-secondary">
                         {partner && partner.preduzece_partner
@@ -558,9 +602,9 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">PDV</span>
                     </th> */}
                     <th>
-                      {Number(popust_ukupno) > 0 && (
-                        <span className="heading-quaternary">Popust</span>
-                      )}
+                    {Number(popust_ukupno) > 0 && (
+                        <span className="heading-quaternary">Popust sa PDV-om</span>
+                    )}
                     </th>
                     <th>
                       <span className="heading-quaternary nowrap">
@@ -590,14 +634,15 @@ const BezgotovinskiPreview = () => {
                   <div className="df jc-sb">
                     <div className="df fd-column">
                       <p className="fw-500">
-                        {ukupnoBezPdvIpopusta && 'Bez PDV-a i popusta:'}
+                        {/* TODO: ovo je cijena bez PDV-a i sa popustom */}
+                        {ukupnoBezPdvIpopusta && 'Bez PDV-a:'}
                       </p>
 
                       {/* <p className="fw-500">
                         {ukupnoBezPdv && 'Ukupno bez popusta:'}
                       </p> */}
                       <p className="fw-500">
-                        {Number(popust_ukupno) > 0 > 0 && 'Popust:'}
+                        {Number(popust_ukupno) > 0 > 0 && 'Popust sa PDV-om:'}
                       </p>
                       <p className="fw-500">{ukupniPdv > 0 && 'PDV:'}</p>
                       <p className="fw-500">
@@ -637,7 +682,7 @@ const BezgotovinskiPreview = () => {
                           {Number(
                             ukupna_cijena_sa_pdv - ukupna_cijena_sa_pdv_popust
                           ).toFixed(2)}{' '}
-                          <span className="txt-up txt-light">Eur</span>
+                          <span className="txt-up">&euro;</span>
                         </p>
                       )}
                       <p className="fw-500 txt-right">
@@ -667,50 +712,47 @@ const BezgotovinskiPreview = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-8">
-                  {opis && (
-                    <>
-                      <p className="fw-500">Napomena:</p>
-                      <p className="txt-light mb-25 white-space-pre-line">
-                        {opis}
-                      </p>
-                    </>
-                  )}
-                  <div className="row">
-                    {/* ------------------ QR CODE ------------------ */}
-                    {jikr && ikof ? (
-                      <div className="col-md-3">
-                        <QRCode value={qr_url} size="128" />{' '}
-                      </div>
-                    ) : null}
+                  {/* <div className="row"> */}
 
-                    {/*------------------ QR CODE ------------------*/}
 
-                    <div className="col-md-9">
-                      <div className="df">
-                        <div className="df fd-column mr-m">
-                          <p className="txt-light">{jikr ? 'JIKR' : ''}</p>
-                          <p className="txt-light">{ikof ? 'IKOF' : ''}</p>
-                          <p className="txt-light">
-                            {broj_racuna ? 'Broj' : ''}
+                    <div className="col-md-5">
+                      {opis && (
+                        <>
+                          <p className="fw-500">Napomena:</p>
+                          <p className="txt-light mb-25 white-space-pre-line">
+                            {opis}
                           </p>
-                        </div>
-                        <div className="df fd-column">
-                          <p>{jikr ? jikr : ''}</p>
-                          <p>{ikof ? ikof : ''}</p>
-                          <p>{broj_racuna ? broj_racuna : ''}</p>
-                        </div>
-                      </div>
+                        </>
+                      )}
                     </div>
-                  </div>
-                  <p className="txt-light">
-                    PostFiskal by Restart IT d.o.o. /{' '}
-                    {user?.preduzeca[0]?.software_kod
-                      ? user?.preduzeca[0]?.software_kod
-                      : ''}
+
+                  {/* </div> */}
+
+              </div>
+
+              <div className="row">
+                <div className="col-md-5">
+                  <p>
+                    {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
+                    {user?.ime && user?.prezime && (
+                      <p>Račun izdao: {user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>
+                    )}
                   </p>
+                  <hr className="mt-50 bd__bottom" />
+                </div>
+                <div className="col-md-5 offset-md-2">
+                  <p>Račun Preuzeo</p>
+                  <hr className="mt-50 bd__bottom" />
                 </div>
               </div>
+
+              <p className="txt-light">
+                PostFiskal by Restart IT d.o.o. /{' '}
+                {user?.preduzeca[0]?.software_kod
+                  ? user?.preduzeca[0]?.software_kod
+                  : ''}
+              </p>
+
             </div>
           </div>
         </>

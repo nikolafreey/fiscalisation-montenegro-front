@@ -85,6 +85,26 @@
     width: 50%;
     float: left;
   }
+  .wrapper-70 {
+    width: 70%;
+    float: left;
+  }
+  .wrapper-30 {
+    width: 30%;
+    float: left;
+  }
+  .wrapper-60 {
+    width: 60%;
+    float: left;
+  }
+  .wrapper-40 {
+    width: 40%;
+    float: left;
+  }
+  .wrapper-20 {
+    width: 20%;
+    float: left;
+  }
   .article-33 {
     position: relative;
     width: 33.33333%;
@@ -190,7 +210,7 @@
 .invoice-page {
   position: relative;
   width: 210mm;
-  min-height: 297mm;
+  // min-height: 297mm;
   padding: 0;
   margin: 10mm auto;
   border: 1pt #d3d3d3 solid;
@@ -202,23 +222,31 @@
   position: relative;
   padding: 5mm;
   display: block;
-  height: 122mm;
+  height: 100mm;
   //margin: 10mm auto;
 }
 .invoice-page-bottom {
-  min-height: 167mm;
+  // min-height: 167mm;
 }
 
 @media print {
   html,
   body {
     width: 210mm;
-    min-height: 297mm;
+    // min-height: 297mm;
     margin: 0;
+    padding: 0;
     background: #fff;
+    font-size: 10pt !important;
+    color: #000 !important;
+    overflow: hidden;
+
+    .wrapper-100.fs-8 p{
+      font-size: 8pt !important;
+    }
 
     .invoice-page {
-      margin: 0 !important;
+      margin: 10mm !important;
       border: initial !important;
       border-radius: initial !important;
       width: initial !important;
@@ -231,18 +259,23 @@
       position: initial;
       padding: 5mm !important;
       display: block;
-      height: 122mm !important;
+      font-size: 8pt !important;
+      // height: 122mm !important;
       //margin: 10mm auto;
     }
     .invoice-page-bottom {
-      min-height: 167mm !important;
+      // min-height: 167mm !important;
     }
     .table-sm-wrapper > table {
-      width: 400pt;
+      width: 300pt !important;
     }
     .table-sm-wrapper > table > td,
     th {
-      width: 30% !important;
+      // width: 30% !important;
+      p {
+        color: #000;
+        font-size: 7pt !important;
+      }
     }
 
     table {
@@ -254,7 +287,7 @@
       border-collapse: collapse !important;
       border: none !important;
       border-spacing: 0 !important;
-      font-size: 11pt !important;
+      font-size: 10pt !important;
       width: 100%;
 
       thead {
@@ -268,11 +301,11 @@
       }
       th {
         display: table-cell;
-        color: #6b7280;
-          width: 20% !important;
+        color: #000;
+          // width: 20% !important;
       }
       th:first-child {
-        width: 20% !important;
+        min-width: 60% !important;
       }
       tr {
         display: table-row;
@@ -281,7 +314,7 @@
         border-style: solid !important;
         border-width: 1pt !important;
         border-color: #f9fafb;
-        border-bottom: 1pt;
+        border-bottom: 1pt solid #000;
         width: 100%;
       }
       td {
@@ -291,9 +324,38 @@
         text-align: left !important;
         border-radius: 0.25em;
         border-style: none;
+        p {font-size: 8pt !important;}
+      }
+      td:first-child,
+      .napomena p{
+        white-space: pre-wrap !important;
       }
       td:last-child {
         text-align: right !important;
+      }
+
+      .white-space-pre {
+        white-space: pre-wrap;
+      }
+      .cl{
+        color:#000 !important;
+        font-size: 8pt !important;
+      }
+      .article-33 p{
+        font-size: 8pt !important;
+      }
+      .mt-m {
+        margin-top: 10mm;
+      }
+      .text-light{color:#000 !important}
+
+      hr.bd__bottom {
+        border-bottom: 1pt solid #000 !important;
+      }
+
+      .footer-fixed {
+        position: running(footer);
+        display: block;
       }
 
       .block {
@@ -311,7 +373,7 @@
     border: initial;
     border-radius: initial;
     width: initial;
-    min-height: 297mm !important;
+    // min-height: 297mm !important;
     box-shadow: initial;
     background: initial;
     page-break-after: always;
