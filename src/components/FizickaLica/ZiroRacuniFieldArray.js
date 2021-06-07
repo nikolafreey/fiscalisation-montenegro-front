@@ -29,7 +29,7 @@ const ZiroRacuniFieldArray = ({ insert, remove }) => {
   };
   return (
     <div className="form__group">
-      <label className="form__label" for="lista-racuna">
+      <label className="form__label" htmlFor="lista-racuna">
         Lista računa
       </label>
 

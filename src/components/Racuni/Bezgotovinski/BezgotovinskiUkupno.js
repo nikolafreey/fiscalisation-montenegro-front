@@ -175,38 +175,38 @@ const BezgotovinskiUkupno = () => {
                           />
                         </>
                       )}
-                     
+
                     </div>
                   </div>
                 </div> */}
                 <div className="section-box__right--full-h">
-                  <div class="price">
-                    <div class="form__box h-100">
+                  <div className="price">
+                    <div className="form__box h-100">
                       <div>
-                        <p class="txt-light">Ukupan iznos PDV-a</p>
+                        <p className="txt-light">Ukupan iznos PDV-a</p>
                       </div>
-                      <div class="heading-secondary mb-0">
+                      <div className="heading-secondary mb-0">
                         {formatirajCijenu(cijene.ukupnoPdv)}
                       </div>
                     </div>
                   </div>
-                  <div class="price">
-                    <div class="form__box h-100">
+                  <div className="price">
+                    <div className="form__box h-100">
                       <div>
-                        <p class="txt-light">Ukupna cijena bez PDV-a</p>
+                        <p className="txt-light">Ukupna cijena bez PDV-a</p>
                       </div>
-                      <div class="heading-secondary mb-0">
+                      <div className="heading-secondary mb-0">
                         {' '}
                         {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}
                       </div>
                     </div>
                   </div>
-                  <div class="price">
-                    <div class="form__box h-100">
+                  <div className="price">
+                    <div className="form__box h-100">
                       <div>
-                        <p class="txt-light">Ukupna cijena sa PDV-om</p>
+                        <p className="txt-light">Ukupna cijena sa PDV-om</p>
                       </div>
-                      <div class="heading-secondary mb-0">
+                      <div className="heading-secondary mb-0">
                         {' '}
                         {formatirajCijenu(cijene.ukupnaCijena)}
                       </div>

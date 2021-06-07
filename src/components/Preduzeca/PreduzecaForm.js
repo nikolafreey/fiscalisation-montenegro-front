@@ -292,7 +292,6 @@ const PreduzecaForm = () => {
                                   preduzece?.djelatnosti[0]?.naziv,
                               }
                             }
-                            //className="form__input"
                           />
                         </div>
                         <div className="form__group w-48 mob-w-100">
@@ -309,7 +308,6 @@ const PreduzecaForm = () => {
                                 label: preduzece?.kategorija?.naziv,
                               }
                             }
-                            //className="form__input"
                           />
                         </div>
                       </div>

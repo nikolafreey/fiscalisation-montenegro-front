@@ -571,3 +571,19 @@
 .nowrap {
   white-space: nowrap;
 }
+// border dark
+.bd{
+  &__bottom {
+    border-bottom: 1px solid #000;
+  }
+  &__top {
+    border-top: 1px solid #000;
+  }
+  &__all {
+    border: 1px solid #000;
+  }
+}
+// vertical-align: middle
+.vm{
+  vertical-align: middle;
+}

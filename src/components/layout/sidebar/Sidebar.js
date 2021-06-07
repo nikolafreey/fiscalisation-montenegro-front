@@ -29,20 +29,59 @@ import { ReactComponent as heroUgovori } from '../../../assets/icon/hero-ugovori
 import { ReactComponent as heroPodesavanja } from '../../../assets/icon/hero-podesavanja.svg';
 import { ReactComponent as heroPodrska } from '../../../assets/icon/hero-podrska.svg';
 import { ReactComponent as Logo } from '../../../assets/icon/company-logo/postFiscal.svg';
+import { useState, useEffect } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ handleMenuIsOpen }) => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const menuToggler = () => {
+    setMenuIsOpen(!menuIsOpen);
+    handleMenuIsOpen(!menuIsOpen);
+  };
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+});
+
+let handleMenuMobClose;
+  if(width <= 780){
+    handleMenuMobClose =() => {
+      setMenuIsOpen(false);
+      handleMenuIsOpen(false);
+    }
+  }
+
   return (
-    <div className="col-md-1 col-xl-3" id="sidebar">
+    <div
+      className={menuIsOpen ? 'col-xl-3 col-md-3' : 'col-md-1 col-xl-3'}
+      id="sidebar"
+    >
       <div className="logo dshow">
         <Logo />
       </div>
-      <div className="menu-icon">
+      <div
+        className={menuIsOpen ? 'menu-icon active' : 'menu-icon '}
+        onClick={menuToggler}
+      >
         <span className="line line-1"></span>
         <span className="line line-2"></span>
       </div>
-      <div className="sidebar">
+      <div className={menuIsOpen ? 'sidebar active' : 'sidebar'}>
         <ul className="items">
-          <SidebarLink ImageSource={heroHome} label="Pregled" to={HOME} />
+          <SidebarLink
+            ImageSource={heroHome}
+            label="Pregled"
+            to={HOME}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
+          />
           {/* <SidebarLink ImageSource={heroRazgovori} label="Razgovori" to={'#'} />
           <SidebarLink ImageSource={heroNovosti} label="Novosti" to={'#'} /> */}
         </ul>
@@ -52,6 +91,8 @@ const Sidebar = () => {
             ImageSource={heroRacuni}
             label="Računi"
             to={RACUNI.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink
             ImageSource={heroPredracuni}
@@ -67,6 +108,8 @@ const Sidebar = () => {
             ImageSource={heroStavke}
             label="Stavke"
             to={STAVKE.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
         </ul>
         <ul className="items">
@@ -75,6 +118,8 @@ const Sidebar = () => {
             ImageSource={heroPartneri}
             label="Partneri"
             to={PARTNERI.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink ImageSource={heroUgovori} label="Ugovori" to={'#'} /> */}
 
@@ -83,6 +128,8 @@ const Sidebar = () => {
             ImageSource={heroPreduzeca}
             label="Preduzeca"
             to={PREDUZECA.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink
             ImageSource={heroIzvjestaji}
@@ -104,11 +151,15 @@ const Sidebar = () => {
             ImageSource={heroModuli}
             label="Moduli"
             to={MODULI.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
           <SidebarLink
             ImageSource={heroPodesavanja}
             label="Podešavanja"
             to={PODESAVANJA.INDEX}
+            menuIsOpen={menuIsOpen}
+            onClick={handleMenuMobClose}
           />
           {/* <SidebarLink ImageSource={heroPodrska} label="Podrška" to={'#'} /> */}
         </ul>

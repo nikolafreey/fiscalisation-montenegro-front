@@ -43,7 +43,7 @@ export function* userLogin({ payload }) {
     yield call(authService.getCsrfCookie);
     const { data } = yield call(authService.login, payload);
     if (data === 'Neuspješna prijava!') {
-      toast.error('Greška Prilikom Logovanja: ' + data, toastSettings);
+      toast.error('Nije moguć ulazak: ' + data, toastSettings);
       return;
     }
     yield call(authService.setAuthenticatedStorage, true, data.data.token);

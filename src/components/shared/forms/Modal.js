@@ -29,6 +29,7 @@ const Modal = ({
   label,
   obavezno = false,
   showModal,
+  closeModal,
   handleDepositLoaded,
   ...props
 }) => {
@@ -50,7 +51,7 @@ const Modal = ({
         }
       })
       .catch((err) =>
-        toast.error('Greška kod učitavanja depozita!', toastSettings)
+        toast.error('Iznos depozita nije moguće učitati!', toastSettings)
       );
   }, []);
 
@@ -72,9 +73,10 @@ const Modal = ({
       })
       .catch((error) => {
         toast.error(
-          'Greška kod dodavanja depozita: ' + error.response.data.message,
+          'Nije moguće registrovati depozit: ' + error.response.data.message,
           toastSettings
         );
+        closeModal(false);
         setDepozitError(error);
       });
   };
@@ -82,32 +84,40 @@ const Modal = ({
   return ReactDOM.createPortal(
     <>
       {showModal && !depozitError && !depozitLoaded ? (
-        <div className="modal" id="modal">
+        <div className="modal open">
           <div className="modal__content">
             <div className="modal__header">
-              <span className="modal__close">&times;</span>
-              <h2 className="heading-secondary m-0">Dodaj Depozit</h2>
+              <span className="modal__close" onClick={() => closeModal(false)}>
+                &times;
+              </span>
+              <h2 className="heading-secondary m-0">Registracija Depozita</h2>
             </div>
-            <div className="modal__body">
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+              <div className="modal__body">
                 <input
                   autoFocus
                   type="number"
                   name="iznos_depozita"
+                  className="form__input"
                   onChange={(e) => {
                     setDepozit(e.target.value);
                   }}
+                  defaultValue="0.00"
                 />
-                <button type="submit" className="btn btn-primary">
-                  Sačuvaj Depozit
+              </div>
+              <div className="modal__footer">
+                <button type="submit" className="btn btn__primary">
+                  Registruj Depozit
                 </button>
-              </form>
-            </div>
-            {/* <div className="modal__footer">
-              <button onSubmit={handleSubmit} className="btn btn-primary">
-                Primarno
-              </button>
-            </div> */}
+                <button
+                    type="button"
+                    className="btn btn__link ml-m"
+                    onClick={()=>closeModal(false)}
+                  >
+                    Obustavi
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       ) : null}

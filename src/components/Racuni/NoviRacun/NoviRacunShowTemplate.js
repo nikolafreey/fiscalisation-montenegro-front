@@ -99,11 +99,13 @@ const NoviRacunShowTemplate = () => {
         <Link to={RACUNI.INDEX} className="back-link df">
           <LinkSvg /> <p>Povratak na Račune</p>
         </Link>
-        <div className="title jc-sb">
-          <div className="df jc-end" style={{ width: '100%' }}>
-            <button className="btn btn__secondary" onClick={handlePrint}>
+        <div className="title">
+          <h1 className="heading-primary">Račun {racun && racun.broj_racuna}</h1>
+
+          <div className="df jc-end" >
+            <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0" onClick={handlePrint}>
               <svg
-                className="icon icon__dark lg mr-xs"
+                className="icon icon__light lg mr-xs"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

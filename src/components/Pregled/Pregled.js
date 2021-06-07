@@ -65,11 +65,29 @@ const Pregled = () => {
   dateNow.setDate(1);
   dateNow.setMonth(dateNow.getMonth() - 1);
 
+  const dobarDan = (currentTime = new Date()) => {
+    const currentHour = currentTime.getHours()
+    const splitAfternoon = 12; // 24hr time to split the afternoon
+    const splitEvening = 18; // 24hr time to split the evening
+
+    if (currentHour >= splitAfternoon && currentHour <= splitEvening) {
+      // Between 12 PM and 6PM
+      return 'Dobar dan!';
+    } else if (currentHour >= splitEvening || (currentHour >= 0 && currentHour <= 5)) {
+      // Between 6PM and Midnight and Midnight to 5AM
+      return 'Dobro veče!';
+    }
+    // Between dawn and noon
+    return 'Dobro jutro!';
+  }
+
   return (
     <>
       <div className="dashboard">
         <div className="dashboard-title">
-          <h1 className="heading-primary mb-0">Dobar dan!</h1>
+          <h1 className="heading-primary mb-0">
+            {dobarDan()}
+          </h1>
         </div>
       </div>
       <div className="dashboard__subtitle">

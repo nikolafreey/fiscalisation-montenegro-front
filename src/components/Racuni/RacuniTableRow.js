@@ -136,7 +136,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       .then((data) => {
         dispatch(getRacuni());
         toast.success(
-          `Fiskalizacija računa broj: ${item.redni_broj} je uspješna!`,
+          `Fiskalizacija računa broj ${item.redni_broj} je uspjela!`,
           toastSettings
         );
       })
@@ -146,7 +146,7 @@ const RacuniTableRow = ({ item, racuni }) => {
           ? err.response.data.error
           : err.message;
         toast.error(
-          'Fiskalizacija računa nije uspješna! Poruka: ' + message,
+          'Fiskalizacija računa nije moguća: ' + message,
           toastSettings
         );
       });
@@ -155,6 +155,10 @@ const RacuniTableRow = ({ item, racuni }) => {
   const handleIzmjeni = (e) => {
     e.stopPropagation();
     history.push(`/racuni/bezgotovinski/edit/${item.id}`);
+  };
+  const handlePogledajA4 = (e) => {
+    e.stopPropagation();
+    history.push(`/racuni/bezgotovinski/show/${item.id}`);
   };
 
   const handleObrisi = (e) => {
@@ -210,7 +214,7 @@ const RacuniTableRow = ({ item, racuni }) => {
         </td>
       )}
       <td className="cl dshow-cell">
-        {currencyFormat(_item?.ukupna_cijena_bez_pdv) + '€'}
+        {currencyFormat(_item?.ukupna_cijena_bez_pdv_popust) + '€'}
       </td>
       <td className="cl dshow-cell">
         {currencyFormat(_item?.ukupan_iznos_pdv) + '€'}
@@ -236,13 +240,19 @@ const RacuniTableRow = ({ item, racuni }) => {
           <button className="btn btn__light-dd btn__xs">
             <IconLg />
             <div className="drop-down">
+              {_item.vrsta_racuna == 'gotovinski' && (
+                <Link onClick={handlePogledajA4}
+                >Pogledaj na A4</Link>
+              )}
+
               <Link
                 onClick={handleIzmjeni}
                 className={`${_item?.qr_url ? 'disabled' : ''}`}
               >
                 <Izmjeni />
-                Izmjeni
+                Izmijeni
               </Link>
+
               {!_item?.qr_url && (
                 <Link
                   onClick={handleFiskalizuj}

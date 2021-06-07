@@ -89,12 +89,12 @@ const Podesavanja = () => {
           boja: 'default',
         })
         .then((data) => {
-          toast.success('Uspješno sačuvana podešavanja!', toastSettings);
+          toast.success('Podešavanja su sačuvana!', toastSettings);
         })
         .catch((error) => {
           console.error('error', error);
           toast.error(
-            'Greška prilikom čuvanja podešavanja: ' + error,
+            'Nije moguće sačuvati podešavanja: ' + error,
             toastSettings
           );
         });
@@ -127,7 +127,7 @@ const Podesavanja = () => {
         .catch((error) => {
           console.error('error', error);
           toast.error(
-            'Greška prilikom dodavanja sertifikata: ' + error,
+            'Nije moguće dodati sertifikat: ' + error,
             toastSettings
           );
         });
@@ -150,12 +150,12 @@ const Podesavanja = () => {
           boja: 'default',
         })
         .then((data) =>
-          toast.success('Uspješno izmjenjena podešavanja!', toastSettings)
+          toast.success('Podešavanja su sačuvana!', toastSettings)
         )
         .catch((error) => {
           console.error('error', error);
           toast.error(
-            'Greška prilikom čuvanja podešavanja: ' + error,
+            'Nije moguće sačuvati podešavanja: ' + error,
             toastSettings
           );
         });
@@ -194,7 +194,7 @@ const Podesavanja = () => {
         )
         .catch((error) => {
           toast.error(
-            'Greška prilikom dodavanja sertifikata: ' + error,
+            'Nije moguće dodati sertifikate: ' + error,
             toastSettings
           );
         });
@@ -225,7 +225,7 @@ const Podesavanja = () => {
       .catch((error) => {
         console.error('error', error);
         toast.error(
-          'Greška prilikom čuvanja podešavanja: ' + error,
+          'Nije moguće sačuvati podešavanja: ' + error,
           toastSettings
         );
       });
@@ -893,7 +893,7 @@ const Podesavanja = () => {
                         style={{ display: 'inline-block' }}
                         className="tag tag__warning"
                       >
-                        Dostupno od 1. juna
+                        Uskoro dostupno
                       </div>
                     </div>
                     <p className="mb-10 txt-light">

@@ -218,7 +218,7 @@ const Stavke = () => {
             !usluge.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : robe.data.length === 0 && usluge.data.length === 0 ? (
-              <h2>{'Nema stavki u listi'}</h2>
+              <div className="msg-center"><p> {'Nema stavki u listi'}</p></div>
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />
             )}

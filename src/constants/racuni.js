@@ -13,7 +13,7 @@ export const TIPOVI_RACUNA = [
 
 export const TIPOVI_POPUSTA = [
   { value: 'procenat', label: 'Procenat %' },
-  { value: 'iznos', label: 'Iznos na jed. cijenu bez PDV' },
+  { value: 'iznos', label: 'Iznos na jed. cijenu sa PDV' },
 ];
 
 export const KOREKTIVNI_RACUN = [

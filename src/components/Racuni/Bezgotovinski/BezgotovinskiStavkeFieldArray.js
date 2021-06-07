@@ -392,7 +392,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
                           type="number"
-                          // readOnly
+                          readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
@@ -538,7 +538,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             label:
                               getPopustStavke(stavka).tip_popusta === 'procenat'
                                 ? 'Procenat %'
-                                : 'Iznos na jed. cijenu bez PDV',
+                                : 'Iznos na jed. cijenu sa PDV',
                           }}
                           onChangeExtra={(option) =>
                             handleChoosePopust(option, stavka, index)
