@@ -64,6 +64,10 @@ const Modal = ({
         iznos_depozit: depozit,
       })
       .then((data) => {
+        toast.success(
+          'Uspješno dodat depozit u iznosu: ' + data.data.iznos_depozit,
+          toastSettings
+        );
         setDepozitLoaded(data);
       })
       .catch((error) => {
