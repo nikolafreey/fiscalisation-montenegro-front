@@ -3,7 +3,7 @@ import $t from '../lang';
 
 export const UslugeSchema = Yup.object().shape({
   naziv: Yup.string()
-    .max(50, $t('validacija.unosDugacak'))
+    .max(191, $t('validacija.unosDugacak'))
     .required($t('uslugeValidation.naziv')),
   jedinica_mjere_id: Yup.number().required(
     $t('uslugeValidation.jedinicaMjere')

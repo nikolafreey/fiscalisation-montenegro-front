@@ -57,6 +57,8 @@ const UslugeForm = () => {
   const [radioChecked, setRadioChecked] = useState(
     usluga?.status === 0 ? true : false
   );
+  const [opis, setOpis] = useState();
+
   console.log('usluga', usluga);
 
   useEffect(() => {
@@ -314,11 +316,26 @@ const UslugeForm = () => {
                         />
                       </div>
                       <div className="form__group">
-                        <InputField
+                        <label className="form__label" htmlFor="">
+                          Opis - Nije Obavezno
+                        </label>
+                        <textarea
+                          name="opis"
+                          id="opis"
+                          cols="30"
+                          rows="6"
+                          className="form__textarea df"
+                          value={opis || values.opis}
+                          onChange={(event) => {
+                            setOpis(event.target.value);
+                            values.opis = event.target.value;
+                          }}
+                        ></textarea>
+                        {/* <InputField
                           name="opis"
                           className="form__input"
                           label={$t('usluge.opis')}
-                        />
+                        /> */}
                       </div>
                       <div className="df jc-sb mob-fd-column">
                         <div className="form__group w-48 mob-w-100">
