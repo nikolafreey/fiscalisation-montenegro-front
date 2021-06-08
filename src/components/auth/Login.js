@@ -23,8 +23,8 @@ const Login = () => {
       }}
       onSubmit={(values) => dispatch(loginUser(values))}
     >
-      <div className="login">
-        <div className="container">
+      <div className="login" style={{height: 'auto', padding: "40px 0"}}>
+        <div className="container" >
           <div className="row justify-content-center">
             <div className="col-xl-4 col-md-6 col-12">
               <div className="login__logo">
@@ -195,8 +195,18 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
+                <p className="txt-center  mb-12 mt-20">
+                  <strong>Tehnička podrška: <a href="tel:+38267664404">067 66 44 04</a><br /></strong>
+                  Ovih dana bilježimo izuzetno veliki broj poziva na dnevnom nivou pa Vas molimo za stpljenje ukoliko u datom momentu nijeste u mogućnosti da razgovarate sa osobama iz tehničke podrške. Ukoliko se radi o hitnoj situaciji pošaljite email na <a href="mailto:info@restartit.me">info@restartit.me</a>.
+                </p>
                 <p className="txt-center  mb-12">
-                  Tehnička podrška: <a href="tel:+38267664404">067 66 44 04</a>
+                  <strong>Uputstvo</strong><br />
+                  Prije korišćenja aplikacije PostFiskal potrebno je da se registrujete na SEP portalu Uprave prihoda i carina i dobijene kodove pošaljete na našu email adresu. Uputstvo za instalaciju sertifikata i registraciju na SEP portalu možete preuzeti sa linkova:<br />
+                  <a href="https://api.postfiskal.me/Uputstvo%20za%20instalaciju%20certifikata%20dobijenom%20na%20CD-u.pdf">Uputstvo za instalaciju dig. sertifikata</a><br />
+                  <a href="https://api.postfiskal.me/Korisni%C4%8Dko%20uputstvo%20za%20prijavu%20i%20registraciju%20na%20SEP%20portal.pdf">Uputstvo za registraciju na SEP portalu</a>
+                </p>
+                <p className="txt-center  mb-12">Uputstvo za korišćenje softvera možete preuzeti sa linka:<br />
+                <a href="https://api.postfiskal.me/Uputstvo%20za%20kori%C5%A1%C4%87enje%20aplikacije%20PostFiskal.pdf">Uputstvo za korišćenje PostFiskal softvera</a>
                 </p>
               </div>
             </div>
