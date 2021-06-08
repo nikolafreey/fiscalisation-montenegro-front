@@ -318,15 +318,15 @@ const Podesavanja = () => {
                       )}
                     <p className="w-50">
                       {user?.preduzeca[0]?.kratki_naziv +
-                        ' - ' +
-                        user?.preduzeca[0]?.opis}
+                        ' ' +
+                        user?.preduzeca[0]?.oblik_preduzeca}
                     </p>
                     <div className="mb-20">
                       <p className="txt-light">
                         {user?.preduzeca[0]?.djelatnost}
                       </p>
                       <p className="txt-light">
-                        {user?.preduzeca[0]?.adadresa}
+                        {user?.preduzeca[0]?.adresa}
                       </p>
                       <p className="txt-light">
                         {user?.preduzeca[0]?.grad +
