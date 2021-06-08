@@ -55,7 +55,7 @@ export function* userLogin({ payload }) {
   } catch (error) {
     if (error?.response?.status === 400) {
       toast.error(
-        'Greška prilikom logovanja: ' + error?.response?.data,
+        'Obavještenje: ' + error?.response?.data,
         toastSettings
       );
       yield put(setLoginError(error?.response?.data));
