@@ -352,9 +352,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         rows="8"
                         className="form__textarea df"
                         placeholder="Opis usluge"
-                        value={stavka?.opis || ''}
-                        onChange={(event) => {
-                          debounce((callback) => callback(), 200);
+                        defaultValue={stavka?.opis || ''}
+                        onBlur={(event) => {
+                          // debounce((callback) => callback(), 200);
                           setFieldValue(
                             `stavke.${index}.opis`,
                             event.target.value
@@ -478,6 +478,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Stopa PDV-a
                         </label>
                         <DropDown
+                          isDisabled
                           key={index}
                           id={index}
                           name={`stavke.${index}.porez_id`}

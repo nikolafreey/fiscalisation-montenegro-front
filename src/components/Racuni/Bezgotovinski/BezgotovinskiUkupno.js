@@ -102,8 +102,8 @@ const BezgotovinskiUkupno = () => {
                     cols="30"
                     rows="6"
                     className="form__textarea df"
-                    value={values.opis}
-                    onChange={(event) =>
+                    defaultValue={values.opis}
+                    onBlur={(event) =>
                       setFieldValue('opis', event.target.value)
                     }
                   ></textarea>
