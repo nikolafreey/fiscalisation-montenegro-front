@@ -21,6 +21,7 @@ import { robaSelector } from '../../../store/selectors/RobeSelector';
 import { getRobe } from '../../../store/actions/RobeActions';
 import { getUsluge } from '../../../store/actions/UslugeActions';
 import { push } from 'connected-react-router';
+import { debounce } from 'lodash';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -352,12 +353,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         className="form__textarea df"
                         placeholder="Opis usluge"
                         value={stavka?.opis || ''}
-                        onChange={(event) =>
+                        onChange={(event) => {
+                          debounce((callback) => callback(), 200);
                           setFieldValue(
                             `stavke.${index}.opis`,
                             event.target.value
-                          )
-                        }
+                          );
+                        }}
                       ></textarea>
                     </div>
                   </div>
