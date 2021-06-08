@@ -53,6 +53,13 @@ export function* userLogin({ payload }) {
     yield put(push(requestedRoute || PREGLED.INDEX));
     yield put(setRequestedRoute(null));
   } catch (error) {
+    if (error?.response?.status === 400) {
+      toast.error(
+        'Greška prilikom logovanja: ' + error?.response?.data,
+        toastSettings
+      );
+      yield put(setLoginError(error?.response?.data));
+    }
     if (error?.response?.status === 422) {
       yield put(setLoginError(error?.response?.data));
     } else {
