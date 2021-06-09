@@ -393,12 +393,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         {/* TODO: izgaseno edit Cijena dok se ne rijesi slanje izmijenjene cijene */}
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
-                          type="number"
+                          type="text"
                           readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
                           value={
+                            formatirajCijenu(getUkupnaCijenaStavke(stavka)) ||
                             stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                             stavka?.ukupna_cijena
                           }
