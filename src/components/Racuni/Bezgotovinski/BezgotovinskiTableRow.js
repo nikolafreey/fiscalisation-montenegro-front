@@ -10,6 +10,7 @@ const BezgotovinskiTableRow = ({ item }) => {
   const calcIznos = ({ jedinicna_cijena_bez_pdv, kolicina }) => {
     return (jedinicna_cijena_bez_pdv * kolicina).toFixed(2).replace('.', ',');
   };
+
   return (
     <tr>
       <td className="cl">
@@ -17,14 +18,21 @@ const BezgotovinskiTableRow = ({ item }) => {
         {item && item.opis ? item.opis : ''}
       </td>
       <td className="cl white-space-pre">
+         {item && item.jedinicna_cijena_bez_pdv
+          // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
+          ? Number(item.jedinicna_cijena_bez_pdv).toString().replace('.', ',')
+          : ''} <span>Bez PDV</span><br />
         {item && item.jedinicna_cijena_bez_pdv
           // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
-          ? Number(item.jedinicna_cijena_bez_pdv).toString()
+          ? Number(item.cijena_sa_pdv).toString().replace('.', ',')
+          : ''} <span>Sa PDV</span>
+      </td>
+      {/* <td className="cl white-space-pre">
+        {item && item.jedinicna_cijena_bez_pdv
+          // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
+          ? Number(item.cijena_sa_pdv).toString()
           : ''}
-      </td>
-      <td className="cl white-space-pre">
-        {item && item.kolicina ?formatirajCijenuBezE(Number(item.kolicina))+' ' + item.jedinica_naziv : ''}
-      </td>
+      </td> */}
       {/* <td className="cl">{item && item.pdv_iznos ?formatirajCijenu(item.pdv_iznos*item.kolicina ): ''}</td> */}
       {/* {item && item.popust_procenat && Number(item.popust_procenat)>0 && ( */}
       <td className="cl white-space-pre">
@@ -40,9 +48,17 @@ const BezgotovinskiTableRow = ({ item }) => {
       </td>
       {/* )} */}
 
-      <td className="cl">
-        <p className="cd fw-500 nowrap">{item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''}</p>
+      <td className="cl white-space-pre">
+        {item && item.kolicina ? Number(item.kolicina).toString() + ' ' + item.jedinica_naziv : ''}
       </td>
+
+      <td className="cl">
+        <p className="cd fw-500 nowrap"><span>Bez PDV</span> {item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''} <br /></p>
+        <p className="cd fw-500 nowrap"><span>Sa PDV</span> {item ? formatirajCijenu(item.cijena_sa_pdv_popust*item.kolicina): ''} </p>
+      </td>
+      {/* <td className="cl">
+        <p className="cd fw-500 nowrap">{item ? formatirajCijenu(item.cijena_sa_pdv_popust*item.kolicina): ''}</p>
+      </td> */}
     </tr>
   );
 };

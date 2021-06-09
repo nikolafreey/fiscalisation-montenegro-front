@@ -169,9 +169,11 @@ const RacuniTableRow = ({ item, racuni }) => {
   const vrstaRacuna = (racun) => {
     let value;
     if (racun === 'gotovinski' || racun === 'GOTOVINSKI') {
-      value = racun.substring(0, 3) + '.';
+      // value = racun.substring(0, 3) + '.';
+      value = 'g';
     } else if (racun === 'bezgotovinski' || racun === 'BEZGOTOVINSKI') {
-      value = racun.substring(0, 6) + '.';
+      // value = racun.substring(0, 6) + '.';
+      value = 'b';
     } else {
       value = racun;
     }
@@ -183,7 +185,8 @@ const RacuniTableRow = ({ item, racuni }) => {
       <td className="cl">
         <div className="inner-td-wrapper lowercase">
           {_item?.qr_url && <Success />}
-          {vrstaRacuna(_item?.vrsta_racuna)}
+          &nbsp;
+          {<span title={_item.vrsta_racuna} className="tag tag__neutral">{vrstaRacuna(_item?.vrsta_racuna)}</span>}
         </div>
       </td>
       <td className="cl">{_item?.redni_broj}</td>

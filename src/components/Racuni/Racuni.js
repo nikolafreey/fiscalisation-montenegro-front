@@ -313,7 +313,7 @@ const Racuni = () => {
             </div>
             <ul className="box-wrapper">
               <li className="box visible ml-0">
-                <p className="txt-light">Ukupan Iznos na prikazanim</p>
+                <p className="txt-light">Ukupan Iznos na prikazanim računima</p>
                 <h3 className="heading-tertiary">
                   {racuni?.ukupna_cijena !== undefined
                     ? racuni?.ukupna_cijena?.toFixed(2).replace('.', ',') + '€'

@@ -43,28 +43,28 @@ class BezgotovinskiShowTemplate extends React.Component {
           const prvaTri = a.substring(0, 3);
 
           if (prvaTri.includes('550')) {
-            // return <p>{'Podgorička: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'Podgorička: ' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('535')) {
-            // return <p>{'Prva: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'Prva Banka CG: ' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('555')) {
-            // return <p>{'Addiko: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'Addiko: ' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('510')) {
-            // return <p>{'CKB: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'CKB: ' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('530')) {
-            // return <p>{'Montenegro AD' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'Montenegro AD' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('540')) {
-            // return <p>{'ERSTE: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'ERSTE: ' + a}</p>;
+            // return <p>{a}</p>;
           } else if (prvaTri.includes('520')) {
-            // return <p>{'Hipotekarna: ' + a}</p>;
-            return <p>{a}</p>;
+            return <p>{'Hipotekarna: ' + a}</p>;
+            // return <p>{a}</p>;
           }
-          return <p className="">{a}</p>;
+          return <p>{a}</p>;
         }
       });
     };
@@ -130,7 +130,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                 <div className="status" style={{ display: 'none' }}>
                   {<span className={bojaKlasa}>{itemStatus}</span>}
                 </div>
-                <div className="invoice__header--logo">
+                {/* <div className="invoice__header--logo">
                   {preduzece && preduzece.logotip ? (
                     <img
                       src={
@@ -144,12 +144,29 @@ class BezgotovinskiShowTemplate extends React.Component {
                   ) : (
                     ''
                   )}
-                </div>
+                </div> */}
                 <div className="wrapper-100">
+                  {preduzece && preduzece.logotip ? (
+                  <div className="col-md-4">
+                    <p className="">
+                      <img
+                        src={
+                          preduzece && preduzece.logotip
+                            ? "https://testapi.postfiskal.me/logotipi/" + preduzece.logotip
+                            : noLogo
+                        }
+                        alt="logo"
+                        style={{ width: 200, maxHeight: 100 }}
+                      />
+                    </p>
+                  </div>
+                  ) : (
+                      ''
+                    )}
                   <div className="article-33">
                     <p className="">
                       {preduzece && preduzece.kratki_naziv
-                        ? preduzece.kratki_naziv
+                        ? preduzece.kratki_naziv + ' ' + preduzece.oblik_preduzeca
                         : ''}
                     </p>
                     <p className="">
@@ -160,8 +177,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                     <p className="">
                       {preduzece && preduzece.opis
                         ? preduzece.opis
-                        : opis
-                        ? opis
                         : ''}
                     </p>
                     <p className="">
@@ -171,6 +186,16 @@ class BezgotovinskiShowTemplate extends React.Component {
                       {preduzece && preduzece.grad ? preduzece.grad : ''},
                       &nbsp;
                       {preduzece && preduzece.drzava ? preduzece.drzava : ''}
+                    </p>
+                    <p className="txt-light">
+                      {preduzece && preduzece.telefon ? preduzece.telefon : ''}, &nbsp;
+                      {preduzece && preduzece.fax ? preduzece.fax : ''}
+                    </p>
+                    <p className="txt-light">
+                      {preduzece && preduzece.email ? preduzece.email : ''} &nbsp;
+                    </p>
+                    <p className="txt-light">
+                      {preduzece && preduzece.website ? preduzece.website : ''} &nbsp;
                     </p>
                   </div>
                   <div className="article-33">
@@ -205,10 +230,13 @@ class BezgotovinskiShowTemplate extends React.Component {
                           : ''}
                       </p>
                     </div>
+                    {/* {preduzece && preduzece.logotip ? ( */}
+                      <p className="txt-right">{ziroRacuni()}</p>
+                    {/* ) : ''} */}
                   </div>
-                  <div className="article-33">
+                  {/* <div className="article-33">
                     <div className="text-right">{ziroRacuni()}</div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="wrapper-100 mt-25">
@@ -351,22 +379,22 @@ class BezgotovinskiShowTemplate extends React.Component {
                     </th>
                     <th>
                       <p className="heading-quaternary nowrap">
-                        Jed. c. bez PDV
+                        Cijena
                       </p>
                     </th>
                     <th>
-                      <p className="heading-quaternary">Količina</p>
+                      {/* {ukupniPopust > 0 && ( */}
+                        <p className="heading-quaternary">Popust sa PDV-om</p>
+                      {/* )} */}
                     </th>
                     <th>
-                      {ukupniPopust > 0 && (
-                        <p className="heading-quaternary">Popust sa PDV-om</p>
-                      )}
+                      <p className="heading-quaternary">Količina</p>
                     </th>
                     {/* <th>
                       <p className="heading-quaternary">PDV</p>
                     </th> */}
                     <th>
-                      <p className="heading-quaternary">Ukupno bez PDV-a</p>
+                      <p className="heading-quaternary">Ukupno</p>
                     </th>
                   </tr>
                 </thead>
@@ -389,7 +417,11 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="fw-500">Bez PDV-a:</p>
 
                       {/* <p className="fw-500">Ukupno bez popusta:</p> */}
-                      {ukupniPopust > 0 && <p className="fw-500">Popust sa PDV-om:</p>}
+                      {Number(ukupniPopust) > 0 && (
+                      <p className="fw-500">
+                        {Number(ukupniPopust) > 0 > 0 && 'Popust sa PDV-om:'}
+                      </p>
+                      )}
                       <p className="fw-500">PDV:</p>
                       <p className="fw-500">Total:</p>
                       {/* <p className="fw-500">PDV 21%:</p>
@@ -450,7 +482,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                   <div className="wrapper-20">&nbsp;</div>
                   <div className="wrapper-40">
-                    <p>Račun Preuzeo<br />&nbsp;</p>
+                    <p>Račun Preuzeo:<br />&nbsp;</p>
                     <hr className="mt-50 bd__bottom" />
                   </div>
                 </div>
