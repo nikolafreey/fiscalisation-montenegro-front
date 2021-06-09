@@ -325,8 +325,8 @@ const UslugeForm = () => {
                           cols="30"
                           rows="6"
                           className="form__textarea df"
-                          defaultValue={opis || values.opis}
-                          onBlur={(event) => {
+                          value={opis || values.opis}
+                          onChange={(event) => {
                             setOpis(event.target.value);
                             values.opis = event.target.value;
                           }}
