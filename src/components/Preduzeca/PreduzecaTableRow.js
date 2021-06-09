@@ -13,8 +13,8 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
   const handleAddPartner = () => {
     dispatch(storePartner({ preduzece_tabela_id: item.id }));
     dispatch(getPreduzeca());
+    dispatch(getPartneri());
   };
-
 
   return (
     <tr
