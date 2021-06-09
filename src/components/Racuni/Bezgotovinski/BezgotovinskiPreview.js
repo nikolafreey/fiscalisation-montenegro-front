@@ -93,26 +93,26 @@ const BezgotovinskiPreview = () => {
         const prvaTri = a.substring(0, 3);
 
         if (prvaTri.includes('550')) {
-          // return <p>{'Podgorička: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'Podgorička: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('535')) {
-          // return <p>{'Prva: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'Prva Banka CG: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('555')) {
-          // return <p>{'Addiko: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'Addiko: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('510')) {
-          // return <p>{'CKB: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'CKB: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('530')) {
-          // return <p>{'Montenegro AD' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'Montenegro AD' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('540')) {
-          // return <p>{'ERSTE: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'ERSTE: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('520')) {
-          // return <p>{'Hipotekarna: ' + a}</p>;
-          return <p>{a}</p>;
+          return <p>{'Hipotekarna: ' + a}</p>;
+          // return <p>{a}</p>;
         }
         return <p>{a}</p>;
       }
@@ -364,12 +364,12 @@ const BezgotovinskiPreview = () => {
         <>
           <div className="invoice" style={{ width: '100%' }}>
             <div className="invoice__header">
-              <div className="invoice__header--logo">
+              {/* <div className="invoice__header--logo">
                 {preduzece && preduzece.logotip ? (
                   <img
                     src={
                       preduzece && preduzece.logotip
-                        ? preduzece.logotip
+                        ? "https://testapi.postfiskal.me/logotipi/" + preduzece.logotip
                         : noLogo
                     }
                     alt="logo"
@@ -378,12 +378,29 @@ const BezgotovinskiPreview = () => {
                 ) : (
                   ''
                 )}
-              </div>
+              </div> */}
               <div className="row">
+                {preduzece && preduzece.logotip ? (
+                <div className="col-md-4">
+                  <p className="">
+                    <img
+                      src={
+                        preduzece && preduzece.logotip
+                          ? "https://testapi.postfiskal.me/logotipi/" + preduzece.logotip
+                          : noLogo
+                      }
+                      alt="logo"
+                      style={{ width: 200, maxHeight: 100 }}
+                    />
+                  </p>
+                </div>
+                ) : (
+                    ''
+                  )}
                 <div className="col-md-4">
                   <p className="txt-light">
                     {preduzece && preduzece.kratki_naziv
-                      ? preduzece.kratki_naziv
+                      ? preduzece.kratki_naziv + ' ' + preduzece.oblik_preduzeca
                       : ''}
                   </p>
                   <p className="txt-light">
@@ -394,8 +411,6 @@ const BezgotovinskiPreview = () => {
                   <p className="txt-light">
                     {preduzece && preduzece.opis
                       ? preduzece.opis
-                      : opis
-                      ? opis
                       : ''}
                   </p>
                   <p className="txt-light">
@@ -404,6 +419,16 @@ const BezgotovinskiPreview = () => {
                   <p className="txt-light">
                     {preduzece && preduzece.grad ? preduzece.grad : ''}, &nbsp;
                     {preduzece && preduzece.drzava ? preduzece.drzava : ''}
+                  </p>
+                  <p className="txt-light">
+                    {preduzece && preduzece.telefon ? preduzece.telefon : ''}, &nbsp;
+                    {preduzece && preduzece.fax ? preduzece.fax : ''}
+                  </p>
+                  <p className="txt-light">
+                    {preduzece && preduzece.email ? preduzece.email : ''} &nbsp;
+                  </p>
+                  <p className="txt-light">
+                    {preduzece && preduzece.website ? preduzece.website : ''} &nbsp;
                   </p>
                 </div>
                 <div className="col-md-4">
@@ -439,10 +464,15 @@ const BezgotovinskiPreview = () => {
                       </p>
                     </div>
                   </div>
+                  {/* {preduzece && preduzece.logotip ? ( */}
+                    <p className="txt-right">{ziroRacuni()}</p>
+                  {/* ) : ''} */}
                 </div>
-                <div className="col-md-4">
+                {/* {preduzece && !preduzece.logotip ? ( */}
+                {/* <div className="col-md-4">
                   <p className="txt-right">{ziroRacuni()}</p>
-                </div>
+                </div> */}
+                {/* ) : ''} */}
               </div>
 
               <div className="mt-50">
@@ -591,26 +621,36 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">Opis</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary">
-                        Jed. cijena bez pdv
+                      <span className="heading-quaternary nowrap">
+                        Cijena
                       </span>
                     </th>
-                    <th>
-                      <span className="heading-quaternary">Količina</span>
-                    </th>
+                    {/* <th>
+                      <span className="heading-quaternary nowrap">
+                        sa pdv
+                      </span>
+                    </th> */}
                     {/* <th>
                       <span className="heading-quaternary">PDV</span>
                     </th> */}
                     <th>
-                    {Number(popust_ukupno) > 0 && (
+                    {/* {Number(popust_ukupno) > 0 && ( */}
                         <span className="heading-quaternary">Popust sa PDV-om</span>
-                    )}
+                    {/* )} */}
+                    </th>
+                    <th>
+                      <span className="heading-quaternary">Količina</span>
                     </th>
                     <th>
                       <span className="heading-quaternary nowrap">
-                        Ukupno bez PDV-a{' '}
+                        Ukupno{' '}
                       </span>
                     </th>
+                    {/* <th>
+                      <span className="heading-quaternary nowrap">
+                        Ukupno sa PDV-om{' '}
+                      </span>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -641,10 +681,12 @@ const BezgotovinskiPreview = () => {
                       {/* <p className="fw-500">
                         {ukupnoBezPdv && 'Ukupno bez popusta:'}
                       </p> */}
+                      {Number(popust_ukupno) > 0 && (
                       <p className="fw-500">
                         {Number(popust_ukupno) > 0 > 0 && 'Popust sa PDV-om:'}
                       </p>
-                      <p className="fw-500">{ukupniPdv > 0 && 'PDV:'}</p>
+                      )}
+                      <p className="fw-500">{ukupan_iznos_pdv > 0 && 'PDV:'}</p>
                       <p className="fw-500">
                         {ukupnoSaPdvIpopusta && 'Total:'}
                       </p>
@@ -741,7 +783,7 @@ const BezgotovinskiPreview = () => {
                   <hr className="mt-50 bd__bottom" />
                 </div>
                 <div className="col-md-5 offset-md-2">
-                  <p>Račun Preuzeo</p>
+                  <p>Račun Preuzeo:</p>
                   <hr className="mt-50 bd__bottom" />
                 </div>
               </div>
