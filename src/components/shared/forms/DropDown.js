@@ -63,8 +63,7 @@ const DropDown = React.memo(
         })
         .catch((err) => {
           toast.error(
-            'Proizvođač sa tim nazivom već postoji! Unesite drugi naziv' +
-              err,
+            'Proizvođač sa tim nazivom već postoji! Unesite drugi naziv' + err,
             toastSettings
           );
         });
@@ -159,10 +158,10 @@ const DropDown = React.memo(
           isValid={isInitialValid}
           {...props}
         />
-        {blurred && meta.error ? (
+        {meta.error ? <div className="error">{meta.error}</div> : null}
+        {/* {blurred && meta.error ? (
           <div className="error">{meta.error}</div>
-        ) : null}
-        {/* {!!error && <ErrorMessage>{error}</ErrorMessage>} */}
+        ) : null} */}
       </React.Fragment>
     );
   }

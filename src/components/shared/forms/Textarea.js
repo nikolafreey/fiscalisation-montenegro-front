@@ -7,7 +7,7 @@ const Textarea = (props) => {
   return (
     <div className="form-control">
       <label className="form__label" htmlFor={name}>
-        {label}
+        {label} <span className="txt-light">- Nije Obavezno</span>
       </label>
       <Field as="textarea" id={name} name={name} {...rest} />
       <ErrorMessage name={name} component={TextError} />

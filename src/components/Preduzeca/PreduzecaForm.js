@@ -74,6 +74,44 @@ const PreduzecaForm = () => {
   }, [dispatch, params]);
 
   const [pdvObveznikChecked, setPdvObveznikChecked] = useState(true);
+  const [logotipFile, setLogotipFile] = useState();
+  const [base64URL, setbase64URL] = useState('');
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let fileInfo;
+      let baseURL = '';
+
+      let reader = new FileReader();
+
+      //Convert file to base64 string
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        console.log('reader', reader);
+        baseURL = reader.result;
+        console.log('baseURL: ', baseURL);
+        resolve(baseURL);
+      };
+      console.log('fileInfo', fileInfo);
+    });
+  };
+
+  const handleLogotipInputChange = (e) => {
+    console.log('e', e);
+    setLogotipFile(e.target.files[0]);
+
+    getBase64(e.target.files[0])
+      .then((result) => {
+        logotipFile['base64'] = result;
+        console.log('File is', logotipFile);
+        setbase64URL(result);
+        setLogotipFile(logotipFile);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
+  };
 
   const handleSubmit = (values, initialValues) => {
     if (params.id) {
@@ -81,6 +119,7 @@ const PreduzecaForm = () => {
         updatePreduzece({
           id: params.id,
           ...values,
+          logotip: logotipFile.base64,
           status: values.status === 1 ? true : false,
           privatnost: values.privatnost === 1 ? true : false,
           pdv_obveznik: pdvObveznikChecked,
@@ -91,6 +130,7 @@ const PreduzecaForm = () => {
       dispatch(
         storePreduzece({
           ...values,
+          logotip: logotipFile.base64,
           status: values.status === 'Aktivan' ? true : false,
           privatnost: values.privatnost === 'Javan' ? true : false,
           pdv_obveznik: pdvObveznikChecked,
@@ -135,7 +175,6 @@ const PreduzecaForm = () => {
         telefon_facetime: false,
         pib: '',
         pdv: '',
-        djelatnost_id: 1,
         kontakt_viber: false,
         kontakt_whatsapp: false,
         kontakt_facetime: false,
@@ -158,6 +197,8 @@ const PreduzecaForm = () => {
       onSubmit={handleSubmit}
       validationSchema={PreduzecaSchema}
       enableReinitialize
+      validateOnBlur={true}
+      validateOnChange={true}
     >
       {({ values, dirty, isSubmitting, isValid }) => (
         <div className="screen-content">
@@ -314,14 +355,14 @@ const PreduzecaForm = () => {
                       <Textarea
                         control="text"
                         name="opis"
-                        label={$t('preduzeca.opis') + ' - Nije Obavezno'}
+                        label={$t('preduzeca.opis')}
                         cols="30"
                         rows="5"
                         className="form__input h-auto"
                       />
                       {/* TODO:VRATITI LOGOTIP UPLOAD */}
                       {/* <div className="form__group form__area mb-0">
-                        <InputField
+                        <input
                           name="logotip"
                           label={$t('preduzeca.logotip')}
                           placeholder=""
@@ -339,6 +380,26 @@ const PreduzecaForm = () => {
                           </div>
                         </div>
                       </div> */}
+                      <div className="form__group w-48 mob-w-100">
+                        <label className="form__label" htmlFor="d-signature">
+                          Logotip
+                          <span className="txt-light"> - Nije Obavezno</span>
+                        </label>
+                        <span className="form__file">
+                          <input
+                            type="file"
+                            name="logotip"
+                            className="form__input"
+                            id="logotip"
+                            // onChange={(e) => {
+                            //   setLogotipFile(e.target.files[0]);
+                            // }}
+                            onChange={(e) => {
+                              handleLogotipInputChange(e);
+                            }}
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
