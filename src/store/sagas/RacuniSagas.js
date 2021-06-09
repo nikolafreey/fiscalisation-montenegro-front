@@ -92,6 +92,7 @@ export function* bezgotovinskiRacunStore({ payload }) {
       yield put(
         setGlobalError('Račun je sačuvan ali Fiskalizacija nije moguća!')
       );
+      yield put(getRacuni());
       return;
     }
     yield put(setGlobalError(error.response.data.error));

@@ -116,9 +116,12 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
-    dispatch(storeBezgotovinskiRacun(noviRacun));
-    dispatch(getRacuni());
-    history.push(RACUNI.INDEX);
+
+    if (values.partner_id) {
+      dispatch(storeBezgotovinskiRacun(noviRacun));
+      dispatch(getRacuni());
+      history.push(RACUNI.INDEX);
+    }
   };
 
   // const {
@@ -211,10 +214,8 @@ const Bezgotovinski = () => {
                 <BezgotovinskiStatusPodsjetnici />
                 <div className="form__footer">
                   <button
-                    onClick={() => {
-                      // dispatch(setRacun({}));
-                      handleSubmit(values);
-                    }}
+                    disabled={!values.partner_id}
+                    type="submit"
                     className="btn btn__primary"
                   >
                     Sačuvaj i Fiskalizuj
@@ -236,6 +237,11 @@ const Bezgotovinski = () => {
                   >
                     <Link to={RACUNI.INDEX}>Obustavi</Link>
                   </button>
+                  {!values.partner_id && (
+                    <p className="error" style={{ marginLeft: '100px' }}>
+                      Kupac nije dodat!
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
