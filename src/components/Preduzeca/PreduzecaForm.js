@@ -99,14 +99,15 @@ const PreduzecaForm = () => {
 
   const handleLogotipInputChange = (e) => {
     console.log('e', e);
+    let tempFile = e.target.files[0];
     setLogotipFile(e.target.files[0]);
 
     getBase64(e.target.files[0])
       .then((result) => {
-        logotipFile['base64'] = result;
+        tempFile['base64'] = result;
         console.log('File is', logotipFile);
         setbase64URL(result);
-        setLogotipFile(logotipFile);
+        setLogotipFile(tempFile);
       })
       .catch((err) => {
         console.log('err', err);
@@ -318,6 +319,7 @@ const PreduzecaForm = () => {
                           <DropDown
                             name="djelatnost_id"
                             label={$t('preduzeca.djelatnost')}
+                            invalid={!isValid}
                             loadOptions={
                               djelatnostiService.getDjelatnostiDropdown
                             }
@@ -339,6 +341,7 @@ const PreduzecaForm = () => {
                           <DropDown
                             name="kategorija_id"
                             label={$t('preduzeca.kategorija')}
+                            invalid={!isValid}
                             loadOptions={
                               kategorijeService.getKategorijeDropdown
                             }

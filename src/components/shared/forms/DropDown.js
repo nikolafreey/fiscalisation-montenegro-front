@@ -30,6 +30,7 @@ const DropDown = React.memo(
     defaultOptions = true,
     loadOptions,
     defaultValue,
+    invalid,
     ...props
   }) => {
     const [selectedLabel, setSelectedLabel] = useState(null);
@@ -158,10 +159,12 @@ const DropDown = React.memo(
           isValid={isInitialValid}
           {...props}
         />
-        {meta.error ? <div className="error">{meta.error}</div> : null}
-        {/* {blurred && meta.error ? (
+        {!blurred && invalid && meta.error ? (
           <div className="error">{meta.error}</div>
-        ) : null} */}
+        ) : null}
+        {blurred && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null}
       </React.Fragment>
     );
   }
