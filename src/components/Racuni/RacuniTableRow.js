@@ -4,6 +4,7 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 // import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { ReactComponent as Fiskalizuj } from '../../assets/icon/checkmark.svg';
+import { ReactComponent as Delete } from '../../assets/icon/delete.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   storeRacun,
@@ -70,6 +71,7 @@ const RacuniTableRow = ({ item, racuni }) => {
     { klasa: 'tag tag__success', naziv: 'Plaćen' },
     { klasa: 'tag tag__danger', naziv: 'Nenaplativ' },
     { klasa: 'tag tag__warning', naziv: 'Nije Plaćen' },
+    { klasa: 'tag tag__danger', naziv: 'Storniran' },
     { klasa: 'tag tag__neutral', naziv: 'Privremeni' },
   ];
 
@@ -79,6 +81,10 @@ const RacuniTableRow = ({ item, racuni }) => {
     case 'nijeplacen':
       itemStatus = 'Nije Plaćen';
       bojaKlasa = 'tag tag__warning';
+      break;
+    case 'storniran':
+      itemStatus = 'Storniran';
+      bojaKlasa = 'tag tag__danger';
       break;
     case 'placen':
       itemStatus = 'Plaćen';
@@ -126,6 +132,32 @@ const RacuniTableRow = ({ item, racuni }) => {
       history.push(`/racuni/show/${item.id}`);
     } else {
       history.push(`/racuni/bezgotovinski/show/${item.id}`);
+    }
+  };
+
+  const handleStorniraj = (e) => {
+    e.stopPropagation();
+
+    if (_item.status !== 'storniran') {
+      racuniService
+        .stornirajRacun(item.id)
+        .then(() => {
+          toast.success(
+            `Storniranje računa broj ${item.redni_broj} je uspjelo!`,
+            toastSettings
+          );
+          dispatch(getRacuni());
+        })
+        .catch((err) => {
+          dispatch(getRacuni());
+          let message = err?.response?.data?.error
+            ? err.response.data.error
+            : err.message;
+          toast.error(
+            'Storniranje računa nije moguća: ' + message,
+            toastSettings
+          );
+        });
     }
   };
 
@@ -186,7 +218,11 @@ const RacuniTableRow = ({ item, racuni }) => {
         <div className="inner-td-wrapper lowercase">
           {_item?.qr_url && <Success />}
           &nbsp;
-          {<span title={_item.vrsta_racuna} className="tag tag__neutral">{vrstaRacuna(_item?.vrsta_racuna)}</span>}
+          {
+            <span title={_item.vrsta_racuna} className="tag tag__neutral">
+              {vrstaRacuna(_item?.vrsta_racuna)}
+            </span>
+          }
         </div>
       </td>
       <td className="cl">{_item?.redni_broj}</td>
@@ -244,8 +280,7 @@ const RacuniTableRow = ({ item, racuni }) => {
             <IconLg />
             <div className="drop-down">
               {_item.vrsta_racuna == 'gotovinski' && (
-                <Link onClick={handlePogledajA4}
-                >Pogledaj na A4</Link>
+                <Link onClick={handlePogledajA4}>Pogledaj na A4</Link>
               )}
 
               <Link
@@ -263,6 +298,16 @@ const RacuniTableRow = ({ item, racuni }) => {
                 >
                   <Success />
                   Fiskalizuj
+                </Link>
+              )}
+
+              {_item?.qr_url && _item?.status !== 'storniran' && (
+                <Link
+                  onClick={handleStorniraj}
+                  className={`${_item?.qr_url ? 'disabled' : ''}`}
+                >
+                  <Delete className="icon icon__dark md" />
+                  Storniraj
                 </Link>
               )}
             </div>

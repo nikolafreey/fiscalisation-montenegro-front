@@ -19,6 +19,7 @@ const ENDPOINTS = {
   ATRIBUTI_GRUPE: 'atributi-grupe',
   UPDATE_STATUS: 'update-status/{id}',
   FISKALIZUJ: 'nefiskalizovani-racuni/{id}',
+  STORNIRAJ: 'storniraj-racun/{id}',
 };
 
 class RacuniService extends ApiService {
@@ -112,6 +113,10 @@ class RacuniService extends ApiService {
 
   fiskalizujRacun = (id) => {
     return this.apiClient.post(ENDPOINTS.FISKALIZUJ.replace('{id}', id), {});
+  };
+
+  stornirajRacun = (id) => {
+    return this.apiClient.post(ENDPOINTS.STORNIRAJ.replace('{id}', id), {});
   };
 }
 
