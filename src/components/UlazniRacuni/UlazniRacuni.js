@@ -57,7 +57,8 @@ const UlazniRacuni = () => {
   }, [dispatch]);
 
   const handleSearch = (value) => {
-    dispatch(getUlazniRacuni(value));
+    let filtered = value.search.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
+    dispatch(getUlazniRacuni(filtered));
   };
 
   const resetDatePicker = () => {
