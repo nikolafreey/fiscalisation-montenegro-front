@@ -73,7 +73,8 @@ const Racuni = () => {
   }, [dispatch]);
 
   const handleSearch = (value) => {
-    dispatch(getRacuni(value));
+    let filtered = value.search.replace(/[^0-9a-z]/gi, '');
+    dispatch(getRacuni(filtered));
   };
 
   const resetDatePicker = () => {
@@ -152,7 +153,7 @@ const Racuni = () => {
 
   const closeModal = (props) => {
     setShowModal(props);
-  }
+  };
 
   const hideModal = (props) => {
     setShowModalWithdraw(props);
@@ -168,7 +169,8 @@ const Racuni = () => {
       })
       .catch((error) => {
         toast.error(
-          'Nije moguće prijaviti podizanje depozita: ' + error.response.data.message,
+          'Nije moguće prijaviti podizanje depozita: ' +
+            error.response.data.message,
           toastSettings
         );
         setWithdrawError(error);
@@ -375,7 +377,9 @@ const Racuni = () => {
             !racuni.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : racuni && racuni.data && racuni.data.length === 0 ? (
-              <div className="msg-center"><p> {'Nema sadržaja u listi'}</p></div>
+              <div className="msg-center">
+                <p> {'Nema sadržaja u listi'}</p>
+              </div>
             ) : (
               <RacuniTable racuni={racuni} />
             )}

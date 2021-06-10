@@ -35,7 +35,7 @@ const Preduzeca = () => {
 
   const openInfo = (props) => {
     setInfoOpen(props);
-  }
+  };
 
   useEffect(() => {
     dispatch(getPreduzeca());
@@ -47,6 +47,7 @@ const Preduzeca = () => {
   }, [preduzeca, dispatch]);
 
   const handleSearch = (values) => {
+    console.log('values', values);
     dispatch(getPreduzeca(values));
   };
 
@@ -67,9 +68,15 @@ const Preduzeca = () => {
           {preduzeca.data.length === 0 && !preduzeca.path ? (
             <GridLoader css={spinnerStyleGrid} size={15} />
           ) : preduzeca.data.length === 0 ? (
-            <div className="msg-center"><p> {'Nema preduzeća u listi'}</p></div>
+            <div className="msg-center">
+              <p> {'Nema preduzeća u listi'}</p>
+            </div>
           ) : (
-            <PreduzecaTable preduzeca={preduzeca} partneri={partneri} openInfo={openInfo}/>
+            <PreduzecaTable
+              preduzeca={preduzeca}
+              partneri={partneri}
+              openInfo={openInfo}
+            />
           )}
           {match.path === PREDUZECA.PARTNERI ? (
             <div className="df jc-center ai-c fd-column">
@@ -86,7 +93,11 @@ const Preduzeca = () => {
             </div>
           ) : null}
         </div>
-        <PreduzeceDetails preduzece={preduzece} infoOpen={infoOpen} openInfo={openInfo} />
+        <PreduzeceDetails
+          preduzece={preduzece}
+          infoOpen={infoOpen}
+          openInfo={openInfo}
+        />
       </div>
     </>
   );

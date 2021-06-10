@@ -97,8 +97,9 @@ const Stavke = () => {
     handleSearch(filteri);
   };
 
-  const handleSearch = () => {
-    dispatch(getStavke(filteri));
+  const handleSearch = (value) => {
+    let filtered = value.replace(/[^0-9a-z]/gi, '');
+    dispatch(getStavke(filtered));
   };
 
   const handleChange = (event) => {
@@ -218,7 +219,9 @@ const Stavke = () => {
             !usluge.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : robe.data.length === 0 && usluge.data.length === 0 ? (
-              <div className="msg-center"><p> {'Nema stavki u listi'}</p></div>
+              <div className="msg-center">
+                <p> {'Nema stavki u listi'}</p>
+              </div>
             ) : (
               <StavkeTable robe={robe} usluge={usluge} filter={filter} />
             )}

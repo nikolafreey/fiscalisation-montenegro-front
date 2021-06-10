@@ -42,7 +42,13 @@ const Partneri = () => {
 
   useEffect(() => {
     if (search === '') filters.search = null;
-    else filters.search = search;
+    else {
+      let tempSearch;
+      if (search) {
+        tempSearch = search.replace(/[^0-9a-z]/gi, '');
+      }
+      filters.search = tempSearch;
+    }
     searchDebounced(getFiltered);
   }, [search]);
 
@@ -114,7 +120,9 @@ const Partneri = () => {
             !partneri.path ? (
               <GridLoader css={spinnerStyleGrid} size={15} />
             ) : partneri && partneri.data && partneri.data.length === 0 ? (
-              <div className="msg-center"><p> {'Nema partnera u listi'}</p></div>
+              <h2 className="df jc-sb tabp-w-100">
+                {'Nemate partnera u listi'}
+              </h2>
             ) : (
               <PartneriTable partneri={partneri} />
             )}
