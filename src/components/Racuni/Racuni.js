@@ -73,7 +73,7 @@ const Racuni = () => {
   }, [dispatch]);
 
   const handleSearch = (value) => {
-    let filtered = value.search.replace(/[^0-9a-z]/gi, '');
+    let filtered = value.search.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
     dispatch(getRacuni(filtered));
   };
 

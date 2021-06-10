@@ -23,7 +23,7 @@ class PartneriService extends ApiService {
     if (search === '') search = null;
     let filtered = search;
     if (search) {
-      filtered = search.replace(/[^0-9a-z]/gi, '');
+      filtered = search.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
     }
     const response = await this.getPartneri(filtered);
     console.log('partneriSeach', filtered);

@@ -45,7 +45,7 @@ const Partneri = () => {
     else {
       let tempSearch;
       if (search) {
-        tempSearch = search.replace(/[^0-9a-z]/gi, '');
+        tempSearch = search.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
       }
       filters.search = tempSearch;
     }
