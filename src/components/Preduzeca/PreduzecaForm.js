@@ -120,7 +120,7 @@ const PreduzecaForm = () => {
         updatePreduzece({
           id: params.id,
           ...values,
-          logotip: logotipFile.base64,
+          logotip: logotipFile ? logotipFile.base64 : '',
           status: values.status === 1 ? true : false,
           privatnost: values.privatnost === 1 ? true : false,
           pdv_obveznik: pdvObveznikChecked,
@@ -131,7 +131,7 @@ const PreduzecaForm = () => {
       dispatch(
         storePreduzece({
           ...values,
-          logotip: logotipFile.base64,
+          logotip: logotipFile ? logotipFile.base64 : '',
           status: values.status === 'Aktivan' ? true : false,
           privatnost: values.privatnost === 'Javan' ? true : false,
           pdv_obveznik: pdvObveznikChecked,
