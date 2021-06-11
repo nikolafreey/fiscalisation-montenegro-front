@@ -137,27 +137,28 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   const handleStorniraj = (e) => {
     e.stopPropagation();
-
-    if (_item.status !== 'storniran') {
-      racuniService
-        .stornirajRacun(item.id)
-        .then(() => {
-          toast.success(
-            `Storniranje računa broj ${item.redni_broj} je uspjelo!`,
-            toastSettings
-          );
-          dispatch(getRacuni());
-        })
-        .catch((err) => {
-          dispatch(getRacuni());
-          let message = err?.response?.data?.error
-            ? err.response.data.error
-            : err.message;
-          toast.error(
-            'Storniranje računa nije moguća: ' + message,
-            toastSettings
-          );
-        });
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      if (_item.status !== 'storniran') {
+        racuniService
+          .stornirajRacun(item.id)
+          .then(() => {
+            toast.success(
+              `Storniranje računa broj ${item.redni_broj} je uspjelo!`,
+              toastSettings
+            );
+            dispatch(getRacuni());
+          })
+          .catch((err) => {
+            dispatch(getRacuni());
+            let message = err?.response?.data?.error
+              ? err.response.data.error
+              : err.message;
+            toast.error(
+              'Storniranje računa nije moguća: ' + message,
+              toastSettings
+            );
+          });
+      }
     }
   };
 
