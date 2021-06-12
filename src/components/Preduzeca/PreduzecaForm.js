@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Geocode from 'react-geocode';
 import {
   deletePreduzece,
+  getPreduzeca,
   getPreduzece,
   setPreduzece,
   storePreduzece,
@@ -139,6 +140,7 @@ const PreduzecaForm = () => {
         })
       );
     dispatch(setPreduzece(initialValues));
+    dispatch(getPreduzeca());
     history.goBack();
   };
 
