@@ -581,20 +581,18 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           <p className="txt-light">Ukupan iznos PDV-a</p>
                         </div>
                         <div className="heading-secondary mb-0">
-                          {stavka &&
-                            getUkupnaCijenaSaPdv(stavka) !=
-                              (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
-                                {formatirajCijenu(
+                          {stavka && stavka?.popust ? (
+                            <del style={{ marginRight: '10px' }}>
+                              {formatirajCijenu(
+                                (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                                  stavka?.ukupna_cijena) -
                                   (stavka?.roba?.cijene_roba[0]
-                                    ?.ukupna_cijena || stavka?.ukupna_cijena) -
-                                    (stavka?.roba?.cijene_roba[0]
-                                      ?.cijena_bez_pdv ||
-                                      stavka?.cijena_bez_pdv)
-                                )}
-                              </del>
-                            )}
+                                    ?.cijena_bez_pdv || stavka?.cijena_bez_pdv)
+                              )}
+                            </del>
+                          ) : (
+                            ''
+                          )}
                           {formatirajCijenu(getUkupanIznosPdv(stavka))}
                         </div>
                       </div>
@@ -609,17 +607,16 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           ref={ucbpdv}
                           name="tekst"
                         >
-                          {stavka &&
-                            getUkupnaCijenaSaPdv(stavka) !=
-                              (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
-                                {formatirajCijenu(
-                                  stavka?.roba?.cijene_roba[0]
-                                    ?.cijena_bez_pdv || stavka?.cijena_bez_pdv
-                                )}
-                              </del>
-                            )}
+                          {stavka && stavka?.popust ? (
+                            <del style={{ marginRight: '10px' }}>
+                              {formatirajCijenu(
+                                stavka?.roba?.cijene_roba[0]?.cijena_bez_pdv ||
+                                  stavka?.cijena_bez_pdv
+                              )}
+                            </del>
+                          ) : (
+                            ''
+                          )}
                           {formatirajCijenu(getUkupnaCijenaBezPdv(stavka))}
                         </div>
                       </div>
@@ -630,17 +627,16 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           <p className="txt-light">Ukupna cijena sa PDV-om</p>
                         </div>
                         <div className="heading-secondary mb-0">
-                          {stavka &&
-                            getUkupnaCijenaSaPdv(stavka) !=
-                              (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
-                                {formatirajCijenu(
-                                  stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                    stavka?.ukupna_cijena
-                                )}
-                              </del>
-                            )}
+                          {stavka && stavka?.popust ? (
+                            <del style={{ marginRight: '10px' }}>
+                              {formatirajCijenu(
+                                stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                                  stavka?.ukupna_cijena
+                              )}
+                            </del>
+                          ) : (
+                            ''
+                          )}
                           {formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}
                         </div>
                       </div>
