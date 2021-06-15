@@ -150,7 +150,7 @@
     }
   }
   .box-border {
-    padding: 1.5rem;
+    padding: 1rem;
     border: 2px solid $color-text-dark;
     // height: 125pt;
     // p {
@@ -264,10 +264,15 @@
     background: #fff;
     font-size: 10pt !important;
     color: #000 !important;
-    overflow: hidden;
+    // overflow: hidden;
 
     .wrapper-100.fs-8 p{
       font-size: 8pt !important;
+    }
+
+    h3{
+      font-size: 12pt !important;
+      margin: 0 !important;
     }
 
     .invoice-page {

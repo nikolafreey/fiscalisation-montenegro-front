@@ -6,6 +6,7 @@ import BezgotovinskiTableRow from './BezgotovinskiTableRow';
 import Moment from 'react-moment';
 import 'moment/locale/me';
 import BezgotovinskiPoreziPreview from './BezgotovinskiPoreziPreview';
+import { BASE_URL } from '../../../config';
 
 class BezgotovinskiShowTemplate extends React.Component {
   render() {
@@ -62,6 +63,9 @@ class BezgotovinskiShowTemplate extends React.Component {
             // return <p>{a}</p>;
           } else if (prvaTri.includes('520')) {
             return <p>{'Hipotekarna: ' + a}</p>;
+            // return <p>{a}</p>;
+          } else if (prvaTri.includes('565')) {
+            return <p>{'Lovćen Banka: ' + a}</p>;
             // return <p>{a}</p>;
           }
           return <p>{a}</p>;
@@ -147,16 +151,16 @@ class BezgotovinskiShowTemplate extends React.Component {
                 </div> */}
                 <div className="wrapper-100">
                   {preduzece && preduzece.logotip ? (
-                  <div className="col-md-4">
+                  <div className="article-33">
                     <p className="">
                       <img
                         src={
                           preduzece && preduzece.logotip
-                            ? "https://testapi.postfiskal.me/logotipi/" + preduzece.logotip
+                            ? BASE_URL.slice(0,-3) + "logotipi/" + preduzece.logotip
                             : noLogo
                         }
                         alt="logo"
-                        style={{ width: 200, maxHeight: 100 }}
+                        style={{ maxWidth: 160, maxHeight: 160 }}
                       />
                     </p>
                   </div>
@@ -187,14 +191,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                       &nbsp;
                       {preduzece && preduzece.drzava ? preduzece.drzava : ''}
                     </p>
-                    <p className="txt-light">
+                    <p className="">
                       {preduzece && preduzece.telefon ? preduzece.telefon : ''}, &nbsp;
                       {preduzece && preduzece.fax ? preduzece.fax : ''}
                     </p>
-                    <p className="txt-light">
+                    <p className="">
                       {preduzece && preduzece.email ? preduzece.email : ''} &nbsp;
                     </p>
-                    <p className="txt-light">
+                    <p className="">
                       {preduzece && preduzece.website ? preduzece.website : ''} &nbsp;
                     </p>
                   </div>
@@ -295,13 +299,13 @@ class BezgotovinskiShowTemplate extends React.Component {
 
                   </div>
                   <div className="wrapper-40 box-border">
-                    <h2 className="heading-secondary">
+                    <h3 className="heading-secondary">
                       {partner && partner.preduzece_partner
                         ? partner?.preduzece_partner?.kratki_naziv
                         : partner?.fizicko_lice?.ime +
                           ' ' +
                           partner?.fizicko_lice?.prezime}
-                    </h2>
+                    </h3>
                     <div className="df jc-sb">
                       <div className="df fd-column">
                         <p className="">

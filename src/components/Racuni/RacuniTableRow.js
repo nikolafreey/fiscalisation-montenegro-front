@@ -137,7 +137,7 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   const handleStorniraj = (e) => {
     e.stopPropagation();
-    if (window.confirm('Are you sure you wish to delete this item?')) {
+    if (window.confirm('Jeste li sigurni da želite da stornirate ovaj račun?')) {
       if (_item.status !== 'storniran') {
         racuniService
           .stornirajRacun(item.id)

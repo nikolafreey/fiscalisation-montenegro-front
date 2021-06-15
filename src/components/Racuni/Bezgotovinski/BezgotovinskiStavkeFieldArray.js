@@ -570,6 +570,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               event.target.valueAsNumber
                             )
                           }
+                          onKeyPress={(e) => {
+                            e.key === 'Enter' && e.preventDefault();
+                          }}
                         />
                       </div>
                     </div>
@@ -651,9 +654,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       ))}
       <div
         onClick={() => insert(values.stavke.length)}
-        className="main-content__box--footer"
+        className="main-content__box--footer nova-stavka__hover"
       >
-        <span className="link">+ dodaj novu stavku</span>
+        <span className="link">+ Dodaj novu stavku</span>
       </div>
     </>
   );

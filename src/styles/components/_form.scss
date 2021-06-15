@@ -33,11 +33,25 @@
       position: absolute;
       bottom: 0;
       margin-bottom: 0;
+      del{
+        display: block;
+        line-height: 1;
+        font-weight: 400;
+        font-size: $font-size-default;
+      }
       @include respond(big-phone) {
         right: 1rem;
+        del{
+          display: inline-block;
+          margin-right: 10px;
+        }
       }
       @include respond(phone) {
         font-size: 18px;
+        del{
+          display: inline-block;
+          margin-right: 10px;
+        }
       }
     }
 

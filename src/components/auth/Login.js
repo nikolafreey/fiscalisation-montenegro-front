@@ -205,6 +205,7 @@ const Login = () => {
                   <a href="https://api.postfiskal.me/Uputstvo%20za%20instalaciju%20certifikata%20dobijenom%20na%20CD-u.pdf">Uputstvo za instalaciju dig. sertifikata</a><br />
                   <a href="https://api.postfiskal.me/Korisni%C4%8Dko%20uputstvo%20za%20prijavu%20i%20registraciju%20na%20SEP%20portal.pdf">Uputstvo za registraciju na SEP portalu</a>
                 </p>
+                <p>Ako ste kodove i sertifikat već poslali očekujte odgovor na email čim obradimo zahtjev.</p>
                 <p className="txt-center  mb-12">Uputstvo za korišćenje softvera možete preuzeti sa linka:<br />
                 <a href="https://api.postfiskal.me/Uputstvo%20za%20kori%C5%A1%C4%87enje%20aplikacije%20PostFiskal.pdf">Uputstvo za korišćenje PostFiskal softvera</a>
                 </p>
