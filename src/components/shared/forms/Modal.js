@@ -99,6 +99,7 @@ const Modal = ({
                   type="number"
                   name="iznos_depozita"
                   className="form__input"
+                  onWheel={() => document.activeElement.blur()}
                   onChange={(e) => {
                     setDepozit(e.target.value);
                   }}
