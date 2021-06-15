@@ -8,7 +8,7 @@ import { podesavanjaService } from '../../services/PodesavanjaService';
 import GridLoader from 'react-spinners/GridLoader';
 import { spinnerStyleGrid } from '../../constants/spinner';
 import { useHistory } from 'react-router';
-import { SEP_PORTAL, SW_KOD } from '../../config';
+import { SEP_PORTAL, SW_KOD, BASE_URL } from '../../config';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -313,7 +313,7 @@ const Podesavanja = () => {
                     {user?.preduzeca[0].length !== 0 &&
                       user?.preduzeca[0]?.logotip && (
                         <div className="content__logo">
-                          <img src={user?.preduzeca[0]?.logotip} alt="logo" />
+                          <img src={BASE_URL.slice(0,-3) + "logotipi/" + user?.preduzeca[0]?.logotip} alt="logo" />
                         </div>
                       )}
                     <p className="w-50">
