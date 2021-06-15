@@ -8,6 +8,7 @@ import 'moment/locale/me';
 import noLogo from '../../../assets/img/no-logo.png';
 import List from '../../shared/lists/List';
 import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
+import { BASE_URL } from '../../../config';
 
 import { RACUNI } from '../../../constants/routes';
 import BezgotovinskiShowTemplate from './BezgotovinskiShowTemplate';
@@ -112,6 +113,9 @@ const BezgotovinskiPreview = () => {
           // return <p>{a}</p>;
         } else if (prvaTri.includes('520')) {
           return <p>{'Hipotekarna: ' + a}</p>;
+          // return <p>{a}</p>;
+        } else if (prvaTri.includes('565')) {
+          return <p>{'Lovćen Banka: ' + a}</p>;
           // return <p>{a}</p>;
         }
         return <p>{a}</p>;
@@ -386,11 +390,11 @@ const BezgotovinskiPreview = () => {
                     <img
                       src={
                         preduzece && preduzece.logotip
-                          ? "https://testapi.postfiskal.me/logotipi/" + preduzece.logotip
+                          ? BASE_URL.slice(0,-3) + "logotipi/" + preduzece.logotip
                           : noLogo
                       }
                       alt="logo"
-                      style={{ width: 200, maxHeight: 100 }}
+                      style={{ maxWidth: 250, maxHeight: 200 }}
                     />
                   </p>
                 </div>
