@@ -187,7 +187,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       setFieldValue(`values.${index}.popust`, getPopustStavke(stavka).iznos);
     }
   }
-  console.log('values',values)
+  console.log('values', values);
 
   return (
     <>
@@ -355,6 +355,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           }
                           className="form__input mb-12"
                           placeholder="Sa PDV"
+                          onWheel={() => document.activeElement.blur()}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.ukupna_cijena`,
@@ -374,6 +375,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
                           }
                           defaultValue={1}
+                          onWheel={() => document.activeElement.blur()}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.kolicina`,
@@ -408,6 +410,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               ? stavka?.popust
                               : getPopustStavke(stavka).iznos
                           }
+                          onWheel={() => document.activeElement.blur()}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.popust`,

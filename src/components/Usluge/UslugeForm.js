@@ -424,6 +424,7 @@ const UslugeForm = () => {
                           name="ukupna_cijena"
                           label={$t('usluge.ukupna_cijena')}
                           obavezno
+                          onWheel={() => document.activeElement.blur()}
                         />
                         <InputField
                           type="hidden"

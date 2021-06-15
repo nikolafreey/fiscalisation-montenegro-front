@@ -202,6 +202,7 @@ const Cijena = ({
               className="form__input"
               label={$t('cijene.nabavna_bez_pdv')}
               value={valueCijenaBezPdv}
+              onWheel={() => document.activeElement.blur()}
               onChange={(event) => {
                 setValueCijenaBezPdv(event.target.value);
                 setFieldValue('nabavna_cijena_bez_pdv', event.target.value);
@@ -223,6 +224,7 @@ const Cijena = ({
                 checkIfObjectEmpty(roba) &&
                 roba.cijene_roba[0]?.nabavna_cijena_sa_pdv
               }
+              onWheel={() => document.activeElement.blur()}
               onChange={(event) => {
                 setValueCijenaSaPdv(event.target.value);
                 setFieldValue('nabavna_cijena_sa_pdv', event.target.value);
@@ -268,6 +270,7 @@ const Cijena = ({
             defaultValue={
               checkIfObjectEmpty(roba) && roba?.cijene_roba[0]?.ukupna_cijena
             }
+            onWheel={() => document.activeElement.blur()}
             onChange={(event) => {
               setValueUkupnaCijena(event.target.value);
               setFieldValue('ukupna_cijena', event.target.value);

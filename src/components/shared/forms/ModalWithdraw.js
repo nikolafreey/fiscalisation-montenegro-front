@@ -118,6 +118,7 @@ const ModalWithdraw = ({
                   type="number"
                   name="iznos_depozita"
                   value={+withdraw || +depozit || 0}
+                  onWheel={() => document.activeElement.blur()}
                   onChange={(e) => {
                     setWithdraw(e.target.value);
                   }}

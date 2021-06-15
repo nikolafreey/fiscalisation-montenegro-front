@@ -464,6 +464,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
                           }
                           defaultValue={1}
+                          onWheel={() => document.activeElement.blur()}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.kolicina`,
@@ -562,6 +563,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               ? stavka?.popust
                               : getPopustStavke(stavka).iznos
                           }
+                          onWheel={() => document.activeElement.blur()}
                           onChange={(event) =>
                             setFieldValue(
                               `stavke.${index}.popust`,

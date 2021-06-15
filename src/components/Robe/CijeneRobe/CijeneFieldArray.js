@@ -44,6 +44,7 @@ const CijeneFieldArray = ({ insert, remove }) => {
               className="form__input"
               label={$t('cijene.cijena')}
               obavezno
+              onWheel={() => document.activeElement.blur()}
             />
           </div>
           <button
