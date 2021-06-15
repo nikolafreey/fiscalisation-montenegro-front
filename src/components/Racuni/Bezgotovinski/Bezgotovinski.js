@@ -52,12 +52,12 @@ const Bezgotovinski = () => {
 
     try {
       if (values.stavke.length === 0) {
-        toast.error('Račun mora imati bar jednu stavku!', toastSettings);
+        toast.error('Račun mora imati makar jednu stavku!', toastSettings);
         return;
       }
       if (!values.stavke[0]) {
         toast.error(
-          'Račun mora imati bar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
+          'Račun mora imati makar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
           toastSettings
         );
         return;
@@ -75,21 +75,21 @@ const Bezgotovinski = () => {
       values.stavke.forEach((racun, index) => {
         if (racun.kolicina == null || racun.kolicina <= 0) {
           toast.error(
-            'Kolicina stavke računa mora biti veca od 0 računu ' + index + 1,
+            'Količina stavke mora biti veća od 0 na računu ' + index + 1,
             toastSettings
           );
           return;
         }
         if (racun.jedinica_mjere_id == null) {
           toast.error(
-            'Jedinica mjere računa je neophodna na računu ' + index + 1,
+            'Jedinica mjere stavke je neophodna na računu ' + index + 1,
             toastSettings
           );
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
           toast.error(
-            'Stavka računa mora biti veca od 0 na računu ' + index + 1,
+            'Cijena stavke mora biti veća od 0 na računu ' + index + 1,
             toastSettings
           );
           return;
