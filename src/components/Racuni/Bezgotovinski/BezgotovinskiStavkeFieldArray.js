@@ -603,9 +603,17 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           <p className="txt-light">Ukupna cijena sa PDV-om</p>
                         </div>
                         <div className="heading-secondary mb-0">
-                          <del style={{ marginRight: '10px' }}>
-                            {formatirajCijenu(stavka.ukupna_cijena)}
-                          </del>
+                          {stavka &&
+                            getUkupnaCijenaSaPdv(stavka) !=
+                              (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                                stavka?.ukupna_cijena) && (
+                              <del style={{ marginRight: '10px' }}>
+                                {formatirajCijenu(
+                                  stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                                    stavka?.ukupna_cijena
+                                )}
+                              </del>
+                            )}
                           {formatirajCijenu(getUkupnaCijenaSaPdv(stavka))}
                         </div>
                       </div>
