@@ -568,6 +568,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               event.target.valueAsNumber
                             )
                           }
+                          onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                         />
                       </div>
                     </div>
@@ -583,7 +584,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             getUkupnaCijenaSaPdv(stavka) !=
                               (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                                 stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
+                              <del className="txt-light">
                                 {formatirajCijenu(
                                   (stavka?.roba?.cijene_roba[0]
                                     ?.ukupna_cijena || stavka?.ukupna_cijena) -
@@ -611,7 +612,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             getUkupnaCijenaSaPdv(stavka) !=
                               (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                                 stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
+                              <del className="txt-light">
                                 {formatirajCijenu(
                                   stavka?.roba?.cijene_roba[0]
                                     ?.cijena_bez_pdv || stavka?.cijena_bez_pdv
@@ -632,7 +633,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             getUkupnaCijenaSaPdv(stavka) !=
                               (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                                 stavka?.ukupna_cijena) && (
-                              <del style={{ marginRight: '10px' }}>
+                              <del className="txt-light">
                                 {formatirajCijenu(
                                   stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                                     stavka?.ukupna_cijena
@@ -653,9 +654,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       ))}
       <div
         onClick={() => insert(values.stavke.length)}
-        className="main-content__box--footer"
+        className="main-content__box--footer nova-stavka__hover"
       >
-        <span className="link">+ dodaj novu stavku</span>
+        <span className="link">+ Dodaj novu stavku</span>
       </div>
     </>
   );
