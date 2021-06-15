@@ -55,6 +55,14 @@ export function izracunajPojedinacnePorezeStavkeBezgotovinski(stavke) {
   return porezi;
 }
 
+function izracunajCijenuSaPopustom(stavka, cijena) {
+  if (!stavka?.tip_popusta) return cijena - Number(stavka?.popust || 0);
+  if (stavka.tip_popusta === 'iznos')
+    return cijena - Number(stavka.popust || 0);
+  if (stavka.tip_popusta === 'procenat')
+    return cijena - (Number(stavka.popust || 0) * cijena) / 100;
+}
+
 function izracunajPopust(cijena, popust, tip_popusta) {
   if (!tip_popusta) return cijena;
   if (tip_popusta === 'iznos') return cijena - Number(popust || 0);
@@ -77,11 +85,15 @@ export function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
   if (!usluga.hasOwnProperty('kolicina')) {
     kolicina = 1;
   }
+
+  const cijenaPopust = izracunajCijenuSaPopustom(usluga, usluga?.ukupna_cijena);
+
   const cijena = izracunajPopustUsluge(
     usluga?.ukupna_cijena,
     usluga?.grupa?.popust_procenti,
     usluga?.grupa?.popust_iznos
   );
+
   if (!porezi[usluga?.porez?.id]) {
     porezi[usluga?.porez?.id] = {
       ukupno: 0,
@@ -93,19 +105,19 @@ export function izracunajPojedinacnePorezeZaUslugu(usluga, porezi) {
   if (usluga.kolicina) {
     porezi[usluga?.porez?.id].pdvIznos += Number(
       usluga.kolicina *
-        ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
+        ((Number(cijenaPopust) / (1 + Number(usluga?.porez?.stopa))) *
           usluga?.porez?.stopa)
     );
     porezi[usluga?.porez?.id].ukupno += Number(
-      usluga?.kolicina * Number(cijena)
+      usluga?.kolicina * Number(cijenaPopust)
     );
   } else {
     porezi[usluga?.porez?.id].pdvIznos += Number(
       kolicina *
-        ((Number(cijena) / (1 + Number(usluga?.porez?.stopa))) *
+        ((Number(cijenaPopust) / (1 + Number(usluga?.porez?.stopa))) *
           usluga?.porez?.stopa)
     );
-    porezi[usluga?.porez?.id].ukupno += Number(kolicina * Number(cijena));
+    porezi[usluga?.porez?.id].ukupno += Number(kolicina * Number(cijenaPopust));
   }
 }
 
@@ -385,13 +397,6 @@ function getPopustStavke(stavka) {
 //     }
 //   : null;
 
-function izracunajCijenuSaPopustom(stavka, cijena) {
-  if (!stavka?.tip_popusta) return cijena;
-  if (stavka.tip_popusta === 'iznos')
-    return cijena - Number(stavka.popust || 0);
-  if (stavka.tip_popusta === 'procenat')
-    return cijena - (Number(stavka.popust || 0) * cijena) / 100;
-}
 function izracunajPocetnuCijenuSaPopustom(stavka, cijena) {
   let popustStart = getPopustStavke(stavka);
 
