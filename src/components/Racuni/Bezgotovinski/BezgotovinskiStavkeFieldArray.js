@@ -587,10 +587,21 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           {stavka && stavka?.popust ? (
                             <del style={{ marginRight: '10px' }}>
                               {formatirajCijenu(
-                                (stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                  stavka?.ukupna_cijena) -
-                                  (stavka?.roba?.cijene_roba[0]
-                                    ?.cijena_bez_pdv || stavka?.cijena_bez_pdv)
+                                stavka?.kolicina
+                                  ? stavka?.kolicina *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.ukupna_cijena ||
+                                        stavka?.ukupna_cijena) -
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.cijena_bez_pdv ||
+                                        stavka?.cijena_bez_pdv)
+                                  : 1 *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.ukupna_cijena ||
+                                        stavka?.ukupna_cijena) -
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.cijena_bez_pdv ||
+                                        stavka?.cijena_bez_pdv)
                               )}
                             </del>
                           ) : (
@@ -613,8 +624,15 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           {stavka && stavka?.popust ? (
                             <del style={{ marginRight: '10px' }}>
                               {formatirajCijenu(
-                                stavka?.roba?.cijene_roba[0]?.cijena_bez_pdv ||
-                                  stavka?.cijena_bez_pdv
+                                stavka?.kolicina
+                                  ? stavka?.kolicina *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.cijena_bez_pdv ||
+                                        stavka?.cijena_bez_pdv)
+                                  : 1 *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.cijena_bez_pdv ||
+                                        stavka?.cijena_bez_pdv)
                               )}
                             </del>
                           ) : (
@@ -633,8 +651,15 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           {stavka && stavka?.popust ? (
                             <del style={{ marginRight: '10px' }}>
                               {formatirajCijenu(
-                                stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                                  stavka?.ukupna_cijena
+                                stavka?.kolicina
+                                  ? stavka?.kolicina *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.ukupna_cijena ||
+                                        stavka?.ukupna_cijena)
+                                  : 1 *
+                                      (stavka?.roba?.cijene_roba[0]
+                                        ?.ukupna_cijena ||
+                                        stavka?.ukupna_cijena)
                               )}
                             </del>
                           ) : (
