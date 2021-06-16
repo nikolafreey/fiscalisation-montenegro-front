@@ -266,6 +266,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     setFieldValue(`stavke.${index}.jedinica_mjere_id`, option.jedinica_mjere);
     setFieldValue(`stavke.${index}.porez`, getPorezForId(option.porez));
     setFieldValue(`stavke.${index}`, option);
+    console.log('values', values);
   };
 
   function handleChoosePopust(option, stavka, index) {
@@ -313,8 +314,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     <>
       {values.stavke.map((stavka, index) => (
         <React.Fragment key={index}>
-          <div key={index} className="main-content__box--body mb-20">
-            <div key={index} className="container">
+          <div className="main-content__box--body mb-20">
+            <div className="container">
               <div className="df jc-sb ai-c w-100">
                 <h2 className="heading-secondary">{index + 1}</h2>
                 <p
@@ -330,10 +331,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                   </span>
                 </p>
               </div>
-              <div key={index} className="section-box">
+              <div className="section-box">
                 <div className="section-box__left">
                   <div className="section-box__left--top">
-                    <div key={index} className="form-group mb-0">
+                    <div className="form-group mb-0">
                       <StavkeDropdown
                         key={index}
                         id={index}
@@ -415,7 +416,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       </div>
                     </div>
                     <div className="el">
-                      <div key={index} className="form__group">
+                      <div className="form__group">
                         <label htmlFor="" className="form__label bm-show">
                           Jedinica mjere
                         </label>
@@ -475,7 +476,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                       </div>
                     </div>
                     <div className="el">
-                      <div key={index} className="form__group">
+                      <div className="form__group">
                         <label htmlFor="" className="form__label bm-show">
                           Stopa PDV-a
                         </label>
@@ -678,7 +679,27 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
         </React.Fragment>
       ))}
       <div
-        onClick={() => insert(values.stavke.length)}
+        onClick={() => {
+          console.log('Insert Values: ', values);
+          if (values.stavke.length !== 0 && !values?.stavke[0]) {
+            toast.error(
+              'Molimo popunite trenutno otvorenu stavku prije dodavanja nove stavke!',
+              toastSettings
+            );
+            return;
+          }
+          if (
+            values.stavke.length > 1 &&
+            !values?.stavke[values.stavke.length - 1]
+          ) {
+            toast.error(
+              'Molimo popunite trenutno otvorenu stavku prije dodavanja nove stavke!',
+              toastSettings
+            );
+            return;
+          }
+          insert(values.stavke.length);
+        }}
         className="main-content__box--footer nova-stavka__hover"
       >
         <span className="link">+ Dodaj novu stavku</span>

@@ -47,6 +47,14 @@ const Bezgotovinski = () => {
 
   const handleSubmit = (values) => {
     values.stavke = values.niz;
+    // for (let i = 0; i < values.stavke.length; i++) {
+    //   values.stavke[i].cijena_bez_pdv = values.niz[i].cijena_bez_pdv;
+    //   values.stavke[i].cijena_bez_pdv_popust =
+    //     values.niz[i].cijena_bez_pdv_popust;
+    //   values.stavke[i].cijena_sa_pdv_popust =
+    //     values.niz[i].cijena_sa_pdv_popust;
+    //   values.stavke[i].iznos_pdv_popust = values.niz[i].iznos_pdv_popust;
+    // }
     // const { params } = useRouteMatch();
     console.log('values', values);
 
@@ -73,23 +81,25 @@ const Bezgotovinski = () => {
 
     values &&
       values.stavke.forEach((racun, index) => {
+        console.log('index', index + 1);
+        let indexTemp = index + 1;
         if (racun.kolicina == null || racun.kolicina <= 0) {
           toast.error(
-            'Količina stavke mora biti veća od 0 na računu ' + index + 1,
+            'Količina stavke mora biti veća od 0 na računu ' + +indexTemp,
             toastSettings
           );
           return;
         }
         if (racun.jedinica_mjere_id == null) {
           toast.error(
-            'Jedinica mjere stavke je neophodna na računu ' + index + 1,
+            'Jedinica mjere stavke je neophodna na računu ' + +indexTemp,
             toastSettings
           );
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
           toast.error(
-            'Cijena stavke mora biti veća od 0 na računu ' + index + 1,
+            'Cijena stavke mora biti veća od 0 na računu ' + +indexTemp,
             toastSettings
           );
           return;
@@ -134,6 +144,7 @@ const Bezgotovinski = () => {
   const today = new Date();
   const seven_days = new Date();
   seven_days.setDate(seven_days.getDate() + 7);
+
   const initialValues = {
     stavke: [],
     korektivni_racun: '0',
