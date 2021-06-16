@@ -79,7 +79,7 @@ const BezgotovinskiPreview = () => {
     status_placanja,
     iznos_uplate,
     datum_izdavanja,
-    datum_za_placanje
+    datum_za_placanje,
   } = useSelector(racunSelector());
 
   const user = useSelector(userSelector());
@@ -385,22 +385,24 @@ const BezgotovinskiPreview = () => {
               </div> */}
               <div className="row">
                 {preduzece && preduzece.logotip ? (
-                <div className="col-md-4">
-                  <p className="">
-                    <img
-                      src={
-                        preduzece && preduzece.logotip
-                          ? BASE_URL.slice(0,-3) + "logotipi/" + preduzece.logotip
-                          : noLogo
-                      }
-                      alt="logo"
-                      style={{ maxWidth: 250, maxHeight: 200 }}
-                    />
-                  </p>
-                </div>
+                  <div className="col-md-4">
+                    <p className="">
+                      <img
+                        src={
+                          preduzece && preduzece.logotip
+                            ? BASE_URL.slice(0, -3) +
+                              'logotipi/' +
+                              preduzece.logotip
+                            : noLogo
+                        }
+                        alt="logo"
+                        style={{ maxWidth: 250, maxHeight: 200 }}
+                      />
+                    </p>
+                  </div>
                 ) : (
-                    ''
-                  )}
+                  ''
+                )}
                 <div className="col-md-4">
                   <p className="txt-light">
                     {preduzece && preduzece.kratki_naziv
@@ -413,9 +415,7 @@ const BezgotovinskiPreview = () => {
                       : ''}
                   </p>
                   <p className="txt-light">
-                    {preduzece && preduzece.opis
-                      ? preduzece.opis
-                      : ''}
+                    {preduzece && preduzece.opis ? preduzece.opis : ''}
                   </p>
                   <p className="txt-light">
                     {preduzece && preduzece.adresa ? preduzece.adresa : ''}
@@ -425,14 +425,16 @@ const BezgotovinskiPreview = () => {
                     {preduzece && preduzece.drzava ? preduzece.drzava : ''}
                   </p>
                   <p className="txt-light">
-                    {preduzece && preduzece.telefon ? preduzece.telefon : ''}, &nbsp;
+                    {preduzece && preduzece.telefon ? preduzece.telefon : ''},
+                    &nbsp;
                     {preduzece && preduzece.fax ? preduzece.fax : ''}
                   </p>
                   <p className="txt-light">
                     {preduzece && preduzece.email ? preduzece.email : ''} &nbsp;
                   </p>
                   <p className="txt-light">
-                    {preduzece && preduzece.website ? preduzece.website : ''} &nbsp;
+                    {preduzece && preduzece.website ? preduzece.website : ''}{' '}
+                    &nbsp;
                   </p>
                 </div>
                 <div className="col-md-4">
@@ -469,7 +471,7 @@ const BezgotovinskiPreview = () => {
                     </div>
                   </div>
                   {/* {preduzece && preduzece.logotip ? ( */}
-                    <p className="txt-right">{ziroRacuni()}</p>
+                  <p className="txt-right">{ziroRacuni()}</p>
                   {/* ) : ''} */}
                 </div>
                 {/* {preduzece && !preduzece.logotip ? ( */}
@@ -496,11 +498,12 @@ const BezgotovinskiPreview = () => {
                         <Moment locale="me" format="DD. MMM YYYY.">
                           {datum_izdavanja}
                         </Moment>
-                      )}{' / Rok za plaćanje: '}
+                      )}
+                      {' / Rok za plaćanje: '}
                       {datum_za_placanje && (
                         <Moment locale="me" format="DD. MMM YYYY.">
-                        {datum_za_placanje}
-                      </Moment>
+                          {datum_za_placanje}
+                        </Moment>
                       )}{' '}
                     </p>
 
@@ -522,20 +525,35 @@ const BezgotovinskiPreview = () => {
                             <p className="txt-light">
                               {broj_racuna ? 'Broj' : ''}
                             </p>
-                            <p className="txt-light">{created_at ? 'Datum' : ''}</p>
-                            <p className="txt-light">{nacin_placanja ? 'Vrsta' : ''}</p>
+                            <p className="txt-light">
+                              {created_at ? 'Datum' : ''}
+                            </p>
+                            <p className="txt-light">
+                              {nacin_placanja ? 'Vrsta' : ''}
+                            </p>
                           </div>
                           <div className="df fd-column">
                             <p>{jikr ? jikr : ''}</p>
                             <p>{ikof ? ikof : ''}</p>
                             <p>{broj_racuna ? broj_racuna : ''}</p>
-                            <p>{created_at ? created_at : ''}</p>
-                            <p>{nacin_placanja ? vrsta_racuna + ' / ' + nacin_placanja : ''}</p>
+                            <p>
+                              {created_at ? (
+                                <Moment locale="me" format="DD. MMM YYYY.">
+                                  {created_at}
+                                </Moment>
+                              ) : (
+                                ''
+                              )}
+                            </p>
+                            <p>
+                              {nacin_placanja
+                                ? vrsta_racuna + ' / ' + nacin_placanja
+                                : ''}
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
                   <div className="col-md-5">
                     <div className="invoice__header--box">
@@ -625,9 +643,7 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">Opis</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">
-                        Cijena
-                      </span>
+                      <span className="heading-quaternary nowrap">Cijena</span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary nowrap">
@@ -638,17 +654,17 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">PDV</span>
                     </th> */}
                     <th>
-                    {/* {Number(popust_ukupno) > 0 && ( */}
-                        <span className="heading-quaternary">Popust sa PDV-om</span>
-                    {/* )} */}
+                      {/* {Number(popust_ukupno) > 0 && ( */}
+                      <span className="heading-quaternary">
+                        Popust sa PDV-om
+                      </span>
+                      {/* )} */}
                     </th>
                     <th>
                       <span className="heading-quaternary">Količina</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">
-                        Ukupno{' '}
-                      </span>
+                      <span className="heading-quaternary nowrap">Ukupno </span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary nowrap">
@@ -686,9 +702,9 @@ const BezgotovinskiPreview = () => {
                         {ukupnoBezPdv && 'Ukupno bez popusta:'}
                       </p> */}
                       {Number(popust_ukupno) > 0 && (
-                      <p className="fw-500">
-                        {Number(popust_ukupno) > 0 > 0 && 'Popust sa PDV-om:'}
-                      </p>
+                        <p className="fw-500">
+                          {Number(popust_ukupno) > 0 > 0 && 'Popust sa PDV-om:'}
+                        </p>
                       )}
                       <p className="fw-500">{ukupan_iznos_pdv > 0 && 'PDV:'}</p>
                       <p className="fw-500">
@@ -758,22 +774,20 @@ const BezgotovinskiPreview = () => {
                 </div>
               </div>
               <div className="row">
-                  {/* <div className="row"> */}
+                {/* <div className="row"> */}
 
+                <div className="col-md-5">
+                  {opis && (
+                    <>
+                      <p className="fw-500">Napomena:</p>
+                      <p className="txt-light mb-25 white-space-pre-line">
+                        {opis}
+                      </p>
+                    </>
+                  )}
+                </div>
 
-                    <div className="col-md-5">
-                      {opis && (
-                        <>
-                          <p className="fw-500">Napomena:</p>
-                          <p className="txt-light mb-25 white-space-pre-line">
-                            {opis}
-                          </p>
-                        </>
-                      )}
-                    </div>
-
-                  {/* </div> */}
-
+                {/* </div> */}
               </div>
 
               <div className="row">
@@ -781,7 +795,10 @@ const BezgotovinskiPreview = () => {
                   <p>
                     {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
                     {user?.ime && user?.prezime && (
-                      <p>Račun izdao: {user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>
+                      <p>
+                        Račun izdao: {user?.ime + ' ' + user?.prezime} /{' '}
+                        {user?.kod_operatera}
+                      </p>
                     )}
                   </p>
                   <hr className="mt-50 bd__bottom" />
@@ -798,7 +815,6 @@ const BezgotovinskiPreview = () => {
                   ? user?.preduzeca[0]?.software_kod
                   : ''}
               </p>
-
             </div>
           </div>
         </>

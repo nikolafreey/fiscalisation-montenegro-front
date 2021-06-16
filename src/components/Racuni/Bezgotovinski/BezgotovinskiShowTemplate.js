@@ -18,10 +18,10 @@ class BezgotovinskiShowTemplate extends React.Component {
     const status = this.props.status;
     const preduzece = this.props.preduzece;
     const opis = this.props.opis;
-    const vrsta_racuna=this.props.vrsta_racuna
-    const nacin_placanja=this.props.nacin_placanja
-    const datum_izdavanja=this.props.datum_izdavanja
-    const datum_za_placanje=this.props.datum_za_placanje
+    const vrsta_racuna = this.props.vrsta_racuna;
+    const nacin_placanja = this.props.nacin_placanja;
+    const datum_izdavanja = this.props.datum_izdavanja;
+    const datum_za_placanje = this.props.datum_za_placanje;
     const partner = this.props.partner;
     const created_at = this.props.created_at;
     const stavke = this.props.stavke;
@@ -151,26 +151,30 @@ class BezgotovinskiShowTemplate extends React.Component {
                 </div> */}
                 <div className="wrapper-100">
                   {preduzece && preduzece.logotip ? (
-                  <div className="article-33">
-                    <p className="">
-                      <img
-                        src={
-                          preduzece && preduzece.logotip
-                            ? BASE_URL.slice(0,-3) + "logotipi/" + preduzece.logotip
-                            : noLogo
-                        }
-                        alt="logo"
-                        style={{ maxWidth: 160, maxHeight: 160 }}
-                      />
-                    </p>
-                  </div>
+                    <div className="article-33">
+                      <p className="">
+                        <img
+                          src={
+                            preduzece && preduzece.logotip
+                              ? BASE_URL.slice(0, -3) +
+                                'logotipi/' +
+                                preduzece.logotip
+                              : noLogo
+                          }
+                          alt="logo"
+                          style={{ maxWidth: 160, maxHeight: 160 }}
+                        />
+                      </p>
+                    </div>
                   ) : (
-                      ''
-                    )}
+                    ''
+                  )}
                   <div className="article-33">
                     <p className="">
                       {preduzece && preduzece.kratki_naziv
-                        ? preduzece.kratki_naziv + ' ' + preduzece.oblik_preduzeca
+                        ? preduzece.kratki_naziv +
+                          ' ' +
+                          preduzece.oblik_preduzeca
                         : ''}
                     </p>
                     <p className="">
@@ -179,9 +183,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                         : ''}
                     </p>
                     <p className="">
-                      {preduzece && preduzece.opis
-                        ? preduzece.opis
-                        : ''}
+                      {preduzece && preduzece.opis ? preduzece.opis : ''}
                     </p>
                     <p className="">
                       {preduzece && preduzece.adresa ? preduzece.adresa : ''}
@@ -192,14 +194,17 @@ class BezgotovinskiShowTemplate extends React.Component {
                       {preduzece && preduzece.drzava ? preduzece.drzava : ''}
                     </p>
                     <p className="">
-                      {preduzece && preduzece.telefon ? preduzece.telefon : ''}, &nbsp;
+                      {preduzece && preduzece.telefon ? preduzece.telefon : ''},
+                      &nbsp;
                       {preduzece && preduzece.fax ? preduzece.fax : ''}
                     </p>
                     <p className="">
-                      {preduzece && preduzece.email ? preduzece.email : ''} &nbsp;
+                      {preduzece && preduzece.email ? preduzece.email : ''}{' '}
+                      &nbsp;
                     </p>
                     <p className="">
-                      {preduzece && preduzece.website ? preduzece.website : ''} &nbsp;
+                      {preduzece && preduzece.website ? preduzece.website : ''}{' '}
+                      &nbsp;
                     </p>
                   </div>
                   <div className="article-33">
@@ -235,7 +240,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                       </p>
                     </div>
                     {/* {preduzece && preduzece.logotip ? ( */}
-                      <p className="txt-right">{ziroRacuni()}</p>
+                    <p className="txt-right">{ziroRacuni()}</p>
                     {/* ) : ''} */}
                   </div>
                   {/* <div className="article-33">
@@ -258,11 +263,12 @@ class BezgotovinskiShowTemplate extends React.Component {
                         <Moment locale="me" format="DD. MMM YYYY.">
                           {datum_izdavanja}
                         </Moment>
-                      )}{' / Rok za plaćanje: '}
+                      )}
+                      {' / Rok za plaćanje: '}
                       {datum_za_placanje && (
                         <Moment locale="me" format="DD. MMM YYYY.">
-                        {datum_za_placanje}
-                      </Moment>
+                          {datum_za_placanje}
+                        </Moment>
                       )}{' '}
                     </p>
 
@@ -280,9 +286,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                         <div className="invoice-template__footer--info">
                           <p className="">{jikr ? 'JIKR' : ''}</p>
                           <p className="">{ikof ? 'IKOF' : ''}</p>
-                          <p className="">
-                            {broj_racuna ? 'Broj' : ''}
-                          </p>
+                          <p className="">{broj_racuna ? 'Broj' : ''}</p>
                           <p className="">{created_at ? 'Datum' : ''}</p>
                           <p className="">{nacin_placanja ? 'Vrsta' : ''}</p>
                         </div>
@@ -290,13 +294,23 @@ class BezgotovinskiShowTemplate extends React.Component {
                           <p>{jikr ? jikr : ''}</p>
                           <p>{ikof ? ikof : ''}</p>
                           <p>{broj_racuna ? broj_racuna : ''}</p>
-                          <p>{created_at ? created_at : ''}</p>
-                          <p>{nacin_placanja ? vrsta_racuna + ' / ' + nacin_placanja : ''}</p>
+                          <p>
+                            {created_at ? (
+                              <Moment locale="me" format="DD. MMM YYYY.">
+                                {created_at}
+                              </Moment>
+                            ) : (
+                              ''
+                            )}
+                          </p>
+                          <p>
+                            {nacin_placanja
+                              ? vrsta_racuna + ' / ' + nacin_placanja
+                              : ''}
+                          </p>
                         </div>
                       </div>
                     </div>
-
-
                   </div>
                   <div className="wrapper-40 box-border">
                     <h3 className="heading-secondary">
@@ -382,13 +396,11 @@ class BezgotovinskiShowTemplate extends React.Component {
                       <p className="heading-quaternary">Opis</p>
                     </th>
                     <th>
-                      <p className="heading-quaternary nowrap">
-                        Cijena
-                      </p>
+                      <p className="heading-quaternary nowrap">Cijena</p>
                     </th>
                     <th>
                       {/* {ukupniPopust > 0 && ( */}
-                        <p className="heading-quaternary">Popust sa PDV-om</p>
+                      <p className="heading-quaternary">Popust sa PDV-om</p>
                       {/* )} */}
                     </th>
                     <th>
@@ -417,14 +429,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                     </table>
                   </div>
                   <div className="wrapper-40">
-                  <div className="invoice-template__box-info">
+                    <div className="invoice-template__box-info">
                       <p className="fw-500">Bez PDV-a:</p>
 
                       {/* <p className="fw-500">Ukupno bez popusta:</p> */}
                       {Number(ukupniPopust) > 0 && (
-                      <p className="fw-500">
-                        {Number(ukupniPopust) > 0 > 0 && 'Popust sa PDV-om:'}
-                      </p>
+                        <p className="fw-500">
+                          {Number(ukupniPopust) > 0 > 0 && 'Popust sa PDV-om:'}
+                        </p>
                       )}
                       <p className="fw-500">PDV:</p>
                       <p className="fw-500">Total:</p>
@@ -461,7 +473,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                   </div>
                 </div>
 
-
                 <div className="wrapper-100 napomena">
                   <div className="wrapper-50">
                     {opis && (
@@ -479,14 +490,23 @@ class BezgotovinskiShowTemplate extends React.Component {
                     <p>
                       {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
                       {user?.ime && user?.prezime && (
-                        <p>Račun izdao:<br />{user?.ime + ' ' + user?.prezime} / {user?.kod_operatera}</p>
+                        <p>
+                          Račun izdao:
+                          <br />
+                          {user?.ime + ' ' + user?.prezime} /{' '}
+                          {user?.kod_operatera}
+                        </p>
                       )}
                     </p>
                     <hr className="mt-50 bd__bottom" />
                   </div>
                   <div className="wrapper-20">&nbsp;</div>
                   <div className="wrapper-40">
-                    <p>Račun Preuzeo:<br />&nbsp;</p>
+                    <p>
+                      Račun Preuzeo:
+                      <br />
+                      &nbsp;
+                    </p>
                     <hr className="mt-50 bd__bottom" />
                   </div>
                 </div>
