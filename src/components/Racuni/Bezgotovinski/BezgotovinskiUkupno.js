@@ -14,6 +14,8 @@ const BezgotovinskiUkupno = () => {
   const { values, setFieldValue } = useFormikContext();
   const [popustVisible, setPopustVisible] = useState(false);
 
+  console.log('values', values);
+
   const popust = values.popust
     ? {
         popust: values.popust,
@@ -33,11 +35,11 @@ const BezgotovinskiUkupno = () => {
 
   function izracunajCijeneSaPopustom() {
     const ukupnaCijena = izracunajUkupnuCijenuStavkiBezgotovinski(
-      values.stavke,
+      values.niz,
       true
     );
     const ukupnaCijenaBezPdv = izracunajUkupnuCijenuStavkiBezPdvBezgotovinski(
-      values.stavke,
+      values.niz,
       true
     );
     const ukupnoPdv = ukupnaCijena - ukupnaCijenaBezPdv;
@@ -54,9 +56,7 @@ const BezgotovinskiUkupno = () => {
         ukupnoPdv,
       };
     } else {
-      const porezi = values.stavke
-        ? izracunajPojedinacnePoreze(values.stavke)
-        : {};
+      const porezi = values.niz ? izracunajPojedinacnePoreze(values.niz) : {};
 
       return Object.keys(porezi).reduce(
         (cijene, porezId) => {

@@ -374,6 +374,7 @@ function getPopustStavke(stavka) {
       iznos:
         Number(stavka?.grupa?.popust_procenti) ||
         Number(stavka?.atributi_roba?.popust_procenti) ||
+        Number(stavka?.popust) ||
         0,
       tip_popusta: 'procenat',
     };
@@ -383,6 +384,7 @@ function getPopustStavke(stavka) {
       iznos:
         Number(stavka?.grupa?.popust_iznos) ||
         Number(stavka?.atributi_roba?.popust_iznos) ||
+        Number(stavka?.popust) ||
         0,
       tip_popusta: 'iznos',
     };
@@ -399,8 +401,10 @@ function getPopustStavke(stavka) {
 
 function izracunajPocetnuCijenuSaPopustom(stavka, cijena) {
   let popustStart = getPopustStavke(stavka);
+  console.log('izracunajPocetnuCijenuSaPopustom');
 
-  if (!popustStart?.tip_popusta) return cijena;
+  if (!popustStart?.tip_popusta)
+    return Number(cijena) - Number(popustStart.iznos);
   if (popustStart.tip_popusta === 'iznos')
     return Number(cijena) - Number(popustStart.iznos);
   if (popustStart?.tip_popusta === 'procenat')

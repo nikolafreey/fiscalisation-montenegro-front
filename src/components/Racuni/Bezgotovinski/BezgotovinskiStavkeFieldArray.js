@@ -394,24 +394,26 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         {/* TODO: izgaseno edit Cijena dok se ne rijesi slanje izmijenjene cijene */}
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
-                          type="text"
-                          readOnly
+                          type="number"
+                          // readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
                           value={
-                            formatirajCijenu(getUkupnaCijenaStavke(stavka)) ||
-                            stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
-                            stavka?.ukupna_cijena
+                            values?.stavke[index]?.ukupna_cijena ||
+                            formatirajCijenu(getUkupnaCijenaStavke(stavka))
+                            // stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                            // stavka?.ukupna_cijena
                           }
                           className="form__input"
                           placeholder="Sa PDV"
-                          onChange={(event) =>
+                          onChange={(event) => {
                             setFieldValue(
                               `stavke.${index}.ukupna_cijena`,
                               event.target.valueAsNumber
-                            )
-                          }
+                            );
+                            console.log('values ukupna cijena', values);
+                          }}
                         />
                       </div>
                     </div>
