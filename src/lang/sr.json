@@ -151,7 +151,8 @@
     "status": "Po defaultu Aktivan",
     "jedinicaMjere": "Jedinica mjere usluge nedostaje",
     "pdv_ukljucen": "Po defaultu bez PDV-a",
-    "grupa_id": "Grupa usluge nedostaje"
+    "grupa_id": "Grupa usluge nedostaje",
+    "specialCharacters": "Naziv usluge može sadržati samo slova i brojeve, a ne specijalne karaktere"
   },
   "cijene": {
     "nabavna_bez_pdv": "Nabavna cijena bez PDV-a",
