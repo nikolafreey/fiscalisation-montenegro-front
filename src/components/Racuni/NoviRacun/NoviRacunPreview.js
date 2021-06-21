@@ -6,6 +6,7 @@ import {
   izracunajUkupnuCijenuStavkiBezPdv,
   izracunajPojedinacnePoreze,
 } from '../../../helpers/racuni';
+import AsyncSelect from 'react-select/async';
 import {
   storeRacun,
   setRacun,
@@ -26,6 +27,7 @@ import { select } from 'redux-saga/effects';
 import { depozitWithdrawService } from '../../../services/DepozitWithdrawService';
 import { RACUNI } from '../../../constants/routes';
 import { racuniService } from '../../../services/RacuniService';
+import { partneriService } from '../../../services/PartneriService';
 
 toast.configure();
 
@@ -45,10 +47,27 @@ const NoviRacunPreview = () => {
   const dispatch = useDispatch();
 
   let previousUrl = localStorage.getItem('previousUrl');
+  const [anonimniKupac, setAnonimniKupac] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await partneriService.getPartneriDropdown().then((data) => {
+        setAnonimniKupac(
+          data.find((data) => data.label === 'Anonimni Korisnik')
+        );
+      });
+    };
+    fetchData();
+  }, []);
 
   const [value, setValue] = useState(1);
   const [selectedLabel, setSelectedLabel] = useState('');
   const [nacinPlacanja, setNacinPlacanja] = useState('BANKNOTE');
+  const [selectedValueKupac, setSelectedValueKupac] = useState(
+    anonimniKupac?.value || 1
+  );
+  const [selectedLabelKupac, setSelectedLabelKupac] = useState(null);
+  const [kupac, setKupac] = useState();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -98,7 +117,12 @@ const NoviRacunPreview = () => {
       history.push(RACUNI.INDEX);
       return;
     }
-    dispatch(storeRacun({ nacin_placanja: nacinPlacanja }));
+    dispatch(
+      storeRacun({
+        nacin_placanja: nacinPlacanja,
+        partner_id: kupac ? kupac : anonimniKupac?.value,
+      })
+    );
     let racunId;
     // setTimeout(() => {
     //   racuniService.getRacuni().then((data) => {
@@ -160,6 +184,8 @@ const NoviRacunPreview = () => {
       roba={{ ...noviRacun.robe[robaId], roba_id: robaId }}
     />
   ));
+
+  console.log('anonimniKupac', anonimniKupac);
 
   return (
     <div className="side-info">
@@ -264,6 +290,26 @@ const NoviRacunPreview = () => {
             }}
             value={selectedLabel ? selectedLabel : NACIN_PLACANJA_GOTOVINSKI[0]}
             defaultValue={NACIN_PLACANJA_GOTOVINSKI[0]}
+          />
+        </div>
+        <div className="mtb-20">
+          <label className="form__label">Kupac</label>
+          <AsyncSelect
+            name="partner_id"
+            loadOptions={partneriService.getPartneriDropdown}
+            onChange={(option) => {
+              setSelectedLabelKupac(option);
+              setSelectedValueKupac(option.value);
+              setKupac(option.value);
+              console.log('valueKupac', option.value);
+            }}
+            value={
+              selectedLabelKupac !== null ? selectedLabelKupac : anonimniKupac
+            }
+            defaultValue={anonimniKupac || 1}
+            cacheOptions
+            defaultOptions={true}
+            isSearchable
           />
         </div>
         <button

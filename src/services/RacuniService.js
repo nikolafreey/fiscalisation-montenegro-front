@@ -61,6 +61,7 @@ class RacuniService extends ApiService {
       stavke,
       vrsta_racuna: 'gotovinski',
       nacin_placanja: noviRacun.nacin_placanja,
+      partner_id: noviRacun?.partner_id,
     });
   };
 

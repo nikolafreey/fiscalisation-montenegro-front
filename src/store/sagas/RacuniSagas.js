@@ -38,9 +38,10 @@ export function* racunStore({ payload }) {
     let noviRacun = yield select(noviRacunSelector());
     let noviRacunTemp = {
       ...noviRacun,
-      nacin_placanja: payload.nacin_placanja //
+      nacin_placanja: payload.nacin_placanja
         ? payload.nacin_placanja
         : 'BANKNOTE',
+      partner_id: payload.partner_id ? payload.partner_id : 1,
     };
     const res = yield call(racuniService.storeRacun, noviRacunTemp);
     toast.success(
