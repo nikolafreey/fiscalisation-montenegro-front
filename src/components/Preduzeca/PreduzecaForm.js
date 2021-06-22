@@ -275,7 +275,6 @@ const PreduzecaForm = () => {
                           name="pib"
                           label={$t('preduzeca.pib')}
                           placeholder=""
-                          obavezno
                           type="text"
                           className="form__input w-100"
                         />
