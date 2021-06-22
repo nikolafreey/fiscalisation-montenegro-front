@@ -31,23 +31,25 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
       }
     });
   };
-  
+
   const detailsCloseHandler = () => {
     openInfo(false);
-  }
-
+  };
 
   let sideInfoLogoWrapper;
   if (preduzece?.logotip) {
     sideInfoLogoWrapper = (
       <div className="side-info__logo-wrapper">
-        <img src={preduzece?.logotip} alt={preduzece?.kratki_naziv} />
+        <img
+          src={'http://localhost:8000/' + preduzece?.logotip}
+          alt={preduzece?.kratki_naziv}
+        />
       </div>
     );
   }
   return (
-    <div className={infoOpen ? "side-info show": "side-info"}>
-      <div className="side-info__close tshow" onClick={detailsCloseHandler} >
+    <div className={infoOpen ? 'side-info show' : 'side-info'}>
+      <div className="side-info__close tshow" onClick={detailsCloseHandler}>
         <svg
           className="icon icon__dark lg"
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +72,7 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
       <div className="side-info__wrapper">
         <h2 className="side-info__title">
           <span>{preduzece?.kratki_naziv}</span>
-          {preduzece?.verifikovan !== 0 && (
+          {(preduzece?.verifikovan === 1 || preduzece?.verifikovan === true) && (
             <i>
               <svg
                 className="icon icon__fill-color-badge lg"

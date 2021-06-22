@@ -36,7 +36,7 @@ const PreduzecaTableRow = ({ item, onItemClick, selectedId, partneri }) => {
             <p>
               {item.kratki_naziv}
               <i>
-                {item.verifikovan !== 0 && (
+                {(item?.verifikovan === 1 || item?.verifikovan === true) && (
                   <Badge className="icon icon__fill-color-badge ml-s sm" />
                 )}
               </i>
