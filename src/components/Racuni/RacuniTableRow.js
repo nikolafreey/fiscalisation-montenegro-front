@@ -284,13 +284,13 @@ const RacuniTableRow = ({ item, racuni }) => {
                 <Link onClick={handlePogledajA4}>Pogledaj na A4</Link>
               )}
 
-              <Link
+              {/* <Link
                 onClick={handleIzmjeni}
                 className={`${_item?.qr_url ? 'disabled' : ''}`}
               >
                 <Izmjeni />
                 Izmijeni
-              </Link>
+              </Link> */}
 
               {!_item?.qr_url && (
                 <Link
