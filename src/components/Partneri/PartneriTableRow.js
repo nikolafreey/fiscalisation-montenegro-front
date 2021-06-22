@@ -48,7 +48,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
                       partner.fizicko_lice?.prezime ||
                     partner.kontakt_ime + ' ' + partner.kontakt_prezime}
               </span>
-              {partner?.preduzece_partner?.verifikovan !== 0 &&
+              {(partner?.preduzece_partner?.verifikovan === 1 || partner?.preduzece_partner?.verifikovan === true) &&
                 partner.preduzece_partner && (
                   <i>
                     <Badge className="icon icon__fill-color-badge sm" />
@@ -79,7 +79,7 @@ const PartneriTableRow = ({ item: partner, onItemClick, selectedId }) => {
           <button type="button" className="btn btn__light-dd btn__xs">
             <Dots className="icon lg" />
             <div className="drop-down" id="ddl">
-              {partner?.preduzece_partner?.verifikovan === 0 ||
+              {(partner?.preduzece_partner?.verifikovan === 0 || partner?.preduzece_partner?.verifikovan === false) ||
               partner.fizicko_lice_id ? (
                 <Link
                   to={
