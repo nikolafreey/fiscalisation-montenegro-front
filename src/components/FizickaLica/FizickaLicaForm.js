@@ -126,7 +126,6 @@ const FizickaLicaForm = () => {
                     <div className="form__group w-48 mob-w-100">
                       <InputField
                         name="jmbg"
-                        obavezno
                         className="form__input"
                         label={$t('fizickalica.jmbg')}
                       />
