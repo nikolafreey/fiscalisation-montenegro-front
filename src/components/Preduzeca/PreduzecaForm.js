@@ -334,7 +334,7 @@ const PreduzecaForm = () => {
                                 label:
                                   preduzece.djelatnosti &&
                                   preduzece?.djelatnosti[0]?.naziv,
-                              }
+                              } || {}
                             }
                           />
                         </div>
