@@ -99,7 +99,8 @@ const Stavke = () => {
 
   const handleSearch = (value) => {
     let filtered = value.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
-    dispatch(getStavke(filtered));
+    filteri.search = filtered;
+    dispatch(getStavke(filteri));
   };
 
   const handleChange = (event) => {
