@@ -60,7 +60,7 @@
     "partner_id": "Kupac nedostaje",
     "datum_izdavanja": "Datum izdavanja racuna nedostaje",
     "datum_placanja": "Datum za placanje racuna nedostaje",
-    "ukupna_cijena":"Cijena stavke nedostaje",
+    "ukupna_cijena": "Cijena stavke nedostaje",
     "kolicina": "Kolicina stavke nedostaje",
     "pozitivan": "Kolicina stavke mora biti broj veći od 0"
   },
@@ -75,8 +75,8 @@
     "proizvodjac": "Proizvodjac Robe",
     "jedinica_mjere": "Jedinica Mjere",
     "preduzece": "Preduzece",
-    "kreirajPojedinacneCijene":"Kreiraj Pojedinačne Cijene",
-    "dodajNovuPojedinacnuCijenu":"Dodaj Novu Pojedinačnu Cijenu"
+    "kreirajPojedinacneCijene": "Kreiraj Pojedinačne Cijene",
+    "dodajNovuPojedinacnuCijenu": "Dodaj Novu Pojedinačnu Cijenu"
   },
   "robeValidation": {
     "naziv": "Naziv robe nedostaje",
@@ -127,8 +127,9 @@
     "grad": "Grad u kom se nalazi preduzeće nedostaje",
     "drzava": "Drzava u kojoj se nalazi preduzeće nedostaje",
     "djelatnost": "Djelatnost preduzeća nedostaje",
-    "kategorija": "Kategorija preduzeća nedostaje",  
-    "pozitivan": "Kolicina stavke mora biti pozitivan broj."
+    "kategorija": "Kategorija preduzeća nedostaje",
+    "pozitivan": "Kolicina stavke mora biti pozitivan broj.",
+    "specialCharacters": "PIB preduzeca može sadržati samo brojeve, a ne slova i specijalne karaktere"
   },
   "common": {
     "izbrisi": "Izbriši",

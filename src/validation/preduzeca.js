@@ -9,7 +9,8 @@ export const PreduzecaSchema = Yup.object().shape({
     .max(255, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.oblik_preduzeca')),
   pib: Yup.string()
-    .max(13, $t('validacija.unosDugacak')),
+    .max(13, $t('validacija.unosDugacak'))
+    .matches(/^[0-9]+$/, $t('preduzecaValidation.specialCharacters')),
   adresa: Yup.string()
     .max(255, $t('validacija.unosDugacak'))
     .required($t('preduzecaValidation.adresa')),

@@ -5,7 +5,6 @@ export const UslugeSchema = Yup.object().shape({
   naziv: Yup.string()
     .max(191, $t('validacija.unosDugacak'))
     .required($t('uslugeValidation.naziv'))
-    // .matches(/[^0-9a-zA-Zžćšđč -_\/()[\]<>|,.]/gi, $t('uslugeValidation.specialCharacters')),
     .matches(/^[aA-zZ0-9a-zA-Zžćšđč -_\/()[\]<>|,.\s]+$/, $t('uslugeValidation.specialCharacters')),
   jedinica_mjere_id: Yup.number().required(
     $t('uslugeValidation.jedinicaMjere')
