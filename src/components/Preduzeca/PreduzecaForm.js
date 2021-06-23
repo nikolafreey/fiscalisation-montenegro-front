@@ -56,6 +56,24 @@ const PreduzecaForm = () => {
 
   const history = useHistory();
 
+  const [djelatnostDefault, setDjelatnostDefault] = useState({});
+  useEffect(() => {
+    djelatnostiService.getDjelatnostiDropdown()
+      .then(data => {
+        setDjelatnostDefault(data.find(temp => temp.label === "Ostalo"));
+      })
+      .catch(e => toast.error('Greška: ', e.message));
+  }, []);
+
+  const [kategorijaDefault, setKategorijaDefault] = useState({});
+  useEffect(() => {
+    kategorijeService.getKategorijeDropdown()
+      .then(data => {
+        setKategorijaDefault(data[0]);
+      })
+      .catch(e => toast.error('Greška: ', e.message));
+  }, []);
+
   const informacijeKontakt = [
     { key: 'Aktivan', value: 'Aktivan' },
     { key: 'Neaktivan', value: 'Neaktivan' },
@@ -195,6 +213,8 @@ const PreduzecaForm = () => {
         verifikovan: false,
         ziro_racuni: [],
         pdv_obveznik: 1,
+        djelatnost_id: djelatnostDefault ? djelatnostDefault.value : 1,
+        kategorija_id: kategorijaDefault ? kategorijaDefault.value : 1,
         ...preduzece,
       }}
       onSubmit={handleSubmit}
@@ -321,20 +341,21 @@ const PreduzecaForm = () => {
                             name="djelatnost_id"
                             label={$t('preduzeca.djelatnost')}
                             invalid={!isValid}
+                            isInitialValid={djelatnostDefault ? true : false}
                             loadOptions={
                               djelatnostiService.getDjelatnostiDropdown
                             }
                             defaultValue={
                               preduzece &&
                               Object.keys(preduzece).length !== 0 &&
-                              preduzece.constructor === Object && {
+                              preduzece.constructor === Object ? {
                                 value:
                                   preduzece.djelatnosti &&
                                   preduzece?.djelatnosti[0]?.id,
                                 label:
                                   preduzece.djelatnosti &&
                                   preduzece?.djelatnosti[0]?.naziv,
-                              } || {}
+                              } : djelatnostDefault
                             }
                           />
                         </div>
@@ -346,12 +367,13 @@ const PreduzecaForm = () => {
                             loadOptions={
                               kategorijeService.getKategorijeDropdown
                             }
+                            isInitialValid={kategorijaDefault ? true : false}
                             defaultValue={
                               Object.keys(preduzece).length !== 0 &&
-                              preduzece.constructor === Object && {
+                              preduzece.constructor === Object ? {
                                 value: preduzece?.kategorija?.id,
                                 label: preduzece?.kategorija?.naziv,
-                              }
+                              } : kategorijaDefault
                             }
                           />
                         </div>
