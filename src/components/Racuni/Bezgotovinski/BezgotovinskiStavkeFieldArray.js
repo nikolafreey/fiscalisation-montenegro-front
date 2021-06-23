@@ -374,6 +374,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         </label>
                         <input
                           type="text"
+                          name={`stavke.${index}.ukupna_cijena`}
                           value={formatirajCijenu(
                             getCijenaStavkeBezPdv(stavka)
                           )}
@@ -412,7 +413,6 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               `stavke.${index}.ukupna_cijena`,
                               event.target.valueAsNumber
                             );
-                            console.log('values ukupna cijena', values);
                           }}
                         />
                       </div>

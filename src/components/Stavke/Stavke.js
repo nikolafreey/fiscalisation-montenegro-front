@@ -98,7 +98,7 @@ const Stavke = () => {
   };
 
   const handleSearch = (value) => {
-    let filtered = value.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
+    let filtered = value.replace(/[^0-9a-zA-Zžćšđč -]/gi, '');
     filteri.search = filtered;
     dispatch(getStavke(filteri));
   };
