@@ -58,27 +58,24 @@ const Bezgotovinski = () => {
     // const { params } = useRouteMatch();
     console.log('values', values);
 
-    try {
-      if (values.stavke.length === 0) {
-        toast.error('Račun mora imati makar jednu stavku!', toastSettings);
-        return;
-      }
-      if (!values.stavke[0]) {
-        toast.error(
-          'Račun mora imati makar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
-          toastSettings
-        );
-        return;
-      }
-
-      if (values.partner_id == null || values.partner_id === 0) {
-        toast.error('Kupac je neophodan', toastSettings);
-        throw new Error('Kupac je neophodan');
-      }
-    } catch (error) {
-      console.log('error');
+    if (values.stavke.length === 0) {
+      toast.error('Račun mora imati makar jednu stavku!', toastSettings);
+      return;
+    }
+    if (!values.stavke[0]) {
+      toast.error(
+        'Račun mora imati makar jednu stavku i mora biti odabrana roba/usluga za datu stavku!',
+        toastSettings
+      );
+      return;
     }
 
+    if (values.partner_id == null || values.partner_id === 0) {
+      toast.error('Kupac je neophodan', toastSettings);
+      return;
+    }
+
+    let returnForEach = false;
     values &&
       values.stavke.forEach((racun, index) => {
         console.log('index', index + 1);
@@ -88,6 +85,7 @@ const Bezgotovinski = () => {
             'Količina stavke mora biti veća od 0 na računu ' + +indexTemp,
             toastSettings
           );
+          returnForEach = true;
           return;
         }
         if (racun.jedinica_mjere_id == null) {
@@ -95,6 +93,7 @@ const Bezgotovinski = () => {
             'Jedinica mjere stavke je neophodna na računu ' + +indexTemp,
             toastSettings
           );
+          returnForEach = true;
           return;
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
@@ -102,6 +101,7 @@ const Bezgotovinski = () => {
             'Cijena stavke mora biti veća od 0 na računu ' + +indexTemp,
             toastSettings
           );
+          returnForEach = true;
           return;
         }
         if (!racun.tip_popusta) {
@@ -111,6 +111,8 @@ const Bezgotovinski = () => {
           racun.popust = 0;
         }
       });
+
+    if(returnForEach) return;
 
     const noviRacun = {
       ...values,
