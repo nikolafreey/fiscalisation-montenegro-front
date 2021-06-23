@@ -73,8 +73,9 @@ const Racuni = () => {
   }, [dispatch]);
 
   const handleSearch = (value) => {
-    let filtered = value.search.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
-    dispatch(getRacuni(filtered));
+    let filtered = value?.search?.replace(/[^0-9a-zA-Zžćšđč]/gi, '');
+    searchParams.search = filtered;
+    dispatch(getRacuni(searchParams));
   };
 
   const resetDatePicker = () => {
