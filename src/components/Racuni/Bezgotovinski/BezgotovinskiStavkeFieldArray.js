@@ -196,6 +196,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
       values.niz[values.stavke.length - 1] = stavka;
 
+      let tempVal =
+        Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa));
+
       return (
         Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
       );
@@ -373,19 +376,29 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Bez PDV
                         </label>
                         <input
-                          type="text"
-                          name={`stavke.${index}.ukupna_cijena`}
-                          value={formatirajCijenu(
+                          type="number"
+                          name={`stavke.${index}.cijena_bez_pdv`}
+                          value={
+                            // formatirajCijenu(
+                            //   getUkupnaCijenaStavke(values?.stavke[index]) -
+                            //     getIznosPdv(values?.stavke[index])
+                            // )
                             getCijenaStavkeBezPdv(stavka)
-                          )}
+                          }
                           // value={
                           //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                           //       stavka?.ukupna_cijena
                           //     }
                           className="form__input"
                           placeholder="Bez PDV"
-                          // disabled
-                          // readOnly
+                          onChange={(event) => {
+                            setFieldValue(
+                              `stavke.${index}.cijena_bez_pdv`,
+                              event.target.valueAsNumber
+                            );
+                            console.log('values', values);
+                            console.log('event', event);
+                          }}
                         />
                       </div>
                       <div className="form__group">
@@ -396,13 +409,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
                           type="number"
-                          // readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
                           value={
-                            values?.stavke[index]?.ukupna_cijena ||
-                            formatirajCijenu(getUkupnaCijenaStavke(stavka))
+                            getUkupnaCijenaStavke(values?.stavke[index])
+                            // values?.stavke[index]?.ukupna_cijena ||
+                            // formatirajCijenu(getUkupnaCijenaStavke(stavka))
                             // stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
                             // stavka?.ukupna_cijena
                           }
