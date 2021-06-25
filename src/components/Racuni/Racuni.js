@@ -8,7 +8,11 @@ import { ReactComponent as ButtonPlusSvg } from '../../assets/icon/button-plus.s
 import RacuniTable from './RacuniTable';
 import Modal from '../../components/shared/forms/Modal';
 import { racuniSelector } from '../../store/selectors/RacuniSelector';
-import { getRacuni, setRacun } from '../../store/actions/RacuniActions';
+import {
+  getRacuni,
+  resetNoviRacun,
+  setRacun,
+} from '../../store/actions/RacuniActions';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useRouteMatch } from 'react-router-dom';
@@ -245,7 +249,10 @@ const Racuni = () => {
             <ButtonPlusSvg />
             Novi račun
             <div className="drop-down" id="ddl">
-              <Link to={RACUNI.CREATE}>
+              <Link
+                onClick={() => dispatch(resetNoviRacun())}
+                to={RACUNI.CREATE}
+              >
                 {/* <PreduzeceSvg /> */}
                 Novi gotovinski
               </Link>
