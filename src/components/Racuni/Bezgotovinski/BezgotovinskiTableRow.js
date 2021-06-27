@@ -21,11 +21,11 @@ const BezgotovinskiTableRow = ({ item }) => {
          {item && item.jedinicna_cijena_bez_pdv
           // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
           ? Number(item.jedinicna_cijena_bez_pdv).toString().replace('.', ',')
-          : ''} <span>Bez PDV</span><br />
+          : ''} <span>bez PDV</span><br />
         {item && item.jedinicna_cijena_bez_pdv
           // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
           ? Number(item.cijena_sa_pdv).toString().replace('.', ',')
-          : ''} <span>Sa PDV</span>
+          : ''} <span>sa PDV</span>
       </td>
       {/* <td className="cl white-space-pre">
         {item && item.jedinicna_cijena_bez_pdv
@@ -53,8 +53,8 @@ const BezgotovinskiTableRow = ({ item }) => {
       </td>
 
       <td className="cl">
-        <p className="cd fw-500 nowrap"><span>Bez PDV</span> {item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''} <br /></p>
-        <p className="cd fw-500 nowrap"><span>Sa PDV</span> {item ? formatirajCijenu(item.cijena_sa_pdv_popust*item.kolicina): ''} </p>
+        <p className="cd fw-500 nowrap"><span>bez PDV</span> {item ? formatirajCijenu(item.cijena_bez_pdv_popust*item.kolicina): ''} <br /></p>
+        <p className="cd fw-500 nowrap"><span>sa PDV</span> {item ? formatirajCijenu(item.cijena_sa_pdv_popust*item.kolicina): ''} </p>
       </td>
       {/* <td className="cl">
         <p className="cd fw-500 nowrap">{item ? formatirajCijenu(item.cijena_sa_pdv_popust*item.kolicina): ''}</p>

@@ -56,13 +56,25 @@ class BezgotovinskiShowTemplate extends React.Component {
             return <p>{'CKB: ' + a}</p>;
             // return <p>{a}</p>;
           } else if (prvaTri.includes('530')) {
-            return <p>{'Montenegro AD' + a}</p>;
+            return <p>{'NLB: ' + a}</p>;
             // return <p>{a}</p>;
           } else if (prvaTri.includes('540')) {
             return <p>{'ERSTE: ' + a}</p>;
             // return <p>{a}</p>;
           } else if (prvaTri.includes('520')) {
             return <p>{'Hipotekarna: ' + a}</p>;
+            // return <p>{a}</p>;
+          } else if (prvaTri.includes('525')) {
+            return <p>{'Komercijalna: ' + a}</p>;
+            // return <p>{a}</p>;
+          } else if (prvaTri.includes('560')) {
+            return <p>{'Universal Capital: ' + a}</p>;
+            // return <p>{a}</p>;
+          } else if (prvaTri.includes('570')) {
+            return <p>{'Zapad Banka: ' + a}</p>;
+            // return <p>{a}</p>;
+          } else if (prvaTri.includes('575')) {
+            return <p>{'Ziraat Bank: ' + a}</p>;
             // return <p>{a}</p>;
           } else if (prvaTri.includes('565')) {
             return <p>{'Lovćen Banka: ' + a}</p>;
@@ -149,7 +161,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                     ''
                   )}
                 </div> */}
-                <div className="wrapper-100">
+                <div className="wrapper-100 fs-8 header-info">
                   {preduzece && preduzece.logotip ? (
                     <div className="article-33">
                       <p className="">
@@ -210,20 +222,23 @@ class BezgotovinskiShowTemplate extends React.Component {
                   <div className="article-33">
                     <div className="invoice-template__box-info">
                       <p className="">
-                        {preduzece && preduzece.pib ? 'PIB' : ''}
+                        {preduzece && preduzece.pib ? 'PIB: ' + preduzece.pib : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.pdv ? 'PDV' : ''}
+                        {preduzece && preduzece.pdv ? 'PDV: ' + preduzece.pdv : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.iban ? 'IBAN' : ''}
+                        {preduzece && preduzece.iban ? 'IBAN: ' + preduzece.iban : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.bic_swift ? 'BIC/SWIFT' : ''}
+                        {preduzece && preduzece.bic_swift ? 'BIC/SWIFT: ' + preduzece.bic_swift : ''}
                       </p>
+                      {/* {preduzece && preduzece.logotip ? ( */}
+                      <p className="">{ziroRacuni()}</p>
+                      {/* ) : ''} */}
                     </div>
 
-                    <div className="invoice-template__box-values">
+                    {/* <div className="invoice-template__box-values">
                       <p className="txt-right">
                         {preduzece && preduzece.pib ? preduzece.pib : ''}
                       </p>
@@ -238,10 +253,8 @@ class BezgotovinskiShowTemplate extends React.Component {
                           ? preduzece.bic_swift
                           : ''}
                       </p>
-                    </div>
-                    {/* {preduzece && preduzece.logotip ? ( */}
-                    <p className="txt-right">{ziroRacuni()}</p>
-                    {/* ) : ''} */}
+                    </div> */}
+
                   </div>
                   {/* <div className="article-33">
                     <div className="text-right">{ziroRacuni()}</div>
@@ -296,7 +309,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                           <p>{broj_racuna ? broj_racuna : ''}</p>
                           <p>
                             {created_at ? (
-                              <Moment locale="me" format="DD. MMM YYYY.">
+                              <Moment locale="me" format="Do MMMM YYYY, HH:mm:ss">
                                 {created_at}
                               </Moment>
                             ) : (
@@ -320,6 +333,20 @@ class BezgotovinskiShowTemplate extends React.Component {
                           ' ' +
                           partner?.fizicko_lice?.prezime}
                     </h3>
+                        <p className="">
+                          {partner &&
+                          partner?.preduzece_partner?.adresa &&
+                          partner?.preduzece_partner?.grad
+                            ? partner?.preduzece_partner?.adresa +
+                              ', ' +
+                              partner?.preduzece_partner?.grad
+                            : ''}
+                        </p>
+                        <p className="">
+                          {partner && partner?.preduzece_partner?.drzava
+                            ? partner?.preduzece_partner?.drzava
+                            : ''}
+                        </p>
                     <div className="df jc-sb">
                       <div className="df fd-column">
                         <p className="">
@@ -333,18 +360,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                         <p className="">
                           {partner && partner?.preduzece_partner?.pdv
                             ? 'PDV: '
-                            : ''}
-                        </p>
-                        <p className="">
-                          {partner &&
-                          partner?.preduzece_partner?.adresa &&
-                          partner?.preduzece_partner?.grad
-                            ? 'Adresa: '
-                            : ''}
-                        </p>
-                        <p className="">
-                          {partner && partner?.preduzece_partner?.drzava
-                            ? 'Država: '
                             : ''}
                         </p>
                       </div>
@@ -364,20 +379,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                             ? partner?.preduzece_partner?.pdv
                             : ''}
                         </p>
-                        <p className="txt-right">
-                          {partner &&
-                          partner?.preduzece_partner?.adresa &&
-                          partner?.preduzece_partner?.grad
-                            ? partner?.preduzece_partner?.adresa +
-                              ', ' +
-                              partner?.preduzece_partner?.grad
-                            : ''}
-                        </p>
-                        <p className="txt-right">
-                          {partner && partner?.preduzece_partner?.drzava
-                            ? partner?.preduzece_partner?.drzava
-                            : ''}
-                        </p>
                       </div>
                       {/* TODO: ubaciti prikaz ziro racuna partnera ili ne prikazivati ako  ih nema */}
                       {/* <div className="df fd-column">
@@ -392,7 +393,7 @@ class BezgotovinskiShowTemplate extends React.Component {
               <table>
                 <thead>
                   <tr>
-                    <th>
+                    <th className="prva-kolona">
                       <p className="heading-quaternary">Opis</p>
                     </th>
                     <th>
@@ -478,7 +479,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                     {opis && (
                       <>
                         <p className="fw-500">Napomena:</p>
-                        <p className="mb-25">{opis}</p>
+                        <p className="mb-25 white-space-pre">{opis}</p>
                       </>
                     )}
                   </div>
