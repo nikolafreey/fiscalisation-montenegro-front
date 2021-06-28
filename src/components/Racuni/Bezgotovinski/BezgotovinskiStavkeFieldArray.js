@@ -603,22 +603,30 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <div className="heading-secondary mb-0">
                           {stavka && stavka?.popust ? (
                             <del style={{ marginRight: '10px' }}>
+                              {/* //(temp2.niz[0].cijena_sa_pdv_popust-temp2.niz[0].cijena_bez_pdv_popust)/(1-temp2.niz[0].popust/100) */}
                               {formatirajCijenu(
                                 stavka?.kolicina
-                                  ? stavka?.kolicina *
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.ukupna_cijena ||
-                                        stavka?.ukupna_cijena) -
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.cijena_bez_pdv ||
-                                        stavka?.cijena_bez_pdv)
+                                  ? stavka?.kolicina * values?.popust !== 0
+                                    ? values?.niz[index]?.tip_popusta ===
+                                      'procenat'
+                                      ? (values?.niz[index].kolicina *
+                                          (values?.niz[index]
+                                            .cijena_sa_pdv_popust -
+                                            values?.niz[index]
+                                              .cijena_bez_pdv_popust)) /
+                                        (1 - values?.niz[index].popust / 100)
+                                      : values?.niz[index].kolicina *
+                                        (values?.niz[index]
+                                          .cijena_sa_pdv_popust -
+                                          values?.niz[index]
+                                            .cijena_bez_pdv_popust +
+                                          values?.niz[index].popust)
+                                    : values?.niz[index].cijena_sa_pdv_popust -
+                                      values?.niz[index].cijena_bez_pdv_popust
                                   : 1 *
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.ukupna_cijena ||
-                                        stavka?.ukupna_cijena) -
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.cijena_bez_pdv ||
-                                        stavka?.cijena_bez_pdv)
+                                      (values?.niz[index].cijena_sa_pdv_popust -
+                                        values?.niz[index]
+                                          .cijena_bez_pdv_popust)
                               )}
                             </del>
                           ) : (
