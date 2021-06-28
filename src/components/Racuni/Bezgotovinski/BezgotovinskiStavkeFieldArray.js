@@ -376,14 +376,15 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Bez PDV
                         </label>
                         <input
-                          type="number"
+                          type="text"
                           name={`stavke.${index}.cijena_bez_pdv`}
+                          readOnly
                           value={
-                            // formatirajCijenu(
-                            //   getUkupnaCijenaStavke(values?.stavke[index]) -
-                            //     getIznosPdv(values?.stavke[index])
-                            // )
-                            getCijenaStavkeBezPdv(stavka)
+                            formatirajCijenu(
+                              getUkupnaCijenaStavke(values?.stavke[index])
+                            )
+                            // getIznosPdv(values?.stavke[index])
+                            // getCijenaStavkeBezPdv(values?.stavke[index])
                           }
                           // value={
                           //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
@@ -397,7 +398,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               event.target.valueAsNumber
                             );
                             console.log('values', values);
-                            console.log('event', event);
+                            console.log('stavka', stavka);
                           }}
                         />
                       </div>
