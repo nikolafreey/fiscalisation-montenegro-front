@@ -31,7 +31,7 @@ const NoviRacunShowTemplate = () => {
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
-  }, [params, dispatch]);
+  }, [params.id, dispatch]);
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -100,10 +100,15 @@ const NoviRacunShowTemplate = () => {
           <LinkSvg /> <p>Povratak na Račune</p>
         </Link>
         <div className="title">
-          <h1 className="heading-primary">Račun {racun && racun.broj_racuna}</h1>
+          <h1 className="heading-primary">
+            Račun {racun && racun.broj_racuna}
+          </h1>
 
-          <div className="df jc-end" >
-            <button className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0" onClick={handlePrint}>
+          <div className="df jc-end">
+            <button
+              className="btn btn__primary btn-dd mob-mb-20 ml-m mob-ml-0"
+              onClick={handlePrint}
+            >
               <svg
                 className="icon icon__light lg mr-xs"
                 xmlns="http://www.w3.org/2000/svg"

@@ -155,7 +155,7 @@ const BezgotovinskiPreview = () => {
 
   useEffect(() => {
     if (params.id) dispatch(getRacun(params.id));
-  }, [params, dispatch]);
+  }, [params.id, dispatch]);
 
   const findWord = (word, str) => {
     return word.includes(str);
