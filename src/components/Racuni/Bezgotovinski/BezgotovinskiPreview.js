@@ -538,7 +538,7 @@ const BezgotovinskiPreview = () => {
                             <p>{broj_racuna ? broj_racuna : ''}</p>
                             <p>
                               {created_at ? (
-                                <Moment locale="me" format="DD. MMM YYYY.">
+                                <Moment locale="me" format="Do MMMM YYYY, HH:mm:ss">
                                   {created_at}
                                 </Moment>
                               ) : (
