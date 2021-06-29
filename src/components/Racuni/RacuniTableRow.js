@@ -98,6 +98,10 @@ const RacuniTableRow = ({ item, racuni }) => {
       itemStatus = 'Privremeni';
       bojaKlasa = 'tag tag__neutral';
       break;
+    case 'korektivni':
+      itemStatus = 'Korektivni';
+      bojaKlasa = 'tag tag__neutral';
+      break;
     default:
   }
 
