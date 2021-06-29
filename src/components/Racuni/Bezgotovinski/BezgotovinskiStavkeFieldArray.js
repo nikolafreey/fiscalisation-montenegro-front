@@ -208,6 +208,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       return Number(cijena_sa_popustom);
     }
   }
+
   function getPorezForId(porezId) {
     return porezi?.find((porez) => porez.id === porezId) || {};
   }
@@ -303,6 +304,12 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       return;
     }
   }
+
+  let valuesBezPopusta;
+  if(values?.niz[0]?.popust === 0){
+  valuesBezPopusta = values.niz;
+  }
+  console.log('valuesBezPopusta', valuesBezPopusta);
 
   //values.stavke=values.niz;
   // if (values.stavke.length !==values.a.length) {
@@ -615,12 +622,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                                             values?.niz[index]
                                               .cijena_bez_pdv_popust)) /
                                         (1 - values?.niz[index].popust / 100)
-                                      : values?.niz[index].kolicina *
-                                        (values?.niz[index]
-                                          .cijena_sa_pdv_popust -
-                                          values?.niz[index]
-                                            .cijena_bez_pdv_popust +
-                                          values?.niz[index].popust)
+                                      : values?.niz[index].kolicina * values?.niz[index].ukupna_cijena - values?.niz[index].kolicina *
+                                        (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
                                     : values?.niz[index].cijena_sa_pdv_popust -
                                       values?.niz[index].cijena_bez_pdv_popust
                                   : 1 *
@@ -650,14 +653,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             <del style={{ marginRight: '10px' }}>
                               {formatirajCijenu(
                                 stavka?.kolicina
-                                  ? stavka?.kolicina *
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.cijena_bez_pdv ||
-                                        stavka?.cijena_bez_pdv)
+                                  ? values?.niz[index].kolicina *
+                                        (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
                                   : 1 *
-                                      (stavka?.roba?.cijene_roba[0]
-                                        ?.cijena_bez_pdv ||
-                                        stavka?.cijena_bez_pdv)
+                                      (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
                               )}
                             </del>
                           ) : (
