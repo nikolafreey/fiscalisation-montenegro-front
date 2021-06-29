@@ -35,6 +35,7 @@ import { spinnerStyleGrid } from '../../constants/spinner';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Textarea from '../shared/forms/Textarea';
 
 toast.configure();
 
@@ -316,7 +317,7 @@ const UslugeForm = () => {
                         />
                       </div>
                       <div className="form__group">
-                        <label className="form__label" htmlFor="">
+                        {/* <label className="form__label" htmlFor="">
                           Opis - Nije Obavezno
                         </label>
                         <textarea
@@ -325,12 +326,21 @@ const UslugeForm = () => {
                           cols="30"
                           rows="6"
                           className="form__textarea df"
-                          defaultValue={opis || values.opis}
-                          onBlur={(event) => {
+                          value={opis || values.opis}
+                          // defaultValue={opis || values.opis}
+                          onChange={(event) => {
                             setOpis(event.target.value);
                             values.opis = event.target.value;
                           }}
-                        ></textarea>
+                        /> */}
+                        <Textarea
+                          control="text"
+                          name="opis"
+                          label={$t('preduzeca.opis')}
+                          cols="30"
+                          rows="6"
+                          className="form__input h-auto"
+                        />
                         {/* <InputField
                           name="opis"
                           className="form__input"
