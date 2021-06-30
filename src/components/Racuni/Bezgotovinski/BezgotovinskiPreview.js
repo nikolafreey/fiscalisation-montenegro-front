@@ -216,6 +216,10 @@ const BezgotovinskiPreview = () => {
       itemStatus = 'Nije Plaćen';
       bojaKlasa = 'tag tag__warning ml-m vm';
       break;
+    case 'storniran':
+      itemStatus = 'Storniran';
+      bojaKlasa = 'tag tag__danger ml-m vm';
+      break;
     case 'placen':
       itemStatus = 'Plaćen';
       bojaKlasa = 'tag tag__success ml-m vm';
@@ -226,6 +230,10 @@ const BezgotovinskiPreview = () => {
       break;
     case 'privremeni':
       itemStatus = 'Privremeni';
+      bojaKlasa = 'tag tag__neutral ml-m vm';
+      break;
+    case 'korektivni':
+      itemStatus = 'Korektivni';
       bojaKlasa = 'tag tag__neutral ml-m vm';
       break;
     default:
