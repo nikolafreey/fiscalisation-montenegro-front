@@ -53,7 +53,11 @@ const NoviRacunPreview = () => {
     const fetchData = async () => {
       await partneriService.getPartneriDropdown().then((data) => {
         setAnonimniKupac(
-          data.find((data) => data.label === 'Anonimni Korisnik')
+          data.find(
+            (data) =>
+              data.label === 'Anonimni Korisnik' ||
+              data.label === 'Anonimni Korisnik'
+          )
         );
       });
     };
