@@ -105,7 +105,9 @@ export function* preduzeceUpdate({ payload }) {
   try {
     console.log('payload preduzece', payload);
     const res = yield call(preduzecaService.updatePreduzece, payload);
-    yield put(setPreduzece(res.data));
+    if (res) {
+      yield put(setPreduzece(res.data));
+    }
 
     //Dodavanje u user state zbog podesavanja
     const { data } = yield call(authService.getUser);
