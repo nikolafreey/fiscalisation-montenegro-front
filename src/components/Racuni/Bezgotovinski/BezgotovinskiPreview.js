@@ -96,6 +96,9 @@ const BezgotovinskiPreview = () => {
         if (prvaTri.includes('550')) {
           return <p>{'Podgorička: ' + a}</p>;
           // return <p>{a}</p>;
+        } else if (prvaTri.includes('525')) {
+          return <p>{'Komercijalna Banka: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('535')) {
           return <p>{'Prva Banka CG: ' + a}</p>;
           // return <p>{a}</p>;
@@ -213,6 +216,10 @@ const BezgotovinskiPreview = () => {
       itemStatus = 'Nije Plaćen';
       bojaKlasa = 'tag tag__warning ml-m vm';
       break;
+    case 'storniran':
+      itemStatus = 'Storniran';
+      bojaKlasa = 'tag tag__danger ml-m vm';
+      break;
     case 'placen':
       itemStatus = 'Plaćen';
       bojaKlasa = 'tag tag__success ml-m vm';
@@ -223,6 +230,10 @@ const BezgotovinskiPreview = () => {
       break;
     case 'privremeni':
       itemStatus = 'Privremeni';
+      bojaKlasa = 'tag tag__neutral ml-m vm';
+      break;
+    case 'korektivni':
+      itemStatus = 'Korektivni';
       bojaKlasa = 'tag tag__neutral ml-m vm';
       break;
     default:
@@ -643,28 +654,26 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">Opis</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Cijena</span>
+                      <span className="heading-quaternary nowrap">Bez PDV</span>
                     </th>
-                    {/* <th>
+                    <th>
                       <span className="heading-quaternary nowrap">
-                        sa pdv
+                        sa PDV
                       </span>
-                    </th> */}
-                    {/* <th>
-                      <span className="heading-quaternary">PDV</span>
-                    </th> */}
+                    </th>
                     <th>
-                      {/* {Number(popust_ukupno) > 0 && ( */}
                       <span className="heading-quaternary">
-                        Popust sa PDV-om
+                        Pop. sa PDV
                       </span>
-                      {/* )} */}
                     </th>
                     <th>
-                      <span className="heading-quaternary">Količina</span>
+                      <span className="heading-quaternary">Kol.</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Ukupno </span>
+                      <span className="heading-quaternary nowrap">Uk. bez PDV</span>
+                    </th>
+                    <th>
+                      <span className="heading-quaternary nowrap">Uk. sa PDV</span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary nowrap">
