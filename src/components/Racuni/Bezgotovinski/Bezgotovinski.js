@@ -85,6 +85,7 @@ const Bezgotovinski = () => {
             'Količina stavke mora biti veća od 0 na računu ' + +indexTemp,
             toastSettings
           );
+          racun.kolicina = 1;
           returnForEach = true;
           return;
         }
@@ -112,7 +113,7 @@ const Bezgotovinski = () => {
         }
       });
 
-    if(returnForEach) return;
+    if (returnForEach) return;
 
     const noviRacun = {
       ...values,
