@@ -97,18 +97,31 @@ class BezgotovinskiShowTemplate extends React.Component {
 
           if (prvaTri.includes('550')) {
             return <p>{'Podgorička: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('525')) {
+            return <p>{'Komercijalna Banka: ' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('535')) {
-            return <p>{'Prva: ' + b}</p>;
+            return <p>{'Prva Banka CG: ' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('555')) {
             return <p>{'Addiko: ' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('510')) {
             return <p>{'CKB: ' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('530')) {
-            return <p>{'Montenegro AD: ' + b}</p>;
+            return <p>{'Montenegro AD' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('540')) {
             return <p>{'ERSTE: ' + b}</p>;
+            // return <p>{b}</p>;
           } else if (prvaTri.includes('520')) {
             return <p>{'Hipotekarna: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('565')) {
+            return <p>{'Lovćen Banka: ' + b}</p>;
+            // return <p>{b}</p>;
           }
           return <p>{b}</p>;
         }

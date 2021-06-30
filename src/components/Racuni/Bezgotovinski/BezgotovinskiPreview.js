@@ -96,6 +96,9 @@ const BezgotovinskiPreview = () => {
         if (prvaTri.includes('550')) {
           return <p>{'Podgorička: ' + a}</p>;
           // return <p>{a}</p>;
+        } else if (prvaTri.includes('525')) {
+          return <p>{'Komercijalna Banka: ' + a}</p>;
+          // return <p>{a}</p>;
         } else if (prvaTri.includes('535')) {
           return <p>{'Prva Banka CG: ' + a}</p>;
           // return <p>{a}</p>;
