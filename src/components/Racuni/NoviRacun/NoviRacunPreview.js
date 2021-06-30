@@ -52,11 +52,12 @@ const NoviRacunPreview = () => {
   useEffect(() => {
     const fetchData = async () => {
       await partneriService.getPartneriDropdown().then((data) => {
+        console.log('data', data);
         setAnonimniKupac(
           data.find(
             (data) =>
               data.label === 'Anonimni Korisnik' ||
-              data.label === 'Anonimni Korisnik'
+              data.label === 'Anonimni Kupac'
           )
         );
       });
