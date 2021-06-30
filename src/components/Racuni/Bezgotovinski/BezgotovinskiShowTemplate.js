@@ -493,14 +493,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                     {opis && (
                       <>
                         <p className="fw-500">Napomena:</p>
-                        <p className="mb-25 white-space-pre">{opis}</p>
+                        <p className="white-space-pre">{opis}</p>
                       </>
                     )}
                   </div>
                 </div>
 
                 <div>&nbsp;</div>
-                <div className="wrapper-100 mt-50">
+                <div className="wrapper-100 ">
                   <div className="wrapper-30">
                     <p>
                       {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
@@ -519,12 +519,12 @@ class BezgotovinskiShowTemplate extends React.Component {
                     <p>
                     <br />
                     <br />
-                    </p>   
+                    </p>
                     <hr className="mt-50 bd__bottom" />
                   </div>
                   <div className="wrapper-30-float-r">
                     <p>
-                      Račun Preuzeo:
+                      Račun preuzeo:
                       <br />
                       &nbsp;
                     </p>

@@ -24,15 +24,15 @@ const BezgotovinskiTableRow = ({ item }) => {
         {item && item.jedinicna_cijena_bez_pdv
           ? // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
             Number(item.jedinicna_cijena_bez_pdv)
-              .toFixed(2)
-              .toString()
+              // .toFixed(2)
+              .toFixed(5)
               .replace('.', ',')
           : ''}
       </td>
       <td>
         {item && item.jedinicna_cijena_bez_pdv
           ? // ? formatirajCijenu(item.jedinicna_cijena_bez_pdv)
-            Number(item.cijena_sa_pdv).toFixed(2).toString().replace('.', ',')
+            Number(item.cijena_sa_pdv).toFixed(5).replace('.', ',')
           : ''}
       </td>
       {/* <td className="cl white-space-pre">
