@@ -11,8 +11,8 @@ const SearchForm = ({ handleSubmit }) => {
   const [search, setSearch] = useState('');
 
   const handleSearch = (search) => {
-    let filtered = search.replace(/[0-9a-zA-Zžćšđč ]/gi, '');
-    dispatch(getPreduzeca({search: filtered}));
+    let filtered = search.replace(/[^0-9a-zA-Zžćšđč -]/gi, '');
+    dispatch(getPreduzeca({ search: filtered }));
   };
 
   const handleChange = (event) => {
