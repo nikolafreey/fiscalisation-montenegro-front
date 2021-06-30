@@ -417,6 +417,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
                           type="number"
+                          readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}
