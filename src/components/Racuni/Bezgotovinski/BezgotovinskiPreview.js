@@ -643,28 +643,26 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary">Opis</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Cijena</span>
+                      <span className="heading-quaternary nowrap">Bez PDV</span>
                     </th>
-                    {/* <th>
+                    <th>
                       <span className="heading-quaternary nowrap">
-                        sa pdv
+                        sa PDV
                       </span>
-                    </th> */}
-                    {/* <th>
-                      <span className="heading-quaternary">PDV</span>
-                    </th> */}
+                    </th>
                     <th>
-                      {/* {Number(popust_ukupno) > 0 && ( */}
                       <span className="heading-quaternary">
-                        Popust sa PDV-om
+                        Pop. sa PDV
                       </span>
-                      {/* )} */}
                     </th>
                     <th>
-                      <span className="heading-quaternary">Količina</span>
+                      <span className="heading-quaternary">Kol.</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Ukupno </span>
+                      <span className="heading-quaternary nowrap">Uk. bez PDV</span>
+                    </th>
+                    <th>
+                      <span className="heading-quaternary nowrap">Uk. sa PDV</span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary nowrap">

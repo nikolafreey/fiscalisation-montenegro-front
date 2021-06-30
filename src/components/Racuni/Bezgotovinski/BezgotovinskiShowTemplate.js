@@ -222,16 +222,24 @@ class BezgotovinskiShowTemplate extends React.Component {
                   <div className="article-33">
                     <div className="invoice-template__box-info">
                       <p className="">
-                        {preduzece && preduzece.pib ? 'PIB: ' + preduzece.pib : ''}
+                        {preduzece && preduzece.pib
+                          ? 'PIB: ' + preduzece.pib
+                          : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.pdv ? 'PDV: ' + preduzece.pdv : ''}
+                        {preduzece && preduzece.pdv
+                          ? 'PDV: ' + preduzece.pdv
+                          : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.iban ? 'IBAN: ' + preduzece.iban : ''}
+                        {preduzece && preduzece.iban
+                          ? 'IBAN: ' + preduzece.iban
+                          : ''}
                       </p>
                       <p className="">
-                        {preduzece && preduzece.bic_swift ? 'BIC/SWIFT: ' + preduzece.bic_swift : ''}
+                        {preduzece && preduzece.bic_swift
+                          ? 'BIC/SWIFT: ' + preduzece.bic_swift
+                          : ''}
                       </p>
                       {/* {preduzece && preduzece.logotip ? ( */}
                       <p className="">{ziroRacuni()}</p>
@@ -254,7 +262,6 @@ class BezgotovinskiShowTemplate extends React.Component {
                           : ''}
                       </p>
                     </div> */}
-
                   </div>
                   {/* <div className="article-33">
                     <div className="text-right">{ziroRacuni()}</div>
@@ -309,7 +316,10 @@ class BezgotovinskiShowTemplate extends React.Component {
                           <p>{broj_racuna ? broj_racuna : ''}</p>
                           <p>
                             {created_at ? (
-                              <Moment locale="me" format="Do MMMM YYYY, HH:mm:ss">
+                              <Moment
+                                locale="me"
+                                format="Do MMMM YYYY, HH:mm:ss"
+                              >
                                 {created_at}
                               </Moment>
                             ) : (
@@ -333,20 +343,20 @@ class BezgotovinskiShowTemplate extends React.Component {
                           ' ' +
                           partner?.fizicko_lice?.prezime}
                     </h3>
-                        <p className="">
-                          {partner &&
-                          partner?.preduzece_partner?.adresa &&
+                    <p className="">
+                      {partner &&
+                      partner?.preduzece_partner?.adresa &&
+                      partner?.preduzece_partner?.grad
+                        ? partner?.preduzece_partner?.adresa +
+                          ', ' +
                           partner?.preduzece_partner?.grad
-                            ? partner?.preduzece_partner?.adresa +
-                              ', ' +
-                              partner?.preduzece_partner?.grad
-                            : ''}
-                        </p>
-                        <p className="">
-                          {partner && partner?.preduzece_partner?.drzava
-                            ? partner?.preduzece_partner?.drzava
-                            : ''}
-                        </p>
+                        : ''}
+                    </p>
+                    <p className="">
+                      {partner && partner?.preduzece_partner?.drzava
+                        ? partner?.preduzece_partner?.drzava
+                        : ''}
+                    </p>
                     <div className="df jc-sb">
                       <div className="df fd-column">
                         <p className="">
@@ -393,25 +403,27 @@ class BezgotovinskiShowTemplate extends React.Component {
               <table>
                 <thead>
                   <tr>
-                    <th className="prva-kolona">
+                    <th className="cd">
                       <p className="heading-quaternary">Opis</p>
                     </th>
-                    <th>
-                      <p className="heading-quaternary nowrap">Cijena</p>
+                    <th className="cd">
+                      <p className="heading-quaternary nowrap">Bez PDV</p>
                     </th>
-                    <th>
+                    <th className="cd">
+                      <p className="heading-quaternary nowrap">Sa PDV</p>
+                    </th>
+                    <th className="cd">
                       {/* {ukupniPopust > 0 && ( */}
-                      <p className="heading-quaternary">Popust sa PDV-om</p>
-                      {/* )} */}
+                      <p className="heading-quaternary">Popust sa PDV</p>
                     </th>
-                    <th>
-                      <p className="heading-quaternary">Količina</p>
+                    <th className="cd">
+                      <p className="heading-quaternary">Kol.</p>
                     </th>
-                    {/* <th>
-                      <p className="heading-quaternary">PDV</p>
-                    </th> */}
-                    <th>
-                      <p className="heading-quaternary">Ukupno</p>
+                    <th className="cd">
+                      <p className="heading-quaternary">Uk. bez PDV</p>
+                    </th>
+                    <th className="cd">
+                      <p className="heading-quaternary">Uk. sa PDV</p>
                     </th>
                   </tr>
                 </thead>
@@ -422,14 +434,15 @@ class BezgotovinskiShowTemplate extends React.Component {
                   />
                 </tbody>
               </table>
-              <div className="invoice-template__footer">
+              <div className="invoice-template__mid">
                 <div className="wrapper-100">
-                  <div className="wrapper-60">
+                  <div className="wrapper-50">
                     <table>
                       <BezgotovinskiPoreziPreview stavke={stavke} />
                     </table>
                   </div>
-                  <div className="wrapper-40">
+                  <div className="wrapper-20"></div>
+                  <div className="wrapper-30-float-r mr-20">
                     <div className="invoice-template__box-info">
                       <p className="fw-500">Bez PDV-a:</p>
 
@@ -440,7 +453,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                         </p>
                       )}
                       <p className="fw-500">PDV:</p>
-                      <p className="fw-500">Total:</p>
+                      <p className="fw-500 total">Total:</p>
                       {/* <p className="fw-500">PDV 21%:</p>
                     <p className="fw-500">Ukupno:</p> */}
                     </div>
@@ -466,14 +479,15 @@ class BezgotovinskiShowTemplate extends React.Component {
                         {Number(ukupan_iznos_pdv).toFixed(2)}{' '}
                         <span className="txt-up ">&euro;</span>
                       </p>
-                      <p className="txt-right cd fw-500">
+                      <p className="txt-right cd fw-500 text-box total">
                         {Number(ukupna_cijena_sa_pdv_popust).toFixed(2)}{' '}
                         <span className="txt-up ">&euro;</span>
                       </p>
                     </div>
                   </div>
                 </div>
-
+              </div>
+              <div className="invoice-template__footer">
                 <div className="wrapper-100 napomena">
                   <div className="wrapper-50">
                     {opis && (
@@ -486,8 +500,8 @@ class BezgotovinskiShowTemplate extends React.Component {
                 </div>
 
                 <div>&nbsp;</div>
-                <div className="wrapper-100 mt-m">
-                  <div className="wrapper-40">
+                <div className="wrapper-100 mt-50">
+                  <div className="wrapper-30">
                     <p>
                       {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
                       {user?.ime && user?.prezime && (
@@ -501,8 +515,14 @@ class BezgotovinskiShowTemplate extends React.Component {
                     </p>
                     <hr className="mt-50 bd__bottom" />
                   </div>
-                  <div className="wrapper-20">&nbsp;</div>
-                  <div className="wrapper-40">
+                  <div className="wrapper-30 center">
+                    <p>
+                    <br />
+                    <br />
+                    </p>   
+                    <hr className="mt-50 bd__bottom" />
+                  </div>
+                  <div className="wrapper-30-float-r">
                     <p>
                       Račun Preuzeo:
                       <br />
