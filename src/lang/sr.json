@@ -122,6 +122,8 @@
     "kratki_naziv": "Naziv preduzeća nedostaje",
     "oblik_preduzeca": "Oblik preduzeća nedostaje",
     "pib": "PIB preduzeća nedostaje",
+    "pibKratak": "PIB mora sadržati najmanje 8 cifara",
+    "pibDugacak": "PIB/JMBG ne može sadržati više od 13 cifara",
     "pdv": "PDV broj preduzeća nedostaje",
     "adresa": "Adresa preduzeća nedostaje",
     "grad": "Grad u kom se nalazi preduzeće nedostaje",
@@ -129,7 +131,7 @@
     "djelatnost": "Djelatnost preduzeća nedostaje",
     "kategorija": "Kategorija preduzeća nedostaje",
     "pozitivan": "Kolicina stavke mora biti pozitivan broj.",
-    "specialCharacters": "PIB preduzeca može sadržati samo brojeve, a ne slova i specijalne karaktere"
+    "specialCharacters": "PIB preduzeća može sadržati samo brojeve, a ne slova i specijalne karaktere"
   },
   "common": {
     "izbrisi": "Izbriši",

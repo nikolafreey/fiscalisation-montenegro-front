@@ -81,7 +81,7 @@ const StavkeDropdown = ({
           label:
             field.value?.roba?.naziv ||
             field.value?.naziv ||
-            'Unesite ime stavke. . .',
+            'Unesite naziv stavke...',
           value: field.value,
         }}
       />
