@@ -98,9 +98,6 @@ class BezgotovinskiShowTemplate extends React.Component {
           if (prvaTri.includes('550')) {
             return <p>{'Podgorička: ' + b}</p>;
             // return <p>{b}</p>;
-          } else if (prvaTri.includes('525')) {
-            return <p>{'Komercijalna Banka: ' + b}</p>;
-            // return <p>{b}</p>;
           } else if (prvaTri.includes('535')) {
             return <p>{'Prva Banka CG: ' + b}</p>;
             // return <p>{b}</p>;
@@ -111,13 +108,25 @@ class BezgotovinskiShowTemplate extends React.Component {
             return <p>{'CKB: ' + b}</p>;
             // return <p>{b}</p>;
           } else if (prvaTri.includes('530')) {
-            return <p>{'Montenegro AD' + b}</p>;
+            return <p>{'NLB: ' + b}</p>;
             // return <p>{b}</p>;
           } else if (prvaTri.includes('540')) {
             return <p>{'ERSTE: ' + b}</p>;
             // return <p>{b}</p>;
           } else if (prvaTri.includes('520')) {
             return <p>{'Hipotekarna: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('525')) {
+            return <p>{'Komercijalna: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('560')) {
+            return <p>{'Universal Capital: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('570')) {
+            return <p>{'Zapad Banka: ' + b}</p>;
+            // return <p>{b}</p>;
+          } else if (prvaTri.includes('575')) {
+            return <p>{'Ziraat Bank: ' + b}</p>;
             // return <p>{b}</p>;
           } else if (prvaTri.includes('565')) {
             return <p>{'Lovćen Banka: ' + b}</p>;
@@ -351,7 +360,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                   <div className="wrapper-40 box-border">
                     <h3 className="heading-secondary">
                       {partner && partner.preduzece_partner
-                        ? partner?.preduzece_partner?.kratki_naziv
+                        ? partner?.preduzece_partner?.kratki_naziv + ' ' + partner?.preduzece_partner?.oblik_preduzeca
                         : partner?.fizicko_lice?.ime +
                           ' ' +
                           partner?.fizicko_lice?.prezime}
@@ -513,7 +522,7 @@ class BezgotovinskiShowTemplate extends React.Component {
                 </div>
 
                 <div>&nbsp;</div>
-                <div className="wrapper-100 ">
+                <div className="wrapper-100 izdao-preuzeo">
                   <div className="wrapper-30">
                     <p>
                       {/* TODO: prikazati korisnika koji je kreirao račun a ne trenutnog */}
