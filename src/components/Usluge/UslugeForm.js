@@ -59,8 +59,30 @@ const UslugeForm = () => {
     usluga?.status === 0 ? true : false
   );
   const [opis, setOpis] = useState();
+  const [jedinicaMjere, setJedinicaMjere] = useState();
+  const [grupa, setGrupa] = useState();
 
   console.log('usluga', usluga);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await jediniceMjereService.getJediniceMjereDropdown().then((data) => {
+        console.log('getJediniceMjereDropdown', data);
+        setJedinicaMjere({ value: data[0].value, label: data[0].label });
+      });
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await grupeService.getGrupeDropdown().then((data) => {
+        console.log('getGrupeDropdown', data);
+        setGrupa({ value: data[0].value, label: data[0].label });
+      });
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     dispatch(getPorezi());
@@ -357,11 +379,12 @@ const UslugeForm = () => {
                               jediniceMjereService.getJediniceMjereDropdown
                             }
                             defaultValue={
-                              Object.keys(usluga).length !== 0 &&
-                              usluga.constructor === Object && {
-                                label: usluga?.jedinica_mjere?.naziv,
-                                value: usluga?.jedinica_mjere?.id,
-                              }
+                              (Object.keys(usluga).length !== 0 &&
+                                usluga.constructor === Object && {
+                                  label: usluga?.jedinica_mjere?.naziv,
+                                  value: usluga?.jedinica_mjere?.id,
+                                }) ||
+                              jedinicaMjere
                             }
                           />
                         </div>
@@ -379,11 +402,12 @@ const UslugeForm = () => {
                             loadOptions={grupeService.getGrupeDropdown}
                             // placeholder={usluga?.grupa?.naziv}
                             defaultValue={
-                              Object.keys(usluga).length !== 0 &&
-                              usluga.constructor === Object && {
-                                value: usluga?.grupa?.id,
-                                label: usluga?.grupa?.naziv,
-                              }
+                              (Object.keys(usluga).length !== 0 &&
+                                usluga.constructor === Object && {
+                                  value: usluga?.grupa?.id,
+                                  label: usluga?.grupa?.naziv,
+                                }) ||
+                              grupa
                             }
                             // onCreateOption={handleCreate}
                           />
