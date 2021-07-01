@@ -288,7 +288,7 @@ const RacuniTableRow = ({ item, racuni }) => {
               {_item.vrsta_racuna == 'gotovinski' && (
                 <Link onClick={handlePogledajA4}>
                   <A4 className="icon icon__dark md" />
-                  Pogledaj na A4
+                  Prikaži na A4
                 </Link>
               )}
 
