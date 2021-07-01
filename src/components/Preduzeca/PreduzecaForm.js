@@ -407,7 +407,7 @@ const PreduzecaForm = () => {
                         </div>
                       </div> */}
                       <div className="form__group w-48 mob-w-100">
-                        <label className="form__label" htmlFor="d-signature">
+                        {/* <label className="form__label" htmlFor="d-signature">
                           Logotip
                           <span className="txt-light"> - Nije Obavezno</span>
                         </label>
@@ -424,7 +424,7 @@ const PreduzecaForm = () => {
                               handleLogotipInputChange(e);
                             }}
                           />
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
