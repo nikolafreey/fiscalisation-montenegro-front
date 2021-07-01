@@ -96,9 +96,6 @@ const BezgotovinskiPreview = () => {
         if (prvaTri.includes('550')) {
           return <p>{'Podgorička: ' + a}</p>;
           // return <p>{a}</p>;
-        } else if (prvaTri.includes('525')) {
-          return <p>{'Komercijalna Banka: ' + a}</p>;
-          // return <p>{a}</p>;
         } else if (prvaTri.includes('535')) {
           return <p>{'Prva Banka CG: ' + a}</p>;
           // return <p>{a}</p>;
@@ -109,13 +106,25 @@ const BezgotovinskiPreview = () => {
           return <p>{'CKB: ' + a}</p>;
           // return <p>{a}</p>;
         } else if (prvaTri.includes('530')) {
-          return <p>{'Montenegro AD' + a}</p>;
+          return <p>{'NLB: ' + a}</p>;
           // return <p>{a}</p>;
         } else if (prvaTri.includes('540')) {
           return <p>{'ERSTE: ' + a}</p>;
           // return <p>{a}</p>;
         } else if (prvaTri.includes('520')) {
           return <p>{'Hipotekarna: ' + a}</p>;
+          // return <p>{a}</p>;
+        } else if (prvaTri.includes('525')) {
+          return <p>{'Komercijalna: ' + a}</p>;
+          // return <p>{a}</p>;
+        } else if (prvaTri.includes('560')) {
+          return <p>{'Universal Capital: ' + a}</p>;
+          // return <p>{a}</p>;
+        } else if (prvaTri.includes('570')) {
+          return <p>{'Zapad Banka: ' + a}</p>;
+          // return <p>{a}</p>;
+        } else if (prvaTri.includes('575')) {
+          return <p>{'Ziraat Bank: ' + a}</p>;
           // return <p>{a}</p>;
         } else if (prvaTri.includes('565')) {
           return <p>{'Lovćen Banka: ' + a}</p>;
@@ -138,18 +147,40 @@ const BezgotovinskiPreview = () => {
 
         if (prvaTri.includes('550')) {
           return <p>{'Podgorička: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('535')) {
-          return <p>{'Prva: ' + b}</p>;
+          return <p>{'Prva Banka CG: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('555')) {
           return <p>{'Addiko: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('510')) {
           return <p>{'CKB: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('530')) {
-          return <p>{'Montenegro AD: ' + b}</p>;
+          return <p>{'NLB: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('540')) {
           return <p>{'ERSTE: ' + b}</p>;
+          // return <p>{b}</p>;
         } else if (prvaTri.includes('520')) {
           return <p>{'Hipotekarna: ' + b}</p>;
+          // return <p>{b}</p>;
+        } else if (prvaTri.includes('525')) {
+          return <p>{'Komercijalna: ' + b}</p>;
+          // return <p>{b}</p>;
+        } else if (prvaTri.includes('560')) {
+          return <p>{'Universal Capital: ' + b}</p>;
+          // return <p>{b}</p>;
+        } else if (prvaTri.includes('570')) {
+          return <p>{'Zapad Banka: ' + b}</p>;
+          // return <p>{b}</p>;
+        } else if (prvaTri.includes('575')) {
+          return <p>{'Ziraat Bank: ' + b}</p>;
+          // return <p>{b}</p>;
+        } else if (prvaTri.includes('565')) {
+          return <p>{'Lovćen Banka: ' + b}</p>;
+          // return <p>{b}</p>;
         }
         return <p>{b}</p>;
       }
@@ -715,7 +746,10 @@ const BezgotovinskiPreview = () => {
                           {Number(popust_ukupno) > 0 > 0 && 'Popust sa PDV-om:'}
                         </p>
                       )}
-                      <p className="fw-500">{ukupan_iznos_pdv > 0 && 'PDV:'}</p>
+                      <p className="fw-500">
+                        {/* {ukupan_iznos_pdv > 0 &&  */}
+                        {ukupan_iznos_pdv &&
+                        'PDV:'}</p>
                       <p className="fw-500">
                         {ukupnoSaPdvIpopusta && 'Total:'}
                       </p>
@@ -757,7 +791,8 @@ const BezgotovinskiPreview = () => {
                         </p>
                       )}
                       <p className="fw-500 txt-right">
-                        {ukupan_iznos_pdv > 0
+                        {/* {ukupan_iznos_pdv > 0 */}
+                        {ukupan_iznos_pdv
                           ? formatirajCijenu(ukupan_iznos_pdv)
                           : ''}
                         {/* {' '}

@@ -275,6 +275,14 @@
       white-space: pre-wrap !important;
       font-size: 8pt !important;
     }
+    .izdao-preuzeo p{
+      font-size: 8pt !important;
+    }
+    .footer-fixed{
+      // position: fixed;
+      // bottom: 10mm;
+      font-size: 8pt !important;
+    }
     &--box {
       position: relative;
       float: right;
@@ -341,6 +349,7 @@
   html,
   body {
     width: 210mm;
+    height: 100vh;
     // min-height: 297mm;
     margin: 0;
     padding: 0;
@@ -481,10 +490,14 @@
         border-style: none;
         white-space: nowrap !important;
         width: 10%;
+        vertical-align: top;
 
         p {
           font-size: 8pt !important;
         }
+      }
+      .invoice td{
+        // padding: 0.8rem;
       }
       td:first-child,
       .napomena p {

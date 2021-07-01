@@ -18,7 +18,9 @@ const BezgotovinskiTableRow = ({ item }) => {
     <tr>
       <td className="cd">
         <p className="cd fw-500">{item && item.naziv ? item.naziv : ''}</p>
-        {item && item.opis ? item.opis : ''}
+        {item && item.opis
+        ? item.opis
+        : null}
       </td>
       <td>
         {item && item.jedinicna_cijena_bez_pdv

@@ -82,7 +82,7 @@ const Bezgotovinski = () => {
         let indexTemp = index + 1;
         if (racun.kolicina == null || racun.kolicina <= 0) {
           toast.error(
-            'Količina stavke mora biti veća od 0 na računu ' + +indexTemp,
+            'Količina stavke mora biti veća od 0 na stavci ' + +indexTemp,
             toastSettings
           );
           racun.kolicina = 1;
@@ -91,7 +91,7 @@ const Bezgotovinski = () => {
         }
         if (racun.jedinica_mjere_id == null) {
           toast.error(
-            'Jedinica mjere stavke je neophodna na računu ' + +indexTemp,
+            'Jedinica mjere stavke je neophodna na stavci ' + +indexTemp,
             toastSettings
           );
           returnForEach = true;
@@ -99,7 +99,7 @@ const Bezgotovinski = () => {
         }
         if (racun.ukupna_cijena == null || racun.ukupna_cijena <= 0) {
           toast.error(
-            'Cijena stavke mora biti veća od 0 na računu ' + +indexTemp,
+            'Cijena stavke mora biti veća od 0 na stavci ' + +indexTemp,
             toastSettings
           );
           returnForEach = true;

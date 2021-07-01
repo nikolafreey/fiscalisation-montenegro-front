@@ -4,7 +4,8 @@ import { ReactComponent as IconLg } from '../../assets/icon/icon-lg.svg';
 // import { ReactComponent as Obrisi } from '../../assets/icon/obrisi.svg';
 import { ReactComponent as Izmjeni } from '../../assets/icon/izmjeni.svg';
 import { ReactComponent as Fiskalizuj } from '../../assets/icon/checkmark.svg';
-import { ReactComponent as Delete } from '../../assets/icon/delete.svg';
+import { ReactComponent as Delete } from '../../assets/icon/stepper-minus.svg';
+import { ReactComponent as A4 } from '../../assets/icon/hero-racuni.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   storeRacun,
@@ -285,7 +286,10 @@ const RacuniTableRow = ({ item, racuni }) => {
             <IconLg />
             <div className="drop-down">
               {_item.vrsta_racuna == 'gotovinski' && (
-                <Link onClick={handlePogledajA4}>Pogledaj na A4</Link>
+                <Link onClick={handlePogledajA4}>
+                  <A4 className="icon icon__dark md" />
+                  Prikaži na A4
+                </Link>
               )}
 
               {/* <Link
@@ -306,7 +310,7 @@ const RacuniTableRow = ({ item, racuni }) => {
                 </Link>
               )}
 
-              {_item?.qr_url && _item?.status !== 'storniran' && (
+              {_item?.qr_url && (_item?.status !== 'storniran' && _item?.status !== 'korektivni') && (
                 <Link
                   onClick={handleStorniraj}
                   className={`${_item?.qr_url ? 'disabled' : ''}`}
