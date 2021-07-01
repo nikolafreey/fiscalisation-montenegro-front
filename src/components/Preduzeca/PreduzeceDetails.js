@@ -134,7 +134,7 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
               </p>
             </div>
             <div className="col-r">
-              <p>{preduzece?.bic_swift ? 'bic / swift' : null}</p>
+              <p>{preduzece?.bic_swift ? preduzece.bic_swift : null}</p>
             </div>
           </div>
         </div>
