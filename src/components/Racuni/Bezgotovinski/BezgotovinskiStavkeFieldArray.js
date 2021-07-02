@@ -490,7 +490,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           name={`stavke.${index}.kolicina`}
                           type="number"
                           className="form__input"
-                          step=".01"
+                          step=".001"
                           value={
                             stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
                           }
