@@ -52,6 +52,7 @@ const Bezgotovinski = () => {
     for (let i = 0; i < valuesStavke.length; i++) {
       values.stavke[i].opis = valuesStavke[i].opis;
       values.stavke[i].kolicina = valuesStavke[i].kolicina;
+      values.stavke[i].popust = valuesStavke[i].popust;
     }
 
     // for (let i = 0; i < values.stavke.length; i++) {
