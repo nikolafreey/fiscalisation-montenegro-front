@@ -306,8 +306,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   let valuesBezPopusta;
-  if(values?.niz[0]?.popust === 0){
-  valuesBezPopusta = values.niz;
+  if (values?.niz[0]?.popust === 0) {
+    valuesBezPopusta = values.niz;
   }
   console.log('valuesBezPopusta', valuesBezPopusta);
 
@@ -485,6 +485,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           name={`stavke.${index}.kolicina`}
                           type="number"
                           className="form__input"
+                          step=".01"
                           value={
                             stavka && (stavka?.kolicina ? stavka?.kolicina : 1)
                           }
@@ -623,8 +624,12 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                                             values?.niz[index]
                                               .cijena_bez_pdv_popust)) /
                                         (1 - values?.niz[index].popust / 100)
-                                      : values?.niz[index].kolicina * values?.niz[index].ukupna_cijena - values?.niz[index].kolicina *
-                                        (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
+                                      : values?.niz[index].kolicina *
+                                          values?.niz[index].ukupna_cijena -
+                                        values?.niz[index].kolicina *
+                                          (values?.niz[index].ukupna_cijena /
+                                            (+values?.niz[index]?.porez?.stopa +
+                                              1))
                                     : values?.niz[index].cijena_sa_pdv_popust -
                                       values?.niz[index].cijena_bez_pdv_popust
                                   : 1 *
@@ -655,9 +660,11 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                               {formatirajCijenu(
                                 stavka?.kolicina
                                   ? values?.niz[index].kolicina *
-                                        (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
+                                      (values?.niz[index].ukupna_cijena /
+                                        (+values?.niz[index]?.porez?.stopa + 1))
                                   : 1 *
-                                      (values?.niz[index].ukupna_cijena / (+values?.niz[index]?.porez?.stopa + 1))
+                                      (values?.niz[index].ukupna_cijena /
+                                        (+values?.niz[index]?.porez?.stopa + 1))
                               )}
                             </del>
                           ) : (
