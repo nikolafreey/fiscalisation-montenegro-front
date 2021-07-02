@@ -46,10 +46,17 @@ const Bezgotovinski = () => {
   let previousUrl = localStorage.getItem('previousUrl');
 
   const handleSubmit = (values) => {
+    let valuesStavke = values.stavke;
     values.stavke = values.niz;
+
+    for (let i = 0; i < valuesStavke.length; i++) {
+      values.stavke[i].opis = valuesStavke[i].opis;
+      values.stavke[i].kolicina = valuesStavke[i].kolicina;
+    }
+
     // for (let i = 0; i < values.stavke.length; i++) {
     //   values.stavke[i].cijena_bez_pdv = values.niz[i].cijena_bez_pdv;
-    //   values.stavke[i].cijena_bez_pdv_popust =
+    //   values.stavke[i].cijena_bez_pdv_popust =s
     //     values.niz[i].cijena_bez_pdv_popust;
     //   values.stavke[i].cijena_sa_pdv_popust =
     //     values.niz[i].cijena_sa_pdv_popust;

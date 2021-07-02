@@ -266,10 +266,13 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
     return getUkupnaCijenaSaPdv(stavka) - getUkupnaCijenaBezPdv(stavka);
   }
 
-  const onChangeExtra = (option, index) => {
+  const onChangeExtra = (option, index, stavka) => {
     setFieldValue(`stavke.${index}.jedinica_mjere_id`, option.jedinica_mjere);
     setFieldValue(`stavke.${index}.porez`, getPorezForId(option.porez));
     setFieldValue(`stavke.${index}`, option);
+    if (!stavka || stavka?.kolicina === null || stavka?.kolicina === 0) {
+      setFieldValue(`stavke.${index}.kolicina`, 1);
+    }
     console.log('values', values);
   };
 
@@ -350,7 +353,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         id={index}
                         name={`stavke.${index}`}
                         className="form__input"
-                        onChangeExtra={(option) => onChangeExtra(option, index)}
+                        onChangeExtra={(option) =>
+                          onChangeExtra(option, index, stavka)
+                        }
                       />
                     </div>
                   </div>
@@ -491,12 +496,14 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           }
                           defaultValue={1}
                           onWheel={() => document.activeElement.blur()}
-                          onChange={(event) =>
+                          onChange={(event) => {
                             setFieldValue(
                               `stavke.${index}.kolicina`,
                               event.target.valueAsNumber
-                            )
-                          }
+                            );
+                            console.log('kolicina onChange', values);
+                            console.log('event Kolicina onChange', event);
+                          }}
                         />
                       </div>
                     </div>
