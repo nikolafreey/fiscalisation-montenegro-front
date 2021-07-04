@@ -729,6 +729,9 @@ const BezgotovinskiPreview = () => {
                       <BezgotovinskiPoreziPreview stavke={stavke} />
                     </table>
                   </div>
+                  {!preduzece?.pdv_obveznik && (
+                    <p className="mt-30">Poreski obveznik nije u sistemu PDV-a.</p>
+                  )}
                 </div>
                 <div className="col-md-4 col-sm-5">
                   <div className="df jc-sb">

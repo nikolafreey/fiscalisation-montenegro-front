@@ -350,7 +350,8 @@ const NoviRacunShowTemplate = () => {
                 </table>
 
                 <table className="table-fiscal" cellspacing="0" cellpadding="0">
-                  <div className="side-info__wrapper"></div>
+                  <div className="side-info__wrapper">
+                  </div>
                 </table>
                 <table className="table-fiscal" cellspacing="0" cellpadding="0">
                   <tr>
@@ -374,6 +375,9 @@ const NoviRacunShowTemplate = () => {
               </div>
 
               <div className="fiscal-bill__footer">
+                {!racun.preduzece?.pdv_obveznik && (
+                  <p className="mt-30">Poreski obveznik nije u sistemu PDV-a.</p>
+                )}
                 <p>Br. računa: {racun && racun.broj_racuna}</p>
                 <p>IKOF: {racun && racun.ikof ? racun.ikof : '-'}</p>
                 <p>JIKR: {racun && racun.jikr ? racun.jikr : '-'}</p>

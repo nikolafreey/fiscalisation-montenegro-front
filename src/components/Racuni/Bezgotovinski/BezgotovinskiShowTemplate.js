@@ -512,6 +512,9 @@ class BezgotovinskiShowTemplate extends React.Component {
               <div className="invoice-template__footer">
                 <div className="wrapper-100 napomena">
                   <div className="wrapper-50">
+                    {!preduzece?.pdv_obveznik && (
+                      <p className="">Poreski obveznik nije u sistemu PDV-a.</p>
+                    )}
                     {opis && (
                       <>
                         <p className="fw-500">Napomena:</p>

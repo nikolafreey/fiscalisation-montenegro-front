@@ -294,6 +294,9 @@ class NoviRacunPrintTemplate extends React.Component {
               </div>
 
             <div className="fiscal-bill__footer">
+              {!preduzece?.pdv_obveznik && (
+                <p className="mt-30">Poreski obveznik nije u sistemu PDV-a.</p>
+              )}
               <p>Br. računa: {broj_racuna}</p>
               <p>IKOF: {ikof ? ikof : '-'}</p>
               <p>JIKR: {jikr ? jikr : '-'}</p>
@@ -321,7 +324,7 @@ class NoviRacunPrintTemplate extends React.Component {
                   />
                 </svg> */}
             </div>
-            <p className="txt-light">
+            <p className="">
               {user?.preduzeca[0]?.software_kod
                 ? user?.preduzeca[0]?.software_kod
                 : ''}
