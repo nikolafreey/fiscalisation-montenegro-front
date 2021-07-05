@@ -221,6 +221,8 @@ const UslugeForm = () => {
         status: 'Aktivan',
         opis: '',
         porez_id: 4,
+        jedinica_mjere_id: jedinicaMjere ? jedinicaMjere?.value : 1,
+        grupa_id: grupa ? grupa?.value : 1,
         ...usluga,
       }}
       onSubmit={handleSubmit}
