@@ -313,19 +313,26 @@ const BezgotovinskiPreview = () => {
           {!editMode && (
             <div className="df jc-end">
               <Select
-                // className='form__select'
                 options={options}
                 name="status"
                 onChange={(option) => {
-                  toast.success(
-                    'Uspješno je izmjenjen status za račun sa ID-jem: ' + id,
-                    toastSettings
-                  );
                   setValueStatus(option);
                   racuniService
                     .updateStatus({ status: option.value, id, ikof, jikr })
-                    .then((data) => console.log('data', data))
-                    .catch((err) => console.log('err', err));
+                    .then((data) => {
+                      toast.success(
+                        'Uspješno je izmjenjen status za račun sa ID-jem: ' +
+                          id,
+                        toastSettings
+                      );
+                    })
+                    .catch((err) => {
+                      toast.error(
+                        'Neuspješno je izmjenjen status za račun sa ID-jem: ' +
+                          id,
+                        toastSettings
+                      );
+                    });
                 }}
                 value={valueStatus ? valueStatus : options[2]}
                 styles={selectStyle}
