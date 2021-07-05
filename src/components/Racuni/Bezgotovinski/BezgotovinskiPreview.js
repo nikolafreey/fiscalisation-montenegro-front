@@ -295,6 +295,8 @@ const BezgotovinskiPreview = () => {
     }),
   };
 
+  let statusLabel = options.find((option) => option.value === status);
+
   return (
     <>
       <div className="screen-content">
@@ -334,7 +336,7 @@ const BezgotovinskiPreview = () => {
                       );
                     });
                 }}
-                value={valueStatus ? valueStatus : options[2]}
+                value={valueStatus ? valueStatus : statusLabel || options[2]}
                 styles={selectStyle}
               />
               <button
