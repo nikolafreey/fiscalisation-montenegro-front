@@ -98,8 +98,12 @@ const Stavke = () => {
   };
 
   const handleSearch = (value) => {
-    let filtered = value.replace(/[^0-9a-zA-Zžćšđč -]/gi, '');
-    filteri.search = filtered;
+    let filtered;
+    if (Object.keys(value).length === 0 || value.hasOwnProperty('grupa_id')) {
+      filteri.search = filtered;
+    } else {
+      filtered = value.replace(/[^0-9a-zA-Zžćšđč -]/gi, '');
+    }
     dispatch(getStavke(filteri));
   };
 
