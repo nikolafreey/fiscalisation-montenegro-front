@@ -21,6 +21,7 @@ import { FieldArray, Form, Formik } from 'formik';
 import {
   deleteRacun,
   getRacun,
+  getRacuni,
   storeRacun,
   updateRacun,
 } from '../../../store/actions/RacuniActions';
@@ -298,7 +299,7 @@ const BezgotovinskiPreview = () => {
     <>
       <div className="screen-content">
         <Link to={RACUNI.INDEX} className="back-link df">
-          <LinkSvg /> <p>Povratak na Račune</p>
+          <LinkSvg /> <p onClick={dispatch(getRacuni())}>Povratak na Račune</p>
         </Link>
 
         <div className="title">
@@ -580,7 +581,10 @@ const BezgotovinskiPreview = () => {
                             <p>{broj_racuna ? broj_racuna : ''}</p>
                             <p>
                               {created_at ? (
-                                <Moment locale="me" format="Do MMMM YYYY, HH:mm:ss">
+                                <Moment
+                                  locale="me"
+                                  format="Do MMMM YYYY, HH:mm:ss"
+                                >
                                   {created_at}
                                 </Moment>
                               ) : (
@@ -688,23 +692,23 @@ const BezgotovinskiPreview = () => {
                       <span className="heading-quaternary nowrap">Bez PDV</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">
-                        sa PDV
-                      </span>
+                      <span className="heading-quaternary nowrap">sa PDV</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary">
-                        Pop. sa PDV
-                      </span>
+                      <span className="heading-quaternary">Pop. sa PDV</span>
                     </th>
                     <th>
                       <span className="heading-quaternary">Kol.</span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Uk. bez PDV</span>
+                      <span className="heading-quaternary nowrap">
+                        Uk. bez PDV
+                      </span>
                     </th>
                     <th>
-                      <span className="heading-quaternary nowrap">Uk. sa PDV</span>
+                      <span className="heading-quaternary nowrap">
+                        Uk. sa PDV
+                      </span>
                     </th>
                     {/* <th>
                       <span className="heading-quaternary nowrap">
@@ -730,7 +734,9 @@ const BezgotovinskiPreview = () => {
                     </table>
                   </div>
                   {!preduzece?.pdv_obveznik && (
-                    <p className="mt-30">Poreski obveznik nije u sistemu PDV-a.</p>
+                    <p className="mt-30">
+                      Poreski obveznik nije u sistemu PDV-a.
+                    </p>
                   )}
                 </div>
                 <div className="col-md-4 col-sm-5">
@@ -751,8 +757,8 @@ const BezgotovinskiPreview = () => {
                       )}
                       <p className="fw-500">
                         {/* {ukupan_iznos_pdv > 0 &&  */}
-                        {ukupan_iznos_pdv &&
-                        'PDV:'}</p>
+                        {ukupan_iznos_pdv && 'PDV:'}
+                      </p>
                       <p className="fw-500">
                         {ukupnoSaPdvIpopusta && 'Total:'}
                       </p>
