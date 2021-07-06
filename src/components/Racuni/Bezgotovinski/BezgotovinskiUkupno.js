@@ -14,6 +14,24 @@ const BezgotovinskiUkupno = () => {
   const { values, setFieldValue } = useFormikContext();
   const [popustVisible, setPopustVisible] = useState(false);
 
+  const porezi = values.stavke ? izracunajPojedinacnePoreze(values.stavke) : {};
+
+  let ukupnoSaPdv = Object.values(porezi).reduce(
+    (accumulator, currentVal) => accumulator + (currentVal.ukupno || 0),
+    0
+  );
+
+  let ukupnoPdv = Object.values(porezi).reduce(
+    (accumulator, currentVal) => accumulator + (currentVal.pdvIznos || 0),
+    0
+  );
+
+  let ukupnoBezPdv = ukupnoSaPdv - ukupnoPdv;
+
+  console.log('ukupnoSaPdv', ukupnoSaPdv);
+  console.log('ukupnoPdv', ukupnoPdv);
+  console.log('ukupnoBezPdv', ukupnoBezPdv);
+
   console.log('values', values);
 
   const popust = values.popust
@@ -186,7 +204,7 @@ const BezgotovinskiUkupno = () => {
                         <p className="txt-light">Ukupan iznos PDV-a</p>
                       </div>
                       <div className="heading-secondary mb-0">
-                        {formatirajCijenu(cijene.ukupnoPdv)}
+                        {formatirajCijenu(ukupnoSaPdv)}
                       </div>
                     </div>
                   </div>
@@ -197,7 +215,7 @@ const BezgotovinskiUkupno = () => {
                       </div>
                       <div className="heading-secondary mb-0">
                         {' '}
-                        {formatirajCijenu(cijene.ukupnaCijenaBezPdv)}
+                        {formatirajCijenu(ukupnoBezPdv)}
                       </div>
                     </div>
                   </div>
@@ -208,7 +226,7 @@ const BezgotovinskiUkupno = () => {
                       </div>
                       <div className="heading-secondary mb-0">
                         {' '}
-                        {formatirajCijenu(cijene.ukupnaCijena)}
+                        {formatirajCijenu(ukupnoPdv)}
                       </div>
                     </div>
                   </div>

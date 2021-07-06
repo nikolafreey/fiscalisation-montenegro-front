@@ -229,16 +229,6 @@ const Bezgotovinski = () => {
       values.stavke[i].popust = valuesStavke[i].popust;
       values.stavke[i].tip_popusta = valuesStavke[i].tip_popusta;
 
-      console.log(
-        'getUkupnaCijenaSaPdv',
-        getUkupnaCijenaSaPdv(valuesStavke[i])
-      );
-      console.log(
-        'getUkupnaCijenaBezPdv',
-        getUkupnaCijenaBezPdv(valuesStavke[i])
-      );
-      console.log('getUkupanIznosPdv', getUkupanIznosPdv(valuesStavke[i]));
-
       values.stavke[i].cijena_sa_pdv_popust = getUkupnaCijenaSaPdv(
         valuesStavke[i]
       );
@@ -319,8 +309,6 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
-
-    console.log('noviRacun', noviRacun);
 
     if (values.partner_id) {
       dispatch(storeBezgotovinskiRacun(noviRacun));
