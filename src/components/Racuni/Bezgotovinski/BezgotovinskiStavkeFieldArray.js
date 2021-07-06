@@ -244,6 +244,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       iznos_pdv_popust: Number(getIznosPdv(stavka)),
       // iznos_pdv_popust: Number(getIznosPdv(stavka).toFixed(2)),
     };
+    let CijenaStavkeBezPdv = getCijenaStavkeBezPdv(stavka);
+    let IznosPdv = getIznosPdv(stavka);
     return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
     //stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
   }
@@ -267,8 +269,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   const onChangeExtra = (option, index, stavka) => {
-    setFieldValue(`stavke.${index}.jedinica_mjere_id`, option.jedinica_mjere);
-    setFieldValue(`stavke.${index}.porez`, getPorezForId(option.porez));
+    // setFieldValue(`stavke.${index}.jedinica_mjere_id`, option.jedinica_mjere);
+    // setFieldValue(`stavke.${index}.porez`, getPorezForId(option.porez));
     setFieldValue(`stavke.${index}`, option);
     if (!stavka || stavka?.kolicina === null || stavka?.kolicina === 0) {
       setFieldValue(`stavke.${index}.kolicina`, 1);

@@ -1,5 +1,5 @@
 import { useFormikContext, FieldArray, Form, Formik, Field } from 'formik';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { ReactComponent as LinkSvg } from '../../../assets/icon/link.svg';
@@ -10,6 +10,7 @@ import BezgotovinskiStavkeFieldArray from './BezgotovinskiStavkeFieldArray';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getRacuni,
+  getStavke,
   setRacun,
   storeBezgotovinskiRacun,
 } from '../../../store/actions/RacuniActions';
@@ -26,6 +27,7 @@ import { racuniService } from '../../../services/RacuniService';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { poreziService } from '../../../services/PoreziService';
 
 toast.configure();
 
@@ -45,25 +47,206 @@ const Bezgotovinski = () => {
   const history = useHistory();
   let previousUrl = localStorage.getItem('previousUrl');
 
+  const [porezi, setPorezi] = useState([]);
+  useEffect(() => {
+    dispatch(getStavke());
+    (async () => setPorezi((await poreziService.getPorezi()).data))();
+  }, [dispatch]);
+
   const handleSubmit = (values) => {
     let valuesStavke = values.stavke;
     values.stavke = values.niz;
+
+    function getUkupnaCijenaSaPdv(stavka) {
+      let UkupnaCijenaStavke = getUkupnaCijenaStavke(stavka);
+      return getUkupnaCijenaStavke(stavka);
+    }
+
+    function getUkupnaCijenaStavke(stavka) {
+      stavka = {
+        ...stavka,
+        iznos_pdv_popust: Number(getIznosPdv(stavka)),
+        // iznos_pdv_popust: Number(getIznosPdv(stavka).toFixed(2)),
+      };
+      let CijenaStavkeBezPdv = getCijenaStavkeBezPdv(stavka);
+      let IznosPdv = getIznosPdv(stavka);
+      return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
+      //stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena || stavka?.ukupna_cijena || 0;
+    }
+
+    function getIznosPdv(stavka) {
+      return (
+        getPorezStopaForId(stavka?.porez_id, stavka) *
+        getCijenaStavkeBezPdv(stavka)
+      );
+    }
+
+    function getPorezForId(porezId) {
+      return porezi?.find((porez) => porez.id === porezId) || {};
+    }
+
+    function getPorezStopaForId(porezId, stavka) {
+      return (
+        stavka &&
+        (getPorezForId(porezId)?.stopa ||
+          getPorezForId(stavka?.roba?.cijene_roba[0]?.porez_id)?.stopa ||
+          0)
+      );
+    }
+
+    function izracunajCijenuSaPopustom(stavka, cijena) {
+      if (!stavka?.tip_popusta) return cijena;
+      if (stavka.tip_popusta === 'iznos')
+        return cijena - Number(stavka.popust || 0);
+      if (stavka.tip_popusta === 'procenat')
+        return cijena - (Number(stavka.popust || 0) * cijena) / 100;
+    }
+
+    function getPopustStavke(stavka) {
+      if (
+        Number(stavka?.grupa?.popust_procenti) > 0 ||
+        Number(stavka?.atribut_robe?.popust_procenti) > 0
+      ) {
+        return {
+          iznos:
+            Number(stavka?.grupa?.popust_procenti) ||
+            Number(stavka?.atribut_robe?.popust_procenti) ||
+            0,
+          tip_popusta: 'procenat',
+        };
+      } else {
+        return {
+          iznos:
+            Number(stavka?.grupa?.popust_iznos) ||
+            Number(stavka?.atribut_robe?.popust_iznos) ||
+            Number(stavka?.popust) ||
+            0,
+          tip_popusta: 'iznos',
+        };
+      }
+    }
+
+    function izracunajPocetnuCijenuSaPopustom(stavka, cijena) {
+      stavka = { ...stavka, kolicina: 1 };
+
+      let popustStart = getPopustStavke(stavka);
+
+      if (!popustStart?.tip_popusta) return cijena;
+      if (popustStart.tip_popusta === 'iznos') {
+        stavka = { ...stavka, popust_iznos: popustStart.iznos };
+        // stavka.tip_popusta=popustStart.tip_popusta;
+        // stavka.popust=popustStart.iznos;
+        values.niz[values.stavke.length - 1] = stavka;
+        return Number(cijena) - Number(popustStart.iznos);
+      }
+
+      if (popustStart.tip_popusta === 'procenat') {
+        stavka.tip_popusta = popustStart.tip_popusta;
+        stavka.popust = popustStart.iznos;
+        values.niz[values.stavke.length - 1] = stavka;
+        return cijena - (Number(popustStart.iznos || 0) * cijena) / 100;
+      }
+    }
+
+    function getCijenaStavkeBezPdv(stavka, index) {
+      let cijena_sa_popustom;
+      let indStavke = values.stavke.length;
+      const pocetnaStavka = stavka;
+
+      if (stavka?.tip_popusta) {
+        cijena_sa_popustom = izracunajCijenuSaPopustom(
+          stavka,
+          stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena ||
+            stavka?.ukupna_cijena ||
+            0
+        );
+      } else {
+        cijena_sa_popustom = izracunajPocetnuCijenuSaPopustom(
+          stavka,
+          stavka?.roba?.cijene_roba?.[0]?.ukupna_cijena ||
+            stavka?.ukupna_cijena ||
+            0
+        );
+      }
+      stavka = {
+        ...stavka,
+        cijena_sa_pdv_popust: Number(cijena_sa_popustom),
+        // cijena_sa_pdv_popust: Number(cijena_sa_popustom).toFixed(4),
+      };
+
+      if (Number(values?.stavke[indStavke]?.cijena_bez_pdv_popust) === 0) {
+      }
+
+      if (stavka?.porez?.stopa > 0) {
+        stavka = {
+          ...stavka,
+          cijena_bez_pdv_popust:
+            Number(cijena_sa_popustom) /
+            Number(1 + Number(stavka?.porez?.stopa)),
+          cijena_bez_pdv: Number(pocetnaStavka.cijena_bez_pdv),
+          // cijena_bez_pdv_popust: (
+          //   Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
+          // ).toFixed(4),
+        };
+
+        if (!stavka?.kolicina) {
+          stavka = { ...stavka, kolicina: 1 };
+        }
+
+        //  stavka={...stavka,tip_popusta:getPopustStavke(stavka).tip_popusta,popust:getPopustStavke(stavka).iznos}
+
+        //  values.niz[values.stavke.length-1].popust=values.stavke[values.stavke.length-1].popust;
+        //  values.niz[values.stavke.length-1].tip_popusta=values.stavke[values.stavke.length-1].tip_popusta;
+        values.niz[values.stavke.length - 1] = stavka;
+
+        let tempVal =
+          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa));
+
+        return (
+          Number(cijena_sa_popustom) / Number(1 + Number(stavka?.porez?.stopa))
+        );
+      } else {
+        stavka = {
+          ...stavka,
+          cijena_bez_pdv_popust: Number(cijena_sa_popustom),
+        };
+        values.niz[values.stavke.length - 1] = stavka;
+        return Number(cijena_sa_popustom);
+      }
+    }
+
+    function getUkupnaCijenaBezPdv(stavka) {
+      return getCijenaStavkeBezPdv(stavka);
+    }
+
+    function getUkupanIznosPdv(stavka) {
+      return getUkupnaCijenaSaPdv(stavka) - getUkupnaCijenaBezPdv(stavka);
+    }
 
     for (let i = 0; i < valuesStavke.length; i++) {
       values.stavke[i].opis = valuesStavke[i].opis;
       values.stavke[i].kolicina = valuesStavke[i].kolicina;
       values.stavke[i].popust = valuesStavke[i].popust;
-    }
+      values.stavke[i].tip_popusta = valuesStavke[i].tip_popusta;
 
-    // for (let i = 0; i < values.stavke.length; i++) {
-    //   values.stavke[i].cijena_bez_pdv = values.niz[i].cijena_bez_pdv;
-    //   values.stavke[i].cijena_bez_pdv_popust =s
-    //     values.niz[i].cijena_bez_pdv_popust;
-    //   values.stavke[i].cijena_sa_pdv_popust =
-    //     values.niz[i].cijena_sa_pdv_popust;
-    //   values.stavke[i].iznos_pdv_popust = values.niz[i].iznos_pdv_popust;
-    // }
-    // const { params } = useRouteMatch();
+      console.log(
+        'getUkupnaCijenaSaPdv',
+        getUkupnaCijenaSaPdv(valuesStavke[i])
+      );
+      console.log(
+        'getUkupnaCijenaBezPdv',
+        getUkupnaCijenaBezPdv(valuesStavke[i])
+      );
+      console.log('getUkupanIznosPdv', getUkupanIznosPdv(valuesStavke[i]));
+
+      values.stavke[i].cijena_sa_pdv_popust = getUkupnaCijenaSaPdv(
+        valuesStavke[i]
+      );
+      values.stavke[i].cijena_bez_pdv_popust = getUkupnaCijenaBezPdv(
+        valuesStavke[i]
+      );
+      values.stavke[i].iznos_pdv_popust = getUkupanIznosPdv(valuesStavke[i]);
+    }
     console.log('values', values);
 
     if (values.stavke.length === 0) {
@@ -136,6 +319,8 @@ const Bezgotovinski = () => {
       korektivni_racun_vrsta:
         values.korektivni_racun === '0' ? null : values.korektivni_racun,
     };
+
+    console.log('noviRacun', noviRacun);
 
     if (values.partner_id) {
       dispatch(storeBezgotovinskiRacun(noviRacun));
