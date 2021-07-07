@@ -72,7 +72,8 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
       <div className="side-info__wrapper">
         <h2 className="side-info__title">
           <span>{preduzece?.kratki_naziv}</span>
-          {(preduzece?.verifikovan === 1 || preduzece?.verifikovan === true) && (
+          {(preduzece?.verifikovan === 1 ||
+            preduzece?.verifikovan === true) && (
             <i>
               <svg
                 className="icon icon__fill-color-badge lg"
@@ -245,7 +246,9 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {preduzece?.twitter_username}
+                  {preduzece?.twitter_username == null
+                    ? preduzece?.twitter_username
+                    : null}
                 </a>
               </p>
             </div>
@@ -261,7 +264,9 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {preduzece?.instagram_username}
+                  {preduzece?.instagram_username == null
+                    ? preduzece?.instagram_username
+                    : null}
                 </a>
               </p>
             </div>
@@ -277,7 +282,9 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {preduzece?.facebook_username}
+                  {preduzece?.facebook_username == null
+                    ? preduzece?.facebook_username
+                    : null}
                 </a>
               </p>
             </div>
@@ -293,7 +300,9 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {preduzece?.skype_username}
+                  {preduzece?.skype_username == null
+                    ? preduzece?.skype_username
+                    : null}
                 </a>
               </p>
             </div>
@@ -391,9 +400,11 @@ const PreduzeceDetails = ({ preduzece, infoOpen, openInfo }) => {
               </div>
             )}
             <div className="col-r mb-20">
-              <p>
-                <a href="tel:+67123434">{preduzece?.kontakt_telefon}</a>
-              </p>
+              {(!!preduzece?.kontakt_whatsapp ||
+                !!preduzece?.kontakt_viber ||
+                !!preduzece?.kontakt_facetime) && (
+                <p>{preduzece?.kontakt_telefon}</p>
+              )}
               <div className="df ai-c jc-end">
                 {!!preduzece?.kontakt_whatsapp && (
                   <>
