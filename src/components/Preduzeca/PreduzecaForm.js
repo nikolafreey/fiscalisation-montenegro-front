@@ -58,20 +58,22 @@ const PreduzecaForm = () => {
 
   const [djelatnostDefault, setDjelatnostDefault] = useState({});
   useEffect(() => {
-    djelatnostiService.getDjelatnostiDropdown()
-      .then(data => {
-        setDjelatnostDefault(data.find(temp => temp.label === "Ostalo"));
+    djelatnostiService
+      .getDjelatnostiDropdown()
+      .then((data) => {
+        setDjelatnostDefault(data.find((temp) => temp.label === 'Ostalo'));
       })
-      .catch(e => toast.error('Greška: ', e.message));
+      .catch((e) => toast.error('Greška: ', e.message));
   }, []);
 
   const [kategorijaDefault, setKategorijaDefault] = useState({});
   useEffect(() => {
-    kategorijeService.getKategorijeDropdown()
-      .then(data => {
+    kategorijeService
+      .getKategorijeDropdown()
+      .then((data) => {
         setKategorijaDefault(data[0]);
       })
-      .catch(e => toast.error('Greška: ', e.message));
+      .catch((e) => toast.error('Greška: ', e.message));
   }, []);
 
   const informacijeKontakt = [
@@ -348,14 +350,16 @@ const PreduzecaForm = () => {
                             defaultValue={
                               preduzece &&
                               Object.keys(preduzece).length !== 0 &&
-                              preduzece.constructor === Object ? {
-                                value:
-                                  preduzece.djelatnosti &&
-                                  preduzece?.djelatnosti[0]?.id,
-                                label:
-                                  preduzece.djelatnosti &&
-                                  preduzece?.djelatnosti[0]?.naziv,
-                              } : djelatnostDefault
+                              preduzece.constructor === Object
+                                ? {
+                                    value:
+                                      preduzece.djelatnosti &&
+                                      preduzece?.djelatnosti[0]?.id,
+                                    label:
+                                      preduzece.djelatnosti &&
+                                      preduzece?.djelatnosti[0]?.naziv,
+                                  }
+                                : djelatnostDefault
                             }
                           />
                         </div>
@@ -370,10 +374,12 @@ const PreduzecaForm = () => {
                             isInitialValid={kategorijaDefault ? true : false}
                             defaultValue={
                               Object.keys(preduzece).length !== 0 &&
-                              preduzece.constructor === Object ? {
-                                value: preduzece?.kategorija?.id,
-                                label: preduzece?.kategorija?.naziv,
-                              } : kategorijaDefault
+                              preduzece.constructor === Object
+                                ? {
+                                    value: preduzece?.kategorija?.id,
+                                    label: preduzece?.kategorija?.naziv,
+                                  }
+                                : kategorijaDefault
                             }
                           />
                         </div>
@@ -504,8 +510,8 @@ const PreduzecaForm = () => {
                           <div className="df ai-c jc-sb">
                             <div className="form__checkbox-group">
                               <Checkbox
-                                name="telfon_whatsapp"
-                                id="telfon_whatsapp"
+                                name="telefon_whatsapp"
+                                id="telefon_whatsapp"
                                 label={$t('preduzeca.whatsapp')}
                                 placeholder=""
                                 // className="form__checkbox"
@@ -514,8 +520,8 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
-                                name="telfon_viber"
-                                id="telfon_viber"
+                                name="telefon_viber"
+                                id="telefon_viber"
                                 label={$t('preduzeca.viber')}
                                 placeholder=""
                                 // className="form__checkbox"
@@ -524,8 +530,8 @@ const PreduzecaForm = () => {
                             </div>
                             <div className="form__checkbox-group">
                               <Checkbox
-                                name="telfon_facetime"
-                                id="telfon_facetime"
+                                name="telefon_facetime"
+                                id="telefon_facetime"
                                 label={$t('preduzeca.facetime')}
                                 placeholder=""
                                 // className="form__checkbox"
