@@ -6,6 +6,7 @@ import { ReactComponent as LinkSvg } from '../../assets/icon/link.svg';
 import $t from '../../lang';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  getFizickaLica,
   getFizickoLice,
   setFizickoLice,
   storeFizickoLice,
@@ -64,6 +65,7 @@ const FizickaLicaForm = () => {
       );
     }
     dispatch(setFizickoLice(initialValues));
+    dispatch(getFizickaLica());
     history.push(PARTNERI.INDEX);
   };
 
