@@ -47,6 +47,8 @@ const options = [
   { value: 'placen', label: 'Plaćen' },
   { value: 'nenaplativ', label: 'Nenaplativ' },
   { value: 'nijeplacen', label: 'Nije Plaćen' },
+  { value: 'korektivni', label: 'Korektivni' },
+  { value: 'storniran', label: 'Storniran' },
   // { value: 'privremeni', label: 'Privremeni' },
 ];
 
