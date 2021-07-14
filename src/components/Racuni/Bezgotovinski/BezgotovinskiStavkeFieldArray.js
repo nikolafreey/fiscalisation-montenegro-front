@@ -395,10 +395,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           readOnly
                           value={
                             formatirajCijenu(
-                              getUkupnaCijenaStavke(values?.stavke[index])
+                              // getUkupnaCijenaStavke(values?.stavke[index])
+                              getCijenaStavkeBezPdv(values?.stavke[index])
                             )
                             // getIznosPdv(values?.stavke[index])
-                            // getCijenaStavkeBezPdv(values?.stavke[index])
                           }
                           // value={
                           //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
@@ -424,7 +424,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
                           type="number"
-                          readOnly
+                          // readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
                           // )}

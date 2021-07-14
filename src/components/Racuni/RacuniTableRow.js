@@ -142,7 +142,9 @@ const RacuniTableRow = ({ item, racuni }) => {
 
   const handleStorniraj = (e) => {
     e.stopPropagation();
-    if (window.confirm('Jeste li sigurni da želite da stornirate ovaj račun?')) {
+    if (
+      window.confirm('Jeste li sigurni da želite da stornirate ovaj račun?')
+    ) {
       if (_item.status !== 'storniran') {
         racuniService
           .stornirajRacun(item.id)
@@ -152,9 +154,11 @@ const RacuniTableRow = ({ item, racuni }) => {
               toastSettings
             );
             dispatch(getRacuni());
+            window.location.reload();
           })
           .catch((err) => {
             dispatch(getRacuni());
+            window.location.reload();
             let message = err?.response?.data?.error
               ? err.response.data.error
               : err.message;
@@ -173,6 +177,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       .fiskalizujRacun(item.id)
       .then((data) => {
         dispatch(getRacuni());
+        window.location.reload();
         toast.success(
           `Fiskalizacija računa broj ${item.redni_broj} je uspjela!`,
           toastSettings
@@ -180,6 +185,7 @@ const RacuniTableRow = ({ item, racuni }) => {
       })
       .catch((err) => {
         dispatch(getRacuni());
+        window.location.reload();
         let message = err?.response?.data?.error
           ? err.response.data.error
           : err.message;
@@ -310,15 +316,17 @@ const RacuniTableRow = ({ item, racuni }) => {
                 </Link>
               )}
 
-              {_item?.qr_url && (_item?.status !== 'storniran' && _item?.status !== 'korektivni') && (
-                <Link
-                  onClick={handleStorniraj}
-                  className={`${_item?.qr_url ? 'disabled' : ''}`}
-                >
-                  <Delete className="icon icon__dark md" />
-                  Storniraj
-                </Link>
-              )}
+              {_item?.qr_url &&
+                _item?.status !== 'storniran' &&
+                _item?.status !== 'korektivni' && (
+                  <Link
+                    onClick={handleStorniraj}
+                    className={`${_item?.qr_url ? 'disabled' : ''}`}
+                  >
+                    <Delete className="icon icon__dark md" />
+                    Storniraj
+                  </Link>
+                )}
             </div>
           </button>
         </div>
