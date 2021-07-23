@@ -166,6 +166,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
           0
       );
     }
+
+    if (stavka?.jedinicna_cijena_bez_pdv) {
+    }
+
     stavka = {
       ...stavka,
       cijena_sa_pdv_popust: Number(cijena_sa_popustom),
@@ -188,6 +192,9 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
 
       if (!stavka?.kolicina) {
         stavka = { ...stavka, kolicina: 1 };
+      }
+
+      if (values?.stavke[index]?.jedinicna_cijena_bez_pdv) {
       }
 
       //  stavka={...stavka,tip_popusta:getPopustStavke(stavka).tip_popusta,popust:getPopustStavke(stavka).iznos}
@@ -244,6 +251,36 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
       iznos_pdv_popust: Number(getIznosPdv(stavka)),
       // iznos_pdv_popust: Number(getIznosPdv(stavka).toFixed(2)),
     };
+
+    if (stavka?.jedinicna_cijena_bez_pdv > 0) {
+      let jedinicnaCijenaBezPdv = stavka?.jedinicna_cijena_bez_pdv;
+      let jedinicnaCijenaSaPdv =
+        stavka?.jedinicna_cijena_bez_pdv * (1 + +stavka?.porez?.stopa);
+
+      if (!stavka.hasOwnProperty('tip_popusta') || !stavka?.tip_popusta) {
+        jedinicnaCijenaSaPdv =
+          jedinicnaCijenaBezPdv * (1 + +stavka?.porez?.stopa);
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - (stavka?.popust || 0);
+      }
+
+      if (stavka?.tip_popusta === 'iznos') {
+        jedinicnaCijenaSaPdv =
+          jedinicnaCijenaBezPdv * (1 + +stavka?.porez?.stopa);
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - stavka?.popust;
+      }
+
+      if (stavka?.tip_popusta === 'procenat') {
+        jedinicnaCijenaSaPdv =
+          jedinicnaCijenaBezPdv * (1 + +stavka?.porez?.stopa);
+        jedinicnaCijenaSaPdv =
+          jedinicnaCijenaSaPdv - jedinicnaCijenaSaPdv * (stavka?.popust / 100);
+      }
+
+      stavka = { ...stavka, jedinicna_cijena_sa_pdv: +jedinicnaCijenaSaPdv };
+      stavka.cijena_sa_pdv_popust = +jedinicnaCijenaSaPdv;
+      return +jedinicnaCijenaSaPdv;
+    }
+
     let CijenaStavkeBezPdv = getCijenaStavkeBezPdv(stavka);
     let IznosPdv = getIznosPdv(stavka);
     return Number(getCijenaStavkeBezPdv(stavka)) + getIznosPdv(stavka);
@@ -251,6 +288,40 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupnaCijenaBezPdv(stavka) {
+    if (stavka?.jedinicna_cijena_bez_pdv) {
+      let jedinicnaCijenaBezPdv = stavka?.jedinicna_cijena_bez_pdv;
+      let jedinicnaCijenaSaPdv =
+        jedinicnaCijenaBezPdv * (1 + +stavka?.porez?.stopa);
+
+      if (!stavka.hasOwnProperty('tip_popusta') || !stavka?.tip_popusta) {
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - (stavka?.popust || 0);
+        jedinicnaCijenaBezPdv =
+          jedinicnaCijenaSaPdv / (1 + +stavka?.porez?.stopa);
+      }
+
+      if (stavka?.tip_popusta === 'iznos') {
+        // jedinicnaCijenaBezPdv = jedinicnaCijenaBezPdv - stavka?.popust;
+        // jedinicnaCijenaSaPdv =
+        //   jedinicnaCijenaBezPdv * (1 + stavka?.porez?.stopa);
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - stavka?.popust;
+        jedinicnaCijenaBezPdv =
+          jedinicnaCijenaSaPdv / (1 + +stavka?.porez?.stopa);
+      }
+
+      if (stavka?.tip_popusta === 'procenat') {
+        jedinicnaCijenaBezPdv =
+          jedinicnaCijenaBezPdv -
+          jedinicnaCijenaBezPdv * (stavka?.popust / 100);
+      }
+
+      stavka = { ...stavka, jedinicna_cijena_bez_pdv: +jedinicnaCijenaBezPdv };
+      stavka.cijena_bez_pdv_popust = +jedinicnaCijenaBezPdv;
+      return (
+        +jedinicnaCijenaBezPdv *
+        (stavka && stavka.kolicina ? stavka.kolicina : 1)
+      );
+    }
+
     return (
       getCijenaStavkeBezPdv(stavka) *
       (stavka && stavka.kolicina ? stavka.kolicina : 1)
@@ -265,6 +336,47 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
   }
 
   function getUkupanIznosPdv(stavka) {
+    if (stavka?.jedinicna_cijena_bez_pdv > 0) {
+      let jedinicnaCijenaSaPdv = Number(
+        stavka?.jedinicna_cijena_bez_pdv * (1 + +stavka?.porez?.stopa)
+      );
+
+      let jedinicnaCijenaBezPdvPopust = stavka?.jedinicna_cijena_bez_pdv;
+
+      if (!stavka.hasOwnProperty('tip_popusta') || !stavka?.tip_popusta) {
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - (stavka?.popust || 0);
+        jedinicnaCijenaBezPdvPopust =
+          jedinicnaCijenaSaPdv / (1 + +stavka?.porez?.stopa);
+      }
+
+      if (stavka?.tip_popusta === 'iznos') {
+        jedinicnaCijenaSaPdv = jedinicnaCijenaSaPdv - stavka?.popust;
+        jedinicnaCijenaBezPdvPopust =
+          jedinicnaCijenaBezPdvPopust - stavka?.popust;
+      }
+
+      if (stavka?.tip_popusta === 'procenat') {
+        jedinicnaCijenaSaPdv =
+          jedinicnaCijenaSaPdv - jedinicnaCijenaSaPdv * (stavka?.popust / 100);
+
+        jedinicnaCijenaBezPdvPopust =
+          jedinicnaCijenaBezPdvPopust -
+          jedinicnaCijenaBezPdvPopust * (stavka?.popust / 100);
+      }
+
+      stavka = {
+        ...stavka,
+        iznos_jedinicni_pdv_popust:
+          +jedinicnaCijenaSaPdv - +jedinicnaCijenaBezPdvPopust,
+      };
+      stavka.iznos_pdv_popust =
+        jedinicnaCijenaSaPdv - +jedinicnaCijenaBezPdvPopust;
+      return (
+        (jedinicnaCijenaSaPdv - +jedinicnaCijenaBezPdvPopust) *
+        (stavka && stavka.kolicina ? stavka.kolicina : 1)
+      );
+    }
+
     return getUkupnaCijenaSaPdv(stavka) - getUkupnaCijenaBezPdv(stavka);
   }
 
@@ -390,14 +502,48 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                           Bez PDV
                         </label>
                         <input
-                          type="text"
+                          type="number"
+                          name={`stavke.${index}.jedinicna_cijena_bez_pdv`}
+                          // readOnly
+                          value={
+                            // formatirajCijenu(
+                            // getUkupnaCijenaStavke(values?.stavke[index])
+                            // getCijenaStavkeBezPdv(values?.stavke[index])
+                            // )
+                            values?.stavke[index]?.jedinicna_cijena_bez_pdv ||
+                            getCijenaStavkeBezPdv(values?.stavke[index])
+                            // getIznosPdv(values?.stavke[index])
+                          }
+                          // value={
+                          //       stavka?.roba?.cijene_roba[0]?.ukupna_cijena ||
+                          //       stavka?.ukupna_cijena
+                          //     }
+                          className="form__input"
+                          placeholder="Bez PDV"
+                          step=".01"
+                          onWheel={() => document.activeElement.blur()}
+                          onChange={(event) => {
+                            setFieldValue(
+                              `stavke.${index}.jedinicna_cijena_bez_pdv`,
+                              event.target.valueAsNumber
+                            );
+                            console.log('values', values);
+                            console.log('stavka', stavka);
+                          }}
+                        />
+                        {/* <input
+                          type="number"
                           name={`stavke.${index}.cijena_bez_pdv`}
+                          step=".01"
+                          onWheel={() => document.activeElement.blur()}
                           readOnly
                           value={
-                            formatirajCijenu(
-                              // getUkupnaCijenaStavke(values?.stavke[index])
-                              getCijenaStavkeBezPdv(values?.stavke[index])
-                            )
+                            // formatirajCijenu(
+                            // getUkupnaCijenaStavke(values?.stavke[index])
+                            // getCijenaStavkeBezPdv(values?.stavke[index])
+                            // )
+                            values?.stavke[index]?.jedinicna_cijena_bez_pdv ||
+                            getCijenaStavkeBezPdv(values?.stavke[index])
                             // getIznosPdv(values?.stavke[index])
                           }
                           // value={
@@ -414,7 +560,7 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             console.log('values', values);
                             console.log('stavka', stavka);
                           }}
-                        />
+                        /> */}
                       </div>
                       <div className="form__group">
                         <label htmlFor="" className="form__label bm-show">
@@ -424,6 +570,8 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                         <input
                           name={`stavke.${index}.ukupna_cijena`}
                           type="number"
+                          step=".01"
+                          onWheel={() => document.activeElement.blur()}
                           // readOnly
                           // value={formatirajCijenu(
                           //   getUkupnaCijenaStavke(stavka)
@@ -441,6 +589,10 @@ const BezgotovinskiStavkeFieldArray = ({ insert, remove }) => {
                             setFieldValue(
                               `stavke.${index}.ukupna_cijena`,
                               event.target.valueAsNumber
+                            );
+                            setFieldValue(
+                              `stavke.${index}.jedinicna_cijena_bez_pdv`,
+                              0
                             );
                           }}
                         />
